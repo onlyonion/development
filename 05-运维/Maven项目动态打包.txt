@@ -1,39 +1,39 @@
-MavenÏîÄ¿¶¯Ì¬´ò°ü
+Mavené¡¹ç›®åŠ¨æ€æ‰“åŒ…
 
 
-1 webÏîÄ¿Ä¿Â¼½á¹¹½éÉÜ
-Ò»¸öwebÏîÄ¿µÄÄ¿Â¼½á¹¹£º
+1 webé¡¹ç›®ç›®å½•ç»“æ„ä»‹ç»
+ä¸€ä¸ªwebé¡¹ç›®çš„ç›®å½•ç»“æ„ï¼š
 webapp/src/main/resources
 --conf
 --test/conf
 --prod/conf
-ËµÃ÷£º
-conf ÎªÄ¬ÈÏµÄÅäÖÃÎÄ¼ş£¨Ò²ÊÇ×÷Îª¿ª·¢²âÊÔ»·¾³µÄÅäÖÃÎÄ¼ş£©¡£
-uat/conf Îª²âÊÔ»·¾³µÄÅäÖÃÎÄ¼ş¡£
-prod/conf ÎªÉú²ú»·¾³µÄÅäÖÃÎÄ¼ş¡£
-Èç¹ûĞèÒª¸ú¶à»·¾³µÄ£¬¿ÉÒÔÔö¼Ó¸ü¶àµÄÄ¿Â¼¡£
-×¢Òâ£ºµ±ĞŞ¸ÄÅäÖÃÎÄ¼şÊ±£¬ĞèÒªÍ¬Ê±Î¬»¤ÏàÓ¦»·¾³ÏÂµÄÎÄ¼ş¡£
+è¯´æ˜ï¼š
+conf ä¸ºé»˜è®¤çš„é…ç½®æ–‡ä»¶ï¼ˆä¹Ÿæ˜¯ä½œä¸ºå¼€å‘æµ‹è¯•ç¯å¢ƒçš„é…ç½®æ–‡ä»¶ï¼‰ã€‚
+uat/conf ä¸ºæµ‹è¯•ç¯å¢ƒçš„é…ç½®æ–‡ä»¶ã€‚
+prod/conf ä¸ºç”Ÿäº§ç¯å¢ƒçš„é…ç½®æ–‡ä»¶ã€‚
+å¦‚æœéœ€è¦è·Ÿå¤šç¯å¢ƒçš„ï¼Œå¯ä»¥å¢åŠ æ›´å¤šçš„ç›®å½•ã€‚
+æ³¨æ„ï¼šå½“ä¿®æ”¹é…ç½®æ–‡ä»¶æ—¶ï¼Œéœ€è¦åŒæ—¶ç»´æŠ¤ç›¸åº”ç¯å¢ƒä¸‹çš„æ–‡ä»¶ã€‚
 
-2 ÏîÄ¿ÖĞÒıÈëMaven²å¼ş
-ÏîÄ¿ÖĞpomÎÄ¼şÌí¼Ó´ò°ü²å¼şµÄÒÀÀµ£º
+2 é¡¹ç›®ä¸­å¼•å…¥Mavenæ’ä»¶
+é¡¹ç›®ä¸­pomæ–‡ä»¶æ·»åŠ æ‰“åŒ…æ’ä»¶çš„ä¾èµ–ï¼š
 <plugin>
    <groupId>org.apache.maven.plugins</groupId>
    <artifactId>maven-war-plugin</artifactId>
    <configuration>
-      <!-- ÊÍ·Å½«ÏîÄ¿µÄÀàÎÄ¼ş´ò³Éjar·Åµ½libÄ¿Â¼ÖĞ¡£´ò³ÉjarµÄºÃ´¦ÊÇ£ºÖ»ĞŞ¸ÄclassÊ±£¬¿ÉÒÔÖ»¸üĞÂjar¡£ -->
+      <!-- é‡Šæ”¾å°†é¡¹ç›®çš„ç±»æ–‡ä»¶æ‰“æˆjaræ”¾åˆ°libç›®å½•ä¸­ã€‚æ‰“æˆjarçš„å¥½å¤„æ˜¯ï¼šåªä¿®æ”¹classæ—¶ï¼Œå¯ä»¥åªæ›´æ–°jarã€‚ -->
       <archiveClasses>false</archiveClasses>
       <archive>
          <addMavenDescriptor>false</addMavenDescriptor>
       </archive>
       <webResources>
          <resource>
-            <!-- config×÷Îªsource folder£¬²»»á±»´òµ½jarÖĞ¡£ -->
+            <!-- configä½œä¸ºsource folderï¼Œä¸ä¼šè¢«æ‰“åˆ°jarä¸­ã€‚ -->
             <directory>src/main/resources/${package.environment}</directory>
             <targetPath>WEB-INF/classes</targetPath>
             <filtering>true</filtering>
          </resource>
       </webResources>
-      <packagingExcludes><!-- ÅÅ³ı¶àÓàÅäÖÃÎÄ¼ş -->
+      <packagingExcludes><!-- æ’é™¤å¤šä½™é…ç½®æ–‡ä»¶ -->
          WEB-INF/classes/test/**,
          WEB-INF/classes/dev/**
       </packagingExcludes>
@@ -48,18 +48,18 @@ prod/conf ÎªÉú²ú»·¾³µÄÅäÖÃÎÄ¼ş¡£
       </execution>
    </executions>
 </plugin>
-¸ù¾İ${package.environment}±äÁ¿£¬½øĞĞ¶¯Ì¬´ò°ü¡£
+æ ¹æ®${package.environment}å˜é‡ï¼Œè¿›è¡ŒåŠ¨æ€æ‰“åŒ…ã€‚
 <properties>
    <package.environment></package.environment>
 </properties>
-´ò°üÃüÁî£º
-mvn  clean package  -Dmaven.test.skip=true -U -Pdev //´ò¿ª·¢»·¾³°ü
-mvn  clean package  -Dmaven.test.skip=true -U -Ptest   //´ò²âÊÔ»·¾³°ü
-mvn  clean package  -Dmaven.test.skip=true -U -Pprod  //´òÉú²ú»·¾³°ü
-´ò°üÊ±maven½«ÏàÓ¦µÄÄ¿Â¼ÅäÖÃÎÄ¼şÌæ»»confÄ¿Â¼ÖĞÅäÖÃÎÄ¼ş¡£
+æ‰“åŒ…å‘½ä»¤ï¼š
+mvn  clean package  -Dmaven.test.skip=true -U -Pdev //æ‰“å¼€å‘ç¯å¢ƒåŒ…
+mvn  clean package  -Dmaven.test.skip=true -U -Ptest   //æ‰“æµ‹è¯•ç¯å¢ƒåŒ…
+mvn  clean package  -Dmaven.test.skip=true -U -Pprod  //æ‰“ç”Ÿäº§ç¯å¢ƒåŒ…
+æ‰“åŒ…æ—¶mavenå°†ç›¸åº”çš„ç›®å½•é…ç½®æ–‡ä»¶æ›¿æ¢confç›®å½•ä¸­é…ç½®æ–‡ä»¶ã€‚
 
-3 MavenÈ«¾ÖÅäÖÃ²ÎÊı
-MavenÈ«¾ÖÅäÖÃÎÄ${maven.home}/conf/settings.xmlÖĞ£¬Ôö¼Óprofile »·¾³±äÁ¿£º
+3 Mavenå…¨å±€é…ç½®å‚æ•°
+Mavenå…¨å±€é…ç½®æ–‡${maven.home}/conf/settings.xmlä¸­ï¼Œå¢åŠ profile ç¯å¢ƒå˜é‡ï¼š
 <profiles>
    <profile>
       <id>dev</id>
