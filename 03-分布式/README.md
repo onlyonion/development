@@ -15,9 +15,10 @@
 
 
 
-
-google chubby gfs big-table map-reduce
-apache zookeeper hadoop hbase map-reduce
+|com|配置中心|文件系统|数据库|分布式计算|
+|:---:|:---:|:---:|:---:|:---:|
+|google|chubby|gfs|big-table|map-reduce|
+|apache|zookeeper|hadoop|hbase|map-reduce|
 
 zookeeper是分布式系统中一个负载均衡框架，google的chubby的一个开源实现，是是Hadoop和Hbase的重要组件。
 同样的在http中，常听说的nginx也是一个负载均衡服务器，它面向的是分布式web服务器
