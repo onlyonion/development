@@ -101,6 +101,7 @@ synchronized(对象){
 ThreadLocalMap存储的键值对中的键是this对象指向的ThreadLocal对象，而值就是你所设置的对象了
 
 # 3. java.util.concurrent
+
 # importnew博文
 [importnew博文](http://www.importnew.com/15731.html "title") 
 
@@ -129,3 +130,12 @@ CountDownLatch是通过一个计数器来实现的，计数器的初始值为线
 
 ## BlockingQueue
 
+## ConcurrentHashMap
+Hashtable，synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，
+ConcurrentHashMap允许多个修改操作并发进行，使用锁分离技术
+
+多个锁来控制对hash表的不同部分进行的修改。ConcurrentHashMap内部使用段(Segment)来表示这些不同的部分，每个段其实就是一个小的hash table，它们有自己的锁
+有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要**按顺序**锁定所有段，操作完毕后，又按顺序释放所有段的锁
+
+ oncurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何锁,可以简单理解成把一个大的HashTable分解成多个，形成了锁分离。
+而Hashtable的实现方式是---锁整个hash表

@@ -1,7 +1,7 @@
 
 jps、jstack、jmap、jhat、jstat、hprof
 
-ps、top、printf、jstack、grep
+ps、top、printf、grep
 
 ## 1. jps 
 Java Virtual Machine Process Status Tool
@@ -38,7 +38,13 @@ jstack主要用来查看某个Java进程内的线程堆栈信息
 
 	-l long listings，会打印出额外的锁信息，在发生死锁时可以用jstack -l pid来观察锁持有情况
 	-m mixed mode，不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如Native方法）
-	
+
+jstack输出的线程信息主要包括	
+
+1.	jvm自身线程
+	JVM内部的后台线程，来执行譬如垃圾回收，或者低内存的检测等等任务
+2.	用户级别的线程
+
 
 ## 3. jmap（Memory Map）和jhat（Java Heap Analysis Tool）
 
@@ -63,10 +69,14 @@ jmap -histo:live 21711 | more
 用jmap把进程内存使用情况dump到文件中，再用jhat分析查看。jmap进行dump命令格式如下：
 
 	jmap -dump:format=b,file=dumpFileName pid
+	jmap -dump:live,format=b,file=heap.dmp PID
 	
 dump出来的文件可以用MAT、VisualVM等工具查看，这里用jhat查看：
 
 	jhat -port 9998 /tmp/dump.dat
+	
+jhat通过web浏览器具体分析内容中的对象和数据
+jhat是一个Java堆复制浏览器
 	
 ## 4. jstat（JVM统计监测工具）
 
@@ -95,5 +105,12 @@ GCT：GC总耗时
 hprof能够展现CPU使用率，统计堆内存使用情况
 	
 
+## jvisualvm.exe 在JDK 的 bin 目录下
 
+## jconsole
+JConsole是一个基于JMX的GUI工具，用于连接正在运行的JVM，不过此JVM需要使用可管理的模式启动
+如果要把一个应用以可管理的形式启动，可以在启动时设置com.sun.management.jmxremote。
 
+## jmx
+JMX（Java Management Extensions，即Java管理扩展）是一个为应用程序、设备、系统等植入管理功能的框架。
+JMX可以跨越一系列异构操作系统平台、系统体系结构和网络传输协议，灵活的开发无缝集成的系统、网络和服务管理应用。

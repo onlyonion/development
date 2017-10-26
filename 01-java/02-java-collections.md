@@ -44,7 +44,7 @@ LinkedHashMap 是HashMap的一个子类，如果需要输出的顺序和输入�
 3. List，可以通过get()方法来一次取出一个元素。使用数字来选择一堆对象中的一个，get(0)...。(add/get) 
 4. 一般使用ArrayList。用LinkedList构造堆栈stack、队列queue。 
 5. Map用 put(k,v) / get(k)，还可以使用containsKey()/containsValue()来检查其中是否含有某个key/value。 
-      HashMap会利用对象的hashCode来快速找到key。 
+     HashMap会利用对象的hashCode来快速找到key。 
 	 hashing 
           哈希码就是将对象的信息经过一些转变形成一个独一无二的int值，这个值存储在一个array中。 
           我们都知道所有存储结构中，array查找速度是最快的。所以，可以加速查找。 
@@ -54,4 +54,12 @@ LinkedHashMap 是HashMap的一个子类，如果需要输出的顺序和输入�
 使用values()抽取value序列，将map中的所有values生成一个Collection。 
 为什么一个生成Set，一个生成Collection？那是因为，key总是独一无二的，value允许重复。 
 
+## 深入理解 HashMap 加载因子 loadFactor
+
+>	加载因子是表示Hsah表中元素的填满的程度.
+	
+若:加载因子越大,填满的元素越多,好处是,空间利用率高了,但:冲突的机会加大了.反之,加载因子越小,填满的元素越少,好处是:冲突的机会减小了,但:空间浪费多了.
+冲突的机会越大,则查找的成本越高.反之,查找的成本越小.因而,查找时间就越小.
+
+>	因此,必须在 "冲突的机会"与"空间利用率"之间寻找一种平衡与折衷. 这种平衡与折衷本质上是数据结构中有名的"时-空"矛盾的平衡与折衷.
 
