@@ -104,3 +104,18 @@ Survivor 区（S0 和 S1）：作为年轻代 GC（Minor GC）周期的一部分
 3.	System.gc()被显示调用
 4.	上一次GC之后Heap的各域分配策略动态变化
 
+
+## jvm内存设置
+
+	java heap	-Xms and -Xmx
+
+	permanent generation	-XX:PermSize -XX:MaxPermSize
+
+	young generation -Xmn
+
+	old generation
+	
+	
+总结：
+在内存相对紧张的情况下，可以按照上述的方式来进行内存的调优， 找到一个在GC频率和GC耗时上都可接受的一个内存设置，可以用较小的内存满足当前的服务需要
+但当内存相对宽裕的时候，可以相对给服务多增加一点内存，可以减少GC的频率，GC的耗时相应会增加一些。 一般要求低延时的可以考虑多设置一点内存， 对延时要求不高的，可以按照上述方式设置较小内存。

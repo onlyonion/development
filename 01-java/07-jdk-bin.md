@@ -1,5 +1,5 @@
 
-jps、jstack、jmap、jhat、jstat、hprof
+jps、jstack、jmap、jhat、jstat、hprof、jinfo
 
 ps、top、printf、grep
 
@@ -61,9 +61,9 @@ jmap语法格式如下：
 	
 打印进程的类加载器和类加载器加载的持久代对象信息，输出：类加载器名称、对象是否存活（不可靠）、对象地址、父类加载器、已加载的类大小等信息	
 
-jmap -heap pid 查看进程堆内存使用情况，包括使用的GC算法、堆配置参数和各代中堆内存使用情况
-jmap -histo[:live] pid查看堆内存中的对象数目、大小统计直方图，如果带上live则只统计活对象
-jmap -histo:live 21711 | more
+>	jmap -heap pid 查看进程堆内存使用情况，包括使用的GC算法、堆配置参数和各代中堆内存使用情况
+>	jmap -histo[:live] pid查看堆内存中的对象数目、大小统计直方图，如果带上live则只统计活对象
+>	jmap -histo:live 21711 | more
 
 
 用jmap把进程内存使用情况dump到文件中，再用jhat分析查看。jmap进行dump命令格式如下：
@@ -104,6 +104,9 @@ GCT：GC总耗时
 ## 5. hprof（Heap/CPU Profiling Tool）
 hprof能够展现CPU使用率，统计堆内存使用情况
 	
+## 6.jinfo
+查看系统启动参数
+
 
 ## jvisualvm.exe 在JDK 的 bin 目录下
 
