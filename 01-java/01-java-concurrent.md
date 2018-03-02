@@ -148,7 +148,7 @@ ConcurrentHashMap允许多个修改操作并发进行，使用锁分离技术
 多个锁来控制对hash表的不同部分进行的修改。ConcurrentHashMap内部使用段(Segment)来表示这些不同的部分，每个段其实就是一个小的hash table，它们有自己的锁
 有些方法需要跨段，比如size()和containsValue()，它们可能需要锁定整个表而而不仅仅是某个段，这需要**按顺序**锁定所有段，操作完毕后，又按顺序释放所有段的锁
 
- oncurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何锁,可以简单理解成把一个大的HashTable分解成多个，形成了锁分离。
+ConcurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何锁,可以简单理解成把一个大的HashTable分解成多个，形成了锁分离。
 而Hashtable的实现方式是---锁整个hash表
 
 
@@ -194,15 +194,27 @@ Condition 将 Object 监视器方法（wait、notify 和 notifyAll）分解成�
 
 >	LinkedBlockingQueue
 
-	基于链表结构。如果指定了LinkedBlockingQueue的容量大小，那么它反映出来的使用特性就和ArrayBlockingQueue类似了。
+基于链表结构。如果指定了LinkedBlockingQueue的容量大小，那么它反映出来的使用特性就和ArrayBlockingQueue类似了。
 
 >	LinkedBlockingDeque
 
-	基于链表的双端队列。LinkedBlockingQueue的内部结构决定了它只能从队列尾部插入，从队列头部取出元素；但是LinkedBlockingDeque既可以从尾部插入/取出元素，还可以从头部插入元素/取出元素。
+基于链表的双端队列。LinkedBlockingQueue的内部结构决定了它只能从队列尾部插入，从队列头部取出元素；但是LinkedBlockingDeque既可以从尾部插入/取出元素，还可以从头部插入元素/取出元素。
 
 >	PriorityBlockingQueue
 
-	按照优先级进行内部元素排序的无限队列。存放在PriorityBlockingQueue中的元素必须实现Comparable接口，这样才能通过实现compareTo()方法进行排序。优先级最高的元素将始终排在队列的头部；PriorityBlockingQueue不会保证优先级一样的元素的排序，也不保证当前队列中除了优先级最高的元素以外的元素，随时处于正确排序的位置。
+按照优先级进行内部元素排序的无限队列。
+存放在PriorityBlockingQueue中的元素必须实现Comparable接口，这样才能通过实现compareTo()方法进行排序。
+
+优先级最高的元素将始终排在队列的头部；
+PriorityBlockingQueue不会保证优先级一样的元素的排序，也不保证当前队列中除了优先级最高的元素以外的元素，随时处于正确排序的位置。
+
+它的迭代器并不保证队列保持任何特定的顺序，如果想要顺序遍历，考虑使用Arrays.sort(pq.toArray())
 
 >	LinkedTransferQueue
 
+
+>	DelayQueue
+
+其存储延时的元素，只有延时耗尽元素才能被取出。队列头元素就是最先耗尽延时的元素，如果没有元素耗尽延时，poll操作会返回null。同样的，该队列不允许空元素。
+
+Delayed接口又是实现Comparable接口，注意该优先队列就是使用这个方法进行对比的，所以Comparable的实现要借助Delayed接口的方法选出剩余延时小，才能保证使用正确
