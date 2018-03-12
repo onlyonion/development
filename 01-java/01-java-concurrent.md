@@ -15,6 +15,11 @@ volatile保证指令赋值完后的变量立即同步回主内存中，声明并
 
 禁止指令重排序优化
 
+实现原理：
+lock前缀的指令在多核处理器下会引发了两件事情。
+1.	将当前处理器缓存行的数据会写回到系统内存。
+2.	这个写回内存的操作会引起在其他CPU里缓存了该内存地址的数据无效
+
 ### 原子性
 原子操作是一个或多个不可中断的操作，要么一次性完全执行完毕，要么就不执行，最终状态不存在有些操作执行完，有些操作没有执行，在外部看来是不可分割的整体（比如化学中的原子，当然原子也是可以再分割的，不过站在分子层面，原子是最小的不可分割的），原子操作关注的是不被线程调度器中断的操作。
 
@@ -155,14 +160,24 @@ ConcurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何
 
 # Locks
 
+演化 
+1.	synchronize this 发现不太好
+2.	Object lock = new Object; synchronize (lock) {} 使用一个Object对象，替代this
+3.	将Object lock = new Object()，抽象出Lock接口, await(), singal(), singalAll()
+
 ## Lock Condition
 Condition 将 Object 监视器方法（wait、notify 和 notifyAll）分解成截然不同的对象，以便通过将这些对象与任意 Lock 实现组合使用，为每个对象提供多个等待 set （wait-set）。
 其中，Lock 替代了 synchronized 方法和语句的使用，Condition 替代了 Object 监视器方法的使用。
 
-在Condition中，用await()替换wait()，用signal()替换notify()，用signalAll()替换notifyAll()，传统线程的通信方式，Condition都可以实现，这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。Condition的强大之处在于它可以为多个线程间建立不同的Condition。
+在Condition中，用await()替换wait()，用signal()替换notify()，用signalAll()替换notifyAll()，传统线程的通信方式，Condition都可以实现，
+这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。
+
+Condition的强大之处在于它可以为多个线程间建立不同的Condition，
+ 使用synchronized/wait()只有一个阻塞队列，notifyAll会唤起所有阻塞队列下的线程，
+ 而使用lock/condition，可以实现多个阻塞队列，signalAll只会唤起某个阻塞队列下的阻塞线程。
 
 
-## AbstractQueuedSynchronizer
+## AbstractQueuedSynchronizer 队列同步器
 就是被称之为AQS的类，它是一个非常有用的超类，可用来定义锁以及依赖于排队阻塞线程的其他同步器
 
 ## 锁基本概念
