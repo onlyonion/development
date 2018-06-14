@@ -55,7 +55,7 @@ Redis注册中心
 Simple注册中心
 
 
-# 面试题
+# question
 
 ## 1. Dubbo中zookeeper做注册中心，如果注册中心集群都挂掉，发布者和订阅者之间还能通信么？ 
 
@@ -79,8 +79,6 @@ Simple注册中心
 Dubbo通过Token令牌防止用户绕过注册中心直连，然后在注册中心上管理授权。Dubbo还提供服务黑白名单，来控制服务所允许的调用方。
 
 
-
-[dubbo面试](http://www.njszjw.gov.cn/jrjd/02017082114135.html "title") 
 ### 1. 通讯协议
 1.  dubbo://    Dubbo 缺省协议采用单一长连接和 NIO 异步通讯，适合于小数据量大并发的服务调用，以及服务消费者机器数远大于服务提供者机器数的情况
 2.  rmi://      RMI 协议采用 JDK 标准的 java.rmi.* 实现，采用阻塞式短连接和 JDK 标准序列化方式
