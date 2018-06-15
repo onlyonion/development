@@ -6,3 +6,12 @@ DevOps是英文Development和Operations的合体，他要求开发、测试、�
 这就要求应用充分的内聚，也方便运维和管理。这个理念与微服务理念不谋而合。
 
 微服务背后一个重要的理念就是持续集成、快速交付，而在服务内部使用一个统一的技术框架
+
+
+## spring cloud 微服务框架技术标准分析
+
+![spring cloud 微服务框架技术标准分析](./img/spring-cloud-knowledge.jpg "spring cloud 微服务框架技术标准分析") 
+
+## 一统江湖微服务架构之spring cloud
+
+![spring-cloud-structure](./img/spring-cloud-structure.jpg "spring-cloud-structure") 

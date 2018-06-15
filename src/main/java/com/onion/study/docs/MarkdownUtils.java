@@ -21,7 +21,6 @@ public class MarkdownUtils {
     public static final String GENERATE_MARKDOWN_FILE = "99-image.md";
     public static final String IMG_FILE_DIRECTORY     = "img";
     public static final String FREEMARKER_DATA_KEY    = "imgList";
-    // 文件夹img下的图像
     static Configuration       cfg                    = new Configuration(Configuration.VERSION_2_3_22);
     static {
         cfg.setDefaultEncoding(DEFAULT_ENCODING);
@@ -51,7 +50,8 @@ public class MarkdownUtils {
         File[] array = file.listFiles();
         for (int i = 0; i < array.length; i++) {
             if (array[i].isDirectory()) {
-                if (array[i].getName().equals(IMG_FILE_DIRECTORY)) {
+                // 文件夹img下的图像
+                if (IMG_FILE_DIRECTORY.equals(array[i].getName())) {
                     String[] list = array[i].list();
                     Map<String, Object> map = new HashMap<>();
                     map.put(FREEMARKER_DATA_KEY, list);

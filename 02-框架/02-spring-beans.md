@@ -1,4 +1,17 @@
-Spring bean生命周期
+# Spring bean作用域
+
+1.	single	每个spring容器一个实例，不是线程安全
+2.	prototype 使用一次创建一次
+3.	request	http请求（springmvc）
+4.	session	http会话（springmvc）
+5.	globalSession
+
+![spring-beans-scope](./img/spring-beans-scope.png "spring-beans-scope") 
+
+# Spring bean生命周期
+
+对象的生命周期：创建（实例化-初始化）-使用-销毁
+
 ## 1.BeanFactoyPostProcessor实例化
 
 ## 2.Bean实例化
@@ -22,4 +35,15 @@ Setter注入，执行Bean的属性依赖注入
 
 调用DisposableBean接口的destory方法
  调用Bean定义的destory方法
+
+## spring-beans-life.png
+
+![spring-beans-life](./img/spring-beans-life.png "spring-beans-life") 
  
+## spring-beans-life-00.png
+
+![spring-beans-life](./img/spring-beans-life-00.png "spring-beans-life") 
+
+## spring-beans-life-01.png 
+
+![spring-beans-life](./img/spring-beans-life-01.png "spring-beans-life") 

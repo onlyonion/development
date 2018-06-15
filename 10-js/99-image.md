@@ -1,5 +1,5 @@
 
->	auto generate image to markup
+# image to markdown
 
 ## sizzle.jpg
 
