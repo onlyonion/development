@@ -8,10 +8,24 @@ DevOps是英文Development和Operations的合体，他要求开发、测试、�
 微服务背后一个重要的理念就是持续集成、快速交付，而在服务内部使用一个统一的技术框架
 
 
+## provider, consumer, eureka
+
+*	Service Provider： 暴露服务的提供方。
+*	Service Consumer：调用远程服务的服务消费方。
+*	EureKa Server： 服务注册中心和服务发现中心。
+
+![spring-cloud-provider-consumer-eureka](./img/spring-cloud-provider-consumer-eureka.png "spring-cloud-provider-consumer-eureka") 
+
 ## spring cloud 微服务框架技术标准分析
 
 ![spring cloud 微服务框架技术标准分析](./img/spring-cloud-knowledge.jpg "spring cloud 微服务框架技术标准分析") 
 
 ## 一统江湖微服务架构之spring cloud
 
-![spring-cloud-structure](./img/spring-cloud-structure.jpg "spring-cloud-structure") 
+![spring-cloud-structure](./img/spring-cloud-structure.jpg "spring-cloud-structure")
+
+## other
+[Dubbo 和 Spring Cloud 微服务架构到底孰优孰劣](https://blog.csdn.net/lijinzhou2017/article/details/78718217 "title")  
+
+
+

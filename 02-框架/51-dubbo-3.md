@@ -17,3 +17,9 @@ Client在使用服务的时候根据服务名称去ConfigServer中获取服务�
 
 ## 3. Server
 真正提供服务的机器，每个Server启动时，主动与ConfigServer建立Scoket长连接，并将自己的IP，提供的服务名称，端口等信息直接发送给ConfigServer，ConfigServer就会收集到每个Server提供的服务的信息。
+
+## dubbo-architecture
+
+![dubbo-architecture.png](./img/dubbo-architecture.png "dubbo-architecture.png") 
+
+![dubbo-architecture.png](./img/dubbo-architecture-00.png "dubbo-architecture.png") 
