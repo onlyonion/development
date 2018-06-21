@@ -5,17 +5,20 @@ This is my daily notes, enriching the mind....
 
 ## introduce
 
-java
+*	java
 
-framework
+*	framework
 
-distribute system
+*	distribute system
 
-database
+*	database
 
-operation and maintenance
+*	operation and maintenance
 
-architecture
+*	architecture
 
-book
+*	book
+
+
+![daily-notes.png](./00-base/img/daily-notes.png "daily-notes.png") 
 
