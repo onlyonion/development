@@ -33,3 +33,13 @@
 ![springmvc-dispatcherservlet-dodispatch.png](./img/springmvc-dispatcherservlet-dodispatch.png "springmvc-dispatcherservlet-dodispatch.png") 
 
 # WebApplicationContext
+
+1.	servlet 容器
+2.	ContextLoaderlistener
+3.	ContextLoader
+4.	XmlWebApplicationContext
+5.	ServletContext
+
+![spring-mvc-context-start.jpg](./img/spring-mvc-context-start.jpg "title") 
+
+![spring-mvc-start.jpg](./img/spring-mvc-start.jpg "title") 

@@ -1,7 +1,7 @@
 
 [gitee-onlyonion-development](https://gitee.com/onlyonion/development "hello") 
 
-This is my daily notes, enriching my own brain...
+This is my daily notes, enriching the mind....
 
 ## introduce
 
