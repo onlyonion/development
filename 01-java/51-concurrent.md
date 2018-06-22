@@ -6,7 +6,7 @@ volatitle, final, synchronized
 
 在增加了增加了L1、L2 Cache之后，CPU何时将变量从独享缓存刷新会共享内存，独享缓存是否从共享内存加载变量，时间上都是不可确定的，这就造成了缓存不一致的问题。
 
-## volatitle
+## 1.1. volatitle
 
 保证共享变量对所有线程可见，但不保证原子性
 volatile语义是同步，通过共享变量的方式，完成线程间的通信
@@ -33,7 +33,7 @@ volatile关注可见性，而与原子性没有关系。volatile关注点在于�
 
 当一个线程修改一个共享变量时，另外一个线程能读到这个修改的值
 
-## final
+## 1.2. final
 
 - 修饰变量        只读
 - 修饰方法        不能被重写
@@ -60,7 +60,7 @@ JMM禁止编译器把final域的写重排序到构造函数之外。
 读重排序
 在一个线程中，初次读对象引用与初次读该对象包含的final域，JMM禁止处理器重排序这两个操作（注意，这个规则仅仅针对处理器）。编译器会在读final域操作的前面插入一个LoadLoad屏障。
 
-## synchronized
+## 1.3. synchronized
 
 1. 修饰普通方法
 2. 修饰静态方法
@@ -132,10 +132,12 @@ CountDownLatch是通过一个计数器来实现的，计数器的初始值为线
 
 构造器中的计数值（count）实际上就是闭锁需要等待的线程数量。这个值只能被设置一次，而且CountDownLatch没有提供任何机制去重新设置这个计数值。
 与CountDownLatch的第一次交互是主线程等待其他线程。
-主线程必须在启动其他线程后立即调用CountDownLatch.await()方法。这样主线程的操作就会在这个方法上阻塞，直到其他线程完成各自的任务。
-其他N 个线程必须引用闭锁对象，因为他们需要通知CountDownLatch对象，他们已经完成了各自的任务。这种通知机制是通过 CountDownLatch.countDown()方法来完成的；
 
-每调用一次这个方法，在构造函数中初始化的count值就减1。所以当N个线程都调 用了这个方法，count的值等于0，然后主线程就能通过await()方法，恢复执行自己的任务。
+1.	主线程必须在启动其他线程后立即调用CountDownLatch.await()方法。这样主线程的操作就会在这个方法上阻塞，直到其他线程完成各自的任务。
+
+2.	其他N 个线程必须引用闭锁对象，因为他们需要通知CountDownLatch对象，他们已经完成了各自的任务。这种通知机制是通过 CountDownLatch.countDown()方法来完成的；
+
+3.	每调用一次这个方法，在构造函数中初始化的count值就减1。所以当N个线程都调 用了这个方法，count的值等于0，然后主线程就能通过await()方法，恢复执行自己的任务。
 
 CountDownLatch是一个同步辅助类，在完成一组正在其他线程中执行的操作之前，它允许一个或多个线程一直等待。 
 
@@ -155,8 +157,6 @@ CyclicBarrier和CountDownLatch的区别是：
 Semaphore是一个计数信号量，它的本质是一个"共享锁"。
 信号量维护了一个信号量许可集。线程可以通过调用acquire()来获取信号量的许可；当信号量中有可用的许可时，线程能获取该许可；否则线程必须等待，直到有可用的许可为止。 线程可以通过release()来释放它所持有的信号量许可。
 
-## ConcurrentHashMap
-
 ## BlockingQueue
 
 ## ConcurrentHashMap
@@ -170,7 +170,7 @@ ConcurrentHashMap允许多个修改操作并发进行，使用锁分离技术
 ConcurrentHashMap和Hashtable主要区别就是围绕着锁的粒度以及如何锁,可以简单理解成把一个大的HashTable分解成多个，形成了锁分离。
 而Hashtable的实现方式是---锁整个hash表
 
-# Locks
+# 4. Locks
 
 演化 
 
@@ -187,8 +187,8 @@ Condition 将 Object 监视器方法（wait、notify 和 notifyAll）分解成�
 这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。
 
 Condition的强大之处在于它可以为多个线程间建立不同的Condition，
- 使用synchronized/wait()只有一个阻塞队列，notifyAll会唤起所有阻塞队列下的线程，
- 而使用lock/condition，可以实现多个阻塞队列，signalAll只会唤起某个阻塞队列下的阻塞线程。
+使用synchronized/wait()只有一个阻塞队列，notifyAll会唤起所有阻塞队列下的线程，
+而使用lock/condition，可以实现多个阻塞队列，signalAll只会唤起某个阻塞队列下的阻塞线程。
 
 ## AbstractQueuedSynchronizer 队列同步器
 
