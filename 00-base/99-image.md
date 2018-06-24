@@ -1,9 +1,9 @@
 
 # image to markdown
 
-## aop横切.png
+## daily-notes.png
 
-![aop横切.png](./img/aop横切.png "aop横切.png") 
+![daily-notes.png](./img/daily-notes.png "daily-notes.png") 
 
 ## js模式.png
 

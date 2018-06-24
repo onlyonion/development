@@ -1,6 +1,10 @@
 
 # image to markdown
 
+## hdfs-mapreduce-hbase-zookeeper.jpg
+
+![hdfs-mapreduce-hbase-zookeeper.jpg](./img/hdfs-mapreduce-hbase-zookeeper.jpg "hdfs-mapreduce-hbase-zookeeper.jpg") 
+
 ## high-availability.png
 
 ![high-availability.png](./img/high-availability.png "high-availability.png") 

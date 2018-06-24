@@ -1,14 +1,16 @@
 
+# A small library
+
 ## java base
 
-1.	《core java》
+1.	《core java》 卷I，卷II
 2.	《thinking in java》
-3.	《深入理解Java虚拟机：JVM高级特性与最佳实践》	周志明
 
 ## java advancement
 
-1.	《java concurrency in practice 并发编程实战》
-2.	《Java并发编程的艺术》	方腾飞	阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
+1.	《深入理解Java虚拟机：JVM高级特性与最佳实践》	周志明
+2.	《java concurrency in practice 并发编程实战》
+3.	《Java并发编程的艺术	》	方腾飞	阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
 
 ## framework
 
@@ -45,6 +47,25 @@
 
 1.	《软件测试基础》		周元哲
 2.	《软件自动化测试开发》	邹辉
+
+## exam
+
+1.	《系统集成项目管理工程师教程》
+2.	《信息系统项目管理师教程》
+3.	《系统架构设计师教程》
+
+## computer base
+
+1.	《数据结构（C语言版）》	严蔚敏
+2.	《计算机组成原理（第2版）》	唐朔飞
+3.	《计算机操作系统（第三版）》	汤小丹
+4.	《计算机网络（第5版）》	谢希仁
+5.	《数据库系统概论（第4版）》	王珊
+
+## misc
+
+1.	《Maven实战》	许晓斌
+2.	《Linux命令行与shell脚本编程大全（第2班）》 [美] Richard Blum著 吴海峰 译
 
 ## life and life
 
