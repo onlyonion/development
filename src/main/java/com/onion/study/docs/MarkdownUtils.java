@@ -66,8 +66,8 @@ public class MarkdownUtils {
         }
     }
 
-    public static void generate() {
-        String path = "./";
+    public static void generate(String path) {
+        path = path == null ? "./" : path;
         int deep = 0;
         try {
             getFile(path, deep);

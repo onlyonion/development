@@ -11,11 +11,16 @@
 	*	避免建立索引的列中使用空值。
 
 3.	复杂操作
+
 部分UPDATE、SELECT 语句 写得很复杂（经常嵌套多级子查询）——可以考虑适当拆成几步，先生成一些临时数据表，再进行关联操作
+
 4.	update
+
 在可以使用UNION ALL的语句里，使用了UNION
 在WHERE 语句中，尽量避免对索引字段进行计算操作
+
 5.	在可以使用UNION ALL的语句里，使用了UNION
+
 SQL中Union和Join语句非常类似，但是Union有一个限制条件：两个 SQL 语句所产生的栏位需要是同样的资料种类，最后的结果会看到不同的资料值
 UNION用的比较多union all是直接连接，取到得是所有值，记录可能有重复   union 是取唯一值，记录没有重复 
 效率：
@@ -25,6 +30,7 @@ UNION和UNION ALL关键字都是将两个结果集合并为一个，但这两者
 从效率上说，UNION ALL 要比UNION快很多，所以，如果可以确认合并的两个结果集中不包含重复数据且不需要排序时的话，那么就使用UNION ALL。
 
 6.	在WHERE 语句中，尽量避免对索引字段进行计算操作
+
 7.	对Where 语句的法则
 
 	*	 避免在WHERE子句中使用in，not  in，or 或者having。可以使用 exist 和not exist代替 in和not in。
@@ -33,7 +39,7 @@ UNION和UNION ALL关键字都是将两个结果集合并为一个，但这两者
 8.	对Select语句的法则
 在应用程序、包和过程中限制使用select * from table这种方式
 
-9. 排序
+9. 	排序
 	避免使用耗费资源的操作，带有DISTINCT,UNION,MINUS,INTERSECT,ORDER BY的SQL语句会启动SQL引擎 执行，耗费资源的排序(SORT)功能. DISTINCT需要一次排序操作, 而其他的至少需要执行两次排序
-10.临时表
+10.	临时表
 	慎重使用临时表可以极大的提高系统性能

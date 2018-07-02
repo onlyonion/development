@@ -6,6 +6,7 @@ public class ImgToMarkdown {
      * @param args
      */
     public static void main(String[] args) {
-        MarkdownUtils.generate();
+        String path = "./";
+        MarkdownUtils.generate(path);
     }
 }
