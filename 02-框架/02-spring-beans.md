@@ -3,13 +3,12 @@
 
 1.	ApplicationContext	读取配置文件（资源文件定位、解析）
 2.	Configuration
-3.	BeanFactory
-4.	Registry 将BeanDefinition注册到BeanDefinitionRegistry中
+3.	instantiate init BeanFactory, BeanFactoryPostProcessor工厂后处理器
+4.	Registry 注册Bean后处理器；将BeanDefinition注册到BeanDefinitionRegistry中
 5.	MessageSource
 6.	ApplicationEventMulticaster
 7.	SingletoneBeanInit	单例初始化
 8.	Strategy	初始化策略
-
 
 ![spring-beanfactory-init.png](./img/spring-beanfactory-init.png "spring-beanfactory-init.png") 
 
@@ -92,6 +91,17 @@
 	}
 	
 ```
+
+### analysis
+1. 初始化BeanFactory BeanDefinition -> BeanDefinitionRegistry
+2. 调用工厂后处理器：根据反射机制从BeanDefinitionRegistry中找出所有BeanFactoryPostProcessor类型的Bean，并调用其postProcessBeanFactory()接口方法；
+3. 注册Bean后处理器：根据反射机制从BeanDefinitionRegistry中找出所有BeanPostProcessor类型的Bean，并将它们注册到容器Bean后处理器的注册表中；
+4. 初始化消息源：初始化容器的国际化信息资源；
+5. 初始化应用上下文事件广播器；（观察者模式中的具体主题角色，持有观察者角色的集合，称为注册表）
+6. 初始化其他特殊的Bean：这是一个钩子方法，子类可以借助这个钩子方法执行一些特殊的操作
+7. 注册事件监听器；（观察者模式中的观察者角色）
+8. 初始化singleton的Bean：实例化所有singleton的Bean，并将它们放入Spring容器的缓存中；这就是和直接在应用中使用BeanFactory的区别之处，在创建ApplicationContext对象时，不仅创建了一个BeanFactory对象，并且还应用它实例化所有单实例的bean。（在spring的配置文件中，bean默认为单例，除非在bean的配置中显式指定scope="prototype"）
+9. 发布上下文刷新事件：在此处时容器已经启动完成，发布容器refresh事件（ContextRefreshedEvent）
 
 ## Spring bean作用域
 
