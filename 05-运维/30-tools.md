@@ -3,7 +3,7 @@
 3. Sonar
 4. Git
 5. zabbix
-6. elk Logstack
+6. elk Elasticsearch, Logstash, Kibana
 
 ### zabbix
 - CPU负荷
