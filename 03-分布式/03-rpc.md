@@ -20,3 +20,5 @@ dubbo			二进制序列化	+ tcp协议
 http invoker	二进制序列化	+ http协议
 hessian			二进制序列化	+ http协议
 WebServices		文本序列化	+ http协议
+
+Pigeon			hessian + tcp(netty)	美团大众点评

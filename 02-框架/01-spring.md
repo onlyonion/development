@@ -36,6 +36,128 @@
 *	autodetect：首先尝试使用constructor来自动装配，如果无法工作，则使用byType方式。
 
 
+## 模块解析
+
+### spring-core
+asm, cglib, core, lang, objenesis, util
+
+### spring-beans
+
+beans.factory
+
+BeanDefinition
+BeanFactory
+FactoryBean
+
+InitializingBean
+DisposableBean
+
+Aware
+BeanFactoryPostProcessor
+BeanPostProcessor
+
+``` java
+
+public interface BeanFactoryPostProcessor {
+
+	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+	
+}
+
+public interface BeanPostProcessor {
+
+	Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException;
+
+	Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
+
+}
+
+```
+
+beans.propertyeditors
+
+beans.support
+
+### spring-context
+
+cache
+context
+ejb
+format
+jmx
+jndi
+remoting
+scheduling
+scripting
+stereotype
+ui
+validation
+
+### spring-context-support
+cache, mail, scheduling, ui
+
+> cache
+
+cache, cacheManager
+
+*  ehcache
+*  guava
+*  jcache
+*  transaction
+
+> mail
+
+javamail
+
+> scheduling
+
+* commonj
+* quartz
+
+> ui
+
+* freemarker
+* jasperreports
+* velocity
+
+### spring-expression
+
 ### spring-dao
 Template 和 Callback
+
+### spring-tx
+dao, jca, transaction
+
+PlatformTransactionManager
+AbstractPlatformTransactionManager
+TransactionStatus
+TransactionTemplate
+TransactionCallback
+
+### spring-jdbc
+JdbcTemplate
+
+### spring-orm
+hibernate3, hibernate4, hibernate5, jdo, jpa
+
+
+### spring-web
+http: client, server, converter(feed, json, protobuf, xml)
+
+remoting: caucho, httpinvoker, jaxws
+
+web: accept, bind, client, context, cors, filter, jsf, method, multipart, util
+
+### spring-webmvc
+
+HandlerAdapter
+HandlerExecutionChain
+HandlerMapping
+HandlerInterceptor
+ViewResovlver
+View
+
+DispatcherServlet -> FrameworkServlet -> HttpServletBean
+
+
 
