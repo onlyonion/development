@@ -27,4 +27,4 @@ AOP实现的关键在于AOP框架自动创建的AOP代理，AOP代理主要分�
 
 两种方式
 1.	jdk	通过反射来接收被代理的类，并且要求被代理的类必须实现一个接口	InvocationHandler接口和Proxy类
-2.	cglib(Code Generation Library)	目标类没有实现接口，且没有被final修饰
+2.	cglib(Code Generation Library)	目标类没有实现接口，且没有被final修饰 		MethodInterceptor, Enhancer

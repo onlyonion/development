@@ -15,10 +15,8 @@ MVC
 
 ### java 模板引擎
 
-1.	jsp：java代码+数据+html = html
-
+1.	jsp：java代码 + 数据 + html = html
 2.	freemarker
-
 3.	velocity
 
 
