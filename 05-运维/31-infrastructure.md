@@ -4,11 +4,16 @@
 
 waf 防火墙
 
+
 ## webserver, proxy
 
 nginx
 
 lvs
+
+HAProxy C语言编写，提供高可用性、负载均衡，以及基于TCP和HTTP的应用程序代理。
+
+keepalived
 
 nfs network file system
 

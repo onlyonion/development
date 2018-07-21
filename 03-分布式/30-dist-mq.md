@@ -76,4 +76,4 @@
       每个消息（也叫作record记录,也被称为消息）是由一个key，一个value和时间戳构成。
       
       
-      
+[消息中间件](https://blog.csdn.net/zhangll_2008/article/details/78657177)       
