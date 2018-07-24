@@ -2,6 +2,9 @@
 
 ## 服务调用
 
+* InvokerInvocationHandler
+
+
 ```
 -- 提供方
 <dubbo:application name="demo-provider"/>
@@ -59,6 +62,24 @@ consumer -> RpcInvocation -> Request -> transport -> decode -> RpcResult
 
 Request - Response
 RpcInvocation - RpcResult
+
+``` java
+RpcInvocation [
+	methodName=helloworld, 
+	parameterTypes=[class java.lang.Integer], 
+	arguments=[1234], 
+	attachments={
+		dubbo=2.5.3, 
+		input=322, 
+		path=com.onion.test.Hello, 
+		interface=com.onion.test.Hello, 
+		timeout=1800000, 
+		version=0.0.0}
+]
+
+// handleRequest方法
+Response HeaderExchangeHandler.handleRequest(ExchangeChannel channel, Request req);
+```
 
 1. 消费方执行HeaderExchangeChannel.request时将RpcInvocation组装成Request
 2. 提供方执行HeaderExchangeHandler.handleRequest时，解析出Request的RpcInvocation，并将返回结果RpcResult封装到Response中
