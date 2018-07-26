@@ -38,3 +38,6 @@ logs
 Thumbs.db
 Servers
 .metadata
+
+## Node.js
+node_modules
