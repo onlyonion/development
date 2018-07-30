@@ -1,3 +1,8 @@
+
+high performance
+high availability
+high concurrency
+
 ### 解决高并发的问题
 
 *	在于架构业务划分，业务模块化严格划分
