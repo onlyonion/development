@@ -1,11 +1,18 @@
-spring
-mybatis
-spring-mvc
-velocity
+
+## 核心源码
+
+* spring
+* mybatis
+* spring-mvc
+* dubbo
+* netty
+* tomcat
+
+## 工具
 
 druid
-netty
 
+velocity
 commons
 logs
 search
