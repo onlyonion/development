@@ -4,7 +4,7 @@ NoClassDefFoundError 是程序在编译时候可以顺利找到所需要依赖�
 
 ClassNotFoundException在类路径错误，或者类名称发生更改，都会导致这个Exception，这两个异常的出现在生产环境中，通常是由于依赖jar包多版本存在，jar包升级中类或者方法不再提供引起的
 
-#### 自动化运维
+#### jvm graceful shutdown
 
 #### 线程切换
 
@@ -20,7 +20,7 @@ ClassNotFoundException在类路径错误，或者类名称发生更改，都会�
 
 #### mysql 索引实现
 
-#### b-tree, b+tree
+#### b-tree, b+tree, red/black tree
 
 #### project comprehend
 
