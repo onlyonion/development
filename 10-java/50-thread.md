@@ -38,6 +38,16 @@ Master-Worker模式是常用的并行模式之一，它的核心思想是，系�
 5. 超时等待(TIME_WAITING)：该状态不同于WAITING，它可以在指定的时间内自行返回。
 6. 终止(TERMINATED)：表示该线程已经执行完毕。
 
+
+### Fork/Join
+
+Oracle的官方给出的定义是：Fork/Join框架是一个实现了ExecutorService接口的多线程处理器。它可以把一个大的任务划分为若干个小的任务并发执行，充分利用可用的资源，进而提高应用的执行效率。
+
+1. ExecutorService接口的一个实现，可以帮助开发人员充分利用多核处理器的优势，编写出并行执行的程序，提高应用程序的性能；设计的目的是为了处理那些可以被递归拆分的任务。
+2. 与其它ExecutorService的实现类相似，会给线程池中的线程分发任务，不同之处在于它使用了工作窃取算法，所谓工作窃取，指的是对那些处理完自身任务的线程，会从其它线程窃取任务执行。
+3. 核心是ForkJoinPool类，该类继承了AbstractExecutorService类。ForkJoinPool实现了工作窃取算法并且能够执行 ForkJoinTask任务。
+
+
 ### Disruptor
 
 Disruptor它是一个开源的并发框架，并获得2011 Duke’s 程序框架创新奖，能够在无锁的情况下实现网络的Queue并发操作。
@@ -54,4 +64,3 @@ Disruptor相对于传统方式的优点：
 1.	没有竞争=没有锁=非常快。
 2.	所有访问者都记录自己的序号的实现方式，允许多个生产者与多个消费者共享相同的数据结构。
 3.	在每个对象中都能跟踪序列号（ring buffer，claim Strategy，生产者和消费者），加上神奇的cache line padding，就意味着没有为伪共享和非预期的竞争。
-
