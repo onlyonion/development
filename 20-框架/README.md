@@ -1,5 +1,5 @@
 
-## 核心源码
+## framework core
 
 * spring
 * mybatis
@@ -7,15 +7,19 @@
 * dubbo
 * netty
 * tomcat
+* rocketmq
+* redis
+* mycat
 
-## 工具
+## tools
 
-druid
+* guava
+* disruptor
+* druid
+* curator
+* velocity
+* commons
+* logs
+* search
+* dozer
 
-velocity
-commons
-logs
-search
-
-guava
-dozer
