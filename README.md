@@ -5,19 +5,19 @@ This is my daily notes, enriching the mind....
 
 ## introduce
 
-*	java
+* [java](https://gitee.com/onlyonion/development/tree/master/10-java)
 
-*	framework
+* [framework](https://gitee.com/onlyonion/development/tree/master/20-framework)
 
-*	distribute system
+* [distributed](https://gitee.com/onlyonion/development/tree/master/30-distributed)
 
-*	database
+* [architecture](https://gitee.com/onlyonion/development/tree/master/40-architecture)
 
-*	operation and maintenance
+* [database](https://gitee.com/onlyonion/development/tree/master/50-database)
 
-*	architecture
+* [dev-ops](https://gitee.com/onlyonion/development/tree/master/70-dev-ops)
 
-*	book
+* [book](https://gitee.com/onlyonion/development/tree/master/99-book)
 
 
 ![daily-notes.png](./00-base/img/daily-notes.png "daily-notes.png") 
