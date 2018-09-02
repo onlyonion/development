@@ -4,9 +4,9 @@ dubbo服务治理
 * 超时(timeout)
 * 重试(retry)
 * 幂等(idempotent)
-* 熔断(circuit break)
 * 限流(current limiting)
 * 服务降级
+* 熔断(circuit break)
 * 资源隔离
 
 级别
