@@ -51,7 +51,19 @@ doExportUrls方法分成两部分
 构建出的protocolURL格式如下
 
 ```
-dubbo://192.168.199.180:20880/com.alibaba.dubbo.demo.DemoService?anyhost=true&application=demo-provider&bind.ip=192.168.199.180&bind.port=20880&dubbo=2.0.0&generic=false&interface=com.alibaba.dubbo.demo.DemoService&methods=sayHello&pid=5744&qos.port=22222&side=provider&timestamp=1530746052546
+dubbo://192.168.199.180:20880/com.alibaba.dubbo.demo.DemoService?
+anyhost=true&
+application=demo-provider&
+bind.ip=192.168.199.180&
+bind.port=20880&
+dubbo=2.0.0&
+generic=false&
+interface=com.alibaba.dubbo.demo.DemoService&
+methods=sayHello&
+pid=5744&
+qos.port=22222&
+side=provider&
+timestamp=1530746052546
 ```
 
 #### RegistryProtocol.export暴露服务

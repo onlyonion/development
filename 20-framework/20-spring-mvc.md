@@ -32,6 +32,53 @@
 
 ![springmvc-dispatcherservlet-dodispatch.png](./img/springmvc-dispatcherservlet-dodispatch.png "springmvc-dispatcherservlet-dodispatch.png") 
 
+```
+protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    ...(前面代码略)
+ 
+    try {
+        ModelAndView mv = null;
+        Exception dispatchException = null;
+ 
+        try {
+            processedRequest = checkMultipart(request);
+            multipartRequestParsed = (processedRequest != request);
+ 
+            // Determine handler for the current request.//获取根据请求获取handler
+            mappedHandler = getHandler(processedRequest);
+            if (mappedHandler == null || mappedHandler.getHandler() == null) {
+                noHandlerFound(processedRequest, response);
+                return;
+            }
+ 
+            // Determine handler adapter for the current request.//获取handler适配器
+            HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
+ 
+            ...(略)
+                     
+            // 拦截器执行拦截，对客户端请求响应requset进行拦截
+            if (!mappedHandler.applyPreHandle(processedRequest, response)) {
+                return;
+            }
+ 
+            // 核心逻辑，处理handler，返回ModerAndView对象
+            mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+ 
+            if (asyncManager.isConcurrentHandlingStarted()) {
+                return;
+            }
+            
+            applyDefaultViewName(processedRequest, mv);
+            // 拦截器执行拦截，对客户端响应response进行拦截
+            mappedHandler.applyPostHandle(processedRequest, response, mv);
+        }
+        catch (Exception ex) {
+            ...(后面代码略)
+        }
+    }
+}　
+```
+
 # WebApplicationContext
 
 1.	servlet 容器

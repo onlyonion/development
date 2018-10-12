@@ -69,10 +69,11 @@ Survivor 区（S0 和 S1）：作为年轻代 GC（Minor GC）周期的一部分
 对整个堆进行整理，包括Young、Tenured和Perm。Full GC因为需要对整个堆进行回收，所以比Scavenge GC要慢，因此应该尽可能减少Full GC的次数。在对JVM调优的过程中，很大一部分工作就是对于FullGC的调节。
 
 ### 导致Full GC的原因
-1.	年老代（Tenured）被写满
-2.	持久代（Perm）被写满
-3.	System.gc()被显示调用
-4.	上一次GC之后Heap的各域分配策略动态变化
+1. 年老代（Tenured）被写满
+2. 持久代（Perm）被写满
+3. System.gc()被显示调用
+4. 上一次GC之后Heap的各域分配策略动态变化
+5. 持久代或元空间没有设置初始值或者初始值太小，服务启动时加载太多类，发生扩容导致FullGC
 
 
 总结：
