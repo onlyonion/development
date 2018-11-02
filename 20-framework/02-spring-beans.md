@@ -14,7 +14,34 @@
 
 ```java
 
-@Override
+public abstract class AbstractApplicationContext extends DefaultResourceLoader
+		implements ConfigurableApplicationContext, DisposableBean {
+    
+    /**
+    *  
+    *  1. 准备    
+    *       prepareRefresh()
+    *       obtainFreshBeanFactory()
+    *       prepareBeanFactory(beanFactory)
+    *     
+    *  2. 后置处理 
+    *       postProcessBeanFactory(beanFactory)
+    *       invokeBeanFactoryPostProcessors(beanFactory)
+    *       registerBeanPostProcessors(beanFactory)
+    *  
+    *  3. 初始化资源、事件 
+    *       initMessageSource()
+    *       initApplicationEventMulticaster()
+    *       onRefresh()
+    *       registerListeners()
+    *       
+    *  4. 实例化单例
+    *       finishBeanFactoryInitialization(beanFactory)
+    *       
+    *  5. 发布事件
+    *       finishRefresh()
+    */
+    @Override
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			// 准备
@@ -31,7 +58,7 @@
 
 			try {
 			
-			   // 工厂后处理器
+			    // 工厂后处理器
 				// Allows post-processing of the bean factory in context subclasses.
 				postProcessBeanFactory(beanFactory);
 
@@ -85,7 +112,7 @@
 				// Propagate exception to caller.
 				throw ex;
 			}
-
+			
 			finally {
 				// Reset common introspection caches in Spring's core, since we
 				// might not ever need metadata for singleton beans anymore...
@@ -93,6 +120,8 @@
 			}
 		}
 	}
+}	
+	
 	
 ```
 

@@ -10,4 +10,5 @@ mongoDB, couchDB
 
 ### column
 
-hbase, cassandra
+hbase, 
+cassandra 开源分布式NoSQL数据库系统
