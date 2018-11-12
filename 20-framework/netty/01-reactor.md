@@ -25,7 +25,7 @@ work Reactor 模型中处理事件的线程池
 
 单线程模型：
 
-```
+```java
 private EventLoopGroup group = new NioEventLoopGroup();
 ServerBootstrap bootstrap = new ServerBootstrap()
                 .group(group)
@@ -34,7 +34,7 @@ ServerBootstrap bootstrap = new ServerBootstrap()
 
 多线程模型：
 
-```
+```java
 private EventLoopGroup boss = new NioEventLoopGroup(1);
 private EventLoopGroup work = new NioEventLoopGroup();
 ServerBootstrap bootstrap = new ServerBootstrap()
@@ -44,7 +44,7 @@ ServerBootstrap bootstrap = new ServerBootstrap()
                 
 主从多线程：
 
-```
+```java
 private EventLoopGroup boss = new NioEventLoopGroup();
 private EventLoopGroup work = new NioEventLoopGroup();
 ServerBootstrap bootstrap = new ServerBootstrap()
