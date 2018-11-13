@@ -1,8 +1,14 @@
 
 
-Reactor通信调度层
+## Netty逻辑架构
 
-职责链PipelineChannel
+### Reactor通信调度层
+* NioEventLoop
+* NioSocketChannel/NioServerSocketChannel
+* ByteBuffer
+* Unsafe
 
-业务逻辑编排层 Service ChannelHandler
+### 职责链PipelineChannel
+
+### 业务逻辑编排层 Service ChannelHandler
 
