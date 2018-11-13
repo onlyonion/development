@@ -8,6 +8,6 @@ Elasticsearch , Logstash, Kibana
 
 * LogStash/Beats: 负责数据的收集与处理
 * ElasticSearch: 一个开源的分布式搜索引擎，负责数据的存储、检索和分析
-* Kibana: 提供了可视化的界面。负责数据的可视化操作
+* Kibana: 提供了可视化的界面（ Web界面）。负责数据的可视化操作
 
 
