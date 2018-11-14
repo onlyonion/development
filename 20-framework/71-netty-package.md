@@ -45,7 +45,7 @@ handler
         dns
         haproxy
         http
-        http2
+        http2 二进制传输；消息头hpack压缩；基于帧和流的多路复用；支持服务端推送
         json
         marshalling
         memcache
@@ -57,7 +57,7 @@ handler
         serialization
         socks
         socksx
-        spdy
+        spdy google开发用于传输web内容的开发网络协议，http2协议的母体。压缩、多路复用、优先级
         stomp
         string
         xml
