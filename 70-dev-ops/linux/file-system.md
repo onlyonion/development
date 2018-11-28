@@ -6,7 +6,7 @@
 /proc/N 存储系统当前正在运行的进程的相关信息，其中N为正在运行的进程
 
 /proc/sys/net/core/
-/proc/sys/net/ipv4/tcp_max_syn_backlog
+/proc/sys/net/ipv4/tcp_max_syn_backlog  tcp backlog
 
 
 /proc/cmdline 在启动时传递至内核的相关参数信息，这些信息通常由lilo或grub等启动管理工具进行传递
