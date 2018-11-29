@@ -3,7 +3,7 @@
 
 类图
 
-![springmvc-DispatcherServlet](./img/springmvc-dispatcherservlet.png "title") 
+![springmvc-DispatcherServlet](./img/springmvc-dispatcherservlet.png) 
 
 ### SpringMVC接口解释
 1.	DispatcherServlet接口：
@@ -32,7 +32,7 @@
 
 ![springmvc-dispatcherservlet-dodispatch.png](./img/springmvc-dispatcherservlet-dodispatch.png "springmvc-dispatcherservlet-dodispatch.png") 
 
-```
+```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
     ...(前面代码略)
  
@@ -87,6 +87,6 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 4.	XmlWebApplicationContext
 5.	ServletContext
 
-![spring-mvc-context-start.jpg](./img/spring-mvc-context-start.jpg "title") 
+![spring-mvc-context-start.jpg](./img/spring-mvc-context-start.jpg) 
 
-![spring-mvc-start.jpg](./img/spring-mvc-start.jpg "title") 
+![spring-mvc-start.jpg](./img/spring-mvc-start.jpg) 
