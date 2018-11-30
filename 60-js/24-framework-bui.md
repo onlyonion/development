@@ -1,2 +1,0 @@
-* bui
-* kissy
