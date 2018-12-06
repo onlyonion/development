@@ -79,3 +79,28 @@ Survivor 区（S0 和 S1）：作为年轻代 GC（Minor GC）周期的一部分
 总结：
 在内存相对紧张的情况下，可以按照上述的方式来进行内存的调优， 找到一个在GC频率和GC耗时上都可接受的一个内存设置，可以用较小的内存满足当前的服务需要
 但当内存相对宽裕的时候，可以相对给服务多增加一点内存，可以减少GC的频率，GC的耗时相应会增加一些。 一般要求低延时的可以考虑多设置一点内存， 对延时要求不高的，可以按照上述方式设置较小内存。
+
+
+[CMS收集器](https://blog.csdn.net/zqz_zqz/article/details/70568819)
+
+|young					|Tenured		|JVM options								|
+|---					|---			|---										|
+|Serial					|Serial			|-XX:+UseSerialGC							|
+|Parallel Scavenge		|Serial			|-XX:+UseParallelGC -XX:-UseParallelOldGC	|
+|Parallel Scavenge		|Parallel Old	|-XX:+UseParallelGC -XX:+UseParallelOldGC	|
+|Parallel New或Serial	|CMS			|-XX:+UseParNewGC -XX:+UseConcMarkSweepGC	|
+|G1						|				|-XX:+UseG1GC								|
+
+串行回收，Serial回收器，单线程回收，全程stw；
+并行回收，名称以Parallel开头的回收器，多线程回收，全程stw；
+并发回收，cms与G1，多线程分阶段回收，只有某阶段会stw；
+
+### CMS
+CMS 处理过程有七个步骤： 
+1. 初始标记(CMS-initial-mark) ,会导致swt； 
+2. 并发标记(CMS-concurrent-mark)，与用户线程同时运行； 
+3. 预清理（CMS-concurrent-preclean），与用户线程同时运行； 
+4. 可被终止的预清理（CMS-concurrent-abortable-preclean） 与用户线程同时运行； 
+5. 重新标记(CMS-remark) ，会导致swt； 
+6. 并发清除(CMS-concurrent-sweep)，与用户线程同时运行； 
+7. 并发重置状态等待下次CMS的触发(CMS-concurrent-reset)，与用户线程同时运行； 
