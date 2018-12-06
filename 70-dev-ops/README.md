@@ -18,5 +18,7 @@
 
 * maven
 * jenkins
-* sonar
+* sonarqube
+* searchcode
+* svn
 * git
