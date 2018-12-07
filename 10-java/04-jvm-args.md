@@ -113,5 +113,6 @@ JVM给了三种选择：串行收集器、并行收集器、并发收集器，�
 	-XX:CMSFullGCsBeforeCompaction=0：上面配置开启的情况下，这里设置多少次Full GC后，对年老代进行压缩
 
 [JVM参数配置详解](https://blog.csdn.net/yjl33/article/details/78890363) 
+[JVM系列三:JVM参数设置、分析](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 
 
