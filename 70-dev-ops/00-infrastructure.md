@@ -67,6 +67,7 @@ waf 防火墙
 * gradle
 * nexus
 * jenkins
+* Travis CI + github
 * searchcode
 * SonarQube
 
