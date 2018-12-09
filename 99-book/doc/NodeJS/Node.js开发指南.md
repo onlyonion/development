@@ -139,6 +139,11 @@ JavaScript 中有两个特殊的对象： Object 与 Function，它们都是构�
 在 JavaScript 中，继承是依靠一套叫做原型链（prototype chain）的机制实现的。
 属性继承的本质就是一个对象可以访问到它的原型链上任何一个原型对象的属性。
 
+原型链查找，一层一层的链接关系
+* 普通对象的__proto__指向它的构造函数的prototype对象去查找属性或者方法，如果有返回；
+* 如果没有，那就会继续沿着构造函数的prototype.__proto__向上找
+* 一直到而Object.prototype。
+
 ### A.3.5 对象的复制
 
 ```javascript
