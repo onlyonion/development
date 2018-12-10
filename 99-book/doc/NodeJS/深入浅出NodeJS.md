@@ -25,6 +25,12 @@ ECMAScript5 数组方法 forEach(), map(), reduce(), redureRight(), filter(), ev
 ### 5.6 大内存应用
 
 ## 6. 理解Buffer
+### 6.1 Buffer结构
+Buffer对象的内存分配不在V8的堆内存中，属于堆外内存，在Node的C++层面实现内存的申请。
+Buffer.poolSize = 8 * 1024;
+### 6.2 Buffer的转换
+### 6.3 Buffer的拼接
+### 6.4 Buffer与性能
 
 ## 7. 网络编程
 
