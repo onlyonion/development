@@ -132,8 +132,8 @@ JavaScript 中有两个特殊的对象： Object 与 Function，它们都是构�
 * 原型对象，特指构造函数 prototype 属性指向的对象。
 
 原型链
-* 这三类对象中每一类都有一个 __proto__ 属性，它指向**该对象的原型**，从任何对象沿着它开始遍历都可以追溯到 Object.prototype。
-* 构造函数对象有 prototype 属性，指向一个原型对象，通过该构造函数创建对象时，被创建对象的 __proto__ 属性将会指向构造函数的 prototype 属性。
+* 这三类对象中每一类都有一个__proto__属性，它指向**该对象的原型**，从任何对象沿着它开始遍历都可以追溯到 Object.prototype。
+* 构造函数对象有 prototype 属性，指向一个原型对象，通过该构造函数创建对象时，被创建对象的__proto__属性将会指向构造函数的 prototype 属性。
 * 原型对象有 constructor 属性，指向它对应的构造函数
 
 在 JavaScript 中，继承是依靠一套叫做原型链（prototype chain）的机制实现的。
