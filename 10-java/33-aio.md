@@ -10,3 +10,8 @@
 A synchronous I/O operation causes the requesting process to be blocked until that I/O operation completes;
 
 An asynchronous I/O operation does not cause the requesting process to be blocked; 
+
+### 分层
+* cpu层 os的IO和任务调度层次
+* 线程层 多线程（同步阻塞）；IO多路复用（select, poll, epoll）（同步非阻塞，严格讲，把阻塞点改变了位置）；异步IO接口（kernal-aio, IOCP）
+* 感知层
