@@ -1,3 +1,8 @@
+## Java虚拟机指什么
+* 抽象规范
+* 一个具体的实现
+* 一个运行中的虚拟机实例
+
 ## Java虚拟机架构
 
 JVM = 类加载器 classloader + 执行引擎 executionengine + 运行时数据区域 runtime data area
