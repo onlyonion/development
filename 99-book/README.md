@@ -65,6 +65,8 @@
 * 《JavaScript权威指南(第5版)》
 * 《JavaScript模式》 (美)奥斯马尼
 * 《你不知道的JavaScript（上卷）》	
+* 《深入浅出Node.js》 朴灵
+* 《node.js开发指南》 BYVoid
 
 ## misc
 

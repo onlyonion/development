@@ -9,3 +9,4 @@
 *	webpack
 
 [闲聊——浅谈前端js模块化演变](https://www.cnblogs.com/qingkong/p/5092003.html)
+[JavaScript 全栈工程师培训教程](http://www.ruanyifeng.com/blog/2016/11/javascript.html)
