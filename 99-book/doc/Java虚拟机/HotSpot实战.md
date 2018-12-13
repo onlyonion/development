@@ -1,4 +1,4 @@
-@[TOC]目录
+@[TOC]
 
 
 ## 第1章 初试HotSpot
