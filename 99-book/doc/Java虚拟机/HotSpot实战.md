@@ -1,4 +1,4 @@
-@[TOC]
+[TOC]
 
 
 ## 第1章 初试HotSpot
