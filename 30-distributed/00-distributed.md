@@ -27,6 +27,15 @@
 * 搜索：        elasticsearch、solr
 * 日志：        rsyslog、elk、flume
 
+
+### misc
+
+重试和幂等性
+分布式链路跟踪
+分布式事务
+一致性哈希
+熔断、降级
+
 [分布式原理介绍](https://blog.csdn.net/elricboa/article/details/78698197)
 
 [什么是分布式系统，如何学习分布式系统](https://www.cnblogs.com/xybaby/p/7787034.html)
