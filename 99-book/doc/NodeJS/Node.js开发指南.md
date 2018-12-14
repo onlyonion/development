@@ -116,6 +116,9 @@ call 和 apply 的功能是一致的，两者细微的差别在于 call 以参�
 ```javascript
 func.call(thisArg[, arg1[, arg2[, ...]]])
 func.apply(thisArg[, argsArray])
+
+// java proxy
+// Object method.invoke(Object obj, Object... args);
 ```
 
 #### 原型链
