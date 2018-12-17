@@ -5,3 +5,6 @@
 (2) 支持丰富数据类型，支持string，list，set，sorted set，hash 
 (3) 支持事务，操作都是原子性，所谓的原子性就是对数据的更改要么全部执行，要么全部不执行 
 (4) 丰富的特性：可用于缓存，消息，按key设置过期时间，过期后将会自动删除
+
+
+[spring-redis](https://www.cnblogs.com/superfj/p/9232482.html) 
