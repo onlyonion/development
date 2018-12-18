@@ -1,7 +1,3 @@
-* 分而治之，分片partition
-* 汇总 MapReduce
-* 冗余或者复制集Replication，集群Cluster
-
 ### 分布式特点
 * 对等：各个节点没有主次之分
 * 分布：在空间上随意分布，水平扩展，比如我们sinai随意再lf和dx随意添加机器
@@ -12,7 +8,7 @@
 ### 概念与实现
 * 负载均衡:    Nginx：高性能、高并发的web服务器；功能包括负载均衡、反向代理、静态内容缓存、访问控制；工作在应用层 
               LVS： Linux virtual server，基于集群技术和Linux操作系统实现一个高性能、高可用的服务器；工作在网络层
-* webserver： Java：Tomcat，Apache，Jboss    
+* webserver： Java：Tomcat，Apache，Jboss
               Python：gunicorn、uwsgi、twisted、webpy、tornado
 * service：    SOA、微服务、spring boot，django
 * 容器：       docker，kubernetes
@@ -27,14 +23,20 @@
 * 搜索：        elasticsearch、solr
 * 日志：        rsyslog、elk、flume
 
-
 ### misc
+> 框、中、拆、异、缓，监控、治理
 
-重试和幂等性
-分布式链路跟踪
-分布式事务
-一致性哈希
-熔断、降级
+* 重试和幂等性
+* 分布式链路跟踪
+* 分布式事务
+* 一致性哈希
+* 熔断
+* 限流、降级
+* 流量控制
+* 分而治之，分片partition
+* 汇总 MapReduce
+* 冗余或者复制集Replication，集群Cluster
+
 
 [分布式原理介绍](https://blog.csdn.net/elricboa/article/details/78698197)
 
