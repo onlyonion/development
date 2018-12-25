@@ -45,3 +45,4 @@ h – 显示帮助
 n – 设置在进程列表所显示进程的数量
 q – 退出 top
 s – 改变画面更新周期
+[linux top命令VIRT,RES,SHR,DATA的含义](https://javawind.net/p131)
