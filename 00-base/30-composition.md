@@ -24,6 +24,10 @@
 
 [cpu有哪些架构](https://blog.csdn.net/yyyljw/article/details/79419190)
 
+> X86架构 X86架构（The X86 architecture）是微处理器执行的计算机语言指令集，指一个intel通用计算机系列的标准编号缩写，也标识一套通用的计算机指令集合
+
+#### 指令集架构 Instruction Set Architecture，ISA
+
 ### intel cpu 
 i5 cpu-z 指令集
 MMX Multi-media Extension Technology 多媒体扩展指令集技术
