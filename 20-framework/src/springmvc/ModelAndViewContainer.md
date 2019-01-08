@@ -1,0 +1,11 @@
+[ModelAndViewContainer](https://blog.csdn.net/qq924862077/article/details/54016189 )
+
+ModelAndViewContainer主要是用来返回Model对象的，在ModelAndViewContainer中有defaultModel和redirectModel，
+defaultModel是默认使用的Model，后者用于传递redirect时的参数，
+
+我们在处理中使用了Model或ModelMap时，ArgumentResolver会传入defaultModel，它是BindingAwareModelMap类型，既继承了ModelMap又实现了Model接口，所以在处理器中使用Model或者ModelMap其实使用的是同一个对象，Map参数传入的也是这个对象。
+
+处理器中RedirectAttributes类型的参数ArgumentResolver会传入redirectModel，它实际上是RedirectAttributeModelMap类型。
+
+ModelAndViewContainer中其实就是一个ModelMap，一系列的操作都是基于ModelMap的。
+ModelMap其实就是一个HashMap而已，主要用于数据的存取而已。
