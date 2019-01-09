@@ -1,11 +1,12 @@
 org.springframework.web.servlet.DispatcherServlet
 
-
+```
 javax.servletGenericServlet implements Servlet, ServletConfig, Serializable
     javax.servlet.http.HttpServlet
         HttpServletBean implements EnvironmentCapable, EnvironmentAware
             FrameworkServlet implements ApplicationContextAware
                 DispatcherServlet
+```
 
 DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServlet，通过使用Servlet API来对HTTP请求进行响应，
 成为Spring MVC的前端处理器，同时成为MVC模块与Web容器集成的处理前端。
@@ -91,29 +92,54 @@ frameworkServlet.doService(HttpServletRequest request, HttpServletResponse respo
 dispatcherServlet.doService(HttpServletRequest request, HttpServletResponse response) throws Exception
 dispatcherServlet.doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception 
 
-
-// doDispatch
-// 1. 检查媒体类型
-processedRequest = checkMultipart(request);
-// 2. Determine handler for the current request.
-mappedHandler = getHandler(processedRequest);
-// 3. Determine handler adapter for the current request.
-HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
-
-// 4. 拦截器链 boolean preHandle(request, response, handler)
-mappedHandler.applyPreHandle(processedRequest, response)
-// 5. Actually invoke the handler.
-mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
-
-// 6. 拦截器链 void postHandle(request, response, handler, modelAndView)
-mappedHandler.applyPostHandle(processedRequest, response, mv)
-
-// 7. 处理分发结果
-processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);
 ```
 
 
-```sequence
-A->B: how are you?
-B-->>A: fine.
+```mermaid
+sequenceDiagram
+	DispatcherServlet ->> DispatcherServlet: doDispatch()
+
+	%% 1. 检查媒体类型
+	DispatcherServlet ->> DispatcherServlet: checkMultipart(request)
+
+	%% 2. 获取请求处理器
+	DispatcherServlet ->> DispatcherServlet: getHandler(processedRequest)
+	DispatcherServlet ->> HandlerMapping: hm.getHandler(request)
+
+	%% 3. 处理器适配器
+	DispatcherServlet ->> DispatcherServlet: getHandlerAdapter(mappedHandler.getHandler())
+
+	%% 4. 拦截器链
+	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPreHandle(processedRequest, response)
+	loop Healthcheck
+		HandlerExecutionChain ->> HandlerInterceptor: preHandle()
+    end
+
+	%% 5. 处理器适配器处理请求
+	DispatcherServlet ->> HandlerAdapter: handle(processedRequest, response, mappedHandler.getHandler())
+
+	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPostHandle(processedRequest, response, mv)
+	loop Healthcheck
+		HandlerExecutionChain ->> HandlerInterceptor: postHandle()
+    end
+
+	DispatcherServlet ->> DispatcherServlet: processDispatchResult()
+	DispatcherServlet ->> HandlerExecutionChain: triggerAfterCompletion()
+	loop Healthcheck
+		HandlerExecutionChain ->> HandlerInterceptor: afterCompletion()
+    end
+```
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts<br/>prevail...
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
 ```

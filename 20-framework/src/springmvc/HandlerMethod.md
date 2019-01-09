@@ -1,9 +1,30 @@
 [HandlerMethod](https://www.cnblogs.com/leftthen/p/5229204.html)
 
+```
 HandlerMethod
     InvocableHandlerMethod
         ServletInvocableHandlerMethod
             ConcurrentResultHandlerMethod
+```
+
+```mermaid
+sequenceDiagram
+	DispatcherServlet ->> DispatcherServlet: doDispatch()
+
+	%% 获取请求映射的处理器 mappedHandler = getHandler(processedRequest);
+	DispatcherServlet ->> AbstractHandlerMapping: getHandler()
+	AbstractHandlerMapping ->> AbstractHandlerMethodMapping: getHandlerInternal()
+	AbstractHandlerMethodMapping ->> HandlerMethod: createWithResolvedBean()
+	HandlerMethod ->> DefaultListableBeanFactory: getBean()
+	DefaultListableBeanFactory -->> HandlerMethod: handler
+	HandlerMethod -->> AbstractHandlerMethodMapping: HandlerMethod
+	
+	AbstractHandlerMethodMapping ->> AbstractHandlerMapping: handler
+	AbstractHandlerMapping ->> AbstractHandlerMapping: getHandlerExecutionChain(handler, request)
+	AbstractHandlerMapping -->> DispatcherServlet: HandlerExecutionChain handler
+	
+```
+
 
 HandlerMethod及子类主要用于封装方法调用相关信息,子类还提供调用,参数准备和返回值处理的职责.
 

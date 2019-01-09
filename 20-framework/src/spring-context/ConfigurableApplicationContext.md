@@ -1,0 +1,16 @@
+```
+    ConfigurableApplicationContext
+        ApplicationContext
+            ApplicationEventPublisher
+            EnvironmentCapable
+            HierarchicalBeanFactory
+                BeanFactory
+            ListableBeanFactory
+                BeanFactory
+            MessageSource
+            ResourcePatternResolver
+                ResourceLoader
+        Closeable
+            AutoCloseable
+        Lifecycle
+```
