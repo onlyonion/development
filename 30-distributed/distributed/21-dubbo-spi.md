@@ -12,7 +12,7 @@ JDK的SPI机制
 
 ServiceLoader实现了Iterable接口，可以遍历每一个服务提供者，并调用它的服务。
 
-```
+```java
 	private void delivery(String companyName, String productName) {
 		ServiceLoader<Delivery> loader = ServiceLoader.load(Delivery.class);
 		Iterator<Delivery> iterator = loader.iterator();
