@@ -8,8 +8,6 @@
 
 检查和非检查是对于javac来说的，这样就很好理解和区分了
 
-
-
 ### try-catch-finally-return 建议
 
 1.	不要在fianlly中使用return。

@@ -19,8 +19,10 @@ graph LR
 #### BeanDefinition的ResourceLoader定位
 ```mermaid
 sequenceDiagram
-    FileSystemXmlApplicationContext ->> AbstractRefreshableApplicationContext: refreshBeanFactory()
+    FileSystemXmlApplicationContext ->> AbstractXmlApplicationContext: refresh()
+    AbstractXmlApplicationContext ->> AbstractXmlApplicationContext: obtainFreshBeanFactory()
 
+    AbstractXmlApplicationContext ->> AbstractRefreshableApplicationContext: refreshBeanFactory()
     AbstractRefreshableApplicationContext ->> AbstractRefreshableApplicationContext: createBeanFactory();
 
     %% 加载
@@ -36,8 +38,10 @@ sequenceDiagram
 sequenceDiagram
     AbstractApplicationContext ->> AbstractRefreshableApplicationContext: refresh()
 
-    AbstractRefreshableApplicationContext ->> DefaultListableBeanFactory: createBeanFactory();
-    AbstractRefreshableApplicationContext ->> XmlBeanDefinitionReader: loadBeanDefinitions();
+    AbstractRefreshableApplicationContext ->> DefaultListableBeanFactory: createBeanFactory()
+
+    AbstractRefreshableApplicationContext ->> XmlWebApplicationContext: loadBeanDefinitions()
+    XmlWebApplicationContext ->> XmlBeanDefinitionReader: loadBeanDefinitions()
 
     XmlBeanDefinitionReader ->> BeanDefinitionParserDelegate: getResourceByPath()
 

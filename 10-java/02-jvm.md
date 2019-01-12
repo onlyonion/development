@@ -22,11 +22,12 @@ JVM = 类加载器 classloader + 执行引擎 executionengine + 运行时数据�
 ## simple description
 
 ```
-.java             --> .class -->  ClassLoader --> 运行时数据区域
-executionEngine   -->
-native interfaces --> 
-native libraries	
+.java             	--> .class -->  
+ClassLoader 		--> RuntimeDataArea(JavaStack, NativeMethodStack, ProgramCounterRegister, Heap, MethodArea) -->
+ExecutionEngine   	--> 
+NativeInterfaces 	--> NativeLibraries	
 ```
+
 
 ![java-jvm](./img/java-jvm.png);
 
