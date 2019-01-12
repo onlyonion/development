@@ -12,6 +12,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springframework.version>5.0.7.RELEASE</springframework.version>
+		<org.slf4j.version>1.7.21</org.slf4j.version>
+		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
 	</properties>
 
 	<build>
@@ -37,6 +39,21 @@
 			<version>4.12</version>
 		</dependency>
 		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${org.apache.log4j.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${springframework.version}</version>
@@ -57,19 +74,16 @@
 			<artifactId>netty-all</artifactId>
 			<version>4.1.5.Final</version>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>9.4.13.v20181111</version>
         </dependency>
-		<!-- https://mvnrepository.com/artifact/com.github.abel533/mapper -->
 		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>mapper</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.github.abel533/ECharts -->
 		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>ECharts</artifactId>
