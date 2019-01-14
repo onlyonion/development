@@ -74,7 +74,7 @@ digraph {
 [Lifecycle]^-[Container]
 [Lifecycle]^-[Executor{bg:skyblue}]
 
-## 服务器
+// 服务器
 [Server]++->[Service]
 [Catalina]++->[Server]
 [Bootstrap{bg:tomato}]-.->[Catalina]
