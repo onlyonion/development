@@ -10,7 +10,7 @@ rmq事务消息的实现过程为：
 5. 鉴于producer发送本地事务结果可能失败，broker会定时扫描集群中的事务消息，然后回查(apache4.2.0尚未实现，因为没有调用org.apache.rocketmq.broker.client.net.Broker2Client#checkProducerTransactionState)
 
 
-![mq](./img/rocketmq-tx-message.png) 
+![mq-tx-message](../img/rocketmq-tx-message.png) 
 
 > broker定时扫描集群中的事务消息，然后回查producer业务状态
 

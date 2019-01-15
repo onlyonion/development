@@ -85,9 +85,9 @@ Response HeaderExchangeHandler.handleRequest(ExchangeChannel channel, Request re
 2. 提供方执行HeaderExchangeHandler.handleRequest时，解析出Request的RpcInvocation，并将返回结果RpcResult封装到Response中
 3. 消费方等待提供方返回然后在DefaultFuture.get方法中执行returnFromResponse方法，从Response中获取RpcResult
 
-![altText](./img/dubbo-consumer-invoke-provider.png "title") 
+![dubbo-consumer-invoke-provider](../img/dubbo-consumer-invoke-provider.png) 
 
-[Dubbo解析(六)-服务调用](https://my.oschina.net/u/2377110/blog/1857642 "title") 
+[Dubbo解析(六)-服务调用](https://my.oschina.net/u/2377110/blog/1857642) 
 
-[https://blog.csdn.net/quhongwei_zhanqiu/article/details/41701979](https://blog.csdn.net/quhongwei_zhanqiu/article/details/41701979 "title") 
+[https://blog.csdn.net/quhongwei_zhanqiu/article/details/41701979](https://blog.csdn.net/quhongwei_zhanqiu/article/details/41701979) 
 

@@ -1,8 +1,14 @@
 
-```mermaid
-graph BT
-    Invocation --> Joinpoint
-    MethodInvocation --> Invocation
-    ProxyMethodInvocation --> MethodInvocation
-    ReflectiveMethodInvocation -.-> ProxyMethodInvocation
+```yuml
+// {type:class}
+
+[Joinpoint||+proceed();+getThis();getStaticPart()]
+
+[Joinpoint]^-[Invocation]
+
+[Invocation]^-[MethodInvocation||+getMethod()]
+
+[MethodInvocation]^-[ProxyMethodInvocation]
+
+[ProxyMethodInvocation]^-[ReflectiveMethodInvocation]
 ```

@@ -1,3 +1,4 @@
+## 前后端分离，好与坏
 当一个系统是基于前端与后端分离这种模式来进行来发的，通常来说，这种开发模式使得整个开发的环节变长了，
 这将导致整个开发团队（包括前端与后端开发人员）的开发失去了灵活性，因为一点点小功能的改动，很有可能都需要好几个人来进行协作开发。
 
@@ -17,4 +18,30 @@
 静态资源通过hash计算指纹化
 部署测试环境
 灰度发布现网
+
+## 响应式布局
+[响应式布局](https://www.cnblogs.com/yanayana/p/7066948.html)
+
+* 静态布局（Static Layout）即传统Web设计，网页上的所有元素的尺寸一律使用px作为单位。
+* 流式布局（Liquid Layout）
+流式布局（Liquid）的特点（也叫"Fluid") 是页面元素的宽度按照屏幕分辨率进行适配调整，但整体布局不变。代表作栅栏系统（网格系统）。
+min-*、max-*、百分比%
+* 自适应布局（Adaptive Layout）自适应布局的特点是分别为不同的屏幕分辨率定义布局，即创建多个静态布局，每个静态布局对应一个屏幕分辨率范围。
+* 响应式布局（Responsive Layout）媒体查询@media 流式布局
+* 弹性布局（rem/em布局）
+* 
+## dev ide
+* webstorm
+* aptana studio
+* dreamweaver
+* sublime text
+* atorm
+* textmate
+* vim
+* emacs
+* nodepad++
+* ultraedit
+* uedit
+* editplus
+* VSCode 
 

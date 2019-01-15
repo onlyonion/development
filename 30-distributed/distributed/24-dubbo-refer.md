@@ -3,7 +3,7 @@
 
 dubbo:reference  ReferenceBean
 
-![ReferenceBean](./img/dubbo-ReferenceBean.png "title") 
+![ReferenceBean](../img/dubbo-ReferenceBean.png "title") 
 
 ReferenceBean实现了spring.FactoryBean
 
@@ -82,7 +82,7 @@ ProtocolListenerWrapper -> DubboProtocol -> ExchangeClient -> DubboInvoker
 
 > Actor -> RefereneceBean -> ReferenceConfig -> RegistryProtocol -> Registry -> Directory -> Clustor -> Protocol -> Invoker -> Transporter -> Client -> InvokerListener -> ProxyFactory
 
-![altText](./img/dubbo-refer.png "title") 
+![dubbo-refer](../img/dubbo-refer.png) 
 
-[Dubbo原理解析-服务引用](https://blog.csdn.net/quhongwei_zhanqiu/article/details/41651487 "title") 
+[Dubbo原理解析-服务引用](https://blog.csdn.net/quhongwei_zhanqiu/article/details/41651487) 
 

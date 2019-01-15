@@ -4,3 +4,6 @@
 * libuv :开发node的过程中需要一个跨平台的事件库，他们首选了libev，但又要支持Windows，故重新封装了一套，linux下用libev实现，Windows下用IOCP实现；
 
 [网络库](https://blog.csdn.net/lijinqi1987/article/details/71214974 )
+
+
+## Promise

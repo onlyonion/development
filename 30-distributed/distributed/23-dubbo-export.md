@@ -1,6 +1,6 @@
 ## 服务发布
 
-[Dubbo解析(四)-服务发布](https://my.oschina.net/u/2377110/blog/1840477 "title") 
+[Dubbo解析(四)-服务发布](https://my.oschina.net/u/2377110/blog/1840477) 
 
 ### Dubbo的消费者和提供者的交互过程
 
@@ -88,6 +88,6 @@ timestamp=1530746052546
 
 > Actor -> ServiceBean -> ServiceConfig -> ProxyFactory -> Invoker -> Protocol -> Exporter -> Transporter -> Server -> ExporterListener -> Registry
 
-![altText](./img/dubbo-service-export-sequence.png "title") 
+![export-sequence](../img/dubbo-service-export-sequence.png ) 
 
-![altText](./img/dubbo-service-export-activity.png "title") 
+![export-activity](../img/dubbo-service-export-activity.png) 
