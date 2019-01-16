@@ -102,23 +102,23 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     %% FactoryBean.getObject()
-    ProxyFactoryBean ->> ProxyFactoryBean: getObject()
+    ProxyFactoryBean->>ProxyFactoryBean: getObject()
     
     %% 初始化通知器链，第一次使用时初始化
-    ProxyFactoryBean ->> ProxyFactoryBean: initializeAdvisorChain()
-    ProxyFactoryBean ->> ProxyFactoryBean: getSingletonInstance()
+    ProxyFactoryBean->>ProxyFactoryBean: initializeAdvisorChain()
+    ProxyFactoryBean->>ProxyFactoryBean: getSingletonInstance()
 
     %% 创建代理对象
-    ProxyFactoryBean ->> ProxyCreatorSupport: getProxy()
-    ProxyCreatorSupport ->> DefaultAopProxyFactory: createAopProxy()
+    ProxyFactoryBean->>ProxyCreatorSupport: getProxy()
+    ProxyCreatorSupport->>DefaultAopProxyFactory: createAopProxy()
 
     %% Jdk或者Cglib创建代理对象
     alt is isInterface
-　　　　BDefaultAopProxyFactory ->> JdkDynamicAopProxy: isInterface()
-        JdkDynamicAopProxy -->> DefaultAopProxyFactory: 返回生成的AopProxy
+　　　　DefaultAopProxyFactory->>JdkDynamicAopProxy: isInterface()
+        JdkDynamicAopProxy-->>DefaultAopProxyFactory: 返回生成的AopProxy
 　　else is Class
-　　　　DefaultAopProxyFactory ->> CglibAopProxy: createCglibAopProxy()
-        CglibAopProxy -->> DefaultAopProxyFactory: 返回生成的AopProxy
+　　　　DefaultAopProxyFactory->>CglibAopProxy: createCglibAopProxy()
+        CglibAopProxy-->>DefaultAopProxyFactory: 返回生成的AopProxy
 　　end
 ```
 

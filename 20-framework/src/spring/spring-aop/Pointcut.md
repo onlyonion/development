@@ -11,15 +11,15 @@ org.springframework.aop.Pointcut
 [Pointcut||+getClassFilter();+getMethodMatcher()]
 [MethodMatcher||+matches(Method,Class);+matches(Method,Class,Object...);+isRuntime()]
 
-// 表达式
+// 表达式切入点
 [Pointcut]^-[ExpressionPointcut{bg:thistle}]
 [ExpressionPointcut]^-[AbstractExpressionPointcut]
 [AbstractExpressionPointcut]^-[AspectJExpressionPointcut]
 
-// 注解匹配
+// 注解匹配切入点
 [Pointcut]^-.-[AnnotationMatchingPointcut{bg:whitesmoke}]
 
-// 静态方法匹配器切点
+// 静态方法匹配器切入点
 [Pointcut]^-.-[StaticMethodMatcherPointcut{bg:steelblue}]
 [StaticMethodMatcherPointcut]^-[AbstractRegexpMethodPointcut]
 [AbstractRegexpMethodPointcut]^-[JdkRegexpMethodPointcut]

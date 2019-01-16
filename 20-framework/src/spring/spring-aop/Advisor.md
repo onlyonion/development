@@ -1,5 +1,12 @@
 org.springframework.aop.Advisor
 
+```java
+public interface Advisor {
+    // 只有一个通知器
+	Advice getAdvice();
+	boolean isPerInstance();
+}
+```
 ### advice + pointcut
 
 ```yuml
@@ -9,13 +16,12 @@ org.springframework.aop.Advisor
 [PointcutAdvisor{bg:thistle}]++->[Pointcut]
 
 // 通过advisor，把advice和pointcut结合起来
-[Advisor]^-[PointcutAdvisor]
-
 // 1. 切点通知器
+[Advisor]^-[PointcutAdvisor]
 [PointcutAdvisor]^-.-[AbstractPointcutAdvisor]
-// bean工厂使用
+// 1.1 bean工厂使用
 [AbstractPointcutAdvisor]^-.-[AbstractBeanFactoryPointcutAdvisor]
-// 通用
+// 1.2 通用
 [AbstractPointcutAdvisor]^-.-[AbstractGenericPointcutAdvisor]
 [AbstractGenericPointcutAdvisor]^-[DefaultPointcutAdvisor]
 

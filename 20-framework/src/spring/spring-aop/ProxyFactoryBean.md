@@ -1,10 +1,10 @@
 org.springframework.aop.framework.ProxyFactoryBean
 
 ```
-ProxyFactoryBean
-    ProxyCreatorSupport
-        AdvisedSupport
-            ProxyConfig
+ProxyConfig
+    AdvisedSupport
+        ProxyCreatorSupport
+            ProxyFactoryBean
 ```
 
 ### 继承
