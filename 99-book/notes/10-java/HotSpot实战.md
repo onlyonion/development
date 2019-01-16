@@ -38,8 +38,12 @@ digraph jvm_load_class {
     rankdir=LR;
     //node [shape = circle];
     link [shape=record, label="{link|{verify|prepare|resolve}}"];
+
+    // 加载
     "*.class" -> load;
+    // 链接 验证、准备、解析
     load -> link;
+    // 初始化
     link -> init;
     init -> Class [style = dotted];
 }
