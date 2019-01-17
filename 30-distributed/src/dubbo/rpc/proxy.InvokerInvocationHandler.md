@@ -5,14 +5,24 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler
 ### 整体
 ```mermaid
 sequenceDiagram
+    %% 实现jdk的调用处理器
     InvokerInvocationHandler->>InvokerInvocationHandler:invoke(proxy, method, args)
-    InvokerInvocationHandler->>RpcInvocation:new
+    opt 方法的声明是object.class
+        InvokerInvocationHandler->>Method:method.invoke(invoker, args)
+    end
+    opt 判断是toString(),hashCode(),equals(obj)
+        InvokerInvocationHandler->>Invoker:调用invoke的相应方法
+    end
+
+    InvokerInvocationHandler->>RpcInvocation:new方法与参数的封装
+    %% 这里的invoke封装了模拟数据、集群策略、负载均衡、异步同步处理、过滤链的invoke
     InvokerInvocationHandler->>MockClusterInvoker:invoke(invocation)
     
     %% 注册中心url
     MockClusterInvoker->>RegistryDirectory:getUrl()
     RegistryDirectory->>URL:getMethodParameter()
     
+    %% 根据模拟集群调用器选择
     alt no mock
         MockClusterInvoker->>AbstractClusterInvoker:invoke(invocation)
         MockClusterInvoker-->>InvokerInvocationHandler:返回Result，然后recreae()
@@ -48,8 +58,10 @@ sequenceDiagram
 sequenceDiagram
     %% 集群策略 快速失败
     FailfastClusterInvoker->>InvokerWrapper:invoke(invocation)
+    %% 协议过滤器包装
     InvokerWrapper->>ProtocolFilterWrapper$1:invoke(next, invocation)
     
+    %% 消息上下文过滤器
     ProtocolFilterWrapper$1->>ConsumerContextFilter:invoke(next, invocation)
     ConsumerContextFilter->>RpcContext:设置invoker、invocation、本地地址、远程地址等
     ConsumerContextFilter-->>ProtocolFilterWrapper$1:返回
@@ -111,7 +123,7 @@ sequenceDiagram
 ###
 
 
-### Invocation
+## Invocation
 * Invocation 封装了方法名称、方法参数类型、方法参数值、附加属性
 
 ```yuml
@@ -123,5 +135,83 @@ sequenceDiagram
 [Node]^-[Invoker]
 [Invocation]++->[Invoker]
 
+```
+
+## Invoker
+
+```yuml
+// {type:class}
+
+[Node]^-[Invoker]
+
+// 模拟数据集群调用器
+[Invoker]^-[MockClusterInvoker{bg:wheat}]
+[MockClusterInvoker]++->[Directory]
+[MockClusterInvoker]++->[Invoker]
+
+// 抽象集群调用器
+[Invoker]^-.-[AbstractClusterInvoker]
+
+// 快速失败集群调用器
+[AbstractClusterInvoker]^-[FailfastClusterInvoker]
+
+// 调用器包装
+[Invoker]^-.-[InvokerWrapper]
+
+```
+
+## cluster
+* Cluster
+* Directory
+* LoadBalance
+* Router
+
+### Directory
+
+```yuml
+// {type:class}
+
+// 目录服务 list
+[Node]^-[Directory||+list(Invocation)]
+[Directory]^-.-[AbstractDirectory]
+
+// 静态目录
+[AbstractDirectory]^-[StaticDirectory]
+
+// 注册目录
+[AbstractDirectory]^-[RegistryDirectory{bg:tomato}]
+[NotifyListener]^-.-[RegistryDirectory]
+
+```
+
+
+## Protocol
+
+```yuml
+// {type:class}
+
+// 协议封装了默认端口、导出、引入、销毁
+[Protocol|+defaultPort|+export(Invoker);refer(Class<T>, URL);destroy()]
+
+// 内部类
+[Protocol]^-.-[ProtocolFilterWrapper$1{bg:tomato}]
+
+```
+
+## Filter
+
+```yuml
+// {type:class}
+
+
+[Filter]^-.-[ConsumerContextFilter]
+
+[Filter]^-.-[FutureFilter]
+
+[Filter]^-.-[ExceptionFilter]
+
+[Filter]^-.-[MonitorFilter]
+
+[Filter]^-.-[ContextFilter]
 
 ```
