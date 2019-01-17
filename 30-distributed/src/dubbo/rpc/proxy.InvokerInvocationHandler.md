@@ -48,18 +48,18 @@ sequenceDiagram
 sequenceDiagram
     %% 集群策略 快速失败
     FailfastClusterInvoker->>InvokerWrapper:invoke(invocation)
-    InvokerWrapper->>ProtocolFilterWrapper动态代理:invoke(next, invocation)
+    InvokerWrapper->>ProtocolFilterWrapper$1:invoke(next, invocation)
     
-    ProtocolFilterWrapper动态代理->>ConsumerContextFilter:invoke(next, invocation)
+    ProtocolFilterWrapper$1->>ConsumerContextFilter:invoke(next, invocation)
     ConsumerContextFilter->>RpcContext:设置invoker、invocation、本地地址、远程地址等
-    ConsumerContextFilter-->>ProtocolFilterWrapper动态代理:返回
+    ConsumerContextFilter-->>ProtocolFilterWrapper$1:返回
     
     %% future
-    ProtocolFilterWrapper动态代理->>FutureFilter:invoke(next, invocation)
+    ProtocolFilterWrapper$1->>FutureFilter:invoke(next, invocation)
     FutureFilter->>FutureFilter:fireInvokeCallback()
 
-    FutureFilter-->>ProtocolFilterWrapper动态代理:invoke(invocation)
-    ProtocolFilterWrapper动态代理->>MonitorFilter:(next, invocation)
+    FutureFilter-->>ProtocolFilterWrapper$1:invoke(invocation)
+    ProtocolFilterWrapper$1->>MonitorFilter:(next, invocation)
     
     %% 监控器
     MonitorFilter->>MonitorFilterListener:(invocation)
@@ -76,8 +76,8 @@ sequenceDiagram
     end
 
     %% 返回
-    FutureFilter-->>ProtocolFilterWrapper动态代理:invoke返回Result
-    ProtocolFilterWrapper动态代理-->>ConsumerContextFilter:invoke返回Result
+    FutureFilter-->>ProtocolFilterWrapper$1:invoke返回Result
+    ProtocolFilterWrapper$1-->>ConsumerContextFilter:invoke返回Result
     ConsumerContextFilter-->>InvokerWrapper:invoke返回Result
     InvokerWrapper->>FailfastClusterInvoker:invoke返回Result
 ```
@@ -90,7 +90,9 @@ sequenceDiagram
     
     alt isOneway
         DubboInvoker->>ExchangeClient:setFuture(null)
+        DubboInvoker->>ExchangeClient:send(inv, isSent)
     else isAsync
+        DubboInvoker->>ExchangeClient:request(inv, timeout)
         DubboInvoker->>ExchangeClient:setFuture(创建FutureAdapter)
     else other
         %% 交换层

@@ -1,5 +1,4 @@
 @startuml
-
 abstract class AbstractList
 abstract AbstractCollection
 interface List
@@ -11,7 +10,6 @@ Collection <|-- AbstractCollection
 Collection <|- List
 AbstractCollection <|- AbstractList
 AbstractList <|-- ArrayList
-
 class ArrayList {
 Object[] elementData
 size()
@@ -23,4 +21,29 @@ HOURS
 MINUTES
 }
 
+@enduml
+
+
+
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+
+
+
+@startuml
+package "Some Group" {
+HTTP - [First Component]
+[Another Component]
+}
+
+package "Other Groups" {
+FTP - [Second Component]
+
+[First Component] --> FTP
+}
 @enduml
