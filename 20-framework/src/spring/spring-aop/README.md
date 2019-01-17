@@ -1,10 +1,13 @@
 
 ## concept
 
-* 切面（Aspect）：一个关注点的模块化，这个关注点实现可能另外横切多个对象。事务管理是J2EE应用中一个很好的横切关注点例子。方面用 Spring的Advisor或拦截 器实现。
+* 切面（Aspect）：一个关注点的模块化，这个关注点实现可能另外横切多个对象。
+事务管理是J2EE应用中一个很好的横切关注点例子。方面用 Spring的Advisor或拦截 器实现。
 * 连接点（Joinpoint）：程序执行过程中明确的点，如方法的调用或特定的异常被抛出。
 * 通知（Advice）：在特定的连接点，AOP框架执行的动作。各种类型的通知包括“around”、“before”和“throws”通知。
 * 切入点（Pointcut）：指定一个通知将被引发的一系列连接点的集合。AOP框架必须允许开发者指定切入点
+* 织入（weave） 将切面应用到目标对象并导致代理对象创建的过程
+* 引入（introduction） 在不修改代码的前提下，引入可以在运行期为类动态地添加一些方法或字段
 
 ### aop:advisor和aop:aspect
 [aop:advisor和aop:aspect](https://blog.csdn.net/Chinahahaha/article/details/62217735)

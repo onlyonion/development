@@ -16,7 +16,7 @@
 ### 整体设计
 
 
-![dubbo-framework.jpg](./img/dubbo-framework.jpg) 
+![dubbo-framework.jpg](../img/dubbo-framework.jpg) 
 
 
 ### 各层说明
@@ -40,7 +40,7 @@
 
 ### 模块分包
 
-![dubbo-modules.jpg](./img/dubbo-modules.jpg) 
+![dubbo-modules.jpg](../img/dubbo-modules.jpg) 
 
 *	dubbo-common    公共逻辑模块：包括 Util 类和通用模型。
 *	dubbo-remoting  远程通讯模块：相当于 Dubbo 协议的实现，如果 RPC 用 RMI协议则不需要使用此包。
@@ -86,6 +86,6 @@ Client在使用服务的时候根据服务名称去ConfigServer中获取服务�
 
 ### dubbo-architecture
 
-![dubbo-architecture.png](./img/dubbo-architecture.png) 
+![dubbo-architecture.png](../img/dubbo-architecture.png) 
 
-![dubbo-architecture.png](./img/dubbo-architecture-00.png) 
+![dubbo-architecture.png](../img/dubbo-architecture-00.png) 
