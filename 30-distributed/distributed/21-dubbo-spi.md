@@ -12,6 +12,8 @@ JDK的SPI机制
 
 ServiceLoader实现了Iterable接口，可以遍历每一个服务提供者，并调用它的服务。
 
+ServiceLoader<Robot> serviceLoader = ServiceLoader.load(Robot.class);
+
 ```java
 	private void delivery(String companyName, String productName) {
 		ServiceLoader<Delivery> loader = ServiceLoader.load(Delivery.class);
@@ -29,7 +31,7 @@ ServiceLoader实现了Iterable接口，可以遍历每一个服务提供者，�
 
 Dubbo对SPI的改进
 
-1. JDK的SPI机制会一次性实例化所有服务提供者实现，如果有提供者的初始化很耗时，但并不会使用会很耗费资源。Dubbo则只存储了所有提供者的Class对象，实际使用时才构造对象。
+1. JDK的SPI机制会**一次性实例化所有**服务提供者实现，如果有提供者的初始化很耗时，但并不会使用会很耗费资源。Dubbo则只存储了所有提供者的Class对象，实际使用时才构造对象。
 2. JDK的SPI机制只在配置文件中记录了实现类的全限定名，并没有定义一个配置名。而Dubbo的服务接口往往提供多个实现方式，需要在每个服务接口中定义一个匹配方法去选择要使用哪种实现方式。这种方式不利于框架的扩展，因而规定在提供者实现类的配置文件中对每个实现类定义一个配置名，用"="隔开，形成key-value的方式。
 3. 增加了对服务接口的IOC和AOP的支持，服务接口内的其他服务接口成员直接通过SPI的方式加载注入。
 

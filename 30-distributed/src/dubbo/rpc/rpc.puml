@@ -1,4 +1,23 @@
 @startuml
+
+interface LoadBalance
+abstract class AbstractLoadBalance
+class RandomLoadBalance
+class LeastActiveLoadBalance
+class RoundRobinLoadBalance
+class ConsistentHashLoadBalance
+
+LoadBalance <|-.- AbstractLoadBalance
+AbstractLoadBalance <|-- RandomLoadBalance
+AbstractLoadBalance <|-- LeastActiveLoadBalance
+AbstractLoadBalance <|-- RoundRobinLoadBalance
+AbstractLoadBalance <|-- ConsistentHashLoadBalance
+
+interface Cluster
+
+@enduml
+
+@startuml
 abstract class AbstractList
 abstract AbstractCollection
 interface List
