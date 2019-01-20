@@ -1,11 +1,12 @@
-ContextLoader
-    ContextLoaderListener
+org.springframework.web.context.ContextLoaderListener
+    
 
+### Tomcat, spring
 
 ```mermaid
 sequenceDiagram
     %% 环境监听
-    ContextLoaderListener ->> ContextLoaderListener: contextInitialized()
+    StandardContext ->> ContextLoaderListener: contextInitialized()
     ContextLoaderListener ->> ContextLoader: initWebApplicationContext()
 
     %% 创建应用环境
@@ -20,25 +21,10 @@ sequenceDiagram
     %% 完成刷新
     AbstractApplicationContext ->> AbstractApplicationContext: finishRefresh()
 
-    AbstractApplicationContext ->> DefaultLifecycleProcessor: onRefresh()
-    DefaultLifecycleProcessor ->> DefaultLifecycleProcessor: onRefresh()
-
-    %% 发布事件
-    DefaultLifecycleProcessor ->> SimpleApplicationEventMulticaster: multicastEvent()
-    loop multicastEvent
-        SimpleApplicationEventMulticaster->>AbstractApplicationEventMulticaster:getApplicationListeners()
-        SimpleApplicationEventMulticaster->SimpleApplicationEventMulticaster:listener.onApplicationEvent(event)
-　　 end
-
     AbstractApplicationContext-->>ContextLoader:refresh完成启动
 ```
 
-Tomcat, spring
-```mermaid
-sequenceDiagram
-    StandardContext->ContextLoaderListener:contextInitialized()
-    ContextLoaderListener->ContextLoader:initWebApplicationContext()
-```
+### dispatcherServlet
 
 ```mermaid
 sequenceDiagram
