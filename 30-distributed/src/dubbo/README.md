@@ -45,6 +45,39 @@ validation
     - I/O处理 read(), write()
     - 序列化
  
- ## service
+ ## 模块
+
+ ```yuml
+// {type:class}
+
+[remoting{bg:thistle}]
+[rpc{bg:thistle}]
+[monitor{bg:orange}]
+[cluster{bg:wheat}]
+[registry{bg:wheat}]
+
+[common]<-.-[remoting]
+// 1. remoting 远程通讯模块：相当于 Dubbo 协议的实现，如果 RPC 用 RMI协议则不需要使用此包。
+[remoting]<-.-[rpc]
+
+// 2. rpc 远程调用模块：抽象各种协议，以及动态代理，只包含一对一的调用，不关心集群的管理
+[rpc]<-.-[cluster]
+
+[rpc]-[note:包括protocol层和proxy层{bg:cornsilk}]
+[cluster]-[note:多个服务提供方封装成一个、负载均衡、容错、路由{bg:cornsilk}]
+
+// 3. cluster 集群模块：将多个服务提供方伪装为一个提供方，包括：负载均衡, 容错，路由等，
+// 集群的地址列表可以是静态配置的，也可以是由注册中心下发
+
+// 4. registry 注册中心模块：基于注册中心下发地址的集群方式，以及对各种注册中心的抽象
+[cluster]<-.-[registry]
+
+// 5. config 配置模块：是 Dubbo 对外的 API，用户通过 Config 使用Dubbo，隐藏 Dubbo 所有细节
+[rpc]<-.-[config]
+[config]<-.-[container]
+
+// 6. monitor 监控模块：统计服务调用次数，调用时间的，调用链跟踪的服务
+[rpc]<-.-[monitor]
+
+ ```
  
- ## reference
