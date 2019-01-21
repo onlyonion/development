@@ -1,5 +1,6 @@
+org.aopalliance.intercept.Joinpoint
 
-## org.aopalliance.intercept.Joinpoint
+## 定义
 1. JoinPoint对象封装了SpringAop中切面方法的信息,在切面方法中添加JoinPoint参数,就可以获取到封装了该方法信息的JoinPoint对象.
 2. 被拦截到的点，因为Spring只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器
 
@@ -20,29 +21,31 @@ public interface MethodInvocation extends Invocation {
     Method getMethod();
 }
 ```
-## spring 实现了方法级别的拦截
-org.springframework.aop.ProxyMethodInvocation
-org.springframework.aop.framework.ReflectiveMethodInvocation
+## 类图
+* spring 实现了方法级别的拦截
+* org.springframework.aop.ProxyMethodInvocation
+* org.springframework.aop.framework.ReflectiveMethodInvocation
 
 ```yuml
 // {type:class}
 
+// 1. 连接点
 [Joinpoint{bg:thistle}]^-[Invocation]
 [Invocation]-.-[note:调用器是一个连接点，可被拦截器拦截{bg:cornsilk}]
 
-// 构造方法调用器
+// 2. 构造方法调用器
 [Invocation]^-[ConstructorInvocation]
 
-// 普通方法调用器
+// 3. 普通方法调用器
 [Invocation]^-[MethodInvocation{bg:tomato}]
 
-// 代理的普通方法调用器
+// 3.1 代理的普通方法调用器
 [MethodInvocation]^-[ProxyMethodInvocation]
 
-// 反射方法调用器
+// 3.2 反射的普通方法调用器
 [ProxyMethodInvocation]^-.-[ReflectiveMethodInvocation]
 
-// cglib方法调用器
+// 3.3 cglib的普通方法调用器
 [ReflectiveMethodInvocation]^-[CglibAopProxy$CglibMethodInvocation]
 
 ```

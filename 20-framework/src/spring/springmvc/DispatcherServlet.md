@@ -1,147 +1,172 @@
-org.springframework.web.servlet.DispatcherServlet
-org.springframework.web.servlet.FrameworkServlet
 org.springframework.web.servlet.HttpServletBean
+org.springframework.web.servlet.FrameworkServlet
+org.springframework.web.servlet.DispatcherServlet
 
-```
-DispatcherServlet
-    FrameworkServlet implements ApplicationContextAware
-        HttpServletBean implements EnvironmentCapable, EnvironmentAware
-    		javax.servlet.http.HttpServlet
-				javax.servletGenericServlet implements Servlet, ServletConfig, Serializable
-```
-
+## 1. 类图
 DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServlet，通过使用Servlet API来对HTTP请求进行响应，
 成为Spring MVC的前端处理器，同时成为MVC模块与Web容器集成的处理前端。
 
+```yuml
 
-### 初始化、销毁
+// {type:class}
 
-```java
+// 1. servlet规范
+[Servlet]^-.-[GenericServlet]
+[ServletConfig]^-.-[GenericServlet]
+[GenericServlet]^-[HttpServlet]
 
-// servlet
-servlet.init();
+// 2. HttpServletBean
+[HttpServlet]^-[HttpServletBean]
+// EnvironmentCapable 对get方法抽象
+[EnvironmentCapable]^-.-[HttpServletBean]
+// EnvironmentAware 对set方法抽象
+[EnvironmentAware]^-.-[HttpServletBean]
 
-// httpServlet
-httpServlet.init(); 
-httpServlet.initServletBean();
+// 3. FrameworkServlet
+[HttpServletBean]^-[FrameworkServlet]
+[ApplicationContextAware]^-.-[FrameworkServlet]
 
-// frameworkServlet
-frameworkServlet.initServletBean(); 
-frameworkServlet.initWebApplicationContext(); 
-frameworkServlet.initFrameworkServlet();
+// 4. DispatcherServlet
+[FrameworkServlet]^-[DispatcherServlet]
 
-frameworkServlet.onApplicationEvent(ContextRefreshedEvent event); 
-frameworkServlet.onRefresh(ApplicationContext context);
+// 4.1 特性 multipart解析器
+[DispatcherServlet]++-[MultipartResolver]
+[DispatcherServlet]++-[LocaleResolver]
+[DispatcherServlet]++-[ThemeResolver]
 
-// dispatcherServlet
-dispatcherServlet.onRefresh(ApplicationContext context);
-dispatcherServlet.initStrategies(ApplicationContext context);
+// 4.2 请求映射处理
+[DispatcherServlet]++1-*[HandlerMapping]
+[DispatcherServlet]++1-*[HandlerAdapter]
+[DispatcherServlet]++1-*[HandlerExceptionResolver]
 
-// destroy
-servlet.destroy();
-frameworkServlet.destroy();
-
-```
-
-```java
-
-    // DispatcherServlet
-    protected void initStrategies(ApplicationContext context) {
-		initMultipartResolver(context);
-		initLocaleResolver(context);
-		initThemeResolver(context);
-		initHandlerMappings(context);
-		initHandlerAdapters(context);
-		initHandlerExceptionResolvers(context);
-		initRequestToViewNameTranslator(context);
-		initViewResolvers(context);
-		initFlashMapManager(context);
-	}
-
-    // frameworkServlet
-    public void destroy() {
-		getServletContext().log("Destroying Spring FrameworkServlet '" + getServletName() + "'");
-		// Only call close() on WebApplicationContext if locally managed...
-		if (this.webApplicationContext instanceof ConfigurableApplicationContext && !this.webApplicationContextInjected) {
-			((ConfigurableApplicationContext) this.webApplicationContext).close();
-		}
-	}
+// 4.3 视图处理
+[DispatcherServlet]++-[RequestToViewNameTranslator]
+[DispatcherServlet]++-[FlashMapManager]
+[DispatcherServlet]++1-*[ViewResolver]
 
 ```
 
-### 处理http分发请求
-一般每一个handlerMapping可以持有一系列从URL请求到Controller的映射，而Spring MVC提供了一系列的HandlerMapping实现。
+## 2. 初始化 init()
+第一次请求Servlet时，初始化
 
+```mermaid
+sequenceDiagram
+    %% 1. 第一次请求servlet初始化
+    StandardWrapper->>Servlet:init(ServletConfig)
+    Servlet->>GenericServlet:init(ServletConfig)
+    GenericServlet->>GenericServlet:init()
+    
+    %% 2. HttpServletBean初始化
+    GenericServlet->>HttpServletBean:init()
+    opt pvs不为空
+        HttpServletBean->>HttpServletBean:initBeanWrapper()
+    end
+    HttpServletBean->>HttpServletBean:initServletBean()
+    
+    %% 3. FrameworkServlet
+    HttpServletBean->>FrameworkServlet:initServletBean()
+    HttpServletBean->>FrameworkServlet:initWebApplicationContext()
 
-```java
+	%% 3.1 初始化web应用上下文
+	opt 已经存在web应用上下文
+		opt web应用上下文没有激活
+			FrameworkServlet->>FrameworkServlet:configureAndRefreshWebApplicationContext()
+			FrameworkServlet->>ConfigurableWebApplicationContext:refresh()
+			ConfigurableWebApplicationContext->>AbstractApplicationContext:refresh()
+		end
+	end
 
-servlet.service(ServletRequest req, ServletResponse res) throws ServletException, IOException
+	opt wac等于null
+		FrameworkServlet->>FrameworkServlet:findWebApplicationContext()
+    end
 
-httpServlet.service(ServletRequest req, ServletResponse res) throws ServletException, IOException
-httpServlet.service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	opt 再次判断wac是否为null
+		FrameworkServlet->>FrameworkServlet:createWebApplicationContext()
+    end
 
-doGet(req, resp);
-doHead(req, resp);
-doPost(req, resp);
-doPut(req, resp);
-doDelete(req, resp);
-doOptions(req,resp);
-doTrace(req,resp);
+	%% 3.2 模板方法，初始化策略
+	FrameworkServlet->>DispatcherServlet:onRefresh(context)
+	DispatcherServlet->>DispatcherServlet:initStrategies(context)
 
-frameworkServlet.processRequest(request, response);
-frameworkServlet.doService(HttpServletRequest request, HttpServletResponse response) throws Exception
-
-dispatcherServlet.doService(HttpServletRequest request, HttpServletResponse response) throws Exception
-dispatcherServlet.doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception 
-
+	%% 3.3 初始化其他
+    FrameworkServlet->>FrameworkServlet:initFrameworkServlet()
 ```
 
+## 3. 销毁 destroy()
+
+```mermaid
+sequenceDiagram
+	Servlet->>FrameworkServlet:destroy()
+	FrameworkServlet->>ConfigurableApplicationContext:close()
+```
+
+## 4. 处理请求 service()
+
+### 4.1 请求经由Servlet最终到达DispatcherServlet
+```mermaid
+sequenceDiagram
+	%% 经由tomcat链接器、适配器、应用过滤器等处理
+	ApplicationFilterChain->>HttpServlet:service()
+	HttpServlet->>FrameworkServlet:service()
+	
+	alt 请求方法是PATCH或者null
+	    FrameworkServlet自行处理
+		FrameworkServlet->>FrameworkServlet:processRequest()
+	else
+		FrameworkServlet->>HttpServlet:super.service()
+		
+		%% FrameworkServlet处理请求
+		HttpServlet->>FrameworkServlet:processRequest()
+		
+		%% DispatcherServlet处理请求
+		FrameworkServlet->>DispatcherServlet:doService()
+		
+		%% DispatcherServlet分发请求，请求分发给处理器handler
+		DispatcherServlet->>DispatcherServlet:doDispatch()
+	end
+```
+
+### 4.2 DispatcherServlet.doDispatch()
+* 请求映射
+* 拦截器链
+* 处理器适配器处理请求，之前、之后、完成
+* 请求结果渲染视图
 
 ```mermaid
 sequenceDiagram
 	DispatcherServlet ->> DispatcherServlet: doDispatch()
-
-	%% 1. 检查媒体类型
 	DispatcherServlet ->> DispatcherServlet: checkMultipart(request)
 
-	%% 2. 获取请求处理器
+	%% 1. 获取请求处理器
+	%% 一般每一个handlerMapping可以持有一系列从URL请求到Controller的映射，而Spring MVC提供了一系列的HandlerMapping实现。
 	DispatcherServlet ->> DispatcherServlet: getHandler(processedRequest)
 	DispatcherServlet ->> HandlerMapping: hm.getHandler(request)
+	HandlerMapping -->> DispatcherServlet: 返回HandlerExecutionChain
 
-	%% 3. 处理器适配器
+	%% 2. 获取处理器适配器
 	DispatcherServlet ->> DispatcherServlet: getHandlerAdapter(mappedHandler.getHandler())
 
-	%% 4. 拦截器链
+	%% 3.1 拦截器链，前置处理
 	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPreHandle(processedRequest, response)
 	loop Healthcheck
 		HandlerExecutionChain ->> HandlerInterceptor: preHandle()
     end
 
-	%% 5. 处理器适配器处理请求
+	%% 3.2 处理器适配器处理请求
 	DispatcherServlet ->> HandlerAdapter: handle(processedRequest, response, mappedHandler.getHandler())
 
+	%% 3.3 拦截器链，后置处理
 	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPostHandle(processedRequest, response, mv)
 	loop Healthcheck
 		HandlerExecutionChain ->> HandlerInterceptor: postHandle()
     end
 
+	%% 4. 处理分发的结果，视图解析
 	DispatcherServlet ->> DispatcherServlet: processDispatchResult()
-	DispatcherServlet ->> HandlerExecutionChain: triggerAfterCompletion()
-	loop Healthcheck
-		HandlerExecutionChain ->> HandlerInterceptor: afterCompletion()
-    end
-```
+	DispatcherServlet ->> DispatcherServlet: render()
+	DispatcherServlet ->> AbstractView: render()
 
-```mermaid
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts<br/>prevail...
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
+	%% 3.4 拦截器链，完成处理
+	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.triggerAfterCompletion(request, response, ex)
+	
 ```

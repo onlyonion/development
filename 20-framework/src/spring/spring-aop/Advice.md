@@ -1,28 +1,37 @@
 org.aopalliance.aop.Advice
 
-### 做什么 what
+## 定义
+* 在特定的连接点，AOP框架执行的动作。
 * 前置通知
 * 后置通知、异常通知、环绕通知
 * 动态织入通知 织入拦截器
-* 拦截器通知、构造方法拦截器、普通方法拦截器
+* 通知理解为拦截，拦截器继承了通知，有构造方法拦截器、普通方法拦截器
+
+## 类图
 
 ```yuml
 // {type:class}
+
+[BeforeAdvice{bg:thistle}]
+[AfterAdvice{bg:whitesmoke}]
+[DynamicIntroductionAdvice{bg:wheat}]
+[Interceptor{bg:tomato}]
+
 // 1. before通知 方法前通知
-[Advice]^-[BeforeAdvice{bg:thistle}]
+[Advice]^-[BeforeAdvice]
 [BeforeAdvice]^-[MethodBeforeAdvice]
 
 // 2. after通知 异常、返回通知
-[Advice]^-[AfterAdvice{bg:whitesmoke}]
+[Advice]^-[AfterAdvice]
 [AfterAdvice]^-[ThrowsAdvice]
 [AfterAdvice]^-[AfterReturningAdvice]
 
 // 3. 动态织通知 织入拦截器
-[Advice]^-[DynamicIntroductionAdvice{bg:wheat}]
+[Advice]^-[DynamicIntroductionAdvice]
 [DynamicIntroductionAdvice]^-[IntroductionInterceptor]
 
 // 4. interceptor 拦截器
-[Advice]^-[Interceptor{bg:tomato}]
+[Advice]^-[Interceptor]
 [Interceptor]^-[MethodInterceptor]
 [Interceptor]^-[ConstructorInterceptor]
 

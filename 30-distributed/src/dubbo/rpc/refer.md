@@ -113,11 +113,10 @@ sequenceDiagram
         ReferenceCountExchangeClient->>HeaderExchangeClient:request(request, timeout)
         HeaderExchangeClient->>HeaderExchangeChannel:request(request, timeout)
         
-        %% 传输层
+        %% 传输层 tcp协议，端到端的、面向连接与字节流的、可靠的、全双工的传输协议
         HeaderExchangeChannel->>AbstractPeer:send()
         AbstractPeer->>AbstractClient:send()
         AbstractClient->>NettyChannel:send()
         NettyChannel->>AbstractChannel:write()
     end
 ```
-###

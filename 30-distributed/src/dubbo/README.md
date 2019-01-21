@@ -1,3 +1,6 @@
+
+SE导引目路集衡
+ 
 ## dubbo package
 ```
 cache       缓存，分布式缓存
@@ -30,11 +33,17 @@ validation
  ```
  ## 分层
  
- ### config
- 
- ### rpc
- 
- ### remoting
+ * config 接口层、配置层、容器
+ * rpc
+    - Invoker 调用处理
+    - Filter 过滤器链 模拟数据、协议处理、同步异步处理、异常处理
+    - Cluster(join)、Director(list)、Router(route)、LoadBalance(select)
+    - proxy 动态代理
+ * remoting 
+    - 信息交换
+    - 传输层 通道与通道处理器
+    - I/O处理 read(), write()
+    - 序列化
  
  ## service
  
