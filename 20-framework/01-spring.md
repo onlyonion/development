@@ -45,140 +45,93 @@
 
 ![spring-jars](./img/spring-jars.jpg "spring-jars")
 
-
-
 ### 装配
-
 装配，或bean 装配是指在Spring 容器中把bean组装到一起，前提是容器需要知道bean的依赖关系，如何通过依赖注入来把它们装配到一起 
-
 *	no：默认的方式是不进行自动装配，通过显式设置ref 属性来进行装配。
 *	byName：通过参数名 自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byname，之后容器试图匹配、装配和该bean的属性具有相同名字的bean。
 *	byType:：通过参数类型自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byType，之后容器试图匹配、装配和该bean的属性具有相同类型的bean。如果有多个bean符合条件，则抛出错误。
 *	constructor：这个方式类似于byType， 但是要提供给构造器参数，如果没有确定的带参数的构造器参数类型，将会抛出异常。
 *	autodetect：首先尝试使用constructor来自动装配，如果无法工作，则使用byType方式。
-
-
 ## 模块解析
-
 ### spring-core
 asm, cglib, core, lang, objenesis, util
-
 ### spring-beans
-
-beans.factory
-
-BeanDefinition
-BeanFactory
-FactoryBean
-
-InitializingBean
-DisposableBean
-
-Aware
-BeanFactoryPostProcessor
-BeanPostProcessor
-
+* beans.factory
+* BeanDefinition
+* BeanFactory
+* FactoryBean
+* InitializingBean
+* DisposableBean
+* Aware
+* BeanFactoryPostProcessor
+* BeanPostProcessor
 ``` java
-
 public interface BeanFactoryPostProcessor {
-
 	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
-	
 }
-
 public interface BeanPostProcessor {
-
 	Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException;
-
 	Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
-
 }
-
 ```
-
 beans.propertyeditors
-
 beans.support
-
 ### spring-context
-
-cache
-context
-ejb
-format
-jmx
-jndi
-remoting
-scheduling
-scripting
-stereotype
-ui
-validation
+* cache
+* context
+* ejb
+* format
+* jmx
+* jndi
+* remoting
+* scheduling
+* scripting
+* stereotype
+* ui
+* validation
 
 ### spring-context-support
 cache, mail, scheduling, ui
-
 > cache
-
 cache, cacheManager
-
 *  ehcache
 *  guava
 *  jcache
 *  transaction
-
 > mail
-
 javamail
-
 > scheduling
-
 * commonj
 * quartz
-
 > ui
-
 * freemarker
 * jasperreports
 * velocity
-
 ### spring-expression
-
 ### spring-dao
 Template 和 Callback
-
 ### spring-tx
 dao, jca, transaction
-
 PlatformTransactionManager
 AbstractPlatformTransactionManager
 TransactionStatus
 TransactionTemplate
 TransactionCallback
-
 ### spring-jdbc
 JdbcTemplate
-
 ### spring-orm
 hibernate3, hibernate4, hibernate5, jdo, jpa
-
-
 ### spring-web
 http: client, server, converter(feed, json, protobuf, xml)
-
 remoting: caucho, httpinvoker, jaxws
-
 web: accept, bind, client, context, cors, filter, jsf, method, multipart, util
-
 ### spring-webmvc
-
 HandlerAdapter
 HandlerExecutionChain
 HandlerMapping
 HandlerInterceptor
 ViewResovlver
 View
-
 DispatcherServlet -> FrameworkServlet -> HttpServletBean
 
 

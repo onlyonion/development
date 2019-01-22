@@ -9,3 +9,80 @@ org.apache.
     naming
     tomcat
 ```
+
+#### tomcat package
+
+tomcat-embed-core-8.5.23
+
+```
+    catalina
+        connector
+            Connector
+            Request
+            Response
+        filters
+        loader
+            WebappClassLoader
+            WebappClassLoaderBase
+            WebappLoader
+        mapper
+            Mapper
+        realm
+        servlets
+            DefaultServlet
+        session
+        ssi
+        startup
+        users
+        valves
+        webresources
+        
+        Cluster
+        Container
+        ContainerEvent
+        ContainerListener
+        ContainerServlet    
+        Context
+        Engine
+        Executor
+        Host
+        Lifecycle
+        LifecycleEvent
+        LifecycleListener
+        LifecycleState
+        
+        Server
+        Service
+        Session
+        SessionListener
+        Wrapper
+        
+        Pipeline
+        Valve
+    coyote
+        ajp
+        http2
+        http11
+        
+        Adapter
+        Proccessor
+        ProtocolHandler
+        UpgradeProtocol
+    juli
+    naming
+    tomcat
+        jni
+        util
+            digester
+            file
+            http
+            net
+                jsse
+                openssl
+                
+                AbstractEndpoint
+                AbstractEndpoint.Acceptor
+                NioChannel
+                NioEndpoint
+                NioSelectorPool
+```

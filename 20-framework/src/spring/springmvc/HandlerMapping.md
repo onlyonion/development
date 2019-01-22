@@ -6,12 +6,12 @@
 
 // 
 [HandlerMapping||+getHandler(request)]
-[ApplicationObjectSupport]
-[WebApplicationObjectSupport]
-[AbstractHandlerMapping]
-[AbstractHandlerMethodMapping]
-[RequestMappingInfoHandlerMapping]
-[RequestMappingHandlerMapping]
+[ApplicationObjectSupport{bg:thistle}]
+[WebApplicationObjectSupport{bg:thistle}]
+[AbstractHandlerMapping{bg:wheat}]
+[AbstractHandlerMethodMapping{bg:wheat}]
+[RequestMappingInfoHandlerMapping{bg:wheat}]
+[RequestMappingHandlerMapping{bg:wheat}]
 
 
 // 1. HandlerMapping接口
@@ -28,7 +28,7 @@
 [HandlerMapping]^-.-[AbstractHandlerMapping]
 [Ordered]^-.-[AbstractHandlerMapping]
 
-
+// 
 [AbstractHandlerMapping]^-[AbstractHandlerMethodMapping]
 [InitializingBean]^-.-[AbstractHandlerMethodMapping]
 

@@ -1,3 +1,12 @@
+## 绘图
+Echarts HighCharts Canvas
+
+SVG  Scalable Vector Graphics 可伸缩矢量图形 XML 描述 2D 图形的语言
+
+Canvas 通过 JavaScript 来绘制 2D 图形 基于像素的即时模式图形系统
+
+[html_5_canvas_vs_svg.asp](http://www.w3school.com.cn/html5/html_5_canvas_vs_svg.asp)
+
 ## 前后端分离，好与坏
 当一个系统是基于前端与后端分离这种模式来进行来发的，通常来说，这种开发模式使得整个开发的环节变长了，
 这将导致整个开发团队（包括前端与后端开发人员）的开发失去了灵活性，因为一点点小功能的改动，很有可能都需要好几个人来进行协作开发。

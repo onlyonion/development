@@ -10,6 +10,22 @@ DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServ
 
 // {type:class}
 
+// servlet api
+[Servlet{bg:thistle}]
+[GenericServlet{bg:thistle}]
+[HttpServlet{bg:thistle}]
+
+// springmvc
+[HttpServletBean{bg:wheat}]
+[FrameworkServlet{bg:wheat}]
+[DispatcherServlet{bg:tomato}]
+
+// 请求处理
+[HandlerMapping{bg:slategray}]
+[HandlerAdapter{bg:slategray}]
+[HandlerExceptionResolver{bg:slategray}]
+[ViewResolver{bg:slategray}]
+
 // 1. servlet规范
 [Servlet]^-.-[GenericServlet]
 [ServletConfig]^-.-[GenericServlet]
@@ -105,22 +121,20 @@ sequenceDiagram
 ### 4.1 请求经由Servlet最终到达DispatcherServlet
 ```mermaid
 sequenceDiagram
+
 	%% 经由tomcat链接器、适配器、应用过滤器等处理
 	ApplicationFilterChain->>HttpServlet:service()
 	HttpServlet->>FrameworkServlet:service()
 	
 	alt 请求方法是PATCH或者null
-	    FrameworkServlet自行处理
+	    %% FrameworkServlet自行处理
 		FrameworkServlet->>FrameworkServlet:processRequest()
 	else
 		FrameworkServlet->>HttpServlet:super.service()
-		
 		%% FrameworkServlet处理请求
 		HttpServlet->>FrameworkServlet:processRequest()
-		
 		%% DispatcherServlet处理请求
 		FrameworkServlet->>DispatcherServlet:doService()
-		
 		%% DispatcherServlet分发请求，请求分发给处理器handler
 		DispatcherServlet->>DispatcherServlet:doDispatch()
 	end
@@ -135,38 +149,39 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
 	DispatcherServlet ->> DispatcherServlet: doDispatch()
-	DispatcherServlet ->> DispatcherServlet: checkMultipart(request)
+	%% 1. 媒体类型检查
+	DispatcherServlet ->> DispatcherServlet: 1. checkMultipart(request)
 
-	%% 1. 获取请求处理器
+	%% 2. 获取请求处理器
 	%% 一般每一个handlerMapping可以持有一系列从URL请求到Controller的映射，而Spring MVC提供了一系列的HandlerMapping实现。
-	DispatcherServlet ->> DispatcherServlet: getHandler(processedRequest)
-	DispatcherServlet ->> HandlerMapping: hm.getHandler(request)
-	HandlerMapping -->> DispatcherServlet: 返回HandlerExecutionChain
+	DispatcherServlet ->> DispatcherServlet: 2. getHandler(processedRequest)
+	DispatcherServlet ->> HandlerMapping: 2.1 hm.getHandler(request)
+	HandlerMapping -->> DispatcherServlet: 2.2 返回HandlerExecutionChain
 
-	%% 2. 获取处理器适配器
-	DispatcherServlet ->> DispatcherServlet: getHandlerAdapter(mappedHandler.getHandler())
+	%% 3. 获取处理器适配器
+	DispatcherServlet ->> DispatcherServlet: 3. getHandlerAdapter(mappedHandler.getHandler())
 
-	%% 3.1 拦截器链，前置处理
-	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPreHandle(processedRequest, response)
+	%% 4.1 拦截器链，前置处理
+	DispatcherServlet ->> HandlerExecutionChain:4.1 mappedHandler.applyPreHandle(processedRequest, response)
 	loop Healthcheck
 		HandlerExecutionChain ->> HandlerInterceptor: preHandle()
     end
 
-	%% 3.2 处理器适配器处理请求
-	DispatcherServlet ->> HandlerAdapter: handle(processedRequest, response, mappedHandler.getHandler())
+	%% 4.2 处理器适配器处理请求
+	DispatcherServlet ->> HandlerAdapter: 4.2 handle(processedRequest, response, mappedHandler.getHandler())
 
-	%% 3.3 拦截器链，后置处理
-	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.applyPostHandle(processedRequest, response, mv)
+	%% 4.3 拦截器链，后置处理
+	DispatcherServlet ->> HandlerExecutionChain: 4.3 mappedHandler.applyPostHandle(processedRequest, response, mv)
 	loop Healthcheck
 		HandlerExecutionChain ->> HandlerInterceptor: postHandle()
     end
 
-	%% 4. 处理分发的结果，视图解析
-	DispatcherServlet ->> DispatcherServlet: processDispatchResult()
-	DispatcherServlet ->> DispatcherServlet: render()
-	DispatcherServlet ->> AbstractView: render()
+	%% 5. 处理分发的结果，视图解析
+	DispatcherServlet ->> DispatcherServlet: 5. processDispatchResult()
+	DispatcherServlet ->> DispatcherServlet: 5.1 render()
+	DispatcherServlet ->> AbstractView: 5.2 render()
 
-	%% 3.4 拦截器链，完成处理
-	DispatcherServlet ->> HandlerExecutionChain: mappedHandler.triggerAfterCompletion(request, response, ex)
+	%% 4.4 拦截器链，完成处理
+	DispatcherServlet ->> HandlerExecutionChain: 4.4 mappedHandler.triggerAfterCompletion(request, response, ex)
 	
 ```
