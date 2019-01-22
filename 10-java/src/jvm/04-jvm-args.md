@@ -63,6 +63,7 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 	-XX:NewRatio
 	- 新生代（eden + 2 * s）和老年代（不包含永久代）的比值
 	- 4 表示 新生代：老年代 = 1:4，即年轻代占堆的1/5
+	- 默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小
 	
 	-XX:SurvivorRatio
 	- 设置两个Survivor区和eden的比
