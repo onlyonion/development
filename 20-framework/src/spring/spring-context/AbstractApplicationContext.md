@@ -1,13 +1,18 @@
 org.springframework.context.support.AbstractApplicationContext
 
-## 继承层次
+```
+DefaultResourceLoader
+    AbstractApplicationContext
+```
+
+## 1. 继承层次
 ![hierarchry](../../../img/spring-idea-AbstractApplicationContext.png)
 
 ![hierarchry](../../../img/spring-idea-AbstractApplicationContext-field.png)
 
 
-## refresh()
-tomcat环境下spring启动
+## 2. refresh()
+tomcat环境下spring启动，通过ContextLoader加载
 
 四大阶段、十二子过程
 | 阶段       | 关键词      | 子过程                                                                            |

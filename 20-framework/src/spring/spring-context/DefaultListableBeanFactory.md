@@ -1,28 +1,35 @@
 org.springframework.beans.factory.support.DefaultListableBeanFactory
 
+## 1. DefaultListableBeanFactory 类图
 ```
-DefaultListableBeanFactory
-    AbstractAutowireCapableBeanFactory
-        AbstractBeanFactory
-            FactoryBeanRegistrySupport
-                DefaultSingletonBeanRegistry
-                    SimpleAliasRegistry
-```
-
-```mermaid
-graph BT
-    DefaultListableBeanFactory --> AbstractAutowireCapableBeanFactory
+SimpleAliasRegistry
+    DefaultSingletonBeanRegistry
+        FactoryBeanRegistrySupport
+            AbstractBeanFactory
+                AbstractAutowireCapableBeanFactory
+                    DefaultListableBeanFactory
 ```
 
-#### IoC容器启动
-org.springframework.context.support.AbstractApplicationContext
+```yuml
+// {type:class}
+
+// extends
+[SimpleAliasRegistry]^-[DefaultSingletonBeanRegistry]
+[DefaultSingletonBeanRegistry]^-[FactoryBeanRegistrySupport]
+[FactoryBeanRegistrySupport]^-[AbstractBeanFactory]
+[AbstractBeanFactory]^-[AbstractAutowireCapableBeanFactory]
+[AbstractAutowireCapableBeanFactory]^-[DefaultListableBeanFactory]
+```
+
+
+## 2. 依赖注入DI
+
+### getBean()
 
 ```mermaid
 sequenceDiagram
-    AbstractApplicationContext ->> AbstractApplicationContext: registerBeanPostProcessors()
-    AbstractApplicationContext ->> PostProcessorRegistrationDelegate: registerBeanPostProcessors(beanFactory, this)
-    PostProcessorRegistrationDelegate ->> AbstractBeanFactory: getBean(ppName, BeanPostProcessor.class)
-    %% 
+    
+    Actor ->> AbstractBeanFactory: getBean()
     AbstractBeanFactory ->> AbstractBeanFactory: doGetBean()
     AbstractBeanFactory ->> DefaultSingletonBeanRegistry: getSingleton()
     AbstractBeanFactory ->> AbstractAutowireCapableBeanFactory: createBean()
@@ -31,23 +38,23 @@ sequenceDiagram
     AbstractAutowireCapableBeanFactory ->> AbstractAutowireCapableBeanFactory: instantiateUsingFactoryMethod()
 ```
 
-#### 依赖注入
+### 依赖注入
 ```mermaid
 sequenceDiagram
-    participant DefaultListableBeanFactory
+    participant Actor
     participant AbstractBeanFactory
     participant AbstractAutowireCapableBeanFactory
 
-    DefaultListableBeanFactory ->> AbstractBeanFactory: doGetBean()
+    Actor ->> AbstractBeanFactory: getBean()
+    AbstractBeanFactory ->> AbstractBeanFactory: doGetBean()
     AbstractBeanFactory ->> AbstractAutowireCapableBeanFactory: createBean()
     AbstractAutowireCapableBeanFactory ->> AbstractAutowireCapableBeanFactory: doCreateBean()
     AbstractAutowireCapableBeanFactory ->> InstantiationStrategy: instantiate()
     InstantiationStrategy -->> AbstractAutowireCapableBeanFactory: populateBean()
     AbstractAutowireCapableBeanFactory ->> AbstractAutowireCapableBeanFactory: applyPropertyValues()
-    
 ```
 
-#### 初始化bean
+### 初始化bean
 ```mermaid
 graph LR
     %% AbstractAutowireCapableBeanFactory 初始化bean
@@ -68,9 +75,4 @@ graph LR
 
     %% 初始化之后
     initializeBean --> applyBeanPostProcessorsAfterInitialization
-```
-
-```yuml
-// {type: sequence}
-[A]>[B]
 ```

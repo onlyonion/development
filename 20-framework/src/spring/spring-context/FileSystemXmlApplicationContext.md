@@ -1,14 +1,52 @@
+
+## 几个context
+
+### FileSystemXmlApplicationContext
 org.springframework.context.support.FileSystemXmlApplicationContext
-
 ```
-FileSystemXmlApplicationContext
-    AbstractXmlApplicationContext
-        AbstractRefreshableConfigApplicationContext
-            AbstractRefreshableApplicationContext
-                AbstractApplicationContext
-                    DefaultResourceLoader
+DefaultResourceLoader
+    AbstractApplicationContext
+        AbstractRefreshableApplicationContext
+            AbstractRefreshableConfigApplicationContext
+                AbstractXmlApplicationContext
+                    FileSystemXmlApplicationContext
 ```
 
+### ClassPathXmlApplicationContext
+org.springframework.context.support.ClassPathXmlApplicationContext
+```
+DefaultResourceLoader
+    AbstractApplicationContext
+        AbstractRefreshableApplicationContext
+            AbstractRefreshableConfigApplicationContext
+                AbstractXmlApplicationContext
+                    ClassPathXmlApplicationContext
+```
+
+### XmlWebApplicationContext
+org.springframework.web.context.support.XmlWebApplicationContext
+```
+DefaultResourceLoader
+    AbstractApplicationContext
+        AbstractRefreshableApplicationContext
+            AbstractRefreshableConfigApplicationContext
+                AbstractRefreshableWebApplicationContext
+                    XmlWebApplicationContext
+```
+
+### AnnotationConfigEmbeddedWebApplicationContext
+org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
+```
+DefaultResourceLoader
+    AbstractApplicationContext
+        GenericApplicationContext
+            GenericWebApplicationContext
+                EmbeddedWebApplicationContext
+                    AnnotationConfigEmbeddedWebApplicationContext
+```
+
+
+## context加载
 
 ```mermaid
 graph LR
@@ -16,7 +54,7 @@ graph LR
     BeanDefinition加载与解析 --> BeanDefinitionRegistry注册
 ```
 
-#### BeanDefinition的ResourceLoader定位
+### BeanDefinition的ResourceLoader定位
 ```mermaid
 sequenceDiagram
     FileSystemXmlApplicationContext ->> AbstractXmlApplicationContext: refresh()
@@ -32,7 +70,7 @@ sequenceDiagram
     AbstractRefreshableApplicationContext ->> FileSystemResource: getResourceByPath()
     FileSystemResource -->> FileSystemXmlApplicationContext: FileSystemResource
 ```
-#### BeanDefinition的载入于解析
+### BeanDefinition的载入于解析
 
 ```mermaid
 sequenceDiagram
@@ -48,5 +86,5 @@ sequenceDiagram
     BeanDefinitionParserDelegate -->> AbstractApplicationContext: BeanDefinitionHolder
 ```
 
-#### BeanDefinition在IoC容器中的注册
+### BeanDefinition在IoC容器中的注册
 

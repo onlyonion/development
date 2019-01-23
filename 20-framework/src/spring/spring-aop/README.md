@@ -1,4 +1,8 @@
 
+* Advice when
+* Pointcut where
+* Aspect 约等于 Advisor = Advice + Pointcut = when + where
+
 ## concept
 
 * 切面（Aspect）：一个关注点的模块化，这个关注点实现可能另外横切多个对象。

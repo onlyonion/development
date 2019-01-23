@@ -22,25 +22,25 @@ com.alibaba.dubbo.config 配置中心
 [AbstractInterfaceConfig]++1-*[RegistryConfig]
 
 // 3.1.1 引入接口配置
-[AbstractInterfaceConfig]^-[AbstractReferenceConfig{bg:tan}]
+[AbstractInterfaceConfig]^-[AbstractReferenceConfig{bg:thistle}]
 [AbstractReferenceConfig]^-[ConsumerConfig]
 [AbstractReferenceConfig]^-[ReferenceConfig{bg:orange}]
 
 // 与spring集成，bean的方式
-[ReferenceConfig]^-[ReferenceBean{bg:beige}]
+[ReferenceConfig]^-[ReferenceBean{bg:orange}]
 
 [ReferenceConfig]++1-*[MethodConfig]
 [ReferenceConfig]++-[ConsumerConfig]
 
 // 3.1.2 导出接口配置
-[AbstractInterfaceConfig]^-[AbstractServiceConfig{bg:tan}]
+[AbstractInterfaceConfig]^-[AbstractServiceConfig{bg:thistle}]
 [AbstractServiceConfig]++1-*[ProtocolConfig]
 
 [AbstractServiceConfig]^-[ProviderConfig]
 [AbstractServiceConfig]^-[ServiceConfig{bg:orange}]
 
 // 与spring集成，bean的方式
-[ServiceConfig]^-[ServiceBean{bg:beige}]
+[ServiceConfig]^-[ServiceBean{bg:orange}]
 
 [ServiceConfig]++1-*[MethodConfig]
 [ServiceConfig]++-[ProviderConfig]
@@ -79,19 +79,24 @@ com.alibaba.dubbo.config 配置中心
 [DubboNamespaceHandler]uses-.->[DubboBeanDefinitionParser]
 ```
 
-### serviceBean、referenceBean与spring集成
+### ServiceBean
 ```yuml
 // {type:class}
 
-//  注解配置 
-[AbstractConfig{bg:thistle}]^-[AnnotationBean{bg:beige}]
+// 导出 
+[ServiceConfig{bg:orange}]^-[ServiceBean{bg:beige}]
 
-[BeanPostProcessor||+postProcessBeforeInitialization(bject bean, String beanName);+postProcessAfterInitialization(bject bean, String beanName)]
+[ApplicationListener]^-.-[ServiceBean]
+[BeanNameAware]^-.-[ServiceBean]
+[ApplicationContextAware]^-.-[ServiceBean]
+[InitializingBean]^-.-[ServiceBean]
+[DisposableBean]^-.-[ServiceBean]
 
-[DisposableBean]^-.-[AnnotationBean]
-[BeanFactoryPostProcessor]^-.-[AnnotationBean]
-[BeanPostProcessor]^-.-[AnnotationBean]
-[ApplicationContextAware]^-.-[AnnotationBean]
+```
+
+### ReferenceBean
+```yuml
+// {type:class}
 
 // 引入 
 [ReferenceConfig{bg:orange}]^-[ReferenceBean{bg:beige}]
@@ -101,17 +106,19 @@ com.alibaba.dubbo.config 配置中心
 [InitializingBean]^-.-[ReferenceBean]
 [DisposableBean]^-.-[ReferenceBean]
 
-// 导出 
-[ServiceConfig{bg:orange}]^-[ServiceBean{bg:beige}]
+```
 
-[ApplicationListener||+onApplicationEvent(event)]
+### AnnotationBean
 
-[ApplicationListener]^-.-[ServiceBean]
-[BeanNameAware]^-.-[ServiceBean]
-[ApplicationContextAware]^-.-[ServiceBean]
-[InitializingBean]^-.-[ServiceBean]
-[DisposableBean]^-.-[ServiceBean]
+```yuml
+// {type:class}
 
+//  注解配置 
+[AbstractConfig{bg:thistle}]^-[AnnotationBean{bg:beige}]
 
+[DisposableBean]^-.-[AnnotationBean]
+[BeanFactoryPostProcessor]^-.-[AnnotationBean]
+[BeanPostProcessor]^-.-[AnnotationBean]
+[ApplicationContextAware]^-.-[AnnotationBean]
 
 ```
