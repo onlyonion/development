@@ -1,6 +1,6 @@
-
-
-## 类图
+org.springframework.web.servlet.HandlerMapping
+## 1. 定义
+## 2. 类图
 ```yuml
 // {type:class}
 

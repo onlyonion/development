@@ -1,5 +1,6 @@
-[HandlerMethod](https://www.cnblogs.com/leftthen/p/5229204.html)
+org.springframework.web.method.HandlerMethod
 
+## 1. 定义
 ```
 HandlerMethod
     InvocableHandlerMethod
@@ -7,6 +8,7 @@ HandlerMethod
             ConcurrentResultHandlerMethod
 ```
 
+## 2. 类图
 ```mermaid
 sequenceDiagram
 	DispatcherServlet ->> DispatcherServlet: doDispatch()
@@ -87,3 +89,5 @@ HandlerMethod其实可以简单理解为保持方法信息的pojo.
 		}
 	}
 ```
+
+[HandlerMethod](https://www.cnblogs.com/leftthen/p/5229204.html)
