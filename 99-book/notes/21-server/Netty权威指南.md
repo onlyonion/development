@@ -36,14 +36,48 @@ epoll的改进：
 4. epoll的API更加简单
 
 ## 第2章 NIO入门
+### 2.1 传统的BIO编程
+### 2.2 伪异步I/O编程
+### 2.3 NIO编程
+### 2.4 AIO编程
+* 通过Future类表示异步操作的结果
+* 执行异步操作时候传入一个java.nio.channels
+* Completionhandler接口的实现类作为操作完成的回调
+对应unix网络编程中的事件驱动IO（AIO），不需要多路复用器（Selector）。
+
+```java
+
+public interface CompletionHandler<V,A> {
+    void completed(V result, A attachment);
+    void failed(Throwable exc, A attachment);
+}
+
+```
 
 # 入门篇 NettyNIO 开发指南
 ## 第3章 Netty入门应用
 ## 第4章 TCP粘包/拆包问题解决之道
+### 4.1 TCP粘包/拆包
+1. TCP协议，面向连接、面向流的端到端的全双工的可靠传输协议
+2. 面向流，没有界限的字节流TCP底层并不了解上层业务数据的具体含义，它会根据TCP缓冲区的实际情况进行包的划分
+3. 在业务上认为，一个完整的包可能被TCP拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送。
+
+#### 4.1.3 粘包问题的解决策略
+由于底层的TCP协议无法理解上层的业务数据，所以在底层无法保证数据包不被拆分和重组，只能通过上层的应用层协议栈设计解决。
+1. 消息定长，如空位补空格
+2. 包尾增加回车换行符进行分割
+3. 消息分为消息头和消息体，消息头中包含表示消息的总长度的字段
+4. 更复杂的应用层协议
+
 ## 第5章 分隔符和定长解码器的应用
 
 # 中级篇 Netty 编解码开发指南
 ## 第6章 编解码技术
+### 6.1 Java序列化的缺点
+#### 6.1.1 无法跨语言
+#### 6.1.2 序列化后的码流太大
+#### 6.1.3 序列化性能太低
+
 ## 第7章 MessagePack编解码
 ## 第8章 Google Protobuf编解码
 ## 第9章 JBoss Marshalling编解码
@@ -52,10 +86,45 @@ epoll的改进：
 ## 第10章 HTTP协议开发应用
 ## 第11章 WebSocket协议开发
 ## 第12章 私有协议栈开发
+绝大多数的私有协议传输层都是基于TCP/IP，利用Netty的NIO TCP协议栈可以方便的进行定制和开发。
 ## 第13章 服务端创建
+### 13.2 Netty服务端创建源码分析
+#### 13.2.1 Netty服务端的创建时序图
+```mermaid
+sequenceDiagram
+    Actor->>ServerBootstrap: 1.创建ServerBootstrap实例
+    ServerBootstrap->>EventLoopGroup: 2. 设置并绑定Reactor线程池
+    EventLoopGroup->>NioServerSocketChannel: 3. 设置并绑定服务端Channel
+    EventLoopGroup->>ChannelPipeline: 4. TCP链路建立时创建ChannelPipeline
+
+    ServerBootstrap->>ChannelHandler: 5. 添加并设置ChannelHandler
+    ServerBootstrap->>ServerBootstrap: 6. 绑定监听端口并启动服务端
+
+    EventLoopGroup->>EventLoopGroup: 7. Selector轮询
+    EventLoopGroup->>ChannelPipeline: 8. 网络事件通知
+    ChannelPipeline->>ChannelHandler: 9. 执行Netty系统和业务HandlerChannel
+```
+
 ## 第14章 客户端创建
+#### 14.2.1 Netty客户端的创建时序图
+```mermaid
+sequenceDiagram
+    Actor->>Bootstrap: 1.创建Bootstrap实例
+    Bootstrap->>NioEventLoopGroup: 2. 构造IO线程组
+    EventLoopGroup->>NioSocketChannel: 3. 创建NioSocketChannel
+    NioSocketChannel->>ChannelPipeline: 4. 创建默认的DefaultPipeLine
+
+    NioSocketChannel->>NioSocketChannel: 5. 异步发起TCP连接
+    NioSocketChannel->>EventLoopGroup: 6. 注册连接操作位到多路复用器
+
+    EventLoopGroup->>EventLoopGroup: 7. 批量连接结果事件
+    EventLoopGroup->>ChannelPipeline: 8. 发送连接成功事件
+    ChannelPipeline->>ChannelHandler: 9. 调用用户ChannelHandler
+```
 
 # 源码分析篇 Netty 功能介绍和源码分析
+
+
 ## 第15章 ByteBuf和相关辅助类
 ## 第16章 Channel和Unsafe
 ## 第17章 ChannelPipeline和ChannelHandler
