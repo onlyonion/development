@@ -1,4 +1,5 @@
 
+## core
 * 字节缓存
 * 通道
 * 通道处理器
@@ -8,6 +9,30 @@
 * 传输层网络协议
 * 对等网络连接方式
 
+## package
+
+```
+buffer
+exchange
+http
+p2p
+telnet
+transport
+zookeeper
+Channel
+ChannelHandler
+Client
+Codec2
+Decodeable
+Dispatcher
+Endpoint
+ExecutionException
+RemotingException
+Server
+TimeoutException
+Transporter
+Transporters
+```
 
 ## Endpoint
 * Channel

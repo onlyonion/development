@@ -1,5 +1,30 @@
 com.alibaba.dubbo.config 配置中心
 
+## package
+
+```
+annotation
+spring
+support
+utils
+AbstractConfig
+AbstractInterfaceConfig
+AbstractMethodConfig
+AbstractReferenceConfig
+AbstractServiceConfig
+ApplicationConfig
+ArgumentConfig
+ConsumerConfig
+MethodConfig
+ModuleConfig
+MonitorConfig
+ProtocolConfig
+ProviderConfig
+ReferenceConfig
+RegistryConfig
+ServiceConfig
+```
+
 ### 类图
 ```yuml
 // {type:class}

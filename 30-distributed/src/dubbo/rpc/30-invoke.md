@@ -1,28 +1,49 @@
-com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler
+com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 
-## refere调用过程
+## invoke时序
+![invoke](../../../img/dubbo-consumer-invoke-provider.png)
+
+## 调用过程
+
+* InvokerInvocationHandler
+* RpcInvocation
+* MockClusterInvoker
+* AbstractClusterInvoker
+* AbstractDirectory RegistryDirectory
+* AbstractClusterInvoker FailfastClusterInvoker
+* FailfastClusterInvoker
+* LoadBalance
+
+* InvokerWrapper
+* ProtocolFilterWrapper$1 过滤器链
+* ConsumerContextFilter
 
 ### 整体
+
 ```mermaid
 sequenceDiagram
-    %% 实现jdk的调用处理器
-    InvokerInvocationHandler->>InvokerInvocationHandler:invoke(proxy, method, args)
-    opt 方法的声明是object.class
-        InvokerInvocationHandler->>Method:method.invoke(invoker, args)
-    end
-    opt 判断是toString(),hashCode(),equals(obj)
-        InvokerInvocationHandler->>Invoker:调用invoke的相应方法
-    end
-
-    InvokerInvocationHandler->>RpcInvocation:new方法与参数的封装
-    %% 这里的invoke封装了模拟数据、集群策略、负载均衡、异步同步处理、过滤链的invoke
+    %% 1.1 调用处理器
+    Actor->>InvokerInvocationHandler:invoke(proxy, method, args)
+    
+    %% 1.2 Object方法处理
+    %% opt 方法的声明是object.class
+    %%     InvokerInvocationHandler->>Method:method.invoke(invoker, args)
+    %% end
+    %% opt 判断是toString(),hashCode(),equals(obj)
+    %%     InvokerInvocationHandler->>Invoker:调用invoke的相应方法
+    %% end
+    
+    %% 2.1 构造调用器
+    %% InvokerInvocationHandler->>RpcInvocation:new方法与参数的封装
+    
+    %% 2.2 这里的invoke封装了模拟数据、集群策略、负载均衡、异步同步处理、过滤链的invoke
     InvokerInvocationHandler->>MockClusterInvoker:invoke(invocation)
     
-    %% 注册中心url
+    %% 3.1 回声集群 获取注册中心url 获取参数
     MockClusterInvoker->>RegistryDirectory:getUrl()
     RegistryDirectory->>URL:getMethodParameter()
     
-    %% 根据模拟集群调用器选择
+    %% 3.2 根据模拟集群调用器选择
     alt no mock
         MockClusterInvoker->>AbstractClusterInvoker:invoke(invocation)
         MockClusterInvoker-->>InvokerInvocationHandler:返回Result，然后recreae()
@@ -33,27 +54,31 @@ sequenceDiagram
     end 
 ```
 
-### cluster-router-loadbalance
+### 集群、路由、负载均衡 cluster-router-loadbalance
 ```mermaid
 sequenceDiagram
-    %% 集群策略
+    %% 4.1 集群策略
     MockClusterInvoker->>AbstractClusterInvoker:invoke(invocation)
-    %% 路由选择
+    
+    %% 4.2 路由选择 Directory.list()
     AbstractClusterInvoker->>AbstractClusterInvoker:list(invocation)
     AbstractClusterInvoker->>AbstractDirectory:list(invocation)
-    %% 负载均衡
+    
+    %% 4.3 负载均衡 select()
     AbstractClusterInvoker->>ExtensionLoader:getExtensionLoader(LoadBalance.class).getExtension()
     AbstractClusterInvoker->>FailfastClusterInvoker:doInvoke(invocation,invokers,loadbalance)
-    %% 负载均衡
+    
     FailfastClusterInvoker->>AbstractClusterInvoker:select()使用loadbalance选择invoker
     AbstractClusterInvoker->>AbstractClusterInvoker:doSelect()
     AbstractClusterInvoker-->>FailfastClusterInvoker:返回负载均衡后的invoke的包装InvokerWrapper
+    
     %% 返回
     FailfastClusterInvoker-->>AbstractClusterInvoker:doInvoke()返回Result
     AbstractClusterInvoker-->>MockClusterInvoker:invoke()返回Result
 ```
 
 ### protocol
+
 ```mermaid
 sequenceDiagram
     %% 集群策略 快速失败
@@ -95,17 +120,23 @@ sequenceDiagram
 ```
 
 ### dubbo-invoker 交换层、传输层
+
 ```mermaid
 sequenceDiagram
-    %% dubboinvoker
+    %% dubbo调用者
     AbstractInvoker->>DubboInvoker:(invocation)
     
+    %% 调用方式
     alt isOneway
+        %% 一次性调用
         DubboInvoker->>ExchangeClient:setFuture(null)
         DubboInvoker->>ExchangeClient:send(inv, isSent)
+        
     else isAsync
+        %% 异步调用
         DubboInvoker->>ExchangeClient:request(inv, timeout)
         DubboInvoker->>ExchangeClient:setFuture(创建FutureAdapter)
+        
     else other
         %% 交换层
         DubboInvoker->>ExchangeClient:request()

@@ -11,13 +11,28 @@ remoting
     jaxws
 web
     accept
+        ContentNegotiationManager
     bind
     client
     context
+        support
+            WebApplicationContextUtils
+            WebApplicationObjectSupport
+            XmlWebApplicationContext
+        ContextLoader
+        ContextLoaderListener
+        WebApplicationContext
     cors
     filter
+        CorsFilter
     jsf
     method
+        ControllerAdviceBean
+        HandlerMethod
     multipart
+        MultipartFile
+        MultipartHttpServletRequest
+        MultipartRequest
+        MultipartResolver
     util
 ```

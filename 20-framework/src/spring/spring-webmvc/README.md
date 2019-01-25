@@ -27,4 +27,28 @@ view
     velocity
     xml
     xslt
+AsyncHandlerInterceptor
+DispatcherServlet   springmvc 核心分发请求的Servlet
+DispatcherServlet.properties
+FlashMap
+FlashMapManager
+FrameworkServlet    springmv框架基础，提供applicationContext；子类必须实现doService()方法
+HandlerAdapter
+HandlerExceptionResolver
+HandlerExecutionChain
+HandlerInterceptor
+HandlerMapping
+HttpServletBean     抽象类，与springmvc整合的Bean
+LocaleContextResolver
+LocaleResolver
+ModelAndView
+ModelAndViewDefiningException
+NoHandlerFoundException
+RequestToViewNameTranslator
+ResourceServlet
+SmartView
+ThemeResolver
+View
+ViewRendererServlet
+ViewResolver
 ```

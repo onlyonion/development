@@ -1,4 +1,14 @@
 
+```java
+
+public interface Cluster {
+    <T> Invoker<T> join(Directory<T> directory) throws RpcException;
+}
+
+
+```
+
+
 ## 集群管理
 * Cluster.join(Directory<T>)  集群容错 
 * Directory.list(Invocation) 目录服务

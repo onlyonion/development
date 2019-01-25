@@ -40,7 +40,14 @@ sequenceDiagram
 ```
 
 ### 2.2 getObjectForBeanInstance()
-
+```mermaid
+sequenceDiagram
+    AbstractBeanFactory ->> AbstractBeanFactory: getObjectForBeanInstance()
+    
+    opt 判断是beanFactory
+        AbstractBeanFactory ->> AbstractBeanFactory: 返回
+    end
+```
 
 ### 2.3 根据beanDefinition生成
 * 父工厂加载

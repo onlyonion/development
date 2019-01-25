@@ -1,6 +1,7 @@
 org.springframework.beans.factory.config.BeanDefinition
 
 ## 1. 定义及其实现类
+
 ```
 BeanDefinition (org.springframework.beans.factory.config)
     AnnotatedBeanDefinition (org.springframework.beans.factory.annotation)
@@ -15,6 +16,8 @@ BeanDefinition (org.springframework.beans.factory.config)
             ScannedGenericBeanDefinition (org.springframework.context.annotation)
             AnnotatedGenericBeanDefinition (org.springframework.beans.factory.annotation)
 ```
+
+![beanDefinition](../../../img/spring-idea-BeanDefinition.png)
 
 ## 2. 类图
 * RootBeanDefinition
