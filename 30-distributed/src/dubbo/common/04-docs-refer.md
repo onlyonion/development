@@ -1,96 +1,35 @@
-## refer
-* 当我们的服务被注入到其他类中时，Spring 会第一时间调用 getObject 方法，并由该方法执行服务引用逻辑。
-* 按照惯例，在进行具体工作之前，需先进行配置检查与收集工作。
-* 接着根据收集到的信息决定服务用的方式，有三种，第一种是引用本地 (JVM) 服务，第二是通过直联方式引用远程服务，第三是通过注册中心引用远程服务。
-* 不管是哪种引用方式，最后都会得到一个 Invoker 实例。
-* 如果有多个注册中心，多个服务提供者，这个时候会得到一组 Invoker 实例，此时需要通过集群管理类 Cluster 将多个 Invoker 合并成一个实例。
-* 合并后的 Invoker 实例已经具备调用本地或远程服务的能力了，但并不能将此实例暴露给用户使用，这会对用户业务代码造成侵入。
-* 此时框架还需要通过代理工厂类 (ProxyFactory) 为服务接口生成代理类，并让代理类去调用 Invoker 逻辑
+## 2.服务引用原理
+Dubbo 服务引用的时机有两个，第一个是在 
+1. 饿汉式 Spring 容器调用 ReferenceBean 的 afterPropertiesSet 方法时引用服务。默认。
+2. 懒汉式 在 2.ReferenceBean 对应的服务被注入到其他类中时引用
 
-### ReferenceBean.getObject()
+整个分析过程从 ReferenceBean 的 getObject 方法开始。当我们的服务被注入到其他类中时，Spring 会第一时间调用 getObject 方法，并由该方法执行服务引用逻辑。
 
-ReferenceBean.getObject()
-ReferenceConfig.get()
-ReferenceConfig.init() 配置检查
+1. 配置检查与收集工作
+2. 根据收集到的信息决定服务用的方式
+   * 引用本地 (JVM) 服务
+   * 直联方式引用远程服务
+   * 注册中心引用远程服务
+3. 如果有多个注册中心，多个服务提供者，这个时候会得到一组 Invoker 实例，此时需要通过集群管理类 Cluster 将多个 Invoker 合并成一个实例。
+4. 通过代理工厂类 (ProxyFactory) 为服务接口生成代理类，并让代理类去调用 Invoker 逻辑。
 
-```
-toInvokers:344, RegistryDirectory (com.alibaba.dubbo.registry.integration) 注册目录-toInvokers
-refreshInvoker:250, RegistryDirectory (com.alibaba.dubbo.registry.integration) 注册目录-refreshInvoker
+## 3.源码分析
 
-notify:220, RegistryDirectory (com.alibaba.dubbo.registry.integration) 注册目录-notify
-notify:431, AbstractRegistry (com.alibaba.dubbo.registry.support) 抽象注册-notify
+### 3.1 处理配置
 
-doNotify:288, FailbackRegistry (com.alibaba.dubbo.registry.support) 失败返回注册-doNotify
-notify:274, FailbackRegistry (com.alibaba.dubbo.registry.support) 失败返回注册-notify
-doSubscribe:182, ZookeeperRegistry (com.alibaba.dubbo.registry.zookeeper) Zookeeper注册-doSubscribe
-subscribe:201, FailbackRegistry (com.alibaba.dubbo.registry.support) 失败返回注册-subscribe
-subscribe:158, RegistryDirectory (com.alibaba.dubbo.registry.integration) 注册目录-subscribe
+### 3.2 引用服务
+createProxy 似乎只是用于创建代理对象的。但实际上并非如此，该方法还会调用其他方法构建以及合并 Invoker 实例
 
-doRefer:286, RegistryProtocol (com.alibaba.dubbo.registry.integration) 注册协议-doRefer
-refer:269, RegistryProtocol (com.alibaba.dubbo.registry.integration) 注册协议-refer
+1. 根据配置检查是否为本地调用，若是，则调用 InjvmProtocol 的 refer 方法生成 InjvmInvoker 实例。
+2. 若不是，则读取直联配置项，或注册中心 url，并将读取到的 url 存储到 urls 中。若 urls 元素数量为1，则直接通过 Protocol 自适应拓展类构建 Invoker 实例接口。若 urls 元素数量大于1，即存在多个注册中心或服务直联 url。
+3. 根据 url 构建 Invoker。然后再通过 Cluster 合并多个 Invoker，
+4. 最后调用 ProxyFactory 生成代理类。
 
-refer:99, ProtocolFilterWrapper (com.alibaba.dubbo.rpc.protocol) 协议过滤器包装-refer
-refer:63, ProtocolListenerWrapper (com.alibaba.dubbo.rpc.protocol) 协议监听器包装-refer
-refer:-1, Protocol$Adpative (com.alibaba.dubbo.rpc) 接口自适应-refer
+#### 3.2.1 创建 Invoker
+Invoker 是 Dubbo 的核心模型，代表一个**可执行体**。
+1. 在服务提供方，Invoker 用于调用服务提供类。
+2. 在服务消费方，Invoker 用于执行远程调用。
+3. Invoker 是由 Protocol 实现类构建而来。常用的实现类，RegistryProtocol 和 DubboProtocol。
 
-createProxy:379, ReferenceConfig (com.alibaba.dubbo.config) 创建代理对象的，该方法还会调用其他方法构建以及合并 Invoker 实例
-init:320, ReferenceConfig (com.alibaba.dubbo.config) 配置检查，默认配置设置
-get:159, ReferenceConfig (com.alibaba.dubbo.config) 
-getObject:65, ReferenceBean (com.alibaba.dubbo.config.spring) factoryBean获得对象
-
-doGetObjectFromFactoryBean:168, FactoryBeanRegistrySupport (org.springframework.beans.factory.support) 工厂bean注册表支持-doGetObjectFromFactoryBean
-getObjectFromFactoryBean:103, FactoryBeanRegistrySupport (org.springframework.beans.factory.support) 工厂bean注册表支持-getObjectFromFactoryBean
-getObjectForBeanInstance:1634, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-getObjectForBeanInstance
-doGetBean:254, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-doGetBean
-getBean:197, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-getBean
-getBean:1080, AbstractApplicationContext (org.springframework.context.support)
-// dubbo
-
-init:51, DubboReferenceService (com.weidai.ops.dubbo.tester.service)
-// 反射方法调用
-invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
-invoke:62, NativeMethodAccessorImpl (sun.reflect)
-invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
-invoke:498, Method (java.lang.reflect)
-
-invoke:366, InitDestroyAnnotationBeanPostProcessor$LifecycleElement (org.springframework.beans.factory.annotation) 后处理-invoke
-invokeInitMethods:311, InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata (org.springframework.beans.factory.annotation) 注解配置后处理-invokeInitMethods
-postProcessBeforeInitialization:134, InitDestroyAnnotationBeanPostProcessor (org.springframework.beans.factory.annotation) 后处理beforeInit
-applyBeanPostProcessorsBeforeInitialization:409, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support) 自动装配-应用后处理beforeInit
-initializeBean:1620, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support) 自动装配-initializeBean
-doCreateBean:555, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support) 自动装配-doCreateBean
-createBean:483, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support) 自动装配-createBean
-
-getObject:306, AbstractBeanFactory$1 (org.springframework.beans.factory.support) 抽象工厂-getObject()
-getSingleton:230, DefaultSingletonBeanRegistry (org.springframework.beans.factory.support) 单例bean注册表-getSingleton
-doGetBean:302, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-doGetBean
-getBean:202, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-getBean
-
-// 解析依赖触发了另一个依赖注入
-resolveCandidate:208, DependencyDescriptor (org.springframework.beans.factory.config) 
-doResolveDependency:1138, DefaultListableBeanFactory (org.springframework.beans.factory.support)
-resolveDependency:1066, DefaultListableBeanFactory (org.springframework.beans.factory.support)
-
-inject:585, AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement (org.springframework.beans.factory.annotation)
-inject:88, InjectionMetadata (org.springframework.beans.factory.annotation)
-postProcessPropertyValues:366, AutowiredAnnotationBeanPostProcessor (org.springframework.beans.factory.annotation)
-populateBean:1264, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
-doCreateBean:553, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
-createBean:483, AbstractAutowireCapableBeanFactory (org.springframework.beans.factory.support)
-getObject:306, AbstractBeanFactory$1 (org.springframework.beans.factory.support)
-getSingleton:230, DefaultSingletonBeanRegistry (org.springframework.beans.factory.support)
-doGetBean:302, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-doGetBean
-getBean:197, AbstractBeanFactory (org.springframework.beans.factory.support) 抽象工厂-getBean
-preInstantiateSingletons:761, DefaultListableBeanFactory (org.springframework.beans.factory.support) 默认列表bean工厂-preInstantiateSingletons
-
-// spring-refresh
-finishBeanFactoryInitialization:867, AbstractApplicationContext (org.springframework.context.support) 抽象应用上下文-finishBeanFactoryInitialization
-refresh:543, AbstractApplicationContext (org.springframework.context.support) 抽象应用上下文-refresh
-refresh:122, EmbeddedWebApplicationContext (org.springframework.boot.context.embedded) 嵌入式web应用上下文-refresh
-refresh:693, SpringApplication (org.springframework.boot) spring应用上下文-refresh
-refreshContext:360, SpringApplication (org.springframework.boot) spring应用上下文-refreshContext
-run:303, SpringApplication (org.springframework.boot) spring应用上下文-run
-run:1118, SpringApplication (org.springframework.boot)
-run:1107, SpringApplication (org.springframework.boot)
-main:10, Application (com.weidai.ops.dubbo.tester)
-```
+#### 3.2.2 创建代理
+Invoker 创建完毕后，接下来要做的事情是为服务接口生成代理对象。有了代理对象，即可进行远程调用。代理对象生成的入口方法为 ProxyFactory 的 getProxy

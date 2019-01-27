@@ -3,3 +3,37 @@
 
 ## export 活动
 ![export](../../../img/dubbo-service-export-activity.png)
+
+## export 过程
+1. ServiceBean.onApplicationEvent()
+2. ServiceConfig.export() doExport() 配置检查、初始化
+4. ServiceConfig.doExportUrls() loadRegistries()  doExportUrlsFor1Protocol()
+5. ProxyFactory.getInvoker(invoker)
+6. Protocol.export() 导出服务 exportLocal(url)
+7. 服务发现 向注册中心注册
+
+```mermaid
+graph LR
+    subgraph config
+        %% 1. 服务配置
+       config["配置检查"] --> url["装配URL"]
+    end
+
+    subgraph export
+        url  --> invoker{"创建invoker"}
+        %% 2. injvm, remote
+        invoker --> injvm["本地导出"]
+        invoker --> remote{"远程导出"}
+    end
+
+    subgraph registry
+        injvm --> registry{"服务注册"}
+        remote --> registry
+        registry --> registryCreate["节点创建"]
+        registry --> noteCreate["服务订阅"]
+    end
+
+    subgraph subscribe
+        invoker --> services["代理类"]
+    end
+```
