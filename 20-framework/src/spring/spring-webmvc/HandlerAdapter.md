@@ -24,15 +24,20 @@ HandlerAdapter (org.springframework.web.servlet)
 ```
 
 
-##
+## RequestMappingHandlerAdapter
 
 ```mermaid
-    DispatcherServlet->>RequestMappingHandlerAdapter:handle()
-    RequestMappingHandlerAdapter->>RequestMappingHandlerAdapter:handleInternal()
+    %% 请求传递到适配器
+    DispatcherServlet->>AbstractHandlerMethodAdapter:handle()
+    AbstractHandlerMethodAdapter->>RequestMappingHandlerAdapter:handleInternal()
+    
+    %% 适配器调用处理方法
     RequestMappingHandlerAdapter->>RequestMappingHandlerAdapter:invokeHandlerMethod()
     
+    %% 调用并处理
     RequestMappingHandlerAdapter->>ServletInvocableHandlerMethod:invokeAndHandle()
-    ServletInvocableHandlerMethod->>ServletInvocableHandlerMethod:invokeForRequest()
+    ServletInvocableHandlerMethod->>InvocableHandlerMethod:invokeForRequest()
     
-    ServletInvocableHandlerMethod->>ServletInvocableHandlerMethod:doInvoke()
+    %% 可调用的方法调用
+    InvocableHandlerMethod->>InvocableHandlerMethod:doInvoke()
 ```

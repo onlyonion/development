@@ -1,9 +1,18 @@
 
 ## TCP/IP
 
-![tcp/ip](./img/tcp-ip-01.jpg "tcp/ip")
+![tcp/ip](./img/tcp-ip-01.jpg)
 
-
+* [TCP：三次握手、四次握手、backlog及其他](https://www.cnblogs.com/xrq730/p/6910719.html)
+* [TCP/IP协议（一）网络基础知识](http://www.cnblogs.com/imyalost/p/6086808.html)
+* [TCP SOCKET中backlog参数的用途是什么？](https://www.cnblogs.com/zengkefu/p/5602396.html)
+                                                             
+* TCP三次握手其实就是TCP连接建立的过程，三次握手的目的是同步连接双方的序列号和确认号并交换TCP窗口大小信息   
+* 为什么在第3步中客户端还要再进行一次确认呢？这主要是为了防止已经失效的连接请求报文段突然又传回到服务端而产生错误的场景
+* 已失效的连接请求（超时请求）被处理了                                         
+* backlog的定义是已连接但未进行accept处理的socket队列大小                      
+* 全连接队列的大小未必是backlog的值，它是backlog与somaxconn（一个os级别的系统参数）的较小值  
+                                                             
 ## Http协议
 基于请求/响应模式的、无状态的协议
 
@@ -79,3 +88,28 @@ HTTP 协议的实现本身非常简单，不论是谁发送过来的请求都会
 5.	即使是无意义的请求也会照单全收。无法阻止海量请求下的DoS 攻击（ Denial of Service， 拒绝服务攻击） 。
 
 
+## Http 2                                                    
+                                                             
+1.	异步连接多路复用                                                 
+2.	头部压缩                                                     
+3.	请求/响应管线化                                                 
+                                                             
+保持与HTTP 1.1语义的向后兼容性也是该版本的一个关键目标。                             
+SPDY是一种HTTP兼容协议，由Google发起，Chrome、Opera、Firefox以及Amazon Silk等浏
+HTTP实现的瓶颈之一是其并发要依赖于多重连接。HTTP管线化技术可以缓解这个问题，但也只能做到部分多路复用。      
+此外，已经证实，由于存在中间干扰，浏览器无法采用管线化技术。                               
+                                                             
+SPDY在单个连接之上增加了一个帧层，用以多路复用多个并发流。帧层针对HTTP类的请求响应流进行了优化，因此运行在HTTP
+                                                             
+多路复用请求；对请求划分优先级；压缩HTTP头；服务器推送流（即Server Push技术）；SPDY试图保留HTTP的现
+                                                             
+## SPDY                                                      
+SPDY（读作“SPeeDY”）是Google开发的基于TCP的应用层协议，用以最小化网络延迟，提升网络速度，优化用户的网
+SPDY并不是一种用于替代HTTP的协议，而是对HTTP协议的增强。                           
+新协议的功能包括数据流的多路复用、请求优先级以及HTTP报头压缩。谷歌表示，引入SPDY协议后，在实验室测试中页面加载速度
+                                                             
+### SPDY 原理                                                  
+在SSL层上增加一个SPDY会话层，以在一个TCP连接中实现并发流。                           
+通常的HTTP GET和POST格式仍然是一样的；然而SPDY为编码和传输数据设计了一个新的帧格式。           
+流是双向的，可以在客户端和服务器端启动。                                         
+SPDY旨在通过基本（始终启用）和高级（可选启用）功能实现更低的延迟。        

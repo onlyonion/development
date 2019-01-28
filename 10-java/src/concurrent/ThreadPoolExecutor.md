@@ -19,7 +19,7 @@
 [Worker|thread;firstTask;|]
 [ThreadPoolExecutor]++-[Worker]
 
-// 3.1 工作者继承抽象队列同步器，拥有锁的能力
+// 3.1 工作者继承AQS抽象队列同步器，拥有锁的能力
 [AbstractOwnableSynchronizer]^-[AbstractQueuedSynchronizer]
 [AbstractQueuedSynchronizer]^-[Worker]
 [Runnable]^-.-[Worker]

@@ -23,7 +23,7 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 ```mermaid
 sequenceDiagram
     %% 1.1 调用处理器
-    Actor->>InvokerInvocationHandler:invoke(proxy, method, args)
+    Proxy->>InvokerInvocationHandler:invoke(proxy, method, args)
     
     %% 1.2 Object方法处理
     %% opt 方法的声明是object.class
@@ -138,16 +138,6 @@ sequenceDiagram
         DubboInvoker->>ExchangeClient:setFuture(创建FutureAdapter)
         
     else other
-        %% 交换层
-        DubboInvoker->>ExchangeClient:request()
-        ExchangeClient->>ReferenceCountExchangeClient:request(request, timeout)
-        ReferenceCountExchangeClient->>HeaderExchangeClient:request(request, timeout)
-        HeaderExchangeClient->>HeaderExchangeChannel:request(request, timeout)
-        
-        %% 传输层 tcp协议，端到端的、面向连接与字节流的、可靠的、全双工的传输协议
-        HeaderExchangeChannel->>AbstractPeer:send()
-        AbstractPeer->>AbstractClient:send()
-        AbstractClient->>NettyChannel:send()
-        NettyChannel->>AbstractChannel:write()
+        DubboInvoker->>ExchangeClient:request(request, timeout)
     end
 ```

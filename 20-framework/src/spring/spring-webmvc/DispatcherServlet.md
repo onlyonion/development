@@ -126,15 +126,19 @@ sequenceDiagram
 	ApplicationFilterChain->>HttpServlet:service()
 	HttpServlet->>FrameworkServlet:service()
 	
+	%% 分而治之
 	alt 请求方法是PATCH或者null
 	    %% FrameworkServlet自行处理
 		FrameworkServlet->>FrameworkServlet:processRequest()
 	else
 		FrameworkServlet->>HttpServlet:super.service()
+		
 		%% FrameworkServlet处理请求
 		HttpServlet->>FrameworkServlet:processRequest()
+		
 		%% DispatcherServlet处理请求
 		FrameworkServlet->>DispatcherServlet:doService()
+		
 		%% DispatcherServlet分发请求，请求分发给处理器handler
 		DispatcherServlet->>DispatcherServlet:doDispatch()
 	end

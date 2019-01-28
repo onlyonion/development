@@ -58,3 +58,13 @@ RegistryService
 [RedisRegistryFactory]uses->[RedisRegistry]
 
 ```
+
+```
+Registry (com.alibaba.dubbo.registry)
+    AbstractRegistry (com.alibaba.dubbo.registry.support)
+        FailbackRegistry (com.alibaba.dubbo.registry.support)
+        DubboRegistry (com.alibaba.dubbo.registry.dubbo)
+        RedisRegistry (com.alibaba.dubbo.registry.redis)
+        MulticastRegistry (com.alibaba.dubbo.registry.multicast)
+        ZookeeperRegistry (com.alibaba.dubbo.registry.zookeeper)
+```

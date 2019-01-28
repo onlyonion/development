@@ -19,6 +19,12 @@
 
 ![dubbo-cluster](../../../img/dubbo-docs-cluster.jpg)
 
+* Cluster       
+* Director      list()
+* Router        route()
+* Loadbalance   select()
+* Invoker       invoke()
+
 集群工作过程可分为两个阶段，第一个阶段是在服务消费者初始化期间，集群 Cluster 实现类为服务消费者创建 Cluster Invoker 实例，即上图中的 merge 操作。第二个阶段是在服务消费者进行远程调用时。
 
 | cluster          | invoker                 | desc         | misc                                 | middleware       |
