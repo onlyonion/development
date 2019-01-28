@@ -1,17 +1,24 @@
 org.springframework.web.servlet.HandlerMapping
-## 1. 定义
-## 2. 类图
+## 1. define
+```java
+public interface HandlerMapping {
+	HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;
+}
+```
+
+
+## 2. hierachical
 ```yuml
 // {type:class}
 
 // 
-[HandlerMapping||+getHandler(request)]
+[HandlerMapping{bg:tomato}]
 [ApplicationObjectSupport{bg:thistle}]
 [WebApplicationObjectSupport{bg:thistle}]
 [AbstractHandlerMapping{bg:wheat}]
 [AbstractHandlerMethodMapping{bg:wheat}]
 [RequestMappingInfoHandlerMapping{bg:wheat}]
-[RequestMappingHandlerMapping{bg:wheat}]
+[RequestMappingHandlerMapping{bg:tomato}]
 
 
 // 1. HandlerMapping接口

@@ -117,6 +117,9 @@ sequenceDiagram
 ```
 
 ## 4. 处理请求 service()
+* Servlet HttpServlet FrameworkServlet DispatcherServlet
+* HandlerMapping HandlerExecutionChain HandlerAdapter
+* HandlerAdapter
 
 ### 4.1 请求经由Servlet最终到达DispatcherServlet
 ```mermaid
@@ -189,3 +192,7 @@ sequenceDiagram
 	DispatcherServlet ->> HandlerExecutionChain: 4.4 mappedHandler.triggerAfterCompletion(request, response, ex)
 	
 ```
+
+### 4.3 HandlerAdapter.handle()
+
+[handle](./HandlerAdapter.md)

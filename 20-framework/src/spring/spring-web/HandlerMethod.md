@@ -20,14 +20,28 @@ class HandlerMethod {
 继承层次
 ```
 HandlerMethod (org.springframework.web.method)
-    InvocableHandlerMethod (org.springframework.web.method.support)
-        ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
-            ConcurrentResultHandlerMethod in ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
+	InvocableHandlerMethod (org.springframework.web.method.support)
+		ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
+			ConcurrentResultHandlerMethod in ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
 ```
 
-## handler
+## 3. handle()
+```mermaid
+sequenceDiagram
+	%% 调用并处理
+    RequestMappingHandlerAdapter->>ServletInvocableHandlerMethod:invokeAndHandle()
 
+	%% 请求调用
+    ServletInvocableHandlerMethod->>InvocableHandlerMethod:invokeForRequest()
+    InvocableHandlerMethod->>InvocableHandlerMethod:getMethodArgumentValues()
+    InvocableHandlerMethod->>InvocableHandlerMethod:doInvoke()反射调用方法
+	InvocableHandlerMethod-->>ServletInvocableHandlerMethod:invokeForRequest()返回结果值
 
+	%% 结果处理
+	ServletInvocableHandlerMethod->>HandlerMethodReturnValueHandler:handleReturnValue()
+	
+```
+## blog
 
 HandlerMethod及子类主要用于封装方法调用相关信息,子类还提供调用,参数准备和返回值处理的职责.
 

@@ -6,10 +6,13 @@ org.springframework.web.servlet.HandlerExecutionChain
 
 ```java
 public class HandlerExecutionChain {
+	// 字段
 	private final Object handler;
 	private HandlerInterceptor[] interceptors;
 	private List<HandlerInterceptor> interceptorList;
 	private int interceptorIndex = -1;
+
+	// 方法略
 }
 ```
 
