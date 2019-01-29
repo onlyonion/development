@@ -1,0 +1,20 @@
+## package
+com.mysql.jdbc
+```
+fabric
+    hibernate
+    jdbc
+    proto.xmlrpc
+    xmlrpc
+jdbc
+    authentication
+    configs
+    exceptions
+    integration
+    interceptors
+    optional
+    jmx
+    log
+    profiler
+    util
+```

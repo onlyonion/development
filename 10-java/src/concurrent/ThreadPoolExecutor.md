@@ -1,21 +1,55 @@
 
+## define
+```java
+public class ThreadPoolExecutor extends AbstractExecutorService {
+    private final BlockingQueue<Runnable> workQueue;
+    private final ReentrantLock mainLock = new ReentrantLock();
+    private final HashSet<Worker> workers = new HashSet<Worker>();
+    private final Condition termination = mainLock.newCondition();
+
+    private volatile ThreadFactory threadFactory;
+    private volatile RejectedExecutionHandler handler;
+    private volatile long keepAliveTime;
+    private volatile int corePoolSize;
+    private volatile int maximumPoolSize;
+    
+    private final class Worker
+        extends AbstractQueuedSynchronizer
+        implements Runnable
+    {
+        final Thread thread;
+        Runnable firstTask;
+        volatile long completedTasks;
+        Worker(Runnable firstTask) {
+            setState(-1); // inhibit interrupts until runWorker
+            this.firstTask = firstTask;
+            this.thread = getThreadFactory().newThread(this);
+        }
+        /** Delegates main run loop to outer runWorker  */
+        public void run() {
+            runWorker(this);
+        }
+
+    }
+}
+```
 
 ## 类图
 ```yuml
 // {type:class}
 
 // 核心线程数、最大线程数、空闲时间
-[ThreadPoolExecutor|-corePoolSize;-maximumPoolSize;-keepAliveTime;-unit;-workQueue;-threadFactory;-handler|]
+[ThreadPoolExecutor]
 
 // 1. 继承关系
 [Executor]^-[ExecutorService]
 [ExecutorService]^-.-[AbstractExecutorService]
 [AbstractExecutorService]^-[ThreadPoolExecutor]
 
-// 2. 工作队列
+// 2. 字段-工作队列
 [ThreadPoolExecutor]++-[BlockingQueue]
 
-// 3. 工作者
+// 3. 字段-工作者
 [Worker|thread;firstTask;|]
 [ThreadPoolExecutor]++-[Worker]
 
@@ -24,11 +58,11 @@
 [AbstractQueuedSynchronizer]^-[Worker]
 [Runnable]^-.-[Worker]
 
-// 4. 全局锁
+// 4. 字段-全局锁
 [ThreadPoolExecutor]++-[ReentrantLock]
 [ThreadPoolExecutor]++-[Condition]
 
-// 5. 线程工厂、饱和策略
+// 5. 字段-线程工厂、饱和策略
 [ThreadPoolExecutor]++-[ThreadFactory]
 [ThreadPoolExecutor]++-[RejectedExecutionHandler]
 

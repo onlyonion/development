@@ -25,11 +25,12 @@ HandlerAdapter (org.springframework.web.servlet)
 ```mermaid
 sequenceDiagram
     %% 请求传递到适配器
-    DispatcherServlet->>AbstractHandlerMethodAdapter:handle()
-    AbstractHandlerMethodAdapter->>RequestMappingHandlerAdapter:handleInternal()
+    DispatcherServlet->>AbstractHandlerMethodAdapter:handle(request, response, handler)
+    AbstractHandlerMethodAdapter->>RequestMappingHandlerAdapter:handleInternal(request, response, handlerMethod)
+    RequestMappingHandlerAdapter->>RequestMappingHandlerAdapter:invokeHandlerMethod()
     
     %% 适配器调用处理方法
-    RequestMappingHandlerAdapter->>ServletInvocableHandlerMethod:invokeHandlerMethod()
+    RequestMappingHandlerAdapter->>ServletInvocableHandlerMethod:invokeAndHandle()
     
     %% 调用并处理
     ServletInvocableHandlerMethod->>InvocableHandlerMethod:invokeForRequest()

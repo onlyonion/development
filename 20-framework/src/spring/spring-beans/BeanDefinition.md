@@ -20,11 +20,13 @@ BeanDefinition (org.springframework.beans.factory.config)
 ![beanDefinition](../../../img/spring-idea-BeanDefinition.png)
 
 ## 2. 类图
-* RootBeanDefinition
-* ChildBeanDefinition
-* GenericBeanDefinition
-    - ScannedGenericBeanDefinition
-    - AnnotatedGenericBeanDefinition
+* AnnotatedBeanDefinition
+* AbstractBeanDefinition
+    - RootBeanDefinition
+    - ChildBeanDefinition
+    - GenericBeanDefinition
+        - ScannedGenericBeanDefinition
+        - AnnotatedGenericBeanDefinition
 
 ```yuml
 // {type:class}

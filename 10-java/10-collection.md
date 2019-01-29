@@ -6,8 +6,9 @@ Java集合对应实现了常见的数据结构，如线性表、树形结构、�
 * Set SortedSet, HashSet, LinkedHashSet, TreeSet
 * Queue
 * Stack
-#### List
-####  Set
+### List
+
+###  Set
 Set集合特点就是没有重复的内容，其实现是通过map的键来实现的
 1. HashSet 由HashMap实现
 2. LinkedHashSet 由LinkedHashMap实现，LinkedHashMap的特性是其值是有序的，默认是insert顺序
@@ -16,4 +17,6 @@ Set集合特点就是没有重复的内容，其实现是通过map的键来实�
 3. Queue Queue接口与List、Set同一级别，都是继承了Collection接口。LinkedList实现了Deque接口。
 [Java之集合(一)接口及抽象类](http://www.cnblogs.com/lighten/p/7278655.html)   
 ![java-queue](./img/java-queue.png) 
+
+## Queue
 
