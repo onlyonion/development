@@ -5,14 +5,16 @@
 * 消息中间件
 * 分布式配置
 
-
 ### 常用工具
 disruptor
 diamond
 guava
 
 ### 代码管理
-git/gitlab, svn, maven/nexus, ci, jenkins, wiki, jira
+git/gitlab, svn
+maven/nexus,
+ci, jenkins, 
+wiki, jira
 
 ### 监控
 错误日志聚合平台-sentry
@@ -20,13 +22,11 @@ git/gitlab, svn, maven/nexus, ci, jenkins, wiki, jira
 监控平台 cat
 
 ### 基础平台
-
 * rpc dubbo
 * task legends
 * config diamond
 
 ### 存储
-
 * fs fastdfs
 * nosql redis, mongodb
 * mq kafka, rocketmq

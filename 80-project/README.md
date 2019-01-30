@@ -1,6 +1,32 @@
+## project manage
+* jira
+* wiki
+* 禅道
+* worktitle
+
+## code manage
+* svn
+* git
+* maven
+* gradle
+* nexus
+* jenkins
+* Travis CI + github
+* searchcode
+* SonarQube
+* upsource
+  
+## 传统行业
+* CRM
+* OA
+* 企业办公
+* 建站系统
+
+## community
+* discuz
+* tipask Tipask问答系统，是一款开放源码的PHP仿百度知道程序
 
 ## 热门项目
-
 * 小程序
 * 区块链
 * AI人工智能 智能家居、无人驾驶、移动支付
@@ -9,17 +35,8 @@
 * 互联网+
 * 网红直播
 * 在线客服软件、客服电话机器人
-
-## 传统行业
-
-* CRM
-* OA
-* 企业办公
-* 建站系统
-
-
+  
 ### 电商类项目
-
 * 用户认证系统 passport 注册、登录（SSO、第三方登录）、权限管理（UI页面拦截、业务方法拦截）
 * 搜索模块 bigdata 大数据存储（Hadoop）、大数据检索（elasticSearch）、动静分离
 * 商品管理系统 item 店铺管理（创建、主页定制）、商品管理（录入、预览）

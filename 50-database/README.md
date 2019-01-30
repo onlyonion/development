@@ -1,15 +1,24 @@
-mysql
 
-sql
+## db
+* mysql
 
-index
+## mysql
+* sql sql解析、执行、优化
+* index
+* 事务
+* 性能优化
+* 数据同步
+* 数据迁移
 
-事务
+## distributed db
+* 分库分表
+* atlas
+* mycat
+* otter
+* ldap
 
-sql分析
-
-性能优化
-
-数据同步
-
-数据迁移
+## framework
+* sharding-jdbc TTDL
+* proxy
+* mybatis
+* jdbc mysql-connector

@@ -60,7 +60,7 @@ websocket
 轮询 
 长连接
 
-## 3. cors
+## 4. cors
 Cross-origin resource sharing
 
 iframe JSONP

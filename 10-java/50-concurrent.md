@@ -1,6 +1,14 @@
 
-## 并发编程模型
+## concurrent
+* JMM master-worker hanpens-before
+* volatile synchronized final
+* Lock AQS
+* collection ConccurrentHashMap CopyOnWriteArrayList
+* tools CountdownLatch CyclicBarrier Semophore
+* Atomic
+* executor ThreadPoolExecutor
 
+## 并发编程模型
 多线程开发可以更好的发挥多核cpu性能，常用的多线程设计模式有：Future、Master-Worker、Guard Susperionsion、不变、生产者-消费者模式
 jdk除了定义了若干并发的数据结构，也内置了多线程框架和各种线程池；锁（分为内部锁、重入锁、读写锁）、ThreadLocal、信号量等在并发控制中发挥着巨大的作用
 
@@ -12,7 +20,6 @@ Future模式可以在连续流程中满足数据驱动的并发需求，既获�
 Futrue模式有个重大缺陷：当消费者工作得不够快的时候，它会阻塞住生产者线程，从而可能导致系统吞吐量的下降。所以不建议在高性能的服务端使用。
 
 ### MasterWorker模式
-
 Master-Worker模式是常用的并行模式之一，它的核心思想是，系统有两个进程协作工作：Master进程，负责接收和分配任务；Worker进程，负责处理子任务。当Worker进程将子任务处理完成后，结果返回给Master进程，由Master进程做归纳汇总，最后得到最终的结果。
 
 一种将串行任务并行化的方案，被分解的子任务在系统中可以被并行处理，同时，如果有需要，Master进程不需要等待所有子任务都完成计算，就可以根据已有的部分结果集计算最终结果集。
@@ -27,7 +34,6 @@ Master-Worker模式是常用的并行模式之一，它的核心思想是，系�
 由于缓冲区的存在，生产者和消费者，无论谁在某一局部时间内速度相对较高，都可以使用缓冲区得到缓解，保证系统正常运行，这在一定程度上缓解了性能瓶颈对系统系能的影响。
 
 ### 线程状态
-
 [Java线程的6种状态及切换](https://blog.csdn.net/pange1991/article/details/53860651) 
 
 1. 初始(NEW)：新创建了一个线程对象，但还没有调用start()方法。
@@ -38,9 +44,7 @@ Master-Worker模式是常用的并行模式之一，它的核心思想是，系�
 5. 超时等待(TIME_WAITING)：该状态不同于WAITING，它可以在指定的时间内自行返回。
 6. 终止(TERMINATED)：表示该线程已经执行完毕。
 
-
 ### Fork/Join
-
 Oracle的官方给出的定义是：Fork/Join框架是一个实现了ExecutorService接口的多线程处理器。它可以把一个大的任务划分为若干个小的任务并发执行，充分利用可用的资源，进而提高应用的执行效率。
 
 1. ExecutorService接口的一个实现，可以帮助开发人员充分利用多核处理器的优势，编写出并行执行的程序，提高应用程序的性能；设计的目的是为了处理那些可以被递归拆分的任务。

@@ -13,6 +13,34 @@
 #### 2.1.2 HotSpot内核框架
 HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Classfile、Interperter、Code、Memory、Compiler、Oops、C1/Opto/Shark和GC。
 
+#### 2.1.3 Prims
+定义外部接口
+1. JNI
+2. JVM模块 
+3. JVMTI模块 虚拟机工具接口
+4. Perf模块 监控虚拟机内部
+#### 2.1.4 Services
+提供JMX等工具，JVM为支持对Java应用程序进行管理和监控的一套体系结构、设计模式、API以及服务。
+1. Management模块
+2. MemoryService模块 内存管理，堆的分配和内存池的管理
+3. MemoryPool模块 内存池管理模块。
+4. MemoryManger模块 内存管理器。
+5. RuntimeServices模块
+6. ThreadService模块
+7. ClassLoadingService模块
+8. AttachListener模块 为客户端的JVM监控工具提供连接（attach）服务
+9. HeapDumper模块
+#### 2.1.5 Runtime
+运行时模块，为其他系统组件提供运行时支持。线程、安全点、PerfData、Stub例程、反射、VMOperation以及互斥锁等。
+1. Thread模块
+2. Arguments模块
+3. StubRoutines和StubCodeGenerator模块
+4. Frame模块 物理栈帧（活动记录）
+5. CompilationPolicy模块
+6. Init模块
+7. VmThread模块 单例原生线程，派生其他的线程。维护一个虚拟机操作队列，接受其他线程请求虚拟机级别的操作。
+8. VMOperation模块
+
 ### 2.2 启动
 ### 2.3 系统初始化
 
