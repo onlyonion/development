@@ -1,12 +1,14 @@
 ## java.util.concurrent
+* 并发容器 Queue Map List
+* 并发工具 Lock
+* 原子操作
+* 线程池
 
-![altText](./img/java.util.concurrent.jpg "title") 
+![concurrent](../img/java.util.concurrent.jpg) 
 
-
+## 核心实现
 * volatile
 * CAS（Compare And Swap/Set）操作，CPU级别的指令
-
-
 ### CPU与缓存
 越靠近CPU的缓存越快也越小。所以L1缓存很小但很快(译注：L1表示一级缓存)，并且紧靠着在使用它的CPU内核。
 L2大一些，也慢一些，并且仍然只能被一个单独的 CPU 核使用。

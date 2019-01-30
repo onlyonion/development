@@ -13,7 +13,7 @@ Path		;%ANT_HOME%\bin
 
 NLS_LANG 	"AMERICAN_AMERICA.AL32UTF8"
 
-#java doc
+# java doc
 -encoding UTF-8 -charset UTF-8
 
 
@@ -24,3 +24,12 @@ SETX ANT_HOME "D:\opt\apahce\apache-ant-1.10.1" /m
 SETX NLS_LANG "AMERICAN_AMERICA.AL32UTF8" /m
 SETX Path "%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%PATH%;"
 
+## 查看端口占用
+windows
+
+netstat -aon|findstr "8080"
+tasklist|findstr "2720"
+taskkill /f /t /im tor.exe
+
+linux 
+netstat -tunlp | grep 8000

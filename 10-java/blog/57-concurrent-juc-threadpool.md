@@ -50,9 +50,9 @@ ThreadPoolExecutor -> AbstractExecutorService -> ExecutorService -> Executor
 
 ### 线程池执行流程
 
-![altText](./img/java-threadpoolexecutor-process.jpg "title") 
+![threadpoolexecutor](../img/java-threadpoolexecutor-process.jpg) 
 
-![altText](./img/java-threadpoolexecutor.jpg "title") 
+![threadpoolexecutor](../img/java-threadpoolexecutor.jpg) 
 
 
 

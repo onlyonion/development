@@ -14,6 +14,7 @@
 		<springframework.version>4.3.13.RELEASE</springframework.version>
 		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
+		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>
 	</properties>
 
 	<build>
@@ -111,11 +112,29 @@
 			<version>4.3.0</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.alipay</groupId>
 			<artifactId>alipay-sdk</artifactId>
 			<version>3.0.0</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc</artifactId>
+			<version>${sharding-sphere.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.shardingsphere</groupId>
+			<artifactId>sharding-jdbc-spring-namespace</artifactId>
+			<version>${sharding-sphere.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus</artifactId>
+			<version>3.0.5</version>
 		</dependency>
 
 	</dependencies>

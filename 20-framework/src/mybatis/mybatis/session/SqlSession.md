@@ -1,5 +1,23 @@
 
 ## define
+@startuml
+interface SqlSession
+
+class SqlSessionTemplate
+
+SqlSession <|.. SqlSessionTemplate
+'SqlSession <|.. SqlSessionManager
+'SqlSession <|.. DefaultSqlSession
+
+InvocationHandler <|.. SqlSessionInterceptor
+SqlSessionTemplate +- SqlSessionInterceptor
+
+SqlSession o--  Configuration
+SqlSession o--  Connection
+
+
+
+@enduml
 
 ## hierarchy
 ```

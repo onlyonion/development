@@ -7,3 +7,5 @@ Executor (org.apache.ibatis.executor)
         ReuseExecutor (org.apache.ibatis.executor)
         BatchExecutor (org.apache.ibatis.executor)
 ```
+
+## BaseExecutor

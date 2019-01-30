@@ -8,5 +8,11 @@ mapper
     MapperScannerConfigurer
 support
 transaction
+
+MyBatisExceptionTranslator
+MyBatisSystemException
 SqlSessionFactoryBean
+SqlSessionHolder
+SqlSessionTemplate
+SqlSessionUtils
 ```

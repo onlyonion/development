@@ -1,7 +1,8 @@
+java.util.concurrent.locks.AbstractQueuedSynchronizer
 
 [Java并发之AQS详解](https://www.cnblogs.com/daydaynobug/p/6752837.html)
 
-3.1 acquire(int)
+## 3.1 acquire(int)
 　　此方法是独占模式下线程获取共享资源的顶层入口。如果获取到资源，线程直接返回，否则进入等待队列，直到获取到资源为止，且整个过程忽略中断的影响。
     这也正是lock()的语义，当然不仅仅只限于lock()。获取到资源后，线程就可以去执行其临界区代码了。下面是acquire()的源码：
 
@@ -96,7 +97,7 @@
     
 ```
 
-3.2 release(int)
+## 3.2 release(int)
 
 ```java_holder_method_tree
 
@@ -130,7 +131,7 @@
 
 ```
 
-3.3 acquireShared(int)
+## 3.3 acquireShared(int)
 
 ```java_holder_method_tree
 
@@ -183,7 +184,7 @@
 
 ```
 
-3.4 releaseShared()
+## 3.4 releaseShared()
 
 ```java_holder_method_tree
 

@@ -1,23 +1,31 @@
 
-## framework core
-
+## framework
 * spring
-* mybatis
 * spring-mvc
-* dubbo
-* netty
 * tomcat
+* jetty
+
+## distributed
+* zookeeper
+* curator
+* netty
+* dubbo
 * rocketmq
+
+## storage
 * redis
+* mybatis
+* mybatis-plus
+* sharding-jdbc
+* mysql-connector
+* druid
 * mycat
 
-## tools
-
+## library
 * guava
 * disruptor
-* druid
-* curator
 * velocity
+* freemarkder
 * commons
 * logs
 * search

@@ -1,23 +1,23 @@
 
-### jdk7
+## jdk7
 Fork/Join
 一个把大任务分割成若干个小任务，最终汇总每个小任务结果后得到大任务结果的框架
 1.	任务分割：首先Fork/Join框架需要把大的任务分割成足够小的子任务，如果子任务比较大的话还要对子任务进行继续分割
 2.	执行任务并合并结果：分割的子任务分别放到双端队列里，然后几个启动线程分别从双端队列里获取任务执行。子任务执行完的结果都放在另外一个队列里，启动一个线程从队列里取数据，然后合并这些数据。
 
-### jdk8
-#### Nashorn JavaScript 引擎
+## jdk8
+### Nashorn JavaScript 引擎
 Google V8
 Java调用Javascript函数
 JavaScript调用Java方法
 ScriptObjectMirror
 语言扩展
 
-#### Lambda
+### Lambda
 a function (or a subroutine) defined, and possibly called, without being bound to an identifier。
 一个不用被绑定到一个标识符上，并且可能被调用的函数
 	
-```java
+```
 	(params) -> expression
 	(params) -> statement
 	(params) -> { statements }
