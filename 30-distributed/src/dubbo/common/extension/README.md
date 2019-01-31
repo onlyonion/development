@@ -1,0 +1,12 @@
+```
+factory
+    AdaptiveExtensionFactory
+    SpiExtensionFactory
+support
+    ActivateComparator
+Activate
+Adaptive
+ExtensionFactory
+ExtensionLoader
+SPI
+```

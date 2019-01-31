@@ -1,5 +1,15 @@
 org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
 
+## define
+```
+DefaultResourceLoader (org.springframework.core.io)
+    AbstractApplicationContext (org.springframework.context.support)
+        GenericApplicationContext (org.springframework.context.support)
+            GenericWebApplicationContext (org.springframework.web.context.support)
+                EmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
+                    AnnotationConfigEmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
+```
+
 ## 类图
 ```yuml
 // {type:class}

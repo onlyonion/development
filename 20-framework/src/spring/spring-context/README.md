@@ -3,16 +3,60 @@
 org.springframework
 ```
 cache
+    annotation
+    concurrent
+    config
+    interceptor
+    support
+    Cache
+    CacheManager
 context
+    access
+    annotation
+    config
+    event
+    expression
+    i18n
+    support
+    weaving
 ejb
 format
+    annotation
+    datetime
+    number
+    support
 instrument.classloading
+    glassfish
+    jboss
+    tomcat
+    weblogic
+    websphere
 jmx
 jndi
 remoting
+    rmi
+    soap
+    support
 scheduling
+    annotation
+    concurrent
+    config
+    support
+    SchedulingTaskExecutor
 scripting
+    bsh
+    config
+    groovy
+    jruby
+    support
 stereotype
+    Component
+    Controller
+    Repository
+    Service
 ui
 validation
+    annotation
+    beanvalidation
+    support
 ```

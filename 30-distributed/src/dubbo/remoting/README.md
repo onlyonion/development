@@ -1,27 +1,46 @@
 
 ## core
-* 字节缓存
-* 通道
-* 通道处理器
+* 交换层
 * 端对端的抽象
-* 交换
-* 应用层网络协议
 * 传输层网络协议
 * 对等网络连接方式
+* 网络IO 字节缓存、通道、通道处理器
 
 ## package
 
 ```
 buffer
+    ChannelBuffer
+    ChannelBufferFactory
 exchange
+    ExchangeChannel
+    ExchangeClient
+    ExchangeHandler
+    Exchanger
+    Exchangers
+    ExchangeServer
+    Request
+    Response
+    ResponseCallback
+    ResponseFuture
 http
 p2p
 telnet
 transport
+    codec
+    dispatcher
+    grizzly
+    mina
+    netty
 zookeeper
+    curator
+    support
+    zkclient
+    
 Channel
 ChannelHandler
 Client
+Codec
 Codec2
 Decodeable
 Dispatcher

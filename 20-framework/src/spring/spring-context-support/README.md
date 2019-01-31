@@ -9,6 +9,7 @@ cache
     jcache
     transaction
 mail
+    javamail
 scheduling
     commonj
     quartz

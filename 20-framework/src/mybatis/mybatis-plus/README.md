@@ -34,6 +34,7 @@ MybatisXMLLanguageDriver
 * mybatis-plus-generator
     
 ## biz
+* Model ActiveRecord 模式 CRUD
 * BaseMapper
 * IService
 * ServiceImpl

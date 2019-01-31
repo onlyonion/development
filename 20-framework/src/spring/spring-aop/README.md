@@ -14,6 +14,42 @@ org
         target
 ```
 
+## org.springframework.aop
+```
+aspectj
+config
+framework
+interceptor
+scope
+support
+target
+
+Advisor
+AfterAdvice
+AfterReturningAdvice
+AopInvocationException
+BeforeAdvice
+ClassFilter
+DynamicIntroductionAdvice
+IntroductionAdvisor
+IntroductionAwareMethodMatcher
+IntroductionInfo
+IntroductionInterceptor
+MethodBeforeAdvice
+MethodMatcher
+Pointcut
+PointcutAdvisor
+ProxyMethodInvocation
+RawTargetAccess
+SpringProxy
+TargetClassAware
+TargetSource
+ThrowsAdvice
+TrueClassFilter
+TrueMethodMatcher
+TruePointcut
+```
+
 * Advice when
 * Pointcut where
 * Aspect 约等于 Advisor = Advice + Pointcut = when + where

@@ -1,6 +1,13 @@
 org.springframework.boot.SpringApplication
 
 ## 启动
+* initialize
+* createApplicationContext
+* prepareContext
+* refreshContext
+* afterRefresh
+* listeners.finished
+
 ```mermaid
 sequenceDiagram
     SpringApplication->>SpringApplication:run(source, args)

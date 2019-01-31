@@ -1,4 +1,6 @@
 
+## define
+```
 @startuml
 
 class MapperMethod {
@@ -7,11 +9,11 @@ class MapperMethod {
 }
 
 class SqlCommand {
-
+    - final String name
+    - final SqlCommandType type
 }
 
 class MethodSignature {
-
 }
 
 MapperMethod +- SqlCommand
@@ -22,3 +24,8 @@ enum SqlCommandType {
   UNKNOWN, INSERT, UPDATE, DELETE, SELECT, FLUSH;
 }
 @enduml
+
+```
+
+## execute()
+* 根据command类型判断 增删改查、刷新
