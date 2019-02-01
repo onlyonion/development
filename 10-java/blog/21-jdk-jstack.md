@@ -21,3 +21,8 @@
 * cpu飙高，load高，响应很慢
 * cpu使用率不高但是响应很慢  io、数据库
 * 请求无法响应    死循环
+
+```
+java -classpath %JAVA_HOME%\lib\sa-jdi.jar sun.jvm.hotspot.HSDB
+java -classpath "D:\opt\java\jdk1.8.0_172\lib\sa-jdi.jar" sun.jvm.hotspot.HSDB
+```

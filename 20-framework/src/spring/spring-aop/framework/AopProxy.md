@@ -9,6 +9,8 @@ public interface AopProxy {
 ```
 
 ## hierachy
+* [JdkDynamicAopProxy](./JdkDynamicAopProxy.md)
+* [CglibAopProxy](./CglibAopProxy.md)
 
 ```
 AopProxy (org.springframework.aop.framework)
@@ -16,7 +18,6 @@ AopProxy (org.springframework.aop.framework)
     CglibAopProxy (org.springframework.aop.framework)
         ObjenesisCglibAopProxy (org.springframework.aop.framework)
 ```
-
 ## 2. AopProxy 类图
 ```yuml
 // {type:class}
@@ -64,39 +65,6 @@ Proxy.newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHand
 
 ```
 
-#### JdkDynamicAopProxy调用
-
-```mermaid
-sequenceDiagram
-
-    [Actor]->>[JdkDynamicAopProxy]:invoke(proxy, method, args)
-    
-    %% 1. 特殊方法处理
-    alt equals,hashCode特殊方法处理
-        [JdkDynamicAopProxy]->>[JdkDynamicAopProxy]:特殊方法处理
-    else 透明的
-        [JdkDynamicAopProxy]->>[AopUtils]:工具类invokeJoinpointUsingReflection
-    end
-    
-    %% 2. 获得拦截器链
-    [JdkDynamicAopProxy]->>[AdvisedSupport]:getInterceptorsAndDynamicInterceptionAdvice(method, targetClass)
-    
-    alt 拦截器链为空
-        
-        %% 2.1 反射工具类 method.invoke(obj, args)
-        [JdkDynamicAopProxy]->>[AopUtils]:工具类invokeJoinpointUsingReflection
-        
-    else 不为空，拦截器链调用
-    
-        %% 2.2 创建反射方法调用器，执行拦截器链
-        [JdkDynamicAopProxy]->>[ReflectiveMethodInvocation]:创建反射方法调用器
-        [ReflectiveMethodInvocation]->>[ReflectiveMethodInvocation]:proceed() 继续执行
-        
-    end
-    
-    %% 3. 返回
-    [JdkDynamicAopProxy]-->>[Actor]:返回结果
-```
 
 ### 3.2 CglibAopProxy
 org.springframework.aop.framework.CglibAopProxy

@@ -12,6 +12,20 @@
 authenticator
 connector
 core
+    ApplicationFilterChain
+    StandardContext
+    StandardContextValve
+    StandardEngine
+    StandardEngineValve
+    StandardHost
+    StandardHostValve
+    StandardPipeline
+    StandardServer
+    StandardService
+    StandardThreadExecutor
+    StandardWrapper
+    StandardWrapperFacade
+    StandardWrapperValve
 deploy
 filters
 loader
@@ -29,6 +43,7 @@ users
 util
 valves
 webresources
+
 AccessLog
 AsyncDispatcher
 Authenticator

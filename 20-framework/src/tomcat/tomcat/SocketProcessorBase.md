@@ -15,13 +15,13 @@ SocketProcessorBase (org.apache.tomcat.util.net)
 sequenceDiagram
     
     %% socket -> 通信端点
-    SocketProcessorBase->>NioEndpoint$SocketProcessor: doRun()
+    SocketProcessorBase->>NioEndpoint.SocketProcessor: doRun()
     
     %% 通信端点 -> 连接处理
-    NioEndpoint$SocketProcessor->>AbstractProtocol$ConnectionHandler: process()
+    NioEndpoint.SocketProcessor->>AbstractProtocol.ConnectionHandler: process()
     
     %% 连接处理 -> 所有协议处理器
-    AbstractProtocol$ConnectionHandler->>AbstractProcessorLight: process()
+    AbstractProtocol.ConnectionHandler->>AbstractProcessorLight: process()
     
     %% http协议处理器
     AbstractProcessorLight->>Http11Processor: service()
@@ -29,4 +29,28 @@ sequenceDiagram
     %% 链接适配器 
     Http11Processor->>CoyoteAdapter: service()
     CoyoteAdapter->>StandardEngineValve: invoke()
+```
+
+## seq
+
+```
+@startuml
+' socket -> 通信端点
+SocketProcessorBase -> NioEndpoint.SocketProcessor: doRun()
+
+' 通信端点 -> 连接处理
+NioEndpoint.SocketProcessor -> AbstractProtocol.ConnectionHandler: process()
+
+' 连接处理 -> 所有协议处理器
+AbstractProtocol.ConnectionHandler -> AbstractProcessorLight: process()
+
+' http协议处理器
+AbstractProcessorLight -> Http11Processor: service()
+
+' 链接适配器 
+Http11Processor -> CoyoteAdapter: service()
+
+' 容器处理
+CoyoteAdapter -> StandardEngineValve: invoke()
+@enduml
 ```

@@ -14,6 +14,24 @@ class HandlerMethod {
 	- MethodParameter[] parameters;
 	- HandlerMethod resolvedFromHandlerMethod;
 }
+
+class InvocableHandlerMethod {
+    + Object invokeForRequest(NativeWebRequest request, ModelAndViewContainer mavContainer,
+    			Object... providedArgs)
+    - Object[] getMethodArgumentValues(NativeWebRequest request, ModelAndViewContainer mavContainer,
+                Object... providedArgs)
+    # Object doInvoke(Object... args)
+}
+
+class ServletInvocableHandlerMethod {
+    + void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
+    			Object... providedArgs)
+    - void setResponseStatus(ServletWebRequest webRequest)
+}
+
+HandlerMethod <|-- InvocableHandlerMethod
+InvocableHandlerMethod <|-- ServletInvocableHandlerMethod
+
 @enduml
 ```
 ## 2. 类图

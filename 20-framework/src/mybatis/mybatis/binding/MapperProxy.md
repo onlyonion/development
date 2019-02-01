@@ -1,11 +1,18 @@
 
 ## define
-```java
-public class MapperProxy<T> implements InvocationHandler, Serializable {
-  private final SqlSession sqlSession;
-  private final Class<T> mapperInterface;
-  private final Map<Method, MapperMethod> methodCache;
+```
+@startuml
+
+class MapperProxy {
+    - final SqlSession sqlSession
+    - final Class<T> mapperInterface
+    - final Map<Method, MapperMethod> methodCache
 }
+
+interface InvocationHandler
+InvocationHandler <|.. MapperProxy
+
+@enduml
 ```
 
 ## invoke

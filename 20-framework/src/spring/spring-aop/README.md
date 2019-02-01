@@ -41,7 +41,7 @@ Pointcut
 PointcutAdvisor
 ProxyMethodInvocation
 RawTargetAccess
-SpringProxy
+SpringProxy         标记接口，标记spring生成的动态代理
 TargetClassAware
 TargetSource
 ThrowsAdvice

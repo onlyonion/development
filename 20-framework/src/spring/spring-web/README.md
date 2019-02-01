@@ -25,6 +25,7 @@ web
     cors
     filter
         CorsFilter
+        RequestContextFilter
     jsf
     method
         ControllerAdviceBean
