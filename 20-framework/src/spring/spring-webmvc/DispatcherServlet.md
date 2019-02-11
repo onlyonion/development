@@ -1,6 +1,6 @@
-org.springframework.web.servlet.HttpServletBean
-org.springframework.web.servlet.FrameworkServlet
-org.springframework.web.servlet.DispatcherServlet
+* org.springframework.web.servlet.HttpServletBean
+* org.springframework.web.servlet.FrameworkServlet
+* org.springframework.web.servlet.DispatcherServlet
 
 ## 1. 类图
 DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServlet，通过使用Servlet API来对HTTP请求进行响应，

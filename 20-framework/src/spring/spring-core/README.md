@@ -32,5 +32,7 @@ util
     backoff
     comparator
     concurrent
+    function
+    unit
     xml
 ```
