@@ -43,3 +43,6 @@ Servers
 ## Node.js
 node_modules
 .vscode
+
+## gitbook
+_book

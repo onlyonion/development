@@ -56,12 +56,16 @@ class SimpleBeanDefinitionRegistry
 SimpleAliasRegistry <|-- SimpleBeanDefinitionRegistry
 BeanDefinitionRegistry <|.. SimpleBeanDefinitionRegistry
 
-interface BeanDefinitionRegistry
-AliasRegistry <|-- BeanDefinitionRegistry
-BeanDefinitionRegistry <|.. DefaultListableBeanFactory
-
+'''''''''''''''''' 默认单例bean注册表 ''''''''''''''''''
+class DefaultSingletonBeanRegistry {
+    - final Map<String, Object> singletonObjects
+    - final Map<String, ObjectFactory<?>> singletonFactories
+    - final Map<String, Object> earlySingletonObjects
+    - final Set<String> registeredSingletons
+}
+SimpleAliasRegistry <|-- DefaultSingletonBeanRegistry
 abstract class FactoryBeanRegistrySupport
-SimpleBeanDefinitionRegistry <|-- FactoryBeanRegistrySupport
+DefaultSingletonBeanRegistry <|-- FactoryBeanRegistrySupport
 
 abstract class AbstractBeanFactory
 FactoryBeanRegistrySupport <|-- AbstractBeanFactory
@@ -71,6 +75,11 @@ AbstractBeanFactory <|-- AbstractAutowireCapableBeanFactory
 
 class DefaultListableBeanFactory
 AbstractAutowireCapableBeanFactory <|-- DefaultListableBeanFactory
+
+'''''''''''''''''' BeanDefinitionRegistry ''''''''''''''''''
+interface BeanDefinitionRegistry
+AliasRegistry <|-- BeanDefinitionRegistry
+BeanDefinitionRegistry <|.. DefaultListableBeanFactory
 
 '''''''''''''''''' GenericApplicationContext ''''''''''''''''''
 class GenericApplicationContext

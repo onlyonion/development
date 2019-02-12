@@ -117,7 +117,7 @@ RequestMappingInfoHandlerMapping <|-- RequestMappingHandlerMapping
 
 ### 3.1 RequestMappingHandlerMapping 初始化
 * 上下文 预实例化非懒加载单例bean AbstractApplicationContext.finishBeanFactoryInitialization()
-* [InitializingBean.afterPropertiesSet()](../spring-beans/AbstractAutowireCapableBeanFactory.md) 
+* [InitializingBean.afterPropertiesSet()](../spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
 * 初始化处理器方法
 * 查找处理映射方法，创建HandlerMethod，注册MappingRegistry
 
@@ -181,7 +181,7 @@ sequenceDiagram
 
 ### 4.1 SimpleUrlHandlerMapping 初始化
 * 上下文 预实例化非懒加载单例bean AbstractApplicationContext.finishBeanFactoryInitialization()
-* [AbstractAutowireCapableBeanFactory.initializeBean()后处理器方法，在InitializingBean.afterPropertiesSet()之前执行](../spring-beans/AbstractAutowireCapableBeanFactory.md) 
+* [AbstractAutowireCapableBeanFactory.initializeBean()后处理器方法，在InitializingBean.afterPropertiesSet()之前执行](../spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
 
 
 ```mermaid

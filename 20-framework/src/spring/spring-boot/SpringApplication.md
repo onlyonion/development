@@ -1,5 +1,37 @@
 org.springframework.boot.SpringApplication
 
+## class
+
+```
+@startuml
+
+class SpringApplication {
+    - ResourceLoader resourceLoader
+    - ConfigurableEnvironment environment
+    - Class<? extends ConfigurableApplicationContext> applicationContextClass
+    - List<ApplicationContextInitializer<?>> initializers
+    - List<ApplicationListener<?>> listeners
+    + SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources)
+    + ConfigurableApplicationContext run(String... args)
+    .. 准备环境 ..
+    - ConfigurableEnvironment prepareEnvironment(SpringApplicationRunListeners listeners,
+    			ApplicationArguments applicationArguments)
+    .. 创建应用上下文 ..
+    # ConfigurableApplicationContext createApplicationContext()	
+    .. 准备上下文 ..
+    - void prepareContext(ConfigurableApplicationContext context, 
+                ConfigurableEnvironment environment, SpringApplicationRunListeners listeners,
+                ApplicationArguments applicationArguments, Banner printedBanner)
+    .. 刷新上下文 ..
+    - void refreshContext(ConfigurableApplicationContext context)
+    .. 刷新之后 ..
+    # void afterRefresh(ConfigurableApplicationContext context, ApplicationArguments args)
+}
+
+
+@enduml
+```
+
 ## 启动
 * initialize
 * createApplicationContext
@@ -42,3 +74,7 @@ sequenceDiagram
     %% 2.4 监听器启动
     SpringApplication->>SpringApplicationRunListeners:finished()
 ```
+
+## context
+* [AnnotationConfigEmbeddedWebApplicationContext](./context/embedded/AnnotationConfigEmbeddedWebApplicationContext.md)
+* [AnnotationConfigServletWebServerApplicationContext](./web/servlet/ServletWebServerApplicationContext.md)

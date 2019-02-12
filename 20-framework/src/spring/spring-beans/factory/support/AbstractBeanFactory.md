@@ -1,6 +1,8 @@
 org.springframework.beans.factory.support.AbstractBeanFactory
 
 ## 1. 定义
+
+### hierarchy
 ```
 SimpleAliasRegistry (org.springframework.core) AliasRegistry
     DefaultSingletonBeanRegistry (org.springframework.beans.factory.support) SingletonBeanRegistry
@@ -8,33 +10,56 @@ SimpleAliasRegistry (org.springframework.core) AliasRegistry
             AbstractBeanFactory (org.springframework.beans.factory.support) AbstractBeanFactory 
 ```
 
-```java
-public class SimpleAliasRegistry implements AliasRegistry {
-	/** Map from alias to canonical name */
-	private final Map<String, String> aliasMap = new ConcurrentHashMap<String, String>(16);
-}
-public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
-    /** Cache of singleton objects: bean name --> bean instance */
-    private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(256);
-}
+### class
+```
+@startuml
 
-public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanRegistry {
-	/** Cache of singleton objects created by FactoryBeans: FactoryBean name --> object */
-	private final Map<String, Object> factoryBeanObjectCache = new ConcurrentHashMap<String, Object>(16);
+'''''''''''''''''''''''' 别名注册表 '''''''''''''''''''''''' 
+interface AliasRegistry
+class SimpleAliasRegistry {
+    - final Map<String, String> aliasMap
 }
-public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
-	/** Parent bean factory, for bean inheritance support */
-	private BeanFactory parentBeanFactory;
-	/** Spring ConversionService to use instead of PropertyEditors */
-    private ConversionService conversionService;
-    /** A custom TypeConverter to use, overriding the default PropertyEditor mechanism */
-    private TypeConverter typeConverter;
-    /** BeanPostProcessors to apply in createBean */
-    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
-    /** Map from bean name to merged RootBeanDefinition */
-    private final Map<String, RootBeanDefinition> mergedBeanDefinitions =
-            new ConcurrentHashMap<String, RootBeanDefinition>(256);
+AliasRegistry <|.. SimpleAliasRegistry
+
+'''''''''''''''''''''''' 单例bean注册表 '''''''''''''''''''''''' 
+interface SingletonBeanRegistry
+class DefaultSingletonBeanRegistry {
+    - final Map<String, Object> singletonObjects
+    + Object getSingleton(String beanName)
+    + Object getSingleton(String beanName, ObjectFactory<?> singletonFactory)
 }
+SimpleAliasRegistry <|-- DefaultSingletonBeanRegistry
+SingletonBeanRegistry <|.. DefaultSingletonBeanRegistry
+
+'''''''''''''''''''''''' 工厂bean注册表支持 '''''''''''''''''''''''' 
+abstract class FactoryBeanRegistrySupport {
+    - final Map<String, Object> factoryBeanObjectCache
+    # Object getCachedObjectForFactoryBean(String beanName)
+}
+DefaultSingletonBeanRegistry <|-- FactoryBeanRegistrySupport
+
+'''''''''''''''''''''''' 抽象bean工厂 '''''''''''''''''''''''' 
+abstract class AbstractBeanFactory {
+    - BeanFactory parentBeanFactory;
+    - ConversionService conversionService;
+    - final Set<PropertyEditorRegistrar> propertyEditorRegistrars
+    - TypeConverter typeConverter;
+    - final List<BeanPostProcessor> beanPostProcessors
+    - final Map<String, RootBeanDefinition> mergedBeanDefinitions
+    - final Set<String> alreadyCreated
+    # <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
+    			@Nullable final Object[] args, boolean typeCheckOnly)
+    # String transformedBeanName(String name)
+    # RootBeanDefinition getMergedLocalBeanDefinition(String beanName)
+    + void registerDependentBean(String beanName, String dependentBeanName)
+    # abstract Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
+}
+FactoryBeanRegistrySupport <|-- AbstractBeanFactory
+
+interface ConfigurableBeanFactory
+ConfigurableBeanFactory <|.. AbstractBeanFactory
+
+@enduml
 ```
 
 ## 2. 依赖注入 Dependency Injection
@@ -43,7 +68,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 * ParentBeanFactory.getBean() 双亲上下文获取bean
 * registerDependentBean() 解析依赖
 * createBean() 模板方法 beforePrototypeCreation() afterPrototypeCreation()
-    - [AbstractAutowireCapableBeanFactory.createBean()](./AbstractAutowireCapableBeanFactory.md)
+    - [AbstractAutowireCapableBeanFactory.createBean()](AbstractAutowireCapableBeanFactory.md)
 * TypeConverter.convertIfNecessary()
 
 ### 2.1 getBean() doGetBean()
@@ -137,7 +162,7 @@ sequenceDiagram
 ```
 
 ### 2.4 createBean()由子类自动装配工厂（AbstractAutowireCapableBeanFactory）实现
-[AbstractAutowireCapableBeanFactory.createBean()](./AbstractAutowireCapableBeanFactory.md)
+[AbstractAutowireCapableBeanFactory.createBean()](AbstractAutowireCapableBeanFactory.md)
 
 ### 2.5 getObjectForBeanInstance()
 FactoryBean的处理，factoryBean.getObject()获得工厂bean生成的bean，若获得工厂bean本身，#

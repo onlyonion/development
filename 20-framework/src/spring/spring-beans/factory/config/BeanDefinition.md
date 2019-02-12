@@ -17,7 +17,7 @@ BeanDefinition (org.springframework.beans.factory.config)
             AnnotatedGenericBeanDefinition (org.springframework.beans.factory.annotation)
 ```
 
-![beanDefinition](../../../img/spring-idea-BeanDefinition.png)
+![beanDefinition](../../../../../img/spring-idea-BeanDefinition.png)
 
 ## 2. 类图
 * AnnotatedBeanDefinition

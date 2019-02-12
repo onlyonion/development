@@ -1,20 +1,106 @@
 org.springframework.context.support.AbstractApplicationContext
 
+## hierarchy
 ```
-DefaultResourceLoader
-    AbstractApplicationContext
+DefaultResourceLoader (org.springframework.core.io)
+    AbstractApplicationContext (org.springframework.context.support)
+        AbstractRefreshableApplicationContext (org.springframework.context.support)
+            AbstractRefreshableConfigApplicationContext (org.springframework.context.support)
+                AnnotationConfigReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+                AbstractXmlApplicationContext (org.springframework.context.support)
+                    FileSystemXmlApplicationContext (org.springframework.context.support)
+                    ClassPathXmlApplicationContext (org.springframework.context.support)
+                AbstractRefreshableWebApplicationContext (org.springframework.web.context.support)
+                    XmlWebApplicationContext (org.springframework.web.context.support)
+                    GroovyWebApplicationContext (org.springframework.web.context.support)
+                    AnnotationConfigWebApplicationContext (org.springframework.web.context.support)
+        GenericApplicationContext (org.springframework.context.support)
+            GenericXmlApplicationContext (org.springframework.context.support)
+            StaticApplicationContext (org.springframework.context.support)
+            GenericWebApplicationContext (org.springframework.web.context.support)
+                ServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+                    AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+                    XmlServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+            ResourceAdapterApplicationContext (org.springframework.jca.context)
+            GenericGroovyApplicationContext (org.springframework.context.support)
+            AnnotationConfigApplicationContext (org.springframework.context.annotation)
+            GenericReactiveWebApplicationContext (org.springframework.boot.web.reactive.context)
+                ReactiveWebServerApplicationContext (org.springframework.boot.web.reactive.context)
+                    AnnotationConfigReactiveWebServerApplicationContext (org.springframework.boot.web.reactive.context)
 ```
 
-## 1. 继承层次
-![hierarchry](../../../img/spring-idea-AbstractApplicationContext.png)
+## class
 
-![hierarchry](../../../img/spring-idea-AbstractApplicationContext-field.png)
+```
+@startuml
 
+abstract class AbstractApplicationContext {
+    - String id
+    - String displayName
+    - ApplicationContext parent
+    - ConfigurableEnvironment environment
+    - final List<BeanFactoryPostProcessor> beanFactoryPostProcessors
+    - final AtomicBoolean active
+    - final AtomicBoolean closed
+    - Thread shutdownHook
+    - ResourcePatternResolver resourcePatternResolver
+    - LifecycleProcessor lifecycleProcessor
+    - MessageSource messageSource
+    - ApplicationEventMulticaster applicationEventMulticaster
+    - final Set<ApplicationListener<?>> applicationListeners
+    - Set<ApplicationEvent> earlyApplicationEvents
+    .. 启动方法 ..
+    + void refresh()
+    .. 1. 准备 ..
+    # void prepareRefresh()
+    # ConfigurableListableBeanFactory obtainFreshBeanFactory()
+    # void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory)
+    .. 2. 后处理 ..
+    # void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory)
+    # void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory)
+    # void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory)
+    .. 3. 初始化 ..
+    # void initMessageSource()
+    # void initApplicationEventMulticaster()
+    # void onRefresh()
+    # void registerListeners()
+    .. 4. 完成 ..
+    # void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory)
+    # void finishRefresh()
+    abstract ConfigurableListableBeanFactory getBeanFactory()
+}
 
-## 2. refresh()
+class DefaultResourceLoader {
+    - ClassLoader classLoader
+    - final Set<ProtocolResolver> protocolResolvers
+    - final Map<Class<?>, Map<Resource, ?>> resourceCaches
+}
+DefaultResourceLoader <|-- AbstractApplicationContext
+
+interface ConfigurableApplicationContext {
+    + void setId(String id)
+    + void setParent(@Nullable ApplicationContext parent)
+    + void setEnvironment(ConfigurableEnvironment environment)
+    + ConfigurableEnvironment getEnvironment()
+    + void addBeanFactoryPostProcessor(BeanFactoryPostProcessor postProcessor)
+    + void addApplicationListener(ApplicationListener<?> listener)
+    + void addProtocolResolver(ProtocolResolver resolver)
+    + void refresh()
+    + void registerShutdownHook()
+    + void close()
+    + boolean isActive()
+    + ConfigurableListableBeanFactory getBeanFactory()
+}
+ConfigurableApplicationContext <|.. AbstractApplicationContext
+
+@enduml
+```
+
+## refresh()
 tomcat环境下spring启动，通过ContextLoader加载
 
 四大阶段、十二子过程
+
 | 阶段       | 关键词      | 子过程                                                                            |
 | :--------- | :---------- | :-------------------------------------------------------------------------------- |
 | 准备阶段   | prepare     | prepareRefresh obtainFreshBeanFactory prepareBeanFactory                          |
@@ -315,3 +401,9 @@ sequenceDiagram
 #### 异常情况
 destroyBeans();
 cancelRefresh(ex);
+
+
+## idea uml
+![hierarchry](../../../../img/spring-idea-AbstractApplicationContext.png)
+
+![hierarchry](../../../../img/spring-idea-AbstractApplicationContext-field.png)

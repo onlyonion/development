@@ -18,7 +18,33 @@ context
     expression
     i18n
     support
+        AbstractApplicationContext
+        ClassPathXmlApplicationContext
+        FileSystemXmlApplicationContext
+        GenericApplicationContext
+        AbstractRefreshableApplicationContext
     weaving
+        LoadTimeWeaverAware
+    HierarchicalMessageSource
+    EnvironmentAware
+    Lifecycle
+    ApplicationListener
+    ConfigurableApplicationContext
+    ApplicationContextInitializer
+    ApplicationContext
+    EmbeddedValueResolverAware
+    LifecycleProcessor
+    MessageSource
+    ApplicationEvent
+    ApplicationEventPublisherAware
+    ApplicationEventPublisher
+    MessageSourceResolvable
+    ApplicationContextAware
+    MessageSourceAware
+    PayloadApplicationEvent
+    Phased
+    ResourceLoaderAware
+    SmartLifecycle
 ejb
 format
     annotation
@@ -49,12 +75,17 @@ scripting
     groovy
     jruby
     support
+    ScriptEvaluator
+    ScriptFactory
+    ScriptSource
 stereotype
     Component
     Controller
     Repository
     Service
 ui
+    Model
+    ModelMap
 validation
     annotation
     beanvalidation
