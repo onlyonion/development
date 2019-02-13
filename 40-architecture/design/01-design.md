@@ -15,16 +15,14 @@
 * 面向对象 对象式
 * 面向数据表 数据式
 * 面向函数 函数式
-* 面向方面
+* 面向方面 AOP
 
 #### architecture
 * 面向服务 SOA Microservice
 * 面向资源 RESTful
 * EDA事件驱动架构
 
-
 高内聚、低耦合
-#### 设计模式
 
 #### 设计原则
 SOLID (单一功能、开闭原则、里氏替换、接口隔离以及依赖反转)
@@ -34,3 +32,5 @@ SOLID (单一功能、开闭原则、里氏替换、接口隔离以及依赖反�
 * 依赖倒转原则(Dependency Inversion  Principle, DIP)：抽象不应该依赖于细节，细节应当依赖于抽象。换言之，要针对接口编程，而不是针对实现编程。
 * 接口隔离原则(Interface  Segregation Principle, ISP)：使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口。
 * 迪米特法则(Law of  Demeter, LoD)：一个软件实体应当尽可能少地与其他实体发生相互作用。最少知识原则(LeastKnowledge Principle, LKP)
+
+#### 设计模式

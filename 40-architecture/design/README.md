@@ -7,3 +7,6 @@
 * [领域驱动设计](/40-architecture/design/01-design.md)
 * [区块链](/40-architecture/design/01-design.md)
 * [UML建模](/40-architecture/design/01-design.md)
+
+## SOLID
+单、开、里、接、依、迪

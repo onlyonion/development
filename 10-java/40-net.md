@@ -2,7 +2,7 @@
 ## TCP/IP
 端到端的、面向连接、面向字节流、全双工、可靠的传输层协议
 
-![tcp/ip](./img/tcp-ip-01.jpg)
+![tcp/ip](./img/tcp-ip-all-protocols.jpg)
 
 * [TCP：三次握手、四次握手、backlog及其他](https://www.cnblogs.com/xrq730/p/6910719.html)
 * [TCP/IP协议（一）网络基础知识](http://www.cnblogs.com/imyalost/p/6086808.html)

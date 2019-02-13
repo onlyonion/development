@@ -12,8 +12,9 @@
 * [《计算机网络（第5版）》谢希仁](/99-book/notes/00-base/计算机网络.md)
 * 《数据库系统概论（第4版）》 王珊
 
-## java
-* 《core java》 卷I，卷II
+## Java
+* 《core java》卷I
+* 《core java》卷II
 * 《thinking in java》
 * [《HotSpot实战》](/99-book/notes/10-java/HotSpot实战.md)
 * [《Java 8函数式编程》](/99-book/notes/10-java/Java%208函数式编程.md)
@@ -65,9 +66,11 @@
 ## 设计
 * 《大话设计模式》
 * 《HEAD FIRST 设计模式（中文版）》
-* [《领域驱动设计：软件核心复杂性应对之道（修订版）》赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
+* [《领域驱动设计：软件核心复杂性应对之道》[美]Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
+* 《领域驱动设计与模式实战》赵俐 马燕新 译
+* [《实现领域驱动设计》滕云 译](/99-book/notes/40-architecture/实现领域驱动设计.md)
 
-## database
+## 数据库
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
   * [《Mycat权威指南》](/99-book/notes/50-database/Mycat权威指南.md)
@@ -76,7 +79,7 @@
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
   * 《NoSQL数据库技术实战》 皮雄军 著
 
-## js
+## 前端
 * 《JavaScript权威指南(第5版)》
 * 《JavaScript模式》 (美)奥斯马尼
 * 《你不知道的JavaScript（上卷）》	

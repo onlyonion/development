@@ -10,6 +10,7 @@
 * tomcat
 * nginx
 * mysql
+* 前端优化
 
 ## waf
 * waf 防火墙
