@@ -1,3 +1,5 @@
+《Unix网络编程 卷1：套接字联网API》[美] W.Richard Stevens, Bill Fenner, Andrew M. Rudoff
+
 ## 第一部分 简介和TCP/IP
 ### 第1章 简介
 ### 第2章 传输层：TCP、UDP和SCTP

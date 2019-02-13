@@ -1,4 +1,4 @@
-Java8实战
+《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》[英] Raoul-Gabriel Urma [意] Mario Fusco [英] Alan Mycroft 陆明刚 劳佳 译
 
 ## 一 基础知识
 ### 1 为什么要关心Java 8

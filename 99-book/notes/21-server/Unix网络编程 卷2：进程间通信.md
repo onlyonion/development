@@ -1,3 +1,5 @@
+《Unix网络编程 卷2：进程间通信》[美] W.Richard Stevens
+
 ## 第一部分 简介
 ### 1. 简介
 IPC 进程间通信 Interproccess communication
