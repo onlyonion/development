@@ -1,7 +1,7 @@
-
-[领域驱动设计](https://www.jdon.com/ddd.html)   
-[领域驱动设计的基础知识总结](https://www.cnblogs.com/butterfly100/p/7827870.html)  
-[领域驱动设计之领域模型](http://www.cnblogs.com/netfocus/archive/2011/10/10/2204949.html)
+## link
+* [领域驱动设计](https://www.jdon.com/ddd.html)   
+* [领域驱动设计的基础知识总结](https://www.cnblogs.com/butterfly100/p/7827870.html)  
+* [领域驱动设计之领域模型](http://www.cnblogs.com/netfocus/archive/2011/10/10/2204949.html)
 
 ### 基本概念
 * 领域（Domain） 一个领域本质上可以理解为一个 问题域。一个领域的系统都具有相同的核心业务。
@@ -12,16 +12,18 @@
   - 由领域模型驱动软件设计，用代码来实现该领域模型
 * 领域通用语言 领域驱动设计的一个核心原则是使用一种基于模型的语言。使用模型作为语言的核心骨架，要求团队在进行所有的交流是都使用一致的语言，在代码中也是这样，这种语言被称为『通用语言』
 * 建模思考的问题：用户需求
-* 经典分层架构
-  - 用户界面/展示层 User Interface
-  - 应用层 Application 薄薄的一层，定义软件要完成的任务
-  - 领域层 Domain 表达业务概念、业务状态信息及业务规则，是业务软件的核心
-  - 基础设施层 Infrastructure 为其他层提供通用的技术能力，提供了层间通信；为领域层提供持久化机制
-* 使用的模式
-  - 关联的设计
-  - 实体（Entity） 领域中需要 唯一标识 的领域概念。
-  - 值对象（Value Object）没有唯一标识；不可变（属性只读、安全的共享）
-  - 领域服务（Domain Service）
-  - 聚合及聚合根（Aggregate，Aggregate Root） 一组具有 内聚关系 的相关对象的集合，以及对象之间清晰的所属关系和边界
-  - 工厂（Factory）
-  - 仓储（Repository）
+
+#### 经典分层架构
+- 用户界面/展示层 User Interface
+- 应用层 Application 薄薄的一层，定义软件要完成的任务
+- 领域层 Domain 表达业务概念、业务状态信息及业务规则，是业务软件的核心
+- 基础设施层 Infrastructure 为其他层提供通用的技术能力，提供了层间通信；为领域层提供持久化机制
+
+#### 使用的模式
+- 关联的设计
+- 实体（Entity） 领域中需要 唯一标识 的领域概念。
+- 值对象（Value Object）没有唯一标识；不可变（属性只读、安全的共享）
+- 领域服务（Domain Service）
+- 聚合及聚合根（Aggregate，Aggregate Root） 一组具有 内聚关系 的相关对象的集合，以及对象之间清晰的所属关系和边界
+- 工厂（Factory）
+- 仓储（Repository）

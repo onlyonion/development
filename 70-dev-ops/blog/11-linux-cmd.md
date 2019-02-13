@@ -3,6 +3,7 @@
 * top
 * version
 * proc
+* nohup
 
 ## 0. printf
 ```
@@ -122,3 +123,6 @@ s – 改变画面更新周期
 /proc/devices 
 
 /proc/diskstats 
+
+## 4 nohup
+https://www.cnblogs.com/baby123/p/6477429.html

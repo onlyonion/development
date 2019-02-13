@@ -1,21 +1,20 @@
 
-[gitee/onlyonion/development](https://gitee.com/onlyonion/development "读书笔记") 
-
-[gitee.pages](https://onlyonion.gitee.io/development)
-
-This is my daily notes, enriching the mind....
-
 ## introduce
-* [base](./00-base/README.md) 计算机基础
-* [java](./10-java/README.md) java基础 jvm, collection, io, concurrrent
-* [framework](./20-framework/README.md) 框架, ssm, tomcat, netty
-* [distributed](./30-distributed/README.md) 分布式系统，服务框架、消息、缓存
-* [architecture](./40-architecture/README.md) 体系结构
-* [database](./50-database/README.md) 数据库
-* [js](./60-js/README.md) 前端 javascript, notejs
-* [dev-ops](./70-dev-ops/README.md) 开发运维 自动化部署、监控
-* [project](./80-project/README.md) 工程项目
-* [book](./99-book/README.md) 书籍
+This is my daily notes, enriching the mind....
+* [计算机基础](./00-base/README.md) 
+* [Java基础](./10-java/README.md)  jvm, collection, io, concurrrent
+* [框架](./20-framework/README.md) ssm, tomcat, netty
+* [分布式系统](./30-distributed/README.md) 服务框架、消息、缓存
+* [体系结构](./40-architecture/README.md) 
+* [数据库](./50-database/README.md) 
+* [前端](./60-js/README.md) javascript, notejs
+* [开发运维](./70-dev-ops/README.md)  自动化部署、监控
+* [工程项目](./80-project/README.md) 
+* [小书库](./99-book/README.md)
   - [book/notes](./99-book/notes/README.md) 读书笔记
 
-we are on journey...
+> we are on journey...
+
+## link
+* [https://gitee.com/onlyonion/development](https://gitee.com/onlyonion/development) 
+* [https://onlyonion.gitee.io/development](https://onlyonion.gitee.io/development)

@@ -28,7 +28,7 @@ ExecutionEngine   	-->
 NativeInterfaces 	--> NativeLibraries	
 ```
 
-
-![java-jvm](./img/java-jvm.png);
+## jvm-architecture
+![java-jvm](./img/jvm-architecture.png)
 
 
