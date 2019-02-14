@@ -43,6 +43,6 @@
 8.	spring-jms
 9.	spring-expression
 
-![spring-jars](./img/spring-jars.jpg)
+![spring-jars](./img/spring-core-jar.png)
 
 

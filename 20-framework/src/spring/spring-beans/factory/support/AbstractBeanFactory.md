@@ -11,7 +11,8 @@ SimpleAliasRegistry (org.springframework.core) AliasRegistry
 ```
 
 ### class
-```
+
+```plantuml
 @startuml
 
 '''''''''''''''''''''''' 别名注册表 '''''''''''''''''''''''' 

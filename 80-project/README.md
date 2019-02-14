@@ -4,21 +4,10 @@
 * 禅道
 * worktitle
 
-## code manage
-* svn
-* git
-* maven
-* gradle
-* nexus
-* jenkins
-* Travis CI + github
-* searchcode
-* SonarQube
-* upsource
-  
 ## 传统行业
 * CRM
 * OA
+* 消息推送
 * 企业办公
 * 建站系统
 
@@ -29,8 +18,10 @@
 ## 热门项目
 * 小程序
 * 区块链
-* AI人工智能 智能家居、无人驾驶、移动支付
-* 云服务
+* AI 人工智能 智能家居、无人驾驶、移动支付
+* Cloud 云服务
+* IoT 物联网
+* DT 大数据
 * 营销软件
 * 互联网+
 * 网红直播
@@ -38,10 +29,10 @@
   
 ### 电商类项目
 * 用户认证系统 passport 注册、登录（SSO、第三方登录）、权限管理（UI页面拦截、业务方法拦截）
-* 搜索模块 bigdata 大数据存储（Hadoop）、大数据检索（elasticSearch）、动静分离
 * 商品管理系统 item 店铺管理（创建、主页定制）、商品管理（录入、预览）
 * 订单系统 order 订单号、下单流程、库存、购物城
 * 支付系统 pay 优惠券支付、积分支付、金融支付（微信、支付宝、银联支付）
 * 数据统计分析系统 anal 用户行为、行业、区域分析
+* 搜索模块 bigdata 大数据存储（Hadoop）、大数据检索（elasticSearch）、动静分离
 * 通知推送系统 msg 融云推送（活动推送、交易信息推送、异常提醒）、消息中间件
 * 聊天系统 im

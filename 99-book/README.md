@@ -73,7 +73,7 @@
 ## 数据库
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
-  * [《Mycat权威指南》](/99-book/notes/50-database/Mycat权威指南.md)
+  * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
   * [《分布式数据库架构及企业实践-基于Mycat中间件》周继锋](/99-book/notes/50-database/分布式数据库架构及企业实践.md)
 * nosql
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》

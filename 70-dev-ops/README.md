@@ -1,3 +1,14 @@
+## code manage
+* svn
+* git
+* maven
+* gradle
+* nexus
+* jenkins
+* Travis CI + github
+* searchcode
+* SonarQube
+* upsource
 
 ## 运维工具
 * jdk/bin

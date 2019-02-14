@@ -7,7 +7,7 @@ interface SqlSession
 class SqlSessionTemplate {
     - final SqlSessionFactory sqlSessionFactory
     - final ExecutorType executorType
-    ' 使用代理
+    .. 使用会话代理 ..
     - final SqlSession sqlSessionProxy
     - final PersistenceExceptionTranslator exceptionTranslator
 }

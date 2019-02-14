@@ -10,7 +10,7 @@ org.apache.juli
 org.apache.naming
 org.apache.tomcat
 ```
-### tomcat 设计模式
+## tomcat 设计模式
 * facade ApplicationContextFacade
 * chain of responsibility pipeline, valve
 * factory ServerSocketFactory
@@ -25,6 +25,40 @@ ProtocolHandler与Endpoint的对应关系
 * Http11Protocol/AjpProtocol使用JIoEndpoint 使用java io(也称为bio)技术，即一个请求对应一个线程。缺点：并发量高时，线程数较多，占资源
 * Http11NioProtocol/AjpNioProtocol使用NioEndpoint 使用java nio技术，可以通过少量的线程处理大量的请求
 * Http11AprProtocol/AjpAprProtocol使用AprEndpoint Apr即Apache Portable Runtime，从操作系统层面解决io阻塞问题。使用Apr时将用到Tomcat\bin\tcnative-1.dll (使用Apr时，应用了jni技术)。
+
+
+### [线程模型](https://blog.csdn.net/fd2025/article/details/80007435)
+* BIO 阻塞式IO，采用传统的java IO进行操作，该模式下每个请求都会创建一个线程，适用于并发量小的场景
+  1. Http11Protocol组件，是HTTP协议1.1 版本的抽象，它包含客户端连接、接收客户端消息报文、报文解析处理、对客户端响应等整个过程。它主要包含JIoEndpoint组件和Http11Processor,启动时，JIoEndpoint组件内部的Acceptor组件将启动某个端口的监听，一个请求到来后将被扔进线程池Executor，线程池进行任务处理处理，处理过程中将通过Http11Processor组件对HTTP协议解析并传递到Engine容器继续处理。
+  2. Mapper组件，可以通过请求地址找到对应的servlet
+  3. CoyoteAdapter组件，将一个Connect和Container适配起来的适配器。
+* NIO 同步非阻塞，比传统BIO能更好的支持大并发，tomcat 8.0 后默认采用该模式
+* APR tomcat 以JNI形式调用http服务器的核心动态链接库来处理文件读取或网络传输操作，需要编译安装APR库
+* AIO 异步非阻塞，tomcat8.0后支持
+
+#### tomcat-jio-protocol-endpoint-processor
+* Connector
+  * Http11Protocol
+    * JioEndpoint
+      * Acceptor
+      * Executor
+    * Http11Processor
+  * Mapper
+  * CoyoteAdapter
+![tomcat-jio-protocol-endpoint-processor](./img/tomcat-jio-protocol-endpoint-processor.png)
+
+#### tomcat-nio-protocol-endpoint-processor
+* Connector
+  * Http11NioProtocol
+    * NioEndpoint
+      * Acceptor
+      * Executor
+      * Poller 非阻塞的方式下轮询多个客户端连接，不断检测，处理各种事件
+    * Http11NioProcessor
+  * Mapper 通过请求地址找到对应的servlet
+  * CoyoteAdapter 将一个Connect和Container适配起来的适配器
+
+![tomcat-nio-protocol-endpoint-processor](./img/tomcat-nio-protocol-endpoint-processor.png)
 
 ## misc
 * Jetty 是面向Handler的架构
