@@ -14,6 +14,22 @@ this is generated files, just for view image conveniently...
 
 ![dubbo-consumer-invoke-provider.png](./img/dubbo-consumer-invoke-provider.png)
 
+## dubbo-docs-cluster.jpg
+
+![dubbo-docs-cluster.jpg](./img/dubbo-docs-cluster.jpg)
+
+## dubbo-docs-data-format.jpg
+
+![dubbo-docs-data-format.jpg](./img/dubbo-docs-data-format.jpg)
+
+## dubbo-docs-request-id-application.jpg
+
+![dubbo-docs-request-id-application.jpg](./img/dubbo-docs-request-id-application.jpg)
+
+## dubbo-docs-send-request-process.jpg
+
+![dubbo-docs-send-request-process.jpg](./img/dubbo-docs-send-request-process.jpg)
+
 ## dubbo-framework.jpg
 
 ![dubbo-framework.jpg](./img/dubbo-framework.jpg)
@@ -26,10 +42,6 @@ this is generated files, just for view image conveniently...
 
 ![dubbo-proxy.jpg](./img/dubbo-proxy.jpg)
 
-## dubbo-refer.png
-
-![dubbo-refer.png](./img/dubbo-refer.png)
-
 ## dubbo-ReferenceBean.png
 
 ![dubbo-ReferenceBean.png](./img/dubbo-ReferenceBean.png)
@@ -41,6 +53,10 @@ this is generated files, just for view image conveniently...
 ## dubbo-service-export-sequence.png
 
 ![dubbo-service-export-sequence.png](./img/dubbo-service-export-sequence.png)
+
+## dubbo-service-refer-sequence.png
+
+![dubbo-service-refer-sequence.png](./img/dubbo-service-refer-sequence.png)
 
 ## dubbo-ServiceBean.jpg
 

@@ -1,6 +1,6 @@
 
 ## define
-```
+```plantuml
 @startuml
 
 class MapperMethod {

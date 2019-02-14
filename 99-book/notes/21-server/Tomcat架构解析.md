@@ -104,6 +104,7 @@ digraph {
 [CoyoteAdpater]-.->[Mapper]
 [CoyoteAdpater]-.->[Container]
 ```
+
 #### Tomcat服务器中的组件
 | 组件名称  | 说明                                              | 其他                                     |
 | :-------- | :------------------------------------------------ | :--------------------------------------- |
@@ -193,6 +194,7 @@ graph TB
     classDef note fill:#FFF5AD
     class note1,note2 note
 ```
+
 #### 2.4.2 Tomcat加载器
 ```mermaid
 graph TB
@@ -210,6 +212,7 @@ graph TB
     sharec---webapp2[WebApp2ClassLoader]
 
 ```
+
 ##### 共享 
 Common类加载器实现了jar包在应用服务器以及web应用之间共享，
 通过shared类加载器实现了jar包在web应用之间的共享，
@@ -366,6 +369,7 @@ Servlet容器和链接器是Tomcat最核心的两个组件，它们是构成一�
 Tomcat对协议及I/O方式的支持
 * 应用层 http, ajp, http2
 * 传输层 nio, nio2, apr    
+
 ### 4.2 Web 请求处理
 #### 4.2.1 主要概念
 * Endpoint Coyote通信端点，通信监听的接口，Socket接收处理类，是对传输层的抽象
@@ -381,6 +385,7 @@ Tomcat对协议及I/O方式的支持
   - AjpAprProtocol
   - AjpNio2Protocol
 * UpgradeProtocol 表示HTTP升级协议 
+
 #### 4.2.2 请求处理
 Connector请求处理过程
 ```mermaid
@@ -452,6 +457,7 @@ sequenceDiagram
     Acceptor->>Acceptor:构造SocketProcessor
     Acceptor->>Acceptor:提交到请求处理线程池
 ```
+
 #### 4.6.4 APR
 1. Apache Portable Runtime，使命是创建和维护一套软件库，以便在不同操作系统底层实现的基础上提供统一的API。
 2. 为应用程序开发提供统一API，对于某些不支持的功能，APR则进行模拟实现
@@ -492,16 +498,19 @@ sequenceDiagram
 ### 10.1 Tomcat性能测试及诊断
 * 响应时间
 * 吞吐量 tps
+
 ### 10.1.1 测试方法
 * 负载测试
 * 压力测试
 * 持续运行时间测试
+
 ### 10.1.2 性能测试工具
 * ApacheBench
 ```
 ab -n 500 -c 5 http://localhost:8080/sample/index.jsp
 ```
 * Apache JMeter
+
 ### 10.1.3 数据采集及分析
 * 网络
 
@@ -518,9 +527,11 @@ jstack  栈信息
 jconsole
 visualvm
 ```
+
 ### 10.2 Tomcat性能优化
 ### 10.2.1 JVM优化
 jvm垃圾回收性能度量：吞吐量；暂停
+```
 -Xms
 -Xmx
 -Xmn
@@ -529,6 +540,8 @@ jvm垃圾回收性能度量：吞吐量；暂停
 -XX:MetaspaceSize=
 -XX:MaxMetaspaceSize=
 -Xss
+```
+
 ### 10.2.2 Tomcat配置
 #### 调整server.xml配置
 * maxConnection
@@ -539,8 +552,10 @@ jvm垃圾回收性能度量：吞吐量；暂停
 * http静态文件压缩
 * 高性能链接器提升IO效率
 * 关闭自动部署autoDeploy
+
 #### 调整JSP页面设置
 * jsp标签body池
+
 #### 与Web服务器集成
 * 动静分离
 * 集群、负载均衡
@@ -551,8 +566,10 @@ jvm垃圾回收性能度量：吞吐量；暂停
 ### 11.1 Tomcat的嵌入式启动
 ### 11.2 Tomcat中的JNDI
 Java应用通过JNDI API按照命名查找数据和对象。可对比zookeeper的统一命名服务（Name Service）
+
 ### 11.3 Comet和WebSocket
 服务器推送技术
+
 #### 11.3.3 WebSocket
 基于TCP的协议，建立WebSocket链接时，客户端首先发送一个握手请求，服务器返回一个握手响应，握手为HTTP Upgrade请求，因此服务器可以通过HTTP端口进行处理，并将通信方式切换至WebSocket协议。
 

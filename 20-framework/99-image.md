@@ -10,6 +10,10 @@ this is generated files, just for view image conveniently...
 
 ![event-group.png](./img/event-group.png)
 
+## filter-chain.png
+
+![filter-chain.png](./img/filter-chain.png)
+
 ## mybatis-cache-session-mapper.jpg
 
 ![mybatis-cache-session-mapper.jpg](./img/mybatis-cache-session-mapper.jpg)
@@ -22,6 +26,14 @@ this is generated files, just for view image conveniently...
 
 ![mybatis-hierarchy.png](./img/mybatis-hierarchy.png)
 
+## mybatis-idea-MapperScannerConfigurer.png
+
+![mybatis-idea-MapperScannerConfigurer.png](./img/mybatis-idea-MapperScannerConfigurer.png)
+
+## mybatis-idea-SqlSessionFactoryBean.png
+
+![mybatis-idea-SqlSessionFactoryBean.png](./img/mybatis-idea-SqlSessionFactoryBean.png)
+
 ## mybatis-simple.jpg
 
 ![mybatis-simple.jpg](./img/mybatis-simple.jpg)
@@ -33,6 +45,22 @@ this is generated files, just for view image conveniently...
 ## netty-components.png
 
 ![netty-components.png](./img/netty-components.png)
+
+## netty-idea-EventLoop-methods.png
+
+![netty-idea-EventLoop-methods.png](./img/netty-idea-EventLoop-methods.png)
+
+## netty-idea-EventLoop.png
+
+![netty-idea-EventLoop.png](./img/netty-idea-EventLoop.png)
+
+## netty-idea-EventLoopGroup-methods.png
+
+![netty-idea-EventLoopGroup-methods.png](./img/netty-idea-EventLoopGroup-methods.png)
+
+## netty-idea-EventLoopGroup.png
+
+![netty-idea-EventLoopGroup.png](./img/netty-idea-EventLoopGroup.png)
 
 ## netty.png
 
@@ -150,9 +178,21 @@ this is generated files, just for view image conveniently...
 
 ![spring-idea-AbstractApplicationContext.png](./img/spring-idea-AbstractApplicationContext.png)
 
+## spring-idea-AnnotatedGenericBeanDefinition.png
+
+![spring-idea-AnnotatedGenericBeanDefinition.png](./img/spring-idea-AnnotatedGenericBeanDefinition.png)
+
+## spring-idea-AnnotationConfigEmbeddedWebApplicationContext-fields.png
+
+![spring-idea-AnnotationConfigEmbeddedWebApplicationContext-fields.png](./img/spring-idea-AnnotationConfigEmbeddedWebApplicationContext-fields.png)
+
 ## spring-idea-AnnotationConfigEmbeddedWebApplicationContext.png
 
 ![spring-idea-AnnotationConfigEmbeddedWebApplicationContext.png](./img/spring-idea-AnnotationConfigEmbeddedWebApplicationContext.png)
+
+## spring-idea-AnnotationConfigServletWebServerApplicationContext.png
+
+![spring-idea-AnnotationConfigServletWebServerApplicationContext.png](./img/spring-idea-AnnotationConfigServletWebServerApplicationContext.png)
 
 ## spring-idea-ApplicationContext-methods.png
 
@@ -161,6 +201,10 @@ this is generated files, just for view image conveniently...
 ## spring-idea-ApplicationContext.png
 
 ![spring-idea-ApplicationContext.png](./img/spring-idea-ApplicationContext.png)
+
+## spring-idea-BeanDefinition.png
+
+![spring-idea-BeanDefinition.png](./img/spring-idea-BeanDefinition.png)
 
 ## spring-idea-ConfigurableWebApplicationContext-methods.png
 
@@ -177,6 +221,14 @@ this is generated files, just for view image conveniently...
 ## spring-idea-DefaultListableBeanFactory.png
 
 ![spring-idea-DefaultListableBeanFactory.png](./img/spring-idea-DefaultListableBeanFactory.png)
+
+## spring-idea-RootBeanDefinition.png
+
+![spring-idea-RootBeanDefinition.png](./img/spring-idea-RootBeanDefinition.png)
+
+## spring-idea-ScannedGenericBeanDefinition.png
+
+![spring-idea-ScannedGenericBeanDefinition.png](./img/spring-idea-ScannedGenericBeanDefinition.png)
 
 ## spring-idea-WebApplicationContext.png
 
@@ -201,6 +253,10 @@ this is generated files, just for view image conveniently...
 ## spring-mvc-start.jpg
 
 ![spring-mvc-start.jpg](./img/spring-mvc-start.jpg)
+
+## spring-tx-idea-TransactionInterceptor.png
+
+![spring-tx-idea-TransactionInterceptor.png](./img/spring-tx-idea-TransactionInterceptor.png)
 
 ## springaop-cache.png
 
@@ -241,6 +297,14 @@ this is generated files, just for view image conveniently...
 ## tomcat-engine-host-context-wapper.jpg
 
 ![tomcat-engine-host-context-wapper.jpg](./img/tomcat-engine-host-context-wapper.jpg)
+
+## tomcat-jio-protocol-endpoint-processor.png
+
+![tomcat-jio-protocol-endpoint-processor.png](./img/tomcat-jio-protocol-endpoint-processor.png)
+
+## tomcat-nio-protocol-endpoint-processor.png
+
+![tomcat-nio-protocol-endpoint-processor.png](./img/tomcat-nio-protocol-endpoint-processor.png)
 
 ## tomcat-request-service.jpg
 

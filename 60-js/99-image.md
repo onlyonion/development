@@ -10,6 +10,10 @@ this is generated files, just for view image conveniently...
 
 ![jquery-pattern.png](./img/jquery-pattern.png)
 
+## jquery-sizzle.jpg
+
+![jquery-sizzle.jpg](./img/jquery-sizzle.jpg)
+
 ## js-core.png
 
 ![js-core.png](./img/js-core.png)
@@ -57,8 +61,4 @@ this is generated files, just for view image conveniently...
 ## mvc-mvp-mvvm.png
 
 ![mvc-mvp-mvvm.png](./img/mvc-mvp-mvvm.png)
-
-## sizzle.jpg
-
-![sizzle.jpg](./img/sizzle.jpg)
 

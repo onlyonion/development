@@ -78,6 +78,10 @@ this is generated files, just for view image conveniently...
 
 ![java-thread-status.jpg](./img/java-thread-status.jpg)
 
+## java-thread-status.png
+
+![java-thread-status.png](./img/java-thread-status.png)
+
 ## java-threadpool.png
 
 ![java-threadpool.png](./img/java-threadpool.png)

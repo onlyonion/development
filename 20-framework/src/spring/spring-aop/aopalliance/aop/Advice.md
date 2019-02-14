@@ -8,7 +8,7 @@ org.aopalliance.aop.Advice
 * 动态织入通知 织入拦截器
 * 通知理解为拦截，拦截器继承了通知，有构造方法拦截器、普通方法拦截器
 
-```
+```plantuml
 @startuml
 
 interface Advice

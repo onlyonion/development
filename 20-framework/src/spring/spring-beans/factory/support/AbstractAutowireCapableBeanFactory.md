@@ -14,7 +14,7 @@ SimpleAliasRegistry (org.springframework.core)
 
 ## class
 
-```
+```plantuml
 @startuml
 
 abstract class AbstractBeanFactory {

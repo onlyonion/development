@@ -11,6 +11,11 @@
   <!-- Import mermaid -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
   <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style type="text/css">
+    .markdown-section {
+        max-width: 1300px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -22,7 +27,7 @@
       repo: 'https://gitee.com/onlyonion/development',
       loadSidebar: true,
       loadNavbar: true,
-      auto2top: true,
+      auto2top: false,
       search: {
         maxAge: 86400000, // 过期时间，单位毫秒，默认一天
         paths: [], // or 'auto'

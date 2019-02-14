@@ -1,5 +1,6 @@
+org.apache.tomcat.util.net.SocketProcessorBase
 
-## define
+## hierarchy
 
 ```
 SocketProcessorBase (org.apache.tomcat.util.net)
@@ -33,7 +34,7 @@ sequenceDiagram
 
 ## seq
 
-```
+```plantuml
 @startuml
 ' socket -> 通信端点
 SocketProcessorBase -> NioEndpoint.SocketProcessor: doRun()

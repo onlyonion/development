@@ -1,6 +1,6 @@
 
 ## define
-```
+```plantuml
 @startuml
 
 interface AopProxy

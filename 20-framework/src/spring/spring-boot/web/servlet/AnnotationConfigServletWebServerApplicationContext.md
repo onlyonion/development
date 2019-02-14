@@ -12,7 +12,7 @@ DefaultResourceLoader (org.springframework.core.io)
 ```
 ## class
 
-```
+```plantuml
 @startuml
 
 '''''''''''''''''''' 注解配置小服务程序web服务应用上下文 ''''''''''''''''''''

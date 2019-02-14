@@ -2,7 +2,7 @@ org.springframework.boot.SpringApplication
 
 ## class
 
-```
+```plantuml
 @startuml
 
 class SpringApplication {

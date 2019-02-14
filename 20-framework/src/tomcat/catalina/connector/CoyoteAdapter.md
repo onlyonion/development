@@ -1,7 +1,8 @@
+org.apache.catalina.connector.CoyoteAdapter
 
 ## define
 
-```
+```plantuml
 @startuml
 
 interface Adapter {
@@ -26,7 +27,7 @@ connector.getService().getContainer().getPipeline().getFirst().invoke(request, r
 
 ## seq
 
-```
+```plantuml
 @startuml
 Http11Processor -> CoyoteAdapter: service()
 

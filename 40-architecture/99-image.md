@@ -42,10 +42,6 @@ this is generated files, just for view image conveniently...
 
 ![uml视图.png](./img/uml视图.png)
 
-## 信息系统项目管理师.png
-
-![信息系统项目管理师.png](./img/信息系统项目管理师.png)
-
 ## 咕泡学院-Java架构师VIP课程.png
 
 ![咕泡学院-Java架构师VIP课程.png](./img/咕泡学院-Java架构师VIP课程.png)

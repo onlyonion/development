@@ -1,9 +1,14 @@
 
 ## 架构
-* SOA 面向服务架构
-* 微服务架构 微框架
-* 设计原则
-* 设计模式
+* [设计](/40-architecture/design/README.md)
+  * [设计原则](/40-architecture/design/01-design.md)
+  * [设计模式](/40-architecture/design/09-design-pattern.md)
+  * [DDD](/40-architecture/design/30-ddd.md)
+* [SOA](/40-architecture/02-soa.md)
+* [微服务架构](/40-architecture/03-ms.md)
+  * [微框架](/40-architecture/31-ms-framework.md)
+  * [网站架构](/40-architecture/90-misc-architecture.md)
+* [云架构](/40-architecture/cloud/README.md)
 
 ## 架构演化
 

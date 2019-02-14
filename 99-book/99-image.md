@@ -82,9 +82,9 @@ this is generated files, just for view image conveniently...
 
 ![大型网站系统与Java中间件实践.png](./img/大型网站系统与Java中间件实践.png)
 
-## 大数据之路 阿里巴巴大数据实践.png
+## 大数据之路-阿里巴巴大数据实践.png
 
-![大数据之路 阿里巴巴大数据实践.png](./img/大数据之路-阿里巴巴大数据实践.png)
+![大数据之路-阿里巴巴大数据实践.png](./img/大数据之路-阿里巴巴大数据实践.png)
 
 ## 深入理解Java虚拟机.png
 

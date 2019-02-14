@@ -16,7 +16,7 @@
 * 《core java》卷I
 * 《core java》卷II
 * 《thinking in java》
-* [《HotSpot实战》](/99-book/notes/10-java/HotSpot实战.md)
+* [《HotSpot实战》陈涛](/99-book/notes/10-java/HotSpot实战.md)
 * [《Java 8函数式编程》](/99-book/notes/10-java/Java%208函数式编程.md)
 * [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/99-book/notes/10-java/Java%208实战.md)
 * [《Java并发编程的艺术》 方腾飞](/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术

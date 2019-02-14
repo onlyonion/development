@@ -1,3 +1,7 @@
+
+* 并源微分维性
+* 认商订支统搜推聊
+
 ## 并发编程
 * JMM
 * 内存模型
@@ -53,7 +57,7 @@
 * spring cloud
 * docker
 
-## 团队协作
+## 团队协作 DevOps
 * maven nexus gradle
 * jenkins
 * sonarqube
@@ -61,8 +65,6 @@
 * agile dev
 
 ## 商城
-认商订支统搜推聊
-
 * 用户认证系统 passport
 * 商品管理系统 item
 * 订单系统 order

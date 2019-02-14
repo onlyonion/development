@@ -9,7 +9,8 @@ org.aopalliance.intercept.Joinpoint
 * Joinpoint
 * Invocation
 * MethodInvocation
-```
+
+```plantuml
 @startuml
 
 ' 这个接口表示一个通用的运行时连接点

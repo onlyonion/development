@@ -1,4 +1,8 @@
 
+## socket request-response 
+* [SocketProcessorBase](/20-framework/src/tomcat/tomcat/SocketProcessorBase.md)
+* [CoyoteAdapter](/20-framework/src/tomcat/catalina/connector/CoyoteAdapter.md)
+
 ## package
 ```
 javax.servlet servlet规范
@@ -86,7 +90,3 @@ tomcat-embed-core-8.5.23
                 NioEndpoint
                 NioSelectorPool
 ```
-
-## socket request-response 
-* [SocketProcessorBase](./tomcat/SocketProcessorBase.md)
-* [CoyoteAdapter](./catalina/connector/CoyoteAdapter.md)

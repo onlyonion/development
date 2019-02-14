@@ -10,8 +10,8 @@ Joinpoint (org.aopalliance.intercept)
                     CglibMethodInvocation in CglibAopProxy (org.springframework.aop.framework)
 ```
 
-
-```
+## class
+```plantuml
 @startuml
 
 class ReflectiveMethodInvocation {
