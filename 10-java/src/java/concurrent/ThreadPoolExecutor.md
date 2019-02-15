@@ -1,37 +1,36 @@
 
 ## define
-```java
-public class ThreadPoolExecutor extends AbstractExecutorService {
-    private final BlockingQueue<Runnable> workQueue;
-    private final ReentrantLock mainLock = new ReentrantLock();
-    private final HashSet<Worker> workers = new HashSet<Worker>();
-    private final Condition termination = mainLock.newCondition();
 
-    private volatile ThreadFactory threadFactory;
-    private volatile RejectedExecutionHandler handler;
-    private volatile long keepAliveTime;
-    private volatile int corePoolSize;
-    private volatile int maximumPoolSize;
+```plantuml
+@startuml
+
+abstract class AbstractExecutorService
+class ThreadPoolExecutor {
+    - final BlockingQueue<Runnable> workQueue
+    - final ReentrantLock mainLock
+    - final HashSet<Worker> workers
+    - final Condition termination
     
-    private final class Worker
-        extends AbstractQueuedSynchronizer
-        implements Runnable
-    {
-        final Thread thread;
-        Runnable firstTask;
-        volatile long completedTasks;
-        Worker(Runnable firstTask) {
-            setState(-1); // inhibit interrupts until runWorker
-            this.firstTask = firstTask;
-            this.thread = getThreadFactory().newThread(this);
-        }
-        /** Delegates main run loop to outer runWorker  */
-        public void run() {
-            runWorker(this);
-        }
-
-    }
+    - volatile ThreadFactory threadFactory
+    - volatile RejectedExecutionHandler handler
+    - volatile long keepAliveTime
+    - volatile int corePoolSize
+    - volatile int maximumPoolSize
 }
+
+AbstractExecutorService <|-- ThreadPoolExecutor
+
+abstract class AbstractQueuedSynchronizer
+class Worker {
+    final Thread thread
+    Runnable firstTask
+    volatile long completedTasks
+    + void run()
+}
+
+AbstractQueuedSynchronizer <|-- Worker
+
+@enduml
 ```
 
 ## 类图

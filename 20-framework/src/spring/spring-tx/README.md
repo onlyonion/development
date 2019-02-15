@@ -22,5 +22,7 @@ transaction
         TransactionCallback
         TransactionTemplate
     PlatformTransactionManager
+    SavepointManager
+    TransactionDefinition
     TransactionStatus
 ```

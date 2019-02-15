@@ -1,4 +1,4 @@
-## code manage
+## 代码管理
 * svn
 * git
 * maven
@@ -23,7 +23,7 @@
 * mysql
 * 前端优化
 
-## waf
+## 防火墙
 * waf 防火墙
 
 ## webserver, proxy
@@ -33,10 +33,9 @@
 * HAProxy C语言编写，提供高可用性、负载均衡，以及基于TCP和HTTP的应用程序代理。
 * keepalived
 * nfs network file system
-* dns
-* tomcat
+* dns 域名解析，DNS负载均衡
 
-## monitor
+## 监控
 * zabbix 一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级的开源解决方案
 * prometheus 系统监控报警框架
 * tingyun 应用性能监控平台

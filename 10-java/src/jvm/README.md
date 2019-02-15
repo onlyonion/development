@@ -1,6 +1,22 @@
 
 ## hotspot.src
 hotspot/src/
+
+* 平台相关性
+  * cpu
+  * os
+  * os_cpu
+* 平台无关性
+  * 编译器、汇编、机器码 c1 opto asm
+  * 解释器
+  * 类加载 classfile
+  * 内存管理
+    * 内存分配
+    * 垃圾回收
+  * 运行时环境
+  * 面向对象的实现
+  * 对外服务
+
 ```
     cpu CPU相关代码（汇编器、模板解释器、ad文件、部分runtime函数在这里实现）         
         sparc

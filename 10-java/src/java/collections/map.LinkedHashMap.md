@@ -18,18 +18,37 @@ before, (hash, key, value, next), after
 
 LinkedHashMap在不对HashMap做任何改变的基础上，给HashMap的任意节点间增加了两条连线（before指针和after指针），使这些节点形成一个双向链表。
 
-```
-	// construtor
-	public LinkedHashMap(int initialCapacity,
-             				float loadFactor,
-                         boolean accessOrder) {
-        super(initialCapacity, loadFactor);   // 调用HashMap对应的构造函数
-        this.accessOrder = accessOrder;    // 迭代顺序的默认值
-    }
-    
-    // init
-    void init() {
-        header = new Entry<K,V>(-1, null, null, null);
-        header.before = header.after = header;
-    }
+
+## class
+
+```plantuml
+@startuml
+
+class LinkedHashMap<K,V> {
+    ~ transient LinkedHashMap.Entry<K,V> head
+    ~ transient LinkedHashMap.Entry<K,V> tail
+    ~ final boolean accessOrder
+}
+
+class Entry<K,V>{
+    .. 双向链表 ..
+    ~ Entry<K,V> before, after
+}
+
+class HashMap.Node<K,V> {
+    ~ final int hash
+    ~ final K key
+    ~ V value
+    .. 单向链表 ..
+    ~ Node<K,V> next
+}
+
+LinkedHashMap +-- Entry
+HashMap.Node <|-- Entry
+
+class HashMap<K,V>
+HashMap <|-- LinkedHashMap
+
+
+@enduml
 ```
