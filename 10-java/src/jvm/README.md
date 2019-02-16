@@ -1,5 +1,6 @@
+## jvm
 
-## hotspot.src
+### hotspot.src
 hotspot/src/
 
 * 平台相关性
@@ -8,15 +9,18 @@ hotspot/src/
   * os_cpu
 * 平台无关性
   * 编译器、汇编、机器码 c1 opto asm
-  * 解释器
+  * 解释器 interpreter
   * 类加载 classfile
   * 内存管理
     * 内存分配
-    * 垃圾回收
-  * 运行时环境
-  * 面向对象的实现
-  * 对外服务
+    * 垃圾回收 gc_interface gc_impementation
+  * 运行时环境 runtime
+  * 面向对象的实现 oops
+  * 对外服务 prims services
+  * 抽象数据结构 libadt
+    * dict port set vectset
 
+### package
 ```
     cpu CPU相关代码（汇编器、模板解释器、ad文件、部分runtime函数在这里实现）         
         sparc
@@ -35,7 +39,7 @@ hotspot/src/
         tool
         vm
             adlc 平台描述文件（上面的cpu或os_cpu里的*.ad文件）的编译器
-            asm
+            asm 汇编
                 assembler.hpp
                 codeBuffer.hpp
             c1 client编译器（又称“C1”）
@@ -58,38 +62,49 @@ hotspot/src/
                 linkResovler.hpp
             libadt
             memory 内存管理相关（老的分代式GC框架也在这里）
-                allocation.hpp
-                defNewGeneration.hpp
+                allocation.hpp 内存分配
+                defNewGeneration.hpp 分代
                 generation.hpp
                 space.hpp
                     EdenSpace
                     TenuredSpace
+                threadLocalAllocBuffer.hpp
             oops HotSpot VM的对象系统的实现
+                arrayKlass.hpp
+                arrayOop.hpp
+                compiledCHolderKlass.hpp
+                compiledCHolderOop.hpp
                 markOop.hpp 对象头
+                instanceKlass.hpp
+                instanceOop.hpp
+                klass.hpp 
+                oop.hpp
             opto server编译器（又称“C2”或“Opto”）
                 escape.hpp 逃逸分析
             precompiled
             prims HotSpot VM的对外接口，包括部分标准库的native部分和JVMTI实现
             runtime 运行时支持库（包括线程管理、编译器调度、锁、反射等）
                 atomic.hpp
+                basicLock.hpp 偏向锁
                 ObjectMonitor.hpp
                 os.hpp
-                osThread.hpp
-                reflection.hpp
-                synchronizer.hpp
+                osThread.hpp 操作系统线程
+                reflection.hpp 反射
+                synchronizer.hpp 监视器锁
                 thread.hpp
                 vframe.hpp
             services
+                attachListener.hpp 连接监听
+                heapDumper.hpp
             shark
             trace
             utilities
 ```
 
-### risc 
-reduced instruction set computer
-sparc Scalable Processor ARChitecture 可扩充处理器架构
-
-complex instruction set computer
+### cpu architecture 
+* reduced instruction set computer
+* sparc Scalable Processor ARChitecture 可扩充处理器架构
+* complex instruction set computer
 
 ### 新生代
 defNewGeneration.hpp
@@ -137,3 +152,6 @@ inline jlong    Atomic::cmpxchg    (jlong    exchange_value, volatile jlong*    
 // LOCK_IF_MP:会根据当前处理器的类型来决定是否为cmpxchg指令添加lock前缀。如果程序是在多处理器上运行，就为cmpxchg指令加上lock前缀（lock cmpxchg）。
 // 反之，如果程序是在单处理器上运行，就省略lock前缀（单处理器自身会维护单处理器内的顺序一致性，不需要lock前缀提供的内存屏障效果）
 ```
+
+## link
+[openjdk7 download](http://download.java.net/openjdk/jdk7/promoted/b147/openjdk-7-fcs-src-b147-27_jun_2011.zip)

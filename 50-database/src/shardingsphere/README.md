@@ -1,11 +1,10 @@
 
-## sharding
+## shardingsphere
 * Sharding-JDBC
 * Sharding-Proxy
 * Sharding-Sidecar
 
 [shardingsphere](https://shardingsphere.apache.org/document/current/cn/overview/)
-
 
 ## component
 * sharding-jdbc

@@ -45,5 +45,8 @@
 * jsp/vm/flt + (jquery)
 * react/angular/vue
 
-## 中台-共享服务体系
-服务框架、服务中心、数据拆分、异步与缓存、监控运营、稳定性建设
+## links
+* [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md)
+  * 中台-共享服务体系 
+  * 服务框架、服务中心、数据拆分、异步与缓存、监控运营、稳定性建设
+* [《云计算》刘鹏](/99-book/notes/40-architecture/云计算.md)

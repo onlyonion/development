@@ -1,8 +1,11 @@
 Root Cause Analysis
 
-[问题排查工具单](https://www.testwo.com/article/968 "title") 
-
-[问题排查](https://www.cnblogs.com/mfmdaoyou/p/7349117.html "title") 
+## links
+* [问题排查工具单](https://www.testwo.com/article/968 ) 
+* [问题排查](https://www.cnblogs.com/mfmdaoyou/p/7349117.html) 
+* [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/99-book/notes/40-architecture/逆流而上.md)
+* [《大型分布式网站架构设计与实践》陈康贤](/99-book/notes/40-architecture/大型分布式网站架构.md?id=_45-java%e5%bc%95%e7%94%a8%e6%95%85%e9%9a%9c%e7%9a%84%e6%8e%92%e6%9f%a5)
+* [运维排查](/70-dev-ops/11-devops-check.md)
 
 ### 工具单
 1.	tail tail -f filename -n 100
@@ -53,7 +56,7 @@ java.lang.OutOfmemoryError: PermGen Space
 
 1. jmap -heap pid查看堆内存使用情况
 2. 默认的永久代几乎被占满了，引发Full GC
-4. 调整永久代内存
+3. 调整永久代内存
 
 ```shell
 # nohup java -Xms1024m -Xmx1024m -Xss1024K -XX:PermSize=128m -XX:MaxPermSize=256m -jar spring-boot-1.0.0.jar >/dev/null 2>&1 &

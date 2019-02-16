@@ -1,7 +1,15 @@
 
-## socket request-response 
-* [SocketProcessorBase](/20-framework/src/tomcat/tomcat/SocketProcessorBase.md)
-* [CoyoteAdapter](/20-framework/src/tomcat/catalina/connector/CoyoteAdapter.md)
+## content
+* [catalina](/20-framework/src/tomcat/catalina/README.md)
+* [coyote](/20-framework/src/tomcat/coyote/README.md)
+* javax.servlet
+  * [servlet](/)
+  * [FilterChain](/)
+* juli
+* naming
+* tomcat
+  * [SocketProcessorBase](/20-framework/src/tomcat/tomcat/SocketProcessorBase.md)
+  * [CoyoteAdapter](/20-framework/src/tomcat/catalina/connector/CoyoteAdapter.md)
 
 ## package
 ```
@@ -90,3 +98,6 @@ tomcat-embed-core-8.5.23
                 NioEndpoint
                 NioSelectorPool
 ```
+
+## links
+* [《Tomcat架构解析》刘光瑞](/99-book/notes/21-server/Tomcat架构解析.md)

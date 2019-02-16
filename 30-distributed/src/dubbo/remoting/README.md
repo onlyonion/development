@@ -1,5 +1,5 @@
 
-## core
+## remoting
 * 交换层
 * 端对端的抽象
 * 传输层网络协议
@@ -7,7 +7,6 @@
 * 网络IO 字节缓存、通道、通道处理器
 
 ## package
-
 ```
 buffer
     ChannelBuffer

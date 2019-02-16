@@ -1,19 +1,24 @@
+## zookeeper
 org.apache.zookeeper.ZooKeeper.ZooKeeper
+
 org.apache.zookeeper.ClientCnxn
 
+## content
+```plantuml
+@startuml
 
-```yuml
-// {type:class}
+ZooKeeper +- ClientCnxn
 
+ClientCnxn +- SendThread
 
-[ZooKeeper]++-[ClientCnxn]
+ClientCnxn +- EventThread
 
-[ClientCnxn]++-[SendThread]
+Thread <|-- ZooKeeperThread
+ZooKeeperThread <|-- SendThread
+ZooKeeperThread <|-- EventThread
 
-[ClientCnxn]++-[EventThread]
-
-[Thread]^-[ZooKeeperThread]
-[ZooKeeperThread]^-[SendThread]
-[ZooKeeperThread]^-[EventThread]
-
+@enduml
 ```
+
+## links
+* [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)

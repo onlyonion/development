@@ -23,21 +23,6 @@
 * 搜索：        elasticsearch、solr
 * 日志：        rsyslog、elk、flume
 
-## misc
-> 框、中、拆、异、缓，监控、治理
-
-* 重试和幂等性
-* 分布式链路跟踪
-* 分布式事务
-* 一致性哈希
-* 熔断
-* 限流、降级
-* 流量控制
-* 分而治之，分片partition
-* 汇总 MapReduce
-* 冗余或者复制集Replication，集群Cluster
-
-
 [分布式原理介绍](https://blog.csdn.net/elricboa/article/details/78698197)
 
 [什么是分布式系统，如何学习分布式系统](https://www.cnblogs.com/xybaby/p/7787034.html)

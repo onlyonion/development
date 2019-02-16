@@ -1,13 +1,6 @@
 org.springframework.web.servlet.HandlerMapping
-## 1. define
-```java
-public interface HandlerMapping {
-	HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception;
-}
-```
 
-
-## 2. hierachical
+## 1. hierachical
 ```
 HandlerMapping (org.springframework.web.servlet)                                                                                    
     MatchableHandlerMapping (org.springframework.web.servlet.handler)
@@ -25,6 +18,17 @@ HandlerMapping (org.springframework.web.servlet)
         AbstractHandlerMethodMapping (org.springframework.web.servlet.handler)                                                      
             RequestMappingInfoHandlerMapping (org.springframework.web.servlet.mvc.method)                                           
                 RequestMappingHandlerMapping (org.springframework.web.servlet.mvc.method.annotation)                                
+```
+
+## 2. define
+```plantuml
+@startuml
+
+interface HandlerMapping {
+	+ HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception
+}
+
+@enduml
 ```
 
 
@@ -74,7 +78,7 @@ HandlerMapping (org.springframework.web.servlet)
 ```
 
 ## 3. RequestMappingHandlerMapping
-
+```plantuml
 @startuml
 
 abstract class AbstractHandlerMapping {
@@ -114,10 +118,11 @@ AbstractHandlerMethodMapping <|-- RequestMappingInfoHandlerMapping
 RequestMappingInfoHandlerMapping <|-- RequestMappingHandlerMapping
 
 @enduml
+```
 
 ### 3.1 RequestMappingHandlerMapping 初始化
 * 上下文 预实例化非懒加载单例bean AbstractApplicationContext.finishBeanFactoryInitialization()
-* [InitializingBean.afterPropertiesSet()](../spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
+* [InitializingBean.afterPropertiesSet()](/20-framework/src/spring/spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
 * 初始化处理器方法
 * 查找处理映射方法，创建HandlerMethod，注册MappingRegistry
 
@@ -181,7 +186,7 @@ sequenceDiagram
 
 ### 4.1 SimpleUrlHandlerMapping 初始化
 * 上下文 预实例化非懒加载单例bean AbstractApplicationContext.finishBeanFactoryInitialization()
-* [AbstractAutowireCapableBeanFactory.initializeBean()后处理器方法，在InitializingBean.afterPropertiesSet()之前执行](../spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
+* [AbstractAutowireCapableBeanFactory.initializeBean()后处理器方法，在InitializingBean.afterPropertiesSet()之前执行](/20-framework/src/spring/spring-beans/factory/support/AbstractAutowireCapableBeanFactory.md) 
 
 
 ```mermaid

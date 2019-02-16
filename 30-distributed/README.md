@@ -4,12 +4,16 @@
 * 一致性算法，2PC、3PC、Paxos；
 * TCC、mq-tx
 * Saga
+* 一致性哈希
+* 分而治之，分片与汇总
 
 ## 分布式中间件
 * 服务框架
   * rpc框架 dubbo
   * 注册中心 zookeeper
   * 配置中心 diamond
+  * 负载均衡
+  * 服务网关
 * 分布式缓存
   * redis
   * mongodb
@@ -24,12 +28,8 @@
 * 分布式计算 Mapreduce, storm
 
 ## 服务治理
-* 超时
-* 重试
-* 幂等
-* 限流
-* 降级
-* 熔断
+* 超时、重试、幂等
+* 限流、降级、熔断
 * 流量调度
 * 资源隔离
 * 业务异步、业务开关
@@ -40,7 +40,7 @@
 * 集群
 * 主从
 * 冷备热备
-* 大数据 Hadoop, hbase
+* 冗余或者复制集Replication，集群Cluster
 
 ## log
 * elk (Elasticsearch, Logstash, Kibana)

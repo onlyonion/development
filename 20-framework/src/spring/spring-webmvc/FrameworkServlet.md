@@ -10,8 +10,8 @@ GenericServlet (javax.servlet)
                 DispatcherServlet (org.springframework.web.servlet)
 ```
 
-## class
-```
+## define
+```plantuml
 @startuml
 
 '''''''''''''''''''''''''' servlet-api ''''''''''''''''''''''''''
@@ -77,80 +77,6 @@ abstract class FrameworkServlet {
 HttpServletBean <|-- FrameworkServlet
 ApplicationContextAware <|.. FrameworkServlet
 
-'''''''''''''''''''''''''' 分配器(调度程序)小服务程序 ''''''''''''''''''''''''''
-class DispatcherServlet {
-    - MultipartResolver multipartResolver
-    - LocaleResolver localeResolver
-    - ThemeResolver themeResolver
-    - List<HandlerMapping> handlerMappings
-    - List<HandlerAdapter> handlerAdapters
-    - List<HandlerExceptionResolver> handlerExceptionResolvers
-    - RequestToViewNameTranslator viewNameTranslator
-    - FlashMapManager flashMapManager
-    - List<ViewResolver> viewResolvers
-    # void doService(HttpServletRequest request, HttpServletResponse response) 
-    # void doDispatch(HttpServletRequest request, HttpServletResponse response)
-    # HttpServletRequest checkMultipart(HttpServletRequest request)
-    # HandlerExecutionChain getHandler(HttpServletRequest request)
-    # HandlerAdapter getHandlerAdapter(Object handler)
-    - void applyDefaultViewName(HttpServletRequest request, ModelAndView mv)
-    - void processDispatchResult(HttpServletRequest request, HttpServletResponse response,
-        HandlerExecutionChain mappedHandler, ModelAndView mv, Exception exception) 
-    # void render(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) 
-}
-FrameworkServlet <|-- DispatcherServlet
-
-'''''''''''''''''''''''''' 处理器映射器 ''''''''''''''''''''''''''
-interface HandlerMapping { 
-    + HandlerExecutionChain getHandler(HttpServletRequest request)
-}
-DispatcherServlet o-- HandlerMapping
-
-'''''''''''''''''''''''''' 处理器执行链 ''''''''''''''''''''''''''
-class HandlerExecutionChain { 
-    - final Object handler
-    - HandlerInterceptor[] interceptors
-    boolean applyPreHandle(HttpServletRequest request, HttpServletResponse response)
-    void applyPostHandle(HttpServletRequest request, HttpServletResponse response, ModelAndView mv)
-    void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, Exception ex)
-}
-
-'''''''''''''''''''''''''' 处理器执行链-拦截器 ''''''''''''''''''''''''''
-interface HandlerInterceptor {
-    + boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-    + void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-    			ModelAndView modelAndView)
-    + void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler,
-   			 Exception ex)  			
-}
-DispatcherServlet ..> HandlerExecutionChain
-HandlerExecutionChain o-- HandlerInterceptor
-
-'''''''''''''''''''''''''' 处理器适配器 ''''''''''''''''''''''''''
-interface HandlerAdapter {
-    + boolean supports(Object handler)
-    + ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) 
-}
-
-DispatcherServlet o-- HandlerAdapter
-
-'''''''''''''''''''''''''' 视图解析器 ''''''''''''''''''''''''''
-interface ViewResolver {
-	+ View resolveViewName(String viewName, Locale locale)
-}
-DispatcherServlet o-- ViewResolver
-
-'''''''''''''''''''''''''' 视图 ''''''''''''''''''''''''''
-interface View {
-    + void render(Map<String, ?> model, HttpServletRequest request, HttpServletResponse response)
-}
-DispatcherServlet ..> View
-
-class ModelAndView {
-    - Object view
-    - ModelMap model
-}
-DispatcherServlet ..> ModelAndView
 
 @enduml
 ```

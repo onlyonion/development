@@ -1,9 +1,10 @@
+## jdk
 
-## openjdk8.package
+### openjdk8.package
 ```
     common
-    corba
-    hotspot
+    corba 公共对象请求代理架构
+    hotspot 虚拟机
     jaxp
     jaxws
     jdk
@@ -11,23 +12,23 @@
             bsd
             linux
             macosx
-            share
+            share   平台无关性
                 bin
-                classess
+                classess    java源码
                     com
                     java
                     javax
                     jdk
                     org
                     sun
-                native
+                native  本地代码 c++实现
                     com
                     common
                     java
                         io
                         lang
                             Class.c
-                            ClassLoader.c
+                            ClassLoader.c   类加载器
                             Object.c
                             Runtime.c
                             Thread.c
@@ -42,9 +43,6 @@
             windows
     langtools
     make
-    nashorn
+    nashorn javascript 引擎
     test
 ```
-
-
-[openjdk7 download](http://download.java.net/openjdk/jdk7/promoted/b147/openjdk-7-fcs-src-b147-27_jun_2011.zip)

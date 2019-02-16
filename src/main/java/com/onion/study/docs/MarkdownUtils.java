@@ -21,11 +21,18 @@ public class MarkdownUtils {
 
     public static final String DEFAULT_ENCODING = "UTF-8";
     public static final String DEFAULT_TEMPLATE_PATH = "/META-INF/templates";
+
+    /* image 文件夹下生成 99-image.md */
     public static final String DEFAULT_TEMPLATE_NAME = "img.md.ftl";
     public static final String GENERATE_MARKDOWN_FILE = "99-image.md";
     public static final String IMG_FILE_DIRECTORY = "img";
-    public static final String FREEMARKER_DATA_KEY = "imgList";
     private static volatile boolean isCopy = false;
+
+    /* blog 文件夹下生成 README.md */
+    public static final String BLOG_TEMPLATE_NAME = "blog.md.ftl";
+    public static final String BLOG_FILE_DIRECTORY = "blog";
+    public static final String GENERATE_BLOG_MARKDOWN_FILE = "README.md";
+
     private static File defaultFile;
     static Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
 
@@ -35,10 +42,10 @@ public class MarkdownUtils {
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     }
 
-    public static String freeMarker(Map<String, Object> data) {
+    public static String freeMarker(Map<String, Object> data, String tplName) {
         Writer writer = new StringWriter();
         try {
-            Template temp = cfg.getTemplate(DEFAULT_TEMPLATE_NAME);
+            Template temp = cfg.getTemplate(tplName);
             temp.process(data, writer);
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,12 +81,20 @@ public class MarkdownUtils {
                     } else {
                         String[] list = subFile.list();
                         Map<String, Object> map = new HashMap<>();
-                        map.put(FREEMARKER_DATA_KEY, list);
-                        String content = freeMarker(map);
+                        map.put("imgList", list);
+                        String content = freeMarker(map, DEFAULT_TEMPLATE_NAME);
                         File markdown = new File(subFile.getParent(), GENERATE_MARKDOWN_FILE);
                         FileUtils.writeStringToFile(markdown, content, DEFAULT_ENCODING);
                         logger.info("write file {}", markdown.getPath());
                     }
+                } else if (BLOG_FILE_DIRECTORY.equals(subFile.getName())) {
+                    String[] list = subFile.list();
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("blogList", list);
+                    String content = freeMarker(map, BLOG_TEMPLATE_NAME);
+                    File markdown = new File(subFile.getParent(), GENERATE_BLOG_MARKDOWN_FILE);
+                    FileUtils.writeStringToFile(markdown, content, DEFAULT_ENCODING);
+                    logger.info("write file {}", markdown.getPath());
                 }
                 // 文件夹需要调用递归 ，深度+1
                 getFile(array[i].getPath(), deep + 1);

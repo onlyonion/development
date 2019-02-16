@@ -7,9 +7,9 @@
   * [数据库](50-database/README.md)
   * [前端](60-js/README.md)
   * [开发运维](70-dev-ops/README.md)
-* [读书笔记](99-book/README.md)
+* [小书库](99-book/README.md)
 * 源码分析
-  * [java](10-java/src/java/README.md)
+  * [java](10-java/src/README.md)
   * [spring](20-framework/src/spring/README.md)
   * [mybatis](20-framework/src/mybatis/README.md)
   * [tomcat](20-framework/src/tomcat/README.md)

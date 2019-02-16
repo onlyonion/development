@@ -1,8 +1,11 @@
 org.springframework.web.servlet.HandlerAdapter
+
 org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter
+
 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
+
 ## define
-```
+```plantuml
 @startuml
 interface HandlerAdapter {
     + boolean supports(Object handler)
@@ -22,7 +25,7 @@ AbstractHandlerMethodAdapter <|-- RequestMappingHandlerAdapter
 
 @enduml
 ```
-## package
+## hierarchy
 ```
 HandlerAdapter (org.springframework.web.servlet)
     HttpRequestHandlerAdapter (org.springframework.web.servlet.mvc)

@@ -1,3 +1,4 @@
+## netty
 
 ## 组件 components
 
@@ -60,3 +61,6 @@ util
     concurrent
     internal    
 ```
+
+## links
+* [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)

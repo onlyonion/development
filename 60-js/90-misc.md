@@ -1,11 +1,8 @@
 ## 绘图
-Echarts HighCharts Canvas
-
-SVG  Scalable Vector Graphics 可伸缩矢量图形 XML 描述 2D 图形的语言
-
-Canvas 通过 JavaScript 来绘制 2D 图形 基于像素的即时模式图形系统
-
-[html_5_canvas_vs_svg.asp](http://www.w3school.com.cn/html5/html_5_canvas_vs_svg.asp)
+* Echarts HighCharts Canvas
+* SVG  Scalable Vector Graphics 可伸缩矢量图形 XML 描述 2D 图形的语言
+* Canvas 通过 JavaScript 来绘制 2D 图形 基于像素的即时模式图形系统
+* [html_5_canvas_vs_svg.asp](http://www.w3school.com.cn/html5/html_5_canvas_vs_svg.asp)
 
 ## 前后端分离，好与坏
 当一个系统是基于前端与后端分离这种模式来进行来发的，通常来说，这种开发模式使得整个开发的环节变长了，
@@ -38,7 +35,7 @@ min-*、max-*、百分比%
 * 自适应布局（Adaptive Layout）自适应布局的特点是分别为不同的屏幕分辨率定义布局，即创建多个静态布局，每个静态布局对应一个屏幕分辨率范围。
 * 响应式布局（Responsive Layout）媒体查询@media 流式布局
 * 弹性布局（rem/em布局）
-* 
+
 ## dev ide
 * webstorm
 * aptana studio
