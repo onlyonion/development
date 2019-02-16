@@ -1,3 +1,5 @@
+# 集群容错
+
 ## 简易流程
 
 	Cilent		==> 	Provider

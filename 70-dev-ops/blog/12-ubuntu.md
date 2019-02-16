@@ -1,3 +1,5 @@
+# ubuntu
+
 ### ssh server
 
 dpkg -l | grep ssh

@@ -1,8 +1,8 @@
-high performance
+# hp ha hc
 
-high availability	high reliability
-
-high concurrency
+* high performance
+* high availability	high reliability
+* high concurrency
 
 
 ### 一．系统吞度量要素

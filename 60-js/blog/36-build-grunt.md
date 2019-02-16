@@ -1,4 +1,4 @@
-## GRUNT
+# grunt
 JavaScript 世界的构建工具
 
 ## 为何要用构建工具

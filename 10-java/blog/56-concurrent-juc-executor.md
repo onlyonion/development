@@ -1,15 +1,11 @@
+## 执行器与线程池
 
 ## ThreadPoolExecutor
-
 ### FixedThreadPool
-
 ### SingleThreadPool
-
 ### CachedThreadPool
-
 ## SheduledThreadPoolExecutor
-
-![altText](./img/java-thread-ScheduleThreadPoolExecutor.jpg "title") 
+![ScheduleThreadPoolExecutor](./img/java-thread-ScheduleThreadPoolExecutor.jpg) 
 
 ### DelayQueue
 take()

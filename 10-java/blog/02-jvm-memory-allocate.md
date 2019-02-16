@@ -1,12 +1,13 @@
+# jvm内存分配与回收
+动态内存管理
 
 ## JVM运行时内存结构
 
-![jvm运行时内存结构](./img/jvm-memory-logic.jpg "jvm运行时内存结构")
+![jvm运行时内存结构](../img/jvm-memory-logic.jpg)
 
-![jvm运行时内存结构](./img/r_sun-jdk-memory-area1.png "jvm运行时内存结构")
+![jvm运行时内存结构](../img/r_sun-jdk-memory-area1.png)
 
-![jvm运行时内存结构](./img/jvm-memory.png "jvm运行时内存结构")
-
+![jvm运行时内存结构](../img/jvm-memory.png)
 
 堆内存 = 年轻代 + 年老代 + 永久代
 年轻代 = Eden区 + 两个Survivor区（From和To）

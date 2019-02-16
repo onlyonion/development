@@ -1,8 +1,6 @@
-# question
+## mybatis question
 
-[常见问题](https://blog.csdn.net/eaphyy/article/details/71190441 "title") 
-
-
+[常见问题](https://blog.csdn.net/eaphyy/article/details/71190441) 
 
 ## 1、#{}和${}的区别是什么？
 

@@ -1,3 +1,5 @@
+# windows环境变量
+
 ## java环境变量
 JAVA_HOME	D:\opt\java\jdk1.8.0_131
 CLASSPATH	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar

@@ -2,7 +2,6 @@
 ## jstack
 [性能分析之-- JAVA Thread Dump 分析综述](https://blog.csdn.net/rachel_luo/article/details/8920596)
 
-
 ### jvm thread
 * Attach Listener
 * Signal Dispatcher

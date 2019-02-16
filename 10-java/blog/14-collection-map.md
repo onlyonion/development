@@ -1,5 +1,5 @@
+#  map
 
-#  Map
 ## HashMap,LinkedHashMap,TreeMap的区别
 
 Map主要用于存储健值对，根据键得到值，因此不允许键重复(重复了覆盖了),但允许值重复。

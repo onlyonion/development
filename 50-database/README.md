@@ -1,5 +1,5 @@
 
-## db
+## 数据库
 * mysql
 
 ## mysql
@@ -18,7 +18,8 @@
 * otter
 * ldap
 
-## framework
+## 数据库中间件
+* 连接池
 * sharding-jdbc TTDL
 * proxy
 * mybatis

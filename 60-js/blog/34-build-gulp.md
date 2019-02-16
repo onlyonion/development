@@ -1,9 +1,8 @@
-
-## gulp
+# gulp
 gulp.js - 基于流的自动化构建工具
 用自动化构建工具增强你的工作流程！
 
-### 使用
+## 使用
 1. 全局安装 gulp：
 $ npm install --global gulp
 

@@ -1,12 +1,10 @@
 
-分布式事务解决方案
+## 分布式事务解决方案
 
 * [二阶段提交](https://github.com/yu199195/Raincat)
 * [tcc分布式事务解决方案](https://github.com/yu199195/hmily)
 * [基于消息队列最终一致性](https://github.com/yu199195/myth)
 * [源码分析系列博客地址](https://yu199195.github.io/)
-
-
 
 ### 理论基础
 JDBC、JTA
@@ -67,4 +65,5 @@ blog-job-retry
 可补偿
 
 [再有人问你分布式事务，把这篇扔给他](https://www.cnblogs.com/bigben0123/p/9453830.html)
+
 [深入理解分布式事务](http://www.codeceo.com/article/distributed-transaction.html)

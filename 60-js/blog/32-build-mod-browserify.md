@@ -1,3 +1,4 @@
+# browserify
 Browserify lets you require('modules') in the browser by bundling up all of your dependencies.
 
 Browserify 可以让你使用类似于 node 的 require() 的方式来组织浏览器端的 Javascript 代码，

@@ -1,14 +1,12 @@
-Locks
+## Locks
 
-演化 
-
+### 演化 
 1. synchronize this 发现不太好
 2. Object lock = new Object; synchronize (lock) {} 使用一个Object对象，替代this
 3. 将Object lock = new Object()，抽象出Lock接口, await(), singal(), singalAll()
 
-## Lock
-
-![altText](./img/java-concurrent-lock.jpg "title") 
+## 结构
+![lock](../img/java-concurrent-lock.jpg ) 
 
 * 独占锁
 * 共享锁

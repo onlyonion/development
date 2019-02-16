@@ -1,5 +1,4 @@
-
-## JVM关闭
+# jvm关闭
 
 * 正常关闭 所有非守护线程执行结束, System.exit(0), ctrl + c, kill (-15)
 * 异常关闭 RuntimeException, OOM

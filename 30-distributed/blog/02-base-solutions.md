@@ -1,3 +1,4 @@
+## 分布式一致性解决方案
 
 * 主备-复制
 * 最终一致性方案
@@ -15,7 +16,7 @@ ACID, CAP, BASE
 强一致、弱一致、最终一致性
 在工程实践上，为了保障系统的可用性，互联网系统大多将强一致性需求转换成最终一致性的需求，并通过系统执行幂等性的保证，保证数据的最终一致性。
 
-![altText](./img/eventual.consistency.method.png "title") 
+![consistency](../img/eventual.consistency.method.png) 
 
 #### A 业务系统业务逻辑的commit/rollback机制; 单数据库-利用数据库事务特性
 
@@ -39,7 +40,7 @@ ACID, CAP, BASE
 #### D 类似double check机制的确认机制
 
 
-[保证分布式系统数据一致性的6种方案](https://blog.csdn.net/hxpjava1/article/details/79409459 "title") 
+[保证分布式系统数据一致性的6种方案](https://blog.csdn.net/hxpjava1/article/details/79409459) 
 
 #### 1. 规避分布式事务——业务整合
 业务整合方案主要采用将接口整合到本地执行的方法。
@@ -83,6 +84,5 @@ ACID, CAP, BASE
 
 #### 6. 农信网数据一致性方案
 同步服务调用，异步消息通知机制
-
 
 分布式服务对衍生的配套系统要求比较多，特别是我们基于消息、日志的最终一致性方案，需要考虑消息的积压、消费情况、监控、报警等。

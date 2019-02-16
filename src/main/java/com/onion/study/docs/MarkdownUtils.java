@@ -91,8 +91,9 @@ public class MarkdownUtils {
                     String[] list = subFile.list();
                     Map<String, Object> map = new HashMap<>();
                     map.put("blogList", list);
+                    map.put("path", subFile.getPath().replaceAll("\\\\", "/").substring(1));
                     String content = freeMarker(map, BLOG_TEMPLATE_NAME);
-                    File markdown = new File(subFile.getParent(), GENERATE_BLOG_MARKDOWN_FILE);
+                    File markdown = new File(subFile.getPath(), GENERATE_BLOG_MARKDOWN_FILE);
                     FileUtils.writeStringToFile(markdown, content, DEFAULT_ENCODING);
                     logger.info("write file {}", markdown.getPath());
                 }

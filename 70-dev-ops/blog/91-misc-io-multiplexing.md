@@ -1,11 +1,10 @@
-
-## I/O多路复用
+# I/O多路复用
 
 I/O多路复用就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。
 但select，pselect，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的，
 而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。
 
-### select
+## select
 
 ![linux-io-select.png)](../img/linux-io-select.png)
 
@@ -18,11 +17,11 @@ select的几大缺点：
 2. 同时每次调用select都需要在内核遍历传递进来的所有fd，这个开销在fd很多时也很大
 3. select支持的文件描述符数量太小了，默认是1024
 
-### poll
+## poll
 
 基于链表来存储的，没有最大连接数的限制
 
-### epoll
+## epoll
 
 epoll既然是对select和poll的改进，就应该能避免上述的三个缺点。
 epoll和select和poll的调用接口上的不同，select和poll都只提供了一个函数——select或者poll函数。而epoll提供了三个函数，

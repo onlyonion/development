@@ -1,4 +1,4 @@
-并发容器
+## 并发容器
 
 ## 1. ConcurrentHashMap
 * volatile
@@ -9,10 +9,10 @@
 * 红黑树	O(n) -> O(logN)
 
 ### 1.1 类图
-![altText](./img/java-collections-ConcurrentHashMap-class.jpg "title") 
+![ConcurrentHashMap](../img/java-collections-ConcurrentHashMap-class.jpg) 
 
 ### 1.2 结构图
-![altText](./img/java-collections-ConcurrentHashMap.jpg "title") 
+![ConcurrentHashMap](../img/java-collections-ConcurrentHashMap.jpg) 
 
 ### 1.3 Hashtable ConcurrentHashMap
 Hashtable，synchronized是针对整张Hash表的，即每次锁住整张表让线程独占，

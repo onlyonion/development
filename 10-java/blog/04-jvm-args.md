@@ -1,11 +1,10 @@
+# jvm命令行参数
 
 * 堆栈方法区 大小、比率
 * 回收器 选择、参数设置、类卸载
 * OOM打印日志
 
-
 ## 1. 堆大小设置
-
 
 ## 2. 回收器选择
 
@@ -31,7 +30,6 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseParallelGC  -XX:MaxGCPauseMilli
 -XX:+UseAdaptiveSizePolicy：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低相应时间或者收集频率等，此值建议使用并行收集器时，一直打开。
 ```
 
-
 2.响应时间优先的并发收集器
 并发收集器主要是保证系统的响应时间，减少垃圾收集时的停顿时间。适用于应用服务器、电信领域等。
 典型配置：
@@ -44,7 +42,6 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 -XX:CMSFullGCsBeforeCompaction：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间以后会产生“碎片”，使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。
 -XX:+UseCMSCompactAtFullCollection：打开对年老代的压缩。可能会影响性能，但是可以消除碎片
 ```
-	
 
 ## 3. 辅助信息
 
@@ -121,6 +118,7 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 	-XX:CMSFullGCsBeforeCompaction=0：上面配置开启的情况下，这里设置多少次Full GC后，对年老代进行压缩
 
 [JVM参数配置详解](https://blog.csdn.net/yjl33/article/details/78890363) 
+
 [JVM系列三:JVM参数设置、分析](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 
 
