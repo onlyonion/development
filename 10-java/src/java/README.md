@@ -24,8 +24,8 @@
     * [ReadWriteLock](/10-java/src/java/concurrent/locks/ReadWriteLock.md)
   * 并发容器
     * [ConcurrentHashMap](/10-java/src/java/concurrent/ConcurrentHashMap.md)
-    * [ConcurrentLinkedQueue](/)
-    * [BlockingQueue](/)
+    * [ConcurrentLinkedQueue](/10-java/src/java/concurrent/ConcurrentLinkedQueue.md)
+    * [BlockingQueue](/10-java/src/java/concurrent/BlockingQueue.md)
   * 并发工具
     * [CountDownLatch](/10-java/src/java/concurrent/tool.CountDownLatch.md)
     * [CyclicBarrier](/10-java/src/java/concurrent/tool.CyclicBarrier.md)

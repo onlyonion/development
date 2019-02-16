@@ -1,6 +1,6 @@
 ## 1. jdk7 HashMap
 
-<img src="/10-java/img/java7-map-HashMap.png" width="50%" height="50%">
+<img src="10-java/img/java7-map-HashMap.png" width="50%" height="50%">
 
 ## 1.1 hierarchy
 ```
@@ -11,7 +11,7 @@ AbstractMap (java.util)
 
 ## 1.2 define
 * 静态域
-* 对象域
+* 实例域
   * capacity：当前数组容量，始终保持 2^n，可以扩容，扩容后数组大小为当前的 2 倍。
   * loadFactor：负载因子，默认为 0.75。
   * threshold：扩容的阈值，等于 capacity * loadFactor
@@ -40,7 +40,7 @@ class HashMap<K,V> {
     static final int DEFAULT_INITIAL_CAPACITY = 1 << 4
     static final int MAXIMUM_CAPACITY = 1 << 30
     static final float DEFAULT_LOAD_FACTOR = 0.75f
-    .. 对象域 ..
+    .. 实例域 ..
     static final Entry<?,?>[] EMPTY_TABLE = {};
     transient Entry<K,V>[] table = (Entry<K,V>[]) EMPTY_TABLE;
     transient int size;
@@ -143,14 +143,14 @@ h --indexFor--> 存储下标;
 
 # 2. jdk8 HashMap
 
-<img src="/10-java/img/java8-map-HashMap.png" width="50%" height="50%">
+<img src="10-java/img/java8-map-HashMap.png" width="50%" height="50%">
 
 ## 2.1 define
 * 静态域
   * TREEIFY_THRESHOLD = 8
   * UNTREEIFY_THRESHOLD = 6
   * MIN_TREEIFY_CAPACITY = 64
-* 对象域
+* 实例域
   * Node<K,V>[] table
   * Set<Map.Entry<K,V>> entrySet
   * size
@@ -189,7 +189,7 @@ class HashMap<K,V> {
     ~ static final int TREEIFY_THRESHOLD = 8
     ~ static final int UNTREEIFY_THRESHOLD = 6
     ~ static final int MIN_TREEIFY_CAPACITY = 64
-    .. 对象域 ..
+    .. 实例域 ..
     ~ transient Node<K,V>[] table
     ~ transient Set<Map.Entry<K,V>> entrySet
     ~ transient int size

@@ -6,7 +6,7 @@ java.util.concurrent.ConcurrentHashMap
   * 继承ReentrantLock 
 * 弱一致性，HashTable的迭代器是强一致性的
 
-<img src="/10-java/img/java7-map-ConcurrentHashMap.png" width="50%" height="50%">
+<img src="10-java/img/java7-map-ConcurrentHashMap.png" width="50%" height="50%">
 
 ## 1.1 define
 * 静态域
@@ -127,7 +127,7 @@ Segment o-- HashEntry
 * 1个静态代码块
 * 37个字段，其中27个常量、10个字段
 
-<img src="/10-java/img/java8-map-ConcurrentHashMap.png" width="50%" height="50%">
+<img src="10-java/img/java8-map-ConcurrentHashMap.png" width="50%" height="50%">
 
 ## 2.1 define
 * 静态域
