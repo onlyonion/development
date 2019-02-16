@@ -1,3 +1,5 @@
+org.springframework.web.servlet.HandlerInterceptor
+
 ## hierarchy
 ```
 HandlerInterceptor (org.springframework.web.servlet)

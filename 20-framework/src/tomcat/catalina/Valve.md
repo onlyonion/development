@@ -1,3 +1,6 @@
+org.apache.catalina.Valve
+
+## hierarchy
 ```
 Valve (org.apache.catalina)
     ValveBase (org.apache.catalina.valves)
@@ -22,6 +25,8 @@ Valve (org.apache.catalina)
         StandardHostValve (org.apache.catalina.core)
 ```
 
+
+## define
 ```
 @startuml
 interface Valve {

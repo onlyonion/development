@@ -6,7 +6,7 @@ org.apache.catalina.Lifecycle
 * stop()
 * destroy()
 
-```
+```plantuml
 @startuml
 
 interface Lifecycle {

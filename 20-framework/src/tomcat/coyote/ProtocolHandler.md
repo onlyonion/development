@@ -1,3 +1,4 @@
+org.apache.coyote.ProtocolHandler
 
 ## hierachy
 ```
@@ -16,7 +17,7 @@ ProtocolHandler (org.apache.coyote)
 
 ## define
 
-```
+```plantuml
 @startuml
 
 interface ProtocolHandler {

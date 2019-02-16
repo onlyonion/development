@@ -43,6 +43,7 @@
 * 冗余或者复制集Replication，集群Cluster
 
 ## log
+日志收集 --> 日志推送 --> 链路跟踪 --> 调用链分析
 * elk (Elasticsearch, Logstash, Kibana)
 * elk-kafka
 * elasticsearch

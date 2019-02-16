@@ -1,3 +1,4 @@
+org.apache.catalina.core.StandardWrapperValve
 
 ## hierachy
 ```
@@ -9,7 +10,7 @@ LifecycleBase (org.apache.catalina.util)
 
 ## define
 
-```
+```plantuml
 @startuml
 interface Valve
 abstract class ValveBase

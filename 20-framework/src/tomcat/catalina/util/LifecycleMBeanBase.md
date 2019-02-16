@@ -1,6 +1,8 @@
+org.apache.catalina.util.LifecycleMBeanBase
+
 ## define
 
-```
+```plantuml
 @startuml
 
 interface Lifecycle
@@ -21,5 +23,3 @@ JmxEnabled <|.. LifecycleMBeanBase
 
 @enduml
 ```
-
-## link

@@ -1,6 +1,7 @@
+org.apache.catalina.core.ApplicationContext
 
-## 
-```
+## define
+```plantuml
 @startuml
 
 interface ServletContext {

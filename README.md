@@ -2,7 +2,7 @@
 * [gitee.com/onlyonion/development](https://gitee.com/onlyonion/development) 
 * [onlyonion.gitee.io/development](https://onlyonion.gitee.io/development)
 
-## 导航
+## introduce
 This is my daily notes, enriching the mind....
 * [基础](./00-base/README.md)
 * [Java](./10-java/README.md)  jvm, collection, io, concurrrent

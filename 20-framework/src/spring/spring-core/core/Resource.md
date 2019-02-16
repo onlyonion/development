@@ -1,0 +1,35 @@
+
+
+## hierarchy
+```
+Resource (org.springframework.core.io)
+    ContextResource (org.springframework.core.io)
+        ClassRelativeContextResource in ClassRelativeResourceLoader (org.springframework.core.io)
+        ClassPathContextResource in DefaultResourceLoader (org.springframework.core.io)
+        ServletContextResource (org.springframework.web.context.support)
+        FileSystemContextResource in FileSystemResourceLoader (org.springframework.core.io)
+    WritableResource (org.springframework.core.io)
+        FileUrlResource (org.springframework.core.io)
+        FileSystemResource (org.springframework.core.io)
+        PathResource (org.springframework.core.io)
+    HttpResource (org.springframework.web.servlet.resource)
+        GzippedResource in GzipResourceResolver (org.springframework.web.servlet.resource)
+        FileNameVersionedResource in VersionResourceResolver (org.springframework.web.servlet.resource)
+        EncodedResource in EncodedResourceResolver (org.springframework.web.servlet.resource)
+    AbstractResource (org.springframework.core.io)
+        DescriptiveResource (org.springframework.core.io)
+        BeanDefinitionResource (org.springframework.beans.factory.support)
+        GzippedResource in GzipResourceResolver (org.springframework.web.servlet.resource)
+        FileSystemResource (org.springframework.core.io)
+        ByteArrayResource (org.springframework.core.io)
+        MultipartFileResource (org.springframework.web.multipart)
+        PathResource (org.springframework.core.io)
+        AbstractFileResolvingResource (org.springframework.core.io)
+        FileNameVersionedResource in VersionResourceResolver (org.springframework.web.servlet.resource)
+        InputStreamResource (org.springframework.core.io)
+        FilteredReactiveWebContextResource (org.springframework.boot.web.reactive.context)
+        EncodedResource in EncodedResourceResolver (org.springframework.web.servlet.resource)
+        InMemoryResource (org.springframework.security.util)
+        VfsResource (org.springframework.core.io)
+
+```
