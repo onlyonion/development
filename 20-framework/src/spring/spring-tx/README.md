@@ -11,6 +11,8 @@
 org.springframework
 ```
 dao
+    support
+        DaoSupport
 jca
     cci
     context

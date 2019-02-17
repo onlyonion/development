@@ -1,8 +1,11 @@
+org.mybatis.spring.SqlSessionTemplate
 
 ## define
+```plantuml
 @startuml
 
 interface SqlSession
+interface DisposableBean
 
 class SqlSessionTemplate {
     - final SqlSessionFactory sqlSessionFactory
@@ -15,13 +18,20 @@ class SqlSessionTemplate {
 SqlSession <|.. SqlSessionTemplate
 DisposableBean <|.. SqlSessionTemplate
 
+
+class SqlSessionInterceptor {
+
+}
+
 InvocationHandler <|.. SqlSessionInterceptor
 SqlSessionTemplate +- SqlSessionInterceptor
 
 enum ExecutorType {
   SIMPLE, REUSE, BATCH
 }
+
 @enduml
+```
 
 ## invoke
 
