@@ -15,6 +15,7 @@ This is my daily notes, enriching the mind....
 * [工程项目](./80-project/README.md) 
 * [小书库](./99-book/README.md)
   - [book/notes](./99-book/notes/README.md) 读书笔记
+  - [book/subject](./99-book/subject/README.md) 学科门类
 
 ## links
 * [易百教程](https://www.yiibai.com)

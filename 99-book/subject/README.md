@@ -9,7 +9,7 @@
 | [文学](/99-book/subject/05-文学/README.md)     | 3                    | x                |
 | [历史学](/99-book/subject/06-历史学/README.md) | 0                    | x                |
 | [理学](/99-book/subject/07-理学/README.md)     | 14                   | x                |
-| [工学](/99-book/subject/08-工学/README.md)     | 38                   | x                |
+| [工学](/99-book/subject/08-工学/README.md)     | 39                   | x                |
 | [农学](/99-book/subject/09-农学/README.md)     | 8                    | x                |
 | [医学](/99-book/subject/10-医学/README.md)     | 8                    | x                |
 | [军事学](/99-book/subject/11-军事学/README.md) | 8                    | x                |
