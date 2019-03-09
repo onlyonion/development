@@ -19,7 +19,7 @@ before, (hash, key, value, next), after
 LinkedHashMap在不对HashMap做任何改变的基础上，给HashMap的任意节点间增加了两条连线（before指针和after指针），使这些节点形成一个双向链表。
 
 
-## class
+## define
 
 ```plantuml
 @startuml

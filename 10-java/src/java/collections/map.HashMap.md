@@ -1,4 +1,8 @@
-## 1. jdk7 HashMap
+HashMap
+* jdk7 Entry数组 + 链表；没有使用volatile
+* jdk8 Node数组 + 链表 + 红黑树；没有使用volatile
+
+# 1. jdk7 HashMap
 
 <img src="10-java/img/java7-map-HashMap.png" width="50%" height="50%">
 
@@ -12,6 +16,7 @@ AbstractMap (java.util)
 ## 1.2 define
 * 静态域
 * 实例域
+  * Entry<K, V>[] table
   * capacity：当前数组容量，始终保持 2^n，可以扩容，扩容后数组大小为当前的 2 倍。
   * loadFactor：负载因子，默认为 0.75。
   * threshold：扩容的阈值，等于 capacity * loadFactor
@@ -51,11 +56,12 @@ class HashMap<K,V> {
     .. 数组填充（为table分配实际内存空间） ..
     - void inflateTable(int toSize) 
     final boolean initHashSeedAsNeeded(int capacity)
+    .. 哈希函数 ..
     final int hash(Object k)
 }
 
 note right
-数组 + 链表
+Entry数组 + 链表
 没有使用volatile
 end note
 
@@ -225,12 +231,15 @@ class LinkedHashMap.Entry<K,V> {
 class TreeNode<K,V> {
     .. red-black tree links ..
     ~ TreeNode<K,V> parent
+    .. 左节点 ..
     ~ TreeNode<K,V> left
+    .. 右节点 ..
     ~ TreeNode<K,V> right
     .. needed to unlink next upon deletion ..
     ~ TreeNode<K,V> prev
     ~ boolean red
 }
+Node <|-- LinkedHashMap.Entry
 LinkedHashMap.Entry <|-- TreeNode
 HashMap +-- TreeNode
 
