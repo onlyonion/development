@@ -1,15 +1,3 @@
-
-## rocketmq-client
-
-```
-client
-common
-remoting
-shade
-    fastjson
-    netty
-```
-
 ## quick start
 * Download & Build from Release
 * Start Name Server

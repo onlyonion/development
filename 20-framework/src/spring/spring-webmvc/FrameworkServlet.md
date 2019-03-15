@@ -10,6 +10,13 @@ GenericServlet (javax.servlet)
 ```
 
 ## define
+* 内部类
+* 静态域
+* 实例域
+* 实例方法
+  * processRequest()
+  * doService()
+
 ```plantuml
 @startuml
 
@@ -71,6 +78,7 @@ abstract class FrameworkServlet {
     # WebApplicationContext findWebApplicationContext()
     # void onRefresh(ApplicationContext context)
     # void processRequest(HttpServletRequest request, HttpServletResponse response)
+    .. 抽象服务方法 ..
     # abstract void doService(HttpServletRequest request, HttpServletResponse response)
 }
 HttpServletBean <|-- FrameworkServlet

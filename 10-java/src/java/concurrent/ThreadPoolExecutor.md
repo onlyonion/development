@@ -1,34 +1,77 @@
+java.util.concurrent.ThreadPoolExecutor
+
+## hierarchy
+```
+AbstractExecutorService (java.util.concurrent)
+    ThreadPoolExecutor (java.util.concurrent)
+        ThreadPoolExecutor (org.apache.tomcat.util.threads)
+        WorkerPoolExecutor (org.apache.http.impl.bootstrap)
+        ScheduledThreadPoolExecutor (java.util.concurrent)
+```
 
 ## define
 
 ```plantuml
 @startuml
 
-abstract class AbstractExecutorService
+'''''''''''''''''''' Executor ''''''''''''''''''''
+interface Executor
+interface ExecutorService
+Executor <|-- ExecutorService
+abstract class AbstractExecutorService {
+}
+ExecutorService <|-.- AbstractExecutorService
+
+'''''''''''''''''''' ThreadPoolExecutor ''''''''''''''''''''
 class ThreadPoolExecutor {
     - final BlockingQueue<Runnable> workQueue
     - final ReentrantLock mainLock
     - final HashSet<Worker> workers
     - final Condition termination
-    
     - volatile ThreadFactory threadFactory
     - volatile RejectedExecutionHandler handler
     - volatile long keepAliveTime
     - volatile int corePoolSize
     - volatile int maximumPoolSize
+    
+    - boolean addWorker(Runnable firstTask, boolean core)
+    - Runnable getTask()
+    
+    final void runWorker(Worker w)
+    # void beforeExecute(Thread t, Runnable r)
+    # void afterExecute(Runnable r, Throwable t)
+    - void processWorkerExit(Worker w, boolean completedAbruptly)
 }
-
 AbstractExecutorService <|-- ThreadPoolExecutor
 
-abstract class AbstractQueuedSynchronizer
+'''''''''''''''''''' Worker ''''''''''''''''''''
+abstract class AbstractQueuedSynchronizer {
+    + final void acquire(int arg)
+    + final boolean release(int arg)
+}
 class Worker {
     final Thread thread
     Runnable firstTask
     volatile long completedTasks
     + void run()
+    + void lock()
 }
 
 AbstractQueuedSynchronizer <|-- Worker
+ThreadPoolExecutor +-- Worker
+
+'''''''''''''''''''' RejectedExecutionHandler ''''''''''''''''''''
+interface RejectedExecutionHandler
+
+RejectedExecutionHandler <|-- CallerRunsPolicy
+RejectedExecutionHandler <|-- AbortPolicy
+RejectedExecutionHandler <|-- DiscardPolicy
+RejectedExecutionHandler <|-- DiscardOldestPolicy
+
+ThreadPoolExecutor +-- CallerRunsPolicy
+ThreadPoolExecutor +-- AbortPolicy
+ThreadPoolExecutor +-- DiscardPolicy
+ThreadPoolExecutor +-- DiscardOldestPolicy
 
 @enduml
 ```

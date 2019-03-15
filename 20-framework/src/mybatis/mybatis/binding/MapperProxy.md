@@ -1,5 +1,7 @@
+org.apache.ibatis.binding.MapperProxy
 
 ## define
+
 ```plantuml
 @startuml
 

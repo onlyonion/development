@@ -5,11 +5,11 @@
     * [MapperMethod](/20-framework/src/mybatis/mybatis/binding/MapperMethod.md)
     * [MapperProxy](/20-framework/src/mybatis/mybatis/binding/MapperProxy.md)
   * executor
-    * [ParameterHandler](/20-framework/src/mybatis/mybatis/executor/ParameterHandler.md)
+    * [ParameterHandler](/20-framework/src/mybatis/mybatis/executor/parameter/ParameterHandler.md)
     * [Executod](/20-framework/src/mybatis/mybatis/executor/Executod.md)
-    * [KeyGenerator](/20-framework/src/mybatis/mybatis/executor/keygen.KeyGenerator.md)
-    * [ResultSetHandler](/20-framework/src/mybatis/mybatis/executor/ResultSetHandler.md)
-    * [StatementHandler](/20-framework/src/mybatis/mybatis/executor/StatementHandler.md)
+    * [KeyGenerator](/20-framework/src/mybatis/mybatis/executor/keygen/keygen.KeyGenerator.md)
+    * [ResultSetHandler](/20-framework/src/mybatis/mybatis/executor/resultset/ResultSetHandler.md)
+    * [StatementHandler](/20-framework/src/mybatis/mybatis/executor/statement/StatementHandler.md)
   * mapping
     * [MappedStatement](20-framework/src/mybatis/mybatis/mapping/MappedStatement.md)
   * parsing

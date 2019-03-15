@@ -21,6 +21,14 @@ interface SqlSession {
 
 class SqlSessionTemplate
 
+class DefaultSqlSession {
+    - Configuration configuration
+    - Executor executor
+    - boolean autoCommit
+    - boolean dirty
+    - List<Cursor<?>> cursorList
+}
+
 SqlSession <|.. SqlSessionTemplate
 SqlSession <|.. SqlSessionManager
 SqlSession <|.. DefaultSqlSession
@@ -29,8 +37,8 @@ interface InvocationHandler
 InvocationHandler <|.. SqlSessionInterceptor
 SqlSessionTemplate +-- SqlSessionInterceptor
 
-SqlSession o-  Configuration
-SqlSession o-  Connection
+SqlSession o--  Configuration
+SqlSession o--  Connection
 
 @enduml
 ```

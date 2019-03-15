@@ -7,5 +7,3 @@ Transaction (org.apache.ibatis.transaction)
     JdbcTransaction (org.apache.ibatis.transaction.jdbc)
     SpringManagedTransaction (org.mybatis.spring.transaction)
 ```
-
-## 

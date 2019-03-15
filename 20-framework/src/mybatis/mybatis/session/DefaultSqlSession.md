@@ -1,15 +1,26 @@
+org.apache.ibatis.session.defaults.DefaultSqlSession
 
 ## define
+
 ```
 @startuml
 
+interface SqlSession
+
 class DefaultSqlSession {
-    - final Configuration configuration
-    - final Executor executor
+    - Configuration configuration
+    - Executor executor
+    - boolean autoCommit
+    - boolean dirty
+    - List<Cursor<?>> cursorList
 }
+
+SqlSession <|.. DefaultSqlSession
+
 @enduml
 ```
 
+org.apache.ibatis.session.defaults.DefaultSqlSession
 
 ## select()
 

@@ -12,6 +12,10 @@ class HandlerExecutionChain {
 	- HandlerInterceptor[] interceptors
 	- List<HandlerInterceptor> interceptorList
 	- int interceptorIndex = -1
+	boolean applyPreHandle(HttpServletRequest request, HttpServletResponse response)
+	void applyPostHandle(HttpServletRequest request, HttpServletResponse response, ModelAndView mv)
+	void triggerAfterCompletion(HttpServletRequest request, HttpServletResponse response, Exception ex)
+	void applyAfterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response)
 }
 
 @enduml

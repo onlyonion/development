@@ -37,9 +37,11 @@ preparedStatement_execute:3049, FilterChainImpl (com.alibaba.druid.filter)
 preparedStatement_execute:440, FilterEventAdapter (com.alibaba.druid.filter)
 preparedStatement_execute:3049, FilterChainImpl (com.alibaba.druid.filter)
 
-// pooled
+// pooled statement
 execute:167, PreparedStatementProxyImpl (com.alibaba.druid.proxy.jdbc)
 execute:498, DruidPooledPreparedStatement (com.alibaba.druid.pool)
+
+// jdk reflect
 invoke:-1, GeneratedMethodAccessor185 (sun.reflect)
 invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
 invoke:498, Method (java.lang.reflect)
@@ -56,24 +58,25 @@ queryFromDatabase:324, BaseExecutor (org.apache.ibatis.executor)
 query:156, BaseExecutor (org.apache.ibatis.executor)
 query:109, CachingExecutor (org.apache.ibatis.executor)
 query:83, CachingExecutor (org.apache.ibatis.executor)
+
+// sqlSession
 selectList:148, DefaultSqlSession (org.apache.ibatis.session.defaults)
 selectList:141, DefaultSqlSession (org.apache.ibatis.session.defaults)
 
+// jdk reflect
 invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
 invoke:62, NativeMethodAccessorImpl (sun.reflect)
 invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
-
-// SqlSession
 invoke:498, Method (java.lang.reflect)
 
-// spring-mybatis
+// spring-mybatis sql会话模板
 invoke:433, SqlSessionTemplate$SqlSessionInterceptor (org.mybatis.spring)
-selectList:-1, $Proxy91 (com.sun.proxy)
+selectList:-1, $Proxy91 (com.sun.proxy)     动态代理
 selectList:230, SqlSessionTemplate (org.mybatis.spring)
 
 // MapperProxy
 executeForMany:137, MapperMethod (org.apache.ibatis.binding)
 execute:75, MapperMethod (org.apache.ibatis.binding)
 invoke:59, MapperProxy (org.apache.ibatis.binding)
-selectList:-1, $Proxy92 (com.sun.proxy)
+selectList:-1, $Proxy92 (com.sun.proxy)     动态代理
 ```

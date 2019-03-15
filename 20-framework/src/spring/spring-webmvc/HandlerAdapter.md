@@ -1,30 +1,5 @@
 org.springframework.web.servlet.HandlerAdapter
 
-org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter
-
-org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter
-
-## define
-```plantuml
-@startuml
-interface HandlerAdapter {
-    + boolean supports(Object handler)
-    + ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
-    + long getLastModified(HttpServletRequest request, Object handler)
-}
-
-abstract class AbstractHandlerMethodAdapter {
-
-}
-HandlerAdapter <|.. AbstractHandlerMethodAdapter
-
-class RequestMappingHandlerAdapter {
-
-}
-AbstractHandlerMethodAdapter <|-- RequestMappingHandlerAdapter
-
-@enduml
-```
 ## hierarchy
 ```
 HandlerAdapter (org.springframework.web.servlet)
@@ -36,8 +11,31 @@ HandlerAdapter (org.springframework.web.servlet)
     SimpleControllerHandlerAdapter (org.springframework.web.servlet.mvc)
 ```
 
-## RequestMappingHandlerAdapter
+## define
+```plantuml
+@startuml
+interface HandlerAdapter {
+    + boolean supports(Object handler)
+    + ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
+    + long getLastModified(HttpServletRequest request, Object handler)
+}
 
+abstract class AbstractHandlerMethodAdapter {
+    + final ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+    # abstract ModelAndView handleInternal(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+}
+HandlerAdapter <|.. AbstractHandlerMethodAdapter
+
+class RequestMappingHandlerAdapter {
+    # ModelAndView handleInternal(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+    # ModelAndView invokeHandlerMethod(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+}
+AbstractHandlerMethodAdapter <|-- RequestMappingHandlerAdapter
+
+@enduml
+```
+
+## RequestMappingHandlerAdapter
 
 
 ## RequestMappingHandlerAdapter.handle()

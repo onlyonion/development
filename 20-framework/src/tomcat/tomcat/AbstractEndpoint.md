@@ -15,6 +15,7 @@ AbstractEndpoint (org.apache.tomcat.util.net)
 ```
 @startuml
 
+'''''''''''''''''''''''''''AbstractEndpoint'''''''''''''''''''''''''''
 abstract class AbstractEndpoint<S> {
     # Acceptor[] acceptors
     - int maxConnections = 10000
@@ -43,8 +44,8 @@ enum SocketState {
 class ConnectionHandler {
 
 }
-AbstractEndpoint +- Handler
-Handler +- SocketState
+AbstractEndpoint +-- Handler
+Handler +-- SocketState
 Handler <|.. ConnectionHandler
 
 '''''''''''''''''''''''''''Acceptor'''''''''''''''''''''''''''
@@ -55,8 +56,8 @@ enum AcceptorState {
     PAUSED
     ENDED
 }
-AbstractEndpoint +- Acceptor
-Acceptor +- AcceptorState
+AbstractEndpoint +-- Acceptor
+Acceptor +-- AcceptorState
 
 
 '''''''''''''''''''''''''''Endpoint实现'''''''''''''''''''''''''''
@@ -64,6 +65,7 @@ AbstractEndpoint <|-- AprEndpoint
 AbstractEndpoint <|-- AbstractJsseEndpoint
 AbstractJsseEndpoint <|-- NioEndpoint
 AbstractJsseEndpoint <|-- Nio2Endpoint
+
 @enduml
 
 ```

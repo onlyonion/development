@@ -63,6 +63,13 @@ DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServ
 ```
 
 ## define
+* 静态域
+* 实例域
+* 实例方法
+  * 初始化 onRefresh, initStrategies
+  * 服务方法 doService
+  * 分发请求 doDispatch
+
 ```plantuml
 @startuml
 
@@ -78,8 +85,13 @@ class DispatcherServlet {
     - List<HandlerExceptionResolver> handlerExceptionResolvers
     - RequestToViewNameTranslator viewNameTranslator
     - FlashMapManager flashMapManager
-    - List<ViewResolver> viewResolvers
-    # void doService(HttpServletRequest request, HttpServletResponse response) 
+	- List<ViewResolver> viewResolvers
+	.. 初始化方法 ..
+	# void onRefresh(ApplicationContext context)
+	# void initStrategies(ApplicationContext context)
+	.. 服务方法 ..
+	# void doService(HttpServletRequest request, HttpServletResponse response) 
+	.. 分发请求方法 ..
     # void doDispatch(HttpServletRequest request, HttpServletResponse response)
     # HttpServletRequest checkMultipart(HttpServletRequest request)
     # HandlerExecutionChain getHandler(HttpServletRequest request)
@@ -232,10 +244,16 @@ sequenceDiagram
 ```
 
 ### DispatcherServlet.doDispatch()
-* 请求映射
-* 拦截器链
-* 处理器适配器处理请求，之前、之后、完成
-* 请求结果渲染视图
+1. 媒体类型检查
+2. 获取请求处理器执行链 HandlerExecutionChain
+3. 获取处理器适配器 HandlerAdapter
+4. 拦截器链
+   1. 拦截器链，前置处理
+   2. 处理器适配器处理请求
+   3. 拦截器链，后置处理
+5. 处理分发的结果，视图解析
+6. 拦截器链，完成处理
+
 
 ```mermaid
 sequenceDiagram

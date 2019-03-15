@@ -5,31 +5,47 @@ org.springframework.web.method.HandlerMethod
 
 ```
 @startuml
+''''''''''''''''''''''' 处理方法 '''''''''''''''''''''''
 class HandlerMethod {
-	- Object bean;
-	- BeanFactory beanFactory;
-	- Class<?> beanType;
-	- Method method;
-	- Method bridgedMethod;
-	- MethodParameter[] parameters;
-	- HandlerMethod resolvedFromHandlerMethod;
+	- Object bean
+	- BeanFactory beanFactory
+	- Class<?> beanType
+	- Method method
+	- Method bridgedMethod
+	- MethodParameter[] parameters
+	- HandlerMethod resolvedFromHandlerMethod
 }
 
+''''''''''''''''''''''' 方法参数 '''''''''''''''''''''''
+class MethodParameter {
+}
+class SynthesizingMethodParameter {
+}
+MethodParameter <|-- SynthesizingMethodParameter
+
+class HandlerMethodParameter {
+}
+HandlerMethod +-- HandlerMethodParameter
+SynthesizingMethodParameter <|-- HandlerMethodParameter
+
+class ReturnValueMethodParameter {
+}
+HandlerMethod +-- ReturnValueMethodParameter
+HandlerMethodParameter <|-- ReturnValueMethodParameter
+
+''''''''''''''''''''''' 可调用的处理方法 '''''''''''''''''''''''
 class InvocableHandlerMethod {
-    + Object invokeForRequest(NativeWebRequest request, ModelAndViewContainer mavContainer,
-    			Object... providedArgs)
-    - Object[] getMethodArgumentValues(NativeWebRequest request, ModelAndViewContainer mavContainer,
-                Object... providedArgs)
+    + Object invokeForRequest(NativeWebRequest request, ModelAndViewContainer mavContainer, Object... providedArgs)
+    - Object[] getMethodArgumentValues(NativeWebRequest request, ModelAndViewContainer mavContainer, Object... providedArgs)
     # Object doInvoke(Object... args)
 }
+HandlerMethod <|-- InvocableHandlerMethod
 
+''''''''''''''''''''''' 服务小程序可调用的处理方法 '''''''''''''''''''''''
 class ServletInvocableHandlerMethod {
-    + void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
-    			Object... providedArgs)
+    + void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer, Object... providedArgs)
     - void setResponseStatus(ServletWebRequest webRequest)
 }
-
-HandlerMethod <|-- InvocableHandlerMethod
 InvocableHandlerMethod <|-- ServletInvocableHandlerMethod
 
 @enduml

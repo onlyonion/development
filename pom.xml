@@ -11,10 +11,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>5.1.2.RELEASE</springframework.version>
+		<springframework.version>4.2.6.RELEASE</springframework.version>
 		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
 		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>
+		<rocketmq.version>4.3.0</rocketmq.version>
 	</properties>
 
 	<build>
@@ -54,6 +55,7 @@
 			<artifactId>log4j</artifactId>
 			<version>${org.apache.log4j.version}</version>
 		</dependency>
+		<!-- springframework start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -70,6 +72,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${springframework.version}</version>
+		</dependency>
+		<!-- springframework end -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>7.0.70</version>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -112,20 +120,65 @@
 			<version>7.0.70</version>
 			<scope>provided</scope>
 		</dependency>-->
+
+		<!-- rocketmq start -->
 		<dependency>
 			<groupId>org.apache.rocketmq</groupId>
 			<artifactId>rocketmq-client</artifactId>
-			<version>4.3.0</version>
+			<version>${rocketmq.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-broker</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-namesrv</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-store</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-remoting</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-srvutil</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-filter</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.rocketmq</groupId>
+			<artifactId>rocketmq-openmessaging</artifactId>
+			<version>${rocketmq.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- rocketmq end -->
 
+		<!-- shardingsphere -->
 		<dependency>
 			<groupId>com.alipay</groupId>
 			<artifactId>alipay-sdk</artifactId>
 			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.shardingsphere</groupId>
 			<artifactId>sharding-jdbc</artifactId>
