@@ -7,7 +7,9 @@
   * [数据库](50-database/README.md)
   * [前端](60-js/README.md)
   * [开发运维](70-dev-ops/README.md)
-* [book](99-book/README.md)
+* book
+  * [计算机相关](/99-book/notes/README.md)
+  * [学科门类](/99-book/subject/README.md)
 * src
   * [java](10-java/src/README.md)
   * [spring](20-framework/src/spring/README.md)

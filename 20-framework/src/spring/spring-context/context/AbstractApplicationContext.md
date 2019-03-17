@@ -31,7 +31,7 @@ DefaultResourceLoader (org.springframework.core.io)
 
 ## class
 
-```
+```plantuml
 @startuml
 
 abstract class AbstractApplicationContext {
@@ -67,6 +67,7 @@ abstract class AbstractApplicationContext {
     .. 4. 完成 ..
     # void finishBeanFactoryInitialization(ConfigurableListableBeanFactory beanFactory)
     # void finishRefresh()
+    .. 获取bean工厂 ..
     abstract ConfigurableListableBeanFactory getBeanFactory()
 }
 
