@@ -33,9 +33,10 @@
 ### 服务器
 * [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
 * [《Tomcat架构解析》刘光瑞](/99-book/notes/21-server/Tomcat架构解析.md)
+* [《实战Nignx 取代Apache的高性能Web服务器》](/99-book/notes/21-server/实战Nignx.md)
+* [《深入理解Nginx 模块开发与架构解析》](/99-book/notes/21-server/深入理解Nginx.md)
 * [《Unix网络编程 卷1：套接字联网API》](/99-book/notes/21-server/Unix网络编程%20卷1：套接字联网API.md)
 * [《Unix网络编程 卷2：进程间通信》](/99-book/notes/21-server/Unix网络编程%20卷2：进程间通信.md)
-* [《实战Nignx》](/99-book/notes/21-server/实战Nignx.md)
 * [《Linux网络编程》](/99-book/notes/21-server/Linux网络编程.md)
 
 ### 分布式
