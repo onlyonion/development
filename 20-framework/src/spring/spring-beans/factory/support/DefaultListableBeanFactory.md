@@ -15,9 +15,25 @@ SimpleAliasRegistry
 ```plantuml
 @startuml
 
+class SimpleAliasRegistry
+
+class DefaultSingletonBeanRegistry
+SimpleAliasRegistry ^-- DefaultSingletonBeanRegistry
+
+abstract class FactoryBeanRegistrySupport
+DefaultSingletonBeanRegistry ^-- FactoryBeanRegistrySupport
+
+abstract class AbstractBeanFactory
+FactoryBeanRegistrySupport ^-- AbstractBeanFactory 
+
+abstract class AbstractAutowireCapableBeanFactory
+AbstractBeanFactory ^-- AbstractAutowireCapableBeanFactory 
+
 class DefaultListableBeanFactory {
     + void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
+    + void preInstantiateSingletons()
 }
+AbstractAutowireCapableBeanFactory ^-- DefaultListableBeanFactory 
 
 @enduml
 ```

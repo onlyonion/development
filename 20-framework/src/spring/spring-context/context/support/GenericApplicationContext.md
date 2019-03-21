@@ -16,3 +16,26 @@ DefaultResourceLoader (org.springframework.core.io)
             GenericGroovyApplicationContext (org.springframework.context.support)
             AnnotationConfigApplicationContext (org.springframework.context.annotation)
 ```
+
+## define
+
+```plantuml
+@startuml
+
+abstract class AbstractApplicationContext
+AbstractApplicationContext ^-- GenericApplicationContext
+
+interface BeanDefinitionRegistry
+BeanDefinitionRegistry ^.. GenericApplicationContext
+
+class GenericApplicationContext {
+	- final DefaultListableBeanFactory beanFactory
+    - ResourceLoader resourceLoader
+    - boolean customClassLoader = false
+    - final AtomicBoolean refreshed
+}
+
+
+
+@enduml
+```

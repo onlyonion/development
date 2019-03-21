@@ -9,9 +9,15 @@
 	<name>development</name>
 	<url>http://maven.apache.org</url>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>4.2.6.RELEASE</springframework.version>
+		<springframework.version>4.3.13.RELEASE</springframework.version>
 		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
 		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>

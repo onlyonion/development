@@ -17,11 +17,19 @@ SimpleAliasRegistry (org.springframework.core)
 ```plantuml
 @startuml
 
+class SimpleAliasRegistry
+
+class DefaultSingletonBeanRegistry
+SimpleAliasRegistry ^-- DefaultSingletonBeanRegistry
+
+abstract class FactoryBeanRegistrySupport
+DefaultSingletonBeanRegistry ^-- FactoryBeanRegistrySupport
+
 abstract class AbstractBeanFactory {
     # abstract Object createBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args)
     # Class<?> resolveBeanClass(final RootBeanDefinition mbd, String beanName, final Class<?>... typesToMatch)
 }
-
+FactoryBeanRegistrySupport ^-- AbstractBeanFactory 
 
 abstract class AbstractAutowireCapableBeanFactory {
     - InstantiationStrategy instantiationStrategy

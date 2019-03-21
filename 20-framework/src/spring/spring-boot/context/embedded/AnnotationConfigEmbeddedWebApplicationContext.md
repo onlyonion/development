@@ -10,6 +10,9 @@ DefaultResourceLoader (org.springframework.core.io)
             GenericWebApplicationContext (org.springframework.web.context.support)
                 EmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
                     AnnotationConfigEmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
+                ServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+                    AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+                    XmlServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
 ```
 
 ## 类图

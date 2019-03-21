@@ -17,13 +17,21 @@ DefaultResourceLoader (org.springframework.core.io)
 ```
 
 ## define
-* loadBeanDefinitions 抽象方法，加载bean定义
+* 实例域
+  * DefaultListableBeanFactory
+* 实例方法
+  * refreshBeanFactory
+* 抽象方法
+  * loadBeanDefinitions 加载bean定义
 
 ```plantuml
 @startuml
 
 abstract class AbstractRefreshableApplicationContext {
     - DefaultListableBeanFactory beanFactory
+    # final void refreshBeanFactory()
+    # DefaultListableBeanFactory createBeanFactory()
+    .. 刷新bean工厂 ..
     # final void refreshBeanFactory()
     # DefaultListableBeanFactory createBeanFactory()
     .. 加载bean定义 ..

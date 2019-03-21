@@ -3,8 +3,8 @@
   * [ContentNegotiationManager](/20-framework/src/spring/spring-web/web/accept/ContentNegotiationManager.md)
 * context
   * [ContextLoader](/20-framework/src/spring/spring-web/web/context/ContextLoader.md)
-  * [GenericWebApplicationContext](/20-framework/src/spring/spring-web/web/context/GenericWebApplicationContext.md)
-  * [XmlWebApplicationContext](/20-framework/src/spring/spring-web/web/context/XmlWebApplicationContext.md)
+  * [GenericWebApplicationContext](/20-framework/src/spring/spring-web/web/context/support/GenericWebApplicationContext.md)
+  * [XmlWebApplicationContext](/20-framework/src/spring/spring-web/web/context/support/XmlWebApplicationContext.md)
 * filter
   * [CharacterEncodingFilter](/20-framework/src/spring/spring-web/web/filter/CharacterEncodingFilter.md)
   * [GenericFilterBean](/20-framework/src/spring/spring-web/web/filter/GenericFilterBean.md)
