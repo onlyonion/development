@@ -4,7 +4,26 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 ![invoke](../../../img/dubbo-consumer-invoke-provider.png)
 
 ## 调用过程
+* 消费端
+  * rpc
+    - 消费者代理对象
+    - InvokerInvocationHandler 调用者处理器
+    - MockClusterInvoker  测试数据
+    - FailfastClusterInvoker 集群策略
+    - Filter/Listener链
+    - DubboInvoker
+  * remoting
+    - ExchangeClient
+* 服务端
+  * remoting
+    - ChannelHandler
+    - ChannelEventRunnable
+  * rpc
+    - DubboProtocol
+    - Filter链
+    - AbstractProxyInvoker
 
+### 整体
 * InvokerInvocationHandler
 * RpcInvocation
 * MockClusterInvoker
@@ -17,8 +36,6 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 * InvokerWrapper
 * ProtocolFilterWrapper$1 过滤器链
 * ConsumerContextFilter
-
-### 整体
 
 ```mermaid
 sequenceDiagram

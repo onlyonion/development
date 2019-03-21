@@ -5,6 +5,6 @@ zero
 ```
 
 ### cpu architecture 
-* reduced instruction set computer
-* sparc Scalable Processor ARChitecture 可扩充处理器架构
-* complex instruction set computer
+* RISC reduced instruction set computer
+* SPARC Scalable Processor ARChitecture 可扩充处理器架构
+* CISC complex instruction set computer

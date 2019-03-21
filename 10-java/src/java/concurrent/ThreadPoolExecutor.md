@@ -4,9 +4,14 @@ java.util.concurrent.ThreadPoolExecutor
 ```
 AbstractExecutorService (java.util.concurrent)
     ThreadPoolExecutor (java.util.concurrent)
+        BrokerFixedThreadPoolExecutor (org.apache.rocketmq.broker.latency)
+        ComInvoker in Win32ShellFolderManager2 (sun.awt.shell)
+        MemoryAwareThreadPoolExecutor (org.jboss.netty.handler.execution)
+        QuantumRenderer (com.sun.javafx.tk.quantum)
+        ScheduledThreadPoolExecutor (java.util.concurrent)
         ThreadPoolExecutor (org.apache.tomcat.util.threads)
         WorkerPoolExecutor (org.apache.http.impl.bootstrap)
-        ScheduledThreadPoolExecutor (java.util.concurrent)
+
 ```
 
 ## define
@@ -73,41 +78,11 @@ ThreadPoolExecutor +-- AbortPolicy
 ThreadPoolExecutor +-- DiscardPolicy
 ThreadPoolExecutor +-- DiscardOldestPolicy
 
+'''''''''''''''''''' ScheduledThreadPoolExecutor ''''''''''''''''''''
+class ScheduledThreadPoolExecutor
+ThreadPoolExecutor <|-- ScheduledThreadPoolExecutor
+
 @enduml
-```
-
-## 类图
-```yuml
-// {type:class}
-
-// 核心线程数、最大线程数、空闲时间
-[ThreadPoolExecutor]
-
-// 1. 继承关系
-[Executor]^-[ExecutorService]
-[ExecutorService]^-.-[AbstractExecutorService]
-[AbstractExecutorService]^-[ThreadPoolExecutor]
-
-// 2. 字段-工作队列
-[ThreadPoolExecutor]++-[BlockingQueue]
-
-// 3. 字段-工作者
-[Worker|thread;firstTask;|]
-[ThreadPoolExecutor]++-[Worker]
-
-// 3.1 工作者继承AQS抽象队列同步器，拥有锁的能力
-[AbstractOwnableSynchronizer]^-[AbstractQueuedSynchronizer]
-[AbstractQueuedSynchronizer]^-[Worker]
-[Runnable]^-.-[Worker]
-
-// 4. 字段-全局锁
-[ThreadPoolExecutor]++-[ReentrantLock]
-[ThreadPoolExecutor]++-[Condition]
-
-// 5. 字段-线程工厂、饱和策略
-[ThreadPoolExecutor]++-[ThreadFactory]
-[ThreadPoolExecutor]++-[RejectedExecutionHandler]
-
 ```
 
 ## 状态图

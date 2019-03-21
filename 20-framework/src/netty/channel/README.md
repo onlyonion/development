@@ -6,6 +6,13 @@ epoll
 group
 local
 nio
+    AbstractNioByteChannel
+    AbstractNioChannel
+    AbstractNioMessageChannel
+    NioEventLoop
+    NioEventLoopGroup
+    NioTask
+    SelectedSelectionKeySet
 oio
 pool
 rxtx
@@ -13,4 +20,83 @@ sctp
 socket
 udt
 unix
+AbstractChannel
+AbstractChannelHandlerContext
+AbstractEventLoop
+AbstractEventLoopGroup
+AbstractServerChannel
+AdaptiveRecvByteBufAllocator
+AddressedEnvelope
+Channel
+ChannelConfig
+ChannelDuplexHandler
+ChannelException
+ChannelFactory
+ChannelFlushPromiseNotifier
+ChannelFuture
+ChannelFutureListener
+ChannelHandler
+ChannelHandlerAdapter
+ChannelHandlerContext
+ChannelId
+ChannelInboundHandler
+ChannelInboundHandlerAdapter
+ChannelInboundInvoker
+ChannelInitializer
+ChannelMetadata
+ChannelOption
+ChannelOutboundBuffer
+ChannelOutboundHandler
+ChannelOutboundHandlerAdapter
+ChannelOutboundInvoker
+ChannelPipeline
+ChannelPipelineException
+ChannelProgressiveFuture
+ChannelProgressiveFutureListener
+ChannelProgressivePromise
+ChannelPromise
+ChannelPromiseAggregator
+ChannelPromiseNotifier
+CoalescingBufferQueue
+CombinedChannelDuplexHandler
+CompleteChannelFuture
+ConnectTimeoutException
+DefaultAddressedEnvelope
+DefaultChannelConfig
+DefaultChannelHandlerContext
+DefaultChannelId
+DefaultChannelPipeline
+DefaultChannelProgressivePromise
+DefaultChannelPromise
+DefaultEventLoop
+DefaultEventLoopGroup
+DefaultFileRegion
+DefaultMaxBytesRecvByteBufAllocator
+DefaultMaxMessagesRecvByteBufAllocator
+DefaultMessageSizeEstimator
+DefaultSelectStrategy
+DefaultSelectStrategyFactory
+EventLoop
+EventLoopException
+EventLoopGroup
+FailedChannelFuture
+FileRegion
+FixedRecvByteBufAllocator
+MaxBytesRecvByteBufAllocator
+MaxMessagesRecvByteBufAllocator
+MessageSizeEstimator
+MultithreadEventLoopGroup
+PendingWriteQueue
+RecvByteBufAllocator
+ReflectiveChannelFactory
+SelectStrategy
+SelectStrategyFactory
+ServerChannel
+SimpleChannelInboundHandler
+SingleThreadEventLoop
+SucceededChannelFuture
+ThreadPerChannelEventLoop
+ThreadPerChannelEventLoopGroup
+VoidChannelPromise
+WriteBufferWaterMark
 ```

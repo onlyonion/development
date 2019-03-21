@@ -1,5 +1,6 @@
+io.netty.channel.EventLoopGroup
 
-
+## hierarchy
 ```
 EventLoopGroup (io.netty.channel)
     AbstractEventLoopGroup (io.netty.channel)

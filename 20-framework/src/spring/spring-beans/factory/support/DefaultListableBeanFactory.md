@@ -1,6 +1,6 @@
 org.springframework.beans.factory.support.DefaultListableBeanFactory
 
-## 1. DefaultListableBeanFactory 类图
+## hierarchy
 ```
 SimpleAliasRegistry
     DefaultSingletonBeanRegistry
@@ -10,19 +10,19 @@ SimpleAliasRegistry
                     DefaultListableBeanFactory
 ```
 
-```yuml
-// {type:class}
+## define
 
-// extends
-[SimpleAliasRegistry]^-[DefaultSingletonBeanRegistry]
-[DefaultSingletonBeanRegistry]^-[FactoryBeanRegistrySupport]
-[FactoryBeanRegistrySupport]^-[AbstractBeanFactory]
-[AbstractBeanFactory]^-[AbstractAutowireCapableBeanFactory]
-[AbstractAutowireCapableBeanFactory]^-[DefaultListableBeanFactory]
+```plantuml
+@startuml
+
+class DefaultListableBeanFactory {
+    + void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
+}
+
+@enduml
 ```
 
-
-## 2. 依赖注入DI
+## 依赖注入DI
 
 ### getBean()
 

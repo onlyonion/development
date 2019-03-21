@@ -5,20 +5,30 @@ hotspot/src/
 
 * 平台相关性
   * cpu
+    * sparc
+    * x86
+    * zero
   * os
+    * linux
+    * posix
+    * solaris
+    * windows
   * os_cpu
 * 平台无关性
-  * 编译器、汇编、机器码 c1 opto asm
-  * 解释器 interpreter
-  * 类加载 classfile
-  * 内存管理
+  * 类文件结构 类加载 classfile
+  * 内存管理 memory
+    * 内存区域
     * 内存分配
     * 垃圾回收 gc_interface gc_impementation
-  * 运行时环境 runtime
-  * 面向对象的实现 oops
+  * 运行时环境 runtime 包括线程管理、编译器调度、锁、反射等
+    * vframe
+    * osThread vmThread
+    * objectMonitor basicLock
+    * reflection
+  * 对象系统 oops
   * 对外服务 prims services
-  * 抽象数据结构 libadt
-    * dict port set vectset
+  * 编译器、解释器、汇编、机器码 compiler(c1 opto) interpreter asm code
+  * 抽象数据结构 libadt(dict port set vectset)
 
 ### package
 ```

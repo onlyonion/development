@@ -2,6 +2,15 @@
 
 网易宝
 
+* 启动 Prims Services Runtime
+* 类与对象 OOP-Klass Klass与instanceKlass
+* 运行时数据区 堆 线程私有区域 方法区 性能监控数据区：PerfData 转储
+* 垃圾收集 堆与GC 垃圾收集器
+* 栈
+* 解释器和即时编译器
+* 指令集
+* 虚拟机监控工具
+
 ## 第1章 初试HotSpot
 ### 1.1 JDK概述
 ### 1.2 动手编译虚拟机
@@ -184,9 +193,12 @@ x86支持3种操作数格式：
 栈顶缓存（Top of Stack Cashing，TOSCA/TOS）。将频繁访问的栈顶元素存储在CPU硬件寄存器中，大幅减少内存访问次数，提升性能。
 
 ## 第7章 解释器和即时编译器
+```
 java编译器  .java  -> .class(bytecode)
 解释器      .class -> machine code
-即时编译器  .class -> machine code
+即时编译器   .class -> machine code
+```
+
 ### 7.1 概述
 解释器 解释器，代码生成器，InterpreterCodelet，转发表（dispatch table）
 JIT编译器 C1：client，C2：server
