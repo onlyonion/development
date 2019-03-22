@@ -4,10 +4,10 @@ org.mybatis.spring.SqlSessionTemplate
 线程安全的、spring事务管理的
 
 * 内部类
-  * SqlSessionInterceptor 拦截会话
+  * SqlSessionInterceptor 会话拦截器
 * 实例域
-  * 需要SqlSessionFactory生产会话
-  * 将mybatis持久层异常转换成未检查的数据访问层异常
+  * sqlSessionFactory 需要SqlSessionFactory生产会话
+  * PersistenceExceptionTranslator 将mybatis持久层异常转换成未检查的数据访问层异常
   * sqlSessionProxy 使用会话代理
 * 实例方法
 

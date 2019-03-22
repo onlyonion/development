@@ -14,28 +14,7 @@
 * org.aspectj
 * org.springframework.aop
 
-```
-org
-    aopalliance
-        aop
-            Advice
-        intercept
-            ConstructorInterceptor
-            ConstructorInvocation
-            Interceptor
-            Invocation
-            Joinpoint
-            MethodInterceptor
-            MethodInvocation
-    aop
-        aspectj
-        config
-        framework
-        interceptor
-        scope
-        support
-        target
-```
+
 ## org.springframework.aop
 ```
 aspectj
@@ -47,26 +26,26 @@ support
 target
 
 Advisor
-AfterAdvice
-AfterReturningAdvice
+AfterAdvice 后置通知
+AfterReturningAdvice 返回通知
 AopInvocationException
-BeforeAdvice
+BeforeAdvice 前置通知
 ClassFilter
-DynamicIntroductionAdvice
+DynamicIntroductionAdvice 动态织入通知
 IntroductionAdvisor
 IntroductionAwareMethodMatcher
 IntroductionInfo
 IntroductionInterceptor
-MethodBeforeAdvice
+MethodBeforeAdvice 方法之前通知
 MethodMatcher
-Pointcut
+Pointcut 切入点
 PointcutAdvisor
 ProxyMethodInvocation
 RawTargetAccess
-SpringProxy         标记接口，标记spring生成的动态代理
+SpringProxy  标记接口，标记spring生成的动态代理
 TargetClassAware
 TargetSource
-ThrowsAdvice
+ThrowsAdvice 抛出通知
 TrueClassFilter
 TrueMethodMatcher
 TruePointcut

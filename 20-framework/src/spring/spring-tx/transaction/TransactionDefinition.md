@@ -6,7 +6,11 @@
 @startuml
 
 interface TransactionDefinition {
-
+    + int getPropagationBehavior()
+    + int getIsolationLevel()
+    + int getTimeout()
+    + boolean isReadOnly()
+    + String getName()
 }
 
 enum Isolation {

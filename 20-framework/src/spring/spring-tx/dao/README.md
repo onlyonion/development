@@ -1,0 +1,37 @@
+```
+annotation
+    PersistenceExceptionTranslationAdvisor
+    PersistenceExceptionTranslationPostProcessor
+support
+    ChainedPersistenceExceptionTranslator
+    DaoSupport
+    DataAccessUtils
+    PersistenceExceptionTranslationInterceptor
+    PersistenceExceptionTranslator
+CannotAcquireLockException
+CannotSerializeTransactionException
+CleanupFailureDataAccessException
+ConcurrencyFailureException
+DataAccessException
+DataAccessResourceFailureException
+DataIntegrityViolationException
+DataRetrievalFailureException
+DeadlockLoserDataAccessException
+DuplicateKeyException
+EmptyResultDataAccessException
+IncorrectResultSizeDataAccessException
+IncorrectUpdateSemanticsDataAccessException
+InvalidDataAccessApiUsageException
+InvalidDataAccessResourceUsageException
+NonTransientDataAccessException
+NonTransientDataAccessResourceException
+OptimisticLockingFailureException
+PermissionDeniedDataAccessException
+PessimisticLockingFailureException
+QueryTimeoutException
+RecoverableDataAccessException
+TransientDataAccessException
+TransientDataAccessResourceException
+TypeMismatchDataAccessException
+UncategorizedDataAccessException
+```

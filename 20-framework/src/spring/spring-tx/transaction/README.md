@@ -17,6 +17,27 @@ interceptor
     TransactionProxyFactoryBean
 jta
 support
+    AbstractPlatformTransactionManager
+    AbstractTransactionStatus
+    CallbackPreferringPlatformTransactionManager
+    DefaultTransactionDefinition
+    DefaultTransactionStatus
+    DelegatingTransactionDefinition
+    ResourceHolder
+    ResourceHolderSupport
+    ResourceHolderSynchronization
+    ResourceTransactionManager
+    SimpleTransactionScope
+    SimpleTransactionStatus
+    SmartTransactionObject
+    TransactionCallback
+    TransactionCallbackWithoutResult
+    TransactionOperations
+    TransactionSynchronization
+    TransactionSynchronizationAdapter
+    TransactionSynchronizationManager
+    TransactionSynchronizationUtils
+    TransactionTemplate
 PlatformTransactionManager
 SavepointManager
 TransactionDefinition

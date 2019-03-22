@@ -17,6 +17,36 @@ DefaultResourceLoader (org.springframework.core.io)
 ```plantuml
 @startuml
 
+'''''''''''''''''''' 抽象应用上下文 ''''''''''''''''''''
+abstract class AbstractApplicationContext {
+    + void refresh()
+}
+AbstractApplicationContext <|-- GenericApplicationContext
+
+'''''''''''''''''''' 通用应用上下文 ''''''''''''''''''''
+class GenericApplicationContext {
+    - final DefaultListableBeanFactory beanFactory;
+    - ResourceLoader resourceLoader;
+}
+GenericApplicationContext <|-- GenericWebApplicationContext
+
+'''''''''''''''''''' 通用web应用上下文 ''''''''''''''''''''
+class GenericWebApplicationContext {
+	- ServletContext servletContext;
+	- ThemeSource themeSource;
+}
+GenericWebApplicationContext <|-- ServletWebServerApplicationContext
+
+'''''''''''''''''''' 小服务程序web服务应用上下文 ''''''''''''''''''''
+class ServletWebServerApplicationContext {
+    - volatile WebServer webServer
+    - ServletConfig servletConfig
+    - String serverNamespace
+    - void createWebServer()
+}
+interface ConfigurableWebServerApplicationContext
+ConfigurableWebServerApplicationContext <|.. ServletWebServerApplicationContext
+
 '''''''''''''''''''' 注解配置小服务程序web服务应用上下文 ''''''''''''''''''''
 class AnnotationConfigServletWebServerApplicationContext {
     - final AnnotatedBeanDefinitionReader reader
@@ -29,35 +59,6 @@ interface AnnotationConfigRegistry
 AnnotationConfigRegistry <|.. AnnotationConfigServletWebServerApplicationContext
 ServletWebServerApplicationContext <|-- AnnotationConfigServletWebServerApplicationContext
 
-'''''''''''''''''''' 小服务程序web服务应用上下文 ''''''''''''''''''''
-class ServletWebServerApplicationContext {
-    - volatile WebServer webServer
-    - ServletConfig servletConfig
-    - String serverNamespace
-    - void createWebServer()
-}
-interface ConfigurableWebServerApplicationContext
-ConfigurableWebServerApplicationContext <|.. ServletWebServerApplicationContext
-
-'''''''''''''''''''' 通用web应用上下文 ''''''''''''''''''''
-class GenericWebApplicationContext {
-	- ServletContext servletContext;
-	- ThemeSource themeSource;
-}
-GenericWebApplicationContext <|-- ServletWebServerApplicationContext
-
-'''''''''''''''''''' 通用应用上下文 ''''''''''''''''''''
-class GenericApplicationContext {
-    - final DefaultListableBeanFactory beanFactory;
-    - ResourceLoader resourceLoader;
-}
-GenericApplicationContext <|-- GenericWebApplicationContext
-
-'''''''''''''''''''' 抽象应用上下文 ''''''''''''''''''''
-abstract class AbstractApplicationContext {
-    + void refresh()
-}
-AbstractApplicationContext <|-- GenericApplicationContext
 @enduml
 ```
 

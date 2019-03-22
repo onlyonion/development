@@ -1,4 +1,5 @@
-org.springframework.aop.ProxyMethodInvocation
+org.springframework.aop.framework.ReflectiveMethodInvocation
+
 ## hierachy
 ```
 Joinpoint (org.aopalliance.intercept)
@@ -14,6 +15,16 @@ Joinpoint (org.aopalliance.intercept)
 ```plantuml
 @startuml
 
+interface Joinpoint
+interface Invocation
+interface MethodInvocation
+interface ProxyMethodInvocation
+
+Joinpoint ^-- Invocation
+Invocation ^-- MethodInvocation
+MethodInvocation ^-- ProxyMethodInvocation
+ProxyMethodInvocation ^.. ReflectiveMethodInvocation
+
 class ReflectiveMethodInvocation {
     # final Object proxy;
     # final Object target;
@@ -28,6 +39,10 @@ class ReflectiveMethodInvocation {
     + invokeJoinpoint()
 }
 
+ReflectiveMethodInvocation ^-- CglibMethodInvocation
+
+class CglibAopProxy
+CglibAopProxy +-- CglibMethodInvocation
 class CglibMethodInvocation {
     + invokeJoinpoint()
 }

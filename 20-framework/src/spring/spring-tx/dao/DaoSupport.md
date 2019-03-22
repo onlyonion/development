@@ -13,12 +13,12 @@ DaoSupport (org.springframework.dao.support)
 @startuml
 
 abstract class DaoSupport {
+    + final void afterPropertiesSet()
     # abstract void checkDaoConfig()
     # void initDao()
 }
 
 interface InitializingBean
-
 InitializingBean <|.. DaoSupport
 
 @enduml

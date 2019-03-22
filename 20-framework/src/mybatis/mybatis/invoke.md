@@ -1,25 +1,47 @@
 
 ## invoke
+* binding
+  * MapperProxy
+  * MapperMethod
+* spring
+  * SqlSessionTemplate
+  * SqlSessionTemplate.SqlSessionInterceptor
+* session
+  * DefaultSqlSession
+* executor
+  * statement
+  * parameter
+  * resultset
 ```
+
+// proxy binding
 $Proxy Mapper接口的jdk动态代理
 MapperProxy
 MapperMethod
+
+// spring
 SqlSessionTemplate
 $Proxy SqlSession接口的jdk动态代理
 SqlSessionTemplate$SqlSessionInterceptor
 DefaultSqlSession
 
+// config
 Configuration
 MappedStatement
 
+/// executor
 CachingExecutor
 BaseExecutor
 SimpleExecutor
 
+// statementHandler
 RoutingStatementHandler
 PreparedStatementHandler
 
+// druid
 DruidPooledPreparedStatement
+
+// mysql-connector
 ```
 
 

@@ -1,7 +1,21 @@
 ```
 framework
     adapter
+        AdvisorAdapter
+        AdvisorAdapterRegistrationManager
+        AdvisorAdapterRegistry
+        AfterReturningAdviceAdapter
+        AfterReturningAdviceInterceptor
+        DefaultAdvisorAdapterRegistry
+        GlobalAdvisorAdapterRegistry
+        MethodBeforeAdviceAdapter
+        MethodBeforeAdviceInterceptor
+        ThrowsAdviceAdapter
+        ThrowsAdviceInterceptor
+        UnknownAdviceTypeException
     autoproxy
+        TargetSourceCreator
+        ProxyCreationContext
     AbstractAdvisingBeanPostProcessor
     AbstractSingletonProxyFactoryBean
     Advised
