@@ -49,4 +49,8 @@ B+Tree相对于B-Tree有几点不同：
 
 ![3阶的B+Tree结构图](../img/3-B+Tree.png) 
 
+## links
+* [快速理解平衡二叉树、B-tree、B+tree、B*tree ](https://my.oschina.net/u/3370829/blog/1301732)
+* [BTree和B+Tree详解](https://www.cnblogs.com/vianzhang/p/7922426.html)
+
 

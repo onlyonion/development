@@ -7,11 +7,11 @@ org.apache.zookeeper.ClientCnxn
 ```plantuml
 @startuml
 
-ZooKeeper +- ClientCnxn
+ZooKeeper +-- ClientCnxn
 
-ClientCnxn +- SendThread
+ClientCnxn +-- SendThread
 
-ClientCnxn +- EventThread
+ClientCnxn +-- EventThread
 
 Thread <|-- ZooKeeperThread
 ZooKeeperThread <|-- SendThread

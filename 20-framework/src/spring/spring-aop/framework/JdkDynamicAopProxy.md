@@ -16,11 +16,10 @@ class AdvisedSupport {
     TargetSource targetSource
     AdvisorChainFactory advisorChainFactory
     - List<Advisor> advisors
-    
+    .. 获得拦截器和动态拦截通知 ..
     + List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method, Class<?> targetClass)
 }
 JdkDynamicAopProxy o-- AdvisedSupport
-
 
 @enduml
 ```

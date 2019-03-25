@@ -58,9 +58,11 @@ invoke:433, SqlSessionTemplate$SqlSessionInterceptor (org.mybatis.spring)
 selectList:-1, $Proxy91 (com.sun.proxy)  jdk动态代理
 selectList:230, SqlSessionTemplate (org.mybatis.spring)
 
-// MapperProxy
+// MapperMethod
 executeForMany:137, MapperMethod (org.apache.ibatis.binding)
 execute:75, MapperMethod (org.apache.ibatis.binding)
+
+// MapperProxy
 invoke:59, MapperProxy (org.apache.ibatis.binding)
 selectList:-1, $Proxy92 (com.sun.proxy)  jdk动态代理
 ```

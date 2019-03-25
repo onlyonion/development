@@ -3,6 +3,7 @@
 * [spring-aop](/20-framework/src/spring/spring-aop/README.md)
 * [spring-beans](/20-framework/src/spring/spring-beans/README.md)
 * [spring-boot](/20-framework/src/spring/spring-boot/README.md)
+* [spring-cloud](/20-framework/src/spring/spring-cloud/README.md)
 * [spring-context](/20-framework/src/spring/spring-context/README.md)
 * [spring-context-support](/20-framework/src/spring/spring-context-support/README.md)
 * [spring-core](/20-framework/src/spring/spring-core/README.md)

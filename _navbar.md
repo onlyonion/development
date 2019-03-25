@@ -17,3 +17,4 @@
   * [tomcat](20-framework/src/tomcat/README.md)
   * [netty](20-framework/src/netty/README.md)
   * [dubbo](30-distributed/src/dubbo/README.md)
+  * [rocketmq](30-distributed/src/rocketmq/README.md)
