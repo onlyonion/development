@@ -96,9 +96,41 @@ invoke:433, SqlSessionTemplate$SqlSessionInterceptor (org.mybatis.spring)
 selectList:-1, $Proxy91 (com.sun.proxy)     动态代理
 selectList:230, SqlSessionTemplate (org.mybatis.spring)
 
-// MapperProxy
+// MapperMethod
 executeForMany:137, MapperMethod (org.apache.ibatis.binding)
 execute:75, MapperMethod (org.apache.ibatis.binding)
+
+// MapperProxy
 invoke:59, MapperProxy (org.apache.ibatis.binding)
 selectList:-1, $Proxy92 (com.sun.proxy)     动态代理
+```
+
+## update stack
+```
+
+// statement
+update:47, PreparedStatementHandler (org.apache.ibatis.executor.statement)
+update:74, RoutingStatementHandler (org.apache.ibatis.executor.statement)
+
+// executor
+doUpdate:50, SimpleExecutor (org.apache.ibatis.executor)
+update:117, BaseExecutor (org.apache.ibatis.executor)
+update:76, CachingExecutor (org.apache.ibatis.executor)
+
+// sqlSession
+update:198, DefaultSqlSession (org.apache.ibatis.session.defaults)
+
+invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
+invoke:62, NativeMethodAccessorImpl (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+invoke:498, Method (java.lang.reflect)
+
+// spring-mybatis sql会话模板
+invoke:433, SqlSessionTemplate$SqlSessionInterceptor (org.mybatis.spring)
+update:-1, $Proxy85 (com.sun.proxy)
+update:294, SqlSessionTemplate (org.mybatis.spring)
+
+execute:62, MapperMethod (org.apache.ibatis.binding)
+invoke:59, MapperProxy (org.apache.ibatis.binding)
+updateByPrimaryKeySelective:-1, $Proxy88 (com.sun.proxy)
 ```

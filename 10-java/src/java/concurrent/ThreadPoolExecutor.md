@@ -15,6 +15,16 @@ AbstractExecutorService (java.util.concurrent)
 ```
 
 ## define
+* 域
+  * 工作队列
+  * 全局锁
+  * 工作线程集合
+  * 全局锁条件
+  * 线程工厂
+  * 饱和策略
+  * 存活时间
+  * 核心线程池数量
+  * 最大线程池数量
 
 ```plantuml
 @startuml
@@ -24,11 +34,15 @@ interface Executor
 interface ExecutorService
 Executor <|-- ExecutorService
 abstract class AbstractExecutorService {
+
+    - <T> T doInvokeAny(Collection<? extends Callable<T>> tasks,
+        boolean timed, long nanos)
 }
 ExecutorService <|-.- AbstractExecutorService
 
 '''''''''''''''''''' ThreadPoolExecutor ''''''''''''''''''''
 class ThreadPoolExecutor {
+    - final AtomicInteger ctl
     - final BlockingQueue<Runnable> workQueue
     - final ReentrantLock mainLock
     - final HashSet<Worker> workers
@@ -48,6 +62,13 @@ class ThreadPoolExecutor {
     - void processWorkerExit(Worker w, boolean completedAbruptly)
 }
 AbstractExecutorService <|-- ThreadPoolExecutor
+
+ThreadPoolExecutor o-- BlockingQueue
+ThreadPoolExecutor o-- ReentrantLock
+ThreadPoolExecutor o-- ThreadFactory
+ThreadPoolExecutor o-- RejectedExecutionHandler
+
+interface ThreadFactory
 
 '''''''''''''''''''' Worker ''''''''''''''''''''
 abstract class AbstractQueuedSynchronizer {

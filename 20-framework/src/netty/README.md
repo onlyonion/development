@@ -64,3 +64,4 @@ util
 
 ## links
 * [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
+* [《Netty实战》 何品 译 人民邮电出版社](/99-book/notes/21-server/Netty实战.md)

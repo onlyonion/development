@@ -29,9 +29,11 @@
 * [《Spring源码深度解析》郝佳](/99-book/notes/20-framework/Spring源码深度解析.md)
 * 《Spring Boot实战》汪云飞
 * 《Spring Cloud与Docker微服务架构实战》周立
+* [《跟我学Shiro教程》张开涛](/99-book/notes/20-framework/跟我学Shiro教程.md)
 
 ### 服务器
 * [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
+* [《Netty实战》 何品 译 人民邮电出版社](/99-book/notes/21-server/Netty实战.md)
 * [《Tomcat架构解析》刘光瑞](/99-book/notes/21-server/Tomcat架构解析.md)
 * [《实战Nignx 取代Apache的高性能Web服务器》](/99-book/notes/21-server/实战Nignx.md)
 * [《深入理解Nginx 模块开发与架构解析》](/99-book/notes/21-server/深入理解Nginx.md)
@@ -41,7 +43,7 @@
 
 ### 分布式
 * 《dubbo源码解析2.0》
-* [《Redis 设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
+* [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
 * [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/30-distributed/大型网站系统与Java中间件实践.md)
@@ -65,7 +67,7 @@
 * [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/99-book/notes/50-database/大数据之路.md)
 
 ### 设计
-* 《大话设计模式》
+* [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
 * 《HEAD FIRST 设计模式（中文版）》
 * [《领域驱动设计：软件核心复杂性应对之道》[美]Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
 * 《领域驱动设计与模式实战》赵俐 马燕新 译

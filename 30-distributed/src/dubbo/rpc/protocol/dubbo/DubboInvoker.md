@@ -13,6 +13,11 @@ AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
 ```
 
 ## define
+* doInvoke
+  * isOneway 异步不带回调
+  * isAsync 异步带回调
+  * sync 同步
+
 ```plantuml
 @startuml
 
@@ -30,6 +35,7 @@ class DubboInvoker<T> {
     - final String                version
     - final ReentrantLock         destroyLock
     - final Set<Invoker<?>>       invokers
+    # Result doInvoke(final Invocation invocation)
 }
 AbstractInvoker ^-- DubboInvoker
 
@@ -59,3 +65,8 @@ DubboInvoker o-- ExchangeClient
 
 @enduml
 ```
+
+## invoke
+* ReferenceCountExchangeClient
+* HeaderExchangeClient
+* HeaderExchangeChannel

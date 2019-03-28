@@ -5,7 +5,12 @@
 ## package
 ```
 dubbo
+    DubboMonitor
+    DubboMonitorFactroy
+    Statistics
 support
+    AbstractMonitorFactory
+    MonitorFilter
 Monitor
 MonitorFactory
 MonitorService
