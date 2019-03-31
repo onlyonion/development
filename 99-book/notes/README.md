@@ -69,7 +69,7 @@
 ### 设计
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
 * 《HEAD FIRST 设计模式（中文版）》
-* [《领域驱动设计：软件核心复杂性应对之道》[美]Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
+* [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
 * 《领域驱动设计与模式实战》赵俐 马燕新 译
 * [《实现领域驱动设计》滕云 译](/99-book/notes/40-architecture/实现领域驱动设计.md)
 
@@ -95,7 +95,9 @@
 ### 运维
 * [《Zabbix企业级分布式监控系统》吴兆松著](/99-book/notes/70-dev-ops/Zabbix企业级分布式监控系统.md)
 * 《Maven实战》	许晓斌
-* 《Linux命令行与shell脚本编程大全（第2班）》 [美] Richard Blum著 吴海峰 译
+* 《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译
+* [《Linux内核设计与实现》美 Robert Love著 陈莉君 康华 译](/99-book/notes/70-dev-ops/Linux内核设计与实现.md)
+* [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
 
 ### 测试
 * 《软件测试基础》 周元哲

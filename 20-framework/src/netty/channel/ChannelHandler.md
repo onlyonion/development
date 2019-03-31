@@ -23,3 +23,35 @@ ChannelHandler (io.netty.channel)
         HeadContext in DefaultChannelPipeline (io.netty.channel)
         TailContext in DefaultChannelPipeline (io.netty.channel)
 ```
+
+## define
+* ChannelInboundHandler
+* ChannelOutboundHandler
+* ChannelHandlerAdapter
+
+```plantuml
+@startuml
+
+interface ChannelHandler {
+    void handlerAdded(ChannelHandlerContext ctx) throws Exception
+    void handlerRemoved(ChannelHandlerContext ctx) throws Exception
+    void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception
+}
+
+ChannelHandler ^-- ChannelInboundHandler
+ChannelHandler ^.. ChannelHandlerAdapter
+ChannelHandler ^-- ChannelOutboundHandler
+
+interface ChannelInboundHandler 
+interface ChannelOutboundHandler
+abstract class ChannelHandlerAdapter
+ChannelInboundHandler ^-- ChannelInboundHandlerAdapter
+ChannelOutboundHandler ^-- ChannelOutboundHandlerAdapter
+ChannelHandlerAdapter ^-- ChannelInboundHandlerAdapter
+ChannelHandlerAdapter ^-- ChannelOutboundHandlerAdapter
+
+class ChannelInboundHandlerAdapter 
+class ChannelOutboundHandlerAdapter 
+
+@enduml
+```

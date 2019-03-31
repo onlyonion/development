@@ -38,15 +38,19 @@ exports.add = function() {
 操作系统内核对于IO操作只有两种方式，阻塞和非阻塞
 非阻塞调用之后立即返回，不带数据，要获取数据，需要通过文件描述符再次获取（重复调用-轮询）
 
-```system call
+```
+system call
+
 read
 select 根据描述符的事件状态轮询；1024长度的数组存储状态，最多同时检测1024个文件描述符
 poll   链表方式避免数组长度的限制，避免不必要的检查。文件描述符多效率低
 epoll  事件通知机制，进入轮询的时候如果没有检测到IO时间，进行休眠，直到事件发生将它唤醒
 kqueue FreeBSD，类似epoll
 ```
+
 #### 3.2.2 理想的非阻塞异步I/O
 * perfect 应用程序发起非阻塞调用，无须通过遍历或者事件唤醒等方式轮询，可以直接处理下一个任务，只需在IO完成后通过信号或者回调将数据传递给应用程序。
+
 #### 3.2.3 现实的异步I/O
 线程池 + 阻塞IO
 线程池 + 非阻塞IO + 轮询
@@ -54,6 +58,7 @@ kqueue FreeBSD，类似epoll
 windows IOCP
 *nix libuv
 > 时常说的Node是单线程的，**仅仅指JavaScript执行在单线程**。在Node中，内部完成IO任务的另有**线程池**。
+
 ### 3.3 Node的异步I/O
 #### 3.3.1 事件循环
 #### 3.3.2 观察者
@@ -91,6 +96,7 @@ async(function(err, results){
 // 浏览器中指的JavaScript线程与UI渲染线程共用一个。
 // 异步转同步
 ```
+
 ### 4.3 异步编程解决方案
 #### 4.3.1 事件发布/订阅模式
 ```js
@@ -102,7 +108,8 @@ emitter.on('event', function(message){
 emitter.emit('event', 'I am message');
 // 订阅时间就是一个高阶函数的应用。事件发布/订阅实现一个事件与多个回调函数的关联。
 ```
-#### 4.3.2 Promise/Deferred模式
+#
+### 4.3.2 Promise/Deferred模式
 then()
 #### 4.3.3 流程控制库
 next
