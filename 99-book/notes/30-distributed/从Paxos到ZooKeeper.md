@@ -17,6 +17,14 @@
 
 ## 第4章 ZooKeeper与Paxos
 ### 4.1 初始ZooKeeper
+#### 4.1.3 Zookeeper的基本概念
+* 集群角色
+* 会话
+* 数据节点
+* 版本
+* Watcher 事件监听器
+* ACL create, read, write, delete, admin
+
 ### 4.2 ZooKeeper的ZAB协议
 
 ## 第5章 使用ZooKeeper
