@@ -3,7 +3,6 @@
 * [10-shell.md](/70-dev-ops/blog/10-shell.md)
 * [11-linux-cmd.md](/70-dev-ops/blog/11-linux-cmd.md)
 * [12-ubuntu.md](/70-dev-ops/blog/12-ubuntu.md)
-* [13-win-env.md](/70-dev-ops/blog/13-win-env.md)
 * [20-docker.md](/70-dev-ops/blog/20-docker.md)
 * [30-monitor.md](/70-dev-ops/blog/30-monitor.md)
 * [40-security.md](/70-dev-ops/blog/40-security.md)
