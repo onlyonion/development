@@ -8,6 +8,9 @@ interceptor
     CacheAspectSupport
     KeyGenerator
 support
+    AbstractCacheManager
+    CompositeCacheManager
+    SimpleCacheManager
 Cache
 CacheManager
 ```

@@ -11,18 +11,41 @@ Joinpoint (org.aopalliance.intercept)
                     CglibMethodInvocation in CglibAopProxy (org.springframework.aop.framework)
 ```
 
-## class
+## define
+* 反射的方法调用器
+
 ```plantuml
 @startuml
 
-interface Joinpoint
-interface Invocation
-interface MethodInvocation
-interface ProxyMethodInvocation
+'''''''''''''''''''''''''Joinpoint''''''''''''''''''''''''''''''
+interface Joinpoint {
+    + Object proceed()
+    + Object getThis()
+    + AccessibleObject getStaticPart()
+}
+
+interface Invocation {
+    + Object[] getArguments()                   
+}
+
+interface MethodInvocation {
+    + Method getMethod()
+}
+
+interface ProxyMethodInvocation {
+	+ Object getProxy()
+	+ MethodInvocation invocableClone()
+	+ MethodInvocation invocableClone(Object... arguments)
+	+ void setArguments(Object... arguments)
+	+ void setUserAttribute(String key, Object value)
+	+ Object getUserAttribute(String key)
+}
 
 Joinpoint ^-- Invocation
 Invocation ^-- MethodInvocation
 MethodInvocation ^-- ProxyMethodInvocation
+
+'''''''''''''''''''''''''父类''''''''''''''''''''''''''''''
 ProxyMethodInvocation ^.. ReflectiveMethodInvocation
 
 class ReflectiveMethodInvocation {
@@ -39,6 +62,8 @@ class ReflectiveMethodInvocation {
     + invokeJoinpoint()
 }
 
+
+'''''''''''''''''''''''''CglibMethodInvocation''''''''''''''''''''''''''''''
 ReflectiveMethodInvocation ^-- CglibMethodInvocation
 
 class CglibAopProxy

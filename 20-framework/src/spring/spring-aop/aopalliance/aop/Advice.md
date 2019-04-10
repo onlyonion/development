@@ -1,6 +1,57 @@
 org.aopalliance.aop.Advice
 
-## 1. Advice 定义
+## hierachy
+```
+Advice (org.aopalliance.aop)
+    Interceptor (org.aopalliance.intercept)
+        MethodInterceptor (org.aopalliance.intercept)
+            AbstractSlsbInvokerInterceptor (org.springframework.ejb.access)
+            MethodValidationInterceptor (org.springframework.validation.beanvalidation)
+            BurlapClientInterceptor (org.springframework.remoting.caucho)
+            EventPublicationInterceptor (org.springframework.context.event)
+            PersistenceExceptionTranslationInterceptor (org.springframework.dao.support)
+            JndiContextExposingInterceptor in JndiObjectFactoryBean (org.springframework.jndi)
+            AbstractTraceInterceptor (org.springframework.aop.interceptor)
+            IntroductionInterceptor (org.springframework.aop)
+            RmiClientInterceptor (org.springframework.remoting.rmi)
+            HessianClientInterceptor (org.springframework.remoting.caucho)
+            AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+            ThrowsAdviceInterceptor (org.springframework.aop.framework.adapter)
+            CacheInterceptor (org.springframework.cache.interceptor)
+            ExposeBeanNameInterceptor in ExposeBeanNameAdvisors (org.springframework.aop.interceptor)
+            ExposeInvocationInterceptor (org.springframework.aop.interceptor)
+            JaxWsPortClientInterceptor (org.springframework.remoting.jaxws)
+            AopAllianceAnnotationsAuthorizingMethodInterceptor (org.apache.shiro.spring.security.interceptor)
+            AsyncExecutionInterceptor (org.springframework.aop.interceptor)
+            TransactionInterceptor (org.springframework.transaction.interceptor)
+            ConcurrencyThrottleInterceptor (org.springframework.aop.interceptor)
+            JndiRmiClientInterceptor (org.springframework.remoting.rmi)
+            RemoteInvocationTraceInterceptor (org.springframework.remoting.support)
+            AfterReturningAdviceInterceptor (org.springframework.aop.framework.adapter)
+            AspectJAfterAdvice (org.springframework.aop.aspectj)
+            AspectJAroundAdvice (org.springframework.aop.aspectj)
+            HttpInvokerClientInterceptor (org.springframework.remoting.httpinvoker)
+            GenericMessageEndpoint in GenericMessageEndpointFactory (org.springframework.jca.endpoint)
+            MBeanClientInterceptor (org.springframework.jmx.access)
+            ControllerMethodInvocationInterceptor in MvcUriComponentsBuilder (org.springframework.web.servlet.mvc.method.annotation)
+            MethodBeforeAdviceInterceptor (org.springframework.aop.framework.adapter)
+        ConstructorInterceptor (org.aopalliance.intercept)
+    BeforeAdvice (org.springframework.aop)
+        MethodBeforeAdvice (org.springframework.aop)
+    DynamicIntroductionAdvice (org.springframework.aop)
+        IntroductionInterceptor (org.springframework.aop)
+    AbstractAspectJAdvice (org.springframework.aop.aspectj)
+    AfterAdvice (org.springframework.aop)
+        AfterReturningAdviceInterceptor (org.springframework.aop.framework.adapter)
+        ThrowsAdvice (org.springframework.aop)
+        AspectJAfterAdvice (org.springframework.aop.aspectj)
+        AspectJAfterReturningAdvice (org.springframework.aop.aspectj)
+        AspectJAfterThrowingAdvice (org.springframework.aop.aspectj)
+        ThrowsAdviceInterceptor (org.springframework.aop.framework.adapter)
+        AfterReturningAdvice (org.springframework.aop)
+```
+
+## Advice 定义
 在特定的连接点，AOP框架执行的动作。
 
 * 前置通知 BeforeAdvice MethodBeforeAdvice
@@ -26,8 +77,12 @@ AfterAdvice <|-- ThrowsAdvice
 AfterAdvice <|-- AfterReturningAdvice
 
 interface Interceptor
-interface MethodInterceptor
-interface ConstructorInterceptor
+interface MethodInterceptor {
+    + Object invoke(MethodInvocation invocation) throws Throwable
+}
+interface ConstructorInterceptor {
+    + Object construct(ConstructorInvocation invocation) throws Throwable
+}
 Advice <|-- Interceptor
 Interceptor <|-- MethodInterceptor
 Interceptor <|-- ConstructorInterceptor
@@ -41,7 +96,7 @@ DynamicIntroductionAdvice <|-- IntroductionInterceptor
 @enduml
 ```
 
-## 2. Advice 类图
+## Advice 类图
 
 ```yuml
 // {type:class}

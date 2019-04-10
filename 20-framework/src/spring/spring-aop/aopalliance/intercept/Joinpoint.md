@@ -1,44 +1,58 @@
 org.aopalliance.intercept.Joinpoint
 
-## 1. Joinpoint 定义
+## hierachy
+spring 实现了方法级别的拦截
+
+```
+Joinpoint (org.aopalliance.intercept)
+    Invocation (org.aopalliance.intercept)
+        ConstructorInvocation (org.aopalliance.intercept)
+        MethodInvocation (org.aopalliance.intercept)
+            ProxyMethodInvocation (org.springframework.aop)
+                ReflectiveMethodInvocation (org.springframework.aop.framework)
+                    CglibMethodInvocation in CglibAopProxy (org.springframework.aop.framework)
+```
+
+## define
 1. JoinPoint对象封装了SpringAop中切面方法的信息,在切面方法中添加JoinPoint参数,就可以获取到封装了该方法信息的JoinPoint对象.
 2. 被拦截到的点，因为Spring只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器
-
-
-## hierachy
-* Joinpoint
-* Invocation
-* MethodInvocation
+3. Joinpoint这个接口表示一个通用的运行时连接点。运行时连接点是一个静态连接点发生的一个事件。
 
 ```plantuml
 @startuml
 
-' 这个接口表示一个通用的运行时连接点
-' 运行时连接点是一个静态连接点发生的一个事件。
+
 interface Joinpoint {
-    Object proceed()
-    Object getThis()
-    AccessibleObject getStaticPart()
+    + Object proceed()
+    + Object getThis()
+    + AccessibleObject getStaticPart()
 }
 
 interface Invocation {
-    Object[] getArguments()                   
+    + Object[] getArguments()                   
 }
 
 interface MethodInvocation {
-    Method getMethod()
+    + Method getMethod()
 }
 
-Joinpoint <|-- Invocation
-Invocation <|-- MethodInvocation
+interface ProxyMethodInvocation {
+	+ Object getProxy()
+	+ MethodInvocation invocableClone()
+	+ MethodInvocation invocableClone(Object... arguments)
+	+ void setArguments(Object... arguments)
+	+ void setUserAttribute(String key, Object value)
+	+ Object getUserAttribute(String key)
+}
+
+Joinpoint ^-- Invocation
+Invocation ^-- MethodInvocation
+MethodInvocation ^-- ProxyMethodInvocation
 
 @enduml
 ```
 
-## 2. Joinpoint类图
-* spring 实现了方法级别的拦截
-* org.springframework.aop.ProxyMethodInvocation
-* org.springframework.aop.framework.ReflectiveMethodInvocation
+## yuml
 
 ```yuml
 // {type:class}
