@@ -1,5 +1,6 @@
 ## spring data
-Spring Data 项目的目的是为了简化构建基于 Spring 框架应用的数据访问计数，包括非关系数据库、Map-Reduce 框架、云数据服务等等；另外也包含对关系数据库的访问支持。
+Spring Data 项目的目的是为了简化构建基于 Spring 框架应用的数据访问计数，包括非关系数据库、Map-Reduce 框架、云数据服务等等；
+另外也包含对关系数据库的访问支持。
 
 Spring Data 包含多个子项目：
 
