@@ -13,3 +13,19 @@ Cache (org.springframework.cache)
         RedisCache (org.springframework.data.redis.cache)
     TransactionAwareCacheDecorator (org.springframework.cache.transaction)
 ```
+
+## define
+
+```plantuml
+@startuml
+
+interface Cache
+
+Cache +-- ValueWrapper
+
+interface ValueWrapper
+
+
+@enduml
+```
+

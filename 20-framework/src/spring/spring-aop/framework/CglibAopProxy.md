@@ -2,15 +2,16 @@ org.springframework.aop.framework.CglibAopProxy
 
 ## hierarchy
 ```
-CglibAopProxy (org.springframework.aop.framework)
-    ObjenesisCglibAopProxy (org.springframework.aop.framework)
+AopProxy (org.springframework.aop.framework)
+    JdkDynamicAopProxy (org.springframework.aop.framework)
+    CglibAopProxy (org.springframework.aop.framework)
+        ObjenesisCglibAopProxy (org.springframework.aop.framework)
 ```
 
 ## define
 * 内部类
-  * DynamicAdvisedInterceptor
-  * CglibMethodInvocation
-
+  * DynamicAdvisedInterceptor cglib的拦截器，顶层是回调接口，与aopalliance的Advice类似
+  * CglibMethodInvocation Invocation本质上是Jointpoint
 
 ```plantuml
 @startuml
@@ -33,8 +34,13 @@ class AdvisedSupport {
 }
 CglibAopProxy o-- AdvisedSupport
 
-'''''''''''''''''''''''' 内部类 '''''''''''''''''''''''''''''
 '''''''''''''''''''''''' DynamicAdvisedInterceptor '''''''''''''''''''''''''''''
+interface Callback
+interface MethodInterceptor
+
+Callback ^-- MethodInterceptor
+MethodInterceptor ^.. DynamicAdvisedInterceptor
+
 class DynamicAdvisedInterceptor {
     - final AdvisedSupport advised;
     + Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy)
@@ -43,9 +49,23 @@ CglibAopProxy +-- DynamicAdvisedInterceptor
 DynamicAdvisedInterceptor o-- AdvisedSupport
 
 '''''''''''''''''''''''' CglibMethodInvocation '''''''''''''''''''''''''''''
+interface Joinpoint
+interface Invocation
+interface MethodInvocation
+interface ProxyMethodInvocation
+
+Joinpoint ^-- Invocation
+Invocation ^-- MethodInvocation
+MethodInvocation ^-- ProxyMethodInvocation
+ProxyMethodInvocation ^.. ReflectiveMethodInvocation
 class ReflectiveMethodInvocation
-class CglibMethodInvocation 
-ReflectiveMethodInvocation <|-- CglibMethodInvocation
+ReflectiveMethodInvocation ^-- CglibMethodInvocation
+
+class CglibMethodInvocation {
+    - final MethodProxy methodProxy
+    # Object invokeJoinpoint() throws Throwable
+}
+
 CglibAopProxy +-- CglibMethodInvocation
 
 
@@ -54,6 +74,6 @@ CglibAopProxy +-- CglibMethodInvocation
 
 ## DynamicAdvisedInterceptor.intercept()
 * 获得拦截器链 advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass)
-    - 拦截器链为空，直接调用
-    - 拦截器链不为空，执行拦截器链
+ - 拦截器链为空，直接调用
+ - 拦截器链不为空，执行拦截器链
 * 结果处理、返回

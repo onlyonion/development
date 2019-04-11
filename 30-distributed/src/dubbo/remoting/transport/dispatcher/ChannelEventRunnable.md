@@ -2,6 +2,8 @@ com.alibaba.dubbo.remoting.transport.dispatcher.ChannelEventRunnable
 
 
 ## define
+通道事件任务
+
 ```plantuml
 @startuml
 

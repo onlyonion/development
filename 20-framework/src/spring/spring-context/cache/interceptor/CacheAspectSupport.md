@@ -15,6 +15,10 @@ AbstractCacheInvoker (org.springframework.cache.interceptor)
 ''''''''''''''''''''''''''''AbstractCacheInvoker'''''''''''''''''''''''''''''''''''
 abstract class AbstractCacheInvoker {
     # SingletonSupplier<CacheErrorHandler> errorHandler
+    # Cache.ValueWrapper doGet(Cache cache, Object key)
+    # void doPut(Cache cache, Object key, @Nullable Object result)
+    # void doEvict(Cache cache, Object key)
+    # void doClear(Cache cache)
 }
 interface CacheErrorHandler
 AbstractCacheInvoker o-- CacheErrorHandler
@@ -35,7 +39,6 @@ abstract class CacheAspectSupport {
     # Object invokeOperation(CacheOperationInvoker invoker)
     - Object wrapCacheValue(Method method, Object cacheValue) 
 }
-
 
 CacheAspectSupport +-- CacheOperationContexts
 CacheAspectSupport +-- CacheOperationMetadata

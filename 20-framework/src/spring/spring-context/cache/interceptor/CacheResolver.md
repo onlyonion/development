@@ -12,21 +12,30 @@ CacheResolver (org.springframework.cache.interceptor)
 ```plantuml
 @startuml
 
-interface CacheResolver 
+interface CacheResolver {
+    + Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context)
+}
 CacheResolver ^.. AbstractCacheResolver
 
 abstract class AbstractCacheResolver {
     - CacheManager cacheManager
+    # abstract Collection<String> getCacheNames(CacheOperationInvocationContext<?> context)
 }
 
 interface CacheManager
 AbstractCacheResolver o-- CacheManager
 
+''''''''''''''''''''''''' 两种缓存解析器 '''''''''''''''''''''''''
 AbstractCacheResolver ^-- SimpleCacheResolver
 AbstractCacheResolver ^-- NamedCacheResolver
 
-class SimpleCacheResolver
-class NamedCacheResolver
+class SimpleCacheResolver {
+
+}
+
+class NamedCacheResolver {
+
+}
 
 @enduml
 ```
