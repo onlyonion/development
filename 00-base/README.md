@@ -30,5 +30,6 @@
 
 ## 学科门类
 * [学科门类](/99-book/subject/README.md)
+* [计算机相关书籍](./99-book/notes/README.md)
 
 
