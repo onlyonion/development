@@ -8,7 +8,11 @@ keygen
     SelectKeyGenerator
 loader
     cglib
+        CglibProxyFactory
+        CglibSerialStateHolder
     javassist
+        JavassistProxyFactory
+        JavassistSerialStateHolder
     ProxyFactory
     ResultLoader
     ResultLoaderMap

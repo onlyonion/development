@@ -1,1 +1,49 @@
 ## javax
+
+## package
+```
+accessibility
+activation
+activity
+annotation
+imageio
+jws
+model
+management
+naming
+net
+print
+rmi
+    CORBA
+    ssl
+script
+    Invocable
+    ScriptContext
+    ScriptEngine
+    ScriptEngineFactory
+    Bindings
+    Compilable
+security
+smartcardio
+sound
+sql
+    DataSource
+    PooledConnection
+swing
+tools
+transaction
+    xa
+xml
+    bind
+    crypto
+    datatype
+    namespace
+    parsers
+    soap
+    stream
+    transform
+    validation
+    ws
+    xpath
+    XMLConstants
+```

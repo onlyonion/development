@@ -1,0 +1,22 @@
+org.apache.ibatis.cache
+## package
+```
+decorators
+    BlockingCache
+    FifoCache
+    LoggingCache
+    LruCache
+    ScheduledCache
+    SerializedCache
+    SoftCache
+    SynchronizedCache
+    TransactionalCache
+    WeakCache
+impl
+    PerpetualCache
+Cache
+CacheException
+CacheKey
+NullCacheKey
+TransactionalCacheManager
+```

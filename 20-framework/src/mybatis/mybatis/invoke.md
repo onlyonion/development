@@ -130,6 +130,7 @@ invoke:433, SqlSessionTemplate$SqlSessionInterceptor (org.mybatis.spring)
 update:-1, $Proxy85 (com.sun.proxy)
 update:294, SqlSessionTemplate (org.mybatis.spring)
 
+// proxy
 execute:62, MapperMethod (org.apache.ibatis.binding)
 invoke:59, MapperProxy (org.apache.ibatis.binding)
 updateByPrimaryKeySelective:-1, $Proxy88 (com.sun.proxy)

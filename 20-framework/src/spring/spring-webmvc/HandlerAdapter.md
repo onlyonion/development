@@ -42,6 +42,7 @@ AbstractHandlerMethodAdapter <|-- RequestMappingHandlerAdapter
 * 适配器处理
 * 委托InvocableHandlerMethod
 * 获得模型视图对象
+
 ```mermaid
 sequenceDiagram
     %% 请求传递到适配器 抽象处理方法适配器 -- 请求映射处理器适配器

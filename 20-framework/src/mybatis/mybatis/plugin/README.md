@@ -12,6 +12,10 @@ org.apache.ibatis.plugin
 ```
 
 ## overview
+* 拦截器
+* 拦截器链
+* 调用器 目标对象、方法、参数的封装
+* 插件（增强） 生成动态代理，实现InvocationHandler
 
 ```plantuml
 @startuml
@@ -44,6 +48,7 @@ class Plugin {
     - Object target
     - Interceptor interceptor
     - Map<Class<?>, Set<Method>> signatureMap
+    + static Object wrap(Object target, Interceptor interceptor)
     + Object invoke(Object proxy, Method method, Object[] args)
 }
 Plugin o-- Interceptor

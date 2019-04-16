@@ -1,66 +1,15 @@
-* org.springframework.web.servlet.HttpServletBean
-* org.springframework.web.servlet.FrameworkServlet
-* org.springframework.web.servlet.DispatcherServlet
-
+org.springframework.web.servlet.DispatcherServlet
 ## hierarchy
+```
+GenericServlet (javax.servlet)
+    HttpServlet (javax.servlet.http)
+        HttpServletBean (org.springframework.web.servlet)
+            FrameworkServlet (org.springframework.web.servlet)
+                DispatcherServlet (org.springframework.web.servlet)
+```
+
 DispatcherServlet通过继承FrameworkServlet和HttpServletBean而继承HttpServlet，通过使用Servlet API来对HTTP请求进行响应，
 成为Spring MVC的前端处理器，同时成为MVC模块与Web容器集成的处理前端。
-
-```yuml
-
-// {type:class}
-
-// servlet api
-[Servlet{bg:thistle}]
-[GenericServlet{bg:thistle}]
-[HttpServlet{bg:thistle}]
-
-// springmvc
-[HttpServletBean{bg:wheat}]
-[FrameworkServlet{bg:wheat}]
-[DispatcherServlet{bg:tomato}]
-
-// 请求处理
-[HandlerMapping{bg:slategray}]
-[HandlerAdapter{bg:slategray}]
-[HandlerExceptionResolver{bg:slategray}]
-[ViewResolver{bg:slategray}]
-
-// 1. servlet规范
-[Servlet]^-.-[GenericServlet]
-[ServletConfig]^-.-[GenericServlet]
-[GenericServlet]^-[HttpServlet]
-
-// 2. HttpServletBean
-[HttpServlet]^-[HttpServletBean]
-// EnvironmentCapable 对get方法抽象
-[EnvironmentCapable]^-.-[HttpServletBean]
-// EnvironmentAware 对set方法抽象
-[EnvironmentAware]^-.-[HttpServletBean]
-
-// 3. FrameworkServlet
-[HttpServletBean]^-[FrameworkServlet]
-[ApplicationContextAware]^-.-[FrameworkServlet]
-
-// 4. DispatcherServlet
-[FrameworkServlet]^-[DispatcherServlet]
-
-// 4.1 特性 multipart解析器
-[DispatcherServlet]++-[MultipartResolver]
-[DispatcherServlet]++-[LocaleResolver]
-[DispatcherServlet]++-[ThemeResolver]
-
-// 4.2 请求映射处理
-[DispatcherServlet]++1-*[HandlerMapping]
-[DispatcherServlet]++1-*[HandlerAdapter]
-[DispatcherServlet]++1-*[HandlerExceptionResolver]
-
-// 4.3 视图处理
-[DispatcherServlet]++-[RequestToViewNameTranslator]
-[DispatcherServlet]++-[FlashMapManager]
-[DispatcherServlet]++1-*[ViewResolver]
-
-```
 
 ## define
 * 静态域
@@ -163,7 +112,7 @@ DispatcherServlet ..> ModelAndView
 
 ```mermaid
 sequenceDiagram
-    %% 1. 第一次请求servlet初始化
+    %% 1. 第一次请求servlet初始化。tomcat配置loadOnStartup，预启动
     StandardWrapper->>Servlet:init(ServletConfig)
     Servlet->>GenericServlet:init(ServletConfig)
     GenericServlet->>GenericServlet:init()
@@ -203,6 +152,31 @@ sequenceDiagram
 	%% 3.3 初始化其他
     FrameworkServlet->>FrameworkServlet:initFrameworkServlet()
 ```
+
+## initStrategies
+```java
+public class DispatcherServlet extends FrameworkServlet {
+    protected void initStrategies(ApplicationContext context) {
+        // 文件上传解析
+		initMultipartResolver(context);
+		initLocaleResolver(context);
+		initThemeResolver(context);
+		// 处理器映射
+		initHandlerMappings(context);
+		// 处理器适配器
+		initHandlerAda|pters(context);
+		// 处理器执行链解析器
+		initHandlerExceptionResolvers(context);
+		// 请求转视图名称转换器
+		initRequestToViewNameTranslator(context);
+		// 视图解析器
+		initViewResolvers(context);
+		// flash映射管理器
+		initFlashMapManager(context);
+	}
+}
+```
+
 
 ## 销毁 destroy()
 
@@ -298,3 +272,60 @@ sequenceDiagram
 ### HandlerAdapter.handle()
 
 [handle](./HandlerAdapter.md)
+
+### yuml
+```yuml
+
+// {type:class}
+
+// servlet api
+[Servlet{bg:thistle}]
+[GenericServlet{bg:thistle}]
+[HttpServlet{bg:thistle}]
+
+// springmvc
+[HttpServletBean{bg:wheat}]
+[FrameworkServlet{bg:wheat}]
+[DispatcherServlet{bg:tomato}]
+
+// 请求处理
+[HandlerMapping{bg:slategray}]
+[HandlerAdapter{bg:slategray}]
+[HandlerExceptionResolver{bg:slategray}]
+[ViewResolver{bg:slategray}]
+
+// 1. servlet规范
+[Servlet]^-.-[GenericServlet]
+[ServletConfig]^-.-[GenericServlet]
+[GenericServlet]^-[HttpServlet]
+
+// 2. HttpServletBean
+[HttpServlet]^-[HttpServletBean]
+// EnvironmentCapable 对get方法抽象
+[EnvironmentCapable]^-.-[HttpServletBean]
+// EnvironmentAware 对set方法抽象
+[EnvironmentAware]^-.-[HttpServletBean]
+
+// 3. FrameworkServlet
+[HttpServletBean]^-[FrameworkServlet]
+[ApplicationContextAware]^-.-[FrameworkServlet]
+
+// 4. DispatcherServlet
+[FrameworkServlet]^-[DispatcherServlet]
+
+// 4.1 特性 multipart解析器
+[DispatcherServlet]++-[MultipartResolver]
+[DispatcherServlet]++-[LocaleResolver]
+[DispatcherServlet]++-[ThemeResolver]
+
+// 4.2 请求映射处理
+[DispatcherServlet]++1-*[HandlerMapping]
+[DispatcherServlet]++1-*[HandlerAdapter]
+[DispatcherServlet]++1-*[HandlerExceptionResolver]
+
+// 4.3 视图处理
+[DispatcherServlet]++-[RequestToViewNameTranslator]
+[DispatcherServlet]++-[FlashMapManager]
+[DispatcherServlet]++1-*[ViewResolver]
+
+```

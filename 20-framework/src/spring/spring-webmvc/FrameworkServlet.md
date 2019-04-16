@@ -87,3 +87,23 @@ ApplicationContextAware <|.. FrameworkServlet
 
 @enduml
 ```
+
+## int
+* initServletBean
+* initWebApplicationContext
+* initFrameworkServlet
+
+## request-response
+```
+                                                                                checkMultipart
+                                                                                getHandler --> noHandlerFound
+doGet                                                                           getHandlerAdapter
+doPost                                                                          applyPreHandle
+doPut     --> processRequest --> doService --> DispatcherServlet.doDispatch --> handle
+doDelete                                                                        applyDefaultViewName
+doTrace                                                                         applyPostHandle
+                                                                                processDispatchResult
+```
+
+[DispatcherServlet](/20-framework/src/spring/spring-webmvc/DispatcherServlet.md)
+

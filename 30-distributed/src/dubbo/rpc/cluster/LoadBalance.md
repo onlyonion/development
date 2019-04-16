@@ -1,3 +1,15 @@
+com.alibaba.dubbo.rpc.cluster.LoadBalance
+
+## hierarchy
+```
+LoadBalance (com.alibaba.dubbo.rpc.cluster)
+    AbstractLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
+        RandomLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
+        LeastActiveLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
+        RoundRobinLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
+        ConsistentHashLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
+```
+## define
 @startuml
 
 interface LoadBalance
