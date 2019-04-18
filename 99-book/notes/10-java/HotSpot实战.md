@@ -2,13 +2,14 @@
 
 网易宝
 
-* 启动 Prims Services Runtime
-* 类与对象 OOP-Klass Klass与instanceKlass
-* 运行时数据区 堆 线程私有区域 方法区 性能监控数据区：PerfData 转储
-* 垃圾收集 堆与GC 垃圾收集器
-* 栈
-* 解释器和即时编译器
-* 指令集
+* 内核
+  * 启动 Prims Services Runtime
+  * 类与对象 对象表示机制（OOP-Klass Klass与instanceKlass）、类加载、对象创建
+* 内存管理
+  * 运行时数据区 堆 线程私有区域 方法区 性能监控数据区：PerfData 转储
+  * 垃圾收集 堆与GC 垃圾收集器
+  * 栈 硬件寄存器、Java栈、栈帧、栈顶缓存
+* 解释器和即时编译器、指令集
 * 虚拟机监控工具
 
 ## 第1章 初试HotSpot
@@ -24,35 +25,45 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 
 #### 2.1.3 Prims
 定义外部接口
-1. JNI
-2. JVM模块 
+1. JNI jni_*为前缀命名的函数，允许JDK或外部程序调用由c/c++实现的库函数。
+2. JVM模块 JVM_*
 3. JVMTI模块 虚拟机工具接口
-4. Perf模块 监控虚拟机内部
+4. Perf模块 监控虚拟机内部Perf Data
 
 #### 2.1.4 Services
 提供JMX等工具，JVM为支持对Java应用程序进行管理和监控的一套体系结构、设计模式、API以及服务。
 1. Management模块
 2. MemoryService模块 内存管理，堆的分配和内存池的管理
-3. MemoryPool模块 内存池管理模块。
-4. MemoryManger模块 内存管理器。
-5. RuntimeServices模块
-6. ThreadService模块
-7. ClassLoadingService模块
+3. MemoryPool模块 内存池管理模块。内存池表示由JVM管理的内存区域，是内存管理的基本单元。
+4. MemoryManger模块 内存管理器。一个内存管理负责管理一个或多个内存池。垃圾收集器也是一个内存管理器，它负责回收不可达对象的内存空间。
+   * CopyMemoryManager
+   * MSCMemoryManager
+   * ParNewMemoryManager 
+   * CMSMemoryManager
+   * PSSacvengeMemoryManager
+   * PSMarkSweepMemeoryManager
+   * G1YoungGenMemoryManager
+   * G1OldGenMemoryManager
+5. RuntimeServices模块 提供Java运行时的性能监控和管理服务，如applicationTime、JVMCapabilities等。
+6. ThreadService模块 提供线程和内部同步系统的性能监控和管理服务，包括维护线程列表、线程相关的性能统计、线程快照、线程堆栈跟踪和线程转储等功能。
+7. ClassLoadingService模块 提供累加载模块的性能监控和管理服务
 8. AttachListener模块 为客户端的JVM监控工具提供连接（attach）服务
-9. HeapDumper模块
+9.  HeapDumper模块
 
 #### 2.1.5 Runtime
 运行时模块，为其他系统组件提供运行时支持。线程、安全点、PerfData、Stub例程、反射、VMOperation以及互斥锁等。
 1. Thread模块
-2. Arguments模块
+2. Arguments模块 记录和传递VM参数和选项
 3. StubRoutines和StubCodeGenerator模块
-4. Frame模块 物理栈帧（活动记录）
-5. CompilationPolicy模块
-6. Init模块
-7. VmThread模块 单例原生线程，派生其他的线程。维护一个虚拟机操作队列，接受其他线程请求虚拟机级别的操作。
+4. Frame模块 物理栈帧（活动记录），定义了表示物理栈帧的数据结构frame
+5. CompilationPolicy模块 配置编译策略
+6. Init模块 用于系统初始化
+7. VmThread模块 单例原生线程VM Thread（虚拟机线程），派生其他的线程。维护一个虚拟机操作队列，接受其他线程请求虚拟机级别的操作。
 8. VMOperation模块
 
 ### 2.2 启动
+#### 2.2.1 Launcher
+
 ### 2.3 系统初始化
 
 ## 第3章 类与对象
@@ -60,7 +71,9 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 ### 3.1 对象的表示机制
 #### 3.1.1 OOP-Klass二分模型
 * OOP：ordinary object pointer, oops 普通对象指针，用来描述对象实例信息
-* Klass：Java类的C++对等体，用来描述Java类
+* Klass：Java类的C++对等体，用来描述Java类  
+对于OOPS对象来说，主要职能在于表示对象的是实例数据，没必要持有任何虚函数；而在描述Java累的Klass对象中含有VTBL，那么Klass就能够根据Java对象的实际类型
+进行C++分发（dispatch）。  
 Klass对象向JVM提供两个功能：实现语言层面的Java类；实现Java对象的分发功能。
 
 #### 3.1.2 Oops模块
@@ -69,6 +82,7 @@ Klass对象向JVM提供两个功能：实现语言层面的Java类；实现Java�
 instanceOopDesc表示类实例，arrayOopDesc表示数组
 #### 3.1.4 Klass与instanceKlass
 #### 3.1.5 实战：用HSDB雕饰HotSpot
+
 ### 3.2 类的状态转换
 #### 3.2.1 入口：Class文件
 class文件格式

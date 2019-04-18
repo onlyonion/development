@@ -1,13 +1,14 @@
-
+java.lang.Thread
 ## define
-
-
 ```plantuml
 @startuml
 
+interface Runnable
+Runnable ^.. Thread
+
 class Thread {
     - volatile String name
-    - int priority;
+    - int priority
     - boolean daemon = false
     - ThreadGroup group
     - long stackSize
@@ -15,8 +16,9 @@ class Thread {
     - volatile int threadStatus
 }
 
-interface Runnable
-Runnable <|.. Thread
+Thread *-- Runnable
+Thread o-- ThreadGroup
+Thread o-- ClassLoader
 
 enum State {
     NEW
@@ -26,7 +28,7 @@ enum State {
     TIMED_WAITING
     TERMINATED
 }
-Thread +- State
+Thread +-- State
     
 
 @enduml

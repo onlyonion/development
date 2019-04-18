@@ -18,6 +18,9 @@ class HandlerExecutionChain {
 	void applyAfterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response)
 }
 
+interface HandlerInterceptor
+HandlerExecutionChain o-- HandlerInterceptor
+
 @enduml
 ```
 

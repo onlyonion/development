@@ -46,3 +46,6 @@ InitializingBean <|.. RequestMappingHandlerAdapter
 
 @enduml
 ```
+
+## methods
+* invokeHandlerMethod

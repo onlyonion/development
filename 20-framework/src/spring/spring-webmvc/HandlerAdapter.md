@@ -10,8 +10,14 @@ HandlerAdapter (org.springframework.web.servlet)
         RequestMappingHandlerAdapter (org.springframework.web.servlet.mvc.method.annotation)
     SimpleControllerHandlerAdapter (org.springframework.web.servlet.mvc)
 ```
+* [AbstractHandlerMethodAdapter](/20-framework/src/spring/spring-webmvc/mvc/method/AbstractHandlerMethodAdapter.md)
+* [RequestMappingHandlerAdapter](/20-framework/src/spring/spring-webmvc/mvc/method/annotation/RequestMappingHandlerAdapter.md)
 
 ## define
+spring适配器的两个方法：
+* 是否支持
+* 适配
+
 ```plantuml
 @startuml
 interface HandlerAdapter {

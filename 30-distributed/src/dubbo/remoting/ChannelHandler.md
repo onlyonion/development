@@ -58,3 +58,27 @@ interface ChannelHandler {
 
 @enduml
 ```
+
+## sequence
+```mermaid
+sequenceDiagram
+    %% 传输层处理
+    ChannelHandler->>DecodeHandler:received(channel, message)
+    DecodeHandler->>HeaderExchangeHandler:received(channel, message)
+    HeaderExchangeHandler->>HeaderExchangeHandler:handleRequest(ExchangeChannel, Request)
+    
+    %% dubbo传输协议处理
+    HeaderExchangeHandler->>DubboProtocol$1:reply(ExchangeChannel, Object) 内部类ExchangeHandlerAdapter
+    
+    %% 过滤器链处理
+    %% 服务实现
+
+    DubboProtocol$1-->>HeaderExchangeHandler:返回result，封装成response对象
+    %% 对等连接方式，发送
+    HeaderExchangeHandler->>AbstractPeer:send(Object)
+    AbstractPeer->>NettyChannel:send(Object,boolean)
+
+    %% netty通道，nio读写
+    NettyChannel->>NioAcceptedSocketChannel:AbstractChannel.write(Object)
+
+```

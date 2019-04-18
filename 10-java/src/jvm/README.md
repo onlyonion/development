@@ -21,14 +21,14 @@ hotspot/src/
     * 内存区域 内存结构
     * 内存分配
     * 垃圾回收 gc_interface gc_impementation
-  * 类文件结构 类加载机制 classfile
+  * 类文件结构 类加载机制 classfile 
+  * 对象系统 oops
   * 运行时环境 runtime 包括线程管理、编译器调度、锁、反射等
     * vframe
     * osThread vmThread
     * objectMonitor basicLock
     * reflection
-  * 对象系统 oops
-  * 对外服务
+  * 对外服务、JMX接口
     * prims
     * services jmm classLoadingService
   * 编译器、解释器、汇编、机器码 compiler(c1 opto) interpreter asm code
@@ -57,6 +57,11 @@ hotspot/src/
         windows_x86
     share
         tool
+            hsdis
+            IdealGraphVisualizer
+            launcher 启动入口
+            LogCompilation
+            ProjectCreator
         vm
             adlc 平台描述文件（上面的cpu或os_cpu里的*.ad文件）的编译器
             asm 汇编
@@ -82,4 +87,5 @@ hotspot/src/
 ```
 
 ## link
-[openjdk7 download](http://download.java.net/openjdk/jdk7/promoted/b147/openjdk-7-fcs-src-b147-27_jun_2011.zip)
+* [openjdk7 download](http://download.java.net/openjdk/jdk7/promoted/b147/openjdk-7-fcs-src-b147-27_jun_2011.zip)
+* [《HotSpot实战》陈涛](/99-book/notes/10-java/HotSpot实战.md)

@@ -1,5 +1,7 @@
 com.alibaba.dubbo.rpc.Invoker
 
+召唤师 调用者 祈求者 请求者
+
 ## 1. hierarchy
 * 服务端代理调用者
 * mock数据调用者

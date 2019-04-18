@@ -1,6 +1,14 @@
 org.springframework.web.method.HandlerMethod
 
-## 1. 定义
+## hierarchy
+```
+HandlerMethod (org.springframework.web.method)
+    InvocableHandlerMethod (org.springframework.web.method.support)
+        ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
+            ConcurrentResultHandlerMethod in ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
+```
+
+## define
 对处理方法的封装
 
 ```
@@ -50,17 +58,8 @@ InvocableHandlerMethod <|-- ServletInvocableHandlerMethod
 
 @enduml
 ```
-## 2. 类图
-继承层次
-```
-HandlerMethod (org.springframework.web.method)
-	InvocableHandlerMethod (org.springframework.web.method.support)
-		ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
-			ConcurrentResultHandlerMethod in ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
-```
 
-## 3. ServletInvocableHandlerMethod.invokeAndHandle()
-
+## ServletInvocableHandlerMethod.invokeAndHandle()
 * ServletInvocableHandlerMethod
 * InvocableHandlerMethod
 * HandlerMethod

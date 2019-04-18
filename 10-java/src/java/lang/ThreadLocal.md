@@ -1,5 +1,6 @@
 java.lang.ThreadLocal
 
+## define
 ```plantuml
 @startuml
 

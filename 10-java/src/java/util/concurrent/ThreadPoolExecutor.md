@@ -2,19 +2,22 @@ java.util.concurrent.ThreadPoolExecutor
 
 ## hierarchy
 ```
-AbstractExecutorService (java.util.concurrent)
-    ThreadPoolExecutor (java.util.concurrent)
-        BrokerFixedThreadPoolExecutor (org.apache.rocketmq.broker.latency)
-        ComInvoker in Win32ShellFolderManager2 (sun.awt.shell)
-        MemoryAwareThreadPoolExecutor (org.jboss.netty.handler.execution)
-        QuantumRenderer (com.sun.javafx.tk.quantum)
-        ScheduledThreadPoolExecutor (java.util.concurrent)
-        ThreadPoolExecutor (org.apache.tomcat.util.threads)
-        WorkerPoolExecutor (org.apache.http.impl.bootstrap)
-
+Executor
+    ExecutorService
+        AbstractExecutorService (java.util.concurrent)
+            ThreadPoolExecutor (java.util.concurrent)
+                BrokerFixedThreadPoolExecutor (org.apache.rocketmq.broker.latency)
+                ComInvoker in Win32ShellFolderManager2 (sun.awt.shell)
+                MemoryAwareThreadPoolExecutor (org.jboss.netty.handler.execution)
+                QuantumRenderer (com.sun.javafx.tk.quantum)
+                ScheduledThreadPoolExecutor (java.util.concurrent)
+                ThreadPoolExecutor (org.apache.tomcat.util.threads)
+                WorkerPoolExecutor (org.apache.http.impl.bootstrap)
 ```
 
 ## define
+* 内部类
+  * Worker
 * 域
   * 工作队列
   * 全局锁
@@ -32,13 +35,14 @@ AbstractExecutorService (java.util.concurrent)
 '''''''''''''''''''' Executor ''''''''''''''''''''
 interface Executor
 interface ExecutorService
-Executor <|-- ExecutorService
-abstract class AbstractExecutorService {
 
+Executor <|-- ExecutorService
+ExecutorService <|-.- AbstractExecutorService
+
+abstract class AbstractExecutorService {
     - <T> T doInvokeAny(Collection<? extends Callable<T>> tasks,
         boolean timed, long nanos)
 }
-ExecutorService <|-.- AbstractExecutorService
 
 '''''''''''''''''''' ThreadPoolExecutor ''''''''''''''''''''
 class ThreadPoolExecutor {
@@ -55,8 +59,9 @@ class ThreadPoolExecutor {
     
     - boolean addWorker(Runnable firstTask, boolean core)
     - Runnable getTask()
-    
+    .. 核心函数 ..
     final void runWorker(Worker w)
+    .. 模板方法 执行之前、之后、退出 ..
     # void beforeExecute(Thread t, Runnable r)
     # void afterExecute(Runnable r, Throwable t)
     - void processWorkerExit(Worker w, boolean completedAbruptly)
