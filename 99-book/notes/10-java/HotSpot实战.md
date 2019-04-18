@@ -67,6 +67,13 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 ### 2.3 系统初始化
 
 ## 第3章 类与对象
+* OOP-Klass二分模型
+* 对象的创建
+* 对象的内存布局
+* 对象的访问定位
+* 类的加载
+* 系统字典
+  
 面向对象如何在HotSpot里实现？对象与类如何实现？
 ### 3.1 对象的表示机制
 #### 3.1.1 OOP-Klass二分模型
@@ -77,15 +84,116 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 Klass对象向JVM提供两个功能：实现语言层面的Java类；实现Java对象的分发功能。
 
 #### 3.1.2 Oops模块
+OOP框架和Klass框架
+* oop
+  * constantPoolOop
+  * cpCacheOop
+  * arrayOop
+  * instanceOop 表示一个Java类型实例
+  * methodOop 表示一个Java方法
+  * markOop 表示对象头
+  * typeArrayOop
+  * constMehodOop
+  * methodOop
+  * klassOop 描述一个与Java类对等的C++类
+  * objArrayOop
+* Klass
+  * instanceKlass 在虚拟机层面描述一个Java类
+  * methodDataKlass
+  * constMethodKlass
+  * methodKlass
+  * klassKlass
+  * instanceKlassKlass
+  * instanceRefKlass
+  * instanceMirrorKlass
+  * arrayKlassKlass
+  * objArrayKlassKlass
+  * typeArrayKlassKlass
+  * arrayKlass
+  * objArrayKlass
+  * typeArrayKlass
+  * constantPoolKlass
+  * constantPoolCacheKlass
+
 #### 3.1.3 OOP框架与对象访问机制
-每创建一个Java对象，在JVM内部也会相应创建一个OOP对象来表示Java对象。
+在Java应用程序运行过程中，每创建一个Java对象，在JVM内部也会相应创建一个OOP对象来表示Java对象。OOPS类的共同基类为oopDesc。
+```c++
+class oopDesc {
+    private:
+        volatile markOop _mark;
+        union _metadata {
+            wideKlassOop _klass;
+            narrowOop _compressed_klass;
+        } _metadata;
+}
+```
 instanceOopDesc表示类实例，arrayOopDesc表示数组
+
+在虚拟机内部，通过instanceOopDesc表示一个Java对象。对象在内存中的布局可以分为连续的两部分：instanceOopDesc和实例数据。
+其中，instanceOopDesc或arrayOopDesc又被称为对象头，instanceOopDesc对象头包括以下两部分信息。
+* mark word：
+* 元数据指针：指向描述类型的Klass对象的指针。
+
+在对象引用（栈）中存放的是指向对象（instanceOop，堆）的指针，对象本身则持有指向类（instanceKlass，方法区）的指针。
+
 #### 3.1.4 Klass与instanceKlass
+```plantuml
+@startuml
+class Klass_vtbl
+Klass_vtbl ^-- Klass
+class Klass
+
+Klass ^-- instanceKlass
+Klass ^-- klassKlass
+Klass ^-- arrayKlass
+
+Klass ^-- constantPoolKlass
+Klass ^-- methodKlass
+Klass ^-- methodDataKlass
+
+Klass ^-- constantPoolCacheKlass
+Klass ^-- constantMethodKlass
+Klass ^-- compiledICHolderKlass
+
+instanceKlass ^-- instanceMirrorKlass
+instanceKlass ^-- instanceRefKlass
+
+arrayKlass ^-- objArrayKlass
+arrayKlass ^-- typeArrayKlass
+
+@enduml
+```
+
+1. 核心数据结构：Klass  
+
+2. 黑心数据结构：instanceKlass  
+JVM在运行时，需要一种用来标识Java内部类型的机制。在Hotspot中的解决方案是：为每一个已加载的Java类创建一个instanceKlass对象，用来
+在JVM表示Java类。
+
+3. 实例数据的存储顺序  
+
+
 #### 3.1.5 实战：用HSDB雕饰HotSpot
 
 ### 3.2 类的状态转换
 #### 3.2.1 入口：Class文件
-class文件格式
+class文件格式：
+* magic
+* minior version, major version
+* constant pool
+* access flags
+* this class
+* super class
+* interfaces
+* fields
+* methods
+* attributes
+
+1. 常量池
+2. 字段表
+3. 方法表
+4. 属性表
+
 #### 3.2.2 类的状态
 ```graphviz
 digraph jvm_load_class {
@@ -102,19 +210,38 @@ digraph jvm_load_class {
     init -> Class [style = dotted];
 }
 ```
+
 #### 3.2.3 加载
+1. 初始化类加载器
+类加载器在初始化时，首先将初始化与类加载相关的一些PerfData计数器。接下来搜索lib库，先确保加载本地库libverify（verify.dll
+或libverify.so）和libjava（java.dll或libjava.so），紧接着加载libzip库（zip.dll或libzip.so）。  
+加载libzip库完毕，接下来在sun.boot.class.path表示的类路径下初始化启动类加载路径。  
+
+2. 加载
+加载的含义是从class文件字节流中提取类型信息。
+* ClassFileParser 类解析器
+* Verifier 验证器
+* ClassLoader 类加载器
+* SystemDictionary 系统字典
+* SymboleTable 字符表
+
 #### 3.2.4 链接
 1. 验证
-2. 准备
-3. 解析
+2. 准备 类静态变量分配内存空间并准备好初始化类中的静态变量
+3. 解析 将常量池中的符号引用转换为直接引用，即运行时实际内存地址
 
 #### 3.2.5 初始化
 #### 3.2.6 实战：类的“族谱”
 #### 3.2.7 实战：系统字典
+系统字典记录了系统加载的所有的类。系统字典持有系统已经加载类、类加载器、公共类klass等重要信息。
 * 加载 ClassFileParser类ParseClassFile()函数
 
 ### 3.3 创建对象
-new -> 常量池中索引，定位目标对象类型 -> 内存分配 -> 对象头和实例数据初始化
+字节码new 
+* 常量池中索引，定位目标对象类型
+* 内存分配
+* 对象头和实例数据初始化
+  
 #### 3.3.1 实例对象的创建流程
 * 快速分配 类已被加载和正确解析 TLAB(UseTLAB) -> Eden需要加锁；对象头（设置MarkWord，设置类型指针）
 * 慢速分配 尚未解析
@@ -132,6 +259,7 @@ new -> 常量池中索引，定位目标对象类型 -> 内存分配 -> 对象�
 ### 4.2 线程私有区域
 #### 4.2.1 PC
 #### 4.2.2 JVM栈
+
 ### 4.3 方法区
 #### 4.3.1 纽带作用
 方法区存储信息：类型基本描述信息和域（字段域和方法域）信息
@@ -141,6 +269,7 @@ new -> 常量池中索引，定位目标对象类型 -> 内存分配 -> 对象�
 #### 4.3.5 方法的解析：将符合引用转换成直接引用
 #### 4.3.6 代码放在哪里：ConstMethodOop
 #### 4.3.7 实战：探测运行时常量池
+
 ### 4.4 性能监控数据区：PerfData
 JVM中开辟的共享内存，存放关于性能统计的计数器。使用共享内存的方式向外部进程提供通信手段，允许外部监控进程attach至虚拟机进程，并从共享内存中读取这些PerfData
 ### 4.5 转储
@@ -157,6 +286,7 @@ JVM中开辟的共享内存，存放关于性能统计的计数器。使用共�
 #### 5.1.4 栈上分配和逸出分析
 分析局部变量的作用域仅限于方法内部，则JVM直接在栈帧内分配对象空间，避免在堆中分配。
 #### 5.1.5 GC公共模块
+
 ### 5.2 垃圾收集器
 #### 5.2.1 设计演进
 1. 串行收集器：Serial
@@ -167,6 +297,7 @@ JVM中开辟的共享内存，存放关于性能统计的计数器。使用共�
 
 #### 5.2.2 CMS收集器
 #### 5.2.3 G1收集器
+
 ### 5.3 实战：性能分析方法
 #### 5.3.1 获取GC日志
 #### 5.3.2 GC监控信息
