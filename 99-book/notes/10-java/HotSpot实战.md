@@ -2,14 +2,14 @@
 
 网易宝
 
-* 内核
+* 运行时
   * 启动 Prims Services Runtime
   * 类与对象 对象表示机制（OOP-Klass Klass与instanceKlass）、类加载、对象创建
-* 内存管理
+* 内存管理 堆、栈、方法区
   * 运行时数据区 堆 线程私有区域 方法区 性能监控数据区：PerfData 转储
   * 垃圾收集 堆与GC 垃圾收集器
   * 栈 硬件寄存器、Java栈、栈帧、栈顶缓存
-* 解释器和即时编译器、指令集
+* 解释器和即时编译器、指令集、执行引擎
 * 虚拟机监控工具
 
 ## 第1章 初试HotSpot
@@ -218,38 +218,86 @@ digraph jvm_load_class {
 加载libzip库完毕，接下来在sun.boot.class.path表示的类路径下初始化启动类加载路径。  
 
 2. 加载
-加载的含义是从class文件字节流中提取类型信息。
+加载的含义是从class文件字节流中提取类型信息。HotSpot的Classfile模块为虚拟机提供加载功能。
 * ClassFileParser 类解析器
 * Verifier 验证器
 * ClassLoader 类加载器
 * SystemDictionary 系统字典
 * SymboleTable 字符表
 
+```c++
+// 加载 ClassFileParser类ParseClassFile()函数
+// 1. 字节流的读取是从获取魔数开始的
+u4 magic = cfs->get_u4_fast(); // cfs是一个ClassFileStream；get_u<n>_fast()表示从流当前位置继续读取<n>字节数据
+// 2. 读取Class文件主、次版本号及验证
+u2 minor_version = cfs->get_u2_fast();
+u2 major_version = cfs->get_u2_fast();
+// 3. 读取常量池
+constantPoolHandle cp = parse_constant_pool(CHECK_(nullHandle));
+// 4. 读取访问标识（Access flags）
+// 5. 读取当前类索引，并按索引在常量池项中找到当前累的全限定名
+instanceKlassHandle super_klass;
+u2 this_class_index = cfg->get_u2_fast();
+Symbol* class_name = cp->unresolved_klass_at(this_class_index);
+// 6. 读取父类索引，并按索引在常量池中找到父类的全限定名和父类句柄
+// 7. 调用parse_infterfaces()函数读取接口信息，接口类型包括本地接口和父类传递接口
+// 8. 调用parse_fields()函数读取字段信息，并计算出域大小和偏移量（oop-map）信息，并根据域分配策略对字段存储顺序进行分配。
+// 9. 调用parse_methods()函数读取方法信息。根据从Class中解析出的method信息创建methodOop对象。
+// 10. 通过klassVtable、klassItable模块提供的算法，根据已解析的父类、方法、接口等信息计算得到Java vtable和itable大小
+// 11. 创建当前类instanceKlass并按照上述步骤已经解析好的信息为该对象赋值
+klassOop ik = oopFactory::new_instanceKlass(name, vtable_size, itable_size, static_field_size, total_oop_map_count, rt, CHECK_(nullHandle));
+instanceKasssHandle this_klass(THREAD, ik);
+// 12. 创建Java镜像类并初始化静态域
+java_lang_Class::create_mirror(this_klass, CHECK_(nullHandle));
+// 13. 通知类已加载更新PerfData计数器
+
+```
+
 #### 3.2.4 链接
+符号引用十一字符串的形式存在的。在每个class文件中，都有一个常量池，用来存放该类中用到的符号引用。当完成加载以后，来自于class
+文件的常量池则会在jvm内部关联上一个位于运行时内存中的常量池数据结构，即运行时常量池。
+
+```c++
+instanceKlass::link_class_impl()
+```
+
 1. 验证
-2. 准备 类静态变量分配内存空间并准备好初始化类中的静态变量
-3. 解析 将常量池中的符号引用转换为直接引用，即运行时实际内存地址
+2. 准备 为类静态变量分配内存空间，赋予变量语言级别初始值，并不会执行任何字节码
+3. 解析 将常量池中的符号引用转换为直接引用，即运行时实际内存地址。
+   * 类、接口、字段、类方法和接口方法 4类符号引用
 
 #### 3.2.5 初始化
+类或接口的初始化其实就是执行它的初始化方法。  
+在instanceKlass类中定义了初始化过程initialize_impl()，在初始化过程正式开始之前，必须保证该类型已经历过连接阶段，必须经过验证
+和准备环节，且有可能已经被解析过。  
+此外，由于虚拟机支持多线程，所以在类初始化过程中需要实现者处理好线程同步问题。
+
+
 #### 3.2.6 实战：类的“族谱”
 #### 3.2.7 实战：系统字典
 系统字典记录了系统加载的所有的类。系统字典持有系统已经加载类、类加载器、公共类klass等重要信息。
-* 加载 ClassFileParser类ParseClassFile()函数
+hotspot/src/share/vm/classfile/systemDictionary.hpp
+
 
 ### 3.3 创建对象
 字节码new 
-* 常量池中索引，定位目标对象类型
-* 内存分配
-* 对象头和实例数据初始化
+* 虚拟机遇到该指令，从栈顶取得目标对象的在常量池中索引，接着定位到目标对象类型
+* 虚拟机根据该类的状态，采取相应的内存分票技术，在内存中分配实例空间，并完成实例数据和对象头的初始化
   
 #### 3.3.1 实例对象的创建流程
 * 快速分配 类已被加载和正确解析 TLAB(UseTLAB) -> Eden需要加锁；对象头（设置MarkWord，设置类型指针）
 * 慢速分配 尚未解析
 
+对象创建的基本流程：
+1. 验证类已被解析
+2. 获取instanceKlass，确保klass已完全初始化
+3. 若满足快速分配条件，则进入快速分配流程
+4. 若不满足快速分配条件，或者快速分配失败，则进入慢速分配流程
+
 #### 3.3.2 实战：探测JVM内部对象
 
 ## 第4章 运行时数据区
-堆与方法区所占的内控空间，由JVM负责管理，内存分配由HotSpot的内存管理模块维护，内存释放有垃圾收集器自动完成。
+堆与方法区所占的内存空间，由JVM负责管理，内存分配由HotSpot的内存管理模块维护，内存释放有垃圾收集器自动完成。
 ### 4.1 堆
 #### 4.1.1 Java的自动内存管理
 #### 4.1.2 堆的管理
@@ -261,6 +309,7 @@ digraph jvm_load_class {
 #### 4.2.2 JVM栈
 
 ### 4.3 方法区
+方法区由虚拟机的所有线程共享。方法区类似于传统语言编译后的代码存储区域，或者unix进程的“正文段”。它存储每个类的结构信息
 #### 4.3.1 纽带作用
 方法区存储信息：类型基本描述信息和域（字段域和方法域）信息
 #### 4.3.2 常量池
@@ -339,34 +388,131 @@ x86支持3种操作数格式：
 
 ## 第7章 解释器和即时编译器
 ```
-java编译器  .java  -> .class(bytecode)
-解释器      .class -> machine code
-即时编译器   .class -> machine code
+一般编译器   源码   -> 可执行机器语言
+java编译器   .java  -> .class(bytecode)
+java解释器   .class -> machine code
+即时编译器   .class -> machine code     热点代码编译为机器代码
 ```
 
 ### 7.1 概述
-解释器 解释器，代码生成器，InterpreterCodelet，转发表（dispatch table）
-JIT编译器 C1：client，C2：server
+Java源程序经编译后成为字节码，由运行环境对字节码进行解释执行。提供解释功能的JVM组件成为解释器。  
+* 解析器 解释bytecode，访问栈
+  * 字节码表
+  * 模板表
+  * 转发表
+* JIT编译器 编译java方法、bytecode，访问非堆（方法区）
+
+Hotspot运行模式
+* 解释模式 -Xint
+* 编译模式 -Xcomp
+* 混合模式 -Xmixed，默认模式
+
+不管是解释执行，还是编译执行，最终执行的代码单元都是可以直接在真实机器上运行的机器码，或称为本地代码。
+
+1. 解释器  
+边翻译边执行，效率低。简单和易于实现，允许上层高级语言使用富于表现力的语法。python、perl、ruby以及各种shell脚本工具。
+* 解释器（interpreter） 默认的模板解释器（templateInterpreter），c++解释器（cppInterpreter）
+* 代码生成器（code generator） 利用解释器的宏汇编器，向代码缓存空间写入生成的代码
+* InterpreterCodelet 由解释器运行的代码片段。
+* 转发表（dispatch table） 为方便找到与字节码对应的机器码
+
+2. 编译器
+* client模式 -client c1
+* server模式 -server c2 编译比c1耗时，但是生成比c1更高效的代码
+
 ### 7.2 解释器如何工作
 #### 7.2.1 Interpreter模块
+* AbstractInterpreter
+  * TemplateInterpreter
+  * BytecodeInterpreter
+  * CppInterpreter
+* 解释器
+  * Interpreter
+  * Bytecodes
+  * TemplateTable
+* 运行时
+  * Invocation
+  * OopMapCache
+  * InterpreterRuntime
+* 代码生成
+  * TemplateInterpreterGenerator
+  * InterpreterGenerator
+* Rewriter 提高解释器性能，提供了常量池cache功能，实现字段和方法的快速定位。rewrite提供重写字节码功能，将原本指向常量池的索引调整为指向常量池cache索引
+* LinkResolver
+
 #### 7.2.2 Code模块
+code指机器码，code模块，指在jvm中管理code的存储、定位和执行的系统组件。
+* codeCache 代码高速缓存
+* codeBlob 用做描述codeCache中所有的缓存项
+* NMethod 继承自codeBlob，表示编译为本地代码的java方法
+* vMReg 管理cpu寄存器的模块
+* pcDesc 映射物理pc到源码范围内的字节码索尼以
+* stubs和vtableStubs，管理stub（系统生成的code片段）
+
 #### 7.2.3 字节码表
 #### 7.2.4 CodeCache
 #### 7.2.5 InterpreterCodelet与Stub队列
 #### 7.2.6 Code生成器
 #### 7.2.7 模板表与转发表
+
 ### 7.3 即时编译器
 #### 7.3.1 概述
 #### 7.3.2 编译器模块
+编译器实现了3个模块，分别是c1、opto和shark。c1实现了c1编译器；opto实现了c2编译器；此外，在shark模块中，实现了一个机遇LLVM的编译器。
+c1模块的主要子模块：
+* compile
+* compilation
+* macroAssembler
+* CFGPrinter
+* CodeStubs
+* Instruction 定义了指令的类型层次
+* IR模块 实现中间描述IR
+* LIR模块 实现低级中间描述LIR
+* LIRGenerator模块
+* LIRAssembler模块
+* LinearScan
+* Runtime1
+
 #### 7.3.3 编译器的基本结构
 字节码 -> HIR -> LIR -> 机器码
-1. 编译器前端将Java字节码解释成一种抽象格式HIR（High-level Intermediate Representation，高级中间表示）
-2. 编译器后端将HIR转换成LIR
-3. 对完成底层优化后的LIR，采用线性扫描寄存器分配算法，进行寄存器的分配。将物理寄存器替换掉LIR中的虚拟寄存器后，生成符合目标机器体系结构的机器码
+* 编译器前端将Java字节码解释成一种抽象格式HIR（High-level Intermediate Representation，高级中间表示）
+* 编译器后端将HIR转换成LIR，使用虚拟寄存器替代HIR中的变量引用
+* 对完成底层优化后的LIR，采用线性扫描寄存器分配算法，进行寄存器的分配。将物理寄存器替换掉LIR中的虚拟寄存器后，生成符合目标机器体系结构的机器码
+* 编译器选择合适的时机将机器码写入到code buffer中，也成为发射。
+
+1. IR
+   中间表示（intermediate representation，编译原理领域常称为IR），是由编译器**前端**生成的一种代码形态。编译器**后端**利用IR作为输入，
+   在生成目标代码时，充分利用目标机的体系结构生成最优的机器码，并提高了编译器的可移植性。
+   * HIR 高级中间表示 级别越低越接近目标机器码
+   * MIR 中级中间表示
+   * LIR 低级中间表示 与目标机指令几乎是一一对应的，经常与体系结构相关
+   Hotspot编译器利用了HIR和LIR两种形式。Hotspot LIR接近三元式机器码。LIR指令使用显式声明的操作数，如虚拟寄存器、物理寄存器、内存地址、栈空间或常量。
+   LIR比HIR更适合低级优化，如寄存器分配。
+2. CFG
+   控制流图（control flow graph，简称CFG），是由编译器内部维护的抽象数据结构，它描述构成程序片段的指令序列块之间的跳转关系。
+3. SSA
+4. 寄存器分配
+   将以IR格式表示的变量替换成物理寄存器。
+5. 编译目标
+6. 编译过程实现
 
 ## 第8章 指令集
-JVM指令集
+如何实现JVM指令集
 ### 8.1 再说栈式指令集
+* 寄存器型指令集 有利于代码生成，但是操作数需要命名和显示的指定，指令较长
+* 堆栈型指令集 简洁直观、指令短小、易于实现，不利于代码优化
+* 累加型指令集
+
+一般来说，一条指令的执行周期（取值、译码、执行）
+* 取值
+* 指令译码
+* 取操作数
+* 执行
+* 存储结果
+* 获取下一条指令
+
+指令集系统：CISC、RISC
+
 ### 8.2 数据传送
 ### 8.3 类型转换
 ### 8.4 对象的创建和操作
@@ -375,7 +521,19 @@ JVM指令集
 #### 8.6.1 加法：iadd
 #### 8.6.2 取负：ineg
 ### 8.7 函数的调用和返回
+* invokevirtual 调用普通实例方法
+* invokeinfterface 调用接口实现的方法
+* invokespecial 调用特殊处理的实例方法，init、private或超类方法
+* invokestatic 静态方法（类方法）
+* invokedynamic 动态语言支持，java7新增
+
 #### 8.7.1 Java函数分发机制：VTABLE与ITABLE
+在Java中，虚拟机利用vtable实现多态性。vtable的作用类似c++中的虚函数表。为支持java接口的函数分发，虚拟机还另外提供了类似vtable的
+接口表----itable。  
+若Java方法是覆盖父类方法，虚拟机将更新虚函数表中相同顺序的元素，使其指向覆盖后的实现方法；
+若遇到重载方法，或者自增新的方法，虚拟机将按顺序添加到虚函数表中。  
+itable表由一组偏移表和方法表组成，这两组表的元素都是变长的。
+
 #### 8.7.2 invoke系列指令
 #### 8.7.3 动态分发：覆盖
 面向对象特点：抽象，封装，继承，多态
@@ -384,9 +542,20 @@ JVM指令集
 ### 8.8 异常
 
 ## 第9章 虚拟机监控工具
+* jps
+* jinfo
+* jmap
+* jhat
+* jstat
+* jstack
+
 ### 9.1 Attach机制
-连接机制监控访问虚拟机进程
-连接到目标JVM的过程，建立一个进程间通信通道，通过通道，由客户进程向JVM进程下发命令，JVM进程向客户进程返回数据的过程。
+虚拟机通过一种称为连接机制的技术为监控程序访问虚拟机进程提供了可能。从本质上说，连接到目标JVM的过程，建立一个进程间通信通道，通过通道，
+由客户进程向JVM进程**下发**命令，JVM进程向客户进程**返回**数据的过程。
+#### 9.1.1 AttachProvider与VisualMachine
+#### 9.1.2 命令的下发：execute()
+#### 9.1.3 命令的执行：Attach Listener守护线程
+
 ### 9.2 查看JVM进程
 jsp
 ### 9.3 查看和配置JVM

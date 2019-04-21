@@ -1,7 +1,7 @@
 com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 
 ## invoke时序
-![invoke](../../../img/dubbo-consumer-invoke-provider.png)
+![invoke](../../img/dubbo-consumer-invoke-provider.png)
 
 ## 调用过程
 * 消费端
