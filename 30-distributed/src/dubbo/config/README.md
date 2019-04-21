@@ -1,21 +1,28 @@
 # config
 com.alibaba.dubbo.config 配置中心
 
-* [10-export](/30-distributed/src/dubbo/config/10-export.md)
-* [11-export-stack](/30-distributed/src/dubbo/config/11-export-stack.md)
-* [20-refer](/30-distributed/src/dubbo/config/20-refer.md)
-* [21-refer-stack](/30-distributed/src/dubbo/config/21-refer-stack.md)
-* [22-refer-stack](/30-distributed/src/dubbo/config/22-refer-stack.md)
-* [30-invoke](/30-distributed/src/dubbo/config/30-invoke.md)
-* [31-invoke-stack](/30-distributed/src/dubbo/config/31-invoke-stack.md)
-
 ## package
 
 ```
 annotation
+    Reference
+    Service
 spring
+    extension
+        SpringExtensionFactory
+    schema
+        DubboBeanDefinitionParser
+        DubboNamespaceHandler
+    status
+        DataSourceStatusChecker
+        SpringStatusChecker
+    AnnotationBean
+    ReferenceBean
+    ServiceBean
 support
+    Parameter
 utils
+    ReferenceConfigCache
 AbstractConfig
 AbstractInterfaceConfig
 AbstractMethodConfig

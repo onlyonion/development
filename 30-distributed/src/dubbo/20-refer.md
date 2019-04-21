@@ -49,4 +49,4 @@ graph LR
 ```
 
 ## refer 时序
-![refer](../../../img/dubbo-service-refer-sequence.png)
+![refer](../../img/dubbo-service-refer-sequence.png)

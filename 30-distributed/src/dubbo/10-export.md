@@ -15,12 +15,12 @@
     * checkStubAndMock()
 3. ServiceConfig.doExportUrls() 加载注册协议、遍历协议组装URL导出
     * loadRegistries()
-    * doExportUrlsFor1Protocol() 
+    * doExportUrlsFor1Protocol() 为每种协议导出服务地址
         - 暴露本地服务 exportLocal
         - 暴露远程服务
             + loadMonitor(registryURL)
-            + proxyFactory.getInvoker()
-            + protocol.export(invoker) 
+            + proxyFactory.getInvoker() 动态代理
+            + protocol.export(invoker)  远程协议
                 * RegistryProtocol.export(invoker) 服务注册、订阅、发现
                 * DubboProtocol.export(invoker) 创建服务、交换层、传输层（绑定地址、监听端口）
 
@@ -52,7 +52,7 @@ graph LR
 ```
 
 ## export 时序
-![export](../../../img/dubbo-service-export-sequence.png)
+![export](../../img/dubbo-service-export-sequence.png)
 
 ## export 活动
-![export](../../../img/dubbo-service-export-activity.png)
+![export](../../img/dubbo-service-export-activity.png)
