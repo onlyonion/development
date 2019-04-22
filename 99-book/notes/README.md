@@ -76,6 +76,7 @@
 ### 数据库
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
+  * [《MySQL技术内幕 InnoDB存储引擎》姜承尧 机械工业出版社](/99-book/notes/50-database/MySQL技术内幕.md)
   * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
   * [《分布式数据库架构及企业实践-基于Mycat中间件》周继锋](/99-book/notes/50-database/分布式数据库架构及企业实践.md)
 * nosql
