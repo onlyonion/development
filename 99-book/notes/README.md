@@ -61,11 +61,6 @@
 * 开发者大会
   * [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)
 
-### 云
-* [《云计算》刘鹏](/99-book/notes/40-architecture/云计算.md)
-* [《云计算架构技术与实践》顾炯炯](/99-book/notes/40-architecture/云计算架构.md)
-* [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/99-book/notes/50-database/大数据之路.md)
-
 ### 设计
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
 * 《HEAD FIRST 设计模式（中文版）》
@@ -77,11 +72,18 @@
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
   * [《MySQL技术内幕 InnoDB存储引擎》姜承尧 机械工业出版社](/99-book/notes/50-database/MySQL技术内幕.md)
-  * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
   * [《分布式数据库架构及企业实践-基于Mycat中间件》周继锋](/99-book/notes/50-database/分布式数据库架构及企业实践.md)
+  * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
 * nosql
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
   * 《NoSQL数据库技术实战》 皮雄军 著
+
+### 云
+* [《云计算》刘鹏](/99-book/notes/51-cloud/云计算.md)
+* [《云计算架构技术与实践》顾炯炯](/99-book/notes/51-cloud/云计算架构.md)
+* [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/99-book/notes/51-cloud/大数据之路.md)
+* [《物联网技术与实践 基于ARMCortex-M0技术》李佳，周志强 编著](/99-book/notes/51-cloud/物联网技术与实践.md)
+* [《物联网导论》刘云浩 科学出版社](/99-book/notes/51-cloud/物联网导论.md)
 
 ### 前端
 * 《JavaScript权威指南(第5版)》
