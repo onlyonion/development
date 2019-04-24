@@ -3,13 +3,15 @@
 ### [计算机基础](/99-book/notes/00-base/README.md)
 * [《数据结构（C语言版）》严蔚敏](/99-book/notes/00-base/数据结构.md)
 * [《数据结构与算法分析Java语言描述》](/99-book/notes/00-base/数据结构与算法分析Java语言描述.md)
-* [《深入理解计算机系统》](/99-book/notes/00-base/深入理解计算机系统.md)
+* [《算法》Robert Sedgewick 谢路云](/99-book/notes/00-base/算法.md)
 * [《计算机组成原理（第2版）》唐朔飞](/99-book/notes/00-base/组成原理.md)
-* [《编译原理（第2版）》赵建华](/99-book/notes/00-base/编译原理.md)
 * [《计算机体系结构》张晨曦](/99-book/notes/00-base/计算机体系结构.md)
 * [《计算机操作系统（第三版）》汤小丹](/99-book/notes/00-base/计算机操作系统.md)
 * [《计算机网络（第5版）》谢希仁](/99-book/notes/00-base/计算机网络.md)
+* [《深入理解计算机系统》](/99-book/notes/00-base/深入理解计算机系统.md)
+* [《编译原理（第2版）》赵建华](/99-book/notes/00-base/编译原理.md)
 * 《数据库系统概论（第4版）》 王珊
+* [《计算机科学概论》第11版 美 J.Glenn Brookshear 刘艺](/99-book/notes/00-base/计算机科学概论.md)
 
 ### Java
 * 《core java》卷I
