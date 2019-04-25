@@ -6,22 +6,24 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 ## 调用过程
 * 消费端
   * rpc
-    - 消费者代理对象
+    - JavassitProxy 消费者动态代理对象 
     - InvokerInvocationHandler 调用者处理器
     - MockClusterInvoker  测试数据
-    - FailfastClusterInvoker 集群策略
-    - Filter/Listener链
+    - FailfastClusterInvoker 集群策略 **集群、路由、负载均衡**
+    - Filter/Listener链 ConsumerContextFilter -> FutureFilter -> MonitorFilter
     - DubboInvoker
   * remoting
     - ExchangeClient
 * 服务端
   * remoting
-    - ChannelHandler
     - ChannelEventRunnable
+    - ChannelHandler DecodeHandler HeaderExchangeHandler
   * rpc
     - DubboProtocol
-    - Filter链
+    - Filter链 EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> TraceFilter -> MonitorFilter -> TimeoutFilter -> ExceptionFilter
+    - InvokerWrapper
     - AbstractProxyInvoker
+    - JavassistProxyFactory$1 生成的JavassitProxy动态代理
 
 ### 整体
 * InvokerInvocationHandler
@@ -37,6 +39,8 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 * ProtocolFilterWrapper$1 过滤器链
 * ConsumerContextFilter
 
+
+### 1. client side invoke
 ```mermaid
 sequenceDiagram
     %% 1.1 调用处理器
@@ -71,7 +75,7 @@ sequenceDiagram
     end 
 ```
 
-### 集群、路由、负载均衡 cluster-router-loadbalance
+### 1.1 集群、路由、负载均衡 cluster-router-loadbalance
 ```mermaid
 sequenceDiagram
     %% 4.1 集群策略
@@ -94,7 +98,7 @@ sequenceDiagram
     AbstractClusterInvoker-->>MockClusterInvoker:invoke()返回Result
 ```
 
-### protocol
+### 1.2 protocol
 
 ```mermaid
 sequenceDiagram
@@ -136,7 +140,7 @@ sequenceDiagram
     InvokerWrapper->>FailfastClusterInvoker:invoke返回Result
 ```
 
-### dubbo-invoker 交换层、传输层
+### 1.3 dubbo-invoker 交换层、传输层
 
 ```mermaid
 sequenceDiagram

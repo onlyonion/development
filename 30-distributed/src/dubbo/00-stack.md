@@ -1,4 +1,6 @@
-## export stack
+
+## 1. init
+### 1.1 export stack
 ```
 // netty 异步非阻塞
 // 服务层
@@ -63,7 +65,7 @@ run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
 
-## refer stack
+### 1.2 refer stack
 ```
 <init>:53, WrappedChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher)
 <init>:32, AllChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher.all)
@@ -130,7 +132,7 @@ getObjectForBeanInstance:1634, AbstractBeanFactory (org.springframework.beans.fa
 doGetBean:254, AbstractBeanFactory (org.springframework.beans.factory.support)
 getBean:197, AbstractBeanFactory (org.springframework.beans.factory.support)
 getBean:1080, AbstractApplicationContext (org.springframework.context.support)
-init:51, DubboReferenceService (com.weidai.ops.dubbo.tester.service)
+init:51, DubboReferenceService (com.onion.ops.dubbo.tester.service)
 invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
 invoke:62, NativeMethodAccessorImpl (sun.reflect)
 invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
@@ -171,7 +173,7 @@ run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
 
-### ReferenceBean.getObject()
+### 1.3 ReferenceBean.getObject()
 
 ReferenceBean.getObject()
 ReferenceConfig.get()
@@ -268,18 +270,19 @@ run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
 
-## invoke client stack
+## 2. invoke
+### 2.1 invoke client stack
 ```
-// 同步等待
+// dubbo 同步等待
 get:125, DefaultFuture (com.alibaba.dubbo.remoting.exchange.support)
 get:113, DefaultFuture (com.alibaba.dubbo.remoting.exchange.support)
 
-// ExchangeClient 交换层、传输层
+// dubbo ExchangeClient 交换层、传输层
 // 异步无返回、异步有返回、同步
 doInvoke:97, DubboInvoker (com.alibaba.dubbo.rpc.protocol.dubbo)
 invoke:144, AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
 
-// 过滤器
+// dubbo 过滤器
 // ConsumerContextFilter -> FutureFilter -> MonitorFilter
 invoke:65, MonitorFilter (com.alibaba.dubbo.monitor.support)
 invoke:69, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
@@ -288,11 +291,11 @@ invoke:69, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
 invoke:48, ConsumerContextFilter (com.alibaba.dubbo.rpc.filter)
 invoke:69, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
 
-// listener
+// dubbo listener
 invoke:74, ListenerInvokerWrapper (com.alibaba.dubbo.rpc.listener)
 invoke:53, InvokerWrapper (com.alibaba.dubbo.rpc.protocol)
 
-// 动态代理实现、模拟数据、集群策略
+// dubbo 动态代理实现、模拟数据、集群策略
 doInvoke:47, FailfastClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
 invoke:229, AbstractClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
 invoke:72, MockClusterInvoker (com.alibaba.dubbo.rpc.cluster.support.wrapper)
@@ -305,38 +308,39 @@ invoke:-1, GeneratedMethodAccessor138 (sun.reflect)
 invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
 invoke:498, Method (java.lang.reflect)
 
-// controller-service-dao
+// 三层架构 controller-service-dao
 invoke:139, DubboReferenceService (com.onion.ops.dubbo.tester.service)
 invoke:58, IndexController (com.onion.ops.dubbo.tester.controller)
 
+// 反射调用方法
 invoke:-1, GeneratedMethodAccessor137 (sun.reflect)
 invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
 invoke:498, Method (java.lang.reflect)
 
-// handler method
+// springmvc 处理方法 handler method
 doInvoke:205, InvocableHandlerMethod (org.springframework.web.method.support)
 invokeForRequest:133, InvocableHandlerMethod (org.springframework.web.method.support)
 invokeAndHandle:97, ServletInvocableHandlerMethod (org.springframework.web.servlet.mvc.method.annotation)
 
-// adapter
+// springmvc 请求映射处理器适配器 adapter
 invokeHandlerMethod:827, RequestMappingHandlerAdapter (org.springframework.web.servlet.mvc.method.annotation)
 handleInternal:738, RequestMappingHandlerAdapter (org.springframework.web.servlet.mvc.method.annotation)
 handle:85, AbstractHandlerMethodAdapter (org.springframework.web.servlet.mvc.method)
 
-// 分发请求
+// springmvc 分发请求
 doDispatch:967, DispatcherServlet (org.springframework.web.servlet)
 doService:901, DispatcherServlet (org.springframework.web.servlet)
 
-// 处理所有的http方法
+// springmvc 处理所有的http方法
 processRequest:970, FrameworkServlet (org.springframework.web.servlet)
 
-// servlet-api
+// tomcat + springmvc
 doPost:872, FrameworkServlet (org.springframework.web.servlet)
 service:661, HttpServlet (javax.servlet.http)
 service:846, FrameworkServlet (org.springframework.web.servlet)
 service:742, HttpServlet (javax.servlet.http)
 
-// filter
+// tomcat + springmvc filter
 // abstract class OncePerRequestFilter 
 // CharacterEncodingFilter -> HiddenHttpMethodFilter -> HttpPutFormContentFilter -> RequestContextFilter -> WsFilter
 internalDoFilter:231, ApplicationFilterChain (org.apache.catalina.core)
@@ -361,7 +365,7 @@ doFilter:107, OncePerRequestFilter (org.springframework.web.filter)
 internalDoFilter:193, ApplicationFilterChain (org.apache.catalina.core)
 doFilter:166, ApplicationFilterChain (org.apache.catalina.core)
 
-// pipeline-valve
+// tomcat 管道阀 pipeline-valve
 invoke:199, StandardWrapperValve (org.apache.catalina.core)
 invoke:96, StandardContextValve (org.apache.catalina.core)
 invoke:478, AuthenticatorBase (org.apache.catalina.authenticator)
@@ -369,24 +373,73 @@ invoke:140, StandardHostValve (org.apache.catalina.core)
 invoke:81, ErrorReportValve (org.apache.catalina.valves)
 invoke:87, StandardEngineValve (org.apache.catalina.core)
 
-// adapter
+// tomcat 适配器 adapter
 service:342, CoyoteAdapter (org.apache.catalina.connector)
 
-// nio protocol
+// tomcat 输入输出 nio protocol
 service:803, Http11Processor (org.apache.coyote.http11)
 process:66, AbstractProcessorLight (org.apache.coyote)
+// tomcat 连接处理
 process:868, AbstractProtocol$ConnectionHandler (org.apache.coyote)
+// tomcat 非阻塞IO端 
 doRun:1459, NioEndpoint$SocketProcessor (org.apache.tomcat.util.net)
+// tomcat 套接字处理器
 run:49, SocketProcessorBase (org.apache.tomcat.util.net)
 
-// jdk
+// jdk 线程池
 runWorker:1149, ThreadPoolExecutor (java.util.concurrent)
 run:624, ThreadPoolExecutor$Worker (java.util.concurrent)
 run:61, TaskThread$WrappingRunnable (org.apache.tomcat.util.threads)
 run:748, Thread (java.lang)
+
 ```
 
-## invoke server stack
+sso update
+```
+doInvoke:72, DubboInvoker (com.alibaba.dubbo.rpc.protocol.dubbo)
+invoke:144, AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
+
+// filter ConsumerContextFilter -> MonitorFilter -> CatDubboFilter -> FutureFilter -> IterationConsumerFilter
+invoke:25,  (com.onion.middleware.rpcext)
+invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
+invoke:53, FutureFilter (com.alibaba.dubbo.rpc.protocol.dubbo.filter)
+invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
+invoke:76, CatDubboFilter (com.onion.cat.plugin.dubbo)
+invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
+invoke:75, MonitorFilter (com.alibaba.dubbo.monitor.support)
+invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
+invoke:48, ConsumerContextFilter (com.alibaba.dubbo.rpc.filter)
+invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
+
+// listener
+invoke:74, ListenerInvokerWrapper (com.alibaba.dubbo.rpc.listener)
+invoke:53, InvokerWrapper (com.alibaba.dubbo.rpc.protocol)
+
+// cluster
+doInvoke:47, FailfastClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
+invoke:227, AbstractClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
+invoke:27, IterationClusterInvoker (com.onion.middleware.rpcext)
+invoke:72, MockClusterInvoker (com.alibaba.dubbo.rpc.cluster.support.wrapper)
+
+// proxy
+invoke:52, InvokerInvocationHandler (com.alibaba.dubbo.rpc.proxy)
+getProfile:-1, proxy9 (com.alibaba.dubbo.common.bytecode)
+
+// 
+updateProfile:171, ApplicationContext (com.onion.sso.client.core)
+access$000:45, ApplicationContext (com.onion.sso.client.core)
+run:240, ApplicationContext$1 (com.onion.sso.client.core)
+run:47, TtlRunnable (com.alibaba.ttl)
+call:471, Executors$RunnableAdapter (java.util.concurrent)
+runAndReset:304, FutureTask (java.util.concurrent)
+access$301:178, ScheduledThreadPoolExecutor$ScheduledFutureTask (java.util.concurrent)
+run:293, ScheduledThreadPoolExecutor$ScheduledFutureTask (java.util.concurrent)
+runWorker:1145, ThreadPoolExecutor (java.util.concurrent)
+run:615, ThreadPoolExecutor$Worker (java.util.concurrent)
+run:745, Thread (java.lang)
+```
+
+### 2.2 invoke server stack
 ```
 // javassit proxy
 invokeMethod:-1, Wrapper26 (com.alibaba.dubbo.common.bytecode)
@@ -398,7 +451,7 @@ invoke:72, AbstractProxyInvoker (com.alibaba.dubbo.rpc.proxy)
 // 调用者包装
 invoke:53, InvokerWrapper (com.alibaba.dubbo.rpc.protocol)
 
-// ProtocolFilterWrapper$1
+// 过滤器链 ProtocolFilterWrapper$1
 // EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> TraceFilter -> MonitorFilter -> TimeoutFilter -> ExceptionFilter
 invoke:64, ExceptionFilter (com.alibaba.dubbo.rpc.filter)
 invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
@@ -430,7 +483,7 @@ received:52, DecodeHandler (com.alibaba.dubbo.remoting.transport)
 // 传输层 通道事件，分发
 run:82, ChannelEventRunnable (com.alibaba.dubbo.remoting.transport.dispatcher)
 
-// jdk
+// 线程模型
 runWorker:1145, ThreadPoolExecutor (java.util.concurrent)
 run:615, ThreadPoolExecutor$Worker (java.util.concurrent)
 run:745, Thread (java.lang)
@@ -495,4 +548,6 @@ Daemon Thread [DubboServerHandler-192.168.2.252:18177-thread-5] (Suspended (brea
 	ThreadPoolExecutor$Worker.run() line: 615 [local variables unavailable]	
 	Thread.run() line: 745 [local variables unavailable]	
 ```
+
+
 
