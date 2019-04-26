@@ -1,17 +1,19 @@
+## cache
+
+### 多级缓存
+### 缓存命中率
+### 失效策略
+LFU、LRU、FIFO
+
 ## spring cache
-
-Cache
-
-CacheManger
-
-annotation
-SpEL
-cacheName, key, condition
-
-@Cacheable
-@CachePut
-@CacheEvict
-beforeInvocation=false, 方法出现异常，缓存不会清空
+* Cache
+* CacheManger
+* annotation
+  * @Cacheable
+  * @CachePut
+  * @CacheEvict beforeInvocation=false, 方法出现异常，缓存不会清空
+* SpEL
+* cacheName, key, condition
 
 ```java
 public @interface CachePut {  
@@ -21,8 +23,6 @@ public @interface CachePut {
     String unless() default "";    //用于否决缓存更新的，不像condition，该表达只在方法执行之后判断，此时可以拿到返回值result进行判断了  
 } 
 ```
-
-
 
 #### 原理
 Spring AOP 动态代理

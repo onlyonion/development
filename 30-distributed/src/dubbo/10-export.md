@@ -16,8 +16,9 @@
 3. ServiceConfig.doExportUrls() 加载注册协议、遍历协议组装URL导出
     * loadRegistries()
     * doExportUrlsFor1Protocol() 为每种协议导出服务地址
+        - registryURL Socket.connect()
         - 暴露本地服务 exportLocal
-        - 暴露远程服务
+        - 暴露远程服务 多个注册中心、一个注册中心
             + loadMonitor(registryURL)
             + proxyFactory.getInvoker() 动态代理
             + protocol.export(invoker)  远程协议

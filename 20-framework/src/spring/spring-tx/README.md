@@ -55,3 +55,97 @@ transaction
     TransactionDefinition
     TransactionStatus
 ```
+
+## overview
+```plantuml
+@startuml
+
+'''''''''''''''''''''''''Advice'''''''''''''''''''''''''
+TransactionProxyFactoryBean o-- TransactionInterceptor
+TransactionProxyFactoryBean o-- Pointcut
+
+'''''''''''''''''''''''''事务切面'''''''''''''''''''''''''
+BeanFactoryAware ^.. TransactionAspectSupport
+InitializingBean ^.. TransactionAspectSupport
+abstract class TransactionAspectSupport #orange
+
+TransactionAspectSupport o-- PlatformTransactionManager
+TransactionAspectSupport o-- TransactionAttributeSource
+
+'''''''''''''''''''''''''事务管理器'''''''''''''''''''''''''
+interface PlatformTransactionManager #orange
+
+interface SavepointManager
+interface Flushable
+SavepointManager ^-- TransactionStatus
+Flushable ^-- TransactionStatus
+interface TransactionStatus
+PlatformTransactionManager o-- TransactionStatus
+PlatformTransactionManager ..>TransactionDefinition
+
+PlatformTransactionManager ^.. AbstractPlatformTransactionManager
+abstract class AbstractPlatformTransactionManager
+
+AbstractPlatformTransactionManager ^-- HibernateTransactionManager
+AbstractPlatformTransactionManager ^-- JpaTransactionManager
+AbstractPlatformTransactionManager ^-- DataSourceTransactionManager
+AbstractPlatformTransactionManager ^-- JdoTransactionManager
+
+class DataSourceTransactionManager
+DataSourceTransactionManager o-- DataSource
+
+'''''''''''''''''''''''''数据源'''''''''''''''''''''''''
+interface DataSource
+DataSource ^.. DruidAbstractDataSource
+abstract class DruidAbstractDataSource
+DruidAbstractDataSource ^-- DruidDataSource
+
+'''''''''''''''''''''''''事务定义'''''''''''''''''''''''''
+interface TransactionDefinition
+note left: 事务隔离级别、传播范围
+TransactionDefinition ^.. DefaultTransactionDefinition
+
+DefaultTransactionDefinition ^-- TransactionTemplate
+TransactionOperations ^.. TransactionTemplate
+InitializingBean ^.. TransactionTemplate
+TransactionTemplate o-- PlatformTransactionManager
+
+'''''''''''''''''''''''''事务拦截器'''''''''''''''''''''''''
+TransactionAspectSupport ^-- TransactionInterceptor
+MethodInterceptor ^.. TransactionInterceptor
+class TransactionInterceptor #orange
+
+'''''''''''''''''''''''''Proxy'''''''''''''''''''''''''
+package spring-aop {
+    class ProxyConfig
+    
+    ProxyConfig ^-- AbstractSingletonProxyFactoryBean
+    FactoryBean ^.. AbstractSingletonProxyFactoryBean
+    BeanClassLoaderAware ^.. AbstractSingletonProxyFactoryBean
+    InitializingBean ^.. AbstractSingletonProxyFactoryBean
+    abstract class AbstractSingletonProxyFactoryBean
+    AbstractSingletonProxyFactoryBean o-- AdvisorAdapterRegistry
+    
+    ProxyConfig ^-- AdvisedSupport
+    Advised ^.. AdvisedSupport
+    AdvisedSupport ^-- ProxyCreatorSupport
+    ProxyCreatorSupport ^-- ProxyFactory  
+    AbstractSingletonProxyFactoryBean ..> ProxyFactory
+    
+    
+    interface AdvisorAdapterRegistry
+    AdvisorAdapterRegistry ^.. DefaultAdvisorAdapterRegistry
+    DefaultAdvisorAdapterRegistry "1" o-- "*" AdvisorAdapter
+    
+    interface AdvisorAdapter
+    AdvisorAdapter ^.. MethodBeforeAdviceAdapter
+    AdvisorAdapter ^.. ThrowsAdviceAdapter
+    AdvisorAdapter ^.. AfterReturningAdviceAdapter
+}
+
+AbstractSingletonProxyFactoryBean ^-- TransactionProxyFactoryBean
+BeanFactoryAware ^.. TransactionProxyFactoryBean
+
+
+@enduml
+```

@@ -116,3 +116,4 @@
     * [11.3.1 druid](50-database/src/druid/README.md)
     * [11.3.2 mysql-connector](50-database/src/mysql-connector/README.md)
     * [11.3.3 shardingsphere](50-database/src/shardingsphere/README.md)
+    * [11.3.4 mycat](50-database/src/mycat/README.md)

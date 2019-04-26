@@ -16,13 +16,24 @@ AbstractProtocol (com.alibaba.dubbo.rpc.protocol)
 ```plantuml
 @startuml
 
-interface Protocol
-abstract class AbstractProtocol {
-    # final Map<String, Exporter<?>> exporterMap
-    # final Set<Invoker<?>> invokers
+interface Protocol {
+    + int getDefaultPort()
+    + <T> Exporter<T> export(Invoker<T> invoker) throws RpcException
+    + <T> Invoker<T> refer(Class<T> type, URL url) throws RpcException
+    + void destroy()
 }
 Protocol ^.. AbstractProtocol
+Protocol ..> Exporter
+Protocol ..> Invoker
 
+abstract class AbstractProtocol {
+    .. 已导出的服务 ..
+    # final Map<String, Exporter<?>> exporterMap
+    # final Set<Invoker<?>> invokers
+    # static String serviceKey(URL url)
+}
+
+AbstractProtocol ^-- DubboProtocol
 class DubboProtocol {
     + final ReentrantLock lock
     - final Map<String, ExchangeServer> serverMap
@@ -33,7 +44,9 @@ class DubboProtocol {
     - static DubboProtocol
     .. 导出服务 ..
     + <T> Exporter<T> export(Invoker<T> invoker)
+    .. 打开服务 ..
     - void openServer(URL url)
+    .. 创建服务 ..
     - ExchangeServer createServer(URL url)
     .. 引入服务 ..
     + <T> Invoker<T> refer(Class<T> serviceType, URL url) 
@@ -41,7 +54,18 @@ class DubboProtocol {
     - ExchangeClient getSharedClient(URL url)
     - ExchangeClient initClient(URL url)
 }
-AbstractProtocol ^-- DubboProtocol
+
+DubboProtocol o-- DubboInvoker
+DubboProtocol o-- ExchangeServer
+DubboProtocol o-- Exporter
+DubboProtocol o-- ExchangeClient
+DubboProtocol o-- ExchangeHandler
+
+interface Invoker<T>
+Invoker ^.. AbstractInvoker
+abstract class AbstractInvoker<T>
+AbstractInvoker ^-- DubboInvoker
+class DubboInvoker
 
 @enduml
 
