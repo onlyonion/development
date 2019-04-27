@@ -65,6 +65,43 @@ run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
 
+```plantuml
+@startuml
+
+
+|Swimlane1|
+start
+:foo1;
+
+|#AntiqueWhite|Swimlane2|
+:foo2;
+:foo3;
+|Swimlane1|
+
+:foo4;
+|Swimlane2|
+:foo5;
+stop
+
+
+@enduml
+```
+
+```plantuml
+@startuml
+
+
+[*] --> State1
+State1 --> [*]
+State1 : this is a string
+State1 : this is another string
+
+State1 -> State2
+State2 --> [*]
+
+@enduml
+```
+
 ### 1.2 refer stack
 ```
 <init>:53, WrappedChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher)

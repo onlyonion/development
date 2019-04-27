@@ -1,40 +1,76 @@
 com.alibaba.dubbo.rpc.Protocol
 
-## 1. 定义
+## hierarchy
+```
+Protocol (com.alibaba.dubbo.rpc)
+    AbstractProtocol (com.alibaba.dubbo.rpc.protocol)
+        RedisProtocol (com.alibaba.dubbo.rpc.protocol.redis)
+        InjvmProtocol (com.alibaba.dubbo.rpc.protocol.injvm)
+        DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
+        ThriftProtocol (com.alibaba.dubbo.rpc.protocol.thrift)
+        AbstractProxyProtocol (com.alibaba.dubbo.rpc.protocol)
+            HttpProtocol (com.alibaba.dubbo.rpc.protocol.http)
+            RmiProtocol (com.alibaba.dubbo.rpc.protocol.rmi)
+            WebServiceProtocol (com.alibaba.dubbo.rpc.protocol.webservice)
+            HessianProtocol (com.alibaba.dubbo.rpc.protocol.hessian)
+        MemcachedProtocol (com.alibaba.dubbo.rpc.protocol.memcached)
+        MockProtocol (com.alibaba.dubbo.rpc.support)
+    ProtocolFilterWrapper (com.alibaba.dubbo.rpc.protocol)
+    ProtocolListenerWrapper (com.alibaba.dubbo.rpc.protocol)
+    InjvmProtocol (com.alibaba.dubbo.rpc.protocol.injvm)
+    RegistryProtocol (com.alibaba.dubbo.registry.integration)
+```
+
+## define
 * 定义了端口、导出、导入、销毁规约
 * 基于netty的多协议开发
 * 通信协议定义了通信中的语法学, 语义学和同步规则以及可能存在的错误检测与纠正
 
-## 2. 类图
-```yuml
-// {type:class}
+```plantuml
+@startuml
 
-// 协议封装了默认端口、导出、引入、销毁
-[Protocol|+defaultPort|+export(Invoker);refer(Class<T>, URL);destroy()]
+interface Protocol
+note left: 协议封装了默认端口、导出、引入、销毁
 
-// 1. 网络协议
-[Protocol]^-.-[AbstractProtocol]
+Protocol ^.. AbstractProtocol
+Protocol ^.. ProtocolFilterWrapper
+Protocol ^.. ProtocolListenerWrapper 
+Protocol ^.. InjvmProtocol
+Protocol ^.. RegistryProtocol
 
-// 2. redis、injvm、dubbo、thrift传输协议
-[AbstractProtocol]^-[RedisProtocol]
-[AbstractProtocol]^-[InjvmProtocol]
-[AbstractProtocol]^-[DubboProtocol{bg:tomato}]
-[AbstractProtocol]^-[ThriftProtocol]
+interface Invoker
+Protocol ..> Invoker
 
-// 3. 内存缓存
-[AbstractProtocol]^-[MemcachedProtocol]
-[AbstractProtocol]^-[MockProtocol]
+abstract class AbstractProtocol
+class DubboProtocol #tomato
 
-// 4. 代理协议
-[AbstractProtocol]^-[AbstractProxyProtocol]
-[AbstractProxyProtocol]^-[HttpProtocol]
-[AbstractProxyProtocol]^-[RmiProtocol]
-[AbstractProxyProtocol]^-[WebServiceProtocol]
-[AbstractProxyProtocol]^-[HessianProtocol]
+AbstractProtocol ^-- RedisProtocol
+AbstractProtocol ^-- InjvmProtocol
+AbstractProtocol ^-- DubboProtocol
+AbstractProtocol ^-- ThriftProtocol
+AbstractProtocol ^---- AbstractProxyProtocol
+AbstractProtocol ^-- MemcachedProtocol
+AbstractProtocol ^-- MockProtocol
 
-// 5. 协议过滤器包装
-[Protocol]^-.-[ProtocolFilterWrapper]
-[Protocol]^-.-[ProtocolListenerWrapper]
-[Protocol]^-.-[InjvmProtocol]
-[Protocol]^-.-[RegistryProtocol{bg:steelblue}]
+class ProtocolFilterWrapper
+class ProtocolListenerWrapper 
+class InjvmProtocol #yellow
+class RegistryProtocol #steelblue
+
+abstract class AbstractProxyProtocol
+class HttpProtocol #wheat
+class RmiProtocol #wheat
+class WebServiceProtocol #wheat
+class HessianProtocol #wheat
+
+AbstractProxyProtocol ^-- HttpProtocol
+AbstractProxyProtocol ^-- RmiProtocol
+AbstractProxyProtocol ^-- WebServiceProtocol
+AbstractProxyProtocol ^-- HessianProtocol
+
+DubboProtocol "1" o-- "*" ExchangeServer
+DubboProtocol "1" o-- "*" ReferenceCountExchangeClient
+DubboProtocol "1" o-- "*" LazyConnectExchangeClient
+
+@enduml
 ```

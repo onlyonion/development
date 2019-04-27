@@ -1,9 +1,4 @@
 
-## define
-
-* bind() 服务端绑定
-* connect() 连接服务端
-
 ## hierachy
 ```
 Transporter (com.alibaba.dubbo.remoting)
@@ -11,6 +6,11 @@ Transporter (com.alibaba.dubbo.remoting)
     NettyTransporter (com.alibaba.dubbo.remoting.transport.netty)
     GrizzlyTransporter (com.alibaba.dubbo.remoting.transport.grizzly)
 ```
+
+## define
+
+* bind() 服务端绑定
+* connect() 连接服务端
 
 ```yuml
 // {type:class}

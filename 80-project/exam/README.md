@@ -49,6 +49,9 @@
 
 * [考试要求](/80-project/exam/30-pm-require.md)
 * [主要内容](/80-project/exam/31-pm.md)
+* [案例分析](/80-project/exam/32-pm-case.md)
+* [论文](/80-project/exam/33-pm-papers.md)
+* [前沿技术](/80-project/exam/34-pm-innovative.md)
 
 #### 系统分析师 SA
 系统分析员又称系统分析师，英文system analyst，简称SA。 是指具有从事计算机应用系统的分析和设计工作能力及业务水平，

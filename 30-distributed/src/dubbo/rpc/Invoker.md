@@ -42,7 +42,55 @@ Invoker (com.alibaba.dubbo.rpc)
         DubboInvoker (com.alibaba.dubbo.rpc.protocol.dubbo)
 ```
 
-## 2. 类图
+## 2. define
+
+```plantuml
+@startuml
+
+interface Node
+Node o-- URL
+Node ^-- Invoker
+interface Invoker<T> 
+
+Invoker ^.. MockClusterInvoker
+Invoker ^.. InvokerWrapper
+Invoker ^.. AbstractClusterInvoker
+Invoker ^.. AbstractInvoker
+Invoker ^.. AbstractProxyInvoker
+Invoker ^.. ListenerInvokerWrapper
+
+class MockClusterInvoker<T> #tomato
+MockClusterInvoker o-- Directory
+MockClusterInvoker o-- Invoker
+
+class InvokerWrapper<T> #wheat
+
+abstract class AbstractClusterInvoker<T> #thistle
+class FailfastClusterInvoker<T> #thistle
+
+AbstractClusterInvoker ^-- FailfastClusterInvoker
+AbstractClusterInvoker ^-- FailoverClusterInvoker
+AbstractClusterInvoker ^--- FailsafeClusterInvoker
+AbstractClusterInvoker ^--- FailbackClusterInvoker
+AbstractClusterInvoker ^---- BroadcastClusterInvoker
+AbstractClusterInvoker ^---- ForkingClusterInvoker
+
+abstract class AbstractInvoker<T> #pink
+class DubboInvoker<T> #pink
+class InjvmInvoker<T> #pink
+
+AbstractInvoker ^-- InjvmInvoker
+AbstractInvoker ^-- DubboInvoker
+
+abstract class AbstractProxyInvoker
+AbstractProxyInvoker ^-- JdkProxyFactory$1
+AbstractProxyInvoker ^-- JavassistProxyFactory$1
+
+class ListenerInvokerWrapper<T> 
+
+@enduml
+```
+
 
 ```yuml
 // {type:class}

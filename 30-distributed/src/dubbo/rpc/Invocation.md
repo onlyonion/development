@@ -1,6 +1,13 @@
 com.alibaba.dubbo.rpc.Invocation
 
-## 1. 定义
+## hierarchy
+```
+Invocation (com.alibaba.dubbo.rpc)
+    RpcInvocation (com.alibaba.dubbo.rpc)
+        DecodeableRpcInvocation (com.alibaba.dubbo.rpc.protocol.dubbo)
+```
+
+## 定义
 * Invocation 封装了方法名称、方法参数类型、方法参数值、附加属性
 * method.invoker(proxy, args)对反射方法抽象
 
@@ -19,18 +26,36 @@ public interface Invocation {
 	// 调用者
     Invoker<?> getInvoker();
 }
-
 ```
 
-## 2. 类图
-* RpcInvocation实现类
-```yuml
-// {type:class}
+```plantuml
+@startuml
 
-[Invocation]^-.-[RpcInvocation]
-[RpcInvocation]^-[DecodeableRpcInvocation]
+interface Invocation
 
-// 分布式节点
-[Node{bg:wheat}]^-[Invoker{bg:wheat}]
-[Invocation]++->[Invoker]
+interface Node
+Node ^-- Invoker
+Invoker ^.. MockClusterInvoker
+Invoker ^.. InvokerWrapper
+Invoker ^.. AbstractInvoker
+
+class InvokerWrapper<T> 
+abstract class AbstractInvoker<T> 
+AbstractInvoker ^-- DubboInvoker
+class DubboInvoker<T>
+
+
+interface Invoker<T> 
+Invocation o-- Invoker
+
+Invocation ^.. RpcInvocation
+class RpcInvocation 
+
+RpcInvocation ^-- DecodeableRpcInvocation
+class DecodeableRpcInvocation 
+DecodeableRpcInvocation o-- Channel
+DecodeableRpcInvocation o-- Request
+
+
+@enduml
 ```

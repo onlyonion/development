@@ -87,6 +87,11 @@
 			<version>1.8.9.RELEASE</version>
 		</dependency> -->
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.12.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-core</artifactId>
 			<version>7.0.70</version>

@@ -52,11 +52,103 @@ Transporter
 Transporters
 ```
 
-## Endpoint
-* Channel
-* Server
-* Client
 
+## overview
+* Endpoint
+  * Channel
+  * Server
+  * Client
+
+```plantuml
+@startuml
+
+interface Endpoint
+Endpoint o- URL
+Endpoint o- ChannelHandler
+Endpoint o- InetSocketAddress
+
+Endpoint ^.... AbstractPeer
+Endpoint ^---- Server
+Endpoint ^---- Client
+Endpoint ^---- Channel
+
+abstract class AbstractPeer #tomato
+interface Server #tomato
+interface Client #tomato
+interface Channel #tomato
+
+''''''''''''''''''''''''AbstractPeer''''''''''''''''''''''''''''
+AbstractPeer ^-- AbstractEndpoint
+AbstractPeer ^-- AbstractChannel
+
+AbstractEndpoint ^-- AbstractClient
+AbstractEndpoint ^-- AbstractServer
+
+AbstractChannel ^-- MinaChannel
+AbstractChannel ^-- NettyChannel
+AbstractChannel ^-- GrizzlyChannel
+
+abstract class AbstractEndpoint #wheat
+abstract class AbstractClient #wheat
+abstract class AbstractServer #wheat
+
+abstract class AbstractChannel
+class MinaChannel
+class NettyChannel 
+class GrizzlyChannel 
+
+AbstractClient ^-- NettyClient
+AbstractClient ^-- GrizzlyClient
+AbstractClient ^-- MinaClient
+
+class NettyClient #gold
+
+AbstractServer ^-- NettyServer 
+AbstractServer ^-- GrizzlyServer 
+AbstractServer ^-- MinaServer
+
+''''''''''''''''''''''''Server''''''''''''''''''''''''''''
+Server ^.. ServerDelegate
+Server ^-- ExchangeServer
+Server ^.. AbstractServer
+Server ^.. NettyServer
+Server ^-- Peer
+
+class NettyServer #gold
+
+
+''''''''''''''''''''''''Client''''''''''''''''''''''''''''
+
+Client ^.. ClientDelegate 
+Client ^.. AbstractClient 
+Client ^-- ExchangeClient 
+
+interface ExchangeClient #yellow
+
+ExchangeClient ^-- HeaderExchangeClient
+ExchangeClient ^-- LazyConnectExchangeClient 
+ExchangeClient ^-- ReferenceCountExchangeClient
+
+class HeaderExchangeClient #yellow
+class LazyConnectExchangeClient #yellow
+class ReferenceCountExchangeClient #yellow
+
+''''''''''''''''''''''''Channel''''''''''''''''''''''''''''
+
+Channel ^-- ChannelDelegate
+Channel ^.. ExchangeChannel 
+Channel ^.. Client 
+Channel ^-- AbstractChannel 
+
+class ExchangeChannel #yellow
+
+ExchangeChannel ^.. HeaderExchangeChannel
+ExchangeChannel ^-- ExchangeClient
+
+@enduml
+```
+    
+    
 ```yuml
 // {type:class}
 

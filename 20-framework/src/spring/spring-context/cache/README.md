@@ -39,7 +39,7 @@ interface Cache  #yellow
 interface CacheManager  #yellow
 
 Cache +-- ValueWrapper
-SimpleValueWrapper ^-.. ValueWrapper
+ValueWrapper ^-.. SimpleValueWrapper
 
 CacheManager o-- Cache
 CacheManager ^-- AbstractCacheManager
@@ -64,7 +64,7 @@ package spring-context-support {
 package spring-data-redis {
     Cache ^.. RedisCache
     
-    AbstractTransactionSupportingCacheManager ^-- RedisCacheManager
+    AbstractTransactionSupportingCacheManager ^---- RedisCacheManager
     
     RedisCacheManager o-- RedisCachePrefix
     RedisCacheManager ..> RedisCache
