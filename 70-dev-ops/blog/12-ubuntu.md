@@ -50,12 +50,10 @@ sudo update-alternatives --config java
 sudo update-alternatives --config javac
 ```
 
-### ide
-* eclipse
-* idea
-
 ### maven
+
 ```shell
+# 1. 下载安装
 sudo mkdir /usr/local/lib/maven/
 sudo tar zxvf apache-maven-3.5.4-bin.tar.gz -C /usr/local/lib/maven/
 
@@ -63,6 +61,11 @@ export MAVEN_HOME=/usr/local/lib/maven/apache-maven-3.5.4
 export PATH=${PATH}:${MAVEN_HOME}/bin
 
 source /etc/profile
+
+# 2. apt-get 
+# /usr/share/maven
+sudo apt-get update && sudo apt-get install maven
+
 ```
 
 ### ant
@@ -91,8 +94,19 @@ git config --list
 
 [help](https://blog.csdn.net/m0_37950361/article/details/80138929)
 
+
+### eclipse
+### idea
+### vscode
+```shell
+# 双击.deb 安装之后 运行code启动
+/usr/share/code
+```
+
 ### gitlab
+
 ### nexus
+
 ### jenkins
 ```shell
 sudo apt-get install -f 
