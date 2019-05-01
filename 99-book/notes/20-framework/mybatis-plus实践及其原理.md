@@ -22,7 +22,7 @@
 
 #### mybatis整体流程图
 
-#### mybatis层次结构
+#### mybatis启动流程
 
 session生命周期
 * 开启一个会话，这时会创建一个SqlSession对象，并且为SQLSession创建一个Executor对象，而Executor内部持有一个Cache实例对象
