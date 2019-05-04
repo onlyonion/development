@@ -4,11 +4,14 @@
 
 ## introduce
 This is my daily notes, enriching the mind....
-* [基础](./00-base/README.md)
+
+![knowledge](/00-base/img/knowledge.png)
+
+* [基础](./00-base/README.md) 组成原理、数据结构、操作系统、计算机网络、编译原理
 * [Java](./10-java/README.md)  
   * collection、io、concurrrent、jvm
   * [src](10-java/src/README.md)
-* [框架](./20-framework/README.md)  ssm, 
+* [框架](./20-framework/README.md)
   * spring、mybatis、tomcat、netty
   * [src](20-framework/src/README.md)
 * [分布式](./30-distributed/README.md)
@@ -21,6 +24,7 @@ This is my daily notes, enriching the mind....
   * [故障排查](70-dev-ops/11-devops-check.md)
   * [性能调优](70-dev-ops/20-optimize.md)
 * [工程项目](./80-project/README.md) 
+  * [软考](80-project/exam/README.md)
 * [小书库](./99-book/README.md)
   - [计算机相关书籍](./99-book/notes/README.md) 计算机相关书籍的读书笔记
   - [学科门类](./99-book/subject/README.md) 

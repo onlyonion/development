@@ -23,10 +23,11 @@
     mermaid.initialize({ startOnLoad: false });
     window.$docsify = {
       name: 'onlyonion-development',
-      nameLink: '/development',
+      nameLink: /localhost/.test(location.host) ? '/' : '/development',
       repo: 'https://gitee.com/onlyonion/development',
       loadSidebar: true,
       loadNavbar: true,
+      // subMaxLevel: 2,
       // auto2top: false,
       search: {
         maxAge: 86400000, // 过期时间，单位毫秒，默认一天

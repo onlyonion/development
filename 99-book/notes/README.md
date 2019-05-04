@@ -112,13 +112,13 @@
 
 ### 软考
 * 高级
-  * [《系统规划与管理师教程》崔静](/99-book/notes/80-project/系统规划与管理师教程.md)
   * [《项目管理知识体系指南（PMBOK指南）》第6版](/99-book/notes/80-project/PMBOK.md)
   * [《信息系统项目管理师教程》柳纯录](/99-book/notes/80-project/信息系统项目管理师教程.md)
   * [《系统分析师教程》张友生](/99-book/notes/80-project/系统分析师教程.md)
   * [《系统架构设计师教程》杨春晖](/99-book/notes/80-project/系统架构设计师教程.md)
   * [《系统架构设计师教程》（第4版） 希赛教育软考学院](/99-book/notes/80-project/系统架构设计师教程(第4版).md)
   * [《网络规划设计师教程》黄传河](/99-book/notes/80-project/网络规划设计师教程.md)
+  * [《系统规划与管理师教程》崔静](/99-book/notes/80-project/系统规划与管理师教程.md)
 * 中级
   * [《软件评测师教程》柳纯录](/99-book/notes/80-project/软件评测师教程.md)
   * [《嵌入式系统设计师教程》魏洪兴](/99-book/notes/80-project/嵌入式系统设计师教程.md)
