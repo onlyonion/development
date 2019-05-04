@@ -7,6 +7,7 @@
   * [数据库](50-database/README.md)
   * [前端](60-js/README.md)
   * [开发运维](70-dev-ops/README.md)
+  * [软考](80-project/exam/README.md)
 * book
   * [计算机相关](/99-book/notes/README.md)
   * [学科门类](/99-book/subject/README.md)
