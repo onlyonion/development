@@ -1,7 +1,6 @@
 《MyBatis技术内幕》徐郡明 中国工信出版集团 电子工业出版社
 
 ## 第1章 Mybatis快速入门
-
 ### 1.4 Mybatis整体架构
 #### 1.4.1 基础支持层
 * 反射模块
@@ -61,17 +60,38 @@ XPath使用路径表达式来选取XML文档中指定的节点或节点集合。
 
 
 ## 第3章 核心处理层
+配置解析、参数映射、SQL解析、SQL执行、结果集映射、插件
 ### 3.1 Mybatis初始化
 #### 3.1.1 建造者模式
 #### 3.1.2 BaseBuilder
 #### 3.1.3 XMLConfigBuilder
+1. 解析&lt;properties&gt;节点
+2. 解析&lt;settings&gt;节点
+3. 解析&lt;typeAliases&gt;、&lt;typeHandlers&gt;节点
+4. 解析&lt;plugins&gt;节点
+5. 解析&lt;objectFactory&gt;节点
+6. 解析&lt;environments&gt;节点
+7. 解析&lt;databaseIdProvider&gt;节点
+8. 解析&lt;mappers&gt;节点
+
 #### 3.1.4 XMLMapperBuilder
+1. 解析&lt;cache&gt;节点
+2. 解析&lt;cache-ref&gt;节点
+3. 解析&lt;parameterMap&gt;节点
+4. 解析&lt;resultMap&gt;节点
+5. 解析&lt;sql&gt;节点
+
 #### 3.1.5 XMLStatementBuilder
+1. 解析&lt;include&gt;节点
+2. 解析&lt;selectKey&gt;节点
+3. 解析SQL节点
+
 #### 3.1.6 绑定Mapper接口
+每个配置文件的命名空间可以绑定一个Mapper接口，并注册到MapperRegistry中。MapperAnnotationBuilder.parse()方法解析Mapper接口中的注解信息。
 #### 3.1.7 处理incomplete*集合
 
 ### 3.2 SqlNode&SqlSource
-sql节点被解析成MappedStatement对象，sql语句呗解析成SqlSource对象，sql语句中的动态sql节点、文本节点，由SqlNode接口的相应实现表示
+sql节点被解析成MappedStatement对象，**sql语句**被解析成SqlSource对象，**sql语句中的动态sql节点、文本节点**，由SqlNode接口的相应实现表示
 DynamicSqlSource处理动态sql，RawSqlSource处理静态语句，两者最终都会被处理后的sql语句封装成staticSqlSource返回。
 
 #### 3.2.1 组合模式
@@ -170,5 +190,33 @@ SqlSessionManager 同时实现了 SqlSession 接口和 SqlSessionFactory 接口 
 
 ## 第4章 高级主题
 ### 4.1 插件模块
+#### 4.1.1 责任链模块
+#### 4.1.2 Interceptor
+#### 4.1.3 应用场景分析
+1. 分页插件
+2. JsqlParse介绍
+3. 分表插件
+
+> 访问者模式 抽象处理某种数据结构中各元素的操作，可以在不改变数据结构的前提下，添加处理数据结构中指定元素的新操作。
+
+4. 其他场景
+sql白名单、黑名单；生成全局唯一ID。
+
 ### 4.2 Mybatis与Spring集成
+#### 4.2.1 Spring基本概念
+#### 4.2.2 Spring MVC介绍
+#### 4.2.3 集成环境搭建
+#### 4.2.4 Mybatis-Spring剖析
+1. SqlSessionFactoryBean
+SqlSessionFactoryBuilder通过XMLConfigBuilder等对象读取mybatis-config.xml配置文件及映射配置信息，得到Configuration对象，然后创建SqlSessionFactory对象。与spring集成时，SqlSessionFactory对象由SqlSessionFactoryBean对象创建。
+
+2. SpringManagedTransaction
+3. SqlSessionTemplate & SqlSessionDaoSupport
+4. MapperFactoryBean & MapperScannerConfigurer
+
 ### 4.3 拾遗
+#### 4.3.1 应用&lt;sql&gt;节点
+#### 4.3.2 OgnlUtils工具类
+#### 4.3.3 SQL语句生成器
+#### 4.3.4 动态SQL脚本插件
+#### 4.3.5 mybatis-generator逆向工程
