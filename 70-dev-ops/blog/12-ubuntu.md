@@ -87,6 +87,37 @@ ssh-keygen -t rsa -C "your email"
 ```
 
 ### gitlab
+[gitlab](https://about.gitlab.com/install/#ubuntu)
+```shell
+sudo apt-get update
+sudo apt-get install -y curl openssh-server ca-certificates
+sudo apt-get install -y postfix
+
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+sudo EXTERNAL_URL="https://gitlab.example.com" apt-get install gitlab-ee
+
+```
+
+[Ubuntu 搭建 GitLab 笔记](https://www.cnblogs.com/m2ez/p/7063606.html)
+```shell
+# 方法1
+sudo apt-get install curl openssh-server ca-certificates postfix
+sudo curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+sudo apt-get install gitlab-ce
+# 方法2 手动下载包的方式进行安装
+sudo curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/xenial/gitlab-ce-XXX.deb/download
+sudo dpkg -i gitlab-ce-XXX.deb
+```
+
+[清华大学开源软件镜像站](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
+```shell
+# 信任 GitLab 的 GPG 公钥
+curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/dev/null
+deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
+sudo apt-get update
+sudo apt-get install gitlab-ce
+```
+
 
 ### nexus
 
@@ -135,7 +166,6 @@ case $1 in
 	status) su root /data/zookeeper-3.4.8/bin/zkServer.sh status;;
 	restart) su root /data/zookeeper-3.4.8/bin/zkServer.sh restart;;
 	*)  echo "require start|stop|status|restart"  ;;
-
 esac
 # env
 service zookeeper start/stop
@@ -144,21 +174,69 @@ chkconfig --list
 export ZOOKEEPER_HOME=/data/zookeeper-3.4.8
 export PATH=${PATH}:${ZOOKEEPER_HOME}/bin
 ```
-
 ### nginx
-
+```shell
+sudo apt install nginx
+```
 ### tomcat
-
-### zookeeper
-
+```shell
+/usr/local/lib/apache-tomcat-7.0.70
+sudo chmod 755 -R apache-tomcat-7.0.70
+```
 ### redis
+```shell
+# apt安装
+# 1. 安装
+sudo apt-get install redis-server
+# 检查Redis服务器系统进程
+ps -aux|grep redis
+# 通过启动命令检查Redis服务器状态
+netstat -nlt|grep 6379
+# 通过启动命令检查Redis服务器状态
+sudo /etc/init.d/redis-server status
+# 2. 修改配置
+sudo vi /etc/redis/redis.conf
+# 设置密码 取消注释requirepass 
+requirepass redisredis
+# 让Redis服务器被远程访问 注释bind
+#bind 127.0.0.1
+sudo /etc/init.d/redis-server restart
+sudo service redis-server restart
+
+# 编译安装
+sudo wget http://download.redis.io/releases/redis-3.2.6.tar.gz
+sudo tar -zxvf redis-3.2.6.tar.gz
+# sudo apt-get install gcc
+sudo make
+sudo make install
+# 安装到目录/usr/local/bin下
+```
 
 ### rocketmq
 
 ### mysql
+```shell
+# install 5.7.26
+sudo apt-get update
+sudo apt-get install mysql-server
+sudo apt-get install mysql-client
+sudo apt-get install libmysqlclient-dev
+# check; mysql listen
+sudo netstat -tap | grep mysql
+# /etc/mysql/debian.cnf 
+mysql -udebian-sys-maint -p
+# password mysql5.7没有password字段，密码存储在authentication_string字段
+show databases;
+use mysql;
+update user set authentication_string=PASSWORD("123456") where user='root';
+update user set plugin="mysql_native_password";
+flush privileges;
+quit;
+# restart
+/etc/init.d/mysql restart;
+```
 
 ### mycat
-
 
 ## 应用软件
 
@@ -188,17 +266,17 @@ sudo fc-cache -fsv
 ```
 ### 快捷方式
 ``` shell
-# vim idea.desktop  # 注意文件的后缀是 .desktop
+# vim jetbrains-idea.desktop  # 注意文件的后缀是 .desktop
 [Desktop Entry]
-Version=2018.2         # 软件的版本
-Name=idea    # 软件显示的名称
-Comment=Back up your data with one click          # 软件的解释与注释
-Exec=/usr/local/lib/idea-IU-182.3911.36/bin/idea.sh       # 开启软件的 脚本
-Icon=/usr/local/lib/idea-IU-182.3911.36/bin/idea.png      # 软件的 logo
-Terminal=false                                    # 是否在终端打开
-Type=Application                                  # 类型
-Categories=Utility;Application;                   # 分类
+Version=2019.1.1     
+Name=jetbrains-idea
+Comment=jetbrains-idea
+Exec=/usr/local/lib/idea-IU-191.6707.61/bin/idea.sh
+Icon=/usr/local/lib/idea-IU-191.6707.61/bin/idea.png
+Terminal=false
+Type=Application
+Categories=Utility;Application;
 
-# 添加到 Unity 启动器中 
+# 复制到 Unity 启动器中 
 /usr/share/applications/
 ```
