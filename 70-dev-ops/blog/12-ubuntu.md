@@ -24,17 +24,17 @@ ssh-server配置文件位于/etc/ssh/sshd_config，在默认端口是22，
 tar -zxvf jdk-8u181-linux-x64.tar.gz
 cd  /usr/local/lib
 sudo mkdir jdk
-sudo mv ~/Downloads/soft/jdk1.8.0_181/  /usr/local/lib/jdk/
+sudo mv ~/Downloads/soft/jdk1.8.0_181/  /usr/local/lib/
 # set env
 sudo vi /etc/profile
-export JAVA_HOME=/usr/local/lib/jdk/jdk1.8.0_181
+export JAVA_HOME=/usr/local/lib/jdk1.8.0_181
 export JRE_HOME=${JAVA_HOME}/jre    
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib    
 export PATH=${JAVA_HOME}/bin:$PATH
 source /etc/profile
 # default config
-sudo update-alternatives --install /usr/bin/java  java  /usr/local/lib/jdk/jdk1.8.0_181/bin/java 300   
-sudo update-alternatives --install /usr/bin/javac  javac  /usr/local/lib/jdk/jdk1.8.0_181/bin/javac 300
+sudo update-alternatives --install /usr/bin/java  java  /usr/local/lib/jdk1.8.0_181/bin/java 300   
+sudo update-alternatives --install /usr/bin/javac  javac  /usr/local/lib/jdk1.8.0_181/bin/javac 300
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 ```
@@ -223,7 +223,7 @@ sudo apt-get install mysql-client
 sudo apt-get install libmysqlclient-dev
 # check; mysql listen
 sudo netstat -tap | grep mysql
-# /etc/mysql/debian.cnf 
+# cat /etc/mysql/debian.cnf 
 mysql -udebian-sys-maint -p
 # password mysql5.7没有password字段，密码存储在authentication_string字段
 show databases;
@@ -245,7 +245,14 @@ quit;
 # 安装依赖fcitx
 sudo apt-get install fcitx-bin
 sudo apt-get install fcitx-table
+
 # 下载搜狗.deb 双击安装
+
+sudo apt-get update
+sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt-get -f install
+sudo apt-get upgrade
+
 ```
 ### ubuntu theme
 ```shell
