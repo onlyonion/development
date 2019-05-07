@@ -44,3 +44,6 @@ taskkill /f /t /im tor.exe
 
 linux 
 netstat -tunlp | grep 8000
+
+### 打开系统属性
+sysdm.cpl
