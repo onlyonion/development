@@ -48,6 +48,7 @@ sudo tar zxvf apache-maven-3.3.9-bin.tar.gz
 #set env
 sudo vi /etc/profile
 export MAVEN_HOME=/usr/local/lib/apache-maven-3.3.9
+export M2_HOME=${MAVEN_HOME}
 export PATH=${PATH}:${MAVEN_HOME}/bin
 source /etc/profile
 # 2. apt-get 
