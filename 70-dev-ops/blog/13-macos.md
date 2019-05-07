@@ -52,5 +52,23 @@ source .bash_profile
 ## ssh
 ```shell
 ssh-keygen -t rsa -C "you_email"
-```
 
+# 多git账号
+vim ~/.ssh/config
+
+# default                                                                       
+Host github
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+# two                                                                           
+Host gitee
+HostName gitee.com
+User git
+IdentityFile ~/.ssh/id_rsa_2
+
+# test
+ssh -T gitee
+ssh -T github
+
+```
