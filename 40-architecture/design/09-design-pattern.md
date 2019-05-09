@@ -1,6 +1,6 @@
 ## 六大原则
 
-[23种设计模式总结](https://www.cnblogs.com/tongkey/p/7170826.html "title") 
+[23种设计模式总结](https://www.cnblogs.com/tongkey/p/7170826.html) 
 
 ## 三大类
 

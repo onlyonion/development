@@ -11,33 +11,41 @@
 
 ## 第1章 Node.js简介
 ### 1.1 Node.js是什么
+Node.js 是一个让 JavaScript 运行在服务端的开发平台，它让 JavaScript 成为脚本语言世界的一等公民，在服务端堪与 PHP、 Python、Perl、 Ruby 平起平坐。
+它实现了诸如文件系统、模块、包、操作系统 API、网络通信等 Core JavaScript 没有或者不完善的功能。
 ### 1.2 Node.js能做什么
 ### 1.3 异步IO与事件模型
-Node.js 使用的是单线程模型，对于所有 I/O 都采用异步式的请求方式，避免了频繁的上下文切换。 Node.js 
-在执行的过程中会维护一个事件队列，程序在执行时进入事件循环等待下一个事件到来，每个异步式 I/O 请求
-完成后会被推送到事件队列，等待程序进程进行处理。
+Node.js 使用的是单线程模型，对于所有 I/O 都采用异步式的请求方式，避免了频繁的上下文切换。 
+Node.js 在执行的过程中会维护一个事件队列，程序在执行时进入事件循环等待下一个事件到来，每个异步式 I/O 请求完成后会被推送到事件队列，等待程序进程进行处理。
 
 ### 1.4 Node.js的性能
-Node.js 用异步式 I/O 和事件驱动代替多线程，带来了可观的性能提升。 Node.js 除了使用 V8 作为JavaScript
-引擎以外，还使用了高效的 libev 和 libeio 库支持事件驱动和异步式 I/O。
+Node.js 用异步式 I/O 和事件驱动代替多线程，带来了可观的性能提升。 
+Node.js 除了使用 V8 作为JavaScript引擎以外，还使用了高效的 libev 和 libeio 库支持事件驱动和异步式 I/O。
 
-Node.js 的开发者在 libev 和 libeio 的基础上还抽象出了层 libuv。对于 POSIX操作系统，libuv 通过封装 libev
-和 libeio 来利用 epoll 或 kqueue。而在 Windows 下， libuv 使用了 Windows的 IOCP（Input/Output Completion
-Port，输入输出完成端口）机制，以在不同平台下实现同样的高性能。
+Node.js 的开发者在 libev 和 libeio 的基础上还抽象出了层 libuv。
+对于 POSIX操作系统，libuv 通过封装 libev 和 libeio 来利用 epoll 或 kqueue。
+而在 Windows 下， libuv 使用了 Windows的 IOCP（Input/Output Completion Port，输入输出完成端口）机制，以在不同平台下实现同样的高性能。
 
 ### 1.5 JavaScript简史
+
 ### 1.6 CommonJS
 CommonJS 规范包括了模块（modules）、包（packages）、系统（system）、二进制（binary）、控制台（console）、
 编码（encodings）、文件系统（filesystems）、套接字（sockets）、单元测试（unit testing）等部分
 
 ## 第2章 安装和配置Node.js
+### 2.1　安装前的准备
+### 2.2　快速安装
+### 2.3　编译源代码
+### 2.4　安装Node 包管理器
+Node 包管理器（npm）是一个由 Node.js 官方提供的第三方包管理工具，就像 PHP 的Pear、 Python 的 PyPI 一样。 
+### 2.5　安装多版本管理器
 
 ## 第3章 Node.js快速入门
 ### 3.1 开始Node.js编程
 
 ### 3.2 异步式IO与事件式编程
 #### 3.2.1 阻塞与线程
-什么是阻塞（block）呢？线程在执行中如果遇到磁盘读写或网络通信（统称为 I/O 操作），通常要耗费较长的时间，
+什么是阻塞（block）呢？线程在执行中如果遇到**磁盘读写或网络通信**（统称为 I/O 操作），通常要耗费较长的时间，
 这时操作系统会剥夺这个线程的 CPU 控制权，使其暂停执行，同时将资源让给其他的工作线程，这种线程调度方式称为 
 阻塞。当 I/O 操作完毕时，操作系统将这个线程的阻塞状态解除，恢复其对CPU的控制权，令其继续执行。这种 I/O 模
 式就是通常的同步式 I/O（Synchronous I/O）或阻塞式 I/O （Blocking I/O）。
@@ -47,36 +55,103 @@ CommonJS 规范包括了模块（modules）、包（packages）、系统（syste
 续执行下一条语句。当操作系统完成 I/O 操作时，以事件的形式通知执行 I/O 操作的线程，线程会在特定时候处理这个
 事件。为了处理异步 I/O，线程必须有事件循环，不断地检查有没有未处理的事件，依次予以处理
 
-#### 3.2.2 回调
+#### 3.2.2 回调函数
+在Node.js中，异步式IO是通过回调函数来实现的。
 #### 3.2.3 事件
 Node.js 的事件循环机制
 Node.js 程序由事件循环开始，到事件循环结束，所有的逻辑都是事件的回调函数，所以 Node.js 始终在事件循环中，程
 序入口就是事件循环第一个事件的回调函数。
 
-### 3.3 模块和包
-#### 3.3.1 什么是模块
-模块是 Node.js 应用程序的基本组成部分，文件和模块是一一对应的。换言之，**一个Node.js 文件**就是一个模块，
-这个文件可能是 JavaScript 代码、 JSON 或者编译过的 C/C++ 扩展。
+Node.js 的事件循环对开发者不可见，由 libev 库实现。libev支持多种类型的事件，如 ev_io、 ev_timer、 ev_signal、 ev_idle 等，在 Node.js 中均被 EventEmitter 封装。 
 
+### 3.3 模块和包
+Node.js 提供了 require 函数来调用其他模块，而且模块都是基于文件的，机制十分简单。
+#### 3.3.1 什么是模块
+模块是 Node.js 应用程序的基本组成部分，文件和模块是一一对应的。
+换言之，**一个Node.js 文件**就是一个模块，这个文件可能是 JavaScript 代码、 JSON 或者编译过的 C/C++ 扩展。
+#### 3.3.2 创建及加载模块
+Node.js 提供了 exports 和 require 两个对象，其中 exports 是模块公开的接口， require 用于从外部获取一个模块的接口，即所获取模块的 exports 对象。
 #### 3.3.3 创建包
-包是在模块基础上更深一步的抽象， Node.js 的包类似于 C/C++ 的函数库或者 Java/.Net
-的类库。它将某个独立的功能封装起来，用于发布、更新、依赖管理和版本控制。
+包是在模块基础上更深一步的抽象， Node.js 的包类似于 C/C++ 的函数库或者 Java/.Net的类库。
+它将某个独立的功能封装起来，用于发布、更新、依赖管理和版本控制。
 Node.js 的包是一个目录，其中包含一个 JSON 格式的包说明文件 package.json。
 
+1. 作为文件夹的模块
+
+包通常是一些模块的集合，在模块的基础上提供了更高层的抽象，相当于提供了一些固定接口的函数库。
+
+2. package.json
+
+Node.js 在调用某个包时，会首先检查包中 package.json 文件的 main 字段，将其作为包的接口模块，如果 package.json 或 main 字段不存在，会尝试寻找 index.js 或 index.node 作为包的接口。
+
+PS: *.jar包 java ant build.xml; maven pom.xml
+
+#### 3.3.4 Node.js 包管理器
+1. 获取一个包
+2. 本地模式和全局模式
+3. 创建全局链接
+4. 包的发布
+
 ### 3.4 调试
-java ant, build.xml; maven, pom.xml
 
 ## 第4章 Node.js核心模块
 ### 4.1 全局对象
-global processs, console
-### 4.2 常用工具util
-util.inherits(constructor, superConstructor), util.inspect(object,[showHidden],[depth],[colors])是一个将任意
-对象转换为字符串的方法，通常用于调试和错误输出
+* 浏览器jsavscript 全局对象window
+* 全局对象global processs, console是全局对象的属性
 
+#### 4.1.1　全局对象与全局变量
+#### 4.1.2　process
+process.argv是命令行参数数组，第一个元素是 node， 第二个元素是脚本文件名，从第三个元素开始每个元素是一个运行参数。
+process.nextTick(callback)的功能是为事件循环设置一项任务， Node.js 会在下次事件循环调响应时调用 callback。
+#### 4.1.3　console
+
+### 4.2 常用工具util
+#### 4.2.1　util.inherits
+util.inherits(constructor, superConstructor)是一个实现对象间原型继承的函数。 
+#### 4.2.2　util.inspect 
+util.inspect(object,[showHidden],[depth],[colors])是一个将任意对象转换为字符串的方法，通常用于调试和错误输出。
+util.inspect 并不会简单地直接把对象转换为字符串，即使该对象定义了 toString 方法也不会调用。
+
+util还提供了util.isArray()、util.isRegExp()、util.isDate()、 util.isError() 四个类型测试工具，以及 util.format()、 util.debug() 等工具。
 ### 4.3 事件驱动events
+#### 4.3.1　事件发射器
+events 模块只提供了一个对象： events.EventEmitter。 EventEmitter 的核心就是事件发射与事件监听器功能的封装。
+EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。
+对于每个事件， EventEmitter 支持若干个事件监听器。当事件发射时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递。
+
+#### 4.3.2　error 事件
+#### 4.3.3　继承 EventEmitter
+多数时候我们不会直接使用 EventEmitter，而是在对象中继承它。包括 fs、 net、http 在内的，只要是支持事件响应的核心模块都是 EventEmitter 的子类。
+
+为什么要这样做呢？原因有两点。首先，具有某个实体功能的对象实现事件符合语义，事件的监听和发射应该是一个对象的方法。
+其次 JavaScript 的对象机制是基于原型的，支持部分多重继承，继承 EventEmitter 不会打乱对象原有的继承关系。
+
 ### 4.4 文件系统fs
-fs fs.readFile, fs.readFileSync, fs.open, fs.read
+#### 4.4.1　fs.readFile
+fs.readFile(filename,[encoding],[callback(err,data)])
+#### 4.4.2　fs.readFileSync
+fs.readFileSync(filename, [encoding])是 fs.readFile 同步的版本。
+#### 4.4.3　fs.open
+fs.open(path, flags, [mode], [callback(err, fd)])是 POSIX open 函数的封装，与 C 语言标准库中的 fopen 函数类似。
+#### 4.4.4　fs.read
+fs.read(fd, buffer, offset, length, position, [callback(err, bytesRead, buffer)])是 POSIX read 函数的封装，相比 fs.readFile 提供了更底层的接口。
+
 ### 4.5 Http服务器与客户端
+#### 4.5.1　HTTP 服务器
+http.Server 是 http 模块中的 HTTP 服务器对象，用 Node.js 做的所有基于 HTTP 协议的系统，如网站、社交应用甚至代理服务器，都是基于 http.Server 实现的。
+它提供了一套封装级别很低的 API，仅仅是流控制和简单的消息解析，所有的高层功能都要通过它的接口来实现。
+1. http.Server 的事件 request请求事件 connection连接事件 close连接关闭事件
+2. http.ServerRequest 
+   1. 请求对象：请求头、请求体；
+   2. data事件 请求体数据到来时、end事件 请求体数据传输完成时，close事件 请求结束时
+3. 获取 GET 请求内容
+4. 获取 POST 请求内容
+5. http.ServerResponse
+
+#### 4.5.2　HTTP 客户端
+http 模块提供了两个函数 http.request 和 http.get，功能是作为客户端向 HTTP 服务器发起请求。
+1. http.ClientRequest
+2. http.ClientResponse
 
 ## 第5章 使用Node.js进行Web开发
 ### 5.1 准备工作
@@ -84,7 +159,15 @@ fs fs.readFile, fs.readFileSync, fs.open, fs.read
 ### 5.3 路由控制
 ### 5.4 模板引擎
 ### 5.5 建立微博网站
+#### 5.5.1 功能分析
+#### 5.5.2 路由规则
+#### 5.5.3 界面设计
+#### 5.5.4 使用Bootstrap
 ### 5.6 用户注册和登录
+#### 5.6.1 访问数据库
+#### 5.6.2 会话支持
+#### 5.6.3 注册和登入
+#### 5.6.4 页面权限控制
 ### 5.7 发表微博
 
 ## 第6章 Node.js进阶话题
@@ -93,8 +176,8 @@ fs fs.readFile, fs.readFileSync, fs.open, fs.read
 PS：Java的类加载机制。加载、链接（验证、准备、解析）、初始化。双亲委派模型。
 
 #### 6.1.1 模块类型 
-* 核心模块
-* 文件模块
+* 核心模块 fs、http、net、vm，二进制代码
+* 文件模块 可以是javascr代码、json或编译好的c/c++; .js .json .node
 
 #### 6.1.2 按路径加载模块
 文件模块的加载有两种方式，一种是按路径加载，一种是查找 node_modules 文件夹
@@ -112,20 +195,28 @@ require(some_module)的加载顺序
    * 如果加载失败，令current_dir为其父目录
    * 重复这一过程，直到遇到根目录，抛出异常，结束
 
+BootstrapClassLoader, ExtClassLoader, AppClassLoader
+
 ### 6.2 控制流
 基于异步 I/O 的事件式编程容易将程序的逻辑拆得七零八落，给控制流的疏理制造障碍。
 #### 6.2.1 循环的陷进
 #### 6.2.2 解决控制流难题
 深层的回调函数嵌套
 
+async 是一个控制流解耦模块，它提供了async.series、 async.parallel、 async.waterfall 等函数
+
 ### 6.3 Node.js应用部署
+#### 6.3.1 日志功能
+#### 6.3.2 使用cluster模块
+#### 6.3.3 启动脚本
+#### 6.3.4 共享80端口
 ### 6.4 Node.js不是银弹
 
 #### Node.js不适合做什么
 1. 计算密集型的程序
 2. 单用户多任务型应用
 3. 逻辑十分复杂的事务
-4. Unicode 与国际化
+4. Unicode与国际化
 
 ## 附录A JavaScript的高级特性
 

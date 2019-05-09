@@ -7,6 +7,8 @@ gitbook init
 gitbook serve
 ```
 
+配置信息 book.json
+
 ## docsify
 ```
 npm i docsify-cli -g
