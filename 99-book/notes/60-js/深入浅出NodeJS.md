@@ -138,10 +138,67 @@ Buffer.poolSize = 8 * 1024;
 
 ## 第7章 网络编程
 ### 7.1 构建TCP服务
+```ts
+var net = require('net')
+var server = net.createServer(function(socket){
+    socket.on('data', function(data){
+        socket.write('hello, new connect')
+    })
+    socket.on('end', function(){
+        console.log('connect close')
+    })
+    socket.write('welcome')
+})
+server.listen(8124, function(){
+    console.log('server bound')
+})
+```
+#### 7.1.3 TCP服务的事件
+1. 服务器时间
+   * listening
+   * connection
+   * close
+   * error
+2. 连接事件
+   * data write()
+   * end
+   * connect
+   * drain
+   * error
+   * close
+   * timeout
+
 ### 7.2 构建UDP服务
+```ts
+var dgram = require('dgram')
+var socket = dgram.createSocket('udp4')
+```
+#### 7.2.4 UDP套接字事件
+* message 当UDP套接字监听网卡端口后，接收到消息时触发该事件，触发携带的数据为消息Buffer对象和一个远程地址信息
+* listening
+* close
+* error
+  
 ### 7.3 构建HTTP服务
+```ts
+var http = require('http')
+http.createServer(function(req, res){
+    res.writeHead(200, {'Content-Type': 'text/plain'})
+    res.end('hello')
+}).listen(1337, '127.0.0.1')
+```
 ### 7.4 构建WebSocket服务
 ### 7.5 网络服务与安全
+SSL作为一种安全协议，在传输层提供对网络连接加密的功能。对于应用层而言是透明的，数据在传输层到应用层之前就已经完成了加密和解密的过程。
+IETF将其标准化，成为TLS（Transport Layer Security）
+
+Node在网络安全上提供了3个模块，crypto、tls、https
+#### 7.5.1  TLS/SSL
+1. 密钥
+2. 数字证书
+
+#### 7.5.2  TLS服务
+#### 7.5.3  HTTPS服务
 
 ## 第8章 构建Web应用
 
