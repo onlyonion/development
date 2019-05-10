@@ -17,18 +17,25 @@
 
 macOS常用的快捷键
 
-Command+空格键：Spotlight（推荐使用Alfred代替）
-Command+{C/V/X/A/Z/F}：复制/粘帖/剪切/全选/撤销/查找
-Command+Q：退出当前应用
-Command+Option+Esc：强制退出应用程序管理器
-Command+Delete：删除到回收站
+Command + 空格键：Spotlight（推荐使用Alfred代替）
+Command + {C/V/X/A/Z/F}：复制/粘帖/剪切/全选/撤销/查找
+Command + Q：退出当前应用
+Command + Option + Esc：强制退出应用程序管理器
+Command + Delete：删除到回收站
 选定文件-回车：重命名文件
 
 [IntelliJ IDEA For Mac 快捷键](https://blog.csdn.net/rainytooo/article/details/51469126)
 
 ### 分辨率
 SwitchResX For Mac v4.8.0 
-imac.hk
+解压密码：imac.hk
+
+### 显示隐藏文件
+```shell
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# 需要重启finder
+defaults write com.apple.finder AppleShowAllFiles -bool false
+```
 
 ## jdk
 ```shell
@@ -46,6 +53,9 @@ source .bash_profile
 ```
 
 ## maven
+```shell
+# tar mv env
+```
 
 ## tomcat
 
@@ -71,4 +81,17 @@ IdentityFile ~/.ssh/id_rsa_2
 ssh -T gitee
 ssh -T github
 
+```
+
+## ssh
+```shell
+whereis ssh
+ps aux | grep ssh
+
+# 系统偏好设置 -> 共享，选中远程登录
+
+# ssh username@192.168.100.100
+
+# scp 将当前路径下的.zshrc文件复制到远程主机的/Users/username目录下
+scp .zshrc username@192.168.100.100:/Users/username/
 ```
