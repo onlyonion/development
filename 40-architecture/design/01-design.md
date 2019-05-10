@@ -1,10 +1,16 @@
+
+### 分析与设计
 * 结构化分析与设计（面向过程、SAD）
   - 分析工具：数据流图、数据字典、结构化语言、判定表、判定树
   - 结构化设计：概要设计与详细设计、结构图、程序流程图、盒图
   - 模块设计
 * 面向对象的分析与设计
   - OOA/OOD：标识对象类、标识结构与关联、划分主题、定义属性、定义服务 
-  - UML：用例图、类图、对象图、交互图、状态图、活动图、构件图、部署图
+  - UML：
+    - 用例图、类图、对象图
+    - 交互图 序列图（时序图）、协作图（通信图）、交互概览图
+    - 状态图、活动图
+    - 构件图、部署图
 * 领域驱动设计（面向领域）
   - 分层：User Interface、Application、Service、Domain、Infrastructure
   - 分类：Entity、Value Object、Aggregate、Service、Factory、Repository

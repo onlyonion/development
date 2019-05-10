@@ -1,3 +1,8 @@
+
+* SqlSessionFactoryBean.afterPropertiesSet, buildSqlSessionFactory
+* XMLConfigBuilder
+
+
 ```
 parseConfiguration:106, XMLConfigBuilder (org.apache.ibatis.builder.xml)
 parse:99, XMLConfigBuilder (org.apache.ibatis.builder.xml)

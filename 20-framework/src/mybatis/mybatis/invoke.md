@@ -1,17 +1,24 @@
 
 ## invoke
 * binding
-  * MapperProxy
-  * MapperMethod
+  * MapperProxy.invoke
+  * MapperMethod.execute
 * spring
-  * SqlSessionTemplate
-  * SqlSessionTemplate.SqlSessionInterceptor
+  * SqlSessionTemplate.insert|update|delete|select
+  * SqlSessionTemplate.SqlSessionInterceptor.invoke
+  * SqlSessionUtils.getSqlSession
+  * SqlSessionFactory.openSession
 * session
   * DefaultSqlSession
+  * Configuration.getMappedStatement
 * executor
-  * statement
-  * parameter
-  * resultset
+  * CachingExecutor
+  * BaseExecutor
+  * ReuserExecutor
+* statement
+* parameter
+* resultset
+  
 ```
 
 // proxy binding

@@ -1,4 +1,3 @@
-
 ## spring-webmvc
 * [FrameworkServlet](/20-framework/src/spring/spring-webmvc/FrameworkServlet.md)
 * [DispatcherServlet](/20-framework/src/spring/spring-webmvc/DispatcherServlet.md)
@@ -68,3 +67,51 @@ org.springframework.web.servlet
     ViewRendererServlet
     ViewResolver
 ```
+
+## overview
+
+
+
+## request-response
+
+### ThreadPool, Endpoint, Processor
+* ThreadPoolExecutor.runWorker
+  * AbstractExecutorService
+  * ExecutorService
+* AprEndpoint$SocketProcessor
+* AbstractProtocol$AbstractConnectionHanlder
+* Abstracthttp11Processor
+* CoyoteAdapter
+
+### Pipeline-Valve
+* StandardEngineValve
+  * AccessLogValve
+  * ErrorReportValve
+* StandardHostValve
+  * AuthenticatorBase
+* StandardContextValve
+* StandardWrapperValve
+
+### FilterChain
+* ApplicationFilterChain.doFilter
+  * Log4jServletFilter
+  * OncePerReqeustFilter
+  * CharacterEncodingFilter
+  * WsFilter
+
+### Servlet, HandlerAdapter, HanlderMethod
+* HttpServlet
+  * FrameWorkServlet.processRequest  
+  * DispatcherServlet.doService
+    * doDispatch
+      * checkMultipart, getHandler, getHandlerAdapter
+      * HandlerExecutionChain.applyPreHandle
+      * HandlerAdapter.handle
+      * HandlerExecutionChain.applyPostHandle
+      * processDispatchResult
+* HandlerAdapter
+  * AbstractHandlerMethodAdapter.handle
+  * RequestMappingHandlerAdapter.handleInterneal
+* ServletInvocableHandlerMethod.invokeAndHandle
+  * InvocableHandlerMethod.invokeForRequest
+  * InvocableHandlerMethod.doInvoke
