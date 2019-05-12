@@ -1,5 +1,17 @@
 《Tomcat架构解析》 刘光瑞 著 中国工信出版社 人民邮电出版社
 
+
+* Tomcat架构
+  * Catalina
+  * Coyote
+  * Jasper
+* Tomcat 配置管理 JVM配置、服务器配置、Web应用配置、Web应用过滤器、Tomcat管理
+  * Web服务器集成 与Apache HTTP Server集成、与Nginx集成
+  * Tomcat集群 集群配置、会话同步、集群部署
+  * Tomcat安全 配置安全、应用安全、传输安全、Java安全策略
+  * Tomcat性能调优 JVM优化、Tomcat优化、应用优化
+* Tomcat附加功能 嵌入式启动、JNDI、Comet和WebSocket
+
 ```graphviz
 digraph {
     //rankdir = LR;
@@ -21,12 +33,21 @@ digraph {
 ```
 
 ## 第1章 Tomcat介绍
-Tomcat安装启动、目录结构、8.5之后的新特性
+### 1.1 简介
+### 1.2 安装和启动
+### 1.3 Tomcat目录结构
+### 1.4 Tomcat 8.5之后的新特性
 
 ## 第2章 Tomat总体架构
-总体设计、Tomcat启动、请求处理、类加载器
-
 ### 2.1 总体设计
+#### 2.1.1 Server
+#### 2.1.2 Connector和Container
+#### 2.1.3 Container设计
+#### 2.1.4 Lifecycle
+#### 2.1.5 Pipeline和Valve
+#### 2.1.6 Connector设计
+#### 2.1.7 Executor
+#### 2.1.8 Bootstrap和Catalina
 ```graphviz
 digraph {
     tomcat [shape=record, label="{
@@ -117,6 +138,7 @@ digraph {
 | Context   | ServletContext，一个独立的Web应用                 |                                          |
 | Wrapper   | Web应用中定义的Servlet                            |                                          |
 | Executor  | 共享的线程池                                      |                                          |
+
 
 ### 2.2 Tomcat启动
 ```mermaid

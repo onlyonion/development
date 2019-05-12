@@ -6,6 +6,14 @@ this is generated files, just for view image conveniently...
 
 ![2018-react.png](./img/2018-react.png)
 
+## constructor-proto-chain.png
+
+![constructor-proto-chain.png](./img/constructor-proto-chain.png)
+
+## execution-context2.png
+
+![execution-context2.png](./img/execution-context2.png)
+
 ## jquery-pattern.png
 
 ![jquery-pattern.png](./img/jquery-pattern.png)
@@ -61,4 +69,8 @@ this is generated files, just for view image conveniently...
 ## mvc-mvp-mvvm.png
 
 ![mvc-mvp-mvvm.png](./img/mvc-mvp-mvvm.png)
+
+## prototype-chain.png
+
+![prototype-chain.png](./img/prototype-chain.png)
 

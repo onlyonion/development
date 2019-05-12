@@ -78,17 +78,33 @@ this is generated files, just for view image conveniently...
 
 ![servlet-config-context.jpg](./img/servlet-config-context.jpg)
 
+## spring-aop-cache.png
+
+![spring-aop-cache.png](./img/spring-aop-cache.png)
+
 ## spring-aop-concept.png
 
 ![spring-aop-concept.png](./img/spring-aop-concept.png)
 
-## spring-beanfactory-init.png
+## spring-beans-factory-getBean-definition.png
 
-![spring-beanfactory-init.png](./img/spring-beanfactory-init.png)
+![spring-beans-factory-getBean-definition.png](./img/spring-beans-factory-getBean-definition.png)
 
-## spring-beanfactory.png
+## spring-beans-factory-getBean-instance.png
 
-![spring-beanfactory.png](./img/spring-beanfactory.png)
+![spring-beans-factory-getBean-instance.png](./img/spring-beans-factory-getBean-instance.png)
+
+## spring-beans-factory-getbean.jpg
+
+![spring-beans-factory-getbean.jpg](./img/spring-beans-factory-getbean.jpg)
+
+## spring-beans-factory-init.png
+
+![spring-beans-factory-init.png](./img/spring-beans-factory-init.png)
+
+## spring-beans-factory-start.jpg
+
+![spring-beans-factory-start.jpg](./img/spring-beans-factory-start.jpg)
 
 ## spring-beans-hierarchy.jpg
 
@@ -130,6 +146,10 @@ this is generated files, just for view image conveniently...
 
 ![spring-cloud-provider-consumer-eureka.png](./img/spring-cloud-provider-consumer-eureka.png)
 
+## spring-cloud-request.png
+
+![spring-cloud-request.png](./img/spring-cloud-request.png)
+
 ## spring-cloud-structure.jpg
 
 ![spring-cloud-structure.jpg](./img/spring-cloud-structure.jpg)
@@ -158,17 +178,9 @@ this is generated files, just for view image conveniently...
 
 ![spring-data.jpg](./img/spring-data.jpg)
 
-## spring-factory-bean-start.jpg
-
-![spring-factory-bean-start.jpg](./img/spring-factory-bean-start.jpg)
-
 ## spring-framework.png
 
 ![spring-framework.png](./img/spring-framework.png)
-
-## spring-getbean.jpg
-
-![spring-getbean.jpg](./img/spring-getbean.jpg)
 
 ## spring-idea-AbstractApplicationContext-field.png
 
@@ -222,6 +234,10 @@ this is generated files, just for view image conveniently...
 
 ![spring-idea-DefaultListableBeanFactory.png](./img/spring-idea-DefaultListableBeanFactory.png)
 
+## spring-idea-DefaultListableBeanFactory0.png
+
+![spring-idea-DefaultListableBeanFactory0.png](./img/spring-idea-DefaultListableBeanFactory0.png)
+
 ## spring-idea-RootBeanDefinition.png
 
 ![spring-idea-RootBeanDefinition.png](./img/spring-idea-RootBeanDefinition.png)
@@ -229,6 +245,10 @@ this is generated files, just for view image conveniently...
 ## spring-idea-ScannedGenericBeanDefinition.png
 
 ![spring-idea-ScannedGenericBeanDefinition.png](./img/spring-idea-ScannedGenericBeanDefinition.png)
+
+## spring-idea-TransactionInterceptor.png
+
+![spring-idea-TransactionInterceptor.png](./img/spring-idea-TransactionInterceptor.png)
 
 ## spring-idea-WebApplicationContext.png
 
@@ -246,49 +266,65 @@ this is generated files, just for view image conveniently...
 
 ![spring-jars-dependency.jpg](./img/spring-jars-dependency.jpg)
 
+## spring-jdbc-datasource.jpg
+
+![spring-jdbc-datasource.jpg](./img/spring-jdbc-datasource.jpg)
+
 ## spring-mvc-context-start.jpg
 
 ![spring-mvc-context-start.jpg](./img/spring-mvc-context-start.jpg)
+
+## spring-mvc-data-transform.PNG
+
+![spring-mvc-data-transform.PNG](./img/spring-mvc-data-transform.PNG)
+
+## spring-mvc-dispatcherservlet-dodispatch.png
+
+![spring-mvc-dispatcherservlet-dodispatch.png](./img/spring-mvc-dispatcherservlet-dodispatch.png)
+
+## spring-mvc-dispatcherservlet-init-se.png
+
+![spring-mvc-dispatcherservlet-init-se.png](./img/spring-mvc-dispatcherservlet-init-se.png)
+
+## spring-mvc-dispatcherservlet-init.png
+
+![spring-mvc-dispatcherservlet-init.png](./img/spring-mvc-dispatcherservlet-init.png)
+
+## spring-mvc-dispatcherservlet-view-render.png
+
+![spring-mvc-dispatcherservlet-view-render.png](./img/spring-mvc-dispatcherservlet-view-render.png)
+
+## spring-mvc-dispatcherservlet.png
+
+![spring-mvc-dispatcherservlet.png](./img/spring-mvc-dispatcherservlet.png)
+
+## spring-mvc-http-message-converter.png
+
+![spring-mvc-http-message-converter.png](./img/spring-mvc-http-message-converter.png)
+
+## spring-mvc-interceptor.png
+
+![spring-mvc-interceptor.png](./img/spring-mvc-interceptor.png)
+
+## spring-mvc-request-response.png
+
+![spring-mvc-request-response.png](./img/spring-mvc-request-response.png)
 
 ## spring-mvc-start.jpg
 
 ![spring-mvc-start.jpg](./img/spring-mvc-start.jpg)
 
-## spring-tx-idea-TransactionInterceptor.png
+## spring-mvc.jpg
 
-![spring-tx-idea-TransactionInterceptor.png](./img/spring-tx-idea-TransactionInterceptor.png)
+![spring-mvc.jpg](./img/spring-mvc.jpg)
 
-## springaop-cache.png
+## spring-tx.png
 
-![springaop-cache.png](./img/springaop-cache.png)
+![spring-tx.png](./img/spring-tx.png)
 
-## springmvc-data-transform.PNG
+## tomcat-bootstrap.png
 
-![springmvc-data-transform.PNG](./img/springmvc-data-transform.PNG)
-
-## springmvc-dispatcherservlet-dodispatch.png
-
-![springmvc-dispatcherservlet-dodispatch.png](./img/springmvc-dispatcherservlet-dodispatch.png)
-
-## springmvc-dispatcherservlet-init.png
-
-![springmvc-dispatcherservlet-init.png](./img/springmvc-dispatcherservlet-init.png)
-
-## springmvc-dispatcherservlet-view-render.png
-
-![springmvc-dispatcherservlet-view-render.png](./img/springmvc-dispatcherservlet-view-render.png)
-
-## springmvc-dispatcherservlet.png
-
-![springmvc-dispatcherservlet.png](./img/springmvc-dispatcherservlet.png)
-
-## springmvc-http-message-converter.png
-
-![springmvc-http-message-converter.png](./img/springmvc-http-message-converter.png)
-
-## springmvc.JPG
-
-![springmvc.JPG](./img/springmvc.JPG)
+![tomcat-bootstrap.png](./img/tomcat-bootstrap.png)
 
 ## tomcat-connector-container.jpg
 
@@ -317,8 +353,4 @@ this is generated files, just for view image conveniently...
 ## tomcat-server.xml.jpg
 
 ![tomcat-server.xml.jpg](./img/tomcat-server.xml.jpg)
-
-## 多个拦截器执行顺序.png
-
-![多个拦截器执行顺序.png](./img/多个拦截器执行顺序.png)
 

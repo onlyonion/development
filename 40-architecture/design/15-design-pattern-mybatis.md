@@ -15,7 +15,6 @@ MapperProxyFactory
   * ObjectWrapperFactory
 * datasource
   * DataSourceFactory
-    * UnpooledDataSource PooledDataSource
 * executor
   * Executor
 * transaction
@@ -58,17 +57,6 @@ Log、LogFactory
 * mybatis-spring
   * SqlSessionInterceptor
 
-### 外观模式
-
-### 桥接
-
-### 组合模式
-将对象组合成树形结构以表示“部分-整体”的层次结构。Composite 使得用户对单个对象和组合对象的使用具有一致性。 
-
-SqlNode
-
-### 享元
-
 ### 策略模式
 定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。
 
@@ -90,23 +78,8 @@ SqlNode
     * BaseExecutor 算法骨架
       * SimpleExecutor、ReuseExecutor、BatchExecutor 一些步骤延迟到子类
 
-### 观察者
-
-### 迭代
-Cursor
-
 ### 责任链模式
 Interceptor、InterceptorChain
-
-### 命令
-
-### 备忘
-
-### 状态
-
-### 访问者
-
-### 中介者
 
 ### 解释器模式
 OgnlCache

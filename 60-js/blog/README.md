@@ -1,5 +1,6 @@
 ## 博客文摘
 
+* [10-concept.md](/60-js/blog/10-concept.md)
 * [14-js-typescript.md](/60-js/blog/14-js-typescript.md)
 * [21-framework-legend.md](/60-js/blog/21-framework-legend.md)
 * [25-framework-vue.md](/60-js/blog/25-framework-vue.md)

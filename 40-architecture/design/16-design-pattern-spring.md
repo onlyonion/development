@@ -7,6 +7,7 @@
 简单工厂模式的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类。  
 spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得bean对象，但是否是在传入参数后创建还是传入参数前创建这个要根据具体情况来定。
 
+
 ### 2. 工厂方法（Factory Method）
 定义一个用于创建对象的接口，让子类决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。  
 Spring中的FactoryBean就是典型的工厂方法模式。
@@ -16,6 +17,22 @@ public interface FactoryBean<T> {
     T getObject() throws Exception;
     Class<?> getObjectType();
     boolean isSingleton();
+}
+
+public interface BeanFactory {
+    String FACTORY_BEAN_PREFIX = "&";
+    Object getBean(String name) throws BeansException;
+    <T> T getBean(String name, Class<T> requiredType) throws BeansException;
+    Object getBean(String name, Object... args) throws BeansException;
+    <T> T getBean(Class<T> requiredType) throws BeansException;
+    <T> T getBean(Class<T> requiredType, Object... args) throws BeansException;
+    boolean containsBean(String name);
+    boolean isSingleton(String name) throws NoSuchBeanDefinitionException;
+    boolean isPrototype(String name) throws NoSuchBeanDefinitionException;
+    boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException;
+    boolean isTypeMatch(String name, Class<?> typeToMatch) throws NoSuchBeanDefinitionException;
+    Class<?> getType(String name) throws NoSuchBeanDefinitionException;
+    String[] getAliases(String name);
 }
 ```
 ### 3. 单例（Singleton）

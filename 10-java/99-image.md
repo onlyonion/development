@@ -30,6 +30,10 @@ this is generated files, just for view image conveniently...
 
 ![java-collections-interfaces.jpg](./img/java-collections-interfaces.jpg)
 
+## java-collections-LinkedList.jpg
+
+![java-collections-LinkedList.jpg](./img/java-collections-LinkedList.jpg)
+
 ## java-concurrent-countdownlanch.png
 
 ![java-concurrent-countdownlanch.png](./img/java-concurrent-countdownlanch.png)
@@ -113,6 +117,22 @@ this is generated files, just for view image conveniently...
 ## java.util.concurrent.jpg
 
 ![java.util.concurrent.jpg](./img/java.util.concurrent.jpg)
+
+## java7-map-ConcurrentHashMap.png
+
+![java7-map-ConcurrentHashMap.png](./img/java7-map-ConcurrentHashMap.png)
+
+## java7-map-HashMap.png
+
+![java7-map-HashMap.png](./img/java7-map-HashMap.png)
+
+## java8-map-ConcurrentHashMap.png
+
+![java8-map-ConcurrentHashMap.png](./img/java8-map-ConcurrentHashMap.png)
+
+## java8-map-HashMap.png
+
+![java8-map-HashMap.png](./img/java8-map-HashMap.png)
 
 ## jvm-architecture.png
 

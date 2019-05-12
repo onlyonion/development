@@ -23,6 +23,7 @@
 * [31-rpc-dubbo.md](/30-distributed/blog/31-rpc-dubbo.md)
 * [32-rpc-zookeeper.md](/30-distributed/blog/32-rpc-zookeeper.md)
 * [33-rpc-hsf.md](/30-distributed/blog/33-rpc-hsf.md)
+* [50-rocketmq.md](/30-distributed/blog/50-rocketmq.md)
 * [51-rocketmq-kafka.md](/30-distributed/blog/51-rocketmq-kafka.md)
 * [52-rocketmq-namesrv.md](/30-distributed/blog/52-rocketmq-namesrv.md)
 * [53-rocketmq-producer.md](/30-distributed/blog/53-rocketmq-producer.md)

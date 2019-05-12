@@ -30,6 +30,10 @@ this is generated files, just for view image conveniently...
 
 ![Mybatis技术内幕.png](./img/Mybatis技术内幕.png)
 
+## mysql-logic-architect.png
+
+![mysql-logic-architect.png](./img/mysql-logic-architect.png)
+
 ## Netty权威指南.png
 
 ![Netty权威指南.png](./img/Netty权威指南.png)
