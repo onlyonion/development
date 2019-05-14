@@ -21,10 +21,10 @@ ChannelHandler (com.alibaba.dubbo.remoting)
         TelnetHandlerAdapter (com.alibaba.dubbo.remoting.telnet.support)
     ChannelHandlerDelegate (com.alibaba.dubbo.remoting.transport)
         AbstractChannelHandlerDelegate (com.alibaba.dubbo.remoting.transport)
-            DecodeHandler (com.alibaba.dubbo.remoting.transport)
+            DecodeHandler (com.alibaba.dubbo.remoting.transport) 解码处理器
             HeartbeatHandler (com.alibaba.dubbo.remoting.exchange.support.header)
             MultiMessageHandler (com.alibaba.dubbo.remoting.transport)
-        HeaderExchangeHandler (com.alibaba.dubbo.remoting.exchange.support.header)
+        HeaderExchangeHandler (com.alibaba.dubbo.remoting.exchange.support.header) 报文头处理器
             WrappedChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher)
             AllChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher.all)
             ConnectionOrderedChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher.connection)
@@ -55,6 +55,20 @@ interface ChannelHandler {
     + void received(Channel channel, Object message) throws RemotingException
     + void caught(Channel channel, Throwable exception) throws RemotingException
 }
+
+ChannelHandler ^-- ChannelHandlerDelegate
+interface ChannelHandlerDelegate
+ChannelHandlerDelegate o-- ChannelHandler
+
+ChannelHandlerDelegate ^.. HeaderExchangeHandler
+ChannelHandlerDelegate ^.. AbstractChannelHandlerDelegate
+
+class HeaderExchangeHandler
+abstract class AbstractChannelHandlerDelegate
+
+AbstractChannelHandlerDelegate ^-- DecodeHandler
+AbstractChannelHandlerDelegate ^-- HeartbeatHandler
+AbstractChannelHandlerDelegate ^-- MultiMessageHandler
 
 @enduml
 ```

@@ -7,23 +7,34 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 * 消费端
   * rpc
     - JavassitProxy 消费者动态代理对象 
-    - InvokerInvocationHandler 调用者处理器
-    - MockClusterInvoker  测试数据
-    - FailfastClusterInvoker 集群策略 **集群、路由、负载均衡**
-    - Filter/Listener链 ConsumerContextFilter -> FutureFilter -> MonitorFilter
-    - DubboInvoker
+    - InvokerInvocationHandler.invoke() 调用者处理器
+    - MockClusterInvoker.invoke()  测试数据
+    - FailfastClusterInvoker.doInvoke() 集群策略 **集群、路由、负载均衡**
+    - Filter/Listener链 
+      - ListenerInvokerWrapper.invoke()
+      - ConsumerContextFilter -> FutureFilter -> MonitorFilter
+    - DubboInvoker.doInvoke()
   * remoting
     - ExchangeClient
 * 服务端
+  * Thread
+    - Thread.run()
+    - ThreadPoolExecutor$Worker.run()
+    - ThreadPoolExecutor.runWorker()
   * remoting
-    - ChannelEventRunnable
-    - ChannelHandler DecodeHandler HeaderExchangeHandler
+    - ChannelEventRunnable.run()
+    - ChannelHandler 
+      - DecodeHandler.received()
+      - HeaderExchangeHandler.received(), handleRequest()
   * rpc
     - DubboProtocol
-    - Filter链 EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> TraceFilter -> MonitorFilter -> TimeoutFilter -> ExceptionFilter
-    - InvokerWrapper
-    - AbstractProxyInvoker
-    - JavassistProxyFactory$1 生成的JavassitProxy动态代理
+    - Filter链 
+      - ProtocolFilterWrapper$1.invoke()
+      - EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> TraceFilter -> MonitorFilter -> TimeoutFilter -> ExceptionFilter
+    - InvokerWrapper.invoke()
+    - AbstractProxyInvoker.invoke()
+    - JavassistProxyFactory$1.doInvoke() 
+      - Wrapper46.invokeMethod() 生成的JavassitProxy动态代理
 
 ### 整体
 * InvokerInvocationHandler

@@ -1,8 +1,14 @@
 com.alibaba.dubbo.remoting.transport.dispatcher.ChannelEventRunnable
 
-
 ## define
 通道事件任务
+
+连接状态
+* 连接打开
+* 连接关闭
+* 数据发送
+* 数据接收
+* 异常
 
 ```plantuml
 @startuml
@@ -15,9 +21,11 @@ class ChannelEventRunnable {
     - final Object message
 }
 
+''''''''''''''''''字段''''''''''''''''''''''''''
 ChannelEventRunnable o-- ChannelHandler
 ChannelEventRunnable o-- ChannelState
 
+''''''''''''''''''内部类''''''''''''''''''''''''''
 ChannelEventRunnable +-- ChannelState
 
 interface ChannelHandler {
@@ -57,7 +65,7 @@ enum ChannelState {
 	at com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:69)
 	at com.alibaba.dubbo.rpc.protocol.dubbo.filter.TraceFilter.invoke(TraceFilter.java:78)
 	at com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:69)
-	at com.weidai.middleware.log.filter.DubboLogTraceFilter.invoke(DubboLogTraceFilter.java:23)
+	at com.onion.test.log.filter.DubboLogTraceFilter.invoke(DubboLogTraceFilter.java:23)
 	at com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:69)
 	at com.alibaba.dubbo.rpc.filter.ContextFilter.invoke(ContextFilter.java:61)
 	at com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper$1.invoke(ProtocolFilterWrapper.java:69)

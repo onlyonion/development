@@ -44,7 +44,7 @@
 * [《Linux网络编程》](/99-book/notes/21-server/Linux网络编程.md)
 
 ### 分布式
-* 《dubbo源码解析2.0》
+* [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
 * [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
@@ -90,11 +90,13 @@
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
 
 ### 前端
-* 《JavaScript权威指南(第5版)》
+* [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/99-book/notes/60-js/JavaScript权威指南(第6版).md)
+* [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/99-book/notes/60-js/JavaScript设计模式.md)
 * 《JavaScript模式》 (美)奥斯马尼
 * 《你不知道的JavaScript（上卷）》	
 * [《node.js开发指南》BYVoid](/99-book/notes/60-js/Node.js开发指南.md)
 * [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md)
+* [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
 * [《Vue.js权威指南》](/99-book/notes/60-js/Vue.js权威指南.md)
 * [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)
 * [《深入浅出Webpack》](/99-book/notes/60-js/深入浅出Webpack.md)
