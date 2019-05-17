@@ -1,6 +1,6 @@
 
 ## 1. init
-### 1.1 export stack
+### 1.1 init export stack
 ```
 // netty 异步非阻塞
 // 服务层
@@ -64,45 +64,7 @@ run:1118, SpringApplication (org.springframework.boot)
 run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
-
-```plantuml
-@startuml
-
-
-|Swimlane1|
-start
-:foo1;
-
-|#AntiqueWhite|Swimlane2|
-:foo2;
-:foo3;
-|Swimlane1|
-
-:foo4;
-|Swimlane2|
-:foo5;
-stop
-
-
-@enduml
-```
-
-```plantuml
-@startuml
-
-
-[*] --> State1
-State1 --> [*]
-State1 : this is a string
-State1 : this is another string
-
-State1 -> State2
-State2 --> [*]
-
-@enduml
-```
-
-### 1.2 refer stack
+### 1.2 init refer stack
 ```
 <init>:53, WrappedChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher)
 <init>:32, AllChannelHandler (com.alibaba.dubbo.remoting.transport.dispatcher.all)
@@ -210,7 +172,7 @@ run:1107, SpringApplication (org.springframework.boot)
 main:10, Application (com.onion.ops.dubbo.tester)
 ```
 
-### 1.3 ReferenceBean.getObject()
+### 1.3 init refer stack ReferenceBean.getObject()
 
 ReferenceBean.getObject()
 ReferenceConfig.get()
@@ -431,7 +393,7 @@ run:748, Thread (java.lang)
 
 ```
 
-sso update
+### 2.2 invoke client stack
 ```
 doInvoke:72, DubboInvoker (com.alibaba.dubbo.rpc.protocol.dubbo)
 invoke:144, AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
@@ -476,7 +438,49 @@ run:615, ThreadPoolExecutor$Worker (java.util.concurrent)
 run:745, Thread (java.lang)
 ```
 
-### 2.2 invoke server stack
+### 2.3 invoke client stack
+```
+Channels.write(Channel, Object, SocketAddress) line: 613	
+Channels.write(Channel, Object) line: 578	
+NioClientSocketChannel(AbstractChannel).write(Object) line: 251	
+NettyChannel.send(Object, boolean) line: 98	
+
+NettyClient(AbstractClient).send(Object, boolean) line: 258	
+NettyClient(AbstractPeer).send(Object) line: 54	
+
+HeaderExchangeChannel.request(Object, int) line: 112	
+HeaderExchangeClient.request(Object, int) line: 86	
+ReferenceCountExchangeClient.request(Object, int) line: 78	
+
+DubboInvoker<T>.doInvoke(Invocation) line: 97	
+DubboInvoker<T>(AbstractInvoker<T>).invoke(Invocation) line: 144	
+
+MonitorFilter.invoke(Invoker<?>, Invocation) line: 75	
+ProtocolFilterWrapper$1.invoke(Invocation) line: 69	
+FutureFilter.invoke(Invoker<?>, Invocation) line: 54	
+ProtocolFilterWrapper$1.invoke(Invocation) line: 69	
+ConsumerContextFilter.invoke(Invoker<?>, Invocation) line: 48	
+ProtocolFilterWrapper$1.invoke(Invocation) line: 69	
+
+ListenerInvokerWrapper<T>.invoke(Invocation) line: 74	
+RegistryDirectory$InvokerDelegete<T>(InvokerWrapper<T>).invoke(Invocation) line: 53	
+FailfastClusterInvoker<T>.doInvoke(Invocation, List<Invoker<T>>, LoadBalance) line: 47	
+FailfastClusterInvoker<T>(AbstractClusterInvoker<T>).invoke(Invocation) line: 229	
+MockClusterInvoker<T>.invoke(Invocation) line: 72	
+InvokerInvocationHandler.invoke(Object, Method, Object[]) line: 52
+proxy26.collect(URL) line: not available	
+DubboMonitor.send() line: 113	
+DubboMonitor$1.run() line: 70	
+Executors$RunnableAdapter<T>.call() line: 511	
+ScheduledThreadPoolExecutor$ScheduledFutureTask<V>(FutureTask<V>).runAndReset() line: 308	
+ScheduledThreadPoolExecutor$ScheduledFutureTask<V>.access$301(ScheduledThreadPoolExecutor$ScheduledFutureTask) line: 180	
+ScheduledThreadPoolExecutor$ScheduledFutureTask<V>.run() line: 294	
+ScheduledThreadPoolExecutor(ThreadPoolExecutor).runWorker(ThreadPoolExecutor$Worker) line: 1149	
+ThreadPoolExecutor$Worker.run() line: 624	
+Thread.run() line: 748	
+```
+
+### 2.4 invoke server stack
 ```
 // javassit proxy
 invokeMethod:-1, Wrapper26 (com.alibaba.dubbo.common.bytecode)

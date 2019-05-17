@@ -4,6 +4,7 @@
 * [《数据结构（C语言版）》严蔚敏](/99-book/notes/00-base/数据结构.md)
 * [《数据结构与算法分析Java语言描述》](/99-book/notes/00-base/数据结构与算法分析Java语言描述.md)
 * [《算法》Robert Sedgewick 谢路云](/99-book/notes/00-base/算法.md)
+* [《算法图解》袁国忠译](/99-book/notes/00-base/算法图解.md)
 * [《计算机组成原理（第2版）》唐朔飞](/99-book/notes/00-base/组成原理.md)
 * [《计算机体系结构》张晨曦](/99-book/notes/00-base/计算机体系结构.md)
 * [《计算机操作系统（第三版）》汤小丹](/99-book/notes/00-base/计算机操作系统.md)

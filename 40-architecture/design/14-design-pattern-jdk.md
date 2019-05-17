@@ -1,4 +1,5 @@
-[JDK中设计模式](https://blog.csdn.net/gtuu0123/article/details/6114197)
+* [JDK中设计模式](https://blog.csdn.net/gtuu0123/article/details/6114197)
+* [细数JDK里的设计模式](http://blog.jobbole.com/62314/)
 
 ### 简单工厂
 
@@ -16,9 +17,19 @@ java.sql
 
 ### 单例
 
-Runtime
+* java.lang.Runtime#getRuntime()
+* java.text.NumberFormat
+* java.awt.Toolkit#getDefaultToolkit()
+* java.awt.GraphicsEnvironment#getLocalGraphicsEnvironment()
+* java.awt.Desktop#getDesktop()
 
-NumberFormat
+```java
+public class Runtime {
+    private static Runtime currentRuntime = new Runtime(); // 饿汉式
+    private Runtime() {}
+    public native void gc();
+}
+```
 
 ### 建造者
 

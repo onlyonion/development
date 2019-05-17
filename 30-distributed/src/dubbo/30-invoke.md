@@ -14,8 +14,19 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
       - ListenerInvokerWrapper.invoke()
       - ConsumerContextFilter -> FutureFilter -> MonitorFilter
     - DubboInvoker.doInvoke()
+      - oneWay
+      - async
+      - sync ResponseFuture.get()
   * remoting
     - ExchangeClient
+      - ReferenceCountExchangeClient.request() 
+      - HeaderExchangeClient.request() 
+      - HeaderExchangeChannel.request() 请求-响应模型
+    - NettyClient
+      - AbstractPeer.send()
+      - AbstractClient.send()
+      - NettyChannel.send()
+      - NioClientSocketChannel.write()
 * 服务端
   * Thread
     - Thread.run()
@@ -32,7 +43,7 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
       - ProtocolFilterWrapper$1.invoke()
       - EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> TraceFilter -> MonitorFilter -> TimeoutFilter -> ExceptionFilter
     - InvokerWrapper.invoke()
-    - AbstractProxyInvoker.invoke()
+      - AbstractProxyInvoker.invoke()
     - JavassistProxyFactory$1.doInvoke() 
       - Wrapper46.invokeMethod() 生成的JavassitProxy动态代理
 

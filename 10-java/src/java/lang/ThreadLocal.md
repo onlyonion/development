@@ -15,13 +15,16 @@ class ThreadLocal<T> {
 }
 
 ThreadLocal +-- ThreadLocalMap
+ThreadLocal ^-- SuppliedThreadLocal
 
 class ThreadLocalMap {
     - Entry[] table
+    - int size = 0
+    - int threshold
 }
 
 ThreadLocalMap +-- Entry
-ThreadLocalMap o-- Entry
+ThreadLocalMap "1" o-- "*" Entry
 
 
 abstract class Reference<T>

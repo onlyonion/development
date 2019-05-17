@@ -3,7 +3,7 @@
 ### hotspot.src
 hotspot/src/
 
-* 平台相关性
+- 平台相关性
   * cpu
     * sparc
     * x86
@@ -16,7 +16,7 @@ hotspot/src/
   * os_cpu
     * linux_sparc
     * solaris_sparc
-* 平台无关性
+- 平台无关性
   * 内存管理 memory
     * 内存区域 内存结构
     * 内存分配
@@ -30,7 +30,9 @@ hotspot/src/
     * reflection
   * 对外服务、JMX接口
     * prims
-    * services jmm classLoadingService
+    * services 连接机制、类加载服务、诊断、内存管理、内存模型、线程服务
+      * jmm.h 内存模型
+      * classLoadingService.h 类加载服务
   * 编译器、解释器、汇编、机器码 compiler(c1 opto) interpreter asm code
   * 抽象数据结构 libadt(dict port set vectset)
 
