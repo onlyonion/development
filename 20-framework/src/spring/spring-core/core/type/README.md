@@ -1,0 +1,34 @@
+org.springframework.core.type
+
+## package
+```
+classreading
+    AbstractRecursiveAnnotationVisitor
+    AnnotationAttributesReadingVisitor
+    AnnotationMetadataReadingVisitor
+    AnnotationReadingVisitorUtils
+    CachingMetadataReaderFactory
+    ClassMetadataReadingVisitor
+    MetadataReader
+    MetadataReaderFactory
+    MethodMetadataReadingVisitor
+    RecursiveAnnotationArrayVisitor
+    RecursiveAnnotationAttributesVisitor
+    SimpleMetadataReader
+    SimpleMetadataReaderFactory
+filter
+    AbstractClassTestingTypeFilter
+    AbstractTypeHierarchyTraversingFilter
+    AnnotationTypeFilter
+    AspectJTypeFilter
+    AssignableTypeFilter
+    RegexPatternTypeFilter
+    TypeFilter
+AnnotatedTypeMetadata
+AnnotationMetadata
+ClassMetadata
+MethodMetadata
+StandardAnnotationMetadata
+StandardClassMetadata
+StandardMethodMetadata
+```

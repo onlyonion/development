@@ -4,8 +4,8 @@
 * core
   * [AliasRegistry](/20-framework/src/spring/spring-core/core/AliasRegistry.md)
   * [AttributeAccessor](/20-framework/src/spring/spring-core/core/AttributeAccessor.md)
-  * [ResourceLoader](/20-framework/src/spring/spring-core/core/ResourceLoader.md)
-  * [Resource](/20-framework/src/spring/spring-core/core/Resource.md)
+  * [ResourceLoader](/20-framework/src/spring/spring-core/core/io/ResourceLoader.md)
+  * [Resource](/20-framework/src/spring/spring-core/core/io/Resource.md)
 * lang
 * objenesis
 * util

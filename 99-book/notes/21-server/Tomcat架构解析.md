@@ -389,8 +389,8 @@ Servlet容器和链接器是Tomcat最核心的两个组件，它们是构成一�
 4. Coyote作为独立的模块，只负责具体协议和I/O的处理，与Servlet规范实现没有直接关系。
 
 Tomcat对协议及I/O方式的支持
-* 应用层 http, ajp, http2
-* 传输层 nio, nio2, apr    
+* 应用层 http, ajp, http2; Protocol Processor
+* 传输层 nio, nio2, apr; Endpoint
 
 ### 4.2 Web 请求处理
 #### 4.2.1 主要概念
@@ -407,6 +407,32 @@ Tomcat对协议及I/O方式的支持
   - AjpAprProtocol
   - AjpNio2Protocol
 * UpgradeProtocol 表示HTTP升级协议 
+
+```plantuml
+@startuml
+
+interface Service
+interface Mapper
+interface Connector
+
+Service o- Mapper
+
+Service o-- Connector
+
+interface Adapter
+interface ProtocolHandler
+Connector o-- Adapter
+Connector o-- ProtocolHandler
+
+Adapter ^-- CoyoteAdapter
+ProtocolHandler ^.. AbstractProtocol
+abstract class AbstractProtocol
+
+@enduml
+```
+
+
+
 
 #### 4.2.2 请求处理
 Connector请求处理过程

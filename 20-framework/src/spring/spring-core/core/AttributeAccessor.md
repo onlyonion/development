@@ -36,7 +36,7 @@ AttributeAccessor (org.springframework.core)
 
 ## class
 
-```
+```plantuml
 @startuml
 
 package org.springframework.core {

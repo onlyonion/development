@@ -17,7 +17,7 @@ ResourceLoader (org.springframework.core.io)
 ```
 
 ## class
-```
+```plantuml
 @startuml
 
 interface ResourceLoader {
@@ -25,6 +25,9 @@ interface ResourceLoader {
 	+ Resource getResource(String location)
 	+ ClassLoader getClassLoader()
 }
+interface Resource
+
+ResourceLoader o-- Resource
 
 '''''''''''''''''''''''' 默认实现'''''''''''''''''''''''' 
 class DefaultResourceLoader {
