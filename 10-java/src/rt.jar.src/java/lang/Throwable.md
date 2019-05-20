@@ -75,10 +75,31 @@ class Exception
 Throwable ^-- Error
 Throwable ^-- Exception
 
+'''''''''''''''''''''错误'''''''''''''''''''''''
 Error ^-- VirtualMachineError
 Error ^-- LinkageError
 Error ^-- IOError
 Error ^-- ThreadError
+
+VirtualMachineError ^-- StackOverflowError
+VirtualMachineError ^-- OutOfMemoryError
+
+LinkageError ^-- NoClassDefFoundError
+LinkageError ^-- VefifyError
+
+'''''''''''''''''''''异常'''''''''''''''''''''''
+Exception ^-- IOException
+Exception ^-- RuntimeException
+
+IOException ^-- FileSystemException
+IOException ^-- SocketException
+IOException ^-- ProtocolException
+IOException ^-- ClosedChannelException
+
+RuntimeException ^-- IndexOutOfBoundsException
+RuntimeException ^-- ArithmeticException
+RuntimeException ^-- NullPointerException
+RuntimeException ^-- IllegalArgumentException
 
 @enduml
 ```

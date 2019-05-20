@@ -22,9 +22,14 @@
 1. call
 2. apply
 3. bind
-4.  proxy
-5. caller
-6. callee
+4. proxy
+5. caller 返回一个函数的引用，这个函数调用了当前的函数
+   * 这个属性只有当函数在执行时才有用
+   * 如果在javascript程序中，函数是由顶层调用的，则返回null
+6. callee 返回正在执行的**函数本身**的引用，它是arguments的一个属性
+   * 这个属性只有在函数执行时才有效
+   * 它有一个length属性，可以用来获得**形参**的个数，因此可以用来比较形参和实参个数是否一致，即比较arguments.callee.length是否等于arguments.length
+   * 它可以用来递归匿名函数
 
 ![altText](./img/js方法.png "title") 
 ## js 函数式编程
