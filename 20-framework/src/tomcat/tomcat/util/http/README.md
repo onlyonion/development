@@ -1,0 +1,28 @@
+org.apache.tomcat.util.http
+## package
+```
+fileupload
+mapper
+    LocalStrings.properties
+    Mapper
+    MappingData
+    WrapperMappingInfo
+parser
+    HttpParser
+    MediaType
+    MediaTypeCache
+res
+ContentType
+Cookies
+CookieSupport
+FastHttpDateFormat
+HttpMessages
+LocalStrings.properties
+MimeHeaderField
+MimeHeaders
+NamesEnumerator
+Parameters
+RequestUtil
+ServerCookie
+ValuesEnumerator
+```

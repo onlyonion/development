@@ -18,12 +18,14 @@
 * 《core java》卷I
 * 《core java》卷II
 * 《thinking in java》
+* [《Java虚拟机规范》 爱飞翔 周志明 等译](/99-book/notes/10-java/Java虚拟机规范.md)
+* [《深入理解Java虚拟机：JVM高级特性与最佳实践》 周志明](/99-book/notes/10-java/深入理解Java虚拟机.md)
 * [《HotSpot实战》陈涛](/99-book/notes/10-java/HotSpot实战.md)
+* [《揭秘Java虚拟机-JVM设计原理与实现》 封亚飞](/99-book/notes/10-java/揭秘Java虚拟机.md)
+* [《深入理解JVM & G1 GC》 周明耀](/99-book/notes/10-java/深入理解JVM&G1GC.md)
 * [《Java 8函数式编程》](/99-book/notes/10-java/Java%208函数式编程.md)
 * [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/99-book/notes/10-java/Java%208实战.md)
 * [《Java并发编程的艺术》 方腾飞](/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
-* [《Java虚拟机规范》 爱飞翔 周志明 等译](/99-book/notes/10-java/Java虚拟机规范.md)
-* [《深入理解Java虚拟机：JVM高级特性与最佳实践》 周志明](/99-book/notes/10-java/深入理解Java虚拟机.md)
 * 《Java并发编程实战》
 
 ### 框架
@@ -38,6 +40,7 @@
 * [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
 * [《Netty实战》 何品 译 人民邮电出版社](/99-book/notes/21-server/Netty实战.md)
 * [《Tomcat架构解析》刘光瑞](/99-book/notes/21-server/Tomcat架构解析.md)
+* [《Tomcat内核设计剖析》汪健](/99-book/notes/21-server/Tomcat内核设计剖析.md)
 * [《实战Nignx 取代Apache的高性能Web服务器》](/99-book/notes/21-server/实战Nignx.md)
 * [《深入理解Nginx 模块开发与架构解析》](/99-book/notes/21-server/深入理解Nginx.md)
 * [《Unix网络编程 卷1：套接字联网API》](/99-book/notes/21-server/Unix网络编程%20卷1：套接字联网API.md)

@@ -111,3 +111,16 @@ CMS 处理过程有七个步骤：
 5. 重新标记(CMS-remark) ，会导致swt； 
 6. 并发清除(CMS-concurrent-sweep)，与用户线程同时运行； 
 7. 并发重置状态等待下次CMS的触发(CMS-concurrent-reset)，与用户线程同时运行； 
+
+
+
+```
+CMS-initial-mark
+CMS-concurrent-mark
+CMS-concurrent-preclean
+CMS-concurrent-abortable-preclean
+CMS Final Remark
+CMS-concurrent-sweep
+CMS-concurrent-reset
+```
+[CMS垃圾收集器](https://blog.csdn.net/mc90716/article/details/80158138)
