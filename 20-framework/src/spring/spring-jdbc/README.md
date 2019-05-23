@@ -19,6 +19,7 @@ datasource
     init
     lookup
         DataSourceLookup
+        AbstractRoutingDataSource
     AbstractDataSource
     AbstractDriverBasedDataSource
     ConnectionHandle

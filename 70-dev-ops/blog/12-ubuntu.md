@@ -235,6 +235,10 @@ flush privileges;
 quit;
 # restart
 /etc/init.d/mysql restart;
+
+# 远程访问 密码root
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 ```
 
 ### mycat

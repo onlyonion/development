@@ -1,0 +1,1 @@
+org.springframework.jdbc.core.JdbcTemplate
