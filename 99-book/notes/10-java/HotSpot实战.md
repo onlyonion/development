@@ -2,37 +2,80 @@
 
 网易宝
 
-* 运行时
+* 运行时 oop、classfile
   * 启动 Prims Services Runtime
   * 类与对象 对象表示机制（OOP-Klass Klass与instanceKlass）、类加载、对象创建
-* 内存管理 堆、栈、方法区
+* 内存管理 堆、栈、方法区 memory、gc 
   * 运行时数据区 堆 线程私有区域 方法区 性能监控数据区：PerfData 转储
   * 垃圾收集 堆与GC 垃圾收集器
   * 栈 硬件寄存器、Java栈、栈帧、栈顶缓存
-* 解释器和即时编译器、指令集、执行引擎
+* 解释器和即时编译器、指令集、执行引擎 interpreter、c1、code
 * 虚拟机监控工具
 
 ## 第1章 初试HotSpot
 ### 1.1 JDK概述
+#### 1.1.3 Java7的语法变化
+* switch使用string
+* 允许数值以下划线分隔 10_000_000
+* 允许数值以二进制表示 0b0100
+* 异常处理增强
+* TWR try-with-resources
+* 简化泛型定义、简化变长参数的方法调用
+
 ### 1.2 动手编译虚拟机
 ### 1.3 实战：在Hotspot内调试Helloworld
 
 ## 第2章 启动
 ### 2.1 HotSpot内核
+#### 2.1.1 如何阅读源代码
+语言差异：
+1. 宏 编译c/c++代码前，预处理器将宏代码展开。
+
+（1）功能相似的数据结构  
+（2）函数定义  
+（3）共同基类  
+（4）循环条件  
+（5）调试技术  
+
+2. 内联函数 用于消除函数调用和返回时的寄存器存储和恢复开销，它通常应用于频繁执行的函数中。
+3. 内部锁
+4. 可移植性
+
+操作系统 linux、windows、solaris
+体系结构 sparc、arm、x86、PowerPC
+
+5. VM选项
+
+* 基本配置类 Java堆的大小、垃圾收集器的选择、编译模式的选择等
+* 调优类 对虚拟机组件或策略进行较为细致的配置
+* 性能监控类 开启性能监控选项 -Xloggc、-XX:ErrorFile
+* 内部校检类 增强虚拟机内部过程校检
+* 调试和跟踪类
+
+#### 2.1.2 HotSpot内核框架   
 数据结构包括结构体、枚举、类和接口，它定义了数据成员，用以支撑算法的实现。算法反应了功能的实现逻辑。
-#### 2.1.2 HotSpot内核框架
-HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Classfile、Interperter、Code、Memory、Compiler、Oops、C1/Opto/Shark和GC。
+
+HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Classfile、Interperter、Code、Memory、Compiler、
+Oops、C1/Opto/Shark和GC。
+
+Classfile模块
+* 类文件解析模器 ClassFileParser子模块，解析*.class格式文件
+* parse_constant_pool()解析常量
+* parse_interfaces()解析接口
+* parse_fields()解析字段
+* parse_methods()解析java方法
+* parse_localvariable_table()解析局部变量表
 
 #### 2.1.3 Prims
 定义外部接口
 1. JNI jni_*为前缀命名的函数，允许JDK或外部程序调用由c/c++实现的库函数。
-2. JVM模块 JVM_*
-3. JVMTI模块 虚拟机工具接口
+2. JVM模块 JVM_*  本地库的Java API；支持字节码验证和class文件格式校检；各种io和网络操作
+3. JVMTI模块 虚拟机工具接口（java virtual machine tool interface）
 4. Perf模块 监控虚拟机内部Perf Data
 
 #### 2.1.4 Services
-提供JMX等工具，JVM为支持对Java应用程序进行管理和监控的一套体系结构、设计模式、API以及服务。
-1. Management模块
+Services模块为JVM提供JMX等工具，为支持对Java应用程序进行管理和监控的一套体系结构、设计模式、API以及服务。
+1. Management模块 提供JMX地城实现的基础
 2. MemoryService模块 内存管理，堆的分配和内存池的管理
 3. MemoryPool模块 内存池管理模块。内存池表示由JVM管理的内存区域，是内存管理的基本单元。
 4. MemoryManger模块 内存管理器。一个内存管理负责管理一个或多个内存池。垃圾收集器也是一个内存管理器，它负责回收不可达对象的内存空间。
@@ -48,23 +91,74 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 6. ThreadService模块 提供线程和内部同步系统的性能监控和管理服务，包括维护线程列表、线程相关的性能统计、线程快照、线程堆栈跟踪和线程转储等功能。
 7. ClassLoadingService模块 提供累加载模块的性能监控和管理服务
 8. AttachListener模块 为客户端的JVM监控工具提供连接（attach）服务
-9.  HeapDumper模块
+9. HeapDumper模块
 
 #### 2.1.5 Runtime
 运行时模块，为其他系统组件提供运行时支持。线程、安全点、PerfData、Stub例程、反射、VMOperation以及互斥锁等。
-1. Thread模块
+1. Thread模块 定义了各种线程类型，包含JVM内部工作线程以及Java业务线程。还定义了Threads子模块，维护着系统的有效线程队列
 2. Arguments模块 记录和传递VM参数和选项
 3. StubRoutines和StubCodeGenerator模块
-4. Frame模块 物理栈帧（活动记录），定义了表示物理栈帧的数据结构frame
+4. Frame模块 物理栈帧（活动记录），定义了表示物理栈帧的数据结构frame。frame始于cpu类型相关的，既可以表示c帧，也可以表示java帧。
+   一个frame可由栈指针、PC指针、CodeBlob指针和状态位藐视。栈之中_sp指向栈顶元素；pc指针_pc指向下一条要执行的指令地址；codeblob指针指向相应的指令机器码的codeblob。
 5. CompilationPolicy模块 配置编译策略
 6. Init模块 用于系统初始化
-7. VmThread模块 单例原生线程VM Thread（虚拟机线程），派生其他的线程。维护一个虚拟机操作队列，接受其他线程请求虚拟机级别的操作。
+7. VmThread模块 单例原生线程VM Thread（虚拟机线程），派生其他的线程。维护一个虚拟机操作队列（VMOperationQueue），接受其他线程请求虚拟机级别的操作（VMOperation）。
 8. VMOperation模块
 
 ### 2.2 启动
 #### 2.2.1 Launcher
+#### 2.2.2 虚拟机生命周期
 
+```plantuml
+@startuml
+Launcher -> Launcher: 1:main()
+Launcher -> 线程JavaMain: 2:JavaMain()
+线程JavaMain -> Launcher: 3:InitializeJVM()
+
+'' JNI_CreateJavaVM()为外部程序提供创建JVM的服务。
+Launcher -> JNI: 4:JNI_CreateJavaVM()
+'' create_vm()是jvm启动过程的精华部分，初始化了jvm系统绝大多数的模块。
+JNI -> Threads: 5:create_vm()
+
+Threads -> Threads: 6:add()
+Threads -> VMThread: 7:create()
+Threads -> Init: 8:vm_init_globals()
+Threads -> Init: 9:init_globals()
+
+Launcher -> Launcher: 10:loadClass()
+Launcher -> 线程JavaMain: 11:jni_CallStaticVoidMethod()
+
+Launcher -> 线程JavaMain: 12:jni_DetachCurrentThread()
+Launcher -> 线程JavaMain: 13:jni_DestoryJavaVM()
+
+@enduml
+```
+
+
+#### 2.2.3 入口：main函数
+#### 2.2.4 主线程
+#### 2.2.5 InitializeJVM函数
+#### 2.2.6 JNI_CreateJavaVM函数
+#### 2.2.7 调用Java主方法
+#### 2.2.8 JVM退出路径
 ### 2.3 系统初始化
+#### 2.3.1 配置OS模块
+#### 2.3.2 配置系统属性
+#### 2.3.3 加载系统库
+#### 2.3.4 启动线程
+#### 2.3.5 vm_init_globals函数：初始化全局数据结构
+#### 2.3.6 init_globas函数：初始化全局模块
+1. JMX：management模块
+   1. Managemoent模块 启动名为“ServiceThread”的守护线程
+   2. RuntimeService 提供运行时性能监控和管理服务
+   3. ThreadService 提供线程和内部同步系统的性能监控和管理服务
+   4. ClassLoadingService 提供类加载模块的性能监控和管理服务
+2. Code Cache 代码高速缓存，用来生成和存储本地代码
+3. StubRoutines 
+4. Universe
+5. 解释器
+6. 模板表
+7. stubs
 
 ## 第3章 类与对象
 * OOP-Klass二分模型
@@ -79,13 +173,14 @@ HotSpot由多个顶层模块组成，主要包括Service、Prims、Rutime、Clas
 #### 3.1.1 OOP-Klass二分模型
 * OOP：ordinary object pointer, oops 普通对象指针，用来描述对象实例信息
 * Klass：Java类的C++对等体，用来描述Java类  
+
 对于OOPS对象来说，主要职能在于表示对象的是实例数据，没必要持有任何虚函数；而在描述Java累的Klass对象中含有VTBL，那么Klass就能够根据Java对象的实际类型
 进行C++分发（dispatch）。  
 Klass对象向JVM提供两个功能：实现语言层面的Java类；实现Java对象的分发功能。
 
 #### 3.1.2 Oops模块
 OOP框架和Klass框架
-* oop
+* oop 定义了oops共同基类
   * constantPoolOop
   * cpCacheOop
   * arrayOop
@@ -97,12 +192,12 @@ OOP框架和Klass框架
   * methodOop
   * klassOop 描述一个与Java类对等的C++类
   * objArrayOop
-* Klass
+* Klass klassOop的一部分。用来描述语言层的类型
   * instanceKlass 在虚拟机层面描述一个Java类
-  * methodDataKlass
+  * methodDataKlass 
   * constMethodKlass
-  * methodKlass
-  * klassKlass
+  * methodKlass 表示methodOop的klass
+  * klassKlass 作为klass链的断点，klassKlass的Klass就是它自身
   * instanceKlassKlass
   * instanceRefKlass
   * instanceMirrorKlass
@@ -118,6 +213,7 @@ OOP框架和Klass框架
 #### 3.1.3 OOP框架与对象访问机制
 在Java应用程序运行过程中，每创建一个Java对象，在JVM内部也会相应创建一个OOP对象来表示Java对象。OOPS类的共同基类为oopDesc。
 ```c++
+// oops类层次共同基类 oopDesc的定义
 class oopDesc {
     private:
         volatile markOop _mark;
@@ -219,10 +315,10 @@ digraph jvm_load_class {
 
 2. 加载
 加载的含义是从class文件字节流中提取类型信息。HotSpot的Classfile模块为虚拟机提供加载功能。
-* ClassFileParser 类解析器
-* Verifier 验证器
+* ClassFileParser 类解析器，用来解析*.class文件。
+* Verifier 验证器，用来验证*.class文件中字节码。它将为每个类创建一个classVerifier实例来验证
 * ClassLoader 类加载器
-* SystemDictionary 系统字典
+* SystemDictionary 系统字典，用来记录已加载的所有类
 * SymboleTable 字符表
 
 ```c++
@@ -272,12 +368,11 @@ instanceKlass::link_class_impl()
 和准备环节，且有可能已经被解析过。  
 此外，由于虚拟机支持多线程，所以在类初始化过程中需要实现者处理好线程同步问题。
 
-
 #### 3.2.6 实战：类的“族谱”
+_super、_subKlass和_next_sibling记录类之间“族谱”关系的。
 #### 3.2.7 实战：系统字典
 系统字典记录了系统加载的所有的类。系统字典持有系统已经加载类、类加载器、公共类klass等重要信息。
 hotspot/src/share/vm/classfile/systemDictionary.hpp
-
 
 ### 3.3 创建对象
 字节码new 

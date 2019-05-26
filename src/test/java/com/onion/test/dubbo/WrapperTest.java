@@ -10,6 +10,7 @@ public class WrapperTest {
     @Test
     public void test () {
         Wrapper wrapper = Wrapper.getWrapper(My.class);
+        System.out.println(wrapper);
     }
 
 
