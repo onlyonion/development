@@ -1,6 +1,19 @@
+org.springframework.transaction.TransactionDefinition
 
+## hierarchy
+```
+TransactionDefinition (org.springframework.transaction)
+    TransactionAttribute (org.springframework.transaction.interceptor)
+        DelegatingTransactionAttribute (org.springframework.transaction.interceptor)
+        DefaultTransactionAttribute (org.springframework.transaction.interceptor)
+    DelegatingTransactionDefinition (org.springframework.transaction.support)
+    DefaultTransactionDefinition (org.springframework.transaction.support)
+        DefaultTransactionAttribute (org.springframework.transaction.interceptor)
+        TransactionTemplate (org.springframework.transaction.support)
+```
 
 ## define 
+RSM RnNs NeverNested
 
 ```plantuml
 @startuml
@@ -13,6 +26,25 @@ interface TransactionDefinition {
     + String getName()
 }
 
+interface TransactionAttribute
+
+class DefaultTransactionDefinition
+
+TransactionDefinition ^-- TransactionAttribute
+TransactionDefinition ^.. DefaultTransactionDefinition
+
+DefaultTransactionDefinition ^-- DefaultTransactionAttribute
+TransactionAttribute ^-- DefaultTransactionAttribute
+class DefaultTransactionAttribute
+
+interface TransactionOperations
+interface InitializingBean
+DefaultTransactionDefinition ^-- TransactionTemplate
+TransactionOperations ^.. TransactionTemplate
+InitializingBean ^.. TransactionTemplate
+class TransactionTemplate
+
+''''''''''''''''''''''''''''' 事务隔离级别、传播范围 ''''''''''''''''''''''''''''''''
 enum Isolation {
 	DEFAULT(TransactionDefinition.ISOLATION_DEFAULT)
 	READ_UNCOMMITTED(TransactionDefinition.ISOLATION_READ_UNCOMMITTED)
@@ -41,8 +73,8 @@ enum Propagation {
 	- final int value
 }
 
-Isolation ..> TransactionDefinition
-Propagation ..> TransactionDefinition
+TransactionDefinition <.. Isolation
+TransactionDefinition <.. Propagation
 
 @enduml
 ```

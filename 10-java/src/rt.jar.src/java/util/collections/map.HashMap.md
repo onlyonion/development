@@ -37,7 +37,7 @@ AbstractMap (java.util)
 ''''''''''''''''''''''''' Map ''''''''''''''''''''''''''''''
 interface Map<K,V>
 abstract class AbstractMap<K,V> 
-Map <|.. AbstractMap
+Map ^.. AbstractMap
 
 ''''''''''''''''''''''''' HashMap ''''''''''''''''''''''''''''''
 class HashMap<K,V> {
@@ -65,12 +65,12 @@ Entry数组 + 链表
 没有使用volatile
 end note
 
-Map <|.. HashMap
-AbstractMap <|-- HashMap
+Map ^.. HashMap
+AbstractMap ^-- HashMap
 
 ''''''''''''''''''''''''' Entry ''''''''''''''''''''''''''''''
 interface Map.Entry<K,V> 
-Map.Entry <|.. Entry
+Map.Entry ^.. Entry
 class Entry<K,V> {
     final K key
     V value
@@ -184,7 +184,7 @@ h --indexFor--> 存储下标;
 ''''''''''''''''''''''''' Map ''''''''''''''''''''''''''''''
 interface Map<K,V>
 abstract class AbstractMap<K,V> 
-Map <|.. AbstractMap
+Map ^.. AbstractMap
 
 ''''''''''''''''''''''''' HashMap ''''''''''''''''''''''''''''''
 class HashMap<K,V> {
@@ -211,8 +211,8 @@ Node数组 + 链表 + 红黑树
 没有使用volatile
 end note
 
-Map <|.. HashMap
-AbstractMap <|-- HashMap
+Map ^.. HashMap
+AbstractMap ^-- HashMap
 
 ''''''''''''''''''''''''' Node ''''''''''''''''''''''''''''''
 class Node<K,V> {
@@ -239,8 +239,8 @@ class TreeNode<K,V> {
     ~ TreeNode<K,V> prev
     ~ boolean red
 }
-Node <|-- LinkedHashMap.Entry
-LinkedHashMap.Entry <|-- TreeNode
+Node ^-- LinkedHashMap.Entry
+LinkedHashMap.Entry ^-- TreeNode
 HashMap +-- TreeNode
 
 @enduml

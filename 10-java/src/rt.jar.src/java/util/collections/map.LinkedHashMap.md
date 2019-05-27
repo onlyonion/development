@@ -35,7 +35,7 @@ class Entry<K,V>{
     ~ Entry<K,V> before, after
 }
 
-class HashMap.Node<K,V> {
+class Node<K,V> {
     ~ final int hash
     ~ final K key
     ~ V value
@@ -44,11 +44,12 @@ class HashMap.Node<K,V> {
 }
 
 LinkedHashMap +-- Entry
-HashMap.Node <|-- Entry
+LinkedHashMap o-- Entry
+Node ^-- Entry
 
 class HashMap<K,V>
-HashMap <|-- LinkedHashMap
-
+HashMap ^-- LinkedHashMap
+HashMap +-- Node
 
 @enduml
 ```

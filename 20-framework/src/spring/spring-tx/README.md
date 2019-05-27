@@ -57,6 +57,19 @@ transaction
 ```
 
 ## overview
+* TransactionProxyFactoryBean
+  * Pointcut
+  * TransactionInterceptor extends TransactionAspectSupport
+    * TransactionAttributeSource
+    * PlatformTransactionManager
+      * HibernateTransactionManager
+      * JpaTransactionManager
+      * DataSourceTransactionManager
+* TransactionTemplate
+  * PlatformTransactionManager
+* TransactionAttributeSourceAdvisor
+  * TransactionInterceptor
+  
 ```plantuml
 @startuml
 
@@ -71,6 +84,9 @@ abstract class TransactionAspectSupport #orange
 
 TransactionAspectSupport o-- PlatformTransactionManager
 TransactionAspectSupport o-- TransactionAttributeSource
+
+class TransactionAttributeSourceAdvisor
+TransactionAttributeSourceAdvisor o-- TransactionInterceptor
 
 '''''''''''''''''''''''''事务管理器'''''''''''''''''''''''''
 interface PlatformTransactionManager #orange

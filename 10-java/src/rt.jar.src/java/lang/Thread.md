@@ -41,3 +41,25 @@ Thread +-- State
     
 @enduml
 ```
+
+
+### thread state
+```plantuml
+@startuml
+
+NEW -right-> RUNNABLE
+
+state RUNNABLE {
+}
+
+RUNNABLE --> BLOCKED : 锁、I/O
+RUNNABLE --> WAITING : wait
+RUNNABLE --> TIMED_WAITING : wait(time)
+
+BLOCKED --> RUNNABLE
+WAITING --> RUNNABLE
+TIMED_WAITING --> RUNNABLE
+
+RUNNABLE -right-> TERMINATED
+@enduml
+```

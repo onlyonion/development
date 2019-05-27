@@ -19,6 +19,9 @@ abstract class Reference<T> {
     ~ volatile ReferenceQueue<? super T> queue
     ~ volatile Reference next
     ~ static boolean tryHandlePending(boolean waitForNotify)
+    
+    + T get()
+    + Reference<? extends T> poll()
 }
 
 class ReferenceQueue<T> {
@@ -26,6 +29,7 @@ class ReferenceQueue<T> {
 }
 
 Reference o-- ReferenceQueue
+Reference +-- ReferenceHandler
 
 
 class PhantomReference
@@ -46,7 +50,7 @@ Reference <|-- WeakReference
 ### WeakReference与GC
 当一个对象仅仅被weak reference指向, 而没有任何其他strong reference指向的时候, 如果GC运行, 那么这个对象就会被回收. weak reference的语法是:
 
-```java
+```
 // cache
 WeakReference<Car> weakCar = new WeakReference(Car)(car);
 ```
