@@ -1,8 +1,15 @@
+java.util.Arrays
+
 ## Arrays
 
 ### java.util.Arrays
 * mergeSort
 * swap
+* equals
+* fill
+* copyOf
+* asList
+* hashCode
 
 ### java.util.DualPivotQuicksort
 

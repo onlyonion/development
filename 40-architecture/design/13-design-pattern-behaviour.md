@@ -25,6 +25,12 @@
   - [ ] 依赖倒置
   - [ ] 迪米特原则
 
+促销活动策略、营销策略、支付渠道策略
+
+策略之间可以继承
+
+org.springframework.web.servlet.DispatcherServlet.initStrategies
+
 #### 14. Template Method（模板方法）
 
 意图：

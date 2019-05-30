@@ -3,7 +3,14 @@
 ## package
 ```
 accessibility
+    Accessible
+    AccessibleAction
+    AccessibleText
+    AccessibleTable
+    AccessibleValue
 activation
+    DataSource
+    DataHandler
 activity
 annotation
 imageio
@@ -12,6 +19,7 @@ model
 management
 naming
 net
+    ssl
 print
 rmi
     CORBA
@@ -24,6 +32,9 @@ script
     Bindings
     Compilable
 security
+    auth
+    cert
+    sasl
 smartcardio
 sound
 sql
@@ -33,6 +44,8 @@ swing
 tools
 transaction
     xa
+        Xid
+        XAResource
 xml
     bind
     crypto

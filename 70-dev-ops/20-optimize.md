@@ -24,6 +24,9 @@ tomcat、nginx
 3.	Tomcat系统参数
 4.	基准测试
 
+JVM参数、线程参数、IO选择、APR
+[闲谈Tomcat性能优化](https://www.cnblogs.com/zhuawang/p/5213192.html)
+
 ### nginx 调优
 Nginx软件调优
 1. 隐藏 Nginx 版本号
@@ -90,9 +93,8 @@ Nginx软件调优
 
 * 代码级别的优化，例如 Javascript中的DOM 操作优化、CSS选择符优化、图片优化以及 HTML结构优化等等
 
-[Web前端性能优化——如何提高页面加载速度](https://www.cnblogs.com/MarcoHan/p/5295398.html)
-
-[前端性能优化方案都有哪些？](https://www.cnblogs.com/coober/p/8078847.html)
+* [Web前端性能优化——如何提高页面加载速度](https://www.cnblogs.com/MarcoHan/p/5295398.html)
+* [前端性能优化方案都有哪些？](https://www.cnblogs.com/coober/p/8078847.html)
 
 * 网络节点：HttpDNS优化
 * 建连复用：SSL化，SPDY建连高复用

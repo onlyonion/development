@@ -239,6 +239,10 @@ quit;
 # 远程访问 密码root
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+
+# 低版本修改密码
+ update user set password=password('123456') where user='root' and host='localhost'; 
+ flush privileges; 
 ```
 
 ### mycat

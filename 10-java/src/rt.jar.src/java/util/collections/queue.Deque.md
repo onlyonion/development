@@ -13,3 +13,29 @@ Deque (java.util)
     IdentityLinkedList (sun.awt.util)
     ConcurrentLinkedDeque (java.util.concurrent)
 ```
+
+## define
+```plantuml
+@startuml
+
+interface Iterable<T>
+interface Collection<E>
+interface Queue<E> {
+    boolean add(E e)
+    boolean offer(E e)
+    E remove()
+    E poll()
+    E element()
+    E peek()
+}
+interface Deque<E> {
+    void addFirst(E e)
+    void addLast(E e)
+}
+
+Iterable ^-- Collection
+Collection ^-- Queue
+Queue ^-- Deque
+
+@enduml
+```

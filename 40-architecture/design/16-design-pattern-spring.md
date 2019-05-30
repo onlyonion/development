@@ -81,6 +81,9 @@ Spring中用到的包装器模式在类名上有两种表现：一种是类名�
 从结构上来看和Decorator模式类似，但Proxy是控制，更像是一种对功能的限制，而Decorator是增加职责。  
 Spring的Proxy模式在aop中有体现，比如JdkDynamicAopProxy和Cglib2AopProxy。
 
+#### 委派模式
+DispatcherServlet.server()委派请求
+
 ### 7. 观察者（Observer）
 定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。  
 Spring中Observer模式常用的地方是listener的实现。如ApplicationListener。
@@ -96,6 +99,12 @@ public interface ApplicationListener<E extends ApplicationEvent> extends EventLi
 
 ### 8. 策略（Strategy）
 定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。
+
+Resource的各种source实现，不同的策略
+proxy的jdk与cglib策略
+初始化时的策略，单例模式，原型模式
+
+策略之间可以继承
 
 ### 9. 模板方法（Template Method）
 定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。Template Method使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
