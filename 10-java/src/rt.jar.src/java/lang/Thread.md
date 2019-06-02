@@ -47,19 +47,21 @@ Thread +-- State
 ```plantuml
 @startuml
 
-NEW -right-> RUNNABLE
+[*] -right-> New
 
-state RUNNABLE {
+New -right-> Runnable
+
+state Runnable {
+  Ready --> Running : New Data
+  Running --> Ready : Enough Data
 }
 
-RUNNABLE --> BLOCKED : 锁、I/O
-RUNNABLE --> WAITING : wait
-RUNNABLE --> TIMED_WAITING : wait(time)
+Runnable --> TimedWaiting
+Runnable --> Waiting
+Runnable --> Blocked
 
-BLOCKED --> RUNNABLE
-WAITING --> RUNNABLE
-TIMED_WAITING --> RUNNABLE
+Runnable -right-> Terminated
+Terminated -right-> [*]
 
-RUNNABLE -right-> TERMINATED
 @enduml
 ```

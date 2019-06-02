@@ -36,3 +36,6 @@ WeakReference ^-- Entry
 
 @enduml
 ```
+
+
+threadLocal内存泄漏的根源是：由于ThreadLocalMap的生命周期跟Thread一样长，如果没有手动删除对应key就会导致内存泄漏，而不是因为弱引用。

@@ -1,4 +1,4 @@
-
+java.lang.ClassLoader
 ## hierarchy
 ```
 ClassLoader (java.lang)
@@ -69,6 +69,11 @@ SecureClassLoader ^-- URLClassLoader
 URLClassLoader ^-- AppClassLoader
 URLClassLoader ^-- ExtClassLoader
 
-
 @enduml
 ```
+
+## methods
+### findClass
+编写自定义classLoader需要重写的方法
+### loadClass 
+实现了双亲委派，重写之后可以打破双亲委派

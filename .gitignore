@@ -43,7 +43,27 @@ Servers
 
 ## Node.js
 node_modules
-.vscode
+jspm_packages
+bower_components
+
+## Sublime
+*.sublime-workspace
+
+## Visual Studio
+.vs/
+.vscode/
+**/[Bb]in/[Dd]ebug/
+**/[Bb]in/[Rr]elease/
+[Oo]bj/
+*.sln.*
+*.vshost.*
+*.suo
+*.user
+_ReSharper*
+*.ReSharper
+.ntvs_analysis.dat
+**/[Bb]in/Microsoft.NodejsTools.WebRole.dll
 
 ## gitbook
 _book
+
