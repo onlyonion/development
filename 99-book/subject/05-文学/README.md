@@ -24,3 +24,16 @@
 * 0503 新闻传播学
 * 050301 新闻学
 * 050302 传播学
+
+## 外国语言文学
+基础相应语、高级相应语、报刊选读、视听、口语、相应语写作、翻译理论与实践、语言理论、语言学概论、主要相应语国家文学史及文学作品选读、主要相应国家国情。
+
+**外语专业**偏重于对语言文字本身（文字、语音、语法、语言学、比较语言学等）的研究
+
+**语言文学专业**偏重于对语言背后的文化（文学、史地、文化、比较语言学、跨文化交际）的研究
+
+## 语言学
+语言学（linguistics）是以人类语言为研究对象的学科，探索范围包括语言的性质、功能、结构、运用和历史发展，以及其他与语言有关的问题。
+
+## 计算机语言学
+计算语言学（Computational Linguistics）有时也叫计量语言学（Measuring Linguistic）,数理语言学（Mathematical Linguistics）,自然语言理解（Natural Language Understanding）,自然语言处理（Natural Language Processing）,人类语言技术（Human Language Technology）。
