@@ -3,7 +3,7 @@
 
 * 基础 java基础、集合、进程和线程、锁机制、JVM、设计模式、网络与IO、数据结构
 * 存储和消息 数据库、Redis、消息队列
-* 框架和容器 SSN、Servlet、Netty、Tomcat
+* 框架和容器 SSM、Servlet、Netty、Tomcat
 * 分布式 nginx、session、锁、事务、集群、分库分表、dubbo
 * 微服务架构 微服务（幂等、CAP、BASE）、安全、性能优化
 * 其他 设计能力（UML、组件化、服务化、系统拆分、秒杀）

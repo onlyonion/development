@@ -19,7 +19,7 @@ AdvisorAdapter (org.springframework.aop.framework.adapter)
 @startuml
 
 ''''''''''''''''''''''''AdvisorAdapter''''''''''''''''''''''''
-interface AdvisorAdapter {
+interface AdvisorAdapter #orange {
     + boolean supportsAdvice(Advice advice)
 	+ MethodInterceptor getInterceptor(Advisor advisor)
 }
@@ -35,15 +35,15 @@ MethodInterceptor ^.. MethodBeforeAdviceInterceptor
 MethodInterceptor ^.. ThrowsAdviceInterceptor
 
 ''''''''''''''''''''''''实现类''''''''''''''''''''''''
-class AfterReturningAdviceAdapter
+class AfterReturningAdviceAdapter #orange
 class AfterReturningAdviceInterceptor
 AfterReturningAdviceAdapter ..> AfterReturningAdviceInterceptor
 
-class MethodBeforeAdviceAdapter
+class MethodBeforeAdviceAdapter #orange
 class MethodBeforeAdviceInterceptor
 MethodBeforeAdviceAdapter ..> MethodBeforeAdviceInterceptor
 
-class ThrowsAdviceAdapter 
+class ThrowsAdviceAdapter #orange
 class ThrowsAdviceInterceptor
 ThrowsAdviceAdapter ..> ThrowsAdviceInterceptor
 

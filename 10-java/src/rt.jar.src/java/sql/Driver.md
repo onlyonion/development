@@ -26,22 +26,3 @@ interface Driver {
 
 @enduml
 ```
-
-
-
-java.sql.DriverManager
-
-## define
-```plantuml
-@startuml
-
-class DriverManager {
-    - final static CopyOnWriteArrayList<DriverInfo> registeredDrivers
-    - static volatile int loginTimeout = 0
-    - static volatile java.io.PrintWriter logWriter
-    - static volatile java.io.PrintStream logStream
-    - final static Object logSync
-}
-
-@enduml
-```

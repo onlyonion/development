@@ -22,21 +22,44 @@ spring适配器的两个方法：
 @startuml
 interface HandlerAdapter {
     + boolean supports(Object handler)
-    + ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception
+    + ModelAndView handle(HttpServletRequest request, 
+        HttpServletResponse response, Object handler) throws Exception
     + long getLastModified(HttpServletRequest request, Object handler)
 }
 
 abstract class AbstractHandlerMethodAdapter {
-    + final ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
-    # abstract ModelAndView handleInternal(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+    + final ModelAndView handle(HttpServletRequest request, 
+        HttpServletResponse response, Object handler)
+    # abstract ModelAndView handleInternal(HttpServletRequest request, 
+        HttpServletResponse response, HandlerMethod handlerMethod)
 }
 HandlerAdapter <|.. AbstractHandlerMethodAdapter
 
 class RequestMappingHandlerAdapter {
-    # ModelAndView handleInternal(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
-    # ModelAndView invokeHandlerMethod(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+    # ModelAndView handleInternal(HttpServletRequest request, 
+        HttpServletResponse response, HandlerMethod handlerMethod)
+    # ModelAndView invokeHandlerMethod(HttpServletRequest request, 
+        HttpServletResponse response, HandlerMethod handlerMethod)
 }
 AbstractHandlerMethodAdapter <|-- RequestMappingHandlerAdapter
+
+''''''''''''''''''''''''''''''''''''''
+class HttpRequestHandlerAdapter
+class SimpleServletHandlerAdapter
+class SimpleControllerHandlerAdapter
+
+HandlerAdapter ^.. HttpRequestHandlerAdapter
+HandlerAdapter ^.. SimpleServletHandlerAdapter
+HandlerAdapter ^.. SimpleControllerHandlerAdapter
+
+interface HttpRequestHandler
+HttpRequestHandlerAdapter ..> HttpRequestHandler
+
+interface Servlet
+SimpleServletHandlerAdapter ..> Servlet
+
+interface Controller 
+SimpleControllerHandlerAdapter ..> Controller
 
 @enduml
 ```

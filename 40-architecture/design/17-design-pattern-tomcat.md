@@ -1,7 +1,18 @@
 
 [Tomcat 设计模式总结(Tomcat源代码阅读系列之八)](https://blog.csdn.net/jiaomingliang/article/details/47426683)
 
+### 工厂
+
+### 抽象工厂
+
+### 单例
+
+### 建造者
+
+### 原型
+
 ### 适配器
+org.apache.catalina.connector.CoyoteAdapter
 
 ### 装饰器
 
@@ -9,6 +20,12 @@
 
 ### 外观
 在Tomcat中对于Request,Response,StandardSession,ApplicationContext,StandardWrapper都采用了外观模式
+
+### 桥接
+
+### 组合
+
+### 享元
 
 ### 策略模式
 
@@ -22,6 +39,8 @@ Tomcat抽象了一个LifecycleSupport的类，而所有需要生命周期管理�
 EventObject
 LifecycleSupport
 
+### 迭代
+
 ### 职责链
 当我们系统在处理某个请求的时候，请求需要经过很多个节点进行处理，每个节点只关注自己的应该做的工作，做完自己的工作以后，
 将工作转给下一个节点进行处理，直到所有节点都处理完毕。如快递、路由器。
@@ -32,3 +51,16 @@ LifecycleSupport
 
 命令模式在Tomcat中主要是应用在对请求的处理过程中，Tomcat的实现中，根据它支持两种协议AJP和Http,而在具体的IO实现中，又分为Java同步阻赛IO,Java同步非祖塞IO，
 以及采用APRApache Portable Runtime 支持库,因此Tomcat统一了org.apache.coyote.Processor接口
+
+
+### 备忘录
+
+### 状态
+
+### 访问者
+
+### 中介者
+
+### 解释器
+
+

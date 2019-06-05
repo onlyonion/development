@@ -153,6 +153,7 @@ io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，
 #### 16.1.2 Channel的功能介绍
 1. 网络IO操作
 2. 其他常用的API功能说明
+
 ### 16.2 Channel源码分析
 ### 16.3 Unsafe功能说明
 实际的IO读写操作都是由Unsafe接口负责完成的。
@@ -180,12 +181,15 @@ I/O线程模型
 #### 18.1.1 Reactor单线程模型
 * Acceptor线程
 * IO线程
+
 #### 18.1.2 Reactor多线程模型
 * Acceptor线程
 * 一组IO线程池
+
 #### 18.1.3 诸多Reactor多线程模型
 * Acceptor线程池 客户端的登录、握手、安全认证，一旦链路建立成功，就将两路注册到后端subReactor线程池
 * IO线程池
+
 #### 18.1.4 Netty的线程模型
 
 接收客户端请求的线程池的职责：

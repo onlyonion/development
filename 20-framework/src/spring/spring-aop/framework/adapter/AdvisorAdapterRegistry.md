@@ -42,3 +42,20 @@ GlobalAdvisorAdapterRegistry o-- DefaultAdvisorAdapterRegistry
 
 @enduml
 ```
+
+## methods
+```ts
+for (AdvisorAdapter adapter : this.adapters) {
+    // Check that it is supported.
+    if (adapter.supportsAdvice(advice)) {
+        return new DefaultPointcutAdvisor(advice);
+    }
+}
+
+// org.springframework.aop.framework.adapter.DefaultAdvisorAdapterRegistry.getInterceptors		
+for (AdvisorAdapter adapter : this.adapters) {
+    if (adapter.supportsAdvice(advice)) {
+        interceptors.add(adapter.getInterceptor(advisor));
+    }
+}
+```

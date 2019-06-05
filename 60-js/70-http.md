@@ -74,3 +74,19 @@ iframe JSONP
 该字段可选。它的值是一个布尔值，表示是否允许发送Cookie.默认情况下，不发生Cookie，即：false。对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json，这个值只能设为true。如果服务器不要浏览器发送Cookie，删除该字段即可。
 5. Access-Control-Max-Age
 该字段可选，用来指定本次预检请求的有效期，单位为秒。在有效期间，不用发出另一条预检请求。
+
+
+## [form](https://blog.csdn.net/u012161134/article/details/79098749/ )
+form表单中enctype属性可以用来控制对表单数据的发送前的如何进行编码，enctype有三种，分别为：
+* multipart/form-data不对字符编码，用于发送二进制的文件，其他两种类型不能用于发送文件；
+* text/plain用于发送纯文本内容，空格转换为 "+" 加号，不对特殊字符进行编码，一般用于email之类的；
+* application/x-www-form-urlencoded，在发送前会编码所有字符，即在发送到服务器之前，所有字符都会进行编码（空格转换为 "+" 加号，"+"加号转换为空格，特殊符号转换为 ASCII HEX 值）。
+
+其中application/x-www-form-urlencoded为默认类型。 
+
+
+## 域
+当两个域具有相同的协议(如http), 相同的端口(如80)，相同的host（如www.google.com)，那么我们就可以认为它们是相同的域（协议，域名，端口都必须相同）。
+跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的(例如一般情况跨域的JavaScript无法交互，当然有很多解决跨域的方案)
+
+ 
