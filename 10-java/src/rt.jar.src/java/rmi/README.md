@@ -2,9 +2,17 @@
 ## package
 ```
 activation
+    ActivationSystem
+    ActivationMonitor
+    ActivationID
+    Activator
+    Activatable
 dgc
 registry
+    Registry
+    LocateRegistry
 server
+    RMIClassLoader
 AccessException
 AlreadyBoundException
 ConnectException

@@ -84,6 +84,8 @@ abstract class FrameworkServlet {
 HttpServletBean <|-- FrameworkServlet
 ApplicationContextAware <|.. FrameworkServlet
 
+FrameworkServlet ^-- DispatcherServlet
+class DispatcherServlet 
 
 @enduml
 ```
