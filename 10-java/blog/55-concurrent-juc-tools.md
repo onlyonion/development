@@ -5,7 +5,7 @@
 使一个线程等待其他线程完成各自的工作后再执行。
 例如，应用程序的主线程希望在负责启动框架服务的线程已经启动所有的框架服务之后再执行。
 
-CountDownLatch是通过一个计数器来实现的，计数器的初始值为线程的数量。每当一个线程完成了自己的任务后，计数器的值就会减1。当计数器值到达0时，它表示所有的线程已经完成了任务，然后在闭锁上等待的线程就可以恢复执行任务。
+CountDownLatch是通过一个计数器来实现的，计数器的初始值为线程的数量。每当一个线程完成了自己的任务后，计数器的值就会减1。当计数器值到达0时，它表示**所有的线程**已经完成了任务，然后**在闭锁上等待的线程**就可以恢复执行任务。
 
 ![altText](./img/java-concurrent-countdownlanch.png "title") 
 
@@ -24,12 +24,10 @@ CountDownLatch是一个同步辅助类，在完成一组正在其他线程中执
 
 ## 2. CyclicBarrier
 
-CyclicBarrier是一个同步辅助类，允许一组线程互相等待，直到到达某个公共屏障点 (common barrier point)。因为该 barrier 在释放等待线程后可以重用，所以称它为循环 的 barrier。
+CyclicBarrier是一个同步辅助类，允许**一组线程**互相等待，直到到达某个公共屏障点 (common barrier point)。因为该 barrier 在释放等待线程后可以重用，所以称它为循环 的 barrier。
 CyclicBarrier是包含了"ReentrantLock对象lock"和"Condition对象trip"，它是通过独占锁实现的。
+
 CyclicBarrier和CountDownLatch的区别是：
-
-### CyclicBarrier和CountDownLatch的区别
-
 1. CountDownLatch的作用是允许1或N个线程等待其他线程完成执行；而CyclicBarrier则是允许N个线程相互等待。
 2. CountDownLatch的计数器无法被重置；CyclicBarrier的计数器可以被重置后使用，因此它被称为是循环的barrier。
 

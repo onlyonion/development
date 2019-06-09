@@ -1,7 +1,7 @@
 《Netty实战》 何品 译 人民邮电出版社
 
 * 概念及体系结构 传输Channel、ByteBuf、ChannelHandler、ChannelPipeline、EventLoop和线程模型、引导
-* 编解码 编解码框架
+* 编解码 编解码框架、预置的ChannelHandler和编解码器
 * 网络协议 websocket udp
 
 # 第一部分Netty的概念及体系结构

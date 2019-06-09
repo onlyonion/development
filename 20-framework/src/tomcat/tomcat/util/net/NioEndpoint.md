@@ -1,9 +1,17 @@
+org.apache.tomcat.util.net.NioEndpoint
+
+## hierarchy
+```
+AbstractEndpoint (org.apache.tomcat.util.net)
+    AbstractJsseEndpoint (org.apache.tomcat.util.net)
+        NioEndpoint (org.apache.tomcat.util.net)
+```
 
 ## define
 ```
 @startuml
 
-class NioEndpoint {
+class NioEndpoint #orange {
     - NioSelectorPool selectorPool
     - ServerSocketChannel serverSock
     - volatile CountDownLatch stopLatch
@@ -27,18 +35,18 @@ AbstractEndpoint <|-- AbstractJsseEndpoint
 interface Handler {
     + SocketState process(SocketWrapperBase socket, SocketEvent status)
 }
-AbstractEndpoint +- Handler
+AbstractEndpoint +-- Handler
 
 '''''''''''内部类 Poller'''''''''''''''''''''''''''''''''''''''''''''''
-class Poller {
+class Poller #orange {
     - Selector selector
     - final SynchronizedQueue<PollerEvent> events = new SynchronizedQueue<>()
 }
-NioEndpoint +- Poller
+NioEndpoint +-- Poller
 Runnable <|.. Poller
 
 '''''''''''内部类 SocketProcessor''''''''''''''''''''''''''''''''''''''''
-class SocketProcessor {
+class SocketProcessor #orange {
     - Selector selector
     - final SynchronizedQueue<PollerEvent> events = new SynchronizedQueue<>()
     # void doRun()
@@ -49,7 +57,7 @@ abstract class SocketProcessorBase {
     # abstract void doRun()
 }
 
-NioEndpoint +- SocketProcessor
+NioEndpoint +-- SocketProcessor
 SocketProcessorBase <|-- SocketProcessor
 Runnable <|.. SocketProcessorBase
 

@@ -518,9 +518,35 @@ sequenceDiagram
 
 ## 第6章 Tomcat配置管理
 ### 6.1 JVM配置
+#### 6.1.1 JVM配置选项
+#### 6.1.2 系统属性
 ### 6.2 服务器配置
+#### 6.2.1 catalina.properties
+#### 6.2.2 server.xml
+#### 6.2.3 context.xml
 ### 6.3 Web应用配置
+#### 6.3.1 ServletContext初始化参数
+#### 6.3.2 会话配置
+#### 6.3.3 Servlet声明及配置
+#### 6.3.4 应用生命周期监听器
+#### 6.3.5 Filter定义及映射
+#### 6.3.6 MIME类型映射
+#### 6.3.7 欢迎文件列表
+#### 6.3.8 错误页面
+#### 6.3.9 本地化及编码映射
+#### 6.3.10 安全配置
+#### 6.3.11 JNDI配置
+#### 6.3.12 其他
 ### 6.4 Web应用过滤器
+#### 6.4.1 CorsFilter
+#### 6.4.2 CsrfPreventionFilter
+#### 6.4.3 ExpiresFilter
+#### 6.4.4 FailedRequestFilter
+#### 6.4.5 RemoteAddrFilter
+#### 6.4.6 RemoteHostFilter
+#### 6.4.7 RemoteIpFilter
+#### 6.4.8 RequestDumperFilter
+#### 6.4.9 SetCharacterEncodingFilter
 ### 6.5 Tomcat管理
 
 ## 第7章 Web服务器集成
