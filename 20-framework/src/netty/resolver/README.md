@@ -2,6 +2,14 @@
 ## package
 ```
 dns
+    DefaultDnsCache
+    DnsCache
+    DnsCacheEntry
+    DnsServerAddresses
+    DnsServerAddressStream
+    DnsQueryContext
+    DnsQueryContextManager
+    DnsNameResolver
 AbstractAddressResolver
 AddressResolver
 AddressResolverGroup

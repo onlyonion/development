@@ -187,11 +187,15 @@ sequenceDiagram
 ```
 
 ## 处理请求 service()
-* Servlet HttpServlet FrameworkServlet DispatcherServlet
+* Servlet --> HttpServlet --> FrameworkServlet --> DispatcherServlet
 * HandlerMapping HandlerExecutionChain HandlerAdapter
 * HandlerAdapter
 
 ### 请求经由Servlet最终到达DispatcherServlet
+* HttpServlet.service()
+* FrameworkServlet.service(), processRequest(), doService()
+* DispatcherServlet.doService(), doDispatch()
+
 ```mermaid
 sequenceDiagram
 

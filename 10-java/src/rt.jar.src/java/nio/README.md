@@ -34,10 +34,11 @@ file
     WatchEvent
     WatchKey
     WatchService
-HeapByteBuffer
-DirectByteBuffer
-ByteBuffer
 Buffer
+ByteBuffer
+DirectByteBuffer
+HeapByteBuffer
+MappedByteBuffer
 ```
 
 
