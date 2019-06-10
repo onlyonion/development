@@ -5,9 +5,9 @@
 李林锋，华为技术有限公司平台中间件架构与设计部设计师。
 
 * 基础篇 走进Java NIO  bio、nio、aio
-* 入门篇 NettyNIO开发指南 netty入门应用、TCP粘包拆包、分隔符和定长符解码器
-* 中级篇 Netty编解码开发指南 编解码、messagePack、GoogleProtobuf、JBossMarshalling
-* 高级篇 netty多协议开发和应用 http、websocket、私有协议
+  * 入门篇 NettyNIO开发指南 netty入门应用、TCP粘包拆包、分隔符和定长符解码器
+  * 中级篇 Netty编解码开发指南 编解码、messagePack、GoogleProtobuf、JBossMarshalling
+  * 高级篇 netty多协议开发和应用 http、websocket、私有协议
 * 源码篇 ByteBuff、Channel、Unsafe、ChannelPipeline和ChannelHandler、EventLoop和EventLoopGroup、Future和Promise
 * 高级特性 架构剖析、Java多线程应用、高性能之道、可靠性、安全性
 
@@ -162,7 +162,9 @@ io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，
 
 
 ## 第17章 ChannelPipeline和ChannelHandler
+Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责链模式的一种变形。
 ### 17.1 ChannelPipeline功能说明
+ChannelPipeline是ChannelHandler的容器，它负责ChannelHandler的管理和事件拦截与调度。
 #### 17.1.1 ChannelPipeline的事件处理
 #### 17.1.2 自定义拦截器
 ChannelPipeline通过ChannelHandler接口来实现时间的拦截和处理。
