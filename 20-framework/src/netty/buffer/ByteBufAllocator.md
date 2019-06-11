@@ -13,9 +13,17 @@ ByteBufAllocator (io.netty.buffer)
 ```plantuml
 @startuml
 
-interface ByteBufAllocator
-ByteBufAllocator ^.. AbstractByteBufAllocator
+interface ByteBufAllocator {
+    ByteBuf ioBuffer(int initialCapacity, int maxCapacity)
+    ByteBuf heapBuffer(int initialCapacity, int maxCapacity)
+    ByteBuf directBuffer(int initialCapacity, int maxCapacity)
+}
 
+ByteBufAllocator ^.. AbstractByteBufAllocator
+ByteBufAllocator ..> CompositeByteBuf
+
+
+''''''''''''''''''''''''分配器''''''''''''''''''''''''
 abstract class AbstractByteBufAllocator
 AbstractByteBufAllocator ^-- PooledByteBufAllocator
 AbstractByteBufAllocator ^-- UnpooledByteBufAllocator
