@@ -50,3 +50,6 @@ Oracle的官方给出的定义是：Fork/Join框架是一个实现了ExecutorSer
 1. ExecutorService接口的一个实现，可以帮助开发人员充分利用多核处理器的优势，编写出并行执行的程序，提高应用程序的性能；设计的目的是为了处理那些可以被递归拆分的任务。
 2. 与其它ExecutorService的实现类相似，会给线程池中的线程分发任务，不同之处在于它使用了工作窃取算法，所谓工作窃取，指的是对那些处理完自身任务的线程，会从其它线程窃取任务执行。
 3. 核心是ForkJoinPool类，该类继承了AbstractExecutorService类。ForkJoinPool实现了工作窃取算法并且能够执行 ForkJoinTask任务。
+
+
+[如何更直观理解进程、线程、事务的概念](https://www.cnblogs.com/xinchrome/p/4872428.html)
