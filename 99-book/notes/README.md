@@ -112,6 +112,8 @@
 * [《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译](/99-book/notes/70-dev-ops/Linux命令行与shell脚本编程大全.md)
 * [《Linux内核设计与实现》美 Robert Love著 陈莉君 康华 译](/99-book/notes/70-dev-ops/Linux内核设计与实现.md)
 * [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
+* [《C++Primer中文版》 李师贤 译 人民邮电出版社](/99-book/notes/70-dev-ops/C++Primer.md)
+* [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/99-book/notes/70-dev-ops/Go语言实战.md)
 
 ### 测试
 * 《软件测试基础》 周元哲

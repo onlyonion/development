@@ -35,8 +35,6 @@
   * [ProtocolHandler](/20-framework/src/tomcat/coyote/ProtocolHandler.md)
   * [Request](/20-framework/src/tomcat/coyote/Request.md)
   * [Response](/20-framework/src/tomcat/coyote/Response.md)
-* javax.servlet
-  * [FilterChain](/20-framework/src/tomcat/javax.servlet/FilterChain.md)
 * juli
 * naming
 * tomcat

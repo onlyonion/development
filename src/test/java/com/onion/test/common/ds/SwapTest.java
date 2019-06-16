@@ -1,4 +1,4 @@
-package com.onion.test.common.ds.sort;
+package com.onion.test.common.ds;
 
 import java.util.Arrays;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class SortTest {
+public class SwapTest {
 
     // 插入 直接插入、拆半插入、希尔排序
 

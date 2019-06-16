@@ -24,3 +24,16 @@ function merge(left, right) {
     return result;
 }
 mergeSort([3,9,2,4,12,1])
+
+
+function insertSort(arr) {
+    for (var i=1; i<arr.length; i++){
+        var mi = i;
+        // mi-1>=0，表示前一个数字存在
+        // arr[mi-1] > arr[mi]，表示前一个数字更大
+        while(mi-1 >= 0 && arr[mi-1] > arr[mi]){
+            [arr[mi], arr[mi-1]] = [arr[mi-1], arr[mi]]; // 交换
+            mi--;// 下标向前移动
+        }
+    }
+}

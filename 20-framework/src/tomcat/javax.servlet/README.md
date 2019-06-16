@@ -1,55 +1,87 @@
-
-## servlet
-```yuml
-// {type:class}
-
-// 1. Servlet
-[Servlet{bg:wheat}]
-[GenericServlet{bg:wheat}]
-[HttpServlet{bg:wheat}]
-
-// 1.1 Servlet的实现
-[Servlet]^-.-[GenericServlet]
-[ServletConfig]^-.-[GenericServlet]
-[GenericServlet]++-[ServletConfig]
-
-// 1.2 servlet接口、配置、上下文
-[Servlet]++-[ServletConfig]
-[ServletConfig]++-[ServletContext]
-
-// 1.3 请求-响应模型
-[ServletRequest]++-[AsyncContext]
-[ServletRequest]++-[ServletContext]
-[ServletRequest]++-[RequestDispatcher]
-[ServletRequest]++-[DispatcherType]
-
-[ServletResponse]
-
-// 1.4 http协议的servlet
-[GenericServlet]^-[HttpServlet]
-
-// 依赖
-[Servlet]uses->[ServletRequest]
-[Servlet]uses->[ServletResponse]
-
-// 2. 事件
-[ServletContextListener]uses->[ServletContextEvent]
-[ServletContextEvent]uses->[ServletContext]
-
-
-// 3. Filter
-[Filter]
-[FilterChain]
-[FilterConfig]++-[ServletContext]
-
-// 3.1 注册表
-[Registration]^-[FilterRegistration]
-
-// 依赖
-[Filter]uses->[FilterConfig]
-[Filter]uses->[ServletRequest]
-[Filter]uses->[ServletResponse]
-[FilterChain]uses->[ServletRequest]
-[FilterChain]uses->[ServletResponse]
-
+javax.servlet
+## package
+```
+annotation
+    HandlesTypes
+    HttpConstraint
+    HttpMethodConstraint
+    MultipartConfig
+    ServletSecurity
+    WebFilter
+    WebInitParam
+    WebListener
+    WebServlet
+descriptor
+    JspConfigDescriptor
+    JspPropertyGroupDescriptor
+    TaglibDescriptor
+http
+    Cookie
+    CookieNameValidator
+    HttpServlet
+    HttpServletRequest
+    HttpServletRequestWrapper
+    HttpServletResponse
+    HttpServletResponseWrapper
+    HttpSession
+    HttpSessionActivationListener
+    HttpSessionAttributeListener
+    HttpSessionBindingEvent
+    HttpSessionBindingListener
+    HttpSessionContext
+    HttpSessionEvent
+    HttpSessionIdListener
+    HttpSessionListener
+    HttpUpgradeHandler
+    HttpUtils
+    LocalStrings.properties
+    NoBodyOutputStream
+    NoBodyResponse
+    Part
+    RFC2109Validator
+    RFC6265Validator
+    WebConnection
+resources
+AsyncContext
+AsyncEvent
+AsyncListener
+DispatcherType
+Filter
+FilterChain
+FilterConfig
+FilterRegistration
+GenericServlet
+HttpConstraintElement
+HttpMethodConstraintElement
+LocalStrings.properties
+MultipartConfigElement
+ReadListener
+Registration
+RequestDispatcher
+Servlet
+ServletConfig
+ServletContainerInitializer
+ServletContext
+ServletContextAttributeEvent
+ServletContextAttributeListener
+ServletContextEvent
+ServletContextListener
+ServletException
+ServletInputStream
+ServletOutputStream
+ServletRegistration
+ServletRequest
+ServletRequestAttributeEvent
+ServletRequestAttributeListener
+ServletRequestEvent
+ServletRequestListener
+ServletRequestWrapper
+ServletResponse
+ServletResponseWrapper
+ServletSecurityElement
+SessionCookieConfig
+SessionTrackingMode
+SingleThreadModel
+UnavailableException
+WriteListener
 ```
