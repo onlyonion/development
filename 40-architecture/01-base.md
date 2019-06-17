@@ -4,6 +4,7 @@
 组件是对数据和方法的简单封装。简而言之，组件就是对象。C++ Builder中叫组件，Delphi中叫部件，而在Visual BASIC中叫控件。
 
 ### 模块 module
+模块化系统设计
 
 ### 构件 component 
 可复用的软件组成成份，可被用来构造其他软件。它可以是被封装的对象类、类树、一些功能模块、软件框架（framwork）、软件构架（或体系结构Architectural）、文档、分析件、设计模式（Pattern）等

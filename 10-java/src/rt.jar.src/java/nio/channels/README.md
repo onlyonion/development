@@ -1,3 +1,4 @@
+java.nio.channels
 
 ## package
 ```
@@ -11,9 +12,47 @@ AsynchronousServerSocketChannel
 AsynchronousSocketChannel
 
 // nio
-SelectionKey
+ByteChannel
+CancelledKeyException
+Channel
+Channels
+ClosedByInterruptException
+ClosedChannelException
+ClosedSelectorException
+CompletionHandler
+ConnectionPendingException
+DatagramChannel
+FileChannel
+FileLock
+FileLockInterruptionException
+GatheringByteChannel
+IllegalBlockingModeException
+IllegalChannelGroupException
+IllegalSelectorException
+InterruptedByTimeoutException
+InterruptibleChannel
+MembershipKey
+MulticastChannel
+NetworkChannel
+NoConnectionPendingException
+NonReadableChannelException
+NonWritableChannelException
+NotYetBoundException
+NotYetConnectedException
+OverlappingFileLockException
+Pipe
+ReadableByteChannel
+ReadPendingException
+ScatteringByteChannel
+SeekableByteChannel
 SelectableChannel
-SocketChannel
-ServerSocketChannel
+SelectionKey
 Selector
+ServerSocketChannel
+ShutdownChannelGroupException
+SocketChannel
+UnresolvedAddressException
+UnsupportedAddressTypeException
+WritableByteChannel
+WritePendingException
 ```

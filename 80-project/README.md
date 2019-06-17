@@ -37,3 +37,18 @@
 * 搜索模块 bigdata 大数据存储（Hadoop）、大数据检索（elasticSearch）、动静分离
 * 通知推送系统 msg 融云推送（活动推送、交易信息推送、异常提醒）、消息中间件
 * 聊天系统 im
+
+### 亿级流量多级缓存架构平台
+
+### 基于SpringCloud和Activiti工作流系统的微服务架构企业平台
+
+### 推荐系统
+
+### 金融量化投资平台
+期货量化投资
+
+涉及技术
+Python, Pandas, NumPy, Scikit-Learn, PySpark, SparkMLlib, 神经网络, svm, 逻辑回归算法
+
+
+

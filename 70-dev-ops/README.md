@@ -1,3 +1,9 @@
+## dev ops
+* 极限编程
+* 敏捷开发
+* CodeReview
+* 持续集成
+
 ## 代码管理
 * svn
 * git
