@@ -2,10 +2,13 @@
 * dao
 * jca
 * transaction
+  * interceptor
+    * [TransactionProxyFactoryBean](/20-framework/src/spring/spring-tx/transaction/interceptor/TransactionProxyFactoryBean.md)
+  * support
+    * [AbstractPlatformTransactionManager](/20-framework/src/spring/spring-tx/transaction/support/AbstractPlatformTransactionManager.md)
   * [PlatformTransactionManager](/20-framework/src/spring/spring-tx/transaction/PlatformTransactionManager.md)
   * [TransactionDefinition](/20-framework/src/spring/spring-tx/transaction/TransactionDefinition.md)
   * [TransactionInterceptor](/20-framework/src/spring/spring-tx/transaction/interceptor/TransactionInterceptor.md)
-  * [TransactionProxyFactoryBean](/20-framework/src/spring/spring-tx/transaction/interceptor/TransactionProxyFactoryBean.md)
 
 ## package
 org.springframework

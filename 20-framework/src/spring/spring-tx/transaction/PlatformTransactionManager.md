@@ -27,6 +27,19 @@ interface PlatformTransactionManager {
 }
 PlatformTransactionManager ^.. AbstractPlatformTransactionManage
 
+'''''''''''''''''''''''''''依赖'''''''''''''''''''''''''''
+interface TransactionDefinition
+interface TransactionStatus
+
+PlatformTransactionManager ..> TransactionDefinition
+PlatformTransactionManager ..> TransactionStatus
+
+interface SavepointManager
+interface Flushable
+SavepointManager ^-- TransactionStatus
+Flushable ^-- TransactionStatus
+
+'''''''''''''''''''''''''''实现'''''''''''''''''''''''''''
 abstract class AbstractPlatformTransactionManage
 AbstractPlatformTransactionManage ^-- DataSourceTransactionManager
 AbstractPlatformTransactionManage ^-- JtaTransactionManager
@@ -34,6 +47,10 @@ AbstractPlatformTransactionManage ^-- JtaTransactionManager
 class DataSourceTransactionManager
 class JtaTransactionManager
 
-
 @enduml
 ```
+
+## methods
+* getTransaction
+* commit
+* rollback

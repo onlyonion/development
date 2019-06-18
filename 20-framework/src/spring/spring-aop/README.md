@@ -28,10 +28,41 @@
 ```
 aspectj
 config
+    AopConfigUtils
 framework
+    adapter
+        AdvisorAdapter
+        AdvisorAdapterRegistry
+    autoproxy
+    AbstractAdvisingBeanPostProcessor
+    AbstractSingletonProxyFactoryBean
+    Advised
+    AdvisedSupport
+    AdvisedSupportListener
+    AdvisorChainFactory
+    AopConfigException
+    AopContext
+    AopInfrastructureBean
+    AopProxy
+    AopProxyFactory
+    AopProxyUtils
+    CglibAopProxy
+    DefaultAdvisorChainFactory
+    DefaultAopProxyFactory
+    InterceptorAndDynamicMethodMatcher
+    JdkDynamicAopProxy
+    ObjenesisCglibAopProxy
+    package-info
+    ProxyConfig
+    ProxyCreatorSupport
+    ProxyFactory
+    ProxyFactoryBean
+    ProxyProcessorSupport
+    ReflectiveMethodInvocation
 interceptor
 scope
 support
+    JdkRegexpMethodPointcut
 target
 
 Advisor

@@ -97,3 +97,22 @@ java.util.concurrent 中加入了 BlockingQueue 接口和五个阻塞队列类�
 
 ### SynchronousQueue
 特别之处在于它内部没有容器，一个生产线程，当它生产产品（即put的时候），如果当前没有人想要消费产品(即当前没有线程执行take)，此生产线程必须阻塞，等待一个消费线程调用take操作，take操作将会唤醒该生产线程，同时消费线程会获取生产线程的产品（即数据传递），这样的一个过程称为一次配对过程(当然也可以先take后put,原理是一样的)
+
+
+### [Java并发容器](https://www.cnblogs.com/ygj0930/p/6543901.html)
+
+ConcurrentSkipListMap的底层是通过跳表来实现的。跳表是一个链表，但是通过使用“跳跃式”查找的方式使得插入、读取数据时复杂度变成了O（logn）。
+跳表（SkipList）：使用“空间换时间”的算法，令链表的每个结点不仅记录next结点位置，还可以按照level层级分别记录后继第level个结点。
+
+ConcurrentSkipListMap线程安全的原理与非阻塞队列ConcurrentBlockingQueue的原理一样：
+利用底层的插入、删除的CAS原子性操作，通过死循环不断获取最新的结点指针来保证不会出现竞态条件。
+
+此法使用的就是“先大步查找确定范围，再逐渐缩小迫近”的思想进行的查找。
+
+ConcurrentHashMap采取了“锁分段”技术来细化锁的粒度：
+把整个map划分为一系列被成为segment的组成单元，一个segment相当于一个小的hashtable。
+这样，加锁的对象就从整个map变成了一个更小的范围——一个segment。
+
+ConcurrentHashMap线程安全并且提高性能原因就在于：对map中的读是并发的，无需加锁；
+只有在put、remove操作时才加锁，而加锁仅是对需要操作的segment加锁，不会影响其他segment的读写，
+由此，不同的segment之间可以并发使用，极大地提高了性能。

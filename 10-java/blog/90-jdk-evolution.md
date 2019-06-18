@@ -89,3 +89,8 @@ October 16, 2018
 335 弃用 Nashorn JavaScript 引擎
 336 弃用 Pack200 工具和 API
 [JDK 11主要特性一览](https://blog.csdn.net/cun_chen/article/details/82807552 )
+
+
+## Java 12
+java12不是LTS(Long-Term Support)版本(oracle版本才有LTS)，oracle对该版本的support周期为6个月。
+这个版本主要有几个更新点，一个是语法层更新，一个是API层面的更新，另外主要是GC方面的更新。

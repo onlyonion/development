@@ -20,11 +20,21 @@
 ### 2.1 Spring IoC容器概述
 #### 2.1.1 IoC容器和依赖反转模式
 #### 2.1.2 Spring IoC的应用场景
-#### 2.2 IoC容器系列的设计与实现：BeanFactory和ApplicationContext
-#### 2.2.1 Spring的IoC容器系列
-#### 2.2.2 Spring IoC容器的设计
 
-### 2.3 IC容器的初始化过程
+### 2.2 IoC容器系列的设计与实现：BeanFactory和ApplicationContext
+BeanFactory接口的简单容器系列，这系列容器只实现了容器的基本功能；
+ApplicationContext应用上下文，它作为容器的高级形态存在，添加了许多面向框架的特性，同时对应用环境做了许多适配。
+#### 2.2.1 Spring的IoC容器系列
+Spring通过定义BeanDefinition来管理基于Spring的应用中的各种对象以及它们之间的相互依赖关系。
+BeanDefinition抽象了对Bean的定义，是让容器起作用的主要数据类型。
+对IoC容器来说，BeanDefinition就是对依赖反正模式中管理的对象依赖关系的数据抽象，也是容器实现依赖反转功能的核心**数据结构**。
+#### 2.2.2 Spring IoC容器的设计
+1. BeanFactory的应用场景
+2. BeanFactory容器的设计原理
+3. ApplicationContext的应用场景
+4. ApplicationContext容器的设计原理
+
+### 2.3 IoC容器的初始化过程
 #### 2.3.1 BeanDefinition的Resource定位
 #### 2.3.2 BeanDefinition的载入和解析
 #### 2.3.3 BeanDefinition在IoC容器中的注册

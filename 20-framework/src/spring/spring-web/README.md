@@ -1,4 +1,12 @@
 ## spring-web
+* http
+  * client
+  * converter
+  * server
+* remoting
+  * caucho
+  * httpinvoker
+  * jaxws
 * web
   * accept
     * [ContentNegotiationManager](/20-framework/src/spring/spring-web/web/accept/ContentNegotiationManager.md)
@@ -22,8 +30,21 @@ org.springframework
 ```
 http
     client
+    codec
+        json
+        multipart
+        support
+        xml
     converter
     server
+        ServerHttpResponse
+        ServerHttpRequest
+        RequestPath
+    HttpStatus
+    HttpRequest
+    HttpMethod
+    HttpCookie
+    CacheControl
 remoting
     caucho
     httpinvoker

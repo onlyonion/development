@@ -120,6 +120,13 @@ Segment o-- HashEntry
 ## 1.5 remove
 和put类似，remove在真正获得锁之前，也会对链表进行遍历以提高缓存命中率
 
+## size
+ConcurrentHashMap在统计size时，经历了两次遍历：
+第一次不加锁地遍历所以segment，统计count和modCount的总和得到C1和M1；
+然后再次不加锁地遍历，得到C2和M2，比较M1和M2，
+如果修改次数没有发生变化则说明两次遍历期间map没有发生数量变化，那么C1就是可用的。
+如果M1不等于M2，则说明在统计过程中map的数量发生了变化，此时才采取最终手段——锁住整个map进行统计。
+
 
 # 2. jdk8 ConcurrentHashMap
 * 53个内部类
