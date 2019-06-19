@@ -33,7 +33,7 @@
 * [《MyBatis技术内幕》徐郡明](/99-book/notes/20-framework/Mybatis技术内幕.md)
 * [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/99-book/notes/20-framework/Spring技术内幕(2).md)
 * [《Spring源码深度解析》郝佳](/99-book/notes/20-framework/Spring源码深度解析.md)
-* 《Spring Boot实战》汪云飞
+* [《JavaEE开发的颠覆者：Spring Boot实战》汪云飞 中国工信出版社 电子工业出版社](/99-book/notes/20-framework/SpringBoot实战.md)
 * 《Spring Cloud与Docker微服务架构实战》周立
 * [《跟我学Shiro教程》张开涛](/99-book/notes/20-framework/跟我学Shiro教程.md)
 
