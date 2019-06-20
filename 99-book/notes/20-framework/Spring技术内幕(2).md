@@ -4,8 +4,6 @@
 * 组件 mvc, db, tx, http-invoker
 * 应用 acegi, dm, flex
 
-
-
 ## 第1章 Spring的设计理念和整体架构
 ### 1.1 Spring的各个子项目
 ### 1.2 Spring的设计目标
@@ -36,10 +34,80 @@ BeanDefinition抽象了对Bean的定义，是让容器起作用的主要数据�
 
 ### 2.3 IoC容器的初始化过程
 #### 2.3.1 BeanDefinition的Resource定位
+```plantuml
+@startuml
+
+FileSystemXmlApplicationContext -> AbstractRefreshableApplicationContext: refreshBeanFactory()
+AbstractRefreshableApplicationContext -> FileSystemResource: getResourceByPath()
+FileSystemResource --> FileSystemXmlApplicationContext: FileSystemResource
+
+@enduml
+```
+
 #### 2.3.2 BeanDefinition的载入和解析
+```plantuml
+@startuml
+
+AbstractApplicationContext -> AbstractRefreshableApplicationContext: refresh()
+AbstractRefreshableApplicationContext -> DefaultListableBeanFactory: createBeanFactory()
+AbstractRefreshableApplicationContext -> XmlBeanDefinitionReader: loadBeanDefinition()
+XmlBeanDefinitionReader -> BeanDefinitionParserDelegate: parserBeanDefinitionElement()
+BeanDefinitionParserDelegate --> AbstractApplicationContext: 
+
+@enduml
+```
+
 #### 2.3.3 BeanDefinition在IoC容器中的注册
+```plantuml
+@startuml
+
+XmlBeanDefinitonReader -> DefaultBeanDefinitionDocumentReader: processBeanDefiniton()处理Bean定义
+DefaultBeanDefinitionDocumentReader -> DefaultListableBeanFactory: registerBeanDefition()注册Bean定义
+DefaultListableBeanFactory --> XmlBeanDefinitonReader: beanDefinitonMap
+
+@enduml
+```
+
 
 ### 2.4 IoC容器的依赖注入
+```plantuml
+@startuml
+
+DefaultListableBeanFactory -> AbstractBeanFactory: doGetBean()
+AbstractBeanFactory -> AbstractAutowireCapableBeanFactory: createBean()
+activate AbstractAutowireCapableBeanFactory
+
+''''''''''''''''''''''''实例化''''''''''''''''''''''''
+AbstractAutowireCapableBeanFactory -> SimpleInstantiationStrategy: instantiate()
+activate SimpleInstantiationStrategy
+SimpleInstantiationStrategy --> AbstractAutowireCapableBeanFactory: instance
+deactivate SimpleInstantiationStrategy
+
+''''''''''''''''''''''''复制属性''''''''''''''''''''''''
+SimpleInstantiationStrategy -> AbstractAutowireCapableBeanFactory: populateBean()
+activate AbstractAutowireCapableBeanFactory #DarkSalmon
+AbstractAutowireCapableBeanFactory -> InstantiationAwareBeanPostProcessor: postProcessAfterInstantiation()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: applyPropertyValues()
+deactivate AbstractAutowireCapableBeanFactory
+
+''''''''''''''''''''''''初始化、感知、初始化之前、初始化、初始化之后''''''''''''''''''''''''
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: initializeBean()
+activate AbstractAutowireCapableBeanFactory #DarkSalmon
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: invokeAwareMethods()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: applyBeanPostProcessorsBeforeInitialization()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: invokeInitMethods()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: applyBeanPostProcessorsAfterInitialization()
+deactivate AbstractAutowireCapableBeanFactory
+
+AbstractAutowireCapableBeanFactory -> BeanDefinitionResolver: resovleRefrence()
+BeanDefinitionResolver --> DefaultListableBeanFactory: 
+
+''''''''''''''''''''''''注册关闭''''''''''''''''''''''''
+AbstractAutowireCapableBeanFactory -> AbstractBeanFactory: registerDisposableBeanIfNecessary()
+deactivate AbstractAutowireCapableBeanFactory
+
+@enduml
+```
 
 ### 2.5 容器其他相关特性的设计与实现
 #### 2.5.1 ApplicationContext和Bean的初始化及销毁
@@ -74,6 +142,19 @@ sequenceDiagram
     InvocationHandler->>RealSubject:invoke()
     InvocationHandler->>InvocationHandler:postInvoke()
 ```
+```plantuml
+@startuml
+
+Client -> Proxy: request()
+Proxy -> InvocationHandler: request()
+InvocationHandler -> InvocationHandler: preInvoke()前置处理
+InvocationHandler -> RealSubject: invoke()
+InvocationHandler -> InvocationHandler: postInvoke()后置处理
+
+@enduml
+```
+
+
 #### 3.2.2 Spring AOP的设计分析
 1. advice，pointcut
 2. 为目标对象建立代理对象，jdk，cglib

@@ -5,7 +5,7 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 
 ## 调用过程
 * 消费端
-  * rpc
+  * rpc 应用层协议
     - JavassitProxy 消费者动态代理对象 
     - InvokerInvocationHandler.invoke() 调用者处理器
     - MockClusterInvoker.invoke()  测试数据
@@ -17,7 +17,7 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
       - oneWay
       - async
       - sync ResponseFuture.get()
-  * remoting
+  * remoting 传输层协议
     - ExchangeClient
       - ReferenceCountExchangeClient.request() 
       - HeaderExchangeClient.request() 
@@ -28,16 +28,16 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
       - NettyChannel.send()
       - NioClientSocketChannel.write()
 * 服务端
-  * Thread
+  * Thread 线程模型
     - Thread.run()
     - ThreadPoolExecutor$Worker.run()
     - ThreadPoolExecutor.runWorker()
-  * remoting
+  * remoting 传输层协议
     - ChannelEventRunnable.run()
     - ChannelHandler 
       - DecodeHandler.received()
-      - HeaderExchangeHandler.received(), handleRequest()
-  * rpc
+      - HeaderExchangeHandler.received(), handleRequest()  请求-响应模型
+  * rpc 应用层协议
     - DubboProtocol
     - Filter链 
       - ProtocolFilterWrapper$1.invoke()

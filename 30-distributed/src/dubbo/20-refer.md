@@ -1,5 +1,5 @@
 ## refer 过程
-1. ReferenceBean.getObject()
+1. ReferenceBean.getObject() synchronized
 2. ReferenceConfig.init() 初始化配置
     * ApplicationConfig 
     * ModuleConfig 
@@ -7,13 +7,15 @@
     * MonitorConfig
 3. ReferenceConfig.createProxy() 创建代理
     * Protocol.refer() 根据协议引用远程服务
-        - InjvmProtocol
+        - InjvmProtocol 引入本地服务
         - DubboProtocol 
-            + AbstractInterfaceConfig.loadRegistries()
-            + loadMonitor()
+            + AbstractInterfaceConfig.loadRegistries() 加载注册中心
+            + loadMonitor() 加载监控中心
             + RegistryProtocol.refer() 注册协议、注册目录、集群策略、过滤器包装、交换层、传输层连接
-            + Cluster.join()
+                + 只有一个服务提供者
+                + Cluster.join() 多个服务提供者，集群
     * ProxyFactory.getProxy(invoker)  代理工厂生成代理
+        - JavassistProxyFactory
 
 ## graph
 ```mermaid

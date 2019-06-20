@@ -1,4 +1,4 @@
-
+com.alibaba.dubbo.remoting.Transporter
 ## hierachy
 ```
 Transporter (com.alibaba.dubbo.remoting)
@@ -8,14 +8,22 @@ Transporter (com.alibaba.dubbo.remoting)
 ```
 
 ## define
-
 * bind() 服务端绑定
 * connect() 连接服务端
 
-```yuml
-// {type:class}
-[Transporter]^-.-[MinaTransporter]
-[Transporter]^-.-[NettyTransporter]
-[Transporter]^-.-[GrizzlyTransporter]
+```plantuml
+@startuml
+interface Transporter {
+    Server bind(URL url, ChannelHandler handler) throws RemotingException;
+    Client connect(URL url, ChannelHandler handler) throws RemotingException;
+}
 
+Transporter ^.. MinaTransporter
+Transporter ^.. NettyTransporter
+Transporter ^.. GrizzlyTransporter
+
+NettyTransporter ..> NettyServer
+NettyTransporter ..> NettyClient
+
+@enduml
 ```

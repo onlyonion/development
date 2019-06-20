@@ -7,8 +7,36 @@ SpiEextension导引目路集衡调
 * [monitor](/30-distributed/src/dubbo/monitor/README.md) 监控模块：统计服务调用次数，调用时间的，调用链跟踪的服务
 * [registry](/30-distributed/src/dubbo/registry/README.md) 注册中心模块：基于注册中心下发地址的集群方式，以及对各种注册中心的抽象
 * [remoting](/30-distributed/src/dubbo/remoting/README.md) 远程通讯模块：相当于 Dubbo 协议的实现，如果 RPC 用 RMI协议则不需要使用此包。
+  * transport
+    * dispatcher
+      * [ChannelEventRunnable](/30-distributed/src/dubbo/remoting/transport/dispatcher/ChannelEventRunnable.md:1)
+    * netty
+      * [NettyChannel](/30-distributed/src/dubbo/remoting/transport/netty/NettyChannel.md)  
+    * DecodeHandler
+    * exchange
+      * support
+        * header
+          * HeaderExchangeHandler 请求-响应模型
 * [rpc](/30-distributed/src/dubbo/rpc/README.md) 远程调用模块：抽象各种协议，以及动态代理，只包含一对一的调用，不关心集群的管理
   * cluster 多个服务提供方封装成一个、负载均衡、容错、路由
+  * protocol
+    * dubbo
+      * DubboProtocol
+      * ProtocolFilterWrapper
+      * InvokerWrapper
+      * AbstractProxyInvoker
+  * filter
+    * EchoFilter
+    * ClassLoaderFilter
+    * GenericFilter
+    * ContextFilter
+    * TraceFilter
+    * MonitorFilter
+    * TimeoutFilter
+    * ExceptionFilter
+  * proxy
+    * javassit
+      * JavasistProxyFactory
 
 ### 解析
 * [00-stack](/30-distributed/src/dubbo/00-stack.md)

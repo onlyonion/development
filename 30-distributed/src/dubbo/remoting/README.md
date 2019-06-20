@@ -1,5 +1,7 @@
+com.alibaba.dubbo.remoting
 
 ## remoting
+TCP协议
 * 交换层
 * 端对端的抽象
 * 传输层网络协议
@@ -11,7 +13,7 @@
 buffer
     ChannelBuffer
     ChannelBufferFactory
-exchange
+exchange 信息交换
     ExchangeChannel
     ExchangeClient
     ExchangeHandler
@@ -22,33 +24,33 @@ exchange
     Response
     ResponseCallback
     ResponseFuture
-http
-p2p
-telnet
-transport
+http 应用层协议-http
+p2p 应用层协议-点对点协议
+telnet 远程登录
+transport 传输层
     codec
     dispatcher
     grizzly
     mina
     netty
-zookeeper
+zookeeper 注册中心
     curator
     support
     zkclient
     
-Channel
-ChannelHandler
-Client
-Codec
+Channel 通道
+ChannelHandler 通道处理器
+Client 客户端
+Codec 编解码
 Codec2
 Decodeable
-Dispatcher
-Endpoint
+Dispatcher 调度、派发
+Endpoint 端
 ExecutionException
 RemotingException
-Server
+Server 服务端
 TimeoutException
-Transporter
+Transporter 传输层
 Transporters
 ```
 

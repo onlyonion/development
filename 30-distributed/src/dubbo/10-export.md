@@ -1,13 +1,13 @@
 ## export 过程
 1. ServiceBean
-    * afterPropertiesSet() 配置初始化
+    * afterPropertiesSet() 初始化配置
         - ProviderConfig
         - ApplicationConfig
         - RegistryConfig
         - MonitorConfig
         - ProtocolConfig
     * onApplicationEvent()
-2. ServiceConfig.export() doExport() 配置检查
+2. ServiceConfig.export() doExport() 检查配置
     * checkDefault() 
     * checkApplication() 
     * checkRegistry() 
@@ -23,7 +23,7 @@
             + proxyFactory.getInvoker() 动态代理
             + protocol.export(invoker)  远程协议
                 * RegistryProtocol.export(invoker) 服务注册、订阅、发现
-                * DubboProtocol.export(invoker) 创建服务、交换层、传输层（绑定地址、监听端口）
+                * DubboProtocol.export(invoker) 注册到exporterMap；打开服务器、交换层、传输层（绑定地址、监听端口）
 
 ## graph
 ```mermaid
