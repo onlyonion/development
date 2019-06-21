@@ -10,6 +10,7 @@ LoadBalance (com.alibaba.dubbo.rpc.cluster)
         ConsistentHashLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
 ```
 ## define
+```plantuml
 @startuml
 
 interface LoadBalance
@@ -28,8 +29,13 @@ AbstractLoadBalance <|-- ConsistentHashLoadBalance
 interface Cluster
 
 @enduml
+```
 
+
+## Collection
+```plantuml
 @startuml
+
 abstract class AbstractList
 abstract AbstractCollection
 interface List
@@ -53,18 +59,9 @@ MINUTES
 }
 
 @enduml
+```
 
-
-
-@startuml
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-@enduml
-
-
+## package
 
 @startuml
 package "Some Group" {

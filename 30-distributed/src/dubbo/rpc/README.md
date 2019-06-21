@@ -93,7 +93,16 @@ proxy
     AbstractProxyInvoker
     InvokerInvocationHandler
 service
+    EchoService
+    GenericException
+    GenericService
 support
+    DelegateExporter
+    DelegateInvoker
+    MockInvoker
+    MockProtocol
+    ProtocolUtils
+    RpcUtils
 Exporter
 ExporterListener
 Filter

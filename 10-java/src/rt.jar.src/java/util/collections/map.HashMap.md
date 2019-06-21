@@ -83,7 +83,8 @@ HashMap +-- Entry
 @enduml
 ```
 
-## 1.3 put()
+## methods
+### put()
 1. 如果数组为空数组，则数组初始化
 2. key为null的情况特殊处理，置于table[0]
 3. 确定数组索引位置。根据key计算hash值，找到相应的数组下标：hash & (length – 1) 位运算
@@ -92,7 +93,7 @@ HashMap +-- Entry
   * 容量大于阈值，需要rehash()，重新哈希计算数组索引位置
   * 创建新Entry，置于数组索引位置，压入单向链表，数量自增
 
-### put()时序
+#### put()时序
 ```plantuml
 @startuml
 
@@ -119,27 +120,34 @@ HashMap -> HashMap: addEntry(hash, key, value, i) 添加新元素
 HashMap --> Actor: 返回null
 @enduml
 ```
-
-### 数组下标确定流程
+#### 数组初始化
+在第一个元素插入 HashMap 的时候做一次数组的初始化，就是先确定初始的数组大小，并计算数组扩容的阈值。
+#### 数组下标确定流程
 * key计算hashCode
 * hashCode再哈希 位运算
 * 确定数组索引 位运算
+
 ```mermaid
 graph LR
 key --hashCode--> hashCode;
 hashCode --hash--> h;
 h --indexFor--> 存储下标;
 ```
+#### 添加节点到链表中
+找到数组下标后，会先进行 key 判重，如果没有重复，就准备将新值放入到链表的**表头**。
 
-## 1.4 rehash()
+#### 数组扩容 
+前面我们看到，在插入新值的时候，如果当前的 size 已经达到了阈值，并且要插入的数组位置上已经有元素，那么就会触发扩容，扩容后，数组大小为原来的 2 倍。
 
-## 1.5 get()
+PS:resize是HashMap，rehash是ConcurrentHashMap
+
+### get()
 1. key为null特殊处理
-2. 确定数组索引位置
+2. 确定数组索引位置；找到相应的数组下标：hash & (length - 1)
 3. 遍历该数组位置处的链表，返回哈希值相等或者key equals（==或equals）的元素
 
 
-## 1.6 remove()
+### remove()
 1. key为null特殊处理
 2. 确定数组索引位置
 3. 遍历链表，当哈希值相等或者key equals的时候，将此元素离开链表

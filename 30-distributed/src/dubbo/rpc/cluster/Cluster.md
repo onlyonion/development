@@ -3,15 +3,15 @@ com.alibaba.dubbo.rpc.cluster.Cluster
 ## hierarchy
 ```
 Cluster (com.alibaba.dubbo.rpc.cluster)
-    FailbackCluster (com.alibaba.dubbo.rpc.cluster.support) 失败自动恢复，后台记录失败请求，定时重发，通常用于消息通知操作。
+    FailfastCluster (com.alibaba.dubbo.rpc.cluster.support) 快速失败，只发起一次调用，失败立即报错，通常用于非幂等性的写操作。
     FailoverCluster (com.alibaba.dubbo.rpc.cluster.support) 失败转移，当出现失败，重试其它服务器，通常用于读操作，但重试会带来更长延迟。
-    AvailableCluster (com.alibaba.dubbo.rpc.cluster.support)
+    FailbackCluster (com.alibaba.dubbo.rpc.cluster.support) 失败自动恢复，后台记录失败请求，定时重发，通常用于消息通知操作。
     FailsafeCluster (com.alibaba.dubbo.rpc.cluster.support) 失败安全，出现异常时，直接忽略，通常用于写入审计日志等操作。
     ForkingCluster (com.alibaba.dubbo.rpc.cluster.support) 并行调用，只要一个成功即返回，通常用于实时性要求较高的操作，但需要浪费更多服务资源。
-    FailfastCluster (com.alibaba.dubbo.rpc.cluster.support) 快速失败，只发起一次调用，失败立即报错，通常用于非幂等性的写操作。
     BroadcastCluster (com.alibaba.dubbo.rpc.cluster.support)
-    MockClusterWrapper (com.alibaba.dubbo.rpc.cluster.support.wrapper)
+    AvailableCluster (com.alibaba.dubbo.rpc.cluster.support)
     MergeableCluster (com.alibaba.dubbo.rpc.cluster.support)
+    MockClusterWrapper (com.alibaba.dubbo.rpc.cluster.support.wrapper)
 ```
 * 读 fail over
 * 写 fail fast
@@ -27,11 +27,11 @@ public interface Cluster {
 ```
 
 ## 集群管理
-目路集衡
-* Cluster.join(Directory<T>)  集群容错 
-* Directory.list(Invocation) 目录服务
-* Router.route(List<Invoker<T>>, URL, Invocation) 路由
-* LoadBalance.select(List<Invoker<T>>, URL, Invocation) 负载均衡
+目、路、集、衡
+* 集群容错 Cluster.join(Directory<T>)   
+* 目录服务 Directory.list(Invocation) 
+* 路由规则 Router.route(List<Invoker<T>>, URL, Invocation) 
+* 负载均衡 LoadBalance.select(List<Invoker<T>>, URL, Invocation) 
 
 ```yuml
 // {type:class}

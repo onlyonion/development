@@ -1,10 +1,20 @@
-## 1. 定义
+com.alibaba.dubbo.rpc.ProxyFactory
+
+## hierarchy
+```
+ProxyFactory (com.alibaba.dubbo.rpc)
+    AbstractProxyFactory (com.alibaba.dubbo.rpc.proxy)
+        JavassistProxyFactory (com.alibaba.dubbo.rpc.proxy.javassist)
+        JdkProxyFactory (com.alibaba.dubbo.rpc.proxy.jdk)
+    StubProxyFactoryWrapper (com.alibaba.dubbo.rpc.proxy.wrapper)
+```
+
+## define
 * 代理工厂，生成代理，生成调用器
 * jdk动态代理、javassit代理
 
-## 2. 类图
 
-### 字节码框架
+## 字节码框架
 * asm
 * javassit
 * jdk

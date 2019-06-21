@@ -19,15 +19,15 @@ Executor
 * 内部类
   * Worker
 * 域
-  * 工作队列
-  * 全局锁
-  * 工作线程集合
-  * 全局锁条件
-  * 线程工厂
-  * 饱和策略
-  * 存活时间
-  * 核心线程池数量
-  * 最大线程池数量
+  * 工作队列 BlockingQueue<Runnable> workQueue
+  * 全局锁 ReentrantLock mainLock
+  * 工作线程集合 HashSet<Worker> workers
+  * 全局锁条件 
+  * 线程工厂 ThreadFactory
+  * 饱和策略 RejectedExecutionHandler
+  * 存活时间 keepAliveTime
+  * 核心线程池数量 corePoolSize
+  * 最大线程池数量 maximumPoolSize
 
 ```plantuml
 @startuml

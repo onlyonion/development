@@ -9,11 +9,12 @@
     * Protocol.refer() 根据协议引用远程服务
         - InjvmProtocol 引入本地服务
         - DubboProtocol 
-            + AbstractInterfaceConfig.loadRegistries() 加载注册中心
-            + loadMonitor() 加载监控中心
+            + AbstractInterfaceConfig.loadRegistries() 抽象接口配置，加载注册中心
+            + AbstractInterfaceConfig.loadMonitor() 加载监控中心
             + RegistryProtocol.refer() 注册协议、注册目录、集群策略、过滤器包装、交换层、传输层连接
-                + 只有一个服务提供者
-                + Cluster.join() 多个服务提供者，集群
+                - DubboInvoker
+            + 只有一个服务提供者
+            + Cluster.join() 多个服务提供者，集群
     * ProxyFactory.getProxy(invoker)  代理工厂生成代理
         - JavassistProxyFactory
 
