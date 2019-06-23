@@ -192,6 +192,24 @@ InvocationHandler -> InvocationHandler: postInvoke()后置处理
 // ProxyFactoryBean可以在容器中完成声明式配置
 [ProxyCreatorSupport]^-[ProxyFactoryBean]
 ```
+```plantuml
+@startuml
+
+class ProxyCofing
+class AdvisedSupprot
+class ProxyCreatorSupport
+class ProxyFactory
+class ProxyFactoryBean
+
+ProxyConfig ^-- AdviseSupport
+
+
+
+
+
+@enduml
+```
+
 #### 3.3.2 配置ProxyFactoryBean
 1. 定义使用的通知器Advisor，把它定义为一个bean
 2. 定义ProxyFactoryBean，把它作为另一个bena来定义
@@ -295,19 +313,96 @@ sequenceDiagram
 
 ## 第6章 Spring事务处理的实现
 ### 6.1 Spring与事务处理
+* ACID。涉及并发和数据一致性问题。
+* 单库事务
+* 分布式事务
+
 ### 6.2 Spring事务处理的设计概览
+* ProxyConfig
+  * AbstractSingletonProxyFactoryBean
+    * TransactionProxyFactoryBean
+* TransactionAspectSupport
+  * TransactionInterceptor 
+* PlatformTransactionManager TransactionStatus
+  * ResoureceManager
+  * AbstractPlatformTransactionManager
+
 ### 6.3 Spring事务处理的应用场景
+
 ### 6.4 Spring声明式事务处理
 #### 6.4.1 设计原理与基本过程
+* 读取和处理IoC容器中配置的事务处理属性，并转化为Spring事务处理需要的内部数据结构。
+  * TransactionAttributeSourceAdvisor
+* 统一的事务处理过程。事务处理属性配置，线程绑定。TransactionInfo、TransactionStatus
+* 底层事务处理的实现。具体的事务处理器。
+
 #### 6.4.2 实现分析
+1.事务处理拦截器的配置
+
+```plantuml
+@startuml
+
+AbstractSingletonProxyFactoryBean -> AbstractSingletonProxyFactoryBean: afterPropertiesSet()
+AbstractSingletonProxyFactoryBean -> TransactionProxyFactoryBean: createMainInterceptor()
+TransactionProxyFactoryBean -> TransactionInterceptor: afterPropertiesSet()
+TransactionInterceptor -> PlatformTransactionManager: new
+TransactionInterceptor -> TransactionAttributeSource: new
+
+@enduml
+```
+
+2.事务处理配置的读入
+3.事务处理拦截器的设计与实现
+  * TransactionProxyFactoryBean.getObject()
+  * TransactionInterceptor.invoke()
+
+```plantuml
+@startuml
+
+TransactionInterceptor -> TransactionInterceptor: getTransactionAttributeSource()
+TransactionInterceptor -> PlatformTransactionManager: determineTransactionManager()
+
+TransactionInterceptor -> TransactionInfo: createTransactionIfNecessary() 创建事务
+TransactionInterceptor -> TransactionInterceptor: proceedWithInvocation() 执行
+TransactionInterceptor -> TransactionInfo: cleanupTransactionInfo() 清除事务
+
+TransactionInterceptor -> PlatformTransactionManager: commitTransactionAfterReturning() 提交事务
+
+@enduml
+```
+
+
 ### 6.5 Spring事务处理的设计与实现
 #### 6.5.1 Spring事务处理的编程式使用
 #### 6.5.2 事务的创建
+```plantuml
+@startuml
+
+TransactionAspectSupport -> AbstractPlatformTransactionManager: getTransaction()
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager: doGetTransaction()
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager: handleExistingTransaction()
+AbstractPlatformTransactionManager -> AbstractPlatformTransactionManager: doBegin()/resume()
+
+AbstractPlatformTransactionManager -> TransactionStatus: newTransactionStatus()
+TransactionAspectSupport -> TransactionInfo: new()
+
+TransactionInfo -> TransactionInfo: newTransactionStatus()
+TransactionInfo -> TransactionInfo: bindToThread()
+TransactionInfo --> TransactionAspectSupport: TransactionInfo()
+
+@enduml
+```
+
 #### 6.5.3 事务的挂起
 #### 6.5.4 事务的提交
 #### 6.5.5 事务的回滚
 ### 6.6 Spring事务处理器的设计与实现
 #### 6.6.1 Spring事务处理的应用场景
+* PlatformTransactionManager
+  * AbstractPlatformManager doGetTransaction(),doBegin(),doCommit(),doRollback()
+    * DataSourceTransactionManager
+    * JpaTransactionManager
+
 #### 6.6.2 DataSourceTransactionManager的实现
 #### 6.6.3 HibernateTransactionManager的实现
 ### 6.7 小结

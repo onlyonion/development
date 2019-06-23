@@ -6,11 +6,11 @@ Executor
     ExecutorService
         AbstractExecutorService (java.util.concurrent)
             ThreadPoolExecutor (java.util.concurrent)
-                BrokerFixedThreadPoolExecutor (org.apache.rocketmq.broker.latency)
+                ScheduledThreadPoolExecutor (java.util.concurrent)
+                QuantumRenderer (com.sun.javafx.tk.quantum)
                 ComInvoker in Win32ShellFolderManager2 (sun.awt.shell)
                 MemoryAwareThreadPoolExecutor (org.jboss.netty.handler.execution)
-                QuantumRenderer (com.sun.javafx.tk.quantum)
-                ScheduledThreadPoolExecutor (java.util.concurrent)
+                BrokerFixedThreadPoolExecutor (org.apache.rocketmq.broker.latency)
                 ThreadPoolExecutor (org.apache.tomcat.util.threads)
                 WorkerPoolExecutor (org.apache.http.impl.bootstrap)
 ```
@@ -60,7 +60,7 @@ class ThreadPoolExecutor {
     - boolean addWorker(Runnable firstTask, boolean core)
     - Runnable getTask()
     .. 核心函数 ..
-    final void runWorker(Worker w)
+    final void runWorker(Worker w) 
     .. 模板方法 执行之前、之后、退出 ..
     # void beforeExecute(Thread t, Runnable r)
     # void afterExecute(Runnable r, Throwable t)
@@ -70,8 +70,8 @@ AbstractExecutorService <|-- ThreadPoolExecutor
 
 ThreadPoolExecutor o-- BlockingQueue
 ThreadPoolExecutor o-- ReentrantLock
-ThreadPoolExecutor o-- ThreadFactory
-ThreadPoolExecutor o-- RejectedExecutionHandler
+ThreadPoolExecutor o--- ThreadFactory
+ThreadPoolExecutor o--- RejectedExecutionHandler
 
 interface ThreadFactory
 
@@ -80,6 +80,8 @@ abstract class AbstractQueuedSynchronizer {
     + final void acquire(int arg)
     + final boolean release(int arg)
 }
+interface Runnable
+Runnable ^.. Worker
 class Worker {
     final Thread thread
     Runnable firstTask
@@ -89,7 +91,19 @@ class Worker {
 }
 
 AbstractQueuedSynchronizer <|-- Worker
-ThreadPoolExecutor +-- Worker
+ThreadPoolExecutor +- Worker
+
+'''''''''''''''''''' BlockingQueue ''''''''''''''''''''
+interface BlockingQueue<E>
+class LinkedBlockingQueue<E>
+class SynchronousQueue<E> 
+class DelayQueue<E extends Delayed> 
+
+BlockingQueue ^.. LinkedBlockingQueue
+BlockingQueue ^.. SynchronousQueue
+BlockingQueue ^.. DelayQueue
+
+DelayQueue o-- PriorityQueue
 
 '''''''''''''''''''' RejectedExecutionHandler ''''''''''''''''''''
 interface RejectedExecutionHandler
@@ -99,14 +113,10 @@ RejectedExecutionHandler <|-- AbortPolicy
 RejectedExecutionHandler <|-- DiscardPolicy
 RejectedExecutionHandler <|-- DiscardOldestPolicy
 
-ThreadPoolExecutor +-- CallerRunsPolicy
-ThreadPoolExecutor +-- AbortPolicy
-ThreadPoolExecutor +-- DiscardPolicy
-ThreadPoolExecutor +-- DiscardOldestPolicy
-
-'''''''''''''''''''' ScheduledThreadPoolExecutor ''''''''''''''''''''
-class ScheduledThreadPoolExecutor
-ThreadPoolExecutor <|-- ScheduledThreadPoolExecutor
+'ThreadPoolExecutor +-- CallerRunsPolicy
+'ThreadPoolExecutor +-- AbortPolicy
+'ThreadPoolExecutor +-- DiscardPolicy
+'ThreadPoolExecutor +-- DiscardOldestPolicy
 
 @enduml
 ```
