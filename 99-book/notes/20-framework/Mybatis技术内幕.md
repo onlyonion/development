@@ -1,14 +1,29 @@
 《MyBatis技术内幕》徐郡明 中国工信出版集团 电子工业出版社
 
+* 接口层 SqlSession
+* 核心处理层 配置解析、参数映射、SQL解析、SQL执行、结果集映射、插件
+* 基础支持层 数据源、事务管理、缓存、binding、反射、类型转换、日志、资源加载、解析器
+
 ## 第1章 Mybatis快速入门
+### 1.1 ORM简介
+应用程序与关系型数据库之间进行交互时，数据在对象和关系结构中的表、列、字段等之间进行转换。
+
+JDBC是Java与数据库交互的统一API，实际上它分为两组API，一组是面向Java应用程序开发人员的API，另一组是面向数据库驱动程序开发人员的API。
+### 1.2 常见的持久化框架
+* Hibernate
+* JPA
+* spring JDBC 使用模板方式对原生JDBC封装。template、Callback
+* MyBatis
+  
 ### 1.4 Mybatis整体架构
+
 #### 1.4.1 基础支持层
 * 反射模块
 * 类型转换模块 别名机制，JDBC类型与Java类型之间
 * 日志模块
-* 资源加载模块 类加载器的封装
+* 资源加载模块 类加载器的封装，确定类加载器的使用顺序，并提供了加载文件以及其他资源文件的功能
 * 解析器模块 XPath、动态SQL占位符
-* 数据源模块
+* 数据源模块 连接池
 * 事务管理
 * 缓存模块 一级、二级缓存，Mybatis的两级缓存与整个应用运行在同一个JVM中，共享同一块堆内存。Redis、Memcache
 * Binding模块 自定义的Mapper接口与映射配置文件关联起来，通过调用自定义的Mapper接口中的方法执行响应的SQL语句；动态代理
@@ -43,6 +58,7 @@ XPath使用路径表达式来选取XML文档中指定的节点或节点集合。
 #### 2.2.4 Property工具集
 #### 2.2.5 MetaClass
 #### 2.2.6 ObjectWrapper
+包装器模式
 
 ### 2.3 类型转换
 #### 2.3.1 TypeHandler
@@ -55,9 +71,9 @@ XPath使用路径表达式来选取XML文档中指定的节点或节点集合。
 1. 单一职责
 2. 开放-封闭原则
 3. 里氏替换
-4. 接口隔离
+4. 接口隔离 一个类对另一个类的依赖应该建立在最小的接口上。
 5. 依赖倒转
-6. 迪米特原则
+6. 迪米特原则 一个类应该对其他对象保持最少的了解。
 
 #### 2.4.2 日志适配器
 #### 2.4.3 代理模式与JDK动态代理
@@ -81,6 +97,7 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
 #### 2.5.2 ClassLoaderWrapper
 #### 2.5.3 ResolverUtil
 #### 2.5.4 单例模式
+双重检查 + synchronized + volatile
 #### 2.5.5 VFS
 虚拟文件系统，用来查找指定路径下的资源。
 
@@ -91,11 +108,30 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
 #### 2.6.4 PooledDataSource
 
 ### 2.7 Transaction
+* Transaction
+  * JdbcTransaction
+  * ManagedTransaction
+* TransactionFactory
+  * JdbcTransactionFactory
+  * ManagedTransactionFactory
+
 ### 2.8 binding模块
 #### 2.8.1 MapperRegistry&MapperProxyFactory
 #### 2.8.2 MapperProxy
-#### 2.8.3 MapperMethod
+实现了InvocationHandler接口。
+* SqlSession
+* mapperInterface
+* invoke 判断Object内置方法；缓存中获取MapperMethod对象，如果缓存未命中，创建新的并添加到缓存
+  * MapperMethod.execute(sqlSession, args)
 
+#### 2.8.3 MapperMethod
+封装了Mapper接口中对应**方法**的信息，以及对应**SQL语句**的信息。
+可看做是Mapper接口以及映射配置文件中定义的sql语句的桥梁。
+* SqlCommand SqlCommandType（insert、update、delete、select、flush）
+* ParamNameResovler
+* MethodSignature
+
+PS：指令集操作码、操作数。
 ### 2.9 缓存模块
 #### 2.9.1 装饰器模式
 装饰器模块可以动态的为对象添加功能，基于组合的方式实现。
@@ -110,6 +146,7 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
   * SoftReference 创建SoftReference对象时，可以为其关联到一个引用队列，当ReferenceQueue所引用的对象被GC回收时，
   jvm就会将SoftReference对象添加到与之关联的引用队列中。
   * WeakReference
+* ScheduledCache & LoggingCache & SynchronizedCache & SerializedCache
 
 #### 2.9.3 Cachekey
 
@@ -117,6 +154,7 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
 配置解析、参数映射、SQL解析、SQL执行、结果集映射、插件
 ### 3.1 Mybatis初始化
 #### 3.1.1 建造者模式
+将一个复杂对象的构建过程与它的表示分离，从而使得同样的构建过程可以创建不同的表示。
 #### 3.1.2 BaseBuilder
 #### 3.1.3 XMLConfigBuilder
 1. 解析&lt;properties&gt;节点
@@ -145,13 +183,13 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
 #### 3.1.7 处理incomplete*集合
 
 ### 3.2 SqlNode&SqlSource
-sql节点被解析成MappedStatement对象，**sql语句**被解析成SqlSource对象，**sql语句中的动态sql节点、文本节点**，由SqlNode接口的相应实现表示
+sql节点被解析成MappedStatement对象，sql语句被解析成**SqlSource对象**，sql语句中的动态sql节点、文本节点，由**SqlNode接口**的相应实现表示。
+
 DynamicSqlSource处理动态sql，RawSqlSource处理静态语句，两者最终都会被处理后的sql语句封装成staticSqlSource返回。
 
 #### 3.2.1 组合模式
 将对象组合成树形结构，已表示“部分--整体”的层次结构，用户可以像处理一个简单对象一样来处理一个复杂对象。
 #### 3.2.2 OGNL表达式简介
-
 1. 表达式
 2. root对象
 3. OgnlContext 上下文对象
@@ -175,7 +213,7 @@ MyBatis中的延迟加载是通过动态代理实现的。
 1. cglib 字节码技术实现动态代理
 2. javassist 开源的生成java字节码的类库
 3. ResultLoader&ResultLoaderMap
-4. ProxyFactory
+4. ProxyFactory JavassitProxyFactory, CglibProxyFactory
 5. DefaultResultSetHandler的相关实现
 
 #### 3.3.6 多结果集处理
@@ -191,12 +229,21 @@ MyBatis中的延迟加载是通过动态代理实现的。
 StatementHandler 接口中的功能很多，例如创建 Statement 对象，为 SQL 语句绑定实参，执行 select、 insert、 update 、 delete 等多
 种类型的 SQL 语句，批量执行 SQL 语句，将结果集映射成结果对象。
 
+* StatementHandler
+  * RoutingStatementHandler
+  * BaseStatementHandler
+    * PreparedStatementHandler
+    * CallableStatementHandler
+    * SimpleStatementHandler
+
 ```plantuml
 @startuml
 
 interface StatementHandler
 StatementHandler ^.. RoutingStatementHandler
 StatementHandler ^.. BaseStatementHandler
+
+RoutingStatementHandler o-- StatementHandler
 
 abstract class BaseStatementHandler 
 
@@ -219,6 +266,12 @@ StatementHandler 依赖 ParameterHandler 和 ResultSetHandler完成了 MyBatis �
 映射等一系列核心流程。
 
 ### 3.6 Executor
+* Executor
+* CachingExecutor
+* BaseExecutor
+  * BatchExector
+  * SimpleExecutor
+  * ReuseExecutor
 
 ```plantuml
 @startuml
@@ -228,6 +281,8 @@ abstract class BaseExecutor
 
 Executor ^.. CachingExecutor
 Executor ^.. BaseExecutor
+
+CachingExecutor o--Executor
 
 BaseExecutor ^-- BatchExector
 BaseExecutor ^-- SimpleExecutor
@@ -242,13 +297,9 @@ BaseExecutor ^-- ReuseExecutor
 使用了模板方法模式。主要提供了缓存管理和事务管理的基本功能。
 继承BaseExecutor的子类只要实现四个基本方法来完成数据库的相关操作，doUpdate()、doQuery()、doQueryCursor()、doFlushStatement()
 
-1. 一级缓存 
-
-会话级别的缓存，每创建一个SqlSession对象，就表示开启一次数据库会话。
-一级缓存生命周期与SqlSession相同，伴随一次session的打开与关闭。
-PrepetualCache
-
-一级缓存还可以通过DeferedLoad实现延迟加载的功能
+##### 一级缓存 
+会话级别的缓存，每创建一个SqlSession对象，就表示开启一次数据库会话。一级缓存生命周期与SqlSession相同，伴随一次session的打开与关闭。
+PrepetualCache，一级缓存还可以通过DeferedLoad实现延迟加载的功能。
 
 #### 3.6.3 SimpleExecutor
 一级缓存等固定不变的操作都封装到了BaseExecutor中，SimpleExecutor只专注实现4个基本方法。
@@ -256,24 +307,32 @@ PrepetualCache
 重用Statement功能
 #### 3.6.5 BatchExecutor
 jdbc中的批处理只支持insert、update、delete等类型的sql语句，不支持select类型。
-#### 3.6.5 CachingExecutor
-是一个Executor接口的装饰器，它为Executor对象增加了二级缓存的相关功能。
-
-##### 1. 二级缓存 
-
+#### 3.6.6 CachingExecutor
+CachingExecutor是一个Executor接口的装饰器，它为Executor对象增加了二级缓存的相关功能。
+##### 二级缓存 
 应用级别的缓存，它的生命周期与应用程序的生命周期相同。
 1. mybatis-config.xml配置文件中cacheEnabled配置，二级缓存的总开关。
 2. 映射配置文件中的&lt;cache&gt;节点或&lt;cached-ref&gt;节点。
 3. &lt;select&gt;节点中的useCache属性，默认true
 
-##### 2. TransactionCache & TransactionalCacheManger
-##### 3. CacheingExecutor实现
+顺序，先查找二级缓存，再查找一级缓存。
+##### TransactionCache & TransactionalCacheManger
+##### CacheingExecutor实现
+* 每次查询结果都直接写入到一级缓存缓存。
+* 在事务提交时，才将TransactionCache.entriesToAddOnCommit集合中缓存的数据写入到二级缓存。防止出现“脏读”，类似于“不可重复读”
+如果事务未提交就写入二级缓存，另一个事务线程来直接读取二级缓存，出现“脏读”（读未提交）。
 
 ### 3.7 接口层
+* SqlSessionFactory
+  * DefaultSqlSessionFactory
+  * SqlSessionManager
+* SqlSession
+  * DefaultSqlSession
+
 #### 3.7.1 策略模式
 策略模式定义了一系列算法，将每一个算法封装起来，由不同的类进行管理，并让他们之间可以相互替换。
-
 #### 3.7.2 SqlSession
+selectOne, selectMap, selectList -> selectList -> Executor.query
 #### 3.7.3 DefaultSqlSessionFactory
 #### 3.7.4 SqlSessionManager
 SqlSessionManager 同时实现了 SqlSession 接口和 SqlSessionFactory 接口 ，也就同时提供了SqlSessionFactory 创建 SqlSession 对象
@@ -292,7 +351,13 @@ SqlSessionManager 同时实现了 SqlSession 接口和 SqlSessionFactory 接口 
 2. JsqlParse介绍
 3. 分表插件
 
-选择具体的分表功能是通过在Mybatis中添加一个分表插件实现的，在该插件中拦截Executor.update()方法和Executor.query()方法，根据参数计算分表的编号后缀。之后插件会将表名与编号名组合形成分表名称，解析并修改sql语句，最终得到可以在大过年前分库中直接执行的sql语句。
+选择具体的分表功能是通过在Mybatis中添加一个分表插件实现的，在该插件中拦截Executor.update()方法和Executor.query()方法，根据参数计算分表的编号后缀。
+之后插件会将表名与编号名组合形成分表名称，解析并修改sql语句，最终得到可以在大过年前分库中直接执行的sql语句。
+
+* ShardInterceptor 持有分片策略和sql解析工厂
+  * ShardStragegy
+  * SqlParserFactory
+
 
 ```plantuml
 @startuml
@@ -323,7 +388,7 @@ ShardResultLocal o-- ShardResult
 3. 单例模式
 4. 访问者模式
 
-> 访问者模式 抽象处理某种数据结构中各元素的操作，可以在不改变数据结构的前提下，添加处理数据结构中指定元素的新操作。
+> 访问者模式 抽象处理某种**数据结构**中各元素的操作，可以在不改变数据结构的前提下，添加处理数据结构中指定**元素的新操作**。
 
 缺点：限制了数据结构的扩展
 

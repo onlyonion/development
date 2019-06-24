@@ -37,7 +37,7 @@
   * [MapperScannerConfigurer](/20-framework/src/mybatis/mybatis-spring/mapper/MapperScannerConfigurer.md)
 
 
-## sql 
+## sql 执行
 * SqlSession
 * Executor
 * StatementHandler
