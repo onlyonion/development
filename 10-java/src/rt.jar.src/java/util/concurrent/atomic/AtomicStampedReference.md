@@ -8,8 +8,16 @@ AtomicStampedReference可以原子更新两个值：引用和版本号，通过�
 @startuml
 
 class AtomicStampedReference<V> {
-
+    - volatile Pair<V> pair
 }
+
+AtomicStampedReference +-- Pair
+AtomicStampedReference o-- Unsafe
+
+class Unsafe
 
 @enduml
 ```
+
+### Unsafe
+* compareAndSwapObject

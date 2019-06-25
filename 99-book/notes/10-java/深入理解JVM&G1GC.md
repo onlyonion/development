@@ -1,8 +1,67 @@
 《深入理解JVM & G1 GC》 周明耀 中国工信出版社 电子工业出版社
 
 ## 第1章 JVM & GC基础知识
+### 1.2 基本术语
+#### 1.2.3 G1涉及术语
+* Metaspace
+* Mixed GC Event
+* Reclaimable
+* RSet Rememberd Set，跟踪指向某个堆区（Region）内的对象引用
+* CSet Collection Set，收集集合
+* G1 Pause Time Target
+* Root Region Scan 跟区间扫描，标记所有可达的存活对象
+* PLAB Promotion Local Allocation Buffers，用于年轻代回收
+* TLAB 线程本地分配缓存，一个线程专用的内存分配区
+* Lock-free Manner
+* Region 将堆进行分区，划分为一个区域，每次收集的时候，只收集其中几个区域，以此控制停顿时间。
+
 ## 第2章 JVM & GC深入知识
+### 2.1 Java虚拟机内存模型
+* 程序计数器
+* 虚拟机栈
+* 本地方法栈
+* Java堆
+* 方法区
+  * 运行时常量池
+  * 类型信息、域信息、方法信息
+
+### 2.2 垃圾收集算法
+### 2.3 Garbage Collection
+#### 2.3.7 Garbage First（G1）GC
+* 分区
+* 区域的类型， Unused Region, Eden Region, Survivor Region年轻代空间；
+* 大对象 Humongous Object
+* 全垃圾收集
+* 并行循环
+* 堆大小
+
+### 2.4 常见问题解析
+
 ## 第3章 G1 GC应用示例
+### 3.2 选项解释及应用
+* -XX:G1HeapRegionSize 1-32MB；增大有利于处理大对象。
+
 ## 第4章 深入G1 GC
+### 4.1 G1 GC概念简述
+### 4.2 G1 GC分代管理
+#### 4.2.1 年轻代
+#### 4.2.2 年轻代回收暂停
+#### 4.2.3 大对象区间
+#### 4.2.4 混合回收暂停
+#### 4.2.5 回收集合及其重要性
+#### 4.2.6 RSet及其重要性
+#### 4.2.7 并行标记循环
+#### 4.2.8 评估失败和完全回收
+### 4.3 G1 GC使用场景
+### 4.4 G1 GC论文原文翻译（部分）
+
+
 ## 第5章 G1 GC性能优化方案
+### 5.1 G1的年轻代回收
+### 5.2 年轻代优化
+### 5.3 并行标记阶段优化
+### 5.4 混合回收阶段
+### 5.5 如何避免出现GC失败
+### 5.6 引用处理
+
 ## 第6章 JVM诊断工具使用介绍
