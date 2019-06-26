@@ -8,12 +8,21 @@ Documentation
 drivers
 firmware
 fs
+    ext4
+    fat
+    hpfs
+    hfs
 include
 init
 ipc
 kernel
 lib
 mm
+    mempolicy.c
+    mempool.c
+    memory.c
+    memcontrol.c
+    page_alloc.c
 net
 samples
 scripts
@@ -22,4 +31,5 @@ sound
 tools
 usr
 virt
+    kvm
 ```

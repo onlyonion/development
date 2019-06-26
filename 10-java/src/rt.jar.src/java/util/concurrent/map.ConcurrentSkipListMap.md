@@ -33,6 +33,8 @@ class Node<K,V> {
     volatile Node<K,V> next
 }
 
+Node o-- Unsafe
+
 class Index<K,V> {
     final Node<K,V> node
     final Index<K,V> down
@@ -43,3 +45,6 @@ class Index<K,V> {
 ```
 
 ## methods
+
+### Unsafe
+* compareAndSwapObject
