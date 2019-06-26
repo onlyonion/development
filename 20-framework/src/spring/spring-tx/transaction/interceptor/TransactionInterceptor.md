@@ -31,7 +31,7 @@ Advice ^-- Interceptor
 Interceptor ^-- MethodInterceptor
 MethodInterceptor ^.. TransactionInterceptor
 
-'''''''''''''基类''''''''''''''
+'''''''''''''事务切面支撑''''''''''''''
 abstract class TransactionAspectSupport {
     - PlatformTransactionManager transactionManager
 	- TransactionAttributeSource transactionAttributeSource
@@ -39,6 +39,7 @@ abstract class TransactionAspectSupport {
 }
 TransactionAspectSupport ^-- TransactionInterceptor
 
+'''''''''''''事务拦截器''''''''''''''
 class TransactionInterceptor {
     + Object invoke(final MethodInvocation invocation)
 }

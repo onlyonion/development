@@ -3,7 +3,7 @@
 ### 1.1 init export stack
 ```
 // netty 异步非阻塞
-// 服务层
+// 服务层 CS架构
 doOpen:69, NettyServer (com.alibaba.dubbo.remoting.transport.netty)
 <init>:62, AbstractServer (com.alibaba.dubbo.remoting.transport)
 <init>:63, NettyServer (com.alibaba.dubbo.remoting.transport.netty)
@@ -13,7 +13,7 @@ bind:33, NettyTransporter (com.alibaba.dubbo.remoting.transport.netty)
 bind:-1, Transporter$Adpative (com.alibaba.dubbo.remoting)                      扩展点自适应
 bind:57, Transporters (com.alibaba.dubbo.remoting)
 
-// 交换层
+// 交换层 报文头交换
 bind:41, HeaderExchanger (com.alibaba.dubbo.remoting.exchange.support.header)
 bind:71, Exchangers (com.alibaba.dubbo.remoting.exchange)
 
@@ -26,7 +26,9 @@ export:245, DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
 export:56, ProtocolListenerWrapper (com.alibaba.dubbo.rpc.protocol)
 export:94, ProtocolFilterWrapper (com.alibaba.dubbo.rpc.protocol)
 export:-1, Protocol$Adpative (com.alibaba.dubbo.rpc)                            扩展点自适应
-doLocalExport:163, RegistryProtocol (com.alibaba.dubbo.registry.integration)
+
+// 本地协议导出、远程协议导出
+doLocalExport:163, RegistryProtocol (com.alibaba.dubbo.registry.integration)    
 export:116, RegistryProtocol (com.alibaba.dubbo.registry.integration)
 
 // filter-listener
@@ -76,21 +78,23 @@ wrapInternal:49, ChannelHandlers (com.alibaba.dubbo.remoting.transport.dispatche
 wrap:37, ChannelHandlers (com.alibaba.dubbo.remoting.transport.dispatcher)
 wrapChannelHandler:119, AbstractClient (com.alibaba.dubbo.remoting.transport)
 
-// 传输层
+// 传输层 CS架构
 <init>:61, NettyClient (com.alibaba.dubbo.remoting.transport.netty)
 connect:37, NettyTransporter (com.alibaba.dubbo.remoting.transport.netty)
 connect:-1, Transporter$Adpative (com.alibaba.dubbo.remoting)
 connect:76, Transporters (com.alibaba.dubbo.remoting)
 
-// 交换层
+// 交换层 报文头
 connect:37, HeaderExchanger (com.alibaba.dubbo.remoting.exchange.support.header)
 connect:110, Exchangers (com.alibaba.dubbo.remoting.exchange)
 
-// 协议层
+// 协议层  本地协议、远程协议
 initClient:370, DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
 getSharedClient:336, DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
 getClients:313, DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
 refer:295, DubboProtocol (com.alibaba.dubbo.rpc.protocol.dubbo)
+
+// 过滤器
 refer:101, ProtocolFilterWrapper (com.alibaba.dubbo.rpc.protocol)
 refer:65, ProtocolListenerWrapper (com.alibaba.dubbo.rpc.protocol)
 refer:-1, Protocol$Adpative (com.alibaba.dubbo.rpc)
@@ -367,9 +371,9 @@ doFilter:166, ApplicationFilterChain (org.apache.catalina.core)
 // tomcat 管道阀 pipeline-valve
 invoke:199, StandardWrapperValve (org.apache.catalina.core)
 invoke:96, StandardContextValve (org.apache.catalina.core)
-invoke:478, AuthenticatorBase (org.apache.catalina.authenticator)
+invoke:478, AuthenticatorBase (org.apache.catalina.authenticator)  认证
 invoke:140, StandardHostValve (org.apache.catalina.core)
-invoke:81, ErrorReportValve (org.apache.catalina.valves)
+invoke:81, ErrorReportValve (org.apache.catalina.valves) 错误报告阀门
 invoke:87, StandardEngineValve (org.apache.catalina.core)
 
 // tomcat 适配器 adapter
@@ -378,10 +382,13 @@ service:342, CoyoteAdapter (org.apache.catalina.connector)
 // tomcat 输入输出 nio protocol
 service:803, Http11Processor (org.apache.coyote.http11)
 process:66, AbstractProcessorLight (org.apache.coyote)
+
 // tomcat 连接处理
 process:868, AbstractProtocol$ConnectionHandler (org.apache.coyote)
+
 // tomcat 非阻塞IO端 
 doRun:1459, NioEndpoint$SocketProcessor (org.apache.tomcat.util.net)
+
 // tomcat 套接字处理器
 run:49, SocketProcessorBase (org.apache.tomcat.util.net)
 
@@ -414,7 +421,7 @@ invoke:91, ProtocolFilterWrapper$1 (com.alibaba.dubbo.rpc.protocol)
 invoke:74, ListenerInvokerWrapper (com.alibaba.dubbo.rpc.listener)
 invoke:53, InvokerWrapper (com.alibaba.dubbo.rpc.protocol)
 
-// cluster
+// cluster 集群、目录、路由、负载均衡
 doInvoke:47, FailfastClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
 invoke:227, AbstractClusterInvoker (com.alibaba.dubbo.rpc.cluster.support)
 invoke:27, IterationClusterInvoker (com.onion.middleware.rpcext)
@@ -424,16 +431,22 @@ invoke:72, MockClusterInvoker (com.alibaba.dubbo.rpc.cluster.support.wrapper)
 invoke:52, InvokerInvocationHandler (com.alibaba.dubbo.rpc.proxy)
 getProfile:-1, proxy9 (com.alibaba.dubbo.common.bytecode)
 
-// 
+// 线程池
 updateProfile:171, ApplicationContext (com.onion.sso.client.core)
 access$000:45, ApplicationContext (com.onion.sso.client.core)
 run:240, ApplicationContext$1 (com.onion.sso.client.core)
 run:47, TtlRunnable (com.alibaba.ttl)
+
+// 异步
 call:471, Executors$RunnableAdapter (java.util.concurrent)
 runAndReset:304, FutureTask (java.util.concurrent)
+
+// 调度线程池
 access$301:178, ScheduledThreadPoolExecutor$ScheduledFutureTask (java.util.concurrent)
 run:293, ScheduledThreadPoolExecutor$ScheduledFutureTask (java.util.concurrent)
 runWorker:1145, ThreadPoolExecutor (java.util.concurrent)
+
+// 工作者
 run:615, ThreadPoolExecutor$Worker (java.util.concurrent)
 run:745, Thread (java.lang)
 ```

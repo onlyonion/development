@@ -5,6 +5,16 @@ org.springframework.cache.interceptor.CacheInterceptor
 AbstractCacheInvoker (org.springframework.cache.interceptor)
     CacheAspectSupport (org.springframework.cache.interceptor)
         CacheInterceptor (org.springframework.cache.interceptor)
+CacheInterceptor (org.springframework.cache.interceptor)
+    CacheAspectSupport (org.springframework.cache.interceptor)
+        AbstractCacheInvoker (org.springframework.cache.interceptor)
+        BeanFactoryAware (org.springframework.beans.factory)
+            Aware (org.springframework.beans.factory)
+        InitializingBean (org.springframework.beans.factory)
+        SmartInitializingSingleton (org.springframework.beans.factory)
+    MethodInterceptor (org.aopalliance.intercept)
+        Interceptor (org.aopalliance.intercept)
+            Advice (org.aopalliance.aop)
 ```
 
 ## define
@@ -14,6 +24,10 @@ AbstractCacheInvoker (org.springframework.cache.interceptor)
 ''''''''''''''''''''''''''''AbstractCacheInvoker'''''''''''''''''''''''''''''''''''
 abstract class AbstractCacheInvoker {
     # SingletonSupplier<CacheErrorHandler> errorHandler
+    # Cache.ValueWrapper doGet(Cache cache, Object key)
+    # void doPut(Cache cache, Object key, @Nullable Object result)
+    # void doEvict(Cache cache, Object key)
+    # void doClear(Cache cache)
 }
 interface CacheErrorHandler
 AbstractCacheInvoker o-- CacheErrorHandler
@@ -28,15 +42,38 @@ BeanFactoryAware ^.. CacheAspectSupport
 InitializingBean ^.. CacheAspectSupport
 SmartInitializingSingleton ^.. CacheAspectSupport
 
-abstract class CacheAspectSupport {
+abstract class CacheAspectSupport #orange {
+    - CacheOperationSource cacheOperationSource
+    - CacheResolver cacheResolver
     - SingletonSupplier<KeyGenerator> keyGenerator
 }
+CacheAspectSupport o-- CacheResolver
 
 ''''''''''''''''''''''''''''CacheInterceptor'''''''''''''''''''''''''''''''''''
 CacheAspectSupport ^-- CacheInterceptor
-class CacheInterceptor {
+class CacheInterceptor #orange {
 
 }
+
+''''''''''''''''''''''''''''CacheResolver-CacheManager'''''''''''''''''''''''''''''''''''
+interface CacheResolver 
+abstract class AbstractCacheResolver
+class SimpleCacheResolver
+
+CacheResolver ^.. AbstractCacheResolver
+AbstractCacheResolver ^-- SimpleCacheResolver
+AbstractCacheResolver o-- CacheManager
+
+interface CacheManager #yellow
+abstract class AbstractCacheManager
+abstract class AbstractTransactionSupportingCacheManager
+class RedisCacheManager
+class EhCacheCacheManager
+
+CacheManager ^.. AbstractCacheManager
+AbstractCacheManager ^-- AbstractTransactionSupportingCacheManager
+AbstractTransactionSupportingCacheManager ^-- RedisCacheManager
+AbstractTransactionSupportingCacheManager ^-- EhCacheCacheManager
 
 @enduml
 ```

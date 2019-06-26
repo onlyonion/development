@@ -1,8 +1,7 @@
-1.5.9
-
 org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext
 
-## define
+1.5.9
+## package
 ```
 DefaultResourceLoader (org.springframework.core.io)
     AbstractApplicationContext (org.springframework.context.support)
@@ -13,7 +12,56 @@ DefaultResourceLoader (org.springframework.core.io)
                 ServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
                     AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
                     XmlServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+        AbstractRefreshableApplicationContext (org.springframework.context.support)
+            AbstractRefreshableConfigApplicationContext (org.springframework.context.support)
+                AbstractRefreshableWebApplicationContext (org.springframework.web.context.support)
+                    XmlWebApplicationContext (org.springframework.web.context.support)
 ```
+## define
+```plantuml
+@startuml
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+class DefaultResourceLoader
+abstract class AbstractApplicationContext
+class GenericApplicationContext #yellow {
+    - final DefaultListableBeanFactory beanFactory
+	- ResourceLoader resourceLoader
+}
+GenericApplicationContext o-- DefaultListableBeanFactory
+GenericApplicationContext o-- ResourceLoader
+
+class GenericWebApplicationContext #yellow {
+	- ServletContext servletContext
+	- ThemeSource themeSource
+}
+GenericWebApplicationContext o-- ServletContext
+GenericWebApplicationContext o-- ThemeSource
+
+class EmbeddedWebApplicationContext
+
+DefaultResourceLoader ^-- AbstractApplicationContext
+AbstractApplicationContext ^-- GenericApplicationContext
+GenericApplicationContex ^-- GenericWebApplicationContext
+GenericWebApplicationContext ^-- EmbeddedWebApplicationContext
+EmbeddedWebApplicationContext ^-- AnnotationConfigEmbeddedWebApplicationContext
+
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+class AnnotationConfigEmbeddedWebApplicationContext #orange{
+    - Class<?>[] annotatedClasses
+    - String[] basePackages
+}
+
+AnnotationConfigEmbeddedWebApplicationContext o-- AnnotatedBeanDefinitionReader
+AnnotationConfigEmbeddedWebApplicationContext o-- ClassPathBeanDefinitionScanner
+
+interface BeanDefinitionRegistry
+AnnotatedBeanDefinitionReader o-- BeanDefinitionRegistry
+BeanDefinitionRegistry ^.. DefaultListableBeanFactory
+
+@enduml
+```
+
 
 ## 类图
 ```yuml

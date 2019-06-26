@@ -165,10 +165,21 @@ ConcurrentHashMap在统计size时，经历了两次遍历：
 
 <img src="10-java/img/java8-map-ConcurrentHashMap.png" width="50%" height="50%">
 
+
+1.8版本舍弃了segment，并且大量使用了synchronized，以及CAS无锁操作以保证ConcurrentHashMap操作的线程安全性。
+至于为什么不用ReentrantLock而是Synchronzied呢？实际上，synchronzied做了很多的优化，包括偏向锁，轻量级锁，重量级锁，可以依次向上升级锁状态，但不能降级
+
+
 ## 2.1 define
 * 静态域
 * 实例域
 * 内部类
+
+
+sizeCtl是控制标识符，不同的值表示不同的意义。
+* 负数代表正在进行初始化或扩容操作
+* -1代表正在初始化
+* -N 表示有N-1个线程正在进行扩容操作
 
 ```plantuml
 @startuml
@@ -266,6 +277,9 @@ TreeBin o-- TreeNode
 #### 扩容：tryPresize  
 #### 数据迁移：transfer
 
+Doug Lea采用Unsafe.getObjectVolatile来获取，为什么不直接从每个线程的table[index]中取？
+因为每个线程中取到的table的元素，有可能不是最新的，而Unsafe.getObjectVolatile()可以直接从内存中获取最新的元素
+
 ### get 过程分析
 1. 计算 hash 值 
 2. 根据 hash 值找到数组对应位置: (n - 1) & h 
@@ -294,4 +308,5 @@ sizeCtl的不同值来代表不同含义，起到了控制的作用。
 * [ConcurrentHashMap在JDK7和JDK8中的不同实现原理](https://blog.csdn.net/woaiwym/article/details/80675789)
 * [ConcurrentHashMap能完全替代HashTable吗？](https://my.oschina.net/hosee/blog/675423)
 * [Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析](http://www.importnew.com/28263.html)
+* [并发容器之ConcurrentHashMap(JDK 1.8版本)](https://www.jianshu.com/p/c02a5627d0a5)
 

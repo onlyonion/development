@@ -14,6 +14,15 @@ DefaultResourceLoader (org.springframework.core.io)
                     XmlWebApplicationContext (org.springframework.web.context.support)
                     GroovyWebApplicationContext (org.springframework.web.context.support)
                     AnnotationConfigWebApplicationContext (org.springframework.web.context.support)
+            GenericApplicationContext (org.springframework.context.support)
+                AnnotationConfigApplicationContext (org.springframework.context.annotation)
+                    GenericWebApplicationContext (org.springframework.web.context.support)
+                        EmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
+                            AnnotationConfigEmbeddedWebApplicationContext (org.springframework.boot.context.embedded) 1.5.9
+                            XmlEmbeddedWebApplicationContext (org.springframework.boot.context.embedded)
+                        ServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
+                            AnnotationConfigServletWebServerApplicationContext (org.springframework.boot.web.servlet.context) 2.0.3
+                            XmlServletWebServerApplicationContext (org.springframework.boot.web.servlet.context)
 ```
 
 ## define
@@ -27,18 +36,28 @@ DefaultResourceLoader (org.springframework.core.io)
 ```plantuml
 @startuml
 
-abstract class AbstractRefreshableApplicationContext {
+abstract class AbstractApplicationContext
+class GenericApplicationContext
+AbstractApplicationContext ^-- AbstractRefreshableApplicationContext
+AbstractApplicationContext ^-- GenericApplicationContext
+
+''''''''''''''''''''''''''AbstractRefreshableApplicationContext''''''''''''''''''''''''''
+abstract class AbstractRefreshableApplicationContext #orange {
     - DefaultListableBeanFactory beanFactory
     # final void refreshBeanFactory()
     # DefaultListableBeanFactory createBeanFactory()
     .. 刷新bean工厂 ..
     # final void refreshBeanFactory()
+    .. 创建bean工厂 ..
     # DefaultListableBeanFactory createBeanFactory()
     .. 加载bean定义 ..
     # abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
 }
 
-abstract class AbstractRefreshableConfigApplicationContext
+AbstractRefreshableApplicationContext o-- DefaultListableBeanFactory
+
+abstract class AbstractRefreshableConfigApplicationContext #yellow
+AbstractRefreshableConfigApplicationContext o-- configLocations
 AbstractRefreshableApplicationContext ^-- AbstractRefreshableConfigApplicationContext
 
 ''''''''''''''''''''''''''AbstractXmlApplicationContext''''''''''''''''''''''''''

@@ -27,6 +27,7 @@ sequenceDiagram
     AbstractRefreshableApplicationContext ->> FileSystemResource: getResourceByPath()
     FileSystemResource -->> FileSystemXmlApplicationContext: FileSystemResource
 ```
+
 ### BeanDefinition的载入于解析
 * createBeanFactory
 * loadBeanDefinitions

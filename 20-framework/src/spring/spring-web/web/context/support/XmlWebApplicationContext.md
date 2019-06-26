@@ -11,12 +11,23 @@ DefaultResourceLoader (org.springframework.core.io)
                 AbstractXmlApplicationContext (org.springframework.context.support)
                     ClassPathXmlApplicationContext (org.springframework.context.support)
                     FileSystemXmlApplicationContext (org.springframework.context.support)
+XmlWebApplicationContext (org.springframework.web.context.support)
+    AbstractRefreshableWebApplicationContext (org.springframework.web.context.support)
+        AbstractRefreshableConfigApplicationContext (org.springframework.context.support)
+            AbstractRefreshableApplicationContext (org.springframework.context.support)
+            BeanNameAware (org.springframework.beans.factory)
+            InitializingBean (org.springframework.beans.factory)
+        ConfigurableWebApplicationContext (org.springframework.web.context)
+            ConfigurableApplicationContext (org.springframework.context)
+                ApplicationContext (org.springframework.context)
+                Closeable (java.io)
+                Lifecycle (org.springframework.context)
+            WebApplicationContext (org.springframework.web.context)
+                ApplicationContext (org.springframework.context)
+        ThemeSource (org.springframework.ui.context)
 ```
 
 ## define
-
-* loadBeanDefinitions
-
 ```plantuml
 @startuml
 class DefaultResourceLoader
@@ -53,3 +64,7 @@ XmlWebApplicationContext ..> XmlBeanDefinitionReader
 
 @enduml
 ```
+## methods
+* loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
+* loadBeanDefinitions(XmlBeanDefinitionReader reader)
+* String[] getDefaultConfigLocations()

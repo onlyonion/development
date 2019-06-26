@@ -1,0 +1,45 @@
+## package
+```
+BUILD
+client
+cmake
+cmd-line-utils
+dbug
+Docs
+extra
+include
+libmysql
+libmysqld
+libservices
+man
+mysql-test
+mysys
+mysys_ssl
+packaging
+plugin
+regex
+scripts
+source_downloads
+sql
+sql-bench
+sql-common
+storage
+    archive
+    blackhole
+    csv
+    example
+    federated
+    heap
+    innobase
+    myisam
+    myisammrg
+    ndb
+    perfschema
+strings
+support-files
+tests
+unittest
+vio
+win
+zlib
+```

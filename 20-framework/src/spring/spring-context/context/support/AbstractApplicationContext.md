@@ -1,6 +1,12 @@
 org.springframework.context.support.AbstractApplicationContext
 
 ## hierarchy
+* AbstractApplicationContext
+  * AbstractRefreshableApplicationContext
+    * AbstractRefreshableConfigApplicationContext
+  * GenericApplicationContext
+    * GenericWebApplicationContext
+  
 ```
 DefaultResourceLoader (org.springframework.core.io)
     AbstractApplicationContext (org.springframework.context.support)

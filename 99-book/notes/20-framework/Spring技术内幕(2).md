@@ -154,7 +154,6 @@ InvocationHandler -> InvocationHandler: postInvoke()后置处理
 @enduml
 ```
 
-
 #### 3.2.2 Spring AOP的设计分析
 1. advice，pointcut
 2. 为目标对象建立代理对象，jdk，cglib
@@ -202,10 +201,6 @@ class ProxyFactory
 class ProxyFactoryBean
 
 ProxyConfig ^-- AdviseSupport
-
-
-
-
 
 @enduml
 ```
@@ -269,16 +264,79 @@ sequenceDiagram
 #### 4.2 Web环境中的Spring MVC
 ### 4.3 上下文在Web容器中的启动
 #### 4.3.1 IoC容器启动的基本过程
+* ContextLoaderListener
+  * ServletContextListener
+* ContextLoader
+* XmlWebApplicationContext
+
 #### 4.3.2 Web容器中的上下文设计
+* ApplicatonContext
+  * WebApplicationContext
+    * GenericWebApplicationContext
+    * ConfigurableWebapplicationContext
+      * AbstractRefreshableWebApplicationContext
+        * XmlWebApplicationContext
+      * StaticWebApplicationContext
+
 #### 4.3.3 ContextLoader的设计与实现
+入口ContextLoaderListener，实现ContextLoader
+
 ### 4.4 Spring MVC的设计与实现
 #### 4.4.1 Spring MVC的应用场景
+* ContextLoaderListener
+* DispatcherServlet 前端控制器，所有的Web请求都要经过它来处理，转发、匹配、数据处理，页面展示
+  * HandlerMapping
+
 #### 4.4.2 Spring MVC设计概览
+ContextLoaderListener初始化完成之后，Web容器开始初始化DispatcherServlet。
+* HttpServlet
+  * HttpServletBean
+    * FrameworkServlet
+      * DispatcherServlet
+ 
+```plantuml
+@startuml
+
+''''''''''''''''''''''''''启动过程''''''''''''''''''''''''''
+HttpServletBean -> FrameworkServlet: initServletBean()
+FrameworkServlet -> FrameworkServlet: initWebApplicationContext()
+
+FrameworkServlet -> DispatcherServlet: onRefresh()
+DispatcherServlet -> DispatcherServlet: initStrategies()
+
+''''''''''''''''''''''''''请求处理''''''''''''''''''''''''''
+HttpServletBean -> FrameworkServlet: service()
+FrameworkServlet -> FrameworkServlet: processRequest()
+FrameworkServlet -> FrameworkServlet: doServie()
+
+FrameworkServlet -> DispatcherServlet: doDispatch()
+
+@enduml
+```
+      
 #### 4.4.3 DispatcherServlet的启动和初始化
+根上下文和Web应用对应的一个上下文，而DispatcherServlet持有的上下文是和Servlet对应的一个上下文。
+在一个Web应用中，往往可以容纳多个Servlet存在，与此相对应，对于应用在Web容器中的上下体系，
+一个根上下文可以作为许多Servlet上下文的双亲上下文。
+
+* DispatcherServlet的初始化
+* 取得根上下文
+* FrameworkServlet建立WebApplicationContext
+* DispatcherServlet对MVC框架的初始化
+* DispatcherServlet对HandlerMapping的初始化
+
 #### 4.4.4 MVC处理HTTP分发请求
+* HandlerMapping的配置和设计原理
+* 使用HandlerMapping完成请求的映射处理
+* SpringMVC对HTTP请求的分发处理
+  * DispatcherServlet.doService, doDispatch
+    * HandlerMapping -> HandlerAdapter -> HandlerInterceptor -> ViewResolver -> View
+
 ### 4.5 Spring MVC视图的呈现
 #### 4.5.1 DispatcherServlet视图呈现的设计
+DispatcherServlet.render()
 #### 4.5.2 JSP视图的实现
+JstlView
 #### 4.5.3 ExcelView的实现
 #### 4.5.4 PDF视图的实现
 ### 4.6 小结

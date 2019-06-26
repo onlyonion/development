@@ -19,7 +19,7 @@ class HandlerExecutionChain {
 }
 
 interface HandlerInterceptor
-HandlerExecutionChain o-- HandlerInterceptor
+HandlerExecutionChain "1" o-- "*" HandlerInterceptor
 
 @enduml
 ```

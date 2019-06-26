@@ -1,6 +1,57 @@
 sun.misc.Unsafe
 
 ## define
+native的，需要调用JNI接口，也即通过操作系统来保证这些方法的执行
+
+### 内存管理
+* reallocateMemory
+* allocateMemory
+* freeMemory
+* setMemory
+* copyMemory
+* pageSize
+* addressSize
+
+### thread + schedule
+* park
+* unpark
+
+### synchronized
+monitorEnter
+monitorExit
+
+### cas
+* compareAndSwapObject
+* compareAndSwapInt
+* compareAndSwapLong
+
+### volatile
+* getObjectVolatile
+* getIntVolatile
+* getBooleanVolatile
+* getByteVolatile
+* getShortVolatile
+* getCharVolatile
+
+### volatile + cas + for/while 操作原子性
+* getAndAddInt
+* getAndAddLong
+
+```
+public final long getAndAddLong(Object var1, long var2, long var4) {
+    long var6;
+    do {
+        var6 = this.getLongVolatile(var1, var2);
+    } while(!this.compareAndSwapLong(var1, var2, var6, var6 + var4));
+    
+    return var6;
+}
+```
+    
+* getAndSetInt
+* getAndSetLong
+* getAndSetObject
+
 ```java
 public final class Unsafe {
     //扩充内存  

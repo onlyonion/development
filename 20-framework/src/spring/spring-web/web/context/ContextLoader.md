@@ -1,22 +1,63 @@
+org.springframework.web.context.ContextLoader
 org.springframework.web.context.ContextLoaderListener
+
+## hierarchy
+```
+ContextLoader (org.springframework.web.context)
+    ContextLoaderListener (org.springframework.web.context)
+        1 in SpringBootServletInitializer (org.springframework.boot.web.servlet.support)
+        1 in SpringBootServletInitializer (org.springframework.boot.web.support)
+ContextLoaderListener (org.springframework.web.context)
+    ContextLoader (org.springframework.web.context)
+        Object (java.lang)
+    ServletContextListener (javax.servlet)
+        EventListener (java.util)
+```
+## define
+```plantuml
+@startuml
+
+''''''''''''''''''''''servlet-jdk-event'''''''''''''''''''''''''
+interface EventListener
+interface ServletContextListener {
+    + void contextInitialized(ServletContextEvent sce)
+    + void contextDestroyed(ServletContextEvent sce)
+}
+class EventObject
+class ServletContextEvent
+EventObject ^-- ServletContextEvent
+ServletContextListener ..> ServletContextEvent
+
+''''''''''''''''''''''spring-loader'''''''''''''''''''''''''
+class ContextLoader {
+    + WebApplicationContext initWebApplicationContext(ServletContext servletContext)
+    + void closeWebApplicationContext(ServletContext servletContext)
+}
+class ContextLoaderListener
+
+ContextLoader ^-- ContextLoaderListener
+EventListener ^-- ServletContextListener
+ServletContextListener ^.. ContextLoaderListener
+
+@enduml
+```
 
 
 ## 启动
-
 ```mermaid
 sequenceDiagram
-    %% 环境监听
+    %% 1.环境监听
     StandardContext ->> ContextLoaderListener: contextInitialized()
     ContextLoaderListener ->> ContextLoader: initWebApplicationContext()
 
-    %% 创建web应用环境
+    %% 2.创建web应用环境
     ContextLoader ->> ContextLoader: createWebApplicationContext()实例化
     
-    %% 刷新web应用环境
+    %% 3.刷新web应用环境
     ContextLoader ->> ContextLoader: configureAndRefreshWebApplicationContext()
     ContextLoader->>ConfigurableWebApplicationContext:refresh()
     
-    %% 上下文关联
+    %% 4.上下文关联
     ContextLoader ->> ServletContext: setAttribute()
 ```
 

@@ -111,7 +111,7 @@
     * [11.3.2 dubbo](30-distributed/src/dubbo/README.md)
     * [11.3.3 redis](30-distributed/src/redis/README.md)
     * [11.3.4 rocketmq](30-distributed/src/rocketmq/README.md)
-    * [11.3.5 zookeeper](30-distributed/src/zookeeper/README.md)
+    * [11.3.5 zookeeper](30-distributed/src/zookeeper/zookeeper/README.md)
   * 11.3 数据库
     * [11.3.1 druid](50-database/src/druid/README.md)
     * [11.3.2 mysql-connector](50-database/src/mysql-connector/README.md)

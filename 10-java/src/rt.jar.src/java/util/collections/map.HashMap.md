@@ -12,6 +12,7 @@ AbstractMap (java.util)
     HashMap (java.util)
     LinkedHashMap (java.util)
 ```
+线程不安全、并发修改快速失败
 
 ## 1.2 define
 * 静态域
@@ -153,7 +154,8 @@ PS:resize是HashMap，rehash是ConcurrentHashMap
 3. 遍历链表，当哈希值相等或者key equals的时候，将此元素离开链表
   * 如果存在前趋，将前趋的next指向次元素的后继
   * 如果不存在前趋，将此元素的后继置于数组索引位置
-  
+
+### size()  
 
 # 2. jdk8 HashMap
 

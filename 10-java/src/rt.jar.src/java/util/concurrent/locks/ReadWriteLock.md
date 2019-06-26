@@ -31,8 +31,8 @@ class ReentrantReadWriteLock {
     - final ReentrantReadWriteLock.WriteLock writerLock
     ~ final Sync sync;
 }
-class ReadLock
-class WriteLock
+class ReadLock #green
+class WriteLock #red
 
 Lock <|.. ReadLock
 Lock <|.. WriteLock
