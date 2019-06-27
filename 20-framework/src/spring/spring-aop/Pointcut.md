@@ -28,6 +28,9 @@ Pointcut (org.springframework.aop)
         NameMatchMethodPointcut (org.springframework.aop.support)
 ```
 
+* JdkRegexpMethodPointcut
+* AnnotationMatchingPointcut
+
 ## Pointcut 定义
 * 决定Adavice通知应该作用于哪些连接点，也就是说Pointcut来定义需要增强的方法的集合，这些集合的选取可以按照一定的规则来完成。
 

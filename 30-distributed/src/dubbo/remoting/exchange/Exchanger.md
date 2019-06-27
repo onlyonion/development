@@ -1,8 +1,20 @@
 com.alibaba.dubbo.remoting.exchange.Exchanger
+
+## hierarchy
 ```
 Exchanger (com.alibaba.dubbo.remoting.exchange)
     HeaderExchanger (com.alibaba.dubbo.remoting.exchange.support.header)
 ```
+
+## define
+```plantuml
+@startuml
+
+class HeaderExchangeClient
+
+@enduml
+```
+
 
 ```java
 @SPI(HeaderExchanger.NAME)

@@ -48,6 +48,7 @@ SpiEextension导引目路集衡调
 ```
 cache                   缓存，分布式缓存
 common                  基础设施
+    beanutil
     bytecode
     compiler
     extension
@@ -55,7 +56,10 @@ common                  基础设施
     json
     logger
     serialize
+    status
+    store
     threadpool
+    utils
 config                  配置中心
     ReferenceConfig
     ServiceConfig

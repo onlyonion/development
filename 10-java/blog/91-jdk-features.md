@@ -7,6 +7,25 @@ Fork/Join
 2.	执行任务并合并结果：分割的子任务分别放到双端队列里，然后几个启动线程分别从双端队列里获取任务执行。子任务执行完的结果都放在另外一个队列里，启动一个线程从队列里取数据，然后合并这些数据。
 
 ## jdk8
+
+### completableFuture 
+对Future进行增强，支持函数式编程的流式调用。提供更多功能，压缩编码量。
+
+### LongAdder
+类似automicLong, 但是提供了“热点分离”。过程如下：如果并发不激烈，则与automicLong 一样，cas赋值。
+如果出现并发操作，则使用数组，数组的各元素之和为真实value，让操作分散在数组各个元素上，把并发操作压力分散，一遇到并发就扩容数组，最后达到高效率。
+
+一般cas如果遇到高并发，可能一直赋值失败导致不断循环，热点分离可以解决这个问题。有点类似concurrenthashmap，分而治之。
+
+### [StampedLock](https://blog.csdn.net/Ruiz_666/article/details/88638146)
+ReentrantReadWriteLock写锁是互斥的。读和读--不互斥；读和写--互斥； 写和写--互斥
+
+读操作的时候发现有写操作，会再去多读取一次。
+
+StampedLock有两种锁：
+* 一种是悲观锁：如果是悲观锁，读和写操作是互斥的。
+* 一种是乐观锁：如果是乐观锁，读和写操作是不互斥的。
+
 ### Nashorn JavaScript 引擎
 Google V8
 Java调用Javascript函数

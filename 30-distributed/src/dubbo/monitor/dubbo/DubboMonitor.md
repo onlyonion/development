@@ -2,6 +2,9 @@ com.alibaba.dubbo.monitor.dubbo.DubboMonitor
 
 ## hierarchy
 ## define
+* ScheduledExecutorService
+* ConcurrentMap<Statistics, AtomicReference<long[]>>
+
 ```plantuml
 @startuml
 

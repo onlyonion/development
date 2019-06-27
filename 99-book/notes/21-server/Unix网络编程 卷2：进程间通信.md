@@ -1,5 +1,10 @@
 《Unix网络编程 卷2：进程间通信》[美] W.Richard Stevens
 
+* 消息传递
+* 同步 互斥锁、条件变量、读写锁、记录上锁、Posix信号量
+* 共享内存
+* 远程过程调用RPC 本地过程调用IPC
+
 ## 第一部分 简介
 ### 1. 简介
 IPC 进程间通信 Interproccess communication
@@ -7,6 +12,7 @@ IPC 进程间通信 Interproccess communication
 * Posix消息队列
 * Posix信号量
 * Posix共享内存区
+  
 ### 3. System V IPC
 * System V消息队列
 * System V信号量
@@ -44,6 +50,7 @@ IPC 进程间通信 Interproccess communication
 * 本地过程调用 同一个进程中
 * 单台主机上远程过程调用（门） 不同的进程
 * 主机间的远程过程调用
+
 ### 16. Sun RPC
 
 ## 附录A 性能测量

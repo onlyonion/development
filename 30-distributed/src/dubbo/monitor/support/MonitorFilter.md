@@ -27,6 +27,8 @@ Filter (com.alibaba.dubbo.rpc)
 ```
 
 ## define
+* ConcurrentMap<String, AtomicInteger>
+
 ```plantuml
 @startuml
 

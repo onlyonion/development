@@ -10,10 +10,14 @@ ProxyFactory (com.alibaba.dubbo.rpc)
 ```plantuml
 @startuml
 
-interface ProxyFactory
- 
+'''''''''''''''''''''''ProxyFactory'''''''''''''''''''''''''''
+interface ProxyFactory {
+    + <T> T getProxy(Invoker<T> invoker)
+    + <T> Invoker<T> getInvoker(T proxy, Class<T> type, URL url)
+}
 ProxyFactory ^.. AbstractProxyFactory
- 
+
+'''''''''''''''''''''''AbstractProxyFactory'''''''''''''''''''''''''''
 abstract class AbstractProxyFactory {
     + abstract <T> T getProxy(Invoker<T> invoker, Class<?>[] types)
 }

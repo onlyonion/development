@@ -1,5 +1,9 @@
 com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol
 
+* ReentrantLock
+* ConcurrentHashMap
+* ConcurrentHashSet
+
 ## hierarchy
 ```
 AbstractProtocol (com.alibaba.dubbo.rpc.protocol)
@@ -70,3 +74,9 @@ class DubboInvoker
 @enduml
 
 ```
+
+## methods
+openServer(URL url)
+
+ExchangeServer createServer(URL url)
+

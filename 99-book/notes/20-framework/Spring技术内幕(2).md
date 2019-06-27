@@ -124,10 +124,16 @@ deactivate AbstractAutowireCapableBeanFactory
 ### 3.1 Spring AOP概述
 #### 3.1.1 AOP概念回顾
 #### 33.1.2 Advice通知
-定义在连接点做什么，为切面增强提供织入接口
+定义在连接点做什么，为切面增强提供织入接口。Before、After、Throws、AfterReturning
 
 #### 33.1.3 Pointcut切点
 决定Adavice通知应该作用于哪些连接点，也就是说Pointcut来定义需要增强的方法的集合，这些集合的选取可以按照一定的规则来完成。
+
+* Pointcut
+  * AnnotationMatchingPointcut
+  * StaticMethodPointcut
+    * JdkRegexpMethodPointcut
+    * StaticMethodMatcherPointcutAdvisor
 
 #### 33.1.4 Advisor通知器
 完成对目标方法的切面增强设计（Advice）和关注点的设计（Pointcut）以后，需要一个对象把他们结合起来，完成这个作用的就是Advisor（通知器）。

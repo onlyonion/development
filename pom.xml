@@ -90,6 +90,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.synchronoss.cloud</groupId>
+			<artifactId>nio-multipart-parser</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cloud-connectors</artifactId>
+		</dependency>
 		<!-- springframework end -->
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>

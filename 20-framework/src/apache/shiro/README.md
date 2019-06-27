@@ -90,7 +90,12 @@ event
     Subscribe
     Event
 io
+    ResourceUtils
+    Serializer
+    DefaultSerializer
 jndi
+    JndiCallback
+    JndiTemplate
 ldap
 mgt
     AbstractRememberMeManager

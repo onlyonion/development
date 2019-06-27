@@ -11,7 +11,7 @@
   - Java对象头与Monitor
   - 修饰方法底层原理 运行时常量池中方法的 ACC_SYNCHRONIZED
   - 修饰代码块底层原理 monitorenter 和 monitorexit 指令
-  - Java对synchronized的优化（偏向锁、轻量级锁、自旋锁、锁消除）
+  - Java对synchronized的优化（偏向锁、轻量级锁、自旋锁-为了避免线程真实地在操作系统层面挂起、锁消除）
 * 关于synchronized 可能需要了解的关键点
   * 可重入性 当一个线程再次请求自己持有对象锁的临界资源时，这种情况属于重入锁，请求将会成功
   * 线程中断
