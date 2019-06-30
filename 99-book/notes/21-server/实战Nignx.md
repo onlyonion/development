@@ -6,6 +6,8 @@
 * Nginx 模块开发、核心模块
 * Nginx 的核心模块、HTTP模块、邮件模块
 
+Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP/POP3/SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的，第一个公开版本0.1.0发布于2004年10月4日。
+
 ## 第1章 Nginx简介
 ### 1.1 常用的Web服务器简介
 1. Apache服务器 selec模块，prefork模块为多进程模式
@@ -36,22 +38,85 @@ gcc编译器，autoconf、automake工具
 
 ## 第3章 Nginx的基本配置与优化
 ### 3.1 Nginx的完整配置示例
+* events
+* http
+  * server1
+  * server2
+  
+```shell
+# 使用的用户和组
+user www www;
+# 指定工作衍生进程数
+worker_processes 8;
+# 指定错误日志存放的路径 debug|info|notice|warn|error|crit
+error_log /data1/logs/nignx_error.log crit;
+# 指定pid存放的路径
+pid /user/local/webserver/nginx/nginx.pid;
+# 指定文件描述符数量
+worker_rlimit_nofile 51200;
+events {
+    # 使用网络IO模型
+    use epoll;    
+    # 允许的连接数
+    worker_connections 51200;
+}
+http {
+    server {
+        listen 80;
+        server_name www.yourdomain.com yourdomain.com;
+        index index.html index.htm index.php;
+    }
+}
+```
 ### 3.2 Nginx的虚拟主机配置
+#### 3.2.1 什么是虚拟主机
 虚拟主机，把一台运行在因特网上的服务器主机分成一台台虚拟的主机，每台虚拟主机都将可以是一个独立的网站，
 可以具有独立的域名，具有完整的Internet服务器功能（www、ftp、email等），同一台主机上的虚拟主机之间是完
 全独立的。
-**关键词：虚拟机、资源隔离**
+
+虚拟主机提供了在同一台服务器、同一组Nginx进程上运行多个网站的功能。
+
+关键词：虚拟机、资源隔离
+#### 3.2.2 配置基于IP的虚拟主机
+#### 3.2.3 配置基于域名的虚拟主机
+```
+http {
+    server {
+        listen 80;
+        server_name aaa.domain.com;
+        access_log logs/aaa.domain.com.access.log combined;
+    }
+    server {
+        listen 80;
+        server_name bbb.otherdomain.com;
+    }
+}
+```
 
 ### 3.3 Nginx的日志文件配置与切割
 ### 3.4 Nginx的压缩输出配置
+```
+gzip on;
+gzip_min_length 1k;
+gzip_buffers 416k;
+gzip_http_version 1.1;
+gzip_comp_level 2;
+gzip_types text/plain application/x-javascript text/css application/xml;
+gzip_vary on;
+```
 ### 3.5 Nginx的自动列目录配置
+```
+location / {
+    autoindex on;
+}
+```
 ### 3.6 Nginx的浏览器本地缓存设置
+缓存的方式节约了网络的资源，提高了网络的效率。
 
 ## 第4章 Nginx与PHP（FastCGI）的安装、配置与优化
 LAMP（LInux+Apache+Mysql+Perl/PHP/Python）
 
 FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。
-
 ## 第5章 Nginx与JSP、ASP.NET、Perl的安全与配置
 ## 第6章 Nginx HTTP负载均衡和反向代理的配置与优化
 ### 6.1 什么是负载均衡和反向代理

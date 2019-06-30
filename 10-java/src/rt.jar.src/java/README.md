@@ -1,4 +1,8 @@
 ## java
+* 核心类库
+  * [String](/10-java/src/rt.jar.src/java/lang/String.md)
+  * [Thread](/10-java/src/rt.jar.src/java/lang/Thread.md)
+  * [Reference](/10-java/src/rt.jar.src/java/lang/ref/Reference.md)
 * 集合框架
   * list
     * [ArrayList](/10-java/src/rt.jar.src/java/util/collections/list.ArrayList.md)
@@ -52,10 +56,6 @@
   * [InetAddress](/)
   * [URI](/)
   * [URL](/)
-* 核心类库
-  * [String](/10-java/src/rt.jar.src/java/lang/String.md)
-  * [Thread](/10-java/src/rt.jar.src/java/lang/Thread.md)
-  * [Reference](/10-java/src/rt.jar.src/java/lang/ref/Reference.md)
 * [sql](/10-java/src/rt.jar.src/java/sql/README.md)
 
 

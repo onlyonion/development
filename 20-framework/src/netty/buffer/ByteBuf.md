@@ -19,3 +19,29 @@ ByteBuf (io.netty.buffer)
     SwappedByteBuf (io.netty.buffer)
     WrappedByteBuf (io.netty.buffer)
 ```
+
+## define
+```plantuml
+@startuml
+
+interface ReferenceCounted
+ReferenceCounted ^.. ByteBuf
+abstract class ByteBuf
+
+ByteBuf ..> ByteBufAllocator
+ByteBuf ..> ByteBuffer
+
+ByteBuf ^-- AbstractByteBuf
+abstract class AbstractByteBuf
+
+AbstractByteBuf ^-- AbstractReferenceCountedByteBuf
+abstract class AbstractReferenceCountedByteBuf 
+
+
+AbstractReferenceCountedByteBuf ^-- CompositeByteBuf
+AbstractReferenceCountedByteBuf ^-- UnpooledDirectByteBuf
+AbstractReferenceCountedByteBuf ^-- UnpooledHeapByteBuf
+AbstractReferenceCountedByteBuf ^-- UnpooledUnsafeDirectByteBuf
+
+@enduml
+```

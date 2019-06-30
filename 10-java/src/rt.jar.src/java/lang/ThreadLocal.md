@@ -1,5 +1,13 @@
 java.lang.ThreadLocal
 
+## pacakge
+```
+ThreadLocal (java.lang)
+    InheritableThreadLocal (java.lang)
+    NamedThreadLocal (org.springframework.core)
+    ThreadLocalBoolean (org.jboss.netty.util.internal)
+```
+
 ## define
 * AtomicInteger.getAndAdd()
 * WeakReference
@@ -13,6 +21,7 @@ class Thread {
 }
 Thread o-- ThreadLocalMap
 
+'''''''''''''''''''ThreadLocal-InheritableThreadLocal''''''''''''''''''''''''
 class ThreadLocal<T> #orange {
     - static AtomicInteger nextHashCode
     - final int threadLocalHashCode
@@ -20,6 +29,10 @@ class ThreadLocal<T> #orange {
 
 ThreadLocal +-- ThreadLocalMap
 ThreadLocal ^-- SuppliedThreadLocal
+
+class InheritableThreadLocal<T> #orange
+ThreadLocal ^-- InheritableThreadLocal
+
 
 '''''''''''''''''''ThreadLocalMap''''''''''''''''''''''''
 class ThreadLocalMap #orange {

@@ -39,8 +39,12 @@ ACID, CAP, BASE
 
 #### D 类似double check机制的确认机制
 
-
+## links
 [保证分布式系统数据一致性的6种方案](https://blog.csdn.net/hxpjava1/article/details/79409459) 
+
+[分布式系统数据一致性的6种方案(转)](https://www.cnblogs.com/wangdaijun/p/7272677.html)
+
+[分布式事务——消息最终一致性方案](https://www.jianshu.com/p/04bad986a4a2)
 
 #### 1. 规避分布式事务——业务整合
 业务整合方案主要采用将接口整合到本地执行的方法。

@@ -62,3 +62,44 @@ AsynchronousChannel (java.nio.channels)
 ```
 
 ## define
+```plantuml
+@startuml
+
+interface Channel {
+    + boolean isOpen()
+    + void close()
+}
+
+
+interface ReadableByteChannel 
+interface WritableByteChannel
+interface InterruptibleChannel
+interface NetworkChannel
+abstract class SelectableChannel
+abstract class AbstractInterruptibleChannel
+
+''''''''''''''''''''''''''异步通道''''''''''''''''''''''''''''
+interface AsynchronousChannel
+
+Channel ^-- ReadableByteChannel
+Channel ^-- WritableByteChannel
+Channel ^--- InterruptibleChannel
+Channel ^-- NetworkChannel
+Channel ^--- AsynchronousChannel
+Channel ^.. AbstractInterruptibleChannel
+
+''''''''''''''''''''''''''SelectableChannel''''''''''''''''''''''''''''
+Channel ^--- SelectableChannel
+SelectableChannel ^.. AbstractSelectableChannel
+abstract class AbstractSelectableChannel
+
+abstract class ServerSocketChannel
+abstract class DatagramChannel
+abstract class SocketChannel
+
+AbstractSelectableChannel ^-- ServerSocketChannel
+AbstractSelectableChannel ^-- DatagramChannel
+AbstractSelectableChannel ^-- SocketChannel
+
+@enduml
+```

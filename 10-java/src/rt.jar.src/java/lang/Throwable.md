@@ -76,8 +76,10 @@ Throwable ^-- Error
 Throwable ^-- Exception
 
 '''''''''''''''''''''错误'''''''''''''''''''''''
-Error ^-- VirtualMachineError
-Error ^-- LinkageError
+class VirtualMachineError #orange
+class LinkageError #yellow
+Error ^--- VirtualMachineError
+Error ^---- LinkageError
 Error ^-- IOError
 Error ^-- ThreadError
 
@@ -88,7 +90,10 @@ LinkageError ^-- NoClassDefFoundError
 LinkageError ^-- VefifyError
 
 '''''''''''''''''''''异常'''''''''''''''''''''''
-Exception ^-- IOException
+class IOException #orange
+note left: 检查异常
+
+Exception ^------ IOException
 Exception ^-- RuntimeException
 
 IOException ^-- FileSystemException
@@ -97,9 +102,9 @@ IOException ^-- ProtocolException
 IOException ^-- ClosedChannelException
 
 RuntimeException ^-- IndexOutOfBoundsException
-RuntimeException ^-- ArithmeticException
-RuntimeException ^-- NullPointerException
-RuntimeException ^-- IllegalArgumentException
+RuntimeException ^--- ArithmeticException
+RuntimeException ^---- NullPointerException
+RuntimeException ^---- IllegalArgumentException
 
 @enduml
 ```

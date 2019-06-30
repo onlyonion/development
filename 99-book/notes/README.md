@@ -56,6 +56,7 @@
 * [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/30-distributed/大型网站系统与Java中间件实践.md)
 
 ### 架构
+* [《软件体系结构》第3版 章征 清华大学出版社](/99-book/notes/40-architecture/软件体系结构.md)
 * 阿里系
   * [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md)
   * [《大型网站技术架构 核心原理与案例分析》李智慧](/99-book/notes/40-architecture/大型网站技术架构.md)

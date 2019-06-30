@@ -1,16 +1,15 @@
 ## netty
 
 ## 组件 components
-
-* core 
+* core 零拷贝、缓冲、通用通信API、扩展的事件模型
     - zero-copy-capabie, rich byte buffer
     - universal communication api
     - extensible event model
-* transport services
+* transport services 传输层服务
     - socket & datagram
     - http tunnel
     - in-vm pipe
-* protocol support
+* protocol support 协议支持
     - http & websocket
     - ssl startTLS
     - google protobuf
@@ -21,7 +20,22 @@
 
 ![components](../../img/netty-components.png)
 
-
+## src
+* buffer
+* channel
+  * nio
+    * [NioEventLoop](/20-framework/src/netty/channel/nio/NioEventLoop.md)
+    * [NioEventLoopGroup](/20-framework/src/netty/channel/nio/NioEventLoopGroup.md)
+  * [Channel](/20-framework/src/netty/channel/Channel.md)
+  * [ChannelHandler](/20-framework/src/netty/channel/ChannelHandler.md)
+  * [ChannelFuture](/20-framework/src/netty/channel/ChannelFuture.md)
+  * [ChannelPipeline](/20-framework/src/netty/channel/ChannelPipeline.md)
+* handler
+* util
+  * concurrent
+    * [EventExecutor](/20-framework/src/netty/util/concurrent/EventExecutor.md)
+    
+    
 ## io.netty 4.x
 4.1.5.Final
 jdk.1.7.0_85

@@ -20,8 +20,27 @@ Buffer (java.nio)
 ## define
 ```plantuml
 @startuml
+
 abstract class Buffer
-abstract class ByteBuffer
+Buffer ^-- ByteBuffer
+
+''''''''''''''''''''''ByteBuffer''''''''''''''''''''''''''''
+abstract class ByteBuffer {
+    final byte[] hb
+    final int offset
+    boolean isReadOnly
+}
+
+ByteBuffer ..> DirectByteBuffer
+ByteBuffer ..> HeapByteBuffer
+
+''''''''''''''''''''''HeapByteBuffer''''''''''''''''''''''''''''
+ByteBuffer ^-- HeapByteBuffer
+HeapByteBuffer ^-- HeapByteBufferR
+
+''''''''''''''''''''''MappedByteBuffer''''''''''''''''''''''''''''
+ByteBuffer ^-- MappedByteBuffer
+MappedByteBuffer ^-- DirectByteBuffer
 
 @enduml
 ```

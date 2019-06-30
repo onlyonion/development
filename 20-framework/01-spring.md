@@ -46,3 +46,8 @@
 ![spring-jars](./img/spring-core-jar.png)
 
 
+## spring缺点
+* spring依赖反射，反射影响性能
+* spring过度依赖设计模式，linux用c语言也没有那么多设计模式
+* beans.xml配置繁琐
+* aop缺点 中断了应用程序的逻辑，使代码变得不完整，不直观

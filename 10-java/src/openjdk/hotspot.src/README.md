@@ -17,27 +17,27 @@ hotspot/src/
     * linux_sparc
     * solaris_sparc
 - 平台无关性
-  * 内存管理 memory
-    * 内存区域 内存结构
-    * 内存分配
-    * 垃圾回收 `gc_interface gc_impementation`
-  * 类文件结构 类加载机制 `classfile`
+  * 类文件结构 类加载机制 `classfile`（**OS程序的编译、链接、装入、文件管理、IO**）
     * 字节码指令集、执行引擎
     * 对象系统 `oops`
-  * 运行时环境 runtime 包括线程管理、编译器调度、锁、反射等
+  * 内存管理 memory（**OS内存管理、分配、虚拟内存**）
+    * 运行时数据区域 内存结构
+    * 内存分配
+    * 垃圾回收 `gc_interface gc_impementation`
+  * 运行时环境 runtime 包括线程管理、编译器调度、锁、反射等（**OS进程、线程、调度、同步、锁**）
     * `vframe`
     * `thread osThread vmThread`
     * `objectMonitor basicLock`
     * `atomic`
     * `reflection`
-  * 管理服务、对外服务、JMX接口
+  * 管理服务、对外服务、JMX接口（**OS用户接口**）
     * prims
     * services 连接机制、类加载服务、诊断、内存管理、内存模型、线程服务
       * `jmm.h` 内存模型
       * classLoadingService.h 类加载服务
       * trace 链路
-  * 编译器、解释器、汇编、机器码 `compiler(c1 opto) interpreter asm code`
-  * 抽象数据结构 libadt(dict port set vectset)
+  * 编译器、解释器、汇编、机器码 `compiler(c1 opto) interpreter asm code`《编译原理》
+  * 抽象数据结构 libadt(dict port set vectset)《数据结构》
 
 ### package
 ```

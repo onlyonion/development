@@ -8,10 +8,13 @@
   * 入门篇 NettyNIO开发指南 netty入门应用、TCP粘包拆包、分隔符和定长符解码器
   * 中级篇 Netty编解码开发指南 编解码、messagePack、GoogleProtobuf、JBossMarshalling
   * 高级篇 netty多协议开发和应用 http、websocket、私有协议
-* 源码篇 ByteBuff、Channel、Unsafe、ChannelPipeline和ChannelHandler、EventLoop和EventLoopGroup、Future和Promise
+* 源码篇 
+  * ByteBuff
+  * Channel、Unsafe
+  * ChannelPipeline和ChannelHandler
+  * EventLoop和EventLoopGroup
+  * Future和Promise
 * 高级特性 架构剖析、Java多线程应用、高性能之道、可靠性、安全性
-
-************************************************************************************************************************
 
 # 基础篇 
 
@@ -23,12 +26,12 @@
 2. 数据包到达，数据从内核复制到用户空间
 
 Unix网络编程5种I/O模型
-* 阻塞模型 recvfrom系统调用直到数据报到达并且被复制到应用进程缓冲区中或者发生错误才返回，此期间一直会**等待**。
+* 阻塞模型 recvfrom系统调用直到**数据报到达**并且被复制到**应用进程缓冲区**中或者发生错误才返回，此期间一直会**等待**。
 * 非阻塞模型 recvfrom从应用层到内核，如果该缓冲区没有数据的话，直接返回一个错误，**轮询检查这个状态**，看内核是不是有数据到来
 * IO复用模型 
   - select/poll，一个或多个fd传递给select或poll系统调用，阻塞在select操作上，侦测多个fd是否处于就绪状态。select/poll顺序扫描fd是否就绪，支持的fd数量有限。
   - epoll，基于事件驱动方式代替顺序扫描，有fd就绪时，立即回调函数rollback
-* 信号驱动IO模型 首先开启套接口信号驱动IO功能，并通过系统调用sigaction执行一个信号处理函数（此系统调用立即返回，进程继续工作，它是非阻塞的）。
+* 信号驱动IO模型 首先开启套接口**信号驱动I**O功能，并通过系统调用sigaction执行一个信号处理函数（此系统调用立即返回，进程继续工作，它是非阻塞的）。
   当数据准备就绪时，就为该进程生成一个signal信号，通过信号回调通知应用程序调用recvfrom来读取数据，并通知主循环函数处理数据。
 * 异步IO 告知内核启动某个操作，并让内核在整个操作完成后（包括将数据从内核复制到用户自己的缓冲区）通知我们。
   这种模型与信号驱动模型的主要区别是：信号驱动IO由内核通知我们何时可以开始一个IO操作；异步IO模型由内核通知我们IO操作何时已经完成。
@@ -43,24 +46,44 @@ epoll的改进：
 4. epoll的API更加简单
 
 mmap()系统调用使得进城之间通过映射同一个普通文件实现共享内存。
-
 ## 第2章 NIO入门
 ### 2.1 传统的BIO编程
+* 一个独立的Acceptor线程负责监听客户端连接
+* 它为每个连接请求创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端
+  
 ### 2.2 伪异步I/O编程
+将客户端的Socket封装成一个task投递到后端的线程池中处理。
+
+* Acceptor阻塞的，一个客户端阻塞，影响后续请求
+* 流是阻塞的
+* 线程池里的阻塞队列
+
 ### 2.3 NIO编程
+* 缓冲区Buffer 一个对象，包含一些要写入或者读出的文件。实质上是数组。
+* 通道Channel ServerSocketChannel、SocketChannel 双向、读写可同时进行
+* Selector 
+  * 不断轮询注册在其上的Channel
+  * 如果某个Channel发生读写事件，Channel就处于就绪状态，会被Selector轮询出来。
+  * 通过selectionKey可以获取就绪的Channel集合，进行后续的IO操作
+
 ### 2.4 AIO编程
 * 通过Future类表示异步操作的结果
 * 执行异步操作时候传入一个java.nio.channels
 * Completionhandler接口的实现类作为操作完成的回调，对应unix网络编程中的事件驱动IO（AIO），不需要多路复用器（Selector）。
 
 ```java
-
 public interface CompletionHandler<V,A> {
     void completed(V result, A attachment);
     void failed(Throwable exc, A attachment);
 }
-
 ```
+### 2.5 4中IO的对比
+
+|                  | 同步阻塞I/O | 伪异步I/O | 非阻塞I/O     | 异步I/O                              |
+| :--------------- | :---------- | :-------- | :------------ | :----------------------------------- |
+| 客户端 : I/O线程 | 1:1         | M:N       | M:1           | M:0(不需要启动额外I/O线程，异步回调) |
+| I/O类型（阻塞）  | 阻塞        | 阻塞      | 非阻塞        | 非阻塞                               |
+| I/O类型（同步）  | 同步        | 同步      | 同步-多路复用 | 异步                                 |
 
 # 入门篇 NettyNIO 开发指南
 ## 第3章 Netty入门应用
@@ -79,30 +102,58 @@ public interface CompletionHandler<V,A> {
 
 ## 第5章 分隔符和定长解码器的应用
 
-
-************************************************************************************************************************
-
 # 中级篇 Netty 编解码开发指南
 ## 第6章 编解码技术
 ### 6.1 Java序列化的缺点
 #### 6.1.1 无法跨语言
 #### 6.1.2 序列化后的码流太大
 #### 6.1.3 序列化性能太低
-
 ## 第7章 MessagePack编解码
 ## 第8章 Google Protobuf编解码
+跨语言、结构化的数据序列化框架。
+### 8.3 Protobuf的使用注意事项
+仅负责解码，不支持读半包。
+使用Netty提供的ProtobufVarint32FrameDecoder
 ## 第9章 JBoss Marshalling编解码
-
-************************************************************************************************************************
+与java.io.Serializable接口兼容，增加可调参数和附加特性。
 
 # 高级篇 Netty 多协议开发和应用
 ## 第10章 HTTP协议开发应用
-
 ## 第11章 WebSocket协议开发
+WebSocket的特点
+* 单一的TCP连接，此阿勇全双工模式通信
+* 对代理、防火墙和路由器透明
+* 无头部消息、Cookie和身份验证
+* 无安全开销
+* 通过 ping/pong帧保持链路激活
+* 服务端推送
 
 ## 第12章 私有协议栈开发
 绝大多数的私有协议传输层都是基于TCP/IP，利用Netty的NIO TCP协议栈可以方便的进行定制和开发。
+#### 12.2.6 Netty协议的编解码规范
 
+|            | 描述     | 编码                                  | 解码               |
+| :--------- | :------- | :------------------------------------ | :----------------- |
+| crcDode    | 校检码   | ByteBuffer.putInt                     | ByteBuffer.getInt  |
+| length     | 消息长度 | ByteBuffer.putInt                     | ByteBuffer.getInt  |
+| sessionID  |          | ByteBuffer.putLong                    | ByteBuffer.getLong |
+| type       |          | ByteBuffer.put(byte)                  | ByteBuffer.get()   |
+| priority   |          | ByteBuffer.put(byte)                  | ByteBuffer.get()   |
+| attachment | 变长     | ByteBuffer.putInt                     | ByteBuffer.getInt  |
+| body       |          | Marshalling序列化为byte[]，写入缓冲区 | Marshalling解码    |
+
+#### 12.2.7 链路的建立
+#### 12.2.8 链路的关闭
+#### 12.2.9 可靠性设计
+1. 心跳机制 空闲时采用心跳机制检测链路互通性
+2. 重连机制 如果链路中断，等待internal时间后，由客户端发起重连操作，如果重连失败，间隔再次发起重连，直到重连成功。
+3. 重复登录保护
+4. 消息缓存重发
+
+#### 12.2.10 安全性设计
+基于IP地址的安全认证机制，服务端对握手请求消息的IP地址进行合法性校检
+#### 12.2.11 可扩展性设计
+attachment字段自定义扩展
 ## 第13章 服务端创建
 ### 13.2 Netty服务端创建源码分析
 #### 13.2.1 Netty服务端的创建时序图
@@ -138,19 +189,12 @@ sequenceDiagram
     ChannelPipeline->>ChannelHandler: 9. 调用用户ChannelHandler
 ```
 
-
-
-************************************************************************************************************************
-
 # 源码分析篇 Netty 功能介绍和源码分析
-
 ## 第15章 ByteBuf和相关辅助类
-
 ## 第16章 Channel和Unsafe
 ### 16.1 Channel功能说明
 io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，包括但不限于网络的读、写，客户端发起连接，主动关闭连接，链路关闭，
 获取同学双方的网络地址等。也包含了Netty框架相关的一些功能，包括获取该Channel的EventLoop，获取缓分配器ByteBufAllocator和pipeline等。
-
 #### 16.1.2 Channel的功能介绍
 1. 网络IO操作
 2. 其他常用的API功能说明
@@ -159,8 +203,6 @@ io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，
 ### 16.3 Unsafe功能说明
 实际的IO读写操作都是由Unsafe接口负责完成的。
 ### 16.4 Unsafe源码分析
-
-
 ## 第17章 ChannelPipeline和ChannelHandler
 Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责链模式的一种变形。
 ### 17.1 ChannelPipeline功能说明
@@ -171,7 +213,6 @@ ChannelPipeline通过ChannelHandler接口来实现时间的拦截和处理。
 #### 17.1.3 构建pipeline
 ### 17.2 ChannelPipeline源码分析
 实际上是一个ChannelHandler的容器，内部维护了一个ChannelHandler的链表和迭代器，可以方便地实现ChannelHandler查找、添加、替换和删除。
-
 ### 17.3 ChannelHandler功能说明
 类似于Servlet的Filter过滤器，负责对IO时间或者IO操作进行拦截和处理，可以选择性地拦截和处理自己感兴趣的时间，也可以透传和终止事件的传递。
 基于ChannelHandler接口，用户可以方便地进行业务逻辑定制，例如打印日志、统一异常信息、性能统计和消息编解码等。
@@ -194,7 +235,6 @@ I/O线程模型
 * IO线程池
 
 #### 18.1.4 Netty的线程模型
-
 接收客户端请求的线程池的职责：
 1. 接收客户端TCP连接，初始化Channel参数
 2. 将链路状态变更事件通知给ChannelPipeline
@@ -205,7 +245,9 @@ IO线程池职责：
 4. 执行定时任务Task，例如链路空闲状态监测定时任务
 
 ### 18.2 NioEventLoop源码分析
-
+* 负责IO的读写
+* 系统Task，NioEventLoop.execute(Runnable task)
+* 定时任务，NioEventLoop.schedule(Runnable command, long delay, TimeUnit unit)
 
 ## 第19章 Future和Promise
 ### 19.1 Future功能
@@ -216,21 +258,15 @@ IO线程池职责：
 
 ### 19.2 ChannelFuture源码分析
 ### 19.3 Promise功能介绍
-Promise是可写的Future，用于设置IO操作的结果
+Promise是可写的Future，用于设置IO操作的结果。
 ### 19.4 Promise源码分析
 ### 19.5 总结
 * 本质上都是异步I/O操作结果的通知回调类。
 * JDK Future-Listener机制 当一个线程执行结束的时候，通知注册的所有listener同步执行回调功能
 * 通过增加监听器Listener的方式接收异步IO操作结果的通知，而不是调用wait或者sync阻塞用户线程
 
-
-
-************************************************************************************************************************
-
 # 架构和行业应用篇 Netty 高级特性
-
 架构、性能、可靠性、安全性
-
 ## 第20章 Netty架构剖析
 ### 20.1 Netty逻辑架构
 #### 20.1.1 Reactor通信调度层
@@ -242,11 +278,9 @@ Promise是可写的Future，用于设置IO操作的结果
 该层主要职责就是监听网络的读写和连接操作，负责将网络层的数据读取到内存缓冲区中，
 然后触发各种网络事件，例如连接创建、连接激活、读事件、写事件，
 将这些事件触发到pipeline中由pipeline管理的职责链来进行后续的处理。
-
 #### 20.1.2 职责链ChannelPipeline
 负责事件在职责链中的有序传播，同时负责动态地编排职责链。
 职责链可以选择监听和处理自己关心的事件，它可以拦截处理和向后/向前传播事件。
-
 #### 20.1.3 业务逻辑编排层（Service ChannelHandler）
 
 ### 20.2 关键架构质量属性
@@ -259,7 +293,6 @@ Promise是可写的Future，用于设置IO操作的结果
 优雅停机指的是当系统退出时，JVM通过注册的ShutdownHook拦截到退出信号量，
 然后执行退出操作，释放相关模块的资源占用，将缓冲区的消息处理完成或者清空，将待刷新的数据持久化到磁盘或者数据库中，
 等到资源回收和缓冲区消息处理完成之后，再退出。
-
 #### 20.2.3 可定制性
 * 责任链模型
 * 基于接口的开发
@@ -369,9 +402,6 @@ Netty应用场景：
 ### 24.4 Netty 扩展的安全特性
 #### 24.4.1 IP地址黑名单机制
 链路注册、链路激活、消息读取、消息发送的时候对对端的IP地址进行校检，如果在黑名单列表中，则拒绝当前操作，并关闭链路，打印日志。
-
 #### 24.4.2 接入认证
-
 ## 第25章 Netty未来展望
-
 ## 附录 Netty参数配置表

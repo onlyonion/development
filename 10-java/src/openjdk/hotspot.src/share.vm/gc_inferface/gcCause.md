@@ -28,17 +28,19 @@ enum Cause {
     /* implementation specific */
 
     _tenured_generation_full,
-    _permanent_generation_full,
+    _metadata_GC_threshold,
 
     _cms_generation_full,
     _cms_initial_mark,
     _cms_final_remark,
+    _cms_concurrent_mark,
 
     _old_generation_expanded_on_last_scavenge,
     _old_generation_too_full_to_scavenge,
     _adaptive_size_policy,
 
     _g1_inc_collection_pause,
+    _g1_humongous_allocation,
 
     _last_ditch_collection,
     _last_gc_cause

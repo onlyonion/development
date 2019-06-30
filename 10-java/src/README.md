@@ -6,7 +6,7 @@ rt.jar
 * [sun](/10-java/src/rt.jar.src/sun/README.md)
 
 openjdk
-* [jvm](/10-java/src/openjdk/hotspot.src/README.md)
+* [hotspot.src](/10-java/src/openjdk/hotspot.src/README.md)
 * [jdk](/10-java/src/openjdk/jdk/README.md)
 
 ## links

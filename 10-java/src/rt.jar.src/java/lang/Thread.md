@@ -1,5 +1,15 @@
 java.lang.Thread
 
+* volatile
+* synchronized
+* final
+* ClassLoader
+* WeakReference, priority
+* 核心方法
+  * join
+  * start
+  * sleep
+
 ## define
 ```plantuml
 @startuml
@@ -7,7 +17,8 @@ java.lang.Thread
 interface Runnable
 Runnable ^.. Thread
 
-class Thread {
+'''''''''''''''''''''''''Thread''''''''''''''''''''''''''''
+class Thread #orange {
     - volatile String name
     - int priority
     - boolean daemon = false
@@ -17,16 +28,16 @@ class Thread {
     - long stackSize
     - long tid
     - volatile int threadStatus
-    - ThreadLocal.ThreadLocalMap threadLocals
+    ThreadLocal.ThreadLocalMap threadLocals
+    ThreadLocal.ThreadLocalMap inheritableThreadLocals
 }
 
 Thread *-- Runnable
-Thread o-- ThreadGroup
-Thread o-- ClassLoader
-Thread o-- ThreadLocalMap
+Thread "1" o-- "*" ThreadLocalMap
 
+'''''''''''''''''''''''''ThreadLocal''''''''''''''''''''''''''''
 class ThreadLocal<T>
-class ThreadLocalMap
+class ThreadLocalMap #yellow
 ThreadLocal +-- ThreadLocalMap
 
 enum State {
@@ -38,12 +49,21 @@ enum State {
     TERMINATED
 }
 Thread +-- State
-    
+
+'''''''''''''''''''''''''WeakClassKey''''''''''''''''''''''''''''
+Thread +-- WeakClassKey
+
+class WeakReference<T>
+class WeakClassKey
+WeakReference ^-- WeakClassKey
+
+'''''''''''''''''''''''''Caches''''''''''''''''''''''''''''
+Thread +-- Caches
+class Caches    
 @enduml
 ```
 
-
-### thread state
+## thread state
 ```plantuml
 @startuml
 
@@ -52,8 +72,8 @@ Thread +-- State
 New -right-> Runnable
 
 state Runnable {
-  Ready --> Running : New Data
-  Running --> Ready : Enough Data
+  Ready --> Running : get-cpu-time
+  Running --> Ready : no
 }
 
 Runnable --> TimedWaiting

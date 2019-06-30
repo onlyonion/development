@@ -1,12 +1,37 @@
 《深入浅出Node.js》 朴灵
 
 * 模块机制 模块规范、模块加载、包
-* 异步IO与异步编程、事件驱动
-* Buffer、网络编程（TCP、UDP、HTTP、WebSocket）
-* 内存控制 垃圾回收机制、多线程
-* 测试、产品化、NPM库、构建、部署、监控、Web应用
+* 异步IO
+  * 异步编程、事件驱动
+  * Buffer
+  * 网络编程（TCP、UDP、HTTP、WebSocket）
+* 内存控制、垃圾回收机制、多线程
+* 工程化
+  * 测试、产品化、NPM库、构建、部署、监控、Web应用
+
+Ryal Dahl
 
 ## 第1章 Node简介
+### 1.1 Node的诞生历程
+2009年3月，Ryan Dahl在其博客上宣布准备基于V8创建一个轻量级的Web服务器并提供一套库。
+
+PS：2009年7月，Netty3.0.x版本
+
+### 1.2 Node的命名与起源
+#### 1.2.2 为什么叫Node
+每一个Node进程都构成这个网络应用中的一个节点，这是它名字所含意义的真谛。
+### 1.3 Node给javascript带来的意义
+V8给Chrome浏览器带来了一个强劲的心脏。Node给Javascript带来了一个新的局面。
+* Chrome浏览器组件构成
+  * Html, Javascript
+  * WebKit, V8
+  * 中间层
+  * 网卡、硬盘、显卡
+* Node组件构成
+  * JavaScript
+  * V8
+  * 中间层libuv
+  * 网卡、硬盘
 
 ## 第2章 模块机制
 ### 2.1 CommonJS规范
