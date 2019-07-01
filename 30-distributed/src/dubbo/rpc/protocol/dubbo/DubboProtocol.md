@@ -38,8 +38,7 @@ abstract class AbstractProtocol {
 }
 
 AbstractProtocol ^-- DubboProtocol
-class DubboProtocol {
-    + final ReentrantLock lock
+class DubboProtocol #orange {
     - final Map<String, ExchangeServer> serverMap
     - final Map<String, ReferenceCountExchangeClient> referenceClientMap
     - final ConcurrentMap<String, LazyConnectExchangeClient> ghostClientMap
@@ -59,8 +58,9 @@ class DubboProtocol {
     - ExchangeClient initClient(URL url)
 }
 
+DubboProtocol o-- ReentrantLock
 DubboProtocol o-- DubboInvoker
-DubboProtocol o-- ExchangeServer
+DubboProtocol "1" o-- "*" ExchangeServer
 DubboProtocol o-- Exporter
 DubboProtocol o-- ExchangeClient
 DubboProtocol o-- ExchangeHandler

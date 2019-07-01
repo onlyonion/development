@@ -53,3 +53,6 @@ HashMap +-- Node
 
 @enduml
 ```
+
+## methods
+### removeEldestEntry

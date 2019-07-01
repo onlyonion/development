@@ -10,6 +10,14 @@ LoadBalance (com.alibaba.dubbo.rpc.cluster)
         ConsistentHashLoadBalance (com.alibaba.dubbo.rpc.cluster.loadbalance)
 ```
 ## define
+```java
+@SPI(RandomLoadBalance.NAME)
+public interface LoadBalance {
+    @Adaptive("loadbalance")
+    <T> Invoker<T> select(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException;
+}
+```
+
 ```plantuml
 @startuml
 

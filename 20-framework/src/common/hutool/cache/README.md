@@ -1,0 +1,22 @@
+cn.hutool.cache
+## package
+```
+file
+    AbstractFileCache
+    LFUFileCache
+    LRUFileCache
+impl
+    AbstractCache
+    CacheObj
+    CacheObjIterator
+    CacheValuesIterator
+    FIFOCache
+    LFUCache
+    LRUCache
+    NoCache
+    TimedCache
+    WeakCache
+Cache
+CacheUtil
+GlobalPruneTimer
+```

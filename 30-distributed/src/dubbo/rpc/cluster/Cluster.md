@@ -21,6 +21,7 @@ Cluster (com.alibaba.dubbo.rpc.cluster)
 
 ## define
 ```java
+@SPI(FailoverCluster.NAME)
 public interface Cluster {
     <T> Invoker<T> join(Directory<T> directory) throws RpcException;
 }

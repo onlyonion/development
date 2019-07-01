@@ -39,11 +39,11 @@ ChannelHandler (com.alibaba.dubbo.remoting)
 ```
 
 ## define
-* connected
-* disconnected
-* sent
-* received
-* caught
+* connected 连接
+* disconnected 关闭
+* sent 发送 
+* received 接收
+* caught 异常
 
 ```plantuml
 @startuml

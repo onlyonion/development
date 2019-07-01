@@ -1,4 +1,15 @@
-
+java.util.concurrent.locks.ReentrantLock
+## hierarchy
+```
+ReentrantLock (java.util.concurrent.locks)
+    Segment in ConcurrentHashMap (java.util.concurrent)
+    Segment in ConcurrentReferenceHashMap (org.springframework.util)
+    Segment in ConcurrentHashMap (org.jboss.netty.util.internal)
+    Segment in ConcurrentIdentityHashMap (org.jboss.netty.util.internal)
+    Segment in LocalCache (com.google.common.cache)
+    ZkLock (org.I0Itec.zkclient)
+```
+## define
 ```plantuml
 @startuml
 
@@ -25,30 +36,22 @@ AbstractOwnableSynchronizer <|-- AbstractQueuedSynchronizer
 AbstractQueuedSynchronizer +-- Node
 
 '''''''''''''''''''''''''''''''' Sync FairSync NonfairSync''''''''''''''''''''''''''''''''
-abstract class Sync {
+abstract class Sync
+class FairSync
+class NonfairSync
 
-}
-
-class FairSync {
-
-}
-
-class NonfairSync {
-
-}
 AbstractQueuedSynchronizer <|-- Sync
 Sync <|-- NonfairSync
 Sync <|-- FairSync
 
 '''''''''''''''''''''''''''''''' ReentrantLock ''''''''''''''''''''''''''''''''
-interface Lock 
-class ReentrantLock {
+interface Lock #orange
+class ReentrantLock #orange {
     - final Sync sync
 }
 
 Lock <|.. ReentrantLock
 ReentrantLock *-- Sync
-ReentrantLock +-- ReadLock
 
 @enduml
 ```

@@ -1,5 +1,6 @@
-## registry
-注册中心
+com.alibaba.dubbo.registry
+
+* 发布订阅 自动发现、自动注册、变化更新
 
 ## package
 ```
@@ -7,10 +8,20 @@ dubbo
     DubboRegistry
     DubboRegistryFactory
 integration
+    RegistryDirectory
+    RegistryProtocol
 multicast
+    MulticastRegistry
+    MulticastRegistryFactory
 pages
+    RegisteredPageHandler
+    RegistriesPageHandler
+    SubscribedPageHandler
 redis
+    RedisRegistry
+    RedisRegistryFactory
 status
+    RegistryStatusChecker
 support
     AbstractRegistry
     AbstractRegistryFactory
@@ -25,15 +36,26 @@ RegistryFactory
 RegistryService
 ```
 
-## hierarchy
-```
-Registry (com.alibaba.dubbo.registry)
-    AbstractRegistry (com.alibaba.dubbo.registry.support)
-        FailbackRegistry (com.alibaba.dubbo.registry.support)
-        DubboRegistry (com.alibaba.dubbo.registry.dubbo)
-        RedisRegistry (com.alibaba.dubbo.registry.redis)
-        MulticastRegistry (com.alibaba.dubbo.registry.multicast)
-        ZookeeperRegistry (com.alibaba.dubbo.registry.zookeeper)
+## overview
+```plantuml
+@startuml
+
+interface RegistryService
+interface Registry
+interface RegistryFactory
+interface NotifyListener
+
+RegistryService ^-- Registry
+RegistryFactory ..> Registry
+
+abstract class AbstractRegistry
+abstract class FailbackRegistry
+
+Registry ^.. AbstractRegistry
+AbstractRegistry ^-- FailbackRegistry
+
+
+@enduml
 ```
 
 ## 类图

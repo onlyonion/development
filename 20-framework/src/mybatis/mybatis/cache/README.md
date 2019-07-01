@@ -2,18 +2,18 @@ org.apache.ibatis.cache
 ## package
 ```
 decorators
-    BlockingCache
-    FifoCache
-    LoggingCache
-    LruCache
-    ScheduledCache
+    BlockingCache           ReentrantLock
+    FifoCache               先进先出
+    LoggingCache            记录日志的缓存
+    LruCache                近期最少使用
+    ScheduledCache          
     SerializedCache
-    SoftCache
-    SynchronizedCache
-    TransactionalCache
-    WeakCache
+    SoftCache               软引用
+    SynchronizedCache       同步的
+    TransactionalCache      
+    WeakCache               弱引用
 impl
-    PerpetualCache
+    PerpetualCache          KV键值
 Cache
 CacheException
 CacheKey

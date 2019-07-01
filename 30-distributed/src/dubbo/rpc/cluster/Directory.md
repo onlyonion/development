@@ -6,3 +6,11 @@ Directory (com.alibaba.dubbo.rpc.cluster)
         StaticDirectory (com.alibaba.dubbo.rpc.cluster.directory)
         RegistryDirectory (com.alibaba.dubbo.registry.integration)
 ```
+
+## define
+```java
+public interface Directory<T> extends Node {
+    Class<T> getInterface();
+    List<Invoker<T>> list(Invocation invocation) throws RpcException;
+}
+```

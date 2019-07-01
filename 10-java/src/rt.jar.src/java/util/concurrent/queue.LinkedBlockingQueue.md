@@ -1,5 +1,8 @@
 java.util.concurrent.LinkedBlockingQueue
 
+* 两把锁（putLock，takeLock），两个条件
+* AtomicInteger
+
 ## define
 ```plantuml
 @startuml
