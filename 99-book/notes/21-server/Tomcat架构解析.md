@@ -587,20 +587,20 @@ ab -n 500 -c 5 http://localhost:8080/sample/index.jsp
 
 ### 10.1.3 数据采集及分析
 * 网络
-
-带宽   nload, bmon, slurm
-套接字 iftop, iptraf, tcptrack, pkstat, netwatch
+  - 带宽   nload, bmon, slurm
+  - 套接字 iftop, iptraf, tcptrack, pkstat, netwatch
 * 内存/CPU
-top
-vmstat
+  - top
+  - vmstat
+  - iostat
 * java
-```
-jstat   查看内存统计（javaHeap）、GC
-jmap    进程内堆详情、对象数量、内存使用；jhat；eclipse mat
-jstack  栈信息
-jconsole
-visualvm
-```
+  - jmap    进程内堆详情、对象数量、内存使用；jhat；eclipse mat
+  - jstack  栈信息
+  - jconsole
+  - visualvm
+* 数据库访问
+  - redis
+  - mysql 慢查询
 
 ### 10.2 Tomcat性能优化
 ### 10.2.1 JVM优化
@@ -615,26 +615,37 @@ jvm垃圾回收性能度量：吞吐量；暂停
 -XX:MaxMetaspaceSize=
 -Xss
 ```
+运行时编译器、堆和垃圾回收策略
 
 ### 10.2.2 Tomcat配置
-#### 调整server.xml配置
+#### 1.调整server.xml配置
 * maxConnection
-* tcpNoDelay
+* tcpNoDelay=true
 * maxKeepAliveRequest
-* socketBuffer
-* enableLookups
-* http静态文件压缩
-* 高性能链接器提升IO效率
+* socketBuffer socket缓冲区
+* enableLookups 禁用request.getRemotehost的DNS查找功能
+* http采用静态文件压缩功能
+* 高性能链接器提升IO效率。APR、NIO2
 * 关闭自动部署autoDeploy
 
-#### 调整JSP页面设置
+#### 2.调整JSP页面设置
 * jsp标签body池
 
-#### 与Web服务器集成
+#### 3.与Web服务器集成
 * 动静分离
 * 集群、负载均衡
 
 ### 10.3 应用性能优化建议
+* 尽量减少浏览器与服务器通信次数
+* 尽量减少请求响应数据量，去除无用数据
+* 尽量推迟创建会话的时机
+* 不要再会话中存储大对象
+* 尽量缩短会话的有效期
+* 合理定义对象作用域，以便对象及时回收
+* 采用链接池提升访问性能
+* 缓存提升性能
+* 最小化应用日志
+
 
 ## 第11章 Tomcat附加功能
 ### 11.1 Tomcat的嵌入式启动
