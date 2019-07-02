@@ -19,6 +19,7 @@ AsynchronousChannel (java.nio.channels)
 ```plantuml
 @startuml
 
+'''''''''''''''''''''''''''自动关闭、通道'''''''''''''''''''''''''''
 interface AutoCloseable
 interface Closeable
 interface Channel
@@ -26,6 +27,7 @@ interface Channel
 AutoCloseable ^-- Closeable
 Closeable ^-- Channel
 
+'''''''''''''''''''''''''''异步通道、网络通道'''''''''''''''''''''''''''
 interface AsynchronousChannel
 interface NetworkChannel
 

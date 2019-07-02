@@ -1,4 +1,5 @@
 org.apache.tomcat.util.net.NioEndpoint
+org.apache.tomcat.util.net.NioEndpoint
 
 ## hierarchy
 ```
@@ -63,3 +64,5 @@ Runnable <|.. SocketProcessorBase
 
 @enduml
 ```
+## fileds
+private int pollerThreadCount = Math.min(2,Runtime.getRuntime().availableProcessors())
