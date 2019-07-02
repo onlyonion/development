@@ -1,5 +1,9 @@
 java.util.concurrent.ThreadPoolExecutor
 
+* AtomicInteger
+  * volatile
+  * Unsafe 
+
 ## hierarchy
 ```
 Executor
@@ -121,27 +125,6 @@ RejectedExecutionHandler <|-- DiscardOldestPolicy
 @enduml
 ```
 
-## 状态图
-
-* RUNNING(-1):  Accept new tasks and process queued tasks
-* SHUTDOWN(0): Don't accept new tasks, but process queued tasks
-* STOP(1):     Don't accept new tasks, don't process queued tasks,
-            and interrupt in-progress tasks
-* TIDYING(2):  All tasks have terminated, workerCount is zero,
-            the thread transitioning to state TIDYING
-            will run the terminated() hook method
-* TERMINATED(3): terminated() has completed
-     
-```mermaid
-graph LR
-    RUNNING -- shutdown --> SHUTDOWN
-    RUNNING -- shutdownNow --> STOP
-    SHUTDOWN -- shutdownNow --> STOP
-    SHUTDOWN -- queueAndPoolEmpty --> TIDYING
-    STOP -- poolEmpty --> TIDYING
-    TIDYING -- terminated --> TERMINATED
-```
-
 ## execute()
 
 ```mermaid
@@ -175,4 +158,51 @@ sequenceDiagram
         ThreadPoolExecutor->>ThreadPoolExecutor:reject(command)
         ThreadPoolExecutor->>RejectedExecutionHandler:rejectedExecution(command,this)
     end
+```
+
+## threadpool state
+* RUNNING(-1):  Accept new tasks and process queued tasks
+* SHUTDOWN(0): Don't accept new tasks, but process queued tasks
+* STOP(1):     Don't accept new tasks, don't process queued tasks, and interrupt in-progress tasks
+* TIDYING(2):  All tasks have terminated, workerCount is zero, the thread transitioning to state TIDYING will run the terminated() hook method
+* TERMINATED(3): terminated() has completed
+     
+```
+ * RUNNING -> SHUTDOWN
+ *    On invocation of shutdown(), perhaps implicitly in finalize()
+ * (RUNNING or SHUTDOWN) -> STOP
+ *    On invocation of shutdownNow()
+ * SHUTDOWN -> TIDYING
+ *    When both queue and pool are empty
+ * STOP -> TIDYING
+ *    When pool is empty
+ * TIDYING -> TERMINATED
+ *    When the terminated() hook method has completed
+```     
+     
+```mermaid
+graph LR
+    RUNNING -- shutdown --> SHUTDOWN
+    RUNNING -- shutdownNow --> STOP
+    SHUTDOWN -- shutdownNow --> STOP
+    SHUTDOWN -- queueAndPoolEmpty --> TIDYING
+    STOP -- poolEmpty --> TIDYING
+    TIDYING -- terminated --> TERMINATED
+```
+
+```plantuml
+@startuml
+[*] -right-> RUNNING
+RUNNING -right-> SHUTDOWN: shutdown()
+
+RUNNING --> STOP: shutdownNow()
+SHUTDOWN -right-> STOP: shutdownNow()
+
+SHUTDOWN -right-> TIDYING: queue, pool empty
+STOP --> TIDYING: pool empty
+
+TIDYING --> TERMINATED: terminated()
+TERMINATED -right-> [*]
+
+@enduml
 ```

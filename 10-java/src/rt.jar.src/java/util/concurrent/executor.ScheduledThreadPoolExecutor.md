@@ -25,14 +25,15 @@ ScheduledThreadPoolExecutor (java.util.concurrent)
 abstract class AbstractExecutorService
 AbstractExecutorService ^-- ThreadPoolExecutor
 ExecutorService ^.. AbstractExecutorService
-class ThreadPoolExecutor
+class ThreadPoolExecutor #yellow
 
 
 '''''''''''''''''''' 接口 ''''''''''''''''''''
-interface Executor
 Executor ^-- ExecutorService
-interface ExecutorService
 ExecutorService ^-- ScheduledExecutorService
+
+interface Executor
+interface ExecutorService
 interface ScheduledExecutorService #orange {
     + ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit)
     + <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit)                                       

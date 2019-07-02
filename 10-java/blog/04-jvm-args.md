@@ -5,9 +5,7 @@
 * OOM打印日志
 
 ## 1. 堆大小设置
-
 ## 2. 回收器选择
-
 JVM给了三种选择：串行收集器、并行收集器、并发收集器，但是串行收集器只适用于小数据量的情况，所以这里的选择主要针对并行收集器和并发收集器。
 默认情况下，JDK5.0以前都是使用串行收集器，如果想使用其他收集器需要在启动时加入相应参数。JDK5.0以后，JVM会根据当前系统配置进行判断。
 
@@ -45,9 +43,7 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 
 ## 3. 辅助信息
 
-
 ## 4. 常见配置汇总 
-
 1.堆设置
 
 	-Xms:初始堆大小
@@ -56,15 +52,7 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 	-XX:NewRatio=n:设置年轻代和年老代的比值。如:为3，表示年轻代与年老代比值为1：3，年轻代占整个年轻代年老代和的1/4
 	-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值。注意Survivor区有两个。如：3，表示Eden：Survivor=3：2，一个Survivor区占整个年轻代的1/5
 	-XX:MaxPermSize=n:设置持久代大小
-	
-	-XX:NewRatio
-	- 新生代（eden + 2 * s）和老年代（不包含永久代）的比值
-	- 4 表示 新生代：老年代 = 1:4，即年轻代占堆的1/5
-	- 默认的，新生代 ( Young ) 与老年代 ( Old ) 的比例的值为 1:2 ( 该值可以通过参数 –XX:NewRatio 来指定 )，即：新生代 ( Young ) = 1/3 的堆空间大小。老年代 ( Old ) = 2/3 的堆空间大小
-	
-	-XX:SurvivorRatio
-	- 设置两个Survivor区和eden的比
-	- 8 表示两个Survivor：eden = 2:8，即一个Survivor占年轻代的1/10
+	-XX:SurvivorRatio 设置两个Survivor区和eden的比，8 表示两个Survivor：eden = 2:8，即一个Survivor占年轻代的1/10
 
 2.收集器设置 
 
@@ -117,8 +105,32 @@ java -Xmx3550m -Xms3550m -Xmn2g -Xss128k -XX:+UseConcMarkSweepGC -XX:CMSFullGCsB
 	-XX:+UseCMSCompactAtFullCollection：使用并发收集器时，开启对年老代的压缩。
 	-XX:CMSFullGCsBeforeCompaction=0：上面配置开启的情况下，这里设置多少次Full GC后，对年老代进行压缩
 
-[JVM参数配置详解](https://blog.csdn.net/yjl33/article/details/78890363) 
+## links
+* [JVM参数配置详解](https://blog.csdn.net/yjl33/article/details/78890363) 
+* [JVM系列三:JVM参数设置、分析](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 
-[JVM系列三:JVM参数设置、分析](http://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 
+### [jdk8](https://blog.csdn.net/feiying00544/article/details/82981387)
+#### Metaspace
+CompressedClassSpaceSize参数作用是设置Klass Metaspace的大小，默认1G
+-XX:CompressedClassSpaceSize=128m
 
+#### MaxDirectMemorySize
+此参数主要影响的是非堆内存的direct byte buffer，jvm默认会设置64M，可根据功能适当加大此项参数，
+因为非堆内存，故而不会被GC回收掉，容易出现java.lang.OutOfMemoryError: Direct buffer memory错误
+如出现以上错误，可通过以下参数打印log，之后用工具进行分析
+
+-XX:-HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=logs/oom_dump.log
+
+#### G1
+* -XX:+UseG1GC 使用G1收集器
+* -XX:MaxGCPauseMillis=200 用户设定的最大gc 停顿时间，默认是200ms. 
+* -XX:InitiatingHeapOccupancyPercent=45 默认是45，也就是heap中45%的容量被使用，则会触发concurrent gc
+* -XX:NewRatio=n 新生代与老生代(new/old generation)的大小比例(Ratio). 默认值为 2.
+* -XX:SurvivorRatio=n    eden/survivor 空间大小的比例(Ratio). 默认值为 8.
+* -XX:MaxTenuringThreshold=n 提升年老代的最大临界值(tenuring threshold). 默认值为 15.
+* -XX:ParallelGCThreads=n 设置垃圾收集器在并行阶段使用的线程数,默认值随JVM运行的平台不同而不同.
+* -XX:ConcGCThreads=n 并发垃圾收集器使用的线程数量. 默认值随JVM运行的平台不同而不同.
+* -XX:G1ReservePercent=n 设置堆内存保留为假天花板的总量,以降低提升失败的可能性. 默认值是 10.
+* -XX:G1HeapRegionSize=n 使用G1时Java堆会被分为大小统一的的区(region)。此参数可以指定每个heap区的大小. 默认值将根据 heap size 算出最优解. 最小值为 1Mb, 最大值为 32Mb.
