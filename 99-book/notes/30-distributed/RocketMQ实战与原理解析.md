@@ -1,28 +1,54 @@
 《RocketMQ实战与原理解析》 杨开元 机械工业出版社
 
-* RocketMQ实战 配置使用、发送、接收消息、可靠消息、吞吐量优先、与框架整合
+* RocketMQ实战 配置使用、发送、接收消息
+* 协调者NameServer、核心Broker
+* 可靠消息、吞吐量优先、与框架整合
 * 源码分析 NameServer源码、消费路、主从同步机制、Netty通信
 
 # 第一部分 RocketMQ实战
 ## 第1章 快速入门
 ### 1.1 消息队列功能介绍
-* 应用解耦
-* 流量消峰（异步）
-* 消息分发
+* 应用解耦 高内聚、低耦合；故障系统恢复后，处理消息队列的信息即可
+* 流量消峰（异步） 大流量冲击，请求暂存；最终一致性
+* 消息分发 不必和数据强关联
 
 ### 1.2 RocketMQ简介
+* Notify 推模型，解决了事务消息
+* MetaQ 拉模型，解决了顺序消息和还聊堆积问题
+* RocketMQ 基于长轮询的拉取方式，兼有两者的优点
+  
 比起Kafka的Scala语言和RabbitMQ的Erlang语言，更容易定制开发
+### 1.3 快速上手RocketMQ
+先启动NameServer，再启动Broker
 
 ## 第2章 生产环境下的配置和使用
+搭建高可用的分布式消息队列及其，以及RocketMQ的Comsumer和Producer的使用方法与常用命令
 ### 2.1 RocketMQ各部分角色介绍
+邮政系统：发信者、收信者、负责暂存和传输的邮局、负责协调各个地方邮局的管理机构
 * Producer
 * Consumer
-* Broker 暂存
+* Broker 暂存，每个Broker可部署一个或多个slave
 * NameServer 协调者
-* Topic
-* MessageQueue
+* Topic 区分不同类型的消息
+* MessageQueue 一个Topic设置一个或多个MessageQueue（类似分区或Partition）
 
 ### 2.2 多机集群配置和部署
+两台物理机，搭建双主、双从、无单点故障的高可用RocketMQ集群
+#### 2.2.1 启动多个NameServer和Broker
+启动两个NameServer，每个机器上都要分别启动一个Master角色的Broker和一个Slave角色的Broker，并互为主备。
+#### 2.2.2 配置参数介绍
+```
+namesrvAddr=ip1:port;ip2:port
+brokerClusterName=DefaultCluster
+brokerName=broker-a
+brokerId=0
+fileReservedTime=48
+deleteWhen=48
+brokerRole=SYNC_MASTER
+flushDiskType=ASYNC_FLUSH
+listenPort=10911
+storePathRootDir=/home/rocketmq/store-a
+```
 ### 2.3 发送／接收消息示例
 ### 2.4 常用管理命令
 MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行 mqadmin 即可执行。使用 mqadmin 命令，
@@ -31,8 +57,8 @@ MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行
 
 ## 第3章 用适合的方式发送和接收消息
 ### 3.1 不同类型的消费者
-* DefaultMQPushConsumer
-* DefaultMQPullConsumer
+* DefaultMQPushConsumer 由系统控制读取操作，收到消息后自动调用传入的处理方法来处理
+* DefaultMQPullConsumer 读取操作中的大部分功能由使用者自主控制
 
 ### 3.2 不同类型的生产者
 #### 3.2.1 DefaultMQProducer
@@ -40,6 +66,14 @@ MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行
 通过设置延迟级别控制延迟时间
 
 #### 3.2.4 对事务的支持
+采用两阶段提交的方式来实现事务，TransactionMQProducer处理。**2PC + 定时回查**
+1. 发送方向RocketMQ发送“待确认”消息
+2. RocketMQ将收到的“待确认”消息持久化后，向发送方向恢复消息已经发送成功，此时第一阶段消息发送完成。
+3. 发送方开始执行本地事务逻辑
+4. 发送方根据本地事务执行结果想RocketMQ发送二次确认（Commit或Rollback）消息，RocketMQ收到Commit状态则将第一阶段消息标记为可投递，订阅方将能够接收到该消息；收到Rollback状态则删除第一阶段的消息，订阅方接收不到消息。
+5. 异常情况，服务器定时回查“待确认”的消息
+6. 发送方接收到回查请求
+7. RocketMQ接收到回查请求后，按照4逻辑处理
 
 ## 第4章 分布式消息队列的协调者
 NameServer维护节点角色变动信息、状态信息。
@@ -138,7 +172,6 @@ broker实现了消息队列的主题、client、common、namesrv、remoting、st
 ### 10.3 核心业务逻辑处理
 ### 10.4 集群状态存储
 
-
 ## 第11章 最常用的消费类
 ### 11.1 整体流程
 ### 11.2 消息的并发处理
@@ -156,9 +189,9 @@ broker实现了消息队列的主题、client、common、namesrv、remoting、st
 异步事件驱动
 
 ### 13.2 Netty架构总览
-* core 扩展的事件模型、通用通信api、零拷贝、丰富的字节缓冲
-* transport services Socket&Datagram（TCP与UDP）、Http tunnel、in-vm pipe 虚拟机内部管道
-* protocol support
+* core 核心，扩展的事件模型、通用通信api、零拷贝、丰富的字节缓冲
+* transport 传输层，services Socket&Datagram（TCP与UDP）、Http tunnel、in-vm pipe 虚拟机内部管道
+* protocol 应用层，support
 
 #### 13.2.1 重新实现 Byte Buffer
 ByteBuf 实现的是一个非常轻量级的字节数组包装器 。 ByteBuf 有读操作和写操作，为了便于用户使用，
@@ -170,7 +203,7 @@ ByteBuf 实现的是一个非常轻量级的字节数组包装器 。 ByteBuf �
 * 本地传输 io.netty.channel.local
 
 #### 13.2.3 基于拦截链模式的事件模型
-ChannelPipeline内部的一个ChannelEvent被一组ChannelHandler处理。这个管道是InterceptingFilter拦击过滤器模式的一种高级实现。
+ChannelPipeline内部的一个ChannelEvent被一组ChannelHandler处理。这个管道是InterceptingFilter（拦截过滤器）模式的一种高级实现。
 
 #### 13.2.4 高级组件
 * codec 编解码框架
