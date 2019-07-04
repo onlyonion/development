@@ -1,13 +1,42 @@
 《Tomcat内核设计剖析》 汪健
 
 ## 第1章 Web服务器机制
+### 1.1 通信协议
+#### 1.1.1 HTTP／HTTPS
+#### 1.1.2 HTTP请求／响应模型
+#### 1.1.3 解析HTTP报文
+### 1.2 套接字通信
+#### 1.2.1 单播通信
+#### 1.2.2 组播通信
+#### 1.2.3 广播通信
+### 1.3 服务器模型
+
 ## 第2章 Servlet规范
 ## 第3章 Tomcat的启动与关闭
 ## 第4章 从整体预览Tomcat
+### 4.1 整体结构及组件介绍
+### 4.2 请求处理的整体过程
+
 ## 第5章 Server组件与Service组件
+### 5.1 Server组件
+### 5.2 Service组件
+
 ## 第6章 Connector组件
+### 6.1 HTTP阻塞模式协议——Http11Protocol
+### 6.2 HTTP非阻塞模式协议——Http11NioProtocol
+### 6.3 HTTPAPR模式协议——Http11AprProtocol
+### 6.4 AJPConnector
+### 6.5 HTTP三种模式的Connector
+### 6.6 AJP三种模式的Connector
+
 ## 第7章 Engine容器
 ## 第8章 Host容器
+### 8.1 Web应用——Context
+### 8.2 访问日志——AccessLog
+### 8.3 管道——Pipeline
+### 8.4 Host集群——Cluster
+### 8.5 Host域——Realm
+### 8.6 生命周期监听器——HostConfig
 ## 第9章 Context容器
 ## 第10章 Wrapper容器
 ## 第11章 生命周期管理
@@ -93,9 +122,14 @@ Context容器级别，每种认证模式建立不同的认证器，例如Basic�
 ### 19.1 Web容器的会话机制
 
 ## 第20章 高可用的集群实现
+### 20.1 从单机到集群的会话管理
+### 20.2 Cluster组件
 
 ## 第21章 集群通信框架
+### 21.1 Tribes简介
+### 21.2 集群成员维护服务——MembershipService
+### 21.3 平行的消息发送通道——ChannelSender
 
 ## 第22章 监控与管理
-
+### 22.1 Java管理扩展——JMX
 
