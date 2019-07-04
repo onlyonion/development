@@ -10,3 +10,12 @@ ReferenceCountExchangeClient (com.alibaba.dubbo.rpc.protocol.dubbo)
         Client (com.alibaba.dubbo.remoting)
         ExchangeChannel (com.alibaba.dubbo.remoting.exchange)
 ```
+
+## define
+```plantuml
+@startuml
+
+class ReferenceCountExchangeClient
+
+@enduml
+```

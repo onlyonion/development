@@ -1,4 +1,4 @@
-
+com.alibaba.dubbo.rpc.protocol
 ## package
 ```
 protocol
@@ -35,7 +35,16 @@ protocol
     rmi
         RmiProtocol
     thrift
+        io
+            InputStreamWrapper
+            RandomAccessByteArrayOutputStream
+        ThriftInvoker
+        ThriftCodec
+        ThriftNativeCodec
+        ThriftProtocol
+        ThriftUtils
     webservice
+        WebServiceProtocol
     AbstractExporter
     AbstractInvoker
     AbstractProtocol

@@ -1,5 +1,8 @@
 com.alibaba.dubbo.rpc.protocol.dubbo.DubboInvoker
 
+* AtomicPositiveInteger 对AtomicInteger的包装
+* ReentrantLock
+
 ## hierarchy
 ```
 AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
@@ -21,6 +24,7 @@ AbstractInvoker (com.alibaba.dubbo.rpc.protocol)
 ```plantuml
 @startuml
 
+'''''''''''''''''''''调用者''''''''''''''''''''''''
 interface Invoker<T>
 
 abstract class AbstractInvoker<T> {
@@ -46,14 +50,12 @@ Invocation ^.. RpcInvocation
 DubboInvoker ..> Invocation
 
 '''''''''''''''''''''交换层''''''''''''''''''''''''
-interface Client {
-    
-}
+interface Client
+interface ExchangeClient
 interface ExchangeChannel {
     + ResponseFuture request(Object request, int timeout)
 }
 
-interface ExchangeClient
 Client ^-- ExchangeClient
 ExchangeChannel ^-- ExchangeClient
 

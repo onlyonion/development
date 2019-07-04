@@ -1,6 +1,7 @@
 com.alibaba.dubbo.registry.zookeeper.ZookeeperRegistry
 
 * ConcurrentMap<URL, ConcurrentMap<NotifyListener, ChildListener>>
+* ConcurrentHashSet
 
 ## hierarchy
 ```
