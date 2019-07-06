@@ -1,0 +1,34 @@
+io.shardingsphere.core
+## package
+```
+api
+    yaml
+        YamlMasterSlaveDataSourceFactory
+        YamlShardingDataSourceFactory
+    MasterSlaveDataSourceFactory
+    ShardingDataSourceFactory
+executor
+    batch
+        BatchPreparedStatementExecutor
+    prepared
+        PreparedStatementExecuteUnit
+        PreparedStatementExecutor
+    statement
+        StatementExecutor
+jdbc
+    adapter
+        executor
+        invocation
+    core
+        connection
+        datasource
+        resultset
+        statement
+        ShardingContext
+    metadata
+    unsupported
+transaction
+    TransactionTypeHolder
+util
+    DataSourceUtil
+```

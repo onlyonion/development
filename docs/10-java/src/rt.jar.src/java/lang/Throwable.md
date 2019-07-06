@@ -1,0 +1,126 @@
+java.lang.Throwable
+
+## hierarchy
+```
+Throwable (java.lang)
+    Error (java.lang)
+        VirtualMachineError (java.lang)                         JVM虚拟机错误
+            StackOverflowError (java.lang)                          栈溢出
+            UnknownError (java.lang)
+            InternalError (java.lang)
+            OutOfMemoryError (java.lang)                            内存溢出 堆、元空间、直接内存、GC开销、创建本地线程
+                OutOfDirectMemoryError (io.netty.util.internal)
+        LinkageError (java.lang)                                类加载-链接期错误 加载、连接、初始化 
+            ClassCircularityError (java.lang)
+            IncompatibleClassChangeError (java.lang)
+                NoSuchFieldError (java.lang)
+                InstantiationError (java.lang)
+                NoSuchMethodError (java.lang)
+                IllegalAccessError (java.lang)
+                AbstractMethodError (java.lang)
+            BootstrapMethodError (java.lang)
+            ClassFormatError (java.lang)
+            UnsatisfiedLinkError (java.lang)
+            NoClassDefFoundError (java.lang)                        无类定义发现错误
+            ExceptionInInitializerError (java.lang)
+            VerifyError (java.lang)                                 验证错误 验证、准备、解析
+        IOError (java.io)
+        ThreadDeath (java.lang)
+    Exception (java.lang)
+        ActivationException (java.rmi.activation)
+        ReflectiveOperationException (java.lang)
+            IllegalAccessException (java.lang)
+            NoSuchFieldException (java.lang)
+            NoSuchMethodException (java.lang)
+            InstantiationException (java.lang)
+            ClassNotFoundException (java.lang)                      未发现类异常
+            InvocationTargetException (java.lang.reflect)           
+        InterruptedException (java.lang)
+        SQLException (java.sql)                                 SQL异常
+            SQLTransientException (java.sql)
+            SQLNonTransientException (java.sql)
+            BatchUpdateException (java.sql)
+            SQLClientInfoException (java.sql)
+            SyncProviderException (javax.sql.rowset.spi)
+            SerialException (javax.sql.rowset.serial)
+        IOException (java.io)
+            InterruptedIOException (java.io)
+            EOFException (java.io)
+            CharConversionException (java.io)
+            UnsupportedEncodingException (java.io)
+            ObjectStreamException (java.io)
+            FileSystemException (java.nio.file)
+            ClosedChannelException (java.nio.channels)
+            FileLockInterruptionException (java.nio.channels)
+            RemoteException (java.rmi)
+            UnknownServiceException (java.net)
+            SocketException (java.net)                              套接字异常
+                BindException (java.net)                                绑定端口异常
+                ConnectException (java.net)                             连接异常
+                PortUnreachableException (java.net)
+                NoRouteToHostException (java.net)
+            ProtocolException (java.net)                            网络协议异常
+        RuntimeException (java.lang)
+            IndexOutOfBoundsException (java.lang)
+            ArithmeticException (java.lang)
+            ClassCastException (java.lang)
+            SecurityException (java.lang)
+            ArrayStoreException (java.lang)
+            ConcurrentModificationException (java.util)             并发修改异常-快速失败策略
+            CompletionException (java.util.concurrent)
+            DateTimeException (java.time)
+            NullPointerException (java.lang)
+            IllegalStateException (java.lang)
+            IllegalArgumentException (java.lang)
+            FileSystemNotFoundException (java.nio.file)
+            BufferOverflowException (java.nio)
+            BufferUnderflowException (java.nio)
+        TimeoutException (java.util.concurrent)
+        ParseException (java.text)
+```
+
+## define
+
+```plantuml
+@startuml
+
+class Throwable
+class Error
+class Exception
+
+Throwable ^-- Error
+Throwable ^-- Exception
+
+'''''''''''''''''''''错误'''''''''''''''''''''''
+class VirtualMachineError #orange
+class LinkageError #yellow
+Error ^--- VirtualMachineError
+Error ^---- LinkageError
+Error ^-- IOError
+Error ^-- ThreadError
+
+VirtualMachineError ^-- StackOverflowError
+VirtualMachineError ^-- OutOfMemoryError
+
+LinkageError ^-- NoClassDefFoundError
+LinkageError ^-- VefifyError
+
+'''''''''''''''''''''异常'''''''''''''''''''''''
+class IOException #orange
+note left: 检查异常
+
+Exception ^------ IOException
+Exception ^-- RuntimeException
+
+IOException ^-- FileSystemException
+IOException ^-- SocketException
+IOException ^-- ProtocolException
+IOException ^-- ClosedChannelException
+
+RuntimeException ^-- IndexOutOfBoundsException
+RuntimeException ^--- ArithmeticException
+RuntimeException ^---- NullPointerException
+RuntimeException ^---- IllegalArgumentException
+
+@enduml
+```

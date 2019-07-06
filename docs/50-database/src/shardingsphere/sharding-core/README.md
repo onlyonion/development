@@ -1,0 +1,20 @@
+io.shardingsphere.core
+## package
+```
+api
+constant
+event
+exception
+executor
+hint
+keygen
+merger
+metadata
+optimizer
+parsing
+rewrite
+routing
+rule
+util
+yaml
+```
