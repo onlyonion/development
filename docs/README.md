@@ -3,9 +3,8 @@
 * [https://onlyonion.gitee.io/development](https://onlyonion.gitee.io/development)
 
 ## introduce
-This is my daily notes, enriching the mind....
-
 <!--
+This is my daily notes, enriching the mind....
 ![knowledge](/00-base/img/knowledge.png)
 -->
 

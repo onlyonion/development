@@ -7,6 +7,15 @@
   * [spring-context-support](/20-framework/src/spring/spring-context-support/README.md)
 - [spring-aop](/20-framework/src/spring/spring-aop/README.md)
   * spring-aspect
+- web
+  * [spring-web](/20-framework/src/spring/spring-web/README.md)
+  * [spring-webmvc](/20-framework/src/spring/spring-webmvc/README.md)
+  * [spring-websocket](/20-framework/src/spring/spring-websocket/README.md)
+  * spring-webflux 异步事件编程
+- [spring-boot](/20-framework/src/spring/spring-boot/README.md)
+  * [spring-boot](/20-framework/src/spring/spring-boot/spring-boot/README.md)
+  * [spring-boot-autoconfigure](/20-framework/src/spring/spring-boot/spring-boot-autoconfigure/README.md)
+  * [spring-boot-starter](/20-framework/src/spring/spring-boot/spring-boot-starter/README.md)
 - data
   * [spring-data](/20-framework/src/spring/spring-data/README.md)
     * [spring-data-commons](/20-framework/src/spring/spring-data/spring-data-commons/README.md)
@@ -17,22 +26,13 @@
   * [spring-orm](/20-framework/src/spring/spring-orm/README.md)
   * [spring-oxm](/20-framework/src/spring/spring-oxm/README.md)
   * [spring-tx](/20-framework/src/spring/spring-tx/README.md)
-- web
-  * [spring-web](/20-framework/src/spring/spring-web/README.md)
-  * [spring-webmvc](/20-framework/src/spring/spring-webmvc/README.md)
-  * [spring-websocket](/20-framework/src/spring/spring-websocket/README.md)
-  * spring-webflux 异步事件编程
 - [spring-expression](/20-framework/src/spring/spring-expression/README.md)
+- [spring-cloud](/20-framework/src/spring/spring-cloud/README.md)
 - spring-test
 - spring-instruments
 - spring-jms
 - spring-messaging
 - spring-security
-- [spring-boot](/20-framework/src/spring/spring-boot/README.md)
-  * [spring-boot](/20-framework/src/spring/spring-boot/spring-boot/README.md)
-  * [spring-boot-autoconfigure](/20-framework/src/spring/spring-boot/spring-boot-autoconfigure/README.md)
-  * [spring-boot-starter](/20-framework/src/spring/spring-boot/spring-boot-starter/README.md)
-- [spring-cloud](/20-framework/src/spring/spring-cloud/README.md)
 
 ## content
 * IoC IoC容器的资源定位、BeanDefinition加载解析、注册

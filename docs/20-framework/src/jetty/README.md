@@ -1,6 +1,6 @@
 ## jetty
 
-## org.mortbay.jetty:jetty:6.1.26
+## org.mortbay.jetty:6.1.26
 
 ```
     io

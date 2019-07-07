@@ -286,8 +286,12 @@
 			<artifactId>hutool-all</artifactId>
 			<version>4.5.11</version>
 		</dependency>
-
-
+		<!-- https://mvnrepository.com/artifact/co.paralleluniverse/quasar-core -->
+		<dependency>
+			<groupId>co.paralleluniverse</groupId>
+			<artifactId>quasar-core</artifactId>
+			<version>0.7.10</version>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>

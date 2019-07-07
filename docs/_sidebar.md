@@ -9,9 +9,9 @@
   * [0.3 组成原理](00-base/30-composition.md)
   * [0.4 网络](00-base/40-net.md)
   * [0.5 编译原理](00-base/50-compile.md)
-  -->
+  
   * [book-计算机相关](/99-book/notes/README.md)
-  * [book-学科门类](99-book/subject/README.md)
+  * [book-学科门类](99-book/subject/README.md)-->
 * [1. Java](10-java/README.md)
   * [1.1 异常处理](10-java/01-throwable.md)
   * [1.2 Java虚拟机](10-java/02-jvm.md)
