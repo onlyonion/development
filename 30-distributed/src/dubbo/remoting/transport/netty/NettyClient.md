@@ -36,8 +36,10 @@ AbstractPeer ^-- AbstractEndpoint
 
 '''''''''''''''''''''''客户端'''''''''''''''''''''''
 abstract class AbstractClient {
-
 }
+AbstractClient *-- ScheduledThreadPoolExecutor
+AbstractClient *-- ReentrantLock
+
 AbstractEndpoint ^-- AbstractClient
 
 '''''''''''''''''''''''NettyClient'''''''''''''''''''''''
@@ -51,6 +53,8 @@ class NettyClient {
     # void doClose()
 }
 AbstractClient ^-- NettyClient
+
+NettyClient *-- NioClientSocketChannelFactory
 
 @enduml
 ```

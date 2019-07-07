@@ -1,4 +1,4 @@
-![logo](assets/onion.ico)
+![logo](00-base/assets/onion.ico)
 
 # onlyonion development
 

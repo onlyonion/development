@@ -1,5 +1,9 @@
 java.net.SocketOptions
 
+## methods
+* setOption(int optID, Object value)
+* Object getOption(int optID)
+
 ## static fields
 * TCP_NODELAY
 * SO_BINDADDR

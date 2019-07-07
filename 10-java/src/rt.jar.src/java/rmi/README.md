@@ -8,11 +8,13 @@ activation
     Activator
     Activatable
 dgc
-registry
+registry                注册中心
     Registry
     LocateRegistry
-server
-    RMIClassLoader
+server                  服务端
+    RMIClassLoader      类加载器
+    RMIServerSocketFactory
+    RMIClientSocketFactory
 AccessException
 AlreadyBoundException
 ConnectException
