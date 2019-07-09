@@ -8,10 +8,10 @@ java.util.concurrent.ThreadPoolExecutor
   * LinkedBlockingQueue 
   * SynchronousQueue
 * 拒绝策略
-  * AbortPolicy
-  * CallerRunsPolicy
-  * DiscardPolicy
-  * DiscardOldestPolicy
+  * AbortPolicy 抛异常
+  * CallerRunsPolicy 调用者线程执行
+  * DiscardPolicy 抛弃
+  * DiscardOldestPolicy 抛弃最早的
 * 执行顺序
   * 是否大于core
   * 队列是否已满
@@ -35,7 +35,7 @@ Executor
 
 ## define
 * 内部类
-  * Worker
+  * Worker 继承AbstractQueuedSynchronizer
 * 域
   * 工作队列 BlockingQueue<Runnable> workQueue
   * 全局锁 ReentrantLock mainLock

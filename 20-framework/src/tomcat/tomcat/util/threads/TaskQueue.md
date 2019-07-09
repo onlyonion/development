@@ -1,8 +1,14 @@
 org.apache.tomcat.util.threads.TaskQueue
 
+## hierachical
+```
+AbstractCollection (java.util)
+    AbstractQueue (java.util)
+        LinkedBlockingQueue (java.util.concurrent)
+            TaskQueue (org.apache.tomcat.util.threads)
+```
 ## define
 
-## hierachical
 
 ```yuml
 

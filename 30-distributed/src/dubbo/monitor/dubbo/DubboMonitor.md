@@ -2,9 +2,6 @@ com.alibaba.dubbo.monitor.dubbo.DubboMonitor
 
 ## hierarchy
 ## define
-* ScheduledExecutorService
-* ConcurrentMap<Statistics, AtomicReference<long[]>>
-
 ```plantuml
 @startuml
 
@@ -21,4 +18,16 @@ class MonitorService
 ScheduledExecutorService o-- DelayedWorkQueue
 
 @enduml
+```
+
+## fields
+* ScheduledExecutorService
+* ConcurrentMap<Statistics, AtomicReference<long[]>>
+
+```
+// 定时任务执行器 3个线程
+private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3, new NamedThreadFactory("DubboMonitorSendTimer", true));
+    
+// 原子引用
+private final ConcurrentMap<Statistics, AtomicReference<long[]>> statisticsMap = new ConcurrentHashMap<Statistics, AtomicReference<long[]>>();
 ```

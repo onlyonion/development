@@ -1,8 +1,22 @@
 org.apache.tomcat.util.threads.TaskThread
 
-## define
-
 ## hierachical
+```
+Thread (java.lang)
+    TaskThread (org.apache.tomcat.util.threads)
+```
+## define
+```plantuml
+@startuml
+
+class TaskThread
+TaskThread *- creationTime
+
+TaskThread +-- WrappingRunnable
+WrappingRunnable *- Runnable
+
+@enduml
+```
 
 ```yuml
 // {type:class}
@@ -15,7 +29,6 @@ org.apache.tomcat.util.threads.TaskThread
 
 [TaskThread]+->[WrappingRunnable]
 [Runnable]^-.-[WrappingRunnable]
-
 ```
 
 ## thread.run() -> SocketProcessorBase.run()
@@ -28,4 +41,4 @@ sequenceDiagram
     ThreadPoolExecutor->>SocketProcessorBase:run()
 ```
 
-[SocketProcessorBase](../../SocketProcessorBase.md)
+[SocketProcessorBase](../net/SocketProcessorBase.md)

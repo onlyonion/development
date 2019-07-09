@@ -1,5 +1,7 @@
 org.springframework.context.support.GenericApplicationContext
 
+* AtomicBoolean
+
 ## hierarchy
 * GenericApplicationContext
   * GenericWebApplicationContext

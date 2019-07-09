@@ -44,3 +44,16 @@ MappedByteBuffer ^-- DirectByteBuffer
 
 @enduml
 ```
+## methods
+
+```java
+public static ByteBuffer allocateDirect(int capacity) {
+    return new DirectByteBuffer(capacity);
+}
+
+public static ByteBuffer allocate(int capacity) {
+    if (capacity < 0)
+        throw new IllegalArgumentException();
+    return new HeapByteBuffer(capacity, capacity);
+}
+```

@@ -1,5 +1,7 @@
 org.springframework.context.support.AbstractApplicationContext
 
+* synchronized
+
 ## hierarchy
 * AbstractApplicationContext
   * AbstractRefreshableApplicationContext

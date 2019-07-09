@@ -1,5 +1,10 @@
 sun.misc.Unsafe
 
+* 单例 静态代码块初始化
+* memeory allocate reallocate copy free
+* park unpark
+* monitor volatile cas for/while
+
 ## define
 native的，需要调用JNI接口，也即通过操作系统来保证这些方法的执行
 

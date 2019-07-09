@@ -32,3 +32,33 @@ NativeInterfaces 	--> NativeLibraries
 ![java-jvm](./img/jvm-architecture.png)
 
 
+## GC
+算法
+1. 引用计数
+2. 标记清除
+3. 标记整理
+4. 复制
+
+收集器
+1. serial
+2. parnew
+3. parallel
+4. serial old
+5. cms
+6. parallel
+7. g1
+8. zgc 着色指针 读屏障 分区 标记压缩 并发
+
+## 类加载
+
+
+## 编译优化
+
+
+## 运行期优化
+
+
+## 并发
+
+
+

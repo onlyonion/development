@@ -49,7 +49,7 @@
   * websocket
     * [WsFilter](/20-framework/src/tomcat/tomcat/websocket/WsFilter.md)
   * [AbstractEndpoint](/20-framework/src/tomcat/tomcat/AbstractEndpoint.md)
-  * [SocketProcessorBase](/20-framework/src/tomcat/tomcat/SocketProcessorBase.md)
+  * [SocketProcessorBase](/20-framework/src/tomcat/tomcat/util/net/SocketProcessorBase.md)
   
 
 ## package

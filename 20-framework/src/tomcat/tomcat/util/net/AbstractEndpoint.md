@@ -1,4 +1,6 @@
 org.apache.tomcat.util.net.AbstractEndpoint
+## tcp
+TCP协议：端对端的、面向字节流、面向连接的、全双工可靠的传输层协议
 
 ## hierarchy
 ```
@@ -15,22 +17,22 @@ AbstractEndpoint (org.apache.tomcat.util.net)
 
 '''''''''''''''''''''''AbstractEndpoint'''''''''''''''''''''''''''
 abstract class AbstractEndpoint<S> {
+    # Acceptor[] acceptors
     - int maxConnections = 10000
     - int acceptCount = 100
     - int minSpareThreads = 10
     - int maxThreads = 200
     # int acceptorThreadCount = 1
+    - Handler handler
 }
 
-AbstractEndpoint o-- LimitLatch
-abstract class AbstractEndpoint.Acceptor
-
-AbstractEndpoint +- AbstractEndpoint.Acceptor
+AbstractEndpoint o- LimitLatch
 AbstractEndpoint +-- Handler
-AbstractEndpoint +-- BindState
+AbstractEndpoint +- BindState
 
 interface Handler<S>
 Handler +-- SocketState
+Handler <|.. ConnectionHandler
 
 enum SocketState {
     OPEN, 
@@ -47,6 +49,23 @@ enum BindState {
     UNBOUND, 
     BOUND_ON_INIT, 
     BOUND_ON_START
+}
+
+'''''''''''''''''''''''''''Acceptor'''''''''''''''''''''''''''
+abstract class Acceptor {
+enum AcceptorState {
+    NEW
+    RUNNING
+    PAUSED
+    ENDED
+}
+AbstractEndpoint +-- Acceptor
+Acceptor +-- AcceptorState
+enum AcceptorState {
+    NEW, 
+    RUNNING, 
+    PAUSED, 
+    ENDED
 }
 
 '''''''''''''''''''''''''AbstractJsseEndpoint'''''''''''''''''''''''''
@@ -66,7 +85,7 @@ AbstractJsseEndpoint ^-- NioEndpoint
 AbstractJsseEndpoint ^-- Nio2Endpoint
 
 NioEndpoint +-- NioEndpoint.Acceptor
-AbstractEndpoint.Acceptor ^.. NioEndpoint.Acceptor
+Acceptor ^.. NioEndpoint.Acceptor
 
 AbstractEndpoint ^-- AprEndpoint
 

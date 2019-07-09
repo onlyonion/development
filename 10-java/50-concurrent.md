@@ -1,5 +1,9 @@
 
 ## concurrent
+* thread 
+  * start join sleep interrupt interrupted isInterrupted isAlive
+  * priority group daemon tid 
+  * State NEW RUNNABLE BLOCKED WAITING TIMED_WAITING TERMINATED
 * JMM master-worker hanpens-before
 * volatile synchronized final
 * Lock AQS
