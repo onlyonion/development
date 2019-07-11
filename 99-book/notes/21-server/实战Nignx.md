@@ -46,7 +46,7 @@ gcc编译器，autoconf、automake工具
 ```shell
 # 使用的用户和组
 user www www;
-# 指定工作衍生进程数
+# 指定工作衍生进程数 一般等于cpu总核数或总核数的两倍
 worker_processes 8;
 # 指定错误日志存放的路径 debug|info|notice|warn|error|crit
 error_log /data1/logs/nignx_error.log crit;

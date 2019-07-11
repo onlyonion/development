@@ -8,3 +8,10 @@ java.util.DualPivotQuicksort
 3. 采用近似算法计算数组长度的1/7
 4. 取出5个点
 5. 将这5个元素进行插入排序 
+
+
+## fields
+插入 -- 47 -- 快排 -- 286 -- 归并
+
+* QUICKSORT_THRESHOLD = 286
+* INSERTION_SORT_THRESHOLD = 47

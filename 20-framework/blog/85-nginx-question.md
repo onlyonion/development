@@ -15,6 +15,8 @@ Nginx服务器的最佳用法是在网络上部署动态HTTP内容，使用SCGI�
 Master进程：读取及评估配置和维持
 Worker进程：处理请求
 
+首先，每个worker进程都是从master进程fork过来，在master进程里面，先建立好需要listen的socket（listenfd）之后，然后再fork出多个worker进程。所有worker进程的listenfd会在新连接到来时变得可读，为保证只有一个进程处理该连接，所有worker进程在注册listenfd读事件前抢accept_mutex，抢到互斥锁的那个进程注册listenfd读事件，在读事件里调用accept接受该连接。当一个worker进程在accept这个连接之后，就开始读取请求，解析请求，处理请求，产生数据后，再返回给客户端，最后才断开连接，这样一个完整的请求就是这样的了。我们可以看到，一个请求，完全由worker进程来处理，而且只在一个worker进程中处理。
+
 ### 请解释什么是C10K问题?
 C10K问题是指无法同时处理大量客户端(10,000)的网络套接字。
 
