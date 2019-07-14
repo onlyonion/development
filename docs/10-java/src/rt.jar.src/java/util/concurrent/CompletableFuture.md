@@ -1,5 +1,7 @@
 java.util.concurrent.CompletableFuture
 
+* Unsafe
+
 ## hierarchy
 ```
 CompletableFuture (java.util.concurrent)

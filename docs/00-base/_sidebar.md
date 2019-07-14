@@ -3,3 +3,4 @@
   * [0.3 组成原理](00-base/30-composition.md)
   * [0.4 网络](00-base/40-net.md)
   * [0.5 编译原理](00-base/50-compile.md)
+  * [0.6 src](00-base/src/)

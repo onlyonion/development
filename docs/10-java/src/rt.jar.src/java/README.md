@@ -80,6 +80,7 @@
   * 异步编程  
     * [Future](/10-java/src/rt.jar.src/java/util/concurrent/Future.md)
     * [FutureTask](/10-java/src/rt.jar.src/java/util/concurrent/FutureTask.md)
+    * [CompletionStage](/docs/10-java/src/rt.jar.src/java/util/concurrent/CompletionStage.md)
     * [CompletableFuture](/10-java/src/rt.jar.src/java/util/concurrent/CompletableFuture.md)
 * IO
   * [bio](/10-java/src/rt.jar.src/java/io/README.md:1)

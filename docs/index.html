@@ -14,7 +14,10 @@
   <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <style type="text/css">
     .markdown-section {
-        max-width: 1250px;
+      max-width: 1250px;
+    }
+    .sidebar div > ul > li > a{
+      font-size: 16px;
     }
   </style>
 </head>
@@ -23,23 +26,29 @@
   <script>
     mermaid.initialize({ startOnLoad: false });
     window.$docsify = {
-      name: 'onlyonion-development',
+      name: 'development',
       nameLink: /localhost/.test(location.host) ? '/' : '/development',
       repo: 'https://gitee.com/onlyonion/development',
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+        '/.*/_navbar.md': '/_navbar.md',
+      },
+      auto2top: true,
+      coverpage: true,
+      executeScript: true,
       loadSidebar: true,
       loadNavbar: true,
-      coverpage: true,
+      mergeNavbar: true,
       maxLevel: 4,
-      subMaxLevel: 2,
-      auto2top: true,
+      subMaxLevel: 4,
       search: {
-        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+        // maxAge: 86400000, // 过期时间，单位毫秒，默认一天
         paths: [], // or 'auto'
-        placeholder: '全文搜索',
+        placeholder: 'Search',
         noData: 'No Results!',
         depth: 6
       },
-      // notFoundPage: '_404.md',
+      notFoundPage: '_404.md',
       // mermaid
       markdown: {
         renderer: {
@@ -64,13 +73,16 @@
       },
       plugins: [
         function (hook) {
+          hook.beforeEach(function(content) {
+              if(content != null) content = content.replace(/\]\(\/?docs/g, "](")
+              return content;
+          });
           var footer = [
             '<hr/>',
             '<footer>',
             '<span>Powered by onlyonion</span>',
             '</footer>'
-          ].join('')
-
+          ].join('');
           hook.afterEach(function (html) {
             return html + footer
           })
