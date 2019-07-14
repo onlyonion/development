@@ -1,40 +1,40 @@
 ## 计算机相关
 
-### [计算机基础](/99-book/notes/00-base/README.md)
+### [计算机基础](/docs/99-book/notes/00-base/README.md)
 * 组成
-  * [《计算机组成原理（第2版）》唐朔飞](/99-book/notes/00-base/计算机组成原理.md)
-  * [《计算机体系结构》张晨曦](/99-book/notes/00-base/计算机体系结构.md)
+  * [《计算机组成原理（第2版）》唐朔飞](/docs/99-book/notes/00-base/计算机组成原理.md)
+  * [《计算机体系结构》张晨曦](/docs/99-book/notes/00-base/计算机体系结构.md)
 * 结构与算法
-  * [《数据结构（C语言版）》严蔚敏](/99-book/notes/00-base/数据结构.md)
-  * [《数据结构与算法分析Java语言描述》](/99-book/notes/00-base/数据结构与算法分析Java语言描述.md)
-  * [《算法》Robert Sedgewick 谢路云](/99-book/notes/00-base/算法.md)
-  * [《算法图解》袁国忠译](/99-book/notes/00-base/算法图解.md)
+  * [《数据结构（C语言版）》严蔚敏](/docs/99-book/notes/00-base/数据结构.md)
+  * [《数据结构与算法分析Java语言描述》](/docs/99-book/notes/00-base/数据结构与算法分析Java语言描述.md)
+  * [《算法》Robert Sedgewick 谢路云](/docs/99-book/notes/00-base/算法.md)
+  * [《算法图解》袁国忠译](/docs/99-book/notes/00-base/算法图解.md)
 * 操作系统
-  * [《计算机操作系统（第三版）》汤小丹](/99-book/notes/00-base/计算机操作系统.md)
-  * [《深入理解计算机系统》](/99-book/notes/00-base/深入理解计算机系统.md)
+  * [《计算机操作系统（第三版）》汤小丹](/docs/99-book/notes/00-base/计算机操作系统.md)
+  * [《深入理解计算机系统》](/docs/99-book/notes/00-base/深入理解计算机系统.md)
 * 网络
-  * [《计算机网络（第5版）》谢希仁](/99-book/notes/00-base/计算机网络.md)
-* [《计算机科学概论》第11版 美 J.Glenn Brookshear 刘艺](/99-book/notes/00-base/计算机科学概论.md)
-* [《编译原理（第2版）》赵建华](/99-book/notes/00-base/编译原理.md)
-* [《数据库系统概论（第4版）》 王珊](/99-book/notes/00-base/数据库系统概论.md)
+  * [《计算机网络（第5版）》谢希仁](/docs/99-book/notes/00-base/计算机网络.md)
+* [《计算机科学概论》第11版 美 J.Glenn Brookshear 刘艺](/docs/99-book/notes/00-base/计算机科学概论.md)
+* [《编译原理（第2版）》赵建华](/docs/99-book/notes/00-base/编译原理.md)
+* [《数据库系统概论（第4版）》 王珊](/docs/99-book/notes/00-base/数据库系统概论.md)
 
 ### Java
 * 《core java》卷I
 * 《core java》卷II
 * 《thinking in java》
-* [《Java虚拟机规范》 爱飞翔 周志明 等译](/99-book/notes/10-java/Java虚拟机规范.md)
-* [《深入理解Java虚拟机：JVM高级特性与最佳实践》 周志明](/99-book/notes/10-java/深入理解Java虚拟机.md)
-* [《HotSpot实战》陈涛](/99-book/notes/10-java/HotSpot实战.md)
-* [《揭秘Java虚拟机-JVM设计原理与实现》 封亚飞](/99-book/notes/10-java/揭秘Java虚拟机.md)
-* [《深入理解JVM & G1 GC》 周明耀](/99-book/notes/10-java/深入理解JVM&G1GC.md)
-* [《Java 8函数式编程》](/99-book/notes/10-java/Java%208函数式编程.md)
-* [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/99-book/notes/10-java/Java%208实战.md)
-* [《Java并发编程的艺术》 方腾飞](/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
-* [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/99-book/notes/10-java/Java多线程编程核心技术.md)
+* [《Java虚拟机规范》 爱飞翔 周志明 等译](/docs/99-book/notes/10-java/Java虚拟机规范.md)
+* [《深入理解Java虚拟机：JVM高级特性与最佳实践》 周志明](/docs/99-book/notes/10-java/深入理解Java虚拟机.md)
+* [《HotSpot实战》陈涛](/docs/99-book/notes/10-java/HotSpot实战.md)
+* [《揭秘Java虚拟机-JVM设计原理与实现》 封亚飞](/docs/99-book/notes/10-java/揭秘Java虚拟机.md)
+* [《深入理解JVM & G1 GC》 周明耀](/docs/99-book/notes/10-java/深入理解JVM&G1GC.md)
+* [《Java 8函数式编程》](/docs/99-book/notes/10-java/Java%208函数式编程.md)
+* [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/docs/99-book/notes/10-java/Java%208实战.md)
+* [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
+* [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
 * 《Java并发编程实战》
 
 ### 框架
-* [《MyBatis技术内幕》徐郡明](/99-book/notes/20-framework/Mybatis技术内幕.md)
+* [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)
 * [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/99-book/notes/20-framework/Spring技术内幕(2).md)
 * [《Spring源码深度解析》郝佳](/99-book/notes/20-framework/Spring源码深度解析.md)
 * [《JavaEE开发的颠覆者：Spring Boot实战》汪云飞 中国工信出版社 电子工业出版社](/99-book/notes/20-framework/SpringBoot实战.md)

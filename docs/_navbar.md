@@ -9,8 +9,8 @@
   * [开发运维](70-dev-ops/README.md)
   * [软考](80-project/exam/README.md)
 * book
-  * [计算机相关](/99-book/notes/README.md)
-  * [学科门类](/99-book/subject/README.md)
+  * [计算机相关](/docs/99-book/notes/README.md)
+  * [学科门类](/docs/99-book/subject/README.md)
 * src
   * [java](10-java/src/README.md)
   * [spring](20-framework/src/spring/README.md)

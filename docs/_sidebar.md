@@ -74,7 +74,7 @@
   * [8.1 互金](80-project/02-InternetFinance.md)
   * [8.2 软考](80-project/exam/README.md)
 * [10. 小书库](99-book/README.md)
-  * [10.1 计算机相关](/99-book/notes/README.md)
+  * [10.1 计算机相关](/docs/99-book/notes/README.md)
   * [10.2 学科门类](99-book/subject/README.md)
   * [10.3 榜样](99-book/90-celebrity.md)
   * [10.4 人在旅途](99-book/onjourney/README.md)
