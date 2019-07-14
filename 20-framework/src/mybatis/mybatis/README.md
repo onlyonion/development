@@ -18,10 +18,14 @@ org.apache.ibatis
     executor
         BaseExecutor
     io
+        Resources
+        VFS
     javassist
     jdbc
+        RuntimeSqlException
     lang
     logging
+        LogFactory
     mapping
         MappedStatement
     ognl

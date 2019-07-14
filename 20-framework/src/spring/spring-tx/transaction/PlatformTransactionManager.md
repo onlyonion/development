@@ -4,6 +4,7 @@ org.springframework.transaction.PlatformTransactionManager
 ```
 PlatformTransactionManager (org.springframework.transaction)
     CallbackPreferringPlatformTransactionManager (org.springframework.transaction.support)
+        WebSphereUowTransactionManager (org.springframework.transaction.jta)
     AbstractPlatformTransactionManager (org.springframework.transaction.support)
         CciLocalTransactionManager (org.springframework.jca.cci.connection)
         DataSourceTransactionManager (org.springframework.jdbc.datasource)

@@ -7,19 +7,19 @@ Throwable (java.lang)
         VirtualMachineError (java.lang)                         JVM虚拟机错误
             StackOverflowError (java.lang)                          栈溢出
             UnknownError (java.lang)
-            InternalError (java.lang)
+            InternalError (java.lang)                               JVM内部错误
             OutOfMemoryError (java.lang)                            内存溢出 堆、元空间、直接内存、GC开销、创建本地线程
                 OutOfDirectMemoryError (io.netty.util.internal)
-        LinkageError (java.lang)                                类加载-链接期错误 加载、连接、初始化 
-            ClassCircularityError (java.lang)
-            IncompatibleClassChangeError (java.lang)
-                NoSuchFieldError (java.lang)
-                InstantiationError (java.lang)
-                NoSuchMethodError (java.lang)
+        LinkageError (java.lang)                                类加载-连接期错误 加载、连接（验证、准备、解析）、初始化 
+            IncompatibleClassChangeError (java.lang)                不相容的类改变错误，不能通过符号引用验证
                 IllegalAccessError (java.lang)
+                NoSuchFieldError (java.lang)                            字段解析
+                NoSuchMethodError (java.lang)                           方法解析
                 AbstractMethodError (java.lang)
+                InstantiationError (java.lang)
+            ClassCircularityError (java.lang)                       类循环依赖错误
             BootstrapMethodError (java.lang)
-            ClassFormatError (java.lang)
+            ClassFormatError (java.lang)                            验证-类文件格式
             UnsatisfiedLinkError (java.lang)
             NoClassDefFoundError (java.lang)                        无类定义发现错误
             ExceptionInInitializerError (java.lang)

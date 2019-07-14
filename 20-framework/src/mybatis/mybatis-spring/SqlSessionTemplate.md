@@ -25,19 +25,22 @@ class SqlSessionTemplate {
     - final PersistenceExceptionTranslator exceptionTranslator
 }
 
+SqlSessionTemplate *-- SqlSessionFactory
+
 SqlSession <|.. SqlSessionTemplate
 DisposableBean <|.. SqlSessionTemplate
 
 '''''''''''''''''''' SqlSessionInterceptor ''''''''''''''''''''''
 interface InvocationHandler
-class SqlSessionInterceptor {
+class SqlSessionInterceptor #orange {
     + Object invoke(Object proxy, Method method, Object[] args)
 }
 InvocationHandler <|.. SqlSessionInterceptor
 SqlSessionTemplate +-- SqlSessionInterceptor
 
 class SqlSessionUtils {
-    + static SqlSession getSqlSession(SqlSessionFactory sessionFactory, ExecutorType executorType, PersistenceExceptionTranslator exceptionTranslator)
+    + static SqlSession getSqlSession(SqlSessionFactory sessionFactory, 
+        ExecutorType executorType, PersistenceExceptionTranslator exceptionTranslator)
 }
 SqlSessionInterceptor -.-> SqlSessionUtils
 
@@ -48,6 +51,26 @@ enum ExecutorType {
 SqlSessionTemplate o-- ExecutorType
 
 @enduml
+```
+
+## methods
+
+### 构造方法
+```java
+public SqlSessionTemplate(SqlSessionFactory sqlSessionFactory, ExecutorType executorType,
+      PersistenceExceptionTranslator exceptionTranslator) {
+
+    notNull(sqlSessionFactory, "Property 'sqlSessionFactory' is required");
+    notNull(executorType, "Property 'executorType' is required");
+
+    this.sqlSessionFactory = sqlSessionFactory;
+    this.executorType = executorType;
+    this.exceptionTranslator = exceptionTranslator;
+    this.sqlSessionProxy = (SqlSession) newProxyInstance(
+        SqlSessionFactory.class.getClassLoader(),
+        new Class[] { SqlSession.class },
+        new SqlSessionInterceptor());
+  }
 ```
 
 ## stack
@@ -63,6 +86,6 @@ executeForMany:137, MapperMethod (org.apache.ibatis.binding)
 execute:75, MapperMethod (org.apache.ibatis.binding)
 
 // MapperProxy
-invoke:59, MapperProxy (org.apache.ibatis.binding)
+invoke:59, MapperProxy (org.apache.ibatis.binding) 实现了 InvocationHandler.invoke
 selectList:-1, $Proxy92 (com.sun.proxy)  jdk动态代理
 ```

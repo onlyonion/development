@@ -1,5 +1,21 @@
 org.mybatis.spring.mapper.MapperScannerConfigurer
 
+* MapperScannerConfigurer
+* ClassPathMapperScanner
+
+## hierarchy
+```
+MapperScannerConfigurer (org.mybatis.spring.mapper)
+    Object (java.lang)
+    BeanDefinitionRegistryPostProcessor (org.springframework.beans.factory.support)
+        BeanFactoryPostProcessor (org.springframework.beans.factory.config)
+    InitializingBean (org.springframework.beans.factory)
+    ApplicationContextAware (org.springframework.context)
+        Aware (org.springframework.beans.factory)
+    BeanNameAware (org.springframework.beans.factory)
+        Aware (org.springframework.beans.factory)
+```
+
 ## define
 ```plantuml
 @startuml
@@ -37,12 +53,73 @@ MapperScannerConfigurer ..> ClassPathMapperScanner
 @enduml
 ```
 
+## methods
+```java
+
+ public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
+    if (this.processPropertyPlaceHolders) {
+      processPropertyPlaceHolders();
+    }
+
+    ClassPathMapperScanner scanner = new ClassPathMapperScanner(registry);
+    scanner.setAddToConfig(this.addToConfig);
+    scanner.setAnnotationClass(this.annotationClass);
+    scanner.setMarkerInterface(this.markerInterface);
+    scanner.setSqlSessionFactory(this.sqlSessionFactory);
+    scanner.setSqlSessionTemplate(this.sqlSessionTemplate);
+    scanner.setSqlSessionFactoryBeanName(this.sqlSessionFactoryBeanName);
+    scanner.setSqlSessionTemplateBeanName(this.sqlSessionTemplateBeanName);
+    scanner.setResourceLoader(this.applicationContext);
+    scanner.setBeanNameGenerator(this.nameGenerator);
+    scanner.registerFilters();
+    scanner.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
+  }
+
+  /*
+   * BeanDefinitionRegistries are called early in application startup, before
+   * BeanFactoryPostProcessors. This means that PropertyResourceConfigurers will not have been
+   * loaded and any property substitution of this class' properties will fail. To avoid this, find
+   * any PropertyResourceConfigurers defined in the context and run them on this class' bean
+   * definition. Then update the values.
+   */
+  private void processPropertyPlaceHolders() {
+    Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class);
+
+    if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
+      BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext)
+          .getBeanFactory().getBeanDefinition(beanName);
+
+      // PropertyResourceConfigurer does not expose any methods to explicitly perform
+      // property placeholder substitution. Instead, create a BeanFactory that just
+      // contains this mapper scanner and post process the factory.
+      DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+      factory.registerBeanDefinition(beanName, mapperScannerBean);
+
+      for (PropertyResourceConfigurer prc : prcs.values()) {
+        prc.postProcessBeanFactory(factory);
+      }
+
+      PropertyValues values = mapperScannerBean.getPropertyValues();
+
+      this.basePackage = updatePropertyValue("basePackage", values);
+      this.sqlSessionFactoryBeanName = updatePropertyValue("sqlSessionFactoryBeanName", values);
+      this.sqlSessionTemplateBeanName = updatePropertyValue("sqlSessionTemplateBeanName", values);
+    }
+  }
+
+```
+
 ## invoke
 ```
+
+// postProcessBeanDefinitionRegistry
 postProcessBeanDefinitionRegistry:302, MapperScannerConfigurer (org.mybatis.spring.mapper)
+
+// invokeBeanFactoryPostProcessors 调用bean工厂后处理器
 invokeBeanFactoryPostProcessors:123, PostProcessorRegistrationDelegate (org.springframework.context.support)
 invokeBeanFactoryPostProcessors:678, AbstractApplicationContext (org.springframework.context.support)
 
+// refresh
 refresh:520, AbstractApplicationContext (org.springframework.context.support)
 configureAndRefreshWebApplicationContext:444, ContextLoader (org.springframework.web.context)
 initWebApplicationContext:326, ContextLoader (org.springframework.web.context)

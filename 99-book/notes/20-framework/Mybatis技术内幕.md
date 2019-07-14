@@ -103,6 +103,7 @@ Tomcat为每个部署的应用创建一个唯一的类加载器，WebAppClassLoa
 
 ### 2.6 DataSource
 #### 2.6.1 工厂方法模式
+定义一个用于创建对象的工厂接口，并根据工厂接口的**具体实现类**决定具体实例化哪一个**具体产品类**。
 #### 2.6.2 DateSourceFactory
 #### 2.6.3 UnpooledDataSource
 #### 2.6.4 PooledDataSource

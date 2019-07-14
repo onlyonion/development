@@ -43,3 +43,26 @@ class ClassPathMapperScanner {
 
 @enduml
 ```
+
+## methods
+
+### doScan
+```
+/**
+* Calls the parent search that will search and register all the candidates.
+* Then the registered objects are post processed to set them as
+* MapperFactoryBeans
+*/
+@Override
+public Set<BeanDefinitionHolder> doScan(String... basePackages) {
+    Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
+    
+    if (beanDefinitions.isEmpty()) {
+      logger.warn("No MyBatis mapper was found in '" + Arrays.toString(basePackages) + "' package. Please check your configuration.");
+    } else {
+      processBeanDefinitions(beanDefinitions);
+    }
+    
+    return beanDefinitions;
+}
+```

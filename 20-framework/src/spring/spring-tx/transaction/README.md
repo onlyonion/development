@@ -1,9 +1,10 @@
-
+org.springframework.transaction
 ## package
 ```
 annotation
     Isolation
     Propagation
+    Transactional
 config
     AnnotationDrivenBeanDefinitionParser
     TxNamespaceHandler
@@ -11,15 +12,29 @@ config
     JtaTransactionManagerFactoryBean
     JtaTransactionManagerBeanDefinitionParser
 event
+    TransactionPhase
 interceptor
     TransactionalProxy
+    TransactionAspectSupport
+    TransactionAttributeEditor
+    TransactionAttributeSource
     TransactionInterceptor
     TransactionProxyFactoryBean
 jta
+    JtaAfterCompletionSynchronization
+    JtaTransactionManager
+    JtaTransactionObject
+    ManagedTransactionAdapter
+    SimpleTransactionFactory
+    SpringJtaSynchronizationAdapter
+    TransactionFactory
+    UserTransactionAdapter
+    WebLogicJtaTransactionManager
+    WebSphereUowTransactionManager
 support
     AbstractPlatformTransactionManager
     AbstractTransactionStatus
-    CallbackPreferringPlatformTransactionManager
+    CallbackPreferringPlatformTransactionManager            回调优选的平台事务管理器
     DefaultTransactionDefinition
     DefaultTransactionStatus
     DelegatingTransactionDefinition

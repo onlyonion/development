@@ -1,0 +1,3 @@
+org.springframework.transaction.support.TransactionSynchronizationManager
+
+* ThreadLocal
