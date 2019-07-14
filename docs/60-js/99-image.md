@@ -6,6 +6,10 @@ this is generated files, just for view image conveniently...
 
 ![2018-react.png](./img/2018-react.png)
 
+## brower.png
+
+![brower.png](./img/brower.png)
+
 ## constructor-proto-chain.png
 
 ![constructor-proto-chain.png](./img/constructor-proto-chain.png)

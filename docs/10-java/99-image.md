@@ -34,6 +34,14 @@ this is generated files, just for view image conveniently...
 
 ![java-collections-LinkedList.jpg](./img/java-collections-LinkedList.jpg)
 
+## java-concurrent-AQS-queue.jpg
+
+![java-concurrent-AQS-queue.jpg](./img/java-concurrent-AQS-queue.jpg)
+
+## java-concurrent-AQS.jpg
+
+![java-concurrent-AQS.jpg](./img/java-concurrent-AQS.jpg)
+
 ## java-concurrent-countdownlanch.png
 
 ![java-concurrent-countdownlanch.png](./img/java-concurrent-countdownlanch.png)

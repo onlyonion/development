@@ -30,9 +30,25 @@ this is generated files, just for view image conveniently...
 
 ![dubbo-docs-send-request-process.jpg](./img/dubbo-docs-send-request-process.jpg)
 
+## dubbo-export.png
+
+![dubbo-export.png](./img/dubbo-export.png)
+
+## dubbo-extensionloader.png
+
+![dubbo-extensionloader.png](./img/dubbo-extensionloader.png)
+
 ## dubbo-framework.jpg
 
 ![dubbo-framework.jpg](./img/dubbo-framework.jpg)
+
+## dubbo-idea-ReferenceBean.png
+
+![dubbo-idea-ReferenceBean.png](./img/dubbo-idea-ReferenceBean.png)
+
+## dubbo-idea-ServiceBean.png
+
+![dubbo-idea-ServiceBean.png](./img/dubbo-idea-ServiceBean.png)
 
 ## dubbo-modules.jpg
 
@@ -41,6 +57,10 @@ this is generated files, just for view image conveniently...
 ## dubbo-proxy.jpg
 
 ![dubbo-proxy.jpg](./img/dubbo-proxy.jpg)
+
+## dubbo-refer.png
+
+![dubbo-refer.png](./img/dubbo-refer.png)
 
 ## dubbo-ReferenceBean.png
 
@@ -97,6 +117,10 @@ this is generated files, just for view image conveniently...
 ## high-concurrency.png
 
 ![high-concurrency.png](./img/high-concurrency.png)
+
+## mongodb-app.png
+
+![mongodb-app.png](./img/mongodb-app.png)
 
 ## paxos-concept-info.jpg
 

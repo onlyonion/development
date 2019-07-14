@@ -9,7 +9,7 @@ public class ImgToMarkdown {
      * @throws UnsupportedEncodingException 
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String path = "./";
+        String path = "./docs";
         MarkdownUtils.generate(path, false);
     }
 }

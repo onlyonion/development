@@ -66,6 +66,10 @@ this is generated files, just for view image conveniently...
 
 ![netty.png](./img/netty.png)
 
+## nginx-master-worker.png
+
+![nginx-master-worker.png](./img/nginx-master-worker.png)
+
 ## redis-app1.jpg
 
 ![redis-app1.jpg](./img/redis-app1.jpg)
@@ -321,6 +325,10 @@ this is generated files, just for view image conveniently...
 ## spring-tx.png
 
 ![spring-tx.png](./img/spring-tx.png)
+
+## tomcat-acceptor-poller-worker.png
+
+![tomcat-acceptor-poller-worker.png](./img/tomcat-acceptor-poller-worker.png)
 
 ## tomcat-bootstrap.png
 
