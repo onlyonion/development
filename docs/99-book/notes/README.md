@@ -27,7 +27,7 @@
 * [《HotSpot实战》陈涛](/docs/99-book/notes/10-java/HotSpot实战.md)
 * [《揭秘Java虚拟机-JVM设计原理与实现》 封亚飞](/docs/99-book/notes/10-java/揭秘Java虚拟机.md)
 * [《深入理解JVM & G1 GC》 周明耀](/docs/99-book/notes/10-java/深入理解JVM&G1GC.md)
-* [《Java 8函数式编程》](/docs/99-book/notes/10-java/Java%208函数式编程.md)
+* [《Java 8函数式编程》王群锋 译](/docs/99-book/notes/10-java/Java%208函数式编程.md)
 * [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/docs/99-book/notes/10-java/Java%208实战.md)
 * [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
 * [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
