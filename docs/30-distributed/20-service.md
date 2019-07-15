@@ -1,10 +1,10 @@
+# 服务框架
 
-服务框架
-服务治理
-网络间进程调用
+* 服务框架
+* 服务治理
+* 网络间进程调用
 
-
-## RPC
+### RPC
 RPC是远程过程调用的简称，广泛应用在大规模分布式应用中，作用是有助于系统的垂直拆分，使系统更易拓展。
 Java中的RPC框架比较多，各有特色，广泛使用的有RMI、Hessian、Dubbo等。
 
@@ -27,3 +27,55 @@ Java中的RPC框架比较多，各有特色，广泛使用的有RMI、Hessian、
 | hessian             | 二进制序列化 | http协议   |
 | WebServices         | 文本序列化   | http协议   |
 | Pigeon 美团大众点评 | hessian      | tcp(netty) |
+
+
+## 注册中心
+注册中心-注册表
+
+Zookeeper，Consul，Eureka
+
+[zookeeper 负载均衡 核心机制-实现原理 包含ZAB协议](https://www.cnblogs.com/aspirant/p/9088322.html)
+
+
+## 分布式配置
+* 不同环境的不同配置
+* 不用重新打包发布
+* 自动更新配置文件信息
+
+| 注册中心 				| 配置存储 		| 时效性 				|
+| ------ 				| ------ 		| ------ 				|
+| disconf 				| zookpeer 		| 实时推送 				| 
+| zookpeer 				| Slytherin 	| 实时推送 				|
+| diamond 				| mysql			| 每隔15s拉一次全量数据	|
+| Spring Cloud Config	| git 			| 人工批量刷新 			|
+
+## 网关
+
+网关的作用，后端服务器可以专心处理业务请求，节省了大量连接管理的开销
+
+[api-gateway](https://www.cnblogs.com/savorboard/p/api-gateway.html)
+
+API网关是一个服务器，是系统的唯一入口。从面向对象设计的角度看，它与外观模式类似。API网关封装了系统内部架构，
+为每个客户端提供一个定制的API。它可能还具有其它职责，如身份验证、监控、负载均衡、缓存、请求分片与管理、静态响应处理。
+
+API网关方式的核心要点是，所有的客户端和消费端都通过统一的网关接入微服务，在网关层处理所有的非业务功能。通常，
+网关也是提供REST/HTTP的访问API。服务端通过API-GW注册和管理服务。
+
+
+## 链路
+链路追踪、链路压测
+
+## monitor
+传统的开源监控系统代表有：Cacti、Nagios、Zabbix等
+先进的开源时间序监控系统代表有：OpenTSDB、Open-falcon、Prometheus等
+
+## elk
+Elasticsearch , Logstash, Kibana 
+
+[elk](https://www.cnblogs.com/aresxin/p/8035137.html) 
+
+建立集中式日志收集系统，将所有节点上的日志统一收集，管理，访问。
+
+* LogStash/Beats: 负责数据的收集与处理
+* ElasticSearch: 一个开源的分布式搜索引擎，负责数据的存储、检索和分析
+* Kibana: 提供了可视化的界面（ Web界面）。负责数据的可视化操作

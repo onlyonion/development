@@ -15,10 +15,18 @@ class Launcher {
 Launcher +-- BootClassPathHolder
 Launcher +-- ExtClassLoader
 Launcher +-- AppClassLoader
-Launcher +-- Factory
+
+abstract class ClassLoader
+class SecureClassLoader 
+class URLClassLoader 
 
 class ExtClassLoader
 class AppClassLoader
+
+ClassLoader ^-- SecureClassLoader
+SecureClassLoader ^-- URLClassLoader
+URLClassLoader ^-- ExtClassLoader
+URLClassLoader ^-- AppClassLoader
 
 @enduml
 ```

@@ -42,3 +42,15 @@
 * 5.3 常见需求解决方案
 * 5.4 面向对象
 * 5.5 项目结构和编码规范
+
+## book links
+* [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/99-book/notes/60-js/JavaScript权威指南(第6版).md)
+* [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/99-book/notes/60-js/JavaScript设计模式.md)
+* 《JavaScript模式》 (美)奥斯马尼
+* 《你不知道的JavaScript（上卷）》	
+* [《node.js开发指南》BYVoid](/99-book/notes/60-js/Node.js开发指南.md)
+* [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
+* [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
+* [《Vue.js权威指南》](/99-book/notes/60-js/Vue.js权威指南.md)
+* [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)
+* [《深入浅出Webpack》](/99-book/notes/60-js/深入浅出Webpack.md)

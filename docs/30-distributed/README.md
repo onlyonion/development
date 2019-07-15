@@ -1,6 +1,5 @@
-
-## [基础理论](/30-distributed/00-distributed.md)
-* [ACID，CAP, BASE](/30-distributed/10-theme.md)
+## [分布式系统](/30-distributed/00-distributed.md)
+* [基础理论](/30-distributed/10-theme.md) ACID，CAP, BASE
 * 一致性算法，2PC、3PC、Paxos；
 * TCC、mq-tx
 * Saga
@@ -8,16 +7,16 @@
 * 分而治之，分片与汇总
 
 ## 分布式中间件
-* 服务框架
+* [服务框架](/docs/30-distributed/20-service.md)
   * rpc框架 dubbo
   * 注册中心 zookeeper
   * 配置中心 diamond
   * 负载均衡
   * 服务网关
-* 分布式缓存
+* [分布式缓存](/docs/30-distributed/60-cache.md)
   * redis
   * mongodb
-* 分布式消息服务 异步
+* [分布式消息服务](/docs/30-distributed/50-mq.md) 异步
   * rabbitmq
   * rocketmq
   * kafka

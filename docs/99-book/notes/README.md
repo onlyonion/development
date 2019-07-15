@@ -1,4 +1,4 @@
-## 计算机相关
+计算机相关
 
 ### [计算机基础](/docs/99-book/notes/00-base/README.md)
 * 组成
@@ -105,7 +105,7 @@
 * 《JavaScript模式》 (美)奥斯马尼
 * 《你不知道的JavaScript（上卷）》	
 * [《node.js开发指南》BYVoid](/99-book/notes/60-js/Node.js开发指南.md)
-* [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md)
+* [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
 * [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
 * [《Vue.js权威指南》](/99-book/notes/60-js/Vue.js权威指南.md)
 * [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)

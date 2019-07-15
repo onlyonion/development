@@ -1,4 +1,4 @@
-## dev ops
+## DevOps
 * 极限编程
 * 敏捷开发
 * CodeReview

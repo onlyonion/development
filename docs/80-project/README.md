@@ -5,14 +5,14 @@
 * 禅道
 * worktitle
 
-## 传统行业
+## 经典项目
 * CRM
 * OA
 * 消息推送
 * 企业办公
 * 建站系统
 
-## community
+## 社区论坛
 * discuz
 * tipask Tipask问答系统，是一款开放源码的PHP仿百度知道程序
 

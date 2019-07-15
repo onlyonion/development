@@ -3,7 +3,7 @@
 体系结构风格、模式、描述、评估
 
 ## 架构设计
-* [设计](/40-architecture/design/README.md)
+* [分析与设计](/40-architecture/design/README.md)
   * [设计原则](/40-architecture/design/01-design.md)
   * [设计模式](/40-architecture/design/09-design-pattern.md)
   * [DDD领域驱动设计](/40-architecture/design/30-ddd.md)
@@ -22,44 +22,31 @@
 * 存储层
 
 ## 架构演化
-
-单一应用架构 -> 垂直应用架构 -> 分布式服务架构 -> 流动计算架构(云架构)
-
 关注点分离；解耦合
+* 单一应用架构
+* 垂直应用架构
+* 分布式服务架构
+* 流动计算架构(云架构)
 
-#### 后端架构演化
-* MODEL-1 JSP + JavaBean
-* MODEL-2 Servlet + JSP + JavaBean
-* 三层 Controller + Service + Dao + JSP(html + js + css) + JavaBean
-* Spring n多配置
-  - controller
-    - gateway
-    - api
-  - service
-    - webservice
-    - rpc
-    - microservice  service mesh; function
-    - mq
-  - dao 
-    - jdbc
-    - mybatis
-    - sharding
-    - mycat
-    - cache rdbms -> nosql -> newsql
-    - searchengine
-    - bigdata
-* Springboot 简约配置
-* springcloud
-
-#### 前端架构演化
-* jsp/vm/flt + (html + js + css)
-* jsp/vm/flt + (jquery)
-* react/angular/vue
+## 质量属性
+* 高可用
+* 高性能
+* 高并发
+* 可靠性
+* 可伸缩
+* 可扩展
+* 安全
 
 ## links
-* [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md)
-  * 中台-共享服务体系 
-  * 服务框架、服务中心、数据拆分、异步与缓存、监控运营、稳定性建设
-* [《云计算》刘鹏](/99-book/notes/40-architecture/云计算.md)
-* [系统架构设计师教程(第4版)](/99-book/notes/80-project/系统架构设计师教程(第4版).md)
-* [系统架构设计师教程](/99-book/notes/80-project/系统架构设计师教程.md)
+* [《软件体系结构》第3版 章征 清华大学出版社](/99-book/notes/40-architecture/软件体系结构.md)
+* 阿里系
+  * [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md) 框中拆异缓 运营（鹰眼、埋单、日志）、稳定（限流、降级、调度、开关、链路、一致性）
+  * [《大型网站技术架构 核心原理与案例分析》李智慧](/99-book/notes/40-architecture/大型网站技术架构.md) 分层、分割、分布式 集群、缓存、异步 冗余、自动化、安全
+  * [《大型分布式网站架构设计与实践》陈康贤](/99-book/notes/40-architecture/大型分布式网站架构.md)
+  * [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/99-book/notes/40-architecture/逆流而上.md)
+  * [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/99-book/notes/40-architecture/尽在双11.md)
+  * 《淘宝技术这十年》 子柳
+* 京东系
+  * [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
+* 开发者大会
+  * [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)

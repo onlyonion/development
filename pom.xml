@@ -23,6 +23,7 @@
 		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>
 		<rocketmq.version>4.3.0</rocketmq.version>
 		<shiro.version>1.4.0</shiro.version>
+		<activiti.version>5.17.0</activiti.version>
 	</properties>
 
 	<build>
@@ -241,7 +242,7 @@
 		</dependency>
 		<!-- rocketmq end -->
 
-		<!-- shardingsphere 
+		<!-- shardingsphere
 		<dependency>
 			<groupId>com.alipay</groupId>
 			<artifactId>alipay-sdk</artifactId>
@@ -307,6 +308,22 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.1.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-rest</artifactId>
+			<version>${activiti.version}</version>
 		</dependency>
 
 	</dependencies>
