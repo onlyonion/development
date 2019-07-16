@@ -1,7 +1,11 @@
 com.alibaba.druid.filter.FilterChain
+## hierarchy
+```
+FilterChain (com.alibaba.druid.filter)
+    FilterChainImpl (com.alibaba.druid.filter)
+```
 
-com.alibaba.druid.filter.FilterChainImpl
-
+## define
 ```java
 public class FilterChainImpl implements FilterChain {
     protected int                 pos = 0;
@@ -18,6 +22,7 @@ public class FilterChainImpl implements FilterChain {
 }
 ```
 
+## sequence
 ```mermaid
 sequenceDiagram
     %% 第1个过滤器
@@ -35,6 +40,7 @@ sequenceDiagram
     FilterChainImpl->>PreparedStatement:execute()
 ```
 
+## stack
 ```
 execute:1148, PreparedStatement (com.mysql.jdbc)
 preparedStatement_execute:3051, FilterChainImpl (com.alibaba.druid.filter)
@@ -46,4 +52,7 @@ preparedStatement_execute:440, FilterEventAdapter (com.alibaba.druid.filter)
 preparedStatement_execute:3049, FilterChainImpl (com.alibaba.druid.filter)
 execute:167, PreparedStatementProxyImpl (com.alibaba.druid.proxy.jdbc)
 execute:498, DruidPooledPreparedStatement (com.alibaba.druid.pool)
+invoke:-1, GeneratedMethodAccessor185 (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+invoke:498, Method (java.lang.reflect)
 ```

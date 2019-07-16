@@ -30,7 +30,7 @@
     * [DualPivotQuicksort](/10-java/src/rt.jar.src/java/util/collections/sort.DualPivotQuicksort.md)
     * [TimSort](/10-java/src/rt.jar.src/java/util/collections/sort.TimSort.md)
 * [并发编程](/10-java/src/rt.jar.src/java/util/concurrent/README.md)
-  * [atomic](/10-java/src/rt.jar.src/java/util/concurrent/atomic/README.md)
+  * [atomic](/10-java/src/rt.jar.src/java/util/concurrent/atomic/README.md) 原子操作
     * number
       * [AtomicInteger](/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicInteger.md)
     * adder
@@ -45,8 +45,8 @@
     * ABA
       * [AtomicStampedReference](/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicStampedReference.md)
       * [AtomicMarkableReference](/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicMarkableReference.md)
-  * [locks](/10-java/src/rt.jar.src/java/util/concurrent/locks/README.md)
-    * [AbstractQueuedSynchronizer](/10-java/src/rt.jar.src/java/util/concurrent/locks/AbstractQueuedSynchronizer.md)
+  * [locks](/10-java/src/rt.jar.src/java/util/concurrent/locks/README.md) 锁
+    * [AbstractQueuedSynchronizer](/10-java/src/rt.jar.src/java/util/concurrent/locks/AbstractQueuedSynchronizer.md) AQS CLH
     * [ReentrantLock](/10-java/src/rt.jar.src/java/util/concurrent/locks/ReentrantLock.md)
     * [ReadWriteLock](/10-java/src/rt.jar.src/java/util/concurrent/locks/ReadWriteLock.md)
     * [StampedLock](/10-java/src/rt.jar.src/java/util/concurrent/locks/StampedLock.md)
@@ -82,6 +82,8 @@
     * [FutureTask](/10-java/src/rt.jar.src/java/util/concurrent/FutureTask.md)
     * [CompletionStage](/docs/10-java/src/rt.jar.src/java/util/concurrent/CompletionStage.md)
     * [CompletableFuture](/10-java/src/rt.jar.src/java/util/concurrent/CompletableFuture.md)
+  * 函数式编程
+  * 流
 * IO
   * [bio](/10-java/src/rt.jar.src/java/io/README.md:1)
     * [InputStream](/)
@@ -146,3 +148,9 @@ text
 time
 util
 ```
+
+## book
+* [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
+* [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
+* [《Java 8函数式编程》王群锋 译](/docs/99-book/notes/10-java/Java%208函数式编程.md)
+* [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/docs/99-book/notes/10-java/Java%208实战.md)

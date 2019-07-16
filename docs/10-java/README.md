@@ -14,14 +14,14 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
 * [并发编程](10-java/50-concurrent.md)
 
 ## 计算机基础
-* 集合 涉及数据结构、存储器管理
-* 多线程 并发、锁；涉及操作系统进程管理、处理机调度
-* IO 输入输出系统、文件系统；涉及数据结构、操作系统、组成原理
+* 集合 数据结构与算法、存储器管理
+* 多线程 并发、锁；操作系统进程管理、处理机调度
+* I/O 输入输出系统、文件系统；数据结构与算法、操作系统、组成原理
 * 网络Socket 计算机网络
-* JVM 涉及操作系统、数据结构、组成原理、编译原理
-* 反射 代理 序列化
+* JVM 操作系统、数据结构与算法、组成原理、编译原理
+* 反射 代理、序列化、运行时
 
-## 源码
+## src
 * java
   * rt.jar
     * [java](/10-java/src/rt.jar.src/java/README.md)
@@ -41,7 +41,6 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
     * [nginx](/docs/20-framework/src/nginx/)
     * [undertow](/docs/20-framework/src/undertow/)
   * apache
-    * [curator-recipes](/docs/20-framework/src/apache/curator-recipes/README.md)
     * [derby](/docs/20-framework/src/apache/derby/README.md)
     * [httpclient](/docs/20-framework/src/apache/httpclient/README.md)
     * [shiro](/docs/20-framework/src/apache/shiro/README.md)
@@ -56,14 +55,15 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
     * [prometheus](/docs/20-framework/src/common/prometheus/)
     * [quasar](/docs/20-framework/src/common/quasar/)
 * distributed
-  * [consul](/docs/30-distributed/src/consul/)
   * [dubbo](/docs/30-distributed/src/dubbo/)
   * [redis](/docs/30-distributed/src/redis/)
   * [rocketmq](/docs/30-distributed/src/rocketmq/)
   * [zookeeper](/docs/30-distributed/src/zookeeper/)
+  * [consul](/docs/30-distributed/src/consul/)
 * database
   * [druid](/docs/50-database/src/druid/)
-  * [mycat](/docs/50-database/src/mycat/)
-  * [mysql](/docs/50-database/src/mysql/)
   * [mysql-connector](/docs/50-database/src/mysql-connector/)
   * [shardingsphere](/docs/50-database/src/shardingsphere/)
+  * [mycat](/docs/50-database/src/mycat/)
+  * [mysql](/docs/50-database/src/mysql/)
+  * [linux](/docs/00-base/src/linux/)

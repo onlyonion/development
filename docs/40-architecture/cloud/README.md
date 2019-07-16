@@ -3,11 +3,11 @@
 
 ## 阿里云
 * [云计算专业认证](40-architecture/cloud/10-ali-acp.md)
-* [AI](40-architecture/cloud/21-ali-AI.md)
-* [Cloud](40-architecture/cloud/22-ali-Cloud.md)
-* [IoT](40-architecture/cloud/23-ali-AIoTI.md)
-* [DT](40-architecture/cloud/24-ali-DT.md)
-* [Security](40-architecture/cloud/25-ali-Security.md)
+* [AI 人工智能](40-architecture/cloud/21-ali-AI.md)
+* [Cloud 云计算](40-architecture/cloud/22-ali-Cloud.md)
+* [IoT 物联网](40-architecture/cloud/23-ali-IoT.md)
+* [DT 大数据](40-architecture/cloud/24-ali-DT.md)
+* [Security 安全](40-architecture/cloud/25-ali-Security.md)
 
 ## links
 * [《云计算》刘鹏](/99-book/notes/40-architecture/云计算.md)

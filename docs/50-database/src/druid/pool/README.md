@@ -1,0 +1,62 @@
+com.alibaba.druid.pool
+
+## hierarchy
+```
+ha
+    selector
+        DataSourceSelector
+        DataSourceSelectorFactory
+        NamedDataSourceSelector
+        RandomDataSourceRecoverThread
+        RandomDataSourceSelector
+        RandomDataSourceValidateThread
+    DataSourceCreator
+    HighAvailableDataSource             高可用数据源
+vendor
+    DB2ExceptionSorter
+    InformixExceptionSorter
+    MockExceptionSorter
+    MSSQLValidConnectionChecker
+    MySqlExceptionSorter
+    MySqlValidConnectionChecker
+    NullExceptionSorter
+    OracleExceptionSorter
+    OracleValidConnectionChecker
+    PGExceptionSorter
+    PGValidConnectionChecker
+    SybaseExceptionSorter
+xa
+    DruidPooledXAConnection
+    DruidXADataSource
+    JtdsXAConnection
+    JtdsXAResource
+DataSourceClosedException
+DataSourceDisableException
+DataSourceNotAvailableException
+DruidAbstractDataSource
+DruidAbstractDataSourceMBean
+DruidConnectionHolder
+DruidDataSource
+DruidDataSourceC3P0Adapter
+DruidDataSourceC3P0AdapterMBean
+DruidDataSourceFactory
+DruidDataSourceMBean
+DruidDataSourceStatLogger
+DruidDataSourceStatLoggerAdapter
+DruidDataSourceStatLoggerImpl
+DruidDataSourceStatValue
+DruidPooledCallableStatement
+DruidPooledConnection
+DruidPooledPreparedStatement
+DruidPooledResultSet
+DruidPooledStatement
+ExceptionSorter
+GetConnectionTimeoutException
+ManagedDataSource
+PoolableWrapper
+PreparedStatementHolder
+PreparedStatementPool
+ValidConnectionChecker
+ValidConnectionCheckerAdapter
+WrapperAdapter
+```

@@ -1,4 +1,4 @@
-计算机相关
+计算机类
 
 ### [计算机基础](/docs/99-book/notes/00-base/README.md)
 * 组成

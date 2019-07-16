@@ -1,4 +1,4 @@
-package com.onion.test.javasist;
+package com.onion.test.common.javasist;
 
 import java.lang.reflect.Field;
 

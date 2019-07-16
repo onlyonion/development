@@ -462,7 +462,7 @@ sequenceDiagram
 #### 4.6.2 NIO
 * 通道 Channel 双向的
 * 缓冲区 Buffer 容器对象
-* 多路复用器 Selector 同时检测多个通道的事件以实现异步I/O
+* 多路复用器 Selector同时检测多个通道的事件以实现异步I/O
 
 ```mermaid
 sequenceDiagram

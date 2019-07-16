@@ -1,4 +1,4 @@
-package com.onion.test.dubbo;
+package com.onion.test.distributed.dubbo;
 
 import org.junit.Test;
 

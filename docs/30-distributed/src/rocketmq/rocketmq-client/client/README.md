@@ -1,4 +1,4 @@
-
+com.alibaba.rocketmq.client
 ## package
 ```
 admin

@@ -6,10 +6,10 @@
   * [架构](40-architecture/)
   * [数据库](50-database/)
   * [前端](60-js/)
-  * [开发运维](70-dev-ops/)
+  * [DevOps](70-dev-ops/)
   * [软考](80-project/exam/)
 * book
-  * [计算机相关](99-book/notes/)
+  * [计算机类](99-book/notes/)
   * [学科门类](99-book/subject/)
 * src
   * [java](10-java/src/)

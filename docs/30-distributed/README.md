@@ -1,7 +1,19 @@
-## [分布式系统](/30-distributed/00-distributed.md)
-* [基础理论](/30-distributed/10-theme.md) ACID，CAP, BASE
-* 一致性算法，2PC、3PC、Paxos；
-* TCC、mq-tx
+## 分布式系统
+
+### 特点
+* 对等：各个节点没有主次之分
+* 分布：在空间上随意分布，水平扩展，比如我们sinai随意再lf和dx随意添加机器
+* 并发：对等的节点可能并发访问访问共享资源，如同时访问redis，db，或一个接口
+* 缺乏全局的时钟：因为分布和对等性，你不知道两个事件发生的前后顺序
+* 故障不固定：很依赖节点之间的通信，因为网路分区或通信异常会导致机器状态不一致
+
+### 理论
+* [理论基础](30-distributed/10-theme.md) ACID、CAP、BASE
+
+### 一致性算法
+* 2PC、3PC、Paxos
+* TCC
+* mq-tx
 * Saga
 * 一致性哈希
 * 分而治之，分片与汇总
@@ -41,7 +53,7 @@
 * 冷备热备
 * 冗余或者复制集Replication，集群Cluster
 
-## log
+## 日志
 日志收集 --> 日志推送 --> 链路跟踪 --> 调用链分析
 * elk (Elasticsearch, Logstash, Kibana)
 * elk-kafka
