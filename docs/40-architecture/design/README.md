@@ -14,7 +14,6 @@
     - 交互图 序列图（时序图）、协作图（通信图）、交互概览图
     - 状态图、活动图
     - 构件图、部署图
-  - [设计原则](/40-architecture/design/09-design-pattern.md)
   - [设计模式](/40-architecture/design/10-design-pattern.md)
     - [创建型](/40-architecture/design/11-design-pattern-create.md)
     - [结构型](/40-architecture/design/12-design-pattern-struct.md)

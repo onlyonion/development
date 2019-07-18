@@ -1,6 +1,7 @@
 计算机类
 
-### [计算机基础](/docs/99-book/notes/00-base/README.md)
+### 计算机基础
+[计算机专业](/docs/99-book/notes/00-base/README.md)
 * 组成
   * [《计算机组成原理（第2版）》唐朔飞](/docs/99-book/notes/00-base/计算机组成原理.md)
   * [《计算机体系结构》张晨曦](/docs/99-book/notes/00-base/计算机体系结构.md)

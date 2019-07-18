@@ -1,0 +1,25 @@
+httpasyncclient
+## package
+org.apache.http
+```
+impl.nio
+    client
+        InternalClientExec
+    conn
+        PoolingNHttpClientConnectionManager
+nio
+    client
+        methods
+            AsyncByteConsumer
+            AsyncCharConsumer
+            BaseZeroCopyRequestProducer
+            HttpAsyncMethods
+            ZeroCopyConsumer
+            ZeroCopyPost
+            ZeroCopyPut
+        util
+            HttpAsyncClientUtils
+        HttpAsyncClient
+        HttpPipeliningClient
+    conn
+```

@@ -28,14 +28,14 @@ Throwable (java.lang)
         ThreadDeath (java.lang)
     Exception (java.lang)
         ActivationException (java.rmi.activation)
-        ReflectiveOperationException (java.lang)
+        ReflectiveOperationException (java.lang)                反射异常
             IllegalAccessException (java.lang)
             NoSuchFieldException (java.lang)
             NoSuchMethodException (java.lang)
             InstantiationException (java.lang)
             ClassNotFoundException (java.lang)                      未发现类异常
             InvocationTargetException (java.lang.reflect)           
-        InterruptedException (java.lang)
+        InterruptedException (java.lang)                        线程中断异常
         SQLException (java.sql)                                 SQL异常
             SQLTransientException (java.sql)
             SQLNonTransientException (java.sql)
@@ -43,24 +43,24 @@ Throwable (java.lang)
             SQLClientInfoException (java.sql)
             SyncProviderException (javax.sql.rowset.spi)
             SerialException (javax.sql.rowset.serial)
-        IOException (java.io)
+        IOException (java.io)                                   IO输入输出异常
             InterruptedIOException (java.io)
             EOFException (java.io)
             CharConversionException (java.io)
             UnsupportedEncodingException (java.io)
             ObjectStreamException (java.io)
-            FileSystemException (java.nio.file)
+            FileSystemException (java.nio.file)                     文件系统异常
             ClosedChannelException (java.nio.channels)
             FileLockInterruptionException (java.nio.channels)
             RemoteException (java.rmi)
             UnknownServiceException (java.net)
+            ProtocolException (java.net)                            网络协议异常
             SocketException (java.net)                              套接字异常
                 BindException (java.net)                                绑定端口异常
                 ConnectException (java.net)                             连接异常
                 PortUnreachableException (java.net)
                 NoRouteToHostException (java.net)
-            ProtocolException (java.net)                            网络协议异常
-        RuntimeException (java.lang)
+        RuntimeException (java.lang)                            运行时异常
             IndexOutOfBoundsException (java.lang)
             ArithmeticException (java.lang)
             ClassCastException (java.lang)

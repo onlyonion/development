@@ -1,11 +1,15 @@
 java.lang.ref.Reference
+
+* synchronized
+* volatile
+
 ## hierarchy
 ```
 Reference (java.lang.ref)
-    SoftReference (java.lang.ref)
-    WeakReference (java.lang.ref)
-    PhantomReference (java.lang.ref)
-    FinalReference (java.lang.ref)
+    SoftReference (java.lang.ref)       软引用
+    WeakReference (java.lang.ref)       弱引用
+    PhantomReference (java.lang.ref)    虚引用
+    FinalReference (java.lang.ref)      
         Finalizer (java.lang.ref)
 ```
 
@@ -30,6 +34,7 @@ class ReferenceQueue<T> {
 
 Reference o-- ReferenceQueue
 Reference +-- ReferenceHandler
+Thread ^-- ReferenceHandler
 
 
 class PhantomReference
@@ -68,3 +73,27 @@ weakCar.get();
 
 soft reference和weak reference一样, 但被GC回收的时候需要多一个条件: 当系统内存不足时(GC是如何判定系统内存不足? 是否有参数可以配置这个threshold?), soft reference指向的object才会被回收. 正因为有这个特性, soft reference比weak reference更加适合做cache objects的reference. 因为它可以尽可能的retain cached objects, 减少重建他们所需的时间和消耗.
 
+## ReferenceHandler 静态代码块启动线程
+```java
+static {
+    ThreadGroup tg = Thread.currentThread().getThreadGroup();
+    for (ThreadGroup tgn = tg;
+         tgn != null;
+         tg = tgn, tgn = tg.getParent());
+    Thread handler = new ReferenceHandler(tg, "Reference Handler");
+    /* If there were a special system-only priority greater than
+     * MAX_PRIORITY, it would be used here
+     */
+    handler.setPriority(Thread.MAX_PRIORITY);
+    handler.setDaemon(true);
+    handler.start();
+
+    // provide access in SharedSecrets
+    SharedSecrets.setJavaLangRefAccess(new JavaLangRefAccess() {
+        @Override
+        public boolean tryHandlePendingReference() {
+            return tryHandlePending(false);
+        }
+    });
+}
+```

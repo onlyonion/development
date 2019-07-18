@@ -18,7 +18,7 @@ This is my daily notes, enriching the mind....-->
 * [开发运维](70-dev-ops/README.md)  自动化部署、监控
 * [工程项目](80-project/README.md) 
 * [book](99-book/README.md)
-  - [计算机类](99-book/notes/README.md) 计算机相关书籍的读书笔记
+  - [计算机类](99-book/notes/README.md) 
   - [学科门类](99-book/subject/README.md) 
  
 ## links

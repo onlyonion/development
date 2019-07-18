@@ -30,3 +30,8 @@ interface CompletionHandler<V,A> {
 
 @enduml
 ```
+
+## 异步、事件驱动
+* 异步Future 线程池配合Future实现，但是会阻塞主请求线程，高并发时依然会造成线程数过多、CPU上下文切换。
+* 异步Callback 回调函数，CompletionHandler，FutureCallback。
+* 异步编排CompletableFuture

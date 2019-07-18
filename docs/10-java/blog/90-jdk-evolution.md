@@ -1,6 +1,57 @@
-## Java版本演化
+# Java版本演化
+
+[Java1.0-1.11各个版本的新特性](https://www.cnblogs.com/Ranyuangang/p/9707712.html)
+
+## JDK Version 1.0
+1996-01-23 Oak(橡树)
+
+初代版本，伟大的一个里程碑，但是是纯解释运行，使用外挂JIT，性能比较差，运行速度慢。
+
+## JDK Version 1.1
+1997-02-19
+
+* JDBC(Java DataBase Connectivity);
+* 支持内部类;
+* RMI(Remote Method Invocation) ;
+* 反射;
+* Java Bean;
+
+## JDK Version 1.2
+1998-12-08 Playground(操场)
+
+* 集合框架
+* JIT(Just In Time)编译器
+* 对打包的Java文件进行数字签名
+* JFC(Java Foundation Classes), 包括Swing 1.0, 拖放和Java2D类库
+* Java插件
+* JDBC中引入可滚动结果集,BLOB,CLOB,批量更新和用户自定义类型
+* Applet中添加声音支持
+
+## JDK Version 1.3
+2000-05-08 Kestrel(红隼)
+
+* Java Sound API
+* jar文件索引
+* 对Java的各个方面都做了大量优化和增强
+
+## JDK Version 1.4
+2004-02-06 Merlin(隼)
+
+* XML处理
+* Java打印服务
+* Logging API
+* Java Web Start
+* JDBC 3.0 API
+* 断言
+* Preferences API
+* 链式异常处理
+* 支持IPV6
+* 支持正则表达式
+* 引入Imgae I/O API
 
 ## Java 5
+2004-09-30 Tiger(老虎)
+
 1. 自动装箱、拆箱 
 2. 静态导入(static import) 
 3. 增强for循环（for-each） 
@@ -10,6 +61,8 @@
 7. 并发API
 
 ## Java 6
+2006-12-11 Mustang(野马)
+
 1. AWT中新增两个类：Desktop和SystemTray 
 2. 使用JAXB2来实现对象与XML之间的映射 
 3. 新增处理DOM和SAX之外又一种处理XML文档的API：STAX 
@@ -21,6 +74,8 @@
 9. Common Annotations
 
 ## Java 7
+2011-07-28 Dolphin(海豚)
+
 1. 对Java集合（Collections）的增强支持 
 2. 在switch中可用String 
 3. 数值可加下划线（eg:int one_million=123_1） 
@@ -42,6 +97,7 @@
 9.	Base64
 10. 数组并行（parallel）操作 
 11. JVM的permGen空间移除，被Metaspace元空间取代
+
 [jdk8](https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html)
 
 ## Java 9
@@ -54,6 +110,7 @@ September 2017
 5. 改善锁争用机制
 6. 代码分段缓存
 7. 智能 Java 编译工具
+
 [JDK 9](https://baijiahao.baidu.com/s?id=1585986204842398970&wfr=spider&for=pc)
 
 ## Java 10
@@ -76,7 +133,7 @@ October 16, 2018
 * 315 改进 Aarch64 Intrinsics
 * 318 Epsilon–一个无操作的垃圾收集器
 * 320 删除 Java EE 和 CORBA 模块
-* 321 HttpClient
+* 321 `HttpClient`
 * 323 用于 Lambda 参数的局部变量语法
 * 324 Curve25519 和 Curve448 算法的密钥协议
 * 327 Unicode 10
@@ -85,10 +142,11 @@ October 16, 2018
 * 330 Launch Single-File Source-Code Programs（启动单一文件的源代码程序）
 * 331 低开销的 Heap Profiling
 * 332 TLS 1.3支持
-* 333 **ZGC**: A Scalable Low-Latency Garbage Collector（可伸缩低延迟垃圾收集器）
+* 333 `ZGC`: A Scalable Low-Latency Garbage Collector（可伸缩低延迟垃圾收集器）
 * 335 弃用 Nashorn JavaScript 引擎
 * 336 弃用 Pack200 工具和 API
-* [JDK 11主要特性一览](https://blog.csdn.net/cun_chen/article/details/82807552 )
+
+[JDK 11主要特性一览](https://blog.csdn.net/cun_chen/article/details/82807552 )
 
 
 ## Java 12

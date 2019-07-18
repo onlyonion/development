@@ -151,7 +151,7 @@ vmThread.hpp
 * volatitle
 
 ### synchronized
-偏向锁 --> 轻量级锁 --> 重量级锁
+偏向锁 --> 轻量级锁 --> 自旋锁 --> 重量级锁
 
 C++中的监视器锁数据结构
 oopDesc --继承--> markOopDesc --方法monitor()--> ObjectMonitor --> enter、exit 获取、释放锁

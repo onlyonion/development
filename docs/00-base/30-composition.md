@@ -4,11 +4,12 @@
 * io
 * bus(net)
 
-### CPU，运算控制
+## CPU
+运算控制
 * ALU、CU（排队逻辑、控制单元寄存器和解码器、控制存储器）、寄存器、cpu内部互连
 * cpu ALU, register, interrupt, cu, inner bus
 
-#### cpu有哪些架构
+### cpu有哪些架构
 * CISC 复杂指令集计算机
   - x86 IA32，Intel Architecture 32；IA-64
   - x86-64 AMD64，EM64T（intel版本，Extended Memory 64 Technology，扩展64bit内存技术）
@@ -27,7 +28,7 @@
 
 > X86架构 X86架构（The X86 architecture）是微处理器执行的计算机语言指令集，指一个intel通用计算机系列的标准编号缩写，也标识一套通用的计算机指令集合
 
-#### 指令集架构 Instruction Set Architecture，ISA
+### 指令集架构 Instruction Set Architecture，ISA
 
 ### intel cpu 
 i5 cpu-z 指令集
@@ -45,7 +46,7 @@ AVX Intel Advanced Vector Extensions Sandy Bridge和Larrabee架构下的新指�
 AVX2
 FMA3
 
-### 存储
+## 存储
 1. 寄存器是中央处理器内的组成部份。寄存器是有限存贮容量的高速存贮部件，它们可用来暂存指令、数据和位址。在中央处理器的控制部件中，包含的寄存器有指令寄存器(IR)和程序计数器(PC)。在中央处理器的算术及逻辑部件中，包含的寄存器有累加器(ACC)。
 2. 内存包含的范围非常广，一般分为只读存储器（ROM）、随机存储器（RAM）和高速缓存存储器（cache）。
 3. 寄存器是CPU内部的元件，寄存器拥有非常高的读写速度，所以在寄存器之间的数据传送非常快。
@@ -55,10 +56,10 @@ FMA3
 
 [内存，寄存器和cache的区别与联系](http://www.cnblogs.com/zzdbullet/p/9484040.html)
 
-### IO
+## IO
 
 
-### 总线
+## 总线
 
 
 ## 计算机组成与计算机体系结构

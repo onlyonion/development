@@ -53,3 +53,7 @@ ClientCnxnSocket ^-- ClientCnxnSocketNIO
 
 @enduml
 ```
+
+## ZooKeeperThread
+### SendThread
+### EventThread

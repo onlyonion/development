@@ -46,8 +46,18 @@ ClassLoader +-- ParallelLoaders
 ClassLoader ^-- SecureClassLoader
 SecureClassLoader ^-- URLClassLoader
 
+class URLClassLoader 
+URLClassLoader *-- WeakHashMap
+
 URLClassLoader ^-- AppClassLoader
 URLClassLoader ^-- ExtClassLoader
+
+class Launcher
+class AppClassLoader #orange
+class ExtClassLoader #orange
+
+AppClassLoader --+ Launcher
+ExtClassLoader --+ Launcher
 
 @enduml
 ```

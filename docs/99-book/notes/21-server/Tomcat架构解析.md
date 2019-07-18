@@ -218,6 +218,10 @@ graph TB
 ```
 
 #### 2.4.2 Tomcat加载器
+* SystemClassLoader 加载$CATALINA_HOME/conf
+* CommonClassLoader 默认加载$CATALINA_HOME/lib下的包
+* Webapp应用类加载器 WEB-INF/lib和WEB-INF/classes
+
 ```mermaid
 graph TB
     bc[BootstrapClassLoader]---ec[ExtensionClassLoader]
@@ -431,9 +435,6 @@ abstract class AbstractProtocol
 @enduml
 ```
 
-
-
-
 #### 4.2.2 请求处理
 Connector请求处理过程
 ```mermaid
@@ -490,8 +491,11 @@ sequenceDiagram
 * 缓冲区
 * Future Future自己检测IO状态或者直接future.get()方法等待IO操作结束。
 * CompletableHandler 由JDK检测IO状态，实现回调接口进行处理
-* 异步通道组 AsynchronousChannelGroup 每个异步通道均属于一个指定的异步通道组，同一个通道组内的通道共享一个线程池。
+* 异步通道组 AsynchronousChannelGroup 每个异步通道均属于一个指定的异步通道组，同一个通道组内的通道**共享一个线程池**。
 线程池内的线程接收指令来执行IO事件并将结果分发到CompletionHandler。
+
+隐藏线程池，一组独立的线程用于等待IO事件，内核IO操作由一个或者多个不可见的内部线程处理并将事件分发到缓存线程池，缓存线程池一次执行CompletionHandler。
+隐藏线程池非常重要，它显著降低了应用程序阻塞的可能性（解决了固定大小线程池的问题），确保内核能够完成IO操作。
 
 ```mermaid
 sequenceDiagram
