@@ -24,7 +24,45 @@ class FinalizerThread {
 @enduml
 ```
 
-## FinalizerThread 静态代码块启动线程
+## inner class
+
+### FinalizerThread
+```java
+    private static class FinalizerThread extends Thread {
+        private volatile boolean running;
+        FinalizerThread(ThreadGroup g) {
+            super(g, "Finalizer");
+        }
+        public void run() {
+            // in case of recursive call to run()
+            if (running)
+                return;
+
+            // Finalizer thread starts before System.initializeSystemClass
+            // is called.  Wait until JavaLangAccess is available
+            while (!VM.isBooted()) {
+                // delay until VM completes initialization
+                try {
+                    VM.awaitBooted();
+                } catch (InterruptedException x) {
+                    // ignore and continue
+                }
+            }
+            final JavaLangAccess jla = SharedSecrets.getJavaLangAccess();
+            running = true;
+            for (;;) {
+                try {
+                    Finalizer f = (Finalizer)queue.remove();
+                    f.runFinalizer(jla);
+                } catch (InterruptedException x) {
+                    // ignore and continue
+                }
+            }
+        }
+    }
+```
+
+### FinalizerThread 静态代码块启动线程
 ```java
 static {
     ThreadGroup tg = Thread.currentThread().getThreadGroup();

@@ -1,5 +1,8 @@
 java.util.concurrent.CountDownLatch
 
+一个或多个线程等待其他线程完成操作。join。
+
+
 ## define
 ```plantuml
 @startuml

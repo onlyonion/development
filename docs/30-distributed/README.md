@@ -21,9 +21,11 @@
 ## 分布式中间件
 
 ### 网络编程
-* 软负载均衡 nginx
-* 高性能NIO框架 netty
-* 异步事件驱动 nodejs
+异步非阻塞
+* 软负载均衡 
+* [《实战Nignx 取代Apache的高性能Web服务器》](/99-book/notes/21-server/实战Nignx.md)
+* 高性能NIO框架 netty [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
+* 异步事件驱动 nodejs [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md)
 
 ### 服务框架
 * [rpc框架](/docs/30-distributed/20-service.md) dubbo、motan、gRPC
@@ -33,13 +35,18 @@
 * 服务网关
 
 ### 服务治理
-* 超时、重试、幂等
-* 限流、降级、熔断
-* 流量调度
-* 资源隔离
-* 业务异步、业务开关
-* 链路跟踪、链路压测
-* 分布式事务 业务一致性平台
+* 可用性
+  * 集群 负载均衡、反向代理、主从、冷备热备、冗余
+  * 超时、重试、幂等
+  * 限流、降级、熔断、流量调度、容错
+  * 资源隔离
+  * 业务异步、业务开关
+* 并发
+  * 链路跟踪、链路压测
+  * 缓存、异步、队列
+* 一致性
+  * 业务一致性平台
+  * 分布式事务
   
 ### 缓存
 * 存储器的层次结构 CPU -> Register -> L1/L2/L3 -> 内存 -> 磁盘缓存 -> 磁盘
@@ -57,6 +64,7 @@
   * mongodb
 
 ### 消息队列
+缓冲队列、任务队列、消息队列、优先级队列、阻塞队列
 * 使用场景 应用解耦合、服务通信、[异步任务](/docs/30-distributed/50-mq.md) 、削峰填谷、消息广播
 * 消息协议 JMS、AMQP
 * 常用队列
@@ -66,7 +74,10 @@
   * kafka scala单机吞吐量十万级、zookeeper分布式协调、消息可能会重复但不会丢失
 
 ### 分布式数据库
-数据库中间件（拆分、复制）
+* 数据库中间件
+  * 读写分离
+  * 分库分表 数据拆分
+* 分布式事务
 
 ### 分布式文件系统
 * fastDFS
@@ -74,16 +85,19 @@
 ### 分布式计算
 Mapreduce, storm
 
-## 集群
-* 集群
-* 主从
-* 冷备热备
-* 冗余或者复制集Replication，集群Cluster
-
-## 日志
+### 日志
 日志收集 --> 日志推送 --> 链路跟踪 --> 调用链分析
 * elk (Elasticsearch, Logstash, Kibana)
 * elk-kafka
 * elasticsearch
 * lucene
 * storm
+
+## book
+* [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/99-book/notes/30-distributed/分布式系统技术内幕.md)
+* [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
+* [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
+* [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
+* [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
+* [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/30-distributed/大型网站系统与Java中间件实践.md)
+* [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)

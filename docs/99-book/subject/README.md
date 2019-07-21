@@ -89,3 +89,8 @@
 
 ## links
 [教育部学位与研究生教育发展中心----学科、专业目录](http://www.cdgdc.edu.cn/xwyyjsjyxx/sy/glmd/264462.shtml)
+
+
+<script>
+Docsify.dom.findAll('a').filter(item => item.text.indexOf('《') == 0).map((item, index)=>console.log(index + 1, item.innerText))
+</script>

@@ -77,6 +77,10 @@ Throwable (java.lang)
             BufferUnderflowException (java.nio)
         TimeoutException (java.util.concurrent)
         ParseException (java.text)
+        RollbackException (javax.transaction)                   事务回滚异常
+        ServletException (javax.servlet)                        
+
+        
 ```
 
 ## define

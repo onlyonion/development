@@ -79,7 +79,7 @@ http {
 关键词：虚拟机、资源隔离
 #### 3.2.2 配置基于IP的虚拟主机
 #### 3.2.3 配置基于域名的虚拟主机
-```
+```shell
 http {
     server {
         listen 80;
@@ -95,7 +95,7 @@ http {
 
 ### 3.3 Nginx的日志文件配置与切割
 ### 3.4 Nginx的压缩输出配置
-```
+```shell
 gzip on;
 gzip_min_length 1k;
 gzip_buffers 416k;
@@ -105,7 +105,7 @@ gzip_types text/plain application/x-javascript text/css application/xml;
 gzip_vary on;
 ```
 ### 3.5 Nginx的自动列目录配置
-```
+```shell
 location / {
     autoindex on;
 }
@@ -131,7 +131,7 @@ FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为�
 #### 6.2.4 多线多地区智能DNS解析与混合负载均衡方式
 ### 6.3 Nginx负载均衡与反向代理的配置实例
 ### 6.4 Nginx负载均衡的HTTP Upstream模块
-```
+```shell
 upstream backend {
     server backend1.example.com weight=5;
     server backend2.example.com:8080;
@@ -153,7 +153,7 @@ server {
 
 ## 第12章 Nginx的核心模块
 ### 12.1 主模块指令
-```js
+```shell
 daemon on|off
 env VAR|VAR=VALUE
 debug_points [stop|abort]
@@ -167,7 +167,7 @@ ssl_engine engine
 time_resolution t
 try_files path1 [path2] uri
 user user[group]
-worker_cpu_affinity // 只能在linux环境下，绑定cpu
+worker_cpu_affinity # 只能在linux环境下，绑定cpu
 worker_priority
 worker_processes number // 工作进程数
 worker_rlimit_core
@@ -176,12 +176,12 @@ working_directory path
 ```
 ### 12.2 主模块变量
 ### 12.3 事件模块指令
-```js
-accept_mutex [on|off] // Nignx使用连接互斥锁进行顺序的accept()系统调用
-accept_mutex_delay Nms // 如果一个工作进程没有互斥锁，它至少在最少N（默认500）毫秒延迟之后再尝试获取互斥锁
+```shell
+accept_mutex [on|off] # Nignx使用连接互斥锁进行顺序的accept()系统调用
+accept_mutex_delay Nms # 如果一个工作进程没有互斥锁，它至少在最少N（默认500）毫秒延迟之后再尝试获取互斥锁
 debug_connection [ip|CIDR]
-use [kqueue|rtsig|epoll|dev/poll|select|poll|eventport] // 使用哪种事件模型
-worker_connections number // 设置每个工作进程能够处理的连接数。最大连接数 max_client = worker_processes * worker_connections
+use [kqueue|rtsig|epoll|dev/poll|select|poll|eventport] # 使用哪种事件模型
+worker_connections number # 设置每个工作进程能够处理的连接数。最大连接数 max_client = worker_processes * worker_connections
 ```
 ## 第13章 Nginx的标准Http模块
 ## 第14章 Nginx的其他Http模块

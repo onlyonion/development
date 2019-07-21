@@ -1,6 +1,5 @@
 《Tomcat架构解析》 刘光瑞 著 中国工信出版社 人民邮电出版社
 
-
 * Tomcat架构
   * Catalina
   * Coyote
@@ -525,18 +524,50 @@ sequenceDiagram
 #### 6.1.1 JVM配置选项
 #### 6.1.2 系统属性
 ### 6.2 服务器配置
+Tomcat服务器的配置主要集中与`$CATALINA_HOME/conf`下的catalina.policy、catalina.properties、context.xml、server.xml、tomcat-users.xml、web.xml文件
 #### 6.2.1 catalina.properties
+用于Catalina容器启动阶段的配置，如服务器类加载器路径等
 #### 6.2.2 server.xml
+Tomcat应用服务器的核心配置文件，它包括TomcatServlet容器的所有组件的配置，用于创建TomcatServlet容器。
+1. Server
+2. Service
+3. Executor 共享线程池
+4. Connector 链接器，默认配置两个链接器，一个头支持HTTP协议，一个支持AJP协议。两个方面：协议方面、IO方面。
+5. Engine
+6. Host
+7. Context
+8. CookieProcessor
+9. Loader 不是Java类加载器，而是一个Tomcat组件，用于创建、加载以及销毁Web应用类加载器。
+10. Manager配置 会话管理器
+11. Resources 静态资源
+12. JarScanner
+
 #### 6.2.3 context.xml
 ### 6.3 Web应用配置
+web.xml是Web应用的部署描述文件，它支持的元素及属性来自于Servlet规范定义。
 #### 6.3.1 ServletContext初始化参数
 #### 6.3.2 会话配置
+包括超时时间、Cookie配置、会话跟踪模式。
+Servlet规范3.1支持3中跟踪模式：COOKIE、URL、SSL。
 #### 6.3.3 Servlet声明及配置
 #### 6.3.4 应用生命周期监听器
 #### 6.3.5 Filter定义及映射
 #### 6.3.6 MIME类型映射
+多用途互联网邮件扩展类型，用于设定某类型的扩展名文件将采用何种应用程序打开。
 #### 6.3.7 欢迎文件列表
 #### 6.3.8 错误页面
+```xml
+<!-- 根据HTTP响应码 -->
+<error-page>
+    <error-code>404</error-code>
+    <location>/404.html</error-code>
+</error-page>
+<!-- 根据异常类型 -->
+<error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.jsp</error-code>
+</error-page>
+```
 #### 6.3.9 本地化及编码映射
 #### 6.3.10 安全配置
 #### 6.3.11 JNDI配置
@@ -554,21 +585,38 @@ sequenceDiagram
 ### 6.5 Tomcat管理
 
 ## 第7章 Web服务器集成
+应用服务器对于静态资源的处理普遍性能相对较差，而Web服务器则可以充分利用操作系统本地I/O的优势。
+对于静态资源，Web服务器可以通过缓存等各种方式来提高访问性能。Web服务器普遍支持作为前置的请求调度器以支持负载均衡。
 ### 7.1 Web服务器与应用服务器的区别
+Web服务器是一个处理HTTP请求的计算机系统。主要功能是存储、处理、传送Web页面到客户端。
+Web服务器技术实际上是应用服务器的一个子集，它仅提供了面向文档的处理，并不支持复杂的业务处理过程。
+
+应用服务器致力于过程的处理效率以支撑起应用。
 ### 7.2 集成应用场景
 ### 7.3 与Apache HTTP Server集成
 ### 7.4 与Nginx集成
+Nginx集中于解决WEb服务器高性能、高并发及低内存消耗的问题，同事提供了负载均衡、缓存、访问控制、带宽控制及高效的应用整合整理。
+
+基于事件模型实现，异步非阻塞。
 ### 7.5 与IIS集成
 
 ## 第8章 Tomcat集群
 ### 8.1 Tomcat集群介绍
+集群是一组相互连接的拥有相同功能的服务器，这些服务器通过高速网络实现互联并提供服务。与负载均衡配合使用，提供可伸缩、高可用、高性能的系统架构。
+* 可伸缩性 横向扩展，增加服务器数目，负载均衡策略蒋青青合理分发
+* 高可用性 故障转移、恢复
+* 高性能
+
 ### 8.2 集群配置
 ### 8.3 会话同步
+Tomcat集群组件提供两项主要功能便是会话同步和集群部署。
 ### 8.4 集群部署
+集群化部署，人工运维困难，自动化运维工具。
 
 ## 第9章 Tomcat安全
 ### 9.1 配置安全
 ### 9.2 应用安全
+Web应用安全，认证、授权
 ### 9.3 传输安全（SSL）
 ### 9.4 Java安全策略
 
@@ -653,9 +701,47 @@ jvm垃圾回收性能度量：吞吐量；暂停
 
 ## 第11章 Tomcat附加功能
 ### 11.1 Tomcat的嵌入式启动
-### 11.2 Tomcat中的JNDI
-Java应用通过JNDI API按照命名查找数据和对象。可对比zookeeper的统一命名服务（Name Service）
+#### 11.1.1 为什么需要嵌入式启动
+* 部署复杂度
+* 架构约束
+* 微服务架构
 
+#### 11.1.2 嵌入式启动Tomcat
+```java
+// 启动Servlet
+public class Application {
+    public static void main(String[] args) {
+        Tomcat tomcat = new Tomcat();
+        HttpServlet servlet = new HttpServlet() {
+            public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException{
+                response.getWriter().write("Hellow World");
+            }
+        }
+        Context context = tomcat.addContext("/sample", null);
+        tomcat.addServlet(context, "servlet", servlet);
+        context.addServletMapping("/servlet", "/servlet");
+        tomcat.init();
+        tomcat.start();
+        tomcat.getServer().await();
+    }
+}
+
+// 启动Web应用
+tomcat.addWebapp("/sample", "/Deploy/tomcat/webapps/sample");
+// 其他配置
+// setConnector
+// setHost
+// setBaseDir
+```
+
+#### 11.1.3 嵌入式启动服务器
+Tomcat更适合企业级应用嵌入式，而Jetty和Undertow更适合轻量级、分布式的云计算环境。
+
+### 11.2 Tomcat中的JNDI
+JNDI(Java Naming and Directory Interface, Java命名目录接口)是一套用于Java目录服务的API。
+Java应用通过JNDI API按照命名查找数据和对象。JNDI独立于其底层的实现，指定了一个服务提供者接口（SPI），便于以松耦合的形式插入框架。
+
+对比zookeeper的统一命名服务（Name Service）。
 ### 11.3 Comet和WebSocket
 服务器推送技术
 

@@ -5,7 +5,7 @@
 ## introduce
 <!--
 This is my daily notes, enriching the mind....-->
-![knowledge](/00-base/img/knowledge.png)
+![knowledge](./00-base/img/knowledge.png)
 
 
 * [基础](00-base/README.md) 组成原理、数据结构、操作系统、计算机网络、编译原理

@@ -7,9 +7,10 @@
     * [Proxy](/docs/10-java/src/rt.jar.src/java/lang/reflect/Proxy.md) 
   * [String](/docs/10-java/src/rt.jar.src/java/lang/String.md)
   * [Thread](/docs/10-java/src/rt.jar.src/java/lang/Thread.md) 线程
-  * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md)
+  * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md) 线程本地变量
   * [Throwable](/docs/10-java/src/rt.jar.src/java/lang/Throwable.md) 错误、异常
-  * [ClassLoader](/docs/10-java/src/rt.jar.src/java/lang/ClassLoader.md)
+  * [ClassLoader](/docs/10-java/src/rt.jar.src/java/lang/ClassLoader.md) 类加载器、双亲委派
+  * [Iterable](/docs/10-java/src/rt.jar.src/java/lang/Iterable.md)
 * 集合框架
   * list
     * [ArrayList](/docs/10-java/src/rt.jar.src/java/util/collections/list.ArrayList.md)
@@ -33,19 +34,25 @@
     * [Collections](/docs/10-java/src/rt.jar.src/java/util/collections/Collections.md)  
     * [DualPivotQuicksort](/docs/10-java/src/rt.jar.src/java/util/collections/sort.DualPivotQuicksort.md)
     * [TimSort](/docs/10-java/src/rt.jar.src/java/util/collections/sort.TimSort.md)
-* [并发编程](/docs/10-java/src/rt.jar.src/java/util/concurrent/README.md)
+* [并发编程](/docs/10-java/src/rt.jar.src/java/util/concurrent/README.md) 线程、缓存、队列、异步、限流
   * [atomic](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/README.md) 原子操作
     * number
-      * [AtomicInteger](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicInteger.md)
+      * [AtomicInteger](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicInteger.md) 计数器，只能更新一个变量
+      * AtomicLong
+      * AtomicBoolean
+    * array
+      * AtomicIntegerArray
+      * AtomicLongArray
+      * AtomicReferenceArray
     * adder
       * [Striped64](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/Striped64.md)
       * [LongAccumulator](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/LongAccumulator.md)
       * [LongAdder](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/LongAdder.md)
     * reference
-      * [AtomicReference](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicReference.md)
-    * field
-     * [AtomicLongFieldUpdater](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicLongFieldUpdater.md)
-     * [AtomicReferenceFieldUpdater](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicReferenceFieldUpdater.md)
+      * [AtomicReference](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicReference.md) 更新多个原子变量
+      * AtomicIntegerFieldUpdater
+      * [AtomicLongFieldUpdater](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicLongFieldUpdater.md) volatile字段 + newUpdater(Clazz.class, "filedName"")
+      * [AtomicReferenceFieldUpdater](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicReferenceFieldUpdater.md)
     * ABA
       * [AtomicStampedReference](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicStampedReference.md)
       * [AtomicMarkableReference](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/AtomicMarkableReference.md)
@@ -73,12 +80,12 @@
       * [ConcurrentHashMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/map.ConcurrentHashMap.md) 分段锁、1.8中的CAS自旋锁、红黑树
       * [ConcurrentSkipListMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/map.ConcurrentSkipListMap.md)
   * 并发工具
-    * [CountDownLatch](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CountDownLatch.md) 
-    * [CyclicBarrier](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CyclicBarrier.md)
-    * [Semaphore](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.Semaphore.md)
-    * [Exchanger](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.Exchanger.md)
+    * [CountDownLatch](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CountDownLatch.md) 一个或多个线程等待其他线程完成操作
+    * [CyclicBarrier](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CyclicBarrier.md) 一组线程到达一个屏障时阻塞，直到最后一个线程到达，才继续
+    * [Semaphore](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.Semaphore.md) 控制并发特定资源的线程数
+    * [Exchanger](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.Exchanger.md) 数据交换
   * 线程池
-    * [ThreadPoolExecutor](/docs/10-java/src/rt.jar.src/java/util/concurrent/ThreadPoolExecutor.md)
+    * [ThreadPoolExecutor](/docs/10-java/src/rt.jar.src/java/util/concurrent/executor.ThreadPoolExecutor.md)
     * [ScheduledThreadPoolExecutor](/docs/10-java/src/rt.jar.src/java/util/concurrent/executor.ScheduledThreadPoolExecutor.md)
     * [ForkJoinPool](/docs/10-java/src/rt.jar.src/java/util/concurrent/ForkJoinPool.md)
   * 异步编程  
@@ -87,29 +94,32 @@
     * [CompletionStage](/docs/10-java/src/rt.jar.src/java/util/concurrent/CompletionStage.md)
     * [CompletableFuture](/docs/10-java/src/rt.jar.src/java/util/concurrent/CompletableFuture.md)
 * IO
-  * [bio](/docs/10-java/src/rt.jar.src/java/io/README.md:1)
-    * [InputStream](/)
-    * [OutputStream](/)
-    * [Reader](/)
-    * [Writer](/)
+  * [bio](/docs/10-java/src/rt.jar.src/java/io/README.md)
+    * [InputStream](/docs/10-java/src/rt.jar.src/java/io/InputStream.md)
+    * [OutputStream](/docs/10-java/src/rt.jar.src/java/io/OutputStream.md)
+    * [Reader](/docs/10-java/src/rt.jar.src/java/io/Reader.md)
+    * [Writer](/docs/10-java/src/rt.jar.src/java/io/Writer.md)
+    * [File](/docs/10-java/src/rt.jar.src/java/io/File.md)
+    * [FileDescriptor](/docs/10-java/src/rt.jar.src/java/io/FileDescriptor.md)
   * [nio](/docs/10-java/src/rt.jar.src/java/nio/README.md)
     * [channels](/docs/10-java/src/rt.jar.src/java/nio/channels/README.md)
-      * [Selector](/docs/10-java/src/rt.jar.src/java/nio/channels/Selector.md)
+      * [Channel](/docs/10-java/src/rt.jar.src/java/nio/channels/Channel.md) 对BIO流的模拟，双向的。比流更好地反映底层操作系统的真实情况。
+      * [Selector](/docs/10-java/src/rt.jar.src/java/nio/channels/Selector.md) 多路复用器，同时检测多个通道的事件
       * [SelectionKey](/docs/10-java/src/rt.jar.src/java/nio/channels/SelectionKey.md)
       * [ServerSocketChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/ServerSocketChannel.md)
       * aio/nio2
-        * [AsynchronousChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousChannel.md)
-        * [AsynchronousChannelGroup](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousChannelGroup.md)
+        * [AsynchronousChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousChannel.md) 异步通道
+        * [AsynchronousChannelGroup](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousChannelGroup.md) 异步通道组，没给异步通道属于一个异步通道组，同一个通道组内的通道共享一个线程池。
         * [AsynchronousServerSocketChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousServerSocketChannel.md)
         * [AsynchronousSocketChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousSocketChannel.md)
         * [AsynchronousFileChannel](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.AsynchronousFileChannel.md)
-        * [CompletionHandler](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.CompletionHandler.md)
+        * [CompletionHandler](/docs/10-java/src/rt.jar.src/java/nio/channels/aio.CompletionHandler.md) 两种操作方式，Future与CompletionHandler回调
     * [file](/docs/10-java/src/rt.jar.src/java/nio/file/README.md)
       * Files
       * FileSystem
       * FileVisitor
       * Path
-    * [Buffer](/docs/10-java/src/rt.jar.src/java/nio/Buffer.md)
+    * [Buffer](/docs/10-java/src/rt.jar.src/java/nio/Buffer.md) 缓冲区，容器对象，通常是一个字节数组。
     * [ByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/ByteBuffer.md)
     * [DirectByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/DirectByteBuffer.md)
 * [net](/docs/10-java/src/rt.jar.src/java/net/README.md) 网络编程

@@ -1,7 +1,7 @@
 计算机类
 
-### 计算机基础
-[计算机专业](/docs/99-book/notes/00-base/README.md)
+## 计算机基础
+[培养方案](/docs/99-book/notes/00-base/README.md)
 * 组成
   * [《计算机组成原理（第2版）》唐朔飞](/docs/99-book/notes/00-base/计算机组成原理.md)
   * [《计算机体系结构》张晨曦](/docs/99-book/notes/00-base/计算机体系结构.md)
@@ -19,7 +19,7 @@
 * [《编译原理（第2版）》赵建华](/docs/99-book/notes/00-base/编译原理.md)
 * [《数据库系统概论（第4版）》 王珊](/docs/99-book/notes/00-base/数据库系统概论.md)
 
-### Java
+## Java
 * 《core java》卷I
 * 《core java》卷II
 * 《thinking in java》
@@ -34,7 +34,7 @@
 * [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
 * 《Java并发编程实战》
 
-### 框架
+## 框架
 * [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)
 * [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/99-book/notes/20-framework/Spring技术内幕(2).md)
 * [《Spring源码深度解析》郝佳](/99-book/notes/20-framework/Spring源码深度解析.md)
@@ -42,7 +42,7 @@
 * 《Spring Cloud与Docker微服务架构实战》周立
 * [《跟我学Shiro教程》张开涛](/99-book/notes/20-framework/跟我学Shiro教程.md)
 
-### 服务器
+## 服务器
 * [《Netty权威指南（第2版）》李林锋](/99-book/notes/21-server/Netty权威指南.md)
 * [《Netty实战》 何品 译 人民邮电出版社](/99-book/notes/21-server/Netty实战.md)
 * [《Tomcat架构解析》刘光瑞](/99-book/notes/21-server/Tomcat架构解析.md)
@@ -53,14 +53,19 @@
 * [《Unix网络编程 卷2：进程间通信》](/99-book/notes/21-server/Unix网络编程%20卷2：进程间通信.md)
 * [《Linux网络编程》](/99-book/notes/21-server/Linux网络编程.md)
 
-### 分布式
+## 分布式
 * [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
 * [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
+* [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
+* [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
+* [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
+* [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/99-book/notes/30-distributed/分布式系统技术内幕.md)
 * [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/30-distributed/大型网站系统与Java中间件实践.md)
 
-### 架构
+
+## 架构
 * [《软件体系结构》第3版 章征 清华大学出版社](/99-book/notes/40-architecture/软件体系结构.md)
 * 阿里系
   * [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md) 框中拆异缓 运营（鹰眼、埋单、日志）、稳定（限流、降级、调度、开关、链路、一致性）
@@ -74,14 +79,14 @@
 * 开发者大会
   * [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)
 
-### 设计
+## 设计
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
 * 《HEAD FIRST 设计模式（中文版）》
 * [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
 * 《领域驱动设计与模式实战》赵俐 马燕新 译
 * [《实现领域驱动设计》滕云 译](/99-book/notes/40-architecture/实现领域驱动设计.md)
 
-### 数据库
+## 数据库
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
   * [《MySQL技术内幕：InnoDB存储引擎》第2版 姜承尧 机械工业出版社](/99-book/notes/50-database/MySQL技术内幕InnoDB存储引擎.md)
@@ -92,7 +97,7 @@
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
   * 《NoSQL数据库技术实战》 皮雄军 著
 
-### 云
+## 云
 * [《云计算》刘鹏](/99-book/notes/51-cloud/云计算.md)
 * [《云计算架构技术与实践》顾炯炯](/99-book/notes/51-cloud/云计算架构.md)
 * [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/99-book/notes/51-cloud/大数据之路.md)
@@ -100,7 +105,7 @@
 * [《物联网导论》刘云浩 科学出版社](/99-book/notes/51-cloud/物联网导论.md)
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
 
-### 前端
+## 前端
 * [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/99-book/notes/60-js/JavaScript权威指南(第6版).md)
 * [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/99-book/notes/60-js/JavaScript设计模式.md)
 * 《JavaScript模式》 (美)奥斯马尼
@@ -112,7 +117,7 @@
 * [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)
 * [《深入浅出Webpack》](/99-book/notes/60-js/深入浅出Webpack.md)
 
-### 运维
+## 运维
 * [《Zabbix企业级分布式监控系统》吴兆松著](/99-book/notes/70-dev-ops/Zabbix企业级分布式监控系统.md)
 * 《Maven实战》	许晓斌
 * [《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译](/99-book/notes/70-dev-ops/Linux命令行与shell脚本编程大全.md)
@@ -121,11 +126,11 @@
 * [《C++Primer中文版》 李师贤 译 人民邮电出版社](/99-book/notes/70-dev-ops/C++Primer.md)
 * [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/99-book/notes/70-dev-ops/Go语言实战.md)
 
-### 测试
+## 测试
 * 《软件测试基础》 周元哲
 * 《软件自动化测试开发》 邹辉
 
-### 软考
+## 软考
 * 高级
   * [《项目管理知识体系指南（PMBOK指南）》第6版](/99-book/notes/80-project/PMBOK.md)
   * [《信息系统项目管理师教程》柳纯录](/99-book/notes/80-project/信息系统项目管理师教程.md)
@@ -145,3 +150,7 @@
   * [《数据库系统工程师教程》王亚平](/99-book/notes/80-project/数据库系统工程师教程.md)
   * [《信息系统管理工程师教程》陈禹](/99-book/notes/80-project/信息系统管理工程师教程.md)
   * [《软件设计师教程（第5版）》褚华 霍秋艳](/99-book/notes/80-project/软件设计师教程.md)
+
+<script>
+Docsify.dom.findAll('a').filter(item => item.text.indexOf('《') == 0).map((item, index)=>console.log(index + 1, item.innerText))
+</script>

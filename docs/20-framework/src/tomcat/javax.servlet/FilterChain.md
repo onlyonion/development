@@ -1,6 +1,5 @@
 javax.servlet.FilterChain
-##  define
-
+##  ## hierarchy
 ```
 FilterChain (javax.servlet)
     ApplicationFilterChain (org.apache.catalina.core)
@@ -8,6 +7,13 @@ FilterChain (javax.servlet)
     Chain in ServletHandler (org.mortbay.jetty.servlet)
     MockFilterChain (org.springframework.mock.web)
     PassThroughFilterChain (org.springframework.mock.web)
+```
+
+## define
+```java
+public interface FilterChain {
+    public void doFilter ( ServletRequest request, ServletResponse response ) throws IOException, ServletException;
+}
 ```
 
 ## 请求在过滤器中传递

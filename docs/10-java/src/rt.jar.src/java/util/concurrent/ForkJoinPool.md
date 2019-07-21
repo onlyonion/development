@@ -1,5 +1,7 @@
 java.util.concurrent.ForkJoinPool
 
+并行执行任务的框架，把一个大任务**分割**成若干个小任务，最终**汇总**没个小任务结果后得到大任务结果的框架。
+
 ## hierarchy
 ```
 AbstractExecutorService (java.util.concurrent)
@@ -14,6 +16,8 @@ ForkJoinPool (java.util.concurrent)
 ## define
 * ForkJoinPool
 * ForkJoinTask
+  * RecursiveAction 没有返回结果的任务
+  * RecursiveTask 有返回结果的任务
 * ForkJoinWorkerThread
 
 ```plantuml

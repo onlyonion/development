@@ -67,11 +67,19 @@ mmap()系统调用使得进城之间通过映射同一个普通文件实现共�
   * 通过selectionKey可以获取就绪的Channel集合，进行后续的IO操作
 
 ### 2.4 AIO编程
-* 通过Future类表示异步操作的结果
+* 通过`Future`类表示异步操作的结果
 * 执行异步操作时候传入一个java.nio.channels
-* Completionhandler接口的实现类作为操作完成的回调，对应unix网络编程中的事件驱动IO（AIO），不需要多路复用器（Selector）。
+* `Completionhandler`接口的实现类作为操作完成的回调，对应unix网络编程中的事件驱动IO（AIO），不需要多路复用器（Selector）。
 
 ```java
+public interface Future<V> {
+    boolean cancel(boolean mayInterruptIfRunning);
+    boolean isCancelled();
+    boolean isDone();
+    V get() throws InterruptedException, ExecutionException;
+    V get(long timeout, TimeUnit unit)
+        throws InterruptedException, ExecutionException, TimeoutException;
+}
 public interface CompletionHandler<V,A> {
     void completed(V result, A attachment);
     void failed(Throwable exc, A attachment);
@@ -89,9 +97,19 @@ public interface CompletionHandler<V,A> {
 ## 第3章 Netty入门应用
 ## 第4章 TCP粘包/拆包问题解决之道
 ### 4.1 TCP粘包/拆包
-1. TCP协议，面向连接、面向流的端到端的全双工的可靠传输协议
-2. 面向流，没有界限的字节流TCP底层并不了解上层业务数据的具体含义，它会根据TCP缓冲区的实际情况进行**包的划分**
-3. 在业务上认为，一个完整的包可能被TCP拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送。
+TCP协议，面向连接、面向流的端到端的全双工的可靠传输协议。
+面向流，没有界限的字节流TCP底层并不了解上层业务数据的具体含义，它会根据TCP缓冲区的实际情况进行**包的划分**。
+在业务上认为，一个完整的包可能被TCP拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送。
+
+#### 4.1.2 TCP粘包/拆包发生的原因
+1. 应用程序write写入的字节大小大于套接口发送缓冲区大小
+2. 进行MSS大小的TCP分段
+3. 以太网帧的payload大于MTU进行IP分片
+
+概念：
+* MSS：Maximum Segment Size ，**TCP提交给IP层**最大分段大小，不包含TCP Header和 TCP Option，只包含TCP Payload ，MSS是TCP用来限制application层最大的发送字节数。如果底层物理接口MTU= 1500 byte，则 MSS = 1500- 20(IP Header) -20 (TCP Header) = 1460 byte，如果application 有2000 byte发送，需要两个segment才可以完成发送，第一个TCP segment = 1460，第二个TCP segment = 540。
+* payload 有效载荷，指除去协议首部之外实际传输的数据
+* MTU： Maximum Transmit Unit，最大传输单元，即**物理接口（数据链路层）提供给其上层（通常是IP层）**最大一次传输数据的大小；以普遍使用的以太网接口为例，缺省MTU=1500 Byte，这是以太网接口对IP层的约束，如果IP层有<=1500 byte 需要发送，只需要一个IP包就可以完成发送任务；如果IP层有> 1500 byte 数据需要发送，需要分片才能完成发送，这些分片有一个共同点，即IP Header ID相同。
 
 #### 4.1.3 粘包问题的解决策略
 由于底层的TCP协议无法理解上层的业务数据，所以在底层无法保证数据包不被拆分和重组，只能通过上层的应用层协议栈设计解决。
@@ -100,25 +118,90 @@ public interface CompletionHandler<V,A> {
 3. 消息分为消息头和消息体，消息头中包含表示消息的总长度的字段
 4. 更复杂的应用层协议
 
+### 4.3 利用LineBasedFrameDecoder解决TCP粘包问题
+#### 4.3.4 LineBasedFrameDecoder和StringDecoder的原理分析
+* LineBasedFrameDecoder 依次遍历ByteBuf的可读字节，`\n`或者`\r\n`就以此位置为结束为hi
+* StringDecoder 接收到的对象转换成字符串，然后继续调用后面的Handler
+
 ## 第5章 分隔符和定长解码器的应用
+TCP以流的方式进行数据传输，上层的应用协议为了对消息进行区分，采用4种方式：
+1. 消息长度固定，累计读取到长度综合为定长LEN的报文后，就认为读取到了一个完整的消息；将计数器置位，重新读取下一个数据报
+2. 将回车换行符作为消息结束符，例如FTP
+3. 将特殊的分隔符作为消息的结束标志，回车换行符就是一种特殊的结束分隔符
+4. 通过在消息头中定义长度字段来表示消息的总长度
+
+### 5.1 DelimiterBasedFrameDecoder应用开发
+```java
+ByteBuf delimiter = Unpooled.copiedBuffer("$_").getBytes();
+SocketChannel.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter))
+```
+### 5.2 FixedLengthFrameDecoder应用开发
+```java
+new FixedLengthFrameDecoder(20);
+```
 
 # 中级篇 Netty 编解码开发指南
 ## 第6章 编解码技术
+Java序列化的目的：网络传输、对象持久化。
 ### 6.1 Java序列化的缺点
 #### 6.1.1 无法跨语言
 #### 6.1.2 序列化后的码流太大
 #### 6.1.3 序列化性能太低
+### 6.2 业界主流的编解码框架
+#### 6.2.1 Google的Protobuf介绍
+将数据结构以.proto文件进行描述，通过代码生成工具可以生成对应的数据结构POJO对象和Protobuf相关的方法和操作
+* 结构化数据存储格式
+* 高小的编解码性能
+* 语言无关、平台无关、扩展性好
+* 官方支持Java、C++和Python三种语言
+
+XML，可读性和可扩展非常好，但是XML解析时间开销和XML为了可读性而牺牲的空间开销都非常大，不适合高性能的通信协议。
+#### 6.2.2 Facebook的Thrift介绍
+Thrift主要又5部分组成
+1. 语言系统以及IDL编译器
+2. TProtocol：RPC的协议层
+3. TTransport：RPC的传输层
+4. TProcessor：作为协议层和用户提供的服务实现之间的纽带
+5. TServer：聚合TProtocol、TTransport和Tprocessor等对象
+
+Thrift通过IDL描述接口和数据结构定义，它支持8种Java基本类型、Map、Set和List，支持可选和必选定义。
+支持三种地拿一下呢的编解码方式：通用的二进制编解码、压缩二进制编解码、优化的可选字段压缩编解码
+
+#### 6.2.3 JBoss Marshalling介绍
+优点
+* 可插拔的类解析器
+* 可插拔的对象替换技术，不需要通过继承的方式
+* 可插拔的预定义类缓存表
+* 无需事先java.io.Serializable接口
+* 通过缓存技术提升对象的序列化性能
+
 ## 第7章 MessagePack编解码
+### 7.1 MessagePack介绍
+### 7.2 MessagePack编码器和解码器开发
+### 7.3 粘包/半包支持
+
+
 ## 第8章 Google Protobuf编解码
 跨语言、结构化的数据序列化框架。
+### 8.1 Protobuf的入门
+### 8.2 Netty的Protobuf服务端开发
 ### 8.3 Protobuf的使用注意事项
 仅负责解码，不支持读半包。
 使用Netty提供的ProtobufVarint32FrameDecoder
+
 ## 第9章 JBoss Marshalling编解码
 与java.io.Serializable接口兼容，增加可调参数和附加特性。
+### 9.1 Marshalling开发环境准备
+### 9.2 Netty的Marshalling服务端开发
+### 9.3 Netty的Marshalling客户端开发
+### 9.4 运行Marshalling客户端和服务端例程
 
 # 高级篇 Netty 多协议开发和应用
 ## 第10章 HTTP协议开发应用
+### 10.1 HTTP协议介绍
+### 10.2 Netty HTTP服务端入门开发
+### 10.3 Netty HTTP+XML协议栈开发
+
 ## 第11章 WebSocket协议开发
 WebSocket的特点
 * 单一的TCP连接，此阿勇全双工模式通信
@@ -128,8 +211,19 @@ WebSocket的特点
 * 通过 ping/pong帧保持链路激活
 * 服务端推送
 
+### 11.1 HTTP协议的弊端
+### 11.2 WebSocket入门
+### 11.3 Netty WebSocket协议开发
+
+
 ## 第12章 私有协议栈开发
 绝大多数的私有协议传输层都是基于TCP/IP，利用Netty的NIO TCP协议栈可以方便的进行定制和开发。
+### 12.2 Netty协议栈功能设计
+#### 12.2.1 网络拓扑图
+#### 12.2.2 协议栈功能描述
+#### 12.2.3 通信模型
+#### 12.2.4 消息定义
+#### 12.2.5 Netty协议支持的字段类型
 #### 12.2.6 Netty协议的编解码规范
 
 |            | 描述     | 编码                                  | 解码               |
@@ -154,7 +248,29 @@ WebSocket的特点
 基于IP地址的安全认证机制，服务端对握手请求消息的IP地址进行合法性校检
 #### 12.2.11 可扩展性设计
 attachment字段自定义扩展
+### 12.3 Netty协议栈开发
+#### 12.3.1 数据结构定义
+#### 12.3.2 消息编解码
+#### 12.3.3 握手和安全认证
+握手的发起是在客户端和服务端TCP链路建立成功通道激活时，握手消息的接入和安全认证在服务端处理。
+`LoginAuthReqHandler`
+`LoginAuthRespHandler`
+
+#### 12.3.4 心跳检测机制
+握手成功之后，由客户端主动发送心跳消息，服务端接收到心跳消息之后，返回心跳应答消息。
+由于心跳消息的目的是为了检测链路的可用性，因此不需要携带消息体。
+#### 12.3.5 断连重连
+当客户端感知断连事件之后，释放资源，重新发起连接。监听断连事件，如果Channel关闭，则执行后续的重连任务。
+服务端感知到断连事件之后，需要清空缓存的登录认证注册信息，保证后续客户端能够正常重连。
+#### 12.3.6 客户端代码
+#### 12.3.7 服务端代码
+### 12.4 运行协议栈
+* 正常情况 客户端和服务端握手成功，双方可以互发心跳，链路正常
+* 服务端宕机
+* 客户端宕机 服务端需要能够清除缓存信息，允许客户端重新登录
+
 ## 第13章 服务端创建
+### 13.1 原生NIO类库的复杂性
 ### 13.2 Netty服务端创建源码分析
 #### 13.2.1 Netty服务端的创建时序图
 ```mermaid
@@ -171,9 +287,11 @@ sequenceDiagram
     EventLoopGroup->>ChannelPipeline: 8. 网络事件通知
     ChannelPipeline->>ChannelHandler: 9. 执行Netty系统和业务HandlerChannel
 ```
+### 13.3 客户端接入源码分析
 
 ## 第14章 客户端创建
-#### 14.2.1 Netty客户端的创建时序图
+### 14.1 Netty客户端创建流程分析
+#### 14.1.1 Netty客户端的创建时序图
 ```mermaid
 sequenceDiagram
     Actor->>Bootstrap: 1.创建Bootstrap实例
@@ -188,9 +306,15 @@ sequenceDiagram
     EventLoopGroup->>ChannelPipeline: 8. 发送连接成功事件
     ChannelPipeline->>ChannelHandler: 9. 调用用户ChannelHandler
 ```
+### 14.2 Netty客户端创建源码分析
+#### 14.2.1 客户端连接辅助类Bootstrap
+#### 14.2.2 客户端连接操作
+#### 14.2.3 异步连接结果通知
+#### 14.2.4 客户端连接超时机制
 
 # 源码分析篇 Netty 功能介绍和源码分析
 ## 第15章 ByteBuf和相关辅助类
+
 ## 第16章 Channel和Unsafe
 ### 16.1 Channel功能说明
 io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，包括但不限于网络的读、写，客户端发起连接，主动关闭连接，链路关闭，
@@ -203,6 +327,7 @@ io.netty.channel.Channel是Netty网络操作抽象类，聚合了一组功能，
 ### 16.3 Unsafe功能说明
 实际的IO读写操作都是由Unsafe接口负责完成的。
 ### 16.4 Unsafe源码分析
+
 ## 第17章 ChannelPipeline和ChannelHandler
 Netty的ChannelPipeline和ChannelHandler机制类似于Servlet和Filter过滤器，这类拦截器实际上是职责链模式的一种变形。
 ### 17.1 ChannelPipeline功能说明
@@ -230,7 +355,7 @@ I/O线程模型
 * Acceptor线程
 * 一组IO线程池
 
-#### 18.1.3 诸多Reactor多线程模型
+#### 18.1.3 主从Reactor多线程模型
 * Acceptor线程池 客户端的登录、握手、安全认证，一旦链路建立成功，就将两路注册到后端subReactor线程池
 * IO线程池
 
@@ -265,7 +390,7 @@ Promise是可写的Future，用于设置IO操作的结果。
 * JDK Future-Listener机制 当一个线程执行结束的时候，通知注册的所有listener同步执行回调功能
 * 通过增加监听器Listener的方式接收异步IO操作结果的通知，而不是调用wait或者sync阻塞用户线程
 
-# 架构和行业应用篇 Netty 高级特性
+# 架构和行业应用篇 Netty高级特性
 架构、性能、可靠性、安全性
 ## 第20章 Netty架构剖析
 ### 20.1 Netty逻辑架构
@@ -393,15 +518,23 @@ Netty应用场景：
 ### 24.2 Netty SSL 安全特性
 #### 24.2.1 SSL 单向认证
 客户端只验证服务端的合法性，服务端不验证客户端。
-
 #### 24.2.2 SSL 双向认证
 服务端也对客户端进行安全认证。这就意味着客户端的自签名证书也需要导入到服务端的数字证书仓库中。
-
 #### 24.2.3 第三方CA认证
 ### 24.3 Netty SSL 源码分析
 ### 24.4 Netty 扩展的安全特性
 #### 24.4.1 IP地址黑名单机制
 链路注册、链路激活、消息读取、消息发送的时候对对端的IP地址进行校检，如果在黑名单列表中，则拒绝当前操作，并关闭链路，打印日志。
 #### 24.4.2 接入认证
+
 ## 第25章 Netty未来展望
+
 ## 附录 Netty参数配置表
+
+| key                                   | desc                                              |
+| :------------------------------------ | :------------------------------------------------ |
+| io.netty.selectorAutoRebuildThreshold | 重建selector阈值，修复JDK NIO死循环问题，默认512  |
+| io.netty.threadLocalDirectBufferSize  | 线程本地变量直接内存缓冲区大小，默认64KB          |
+| io.netty.eventLoopThreads             | Reactor线程NioEventLoop的格式，默认值 CPU个数 * 2 |
+| io.netty.noPreferDirect               | 是否允许通过底层API直接访问直接内存，默认允许     |
+| io.netty.noUnsafe                     | 是否允许使用sun.misc.Unsafe，默认允许             |

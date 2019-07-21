@@ -1,0 +1,12 @@
+.markdown-section {
+    max-width: 1250px;
+}
+.sidebar div > ul > li > a{
+    font-size: 16px;
+}
+.markdown-section a {
+    text-decoration: none;
+}
+.markdown-section a:hover {
+    text-decoration: underline;
+}

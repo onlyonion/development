@@ -1,5 +1,6 @@
 java.util.concurrent.atomic.AtomicReference
 
+
 ## define
 ```plantuml
 @startuml

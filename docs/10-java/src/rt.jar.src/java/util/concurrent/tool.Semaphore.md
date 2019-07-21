@@ -1,5 +1,7 @@
 java.util.concurrent.Semaphore
 
+控制同时访问特定资源的线程数量
+
 ## define
 ```plantuml
 @startuml

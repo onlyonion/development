@@ -12,17 +12,7 @@
   <!-- Import mermaid -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
   <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <style type="text/css">
-    .markdown-section {
-      max-width: 1250px;
-    }
-    .markdown-section h2 {
-      margin: 15px 0 .8rem;
-    }
-    .sidebar div > ul > li > a{
-      font-size: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="00-base/assets/css/me.css">
 </head>
 <body>
   <div id="app"></div>
@@ -42,8 +32,8 @@
       loadSidebar: true,
       loadNavbar: true,
       mergeNavbar: true,
-      maxLevel: 4,
-      subMaxLevel: 4,
+      maxLevel: 2,
+      subMaxLevel: 3,
       search: {
         // maxAge: 86400000, // 过期时间，单位毫秒，默认一天
         paths: [], // or 'auto'
@@ -99,6 +89,8 @@
   <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
   <script src="https://unpkg.com/docsify-copy-code@2"></script>
-
+  <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-c.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-cpp.min.js"></script>
 </body>
 </html>
