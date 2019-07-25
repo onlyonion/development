@@ -5,6 +5,8 @@ SpiEextension导引目路集衡调
 * [common](/30-distributed/src/dubbo/common/README.md)
   * extension
     * [ExtensionLoader](/docs/30-distributed/src/dubbo/common/extension/ExtensionLoader.md) SPI扩展加载器
+  * utils
+    * [LRUCache](/docs/30-distributed/src/dubbo/common/utils/LRUCache.md)
   * [threadpool](/docs/30-distributed/src/dubbo/common/threadpool/README.md)
 * [config](/30-distributed/src/dubbo/config/README.md)  配置模块：是Dubbo对外的 API，用户通过Config使用Dubbo，隐藏Dubbo所有细节
 * [container](/30-distributed/src/dubbo/container/README.md)

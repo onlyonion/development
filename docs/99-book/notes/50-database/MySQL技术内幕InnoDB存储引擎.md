@@ -1,24 +1,28 @@
 《MySQL技术内幕：InnoDB存储引擎》第2版 姜承尧 机械工业出版社
 
 * 体系结构和存储引擎
-* 文件、表、索引与算法
-* 锁、事务
-* 备份与恢复、性能优化
+* 文件 参数文件、日志文件、套接字文件、pid文件、表结构定义文件、InnoDB文件（表空间文件、重做日志文件）
+* 表 索引组织表、逻辑存储结构（表、段、区、页、行）、记录格式、数据页结构、约束、视图、分区表
+* 索引与算法 数据结构（二分查找、二叉查找树、平衡二叉树）、B+树、哈希算法、全文检索
+* 锁 lock与latch，锁的类型、锁的算法（Record、Gap、Next-key）、锁问题（脏读、不可重复读、丢失更新）、阻塞、死锁、锁升级
+* 事务 事务实现、事务控制语句、隔离级别、分布式事务（内部XA事务）、不好的事务习惯、长事务
+* 备份与恢复 冷备、逻辑备份、二进制日志备份与恢复、热备、快照备份、复制
+* 性能优化 CPU、内存、硬盘、RAID、操作系统、文件系统、基准测试工具
 
 ## 第1章 MySQL体系结构和存储引擎
 ### 1.1 定义数据库和实例
 ### 1.2 MySQL体系结构
 * connectors: native c api, jdbc, odbc, net, php, perl, python, ruby, cobol
 * mysql
-  * connector pool
+  * connector pool 连接池
   * management service & utillties
-  * sql interface: DML,DDL,Stored Procedures Vies, Triggers, etc.
-  * parse: Quary Translation Object Privilege
-  * optimizer: Access Plaths, statistics
-  * catches & buffers: global and engine specific cahces & buffers
-* pluggable storage engines
+  * sql interface: SQL接口 DML,DDL,Stored Procedures Vies, Triggers, etc.
+  * parse: 解析器 Quary Translation Object Privilege
+  * optimizer: 优化器 Access Plaths, statistics
+  * catches & buffers: 缓存和缓冲 global and engine specific cahces & buffers
+* pluggable storage engines 插入式的搜索引擎
   * memory, index & stroage management
-* file system; file & logs
+* file system; 文件系统 file & logs
   * ntfs, ufs, ext2/3
   * nfs, san, nas
 
@@ -49,6 +53,9 @@ Mysql组成：
 #### 1.3.8 其他存储引擎
 ### 1.4 各存储引擎之间的比较
 ### 1.5 连接MySQL
+* TCP/IP
+* 命名管道和共享内容
+* UNIX域套接字
 
 ## 第2章 InnoDB存储引擎
 ### 2.1 InnoDB存储引擎概述
@@ -214,19 +221,39 @@ covering index，从辅助索引中就可以**得到查询的记录**，而不�
 #### 5.6.6 Multi-Range Read优化
 #### 5.6.7 Index Condition Pushdown（ICP）优化
 ### 5.7 哈希算法
-时间复杂度`O(1)`，每个数据库中都存在该数据结构。
+时间复杂度`O(1)`，且不只存在于索引中，每个数据库应用中都存在该数据结构。
 #### 5.7.1 哈希表
-哈希表也称散列表，由直接寻址表改进而来。哈希碰撞、哈希冲突，在数据库中一般用**链接法**解决，把散列到同一槽中的所有元素都放在一个链表中。
+哈希表也称散列表，由直接寻址表改进而来。
+哈希碰撞、哈希冲突，在数据库中一般用**链接法**解决，把散列到同一槽中的所有元素都放在一个链表中。
+
+数据库一般采用除法散列的方法，`h(k) = k mod m`
+
 #### 5.7.2 InnoDB存储引擎中的哈希算法
 #### 5.7.3 自适应哈希索引
 自适应哈希索引经哈希函数映射到一个哈希表中，因此对于字典类型的查找非常快速，但对于范围查找无能为力。
 * 哈希索引只能用来搜素等值的查询。
 
 ### 5.8 全文检索
-辅助表中存储了单词与单词自身在一个或多个文档中所在的位置之间的映射，通常通过关联数组实现。
 #### 5.8.1 概述
+全文检索（Full-Text Search）是将存储在数据库中的整本书或整篇文章中的任意内容信息查找出来的计算。
+
+从InnoDB 1.2.x版本开始，支持全文索引。
 #### 5.8.2 倒排索引
+全文索引通常使用倒排索引实现，它在辅助表中存储了单词与单词自身在一个或多个文档中所在的位置之间的映射，通常通过关联数组实现。两种表现形式：
+* inverted file index，表现形式 {单词，单词所在文档的ID}
+* full inverted index，表现形式 {单词，（按此所在文档的ID，在具体文档中的位置）}
+
 #### 5.8.3 InnoDB全文检索
+采用full inverted index方式。在InnoDB存储引擎中，将`(DocumentId, Position)`视为一个`ilist`。
+因此在全文检索的表中，有两个列，一个是`word`字段，另一个是`ilist`字段，并且在word字段上设为索引。
+
+倒排索引需要将word字段存放在一张表中，这个表称为AuxiliaryTable（辅助表）。
+在InnoDB中，为了提高全文检索的并行性能，共有6张AuxiliaryTable，目前每张表根据word的Latin编码进行分区。
+
+Auxiliary Table是持久的表，存放在磁盘上。
+FTS Index Cache（全文检索索引缓存），用来提高全文检索的性能。FTS Index Cache是一个红黑树结构，其根据（word，list）进行排序。
+这意味着插入的数据已经更新了对应的表，但是对全文索引的更新可能在分词操作后还在FTS Index Cache中，AuxiliaryTable可能还没有更新。
+
 #### 5.8.4 全文检索
 
 ## 第6章 锁
@@ -238,10 +265,13 @@ covering index，从辅助索引中就可以**得到查询的记录**，而不�
 ### 6.3 InnoDB存储引擎中的锁
 ### 6.4 锁的算法
 #### 6.4.1 行锁的3种算法
-1. Record Lock 单个行记录上的锁
-2. Gap Lock 间隙锁，锁定一个范围，但是不包括记录本身
-3. Next-Key Lock 锁定一个范围，并且锁定记录本身
+1. Record Lock：单个行记录上的锁
+2. Gap Lock：间隙锁，锁定一个范围，但是不包括记录本身
+3. Next-Key Lock：Gap Lock + Record Lock，锁定一个范围，并且锁定记录本身
    
+NextKeyLock，设计目的是为了解决PlantomProblem，锁定的不是单个值，而是一个范围，是谓词锁的一种改进。
+当查询的索引含有唯一属性时，InnoDB存储引擎会对Next-KeyLock进行优化，将其降级为RecordLock，仅锁住索引本身，而不是范围。提高应用的并发性。
+
 #### 6.4.2 解决Phantom Problem
 在默认的事务隔离级别下（Repeatable Read），InnoDB存储引擎采用Next-Key Locking机制来避免Phantom Problem。
 
@@ -256,13 +286,26 @@ Phantom Problem是指在同一事务下，连续执行两次同样的Sql语句�
 
 脏读是读到未提交的数据，而不可重复读读到的却是已经提交的数据，但是违背了数据库事务一致性的要求。
 #### 6.5.3 丢失更新
-丢失更新时另一个锁导致的问题，简单来说就是一个事务的更新操作会被另一个事务的更新操作锁覆盖，从而导致数据的不一致。  
-避免丢失更新发生，需要让事务在这种情况下的操作变成串行化，而不是并行操作。
+> 丢失更新时另一个锁导致的问题，简单来说就是一个事务的更新操作会被另一个事务的更新操作锁覆盖，从而导致数据的不一致。  
+
+避免丢失更新发生，需要让事务在这种情况下的操作变成**串行化**，而不是并行操作。
+```sql
+select cash from account where user = puser for update;
+update account set cash=@cash-9 where user = puser;
+```
 ### 6.6 阻塞
-因为不同锁之间的兼容关系，在有些时刻一个事务中的锁需要等待另一个事务中的锁释放他所占用的资源，这就是阻塞。
+> 因为不同锁之间的兼容关系，在有些时刻一个事务中的锁需要等待另一个事务中的锁释放他所占用的资源，这就是阻塞。
+
+阻塞并不是一件坏事，其是为了确保事务可以**并发**且**正常**地运行。
+
 ### 6.7 死锁
+> 死锁是指两个或两个以上的事务在执行过程中，因争夺资源而造成的一种互相等待的现象。
+
+解决死锁问题最简单的一种方法是超时，即当两个事务互相等待时，当一个等待时间超过设置的某一阈值，
+其中一个事务进行回滚，另一个等待的事务就能够继续进行。
 ### 6.8 锁升级
 锁升级是指当前锁的**粒度降低**。多个行锁升级为一个页锁，或将页锁升级为表锁。
+
 行锁 -> 页锁 -> 表锁。这种升级保护了系统资源，防止系统使用太多的内存来维护锁，在一定程度上提高了效率。
 
 PS：Java中自旋锁、偏向锁、轻量级锁、重量级锁、锁粗化、锁消除

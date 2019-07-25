@@ -17,7 +17,7 @@
   * [《计算机网络（第5版）》谢希仁](/docs/99-book/notes/00-base/计算机网络.md)
 * [《计算机科学概论》第11版 美 J.Glenn Brookshear 刘艺](/docs/99-book/notes/00-base/计算机科学概论.md)
 * [《编译原理（第2版）》赵建华](/docs/99-book/notes/00-base/编译原理.md)
-* [《数据库系统概论（第4版）》 王珊](/docs/99-book/notes/00-base/数据库系统概论.md)
+* [《数据库系统概论（第4版）》 王珊 高等教育出版社](/docs/99-book/notes/00-base/数据库系统概论.md)
 
 ## Java
 * 《core java》卷I
@@ -52,18 +52,20 @@
 * [《Unix网络编程 卷1：套接字联网API》](/99-book/notes/21-server/Unix网络编程%20卷1：套接字联网API.md)
 * [《Unix网络编程 卷2：进程间通信》](/99-book/notes/21-server/Unix网络编程%20卷2：进程间通信.md)
 * [《Linux网络编程》](/99-book/notes/21-server/Linux网络编程.md)
+* [《ACE技术内幕 深入解析ACE架构设计与实现原理》潘荣 机械工业出版社](/docs/99-book/notes/21-server/ACE技术内幕.md)
 
 ## 分布式
+* [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/99-book/notes/30-distributed/分布式系统技术内幕.md)
+* [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
+* [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
+* [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
 * [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
 * [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
-* [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
-* [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
-* [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
-* [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/99-book/notes/30-distributed/分布式系统技术内幕.md)
-* [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/30-distributed/大型网站系统与Java中间件实践.md)
-
+* [《深入分布式缓存 从原理到实践》于君泽 曹洪伟 邱硕 著 机械工业出版社](/docs/99-book/notes/30-distributed/深入分布式缓存.md)
+* [《分布式服务框架 原理与实践》李林锋 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务框架.md)
+* [《分布式消息中间件实践》倪炜 中国工信出版社 电子工业出版社](/docs/99-book/notes/30-distributed/分布式消息中间件实践.md)
 
 ## 架构
 * [《软件体系结构》第3版 章征 清华大学出版社](/99-book/notes/40-architecture/软件体系结构.md)
@@ -71,6 +73,7 @@
   * [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md) 框中拆异缓 运营（鹰眼、埋单、日志）、稳定（限流、降级、调度、开关、链路、一致性）
   * [《大型网站技术架构 核心原理与案例分析》李智慧](/99-book/notes/40-architecture/大型网站技术架构.md) 分层、分割、分布式 集群、缓存、异步 冗余、自动化、安全
   * [《大型分布式网站架构设计与实践》陈康贤](/99-book/notes/40-architecture/大型分布式网站架构.md)
+  * [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/40-architecture/大型网站系统与Java中间件实践.md)
   * [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/99-book/notes/40-architecture/逆流而上.md)
   * [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/99-book/notes/40-architecture/尽在双11.md)
   * 《淘宝技术这十年》 子柳
@@ -78,6 +81,8 @@
   * [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
 * 开发者大会
   * [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)
+* [《Java应用架构设计 模块化模式与OSGi》张卫滨 译 机械工业出版社](/99-book/notes/40-architecture/Java应用架构设计.md)
+* [《可伸缩服务架构 框架与中间件》 李艳鹏 杨彪 电子工业出版社](/99-book/notes/40-architecture/可伸缩服务架构.md)
 
 ## 设计
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
@@ -106,25 +111,25 @@
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
 
 ## 前端
+* [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
+* [《Node.js开发指南》 BYVoid 编著 人民邮电出版社](/99-book/notes/60-js/Node.js开发指南.md)
+* [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
 * [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/99-book/notes/60-js/JavaScript权威指南(第6版).md)
 * [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/99-book/notes/60-js/JavaScript设计模式.md)
 * 《JavaScript模式》 (美)奥斯马尼
 * 《你不知道的JavaScript（上卷）》	
-* [《node.js开发指南》BYVoid](/99-book/notes/60-js/Node.js开发指南.md)
-* [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
-* [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
 * [《Vue.js权威指南》](/99-book/notes/60-js/Vue.js权威指南.md)
 * [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)
 * [《深入浅出Webpack》](/99-book/notes/60-js/深入浅出Webpack.md)
 
 ## 运维
 * [《Zabbix企业级分布式监控系统》吴兆松著](/99-book/notes/70-dev-ops/Zabbix企业级分布式监控系统.md)
-* 《Maven实战》	许晓斌
 * [《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译](/99-book/notes/70-dev-ops/Linux命令行与shell脚本编程大全.md)
 * [《Linux内核设计与实现》美 Robert Love著 陈莉君 康华 译](/99-book/notes/70-dev-ops/Linux内核设计与实现.md)
 * [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
 * [《C++Primer中文版》 李师贤 译 人民邮电出版社](/99-book/notes/70-dev-ops/C++Primer.md)
 * [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/99-book/notes/70-dev-ops/Go语言实战.md)
+* 《Maven实战》	许晓斌
 
 ## 测试
 * 《软件测试基础》 周元哲

@@ -62,32 +62,30 @@
 * 分布式实战解决方案
 
 ## 微服务架构
-### 漫谈微服务架构
-### spring boot
-### spring cloud
-### serviceMesh
-### NACOS
+* 漫谈微服务架构
+* spring boot
+* spring cloud
+* serviceMesh
+* NACOS
 
 ## 团队协作 DevOps
-### maven nexus gradle
-### jenkins
-### sonarqube
-### git
-### agile dev
-### docker
-### 敏捷开发
+* maven nexus gradle
+* jenkins
+* sonarqube
+* git
+* agile dev
+* docker
+* 敏捷开发
 
 ## 性能优化
-### 理解性能调优
-### JVM
-### Tomcat
-### Nginx
-### mysql
+* 理解性能调优
+* JVM
+* Tomcat
+* Nginx
+* mysql
 
 ## 软技能
-### 数据结构与算法
-#### 算法复杂度基础
-#### 贪心算法
+* 数据结构与算法 算法复杂度基础、贪心算法
 
 其基本的解题思路为：
 1. 建立数学模型来描述问题
@@ -95,16 +93,16 @@
 3. 对每一子问题求解，得到子问题的局部最优解
 4. 把子问题对应的局部最优解合成原来整个问题的一个近似最优解
 
-#### 分治算法
-#### 动态规划算法
-#### 回溯法
-#### 分支定界法
-#### 字符串匹配算法
-#### 排序算法
+### 分治算法
+* 动态规划算法
+* 回溯法
+* 分支定界法
+* 字符串匹配算法
+* 排序算法
 
 ### 面试技巧
-### 技术文档编写
-### UML建模
+* 技术文档编写
+* UML建模
 
 ## 商城
 * 用户认证系统 passport

@@ -153,3 +153,12 @@ Pipeline-Value是责任链模式，责任链模式是指在一个请求处理的
 2. StandardEngineValue --> StandardHostValue --> StandardContextValue --> StandardWrapperValue
 3. StandardWrapperValue --> FilterChain --> Filter的doFilter()和Servlet的service()
 4. 当所有的Pipeline-Value都执行完之后，并且处理完了具体的请求，将返回的结果交给Connector了，Connector在通过Socket的方式将结果返回给客户端。
+
+
+## Session共享
+解决Session跨域共享问题
+1. session sticky
+2. session replication
+3. session集中存储
+4. cookie主流 access_token(userid/token/timestamp)
+5. 

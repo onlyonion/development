@@ -40,3 +40,23 @@ Netty中NioEventLoop是EventLoop的一个实现，每个NioEventLoop中会管理
 Netty中的ChannelPipeline类似于Tomcat容器中的Filter链，属于设计模式中的责任链模式，其中链上的每个节点就是一个ChannelHandler。
 在netty中每个Channel有属于自己的ChannelPipeline，对从Channel中读取或者要写入Channel中的数据进行依次处理
 
+## reactor
+结构上的对应：
+Initiation Dispatcher ———— NioEventLoop
+Synchronous EventDemultiplexer ———— Selector
+Handle———— SelectionKey
+Event Handler ———— ChannelHandler
+ConcreteEventHandler ———— 具体的ChannelHandler的实现
+
+上面分析的最后一个模型图上的角色对应：
+Netty服务端使用了“多Reactor线程模式”
+mainReactor ———— bossGroup(NioEventLoopGroup) 中的某个NioEventLoop
+subReactor ———— workerGroup(NioEventLoopGroup) 中的某个NioEventLoop
+acceptor ———— ServerBootstrapAcceptor
+ThreadPool ———— 用户自定义线程池或者EventLoopGroup
+
+## proactor
+[前摄器(proactor)模式](http://www.kuqin.com/ace-2002-12/Part-One/Chapter-8.htm)
+
+前摄器模式支持多个事件处理器的多路分离和分派，这些处理器由异步事件的完成来触发。通过集成完成事件（completion event）的多路分离和相应的事件处理器的分派，该模式简化了异步应用的开发。
+和一般的异步操作不同。前摄器模式会把数据的读写这种比较耗时的动作交给操作系统去做（底层快啊），而自身只关心操作系统返回的读写完成通知，自身做一些解析就好了，这样就把事件处理和文件操作分离开了（这就是事件处理器的工作）。
