@@ -8,7 +8,7 @@ Cluster (com.alibaba.dubbo.rpc.cluster)
     FailbackCluster (com.alibaba.dubbo.rpc.cluster.support) 失败自动恢复，后台记录失败请求，定时重发，通常用于消息通知操作。
     FailsafeCluster (com.alibaba.dubbo.rpc.cluster.support) 失败安全，出现异常时，直接忽略，通常用于写入审计日志等操作。
     ForkingCluster (com.alibaba.dubbo.rpc.cluster.support) 并行调用，只要一个成功即返回，通常用于实时性要求较高的操作，但需要浪费更多服务资源。
-    BroadcastCluster (com.alibaba.dubbo.rpc.cluster.support)
+    BroadcastCluster (com.alibaba.dubbo.rpc.cluster.support) 组播
     AvailableCluster (com.alibaba.dubbo.rpc.cluster.support)
     MergeableCluster (com.alibaba.dubbo.rpc.cluster.support)
     MockClusterWrapper (com.alibaba.dubbo.rpc.cluster.support.wrapper)
@@ -18,6 +18,15 @@ Cluster (com.alibaba.dubbo.rpc.cluster)
 * 重试 fail back
 * 忽略 fail safe
 * 并行 forking
+
+| cluster          | invoker                 | desc         | misc                                 | scene            |
+| :--------------- | :---------------------- | :----------- | :----------------------------------- | :--------------- |
+| FailoverCluster  | FailoverClusterInvoker  | 失败自动切换 | 切换一个重试                         | 读               |
+| FailfastCluster  | FailfastClusterInvoker  | 快速失败     | 抛异常                               | 添加幂等         |
+| FailbackCluster  | FailbackClusterInvoker  | 失败自动恢复 | 返回 定时任务重试                    | 消息通知         |
+| FailsafeCluster  | FailsafeClusterInvoker  | 失败安全     | 仅会打印异常 不抛异常                | 审计日志         |
+| ForkingCluster   | ForkingClusterInvoker   | 并行调用     | 并发调用 耗资源 有一个成功返回就返回 | 实时性高的读操作 |
+| BroadcastCluster | BroadcastClusterInvoker | 广播调用     | 循环调用                             | 更新缓存或者日志 |
 
 ## define
 ```java

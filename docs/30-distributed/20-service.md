@@ -7,11 +7,11 @@
 RPC是远程过程调用的简称，广泛应用在大规模分布式应用中，作用是有助于系统的垂直拆分，使系统更易拓展。
 Java中的RPC框架比较多，各有特色，广泛使用的有RMI、Hessian、Dubbo等。
 
-### RPC的主要依赖技术
+RPC的主要依赖技术
 * 序列化、反序列化
 * 传输协议
 
-### 实例
+## 服务实现
 * RMI的序列化和反序列化是JAVA自带的
 * Hessian里的序列化和反序列化是私有的，传输协议则是HTTP
 * Dubbo的序列化可以多种选择，一般使用Hessian的序列化协议，传输则是TCP协议，使用了高性能的NIO框架Netty。
@@ -28,12 +28,18 @@ Java中的RPC框架比较多，各有特色，广泛使用的有RMI、Hessian、
 | WebServices         | 文本序列化   | http协议   |
 | Pigeon 美团大众点评 | hessian      | tcp(netty) |
 
-## 注册中心
+## 服务治理
+* 集群、目录、路由、负载均衡
+* 超时、重试、幂等
+* 限流、降级、熔断、资源隔离
+
+### 注册
 注册中心-注册表，如Zookeeper，Consul，Eureka
 
 [zookeeper 负载均衡 核心机制-实现原理 包含ZAB协议](https://www.cnblogs.com/aspirant/p/9088322.html)
 
-## 分布式配置
+### 配置
+分布式配置
 * 不同环境的不同配置
 * 不用重新打包发布
 * 自动更新配置文件信息
@@ -45,8 +51,11 @@ Java中的RPC框架比较多，各有特色，广泛使用的有RMI、Hessian、
 | diamond 				| mysql			| 每隔15s拉一次全量数据	|
 | Spring Cloud Config	| git 			| 人工批量刷新 			|
 
-## 网关
+### 监控
+传统的开源监控系统代表有：Cacti、Nagios、Zabbix等
+先进的开源时间序监控系统代表有：OpenTSDB、Open-falcon、Prometheus等
 
+### 网关
 网关的作用，后端服务器可以专心处理业务请求，节省了大量连接管理的开销
 
 [api-gateway](https://www.cnblogs.com/savorboard/p/api-gateway.html)
@@ -57,15 +66,10 @@ API网关是一个服务器，是系统的唯一入口。从面向对象设计�
 API网关方式的核心要点是，所有的客户端和消费端都通过统一的网关接入微服务，在网关层处理所有的非业务功能。通常，
 网关也是提供REST/HTTP的访问API。服务端通过API-GW注册和管理服务。
 
-
-## 链路
+### 链路
 链路追踪、链路压测
 
-## monitor
-传统的开源监控系统代表有：Cacti、Nagios、Zabbix等
-先进的开源时间序监控系统代表有：OpenTSDB、Open-falcon、Prometheus等
-
-## elk
+### 日志
 Elasticsearch , Logstash, Kibana 
 
 [elk](https://www.cnblogs.com/aresxin/p/8035137.html) 

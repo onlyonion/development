@@ -2,27 +2,46 @@ org.apache.shiro
 
 ## jars
 ```
-Maven: org.apache.shiro:shiro-cache:1.4.0
-Maven: org.apache.shiro:shiro-config-core:1.4.0
-Maven: org.apache.shiro:shiro-config-ogdl:1.4.0
-Maven: org.apache.shiro:shiro-core:1.4.0
-Maven: org.apache.shiro:shiro-crypto-cipher:1.4.0
-Maven: org.apache.shiro:shiro-crypto-core:1.4.0
-Maven: org.apache.shiro:shiro-crypto-hash:1.4.0
-Maven: org.apache.shiro:shiro-event:1.4.0
-Maven: org.apache.shiro:shiro-lang:1.4.0
-Maven: org.apache.shiro:shiro-spring:1.4.0
-Maven: org.apache.shiro:shiro-web:1.4.0
+shiro-cache:1.4.0
+shiro-config-core:1.4.0
+shiro-config-ogdl:1.4.0
+shiro-core:1.4.0
+shiro-crypto-cipher:1.4.0
+shiro-crypto-core:1.4.0
+shiro-crypto-hash:1.4.0
+shiro-event:1.4.0
+shiro-lang:1.4.0
+shiro-spring:1.4.0
+shiro-web:1.4.0
 ```
 
 ## package
+* aop
+* authc 认证
+* authz 授权
+* cache 缓存
+* codec 
+* concurrent 并发工具
+* config
+* crypto 加密
+* dao
+* env
+* event
+* io
+* jndi
+* ldap
+* mgt
+* realm 安全域
+* session 会话管理
+* subject 主题
+
 ```
 aop
     AnnotationHandler
-    MethodInterceptor
+    MethodInterceptor                   方法拦截器
     MethodInvocation
     MethodInterceptorSupport
-authc
+authc                                   认证
     credential
         CredentialsMatcher
         HashingPasswordService
@@ -38,7 +57,7 @@ authc
     MergableAuthenticationInfo
     RememberMeAuthenticationToken
     SaltedAuthenticationInfo
-authz
+authz                                   授权
     annotation
         Logical
         RequiresAuthentication
@@ -51,7 +70,7 @@ authz
     AuthorizationInfo
     Authorizer
     Permission
-cache
+cache                                   缓存
     AbstractCacheManager
     Cache
     CacheManager
@@ -174,7 +193,7 @@ AbstractAuthenticator ^-- ModularRealmAuthenticator
 ModularRealmAuthenticator o-- AuthenticationStrategy
 ModularRealmAuthenticator "1" o-- "*" Realm
 
-interface AuthenticationStrategy #pink
+interface AuthenticationStrategy #orangeRed
 AuthenticationStrategy ..> Realm
 AuthenticationStrategy ..> AuthenticationToken
 AuthenticationStrategy ..> AuthenticationInfo
@@ -187,7 +206,7 @@ AuthorizationInfo ^-- Account
 '''''''''''''''''''''''''''''''Authorizer'''''''''''''''''''''''''''''''
 
 interface Authorizer #magenta
-interface SessionManager #lightBlue
+interface SessionManager #magenta
 
 '''''''''''''''''''''''''''''''Realm'''''''''''''''''''''''''''''''
 interface Realm #lime
@@ -246,20 +265,20 @@ Destroyable ^.. CachingSecurityManager
 CacheManagerAware ^.. CachingSecurityManager
 EventBusAware ^.. CachingSecurityManager
 
-abstract class CachingSecurityManager #wheat
+abstract class CachingSecurityManager #orange
 interface CacheManager #pink
 CachingSecurityManager o-- CacheManager
 
-abstract class RealmSecurityManager #wheat
+abstract class RealmSecurityManager #orange
 RealmSecurityManager "1" o-- "*" Realm
 
-abstract class AuthenticatingSecurityManager #wheat
+abstract class AuthenticatingSecurityManager #orange
 AuthenticatingSecurityManager o-- Authenticator
 
-abstract class AuthorizingSecurityManager #wheat
+abstract class AuthorizingSecurityManager #orange
 AuthorizingSecurityManager o-- Authorizer
 
-abstract class SessionsSecurityManager #wheat
+abstract class SessionsSecurityManager #orange
 SessionsSecurityManager o-- SessionManager
 
 '''''''''''''''''''''''''''''''DefaultSecurityManager'''''''''''''''''''''''''''''''

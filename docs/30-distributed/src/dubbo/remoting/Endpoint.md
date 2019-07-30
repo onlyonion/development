@@ -3,7 +3,7 @@ com.alibaba.dubbo.remoting.Endpoint
 ## hierarchy
 ```
 Endpoint (com.alibaba.dubbo.remoting)
-    AbstractPeer (com.alibaba.dubbo.remoting.transport)
+    AbstractPeer (com.alibaba.dubbo.remoting.transport)                         点对点抽象
         AbstractChannel (com.alibaba.dubbo.remoting.transport)
             GrizzlyChannel (com.alibaba.dubbo.remoting.transport.grizzly)
             MinaChannel (com.alibaba.dubbo.remoting.transport.mina)
@@ -29,3 +29,26 @@ Endpoint (com.alibaba.dubbo.remoting)
         ExchangeServer (com.alibaba.dubbo.remoting.exchange)
 ```
 ## define
+```java
+public interface Endpoint {
+
+    URL getUrl();
+
+    ChannelHandler getChannelHandler();
+
+    InetSocketAddress getLocalAddress();
+
+    void send(Object message) throws RemotingException;
+
+    void send(Object message, boolean sent) throws RemotingException;
+
+    void close();
+
+    void close(int timeout);
+
+    void startClose();
+
+    boolean isClosed();
+
+}
+```

@@ -1,6 +1,9 @@
-## dubbo
+# dubbo
 SpiEextension导引目路集衡调
 
+## src
+
+### common
 * [cache](/docs/30-distributed/src/dubbo/cache/README.md)
 * [common](/30-distributed/src/dubbo/common/README.md)
   * extension
@@ -10,58 +13,106 @@ SpiEextension导引目路集衡调
   * [threadpool](/docs/30-distributed/src/dubbo/common/threadpool/README.md)
 * [config](/30-distributed/src/dubbo/config/README.md)  配置模块：是Dubbo对外的 API，用户通过Config使用Dubbo，隐藏Dubbo所有细节
 * [container](/30-distributed/src/dubbo/container/README.md)
+
+### monitor
 * [monitor](/30-distributed/src/dubbo/monitor/README.md) 监控模块：统计服务调用次数，调用时间的，调用链跟踪的服务
   * dubbo
     * [DubboMonitor](/docs/30-distributed/src/dubbo/monitor/dubbo/DubboMonitor.md)
   * support
     * MonitorFilter PROVIDER, CONSUMER
   * [MonitorService](/docs/30-distributed/src/dubbo/monitor/MonitorService.md)
+
+### registry
 * [registry](/30-distributed/src/dubbo/registry/README.md) 注册中心模块：基于注册中心下发地址的集群方式，以及对各种注册中心的抽象
+  * dubbo
+  * registry
+    * [RegistryDirectory](/docs/30-distributed/src/dubbo/registry/registry/RegistryDirectory.md)
+  * support
+    * AbstractRegistry
+    * FailbackRegistry
+    * ZookeeperRegistry
   * zookeeper
     * [ZookeeperRegistry](/docs/30-distributed/src/dubbo/registry/zookeeper/ZookeeperRegistry.md)
     * [ZookeeperRegistryFactory](/docs/30-distributed/src/dubbo/registry/zookeeper/ZookeeperRegistryFactory.md)
+  * [NotifyListener](/docs/30-distributed/src/dubbo/registry/NotifyListener.md)  
   * [RegistryService](/docs/30-distributed/src/dubbo/registry/RegistryService.md)
+
+
+### remoting
 * [remoting](/30-distributed/src/dubbo/remoting/README.md) 远程通讯模块：相当于 Dubbo 协议的实现，如果RPC用 RMI协议则不需要使用此包。
-  * buffer
-  * exchage
-  * transport
-    * dispatcher
+  * `buffer` NIO缓冲区
+    * DirectChannelBufferFactory 直接内存通道缓冲区工厂
+    * HeapChannelBufferFactory 堆内存通道缓冲区工厂
+  * exchange 信息交换
+    * support
+      * header
+        * HeaderExchangeHandler 请求-响应模型
+    * ExchangeChannel
+    * ExchangeClient
+    * ExchangeHandler
+    * Exchanger
+    * Exchangers
+    * ExchangeServer
+    * Request
+    * Response
+    * ResponseCallback 异步编程之回调模式
+    * ResponseFuture  异步编程之Future模式
+  * http
+  * p2p
+  * telnet 远程登录，应用层协议
+  * transport 传输层
+    * codec
+    * dispatcher 调度、分派
       * [ChannelEventRunnable](/30-distributed/src/dubbo/remoting/transport/dispatcher/ChannelEventRunnable.md:1)
-    * netty
-      * [NettyChannel](/30-distributed/src/dubbo/remoting/transport/netty/NettyChannel.md)  
+    * grizzy
+    * mina
+    * `netty` 网络IO，异步的、事件驱动的网络应用程序框架
+      * [NettyChannel](/30-distributed/src/dubbo/remoting/transport/netty/NettyChannel.md) 
+      * [NettyClient](/30-distributed/src/dubbo/remoting/transport/netty/NettyClient.md)  
+      * [NettyServer](/30-distributed/src/dubbo/remoting/transport/netty/NettyServer.md)  
+      * [NettyTransporter](/30-distributed/src/dubbo/remoting/transport/netty/NettyTransporter.md)   
     * DecodeHandler
-    * exchange
-      * support
-        * header
-          * HeaderExchangeHandler 请求-响应模型
   * [zookeeper](/docs/30-distributed/src/dubbo/remoting/zookeeper/README.md)
     * [ZookeeperClient](/docs/30-distributed/src/dubbo/remoting/zookeeper/ZookeeperClient.md) ZkClient与Curator封装
-  * [ChannelHandler](/docs/30-distributed/src/dubbo/remoting/ChannelHandler.md)
-  * [Dispatcher](/docs/30-distributed/src/dubbo/remoting/Dispatcher.md)
-  * [Endpoint](/docs/30-distributed/src/dubbo/remoting/Endpoint.md)
+  * Channel
+  * [ChannelHandler](/docs/30-distributed/src/dubbo/remoting/ChannelHandler.md) 通道处理器接口
+  * [Dispatcher](/docs/30-distributed/src/dubbo/remoting/Dispatcher.md) 
+  * [Endpoint](/docs/30-distributed/src/dubbo/remoting/Endpoint.md) 对终端的抽象
   * [Transporter](/docs/30-distributed/src/dubbo/remoting/Transporter.md)
+
+### rpc
 * [rpc](/30-distributed/src/dubbo/rpc/README.md) 远程调用模块：抽象各种协议，以及动态代理，只包含一对一的调用，不关心集群的管理
-  * [cluster](/docs/30-distributed/src/dubbo/rpc/cluster/) 多个服务提供方封装成一个、负载均衡、容错、路由
+  * [`cluster`](/docs/30-distributed/src/dubbo/rpc/cluster/) 集群管理：多个服务提供方封装成一个、负载均衡、容错、路由
     * directory
     * loadbalance
       * [ConsistentHashLoadBalance](/docs/30-distributed/src/dubbo/rpc/cluster/loadbalance/ConsistentHashLoadBalance.md)
       * [LeastActiveLoadBalance](/docs/30-distributed/src/dubbo/rpc/cluster/loadbalance/LeastActiveLoadBalance.md)
-    * router
+    * [router](/docs/30-distributed/src/dubbo/rpc/cluster/router/README.md)
     * support
-    * [Cluster](/docs/30-distributed/src/dubbo/rpc/cluster/Cluster.md)
-    * [Directory](/docs/30-distributed/src/dubbo/rpc/cluster/Directory.md)
-    * [LoadBalance](/docs/30-distributed/src/dubbo/rpc/cluster/LoadBalance.md)
-    * [Router](/docs/30-distributed/src/dubbo/rpc/cluster/Router.md)
-  * protocol
+    * [Cluster](/docs/30-distributed/src/dubbo/rpc/cluster/Cluster.md) 集群容错 快速失败、失败转移、失败恢复、失败安全、并行、组播
+    * [Directory](/docs/30-distributed/src/dubbo/rpc/cluster/Directory.md) 目录 注册目录、静态目录
+    * [LoadBalance](/docs/30-distributed/src/dubbo/rpc/cluster/LoadBalance.md) 负载均衡 随机、轮询、最小活跃数、一致性哈希
+    * [Router](/docs/30-distributed/src/dubbo/rpc/cluster/Router.md) 路由服务 脚本路由、条件路由
+  * `filter` 管道过滤器
+    * ActiveLimitFilter CONSUMER
+    * ConsumerContextFilter CONSUMER
+    * EchoFilter PROVIDER
+    * [ClassLoaderFilter](/docs/30-distributed/src/dubbo/rpc/filter/ClassLoaderFilter.md) PROVIDER
+    * GenericFilter PROVIDER
+    * ContextFilter PROVIDER
+    * TimeoutFilter PROVIDER
+    * ExceptionFilter PROVIDER
+  * `listener` 监听器
+  * `protocol` 网络通信协议
     * dubbo
       * filter
         * FutureFilter CONSUMER
         * TraceFilter PROVIDER
       * DubboExporter
-      * DubboInvoker
-      * DubboProtocol
+      * [DubboInvoker](/docs/30-distributed/src/dubbo/rpc/protocol/dubbo/DubboInvoker.md)
+      * [DubboProtocol](/docs/30-distributed/src/dubbo/rpc/protocol/dubbo/DubboProtocol.md)
       * LazyConnectExchangeClient
-      * ReferenceCountExchangeClient
+      * [ReferenceCountExchangeClient](/docs/30-distributed/src/dubbo/rpc/protocol/dubbo/ReferenceCountExchangeClient.md)
     * hession
     * http
     * injvm
@@ -75,16 +126,7 @@ SpiEextension导引目路集衡调
     * [AbstractProxyProtocol](/docs/30-distributed/src/dubbo/rpc/protocol/AbstractProxyProtocol.md)
     * [InvokerWrapper](/docs/30-distributed/src/dubbo/rpc/protocol/InvokerWrapper.md)
     * [ProtocolFilterWrapper](/docs/30-distributed/src/dubbo/rpc/protocol/ProtocolFilterWrapper.md)
-  * filter
-    * ActiveLimitFilter CONSUMER
-    * ConsumerContextFilter CONSUMER
-    * EchoFilter PROVIDER
-    * [ClassLoaderFilter](/docs/30-distributed/src/dubbo/rpc/filter/ClassLoaderFilter.md) PROVIDER
-    * GenericFilter PROVIDER
-    * ContextFilter PROVIDER
-    * TimeoutFilter PROVIDER
-    * ExceptionFilter PROVIDER
-  * proxy
+  * `proxy` 动态代理
     * javassit
       * JavasistProxyFactory
     * [AbstractProxyFactory](/docs/30-distributed/src/dubbo/rpc/proxy/AbstractProxyFactory.md)
@@ -97,6 +139,8 @@ SpiEextension导引目路集衡调
   * [ProxyFactory](/docs/30-distributed/src/dubbo/rpc/ProxyFactory.md)
   * [RpcInvocation](/docs/30-distributed/src/dubbo/rpc/RpcInvocation.md)
   * [RpcStatus](/docs/30-distributed/src/dubbo/rpc/RpcStatus.md)
+
+### validation
 
 
 ## 堆栈
@@ -114,7 +158,7 @@ SpiEextension导引目路集衡调
 * 观察者模式
 * 职责链
 
-## dubbo package
+## package
 ```
 cache                   缓存，分布式缓存
 common                  基础设施

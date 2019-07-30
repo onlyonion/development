@@ -19,3 +19,19 @@
 .markdown-section h3 {
     margin: .6em 0;
 }
+
+.x-color-default {
+    color: #208fee !important;
+}
+.x-color-info {
+    color: #2487d0 !important;
+}
+.x-color-success {
+    color: #3ca23c !important;
+}
+.x-color-warning {
+    color: #e28f19 !important;
+}
+.x-color-error {
+    color: #d63a29 !important;
+}

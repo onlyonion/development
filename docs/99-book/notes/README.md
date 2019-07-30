@@ -62,6 +62,7 @@
 * [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
 * [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
+* [《RocketMQ原理简介》淘宝消息中间件项目组](/99-book/notes/30-distributed/RockMQ原理简介.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
 * [《深入分布式缓存 从原理到实践》于君泽 曹洪伟 邱硕 著 机械工业出版社](/docs/99-book/notes/30-distributed/深入分布式缓存.md)
 * [《分布式服务框架 原理与实践》李林锋 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务框架.md)
@@ -109,6 +110,7 @@
 * [《物联网技术与实践 基于ARMCortex-M0技术》李佳，周志强 编著](/99-book/notes/51-cloud/物联网技术与实践.md)
 * [《物联网导论》刘云浩 科学出版社](/99-book/notes/51-cloud/物联网导论.md)
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
+* [《Elasticsearch技术解析与实践》朱林 机械工业出版社](/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
 
 ## 前端
 * [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化

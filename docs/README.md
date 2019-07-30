@@ -1,12 +1,11 @@
-## development
+# development
+Welcome
+
 * [https://gitee.com/onlyonion/development](https://gitee.com/onlyonion/development) 
 * [https://onlyonion.gitee.io/development](https://onlyonion.gitee.io/development)
 
-## introduce
-<!--
-This is my daily notes, enriching the mind....-->
+## Overview
 ![knowledge](./00-base/img/knowledge.png)
-
 
 * [基础](00-base/README.md) 组成原理、数据结构、操作系统、计算机网络、编译原理
 * [Java](10-java/README.md)  collection、io、concurrrent、jvm
@@ -21,7 +20,7 @@ This is my daily notes, enriching the mind....-->
   - [计算机类](99-book/notes/README.md) 
   - [学科门类](99-book/subject/README.md) 
  
-## links
+<!-- ## Links
 * [易百教程](https://www.yiibai.com)
 * [菜鸟教程](http://www.runoob.com)
 * [w3school](http://www.w3school.com.cn)
@@ -29,4 +28,4 @@ This is my daily notes, enriching the mind....-->
 * [jdon](https://www.jdon.com/)
 * [阿里中间件团队博客](http://jm.taobao.org)
 * [有赞技术团队](https://tech.youzan.com/)
-* [美团技术团队博客](http://tech.meituan.com/)
+* [美团技术团队博客](http://tech.meituan.com/) -->

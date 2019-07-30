@@ -23,7 +23,31 @@ AbstractProtocol (com.alibaba.dubbo.rpc.protocol)
 ```plantuml
 @startuml
 
+interface Protocol
+abstract class AbstractProtocol
 
+Protocol ^.. AbstractProtocol
 
 @enduml
+```
+
+## fileds
+```java
+    protected final Map<String, Exporter<?>> exporterMap = new ConcurrentHashMap<String, Exporter<?>>();
+
+    //TODO SOFEREFENCE
+    protected final Set<Invoker<?>> invokers = new ConcurrentHashSet<Invoker<?>>();
+```
+
+## methods
+
+### serviceKey
+```java
+    protected static String serviceKey(URL url) {
+        return ProtocolUtils.serviceKey(url);
+    }
+
+    protected static String serviceKey(int port, String serviceName, String serviceVersion, String serviceGroup) {
+        return ProtocolUtils.serviceKey(port, serviceName, serviceVersion, serviceGroup);
+    }
 ```

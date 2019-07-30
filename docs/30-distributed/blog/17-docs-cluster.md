@@ -29,9 +29,9 @@
 
 集群工作过程可分为两个阶段，第一个阶段是在服务消费者初始化期间，集群 Cluster 实现类为服务消费者创建 Cluster Invoker 实例，即上图中的 merge 操作。第二个阶段是在服务消费者进行远程调用时。
 
-| cluster          | invoker                 | desc         | misc                                 | middleware       |
-|:-----------------|:------------------------|:-------------|:-------------------------------------|:-----------------|
-| FailoverCluster  | FailoverClusterInvoker  | 失败自动切换 | 切换一个重试                         | middleware       |
+| cluster          | invoker                 | desc         | misc                                 | scene            |
+| :--------------- | :---------------------- | :----------- | :----------------------------------- | :--------------- |
+| FailoverCluster  | FailoverClusterInvoker  | 失败自动切换 | 切换一个重试                         | 读               |
 | FailfastCluster  | FailfastClusterInvoker  | 快速失败     | 抛异常                               | 添加幂等         |
 | FailbackCluster  | FailbackClusterInvoker  | 失败自动恢复 | 返回 定时任务重试                    | 消息通知         |
 | FailsafeCluster  | FailsafeClusterInvoker  | 失败安全     | 仅会打印异常 不抛异常                | 审计日志         |

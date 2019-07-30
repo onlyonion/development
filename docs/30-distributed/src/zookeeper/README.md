@@ -8,4 +8,4 @@
     * [curator-recipes](/docs/30-distributed/src/zookeeper/curator-recipes/)
 
 ## book
-* [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
+* [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/docs/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)

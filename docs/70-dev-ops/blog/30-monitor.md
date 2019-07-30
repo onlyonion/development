@@ -12,18 +12,4 @@ zabbix, nagios, openfalcon
 - 端口监视
 - 日志监视
 
-## prometheus
-
-## openfalcon
-分布式高性能监控系统
-
-## grafana
-The open platform for beautiful analytics and monitoring
-
-## pinpoint APM 
-
-## tingyun
-应用性能监控平台
-
-
 [运维监控工具](https://baijiahao.baidu.com/s?id=1593885632264192128&wfr=spider&for=pc&isFailFlag=1)

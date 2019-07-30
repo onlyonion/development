@@ -1,11 +1,11 @@
-## hotspot
+# hotspot
 * 编译原理 前端、后端
 * OS程序的编译、链接、装入、文件管理、IO
 * OS内存管理、分配、虚拟内存
 * OS进程、线程、调度、同步、锁
 * OS用户接口
   
-### hotspot.src
+## overview
 hotspot/src/
 
 - 平台相关性 cpu、os、os_cpu
@@ -17,11 +17,15 @@ hotspot/src/
   * 管理服务、对外服务、JMX接口 连接机制、类加载服务、诊断、内存管理、内存模型、线程服务
   * 抽象数据结构 libadt(dict port set vectset)《数据结构》
 
-### package
+## src
+
+### cpu
 * cpu CPU相关代码（汇编器、模板解释器、ad文件、部分runtime函数在这里实现）         
   * sparc
   * x86
   * zero
+
+### os
 * os
   * bsd
   * linux
@@ -30,6 +34,8 @@ hotspot/src/
   * windows
     * vm
       * atomic_windows_x86.inline.hpp
+
+### os_cpu
 * os_cpu
   * linux_sparc
   * linux_x86
@@ -37,6 +43,8 @@ hotspot/src/
   * solaris_sparc
   * solaris_x86
   * windows_x86
+
+### share
 * share
   * tool
     * hsdis

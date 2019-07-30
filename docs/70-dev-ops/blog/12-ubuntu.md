@@ -3,8 +3,14 @@
 /usr/local/lib
 
 ## 开发环境
+###
+```sh
+# 字符界面的命令：sudo systemctl set-default multi-user.target
+# 图形界面的命令：sudo systemctl set-default graphical.target
+```
+
 ### ssh server
-```shell
+```sh
 # 
 dpkg -l | grep ssh
 sudo apt-get update
@@ -19,7 +25,7 @@ ssh-server配置文件位于/etc/ssh/sshd_config，在默认端口是22，
 * ifconfig
 
 ### jdk
-```shell
+```sh
 # unpack
 tar -zxvf jdk-8u181-linux-x64.tar.gz
 cd  /usr/local/lib
@@ -40,7 +46,7 @@ sudo update-alternatives --config javac
 ```
 
 ### maven
-```shell
+```sh
 # 1. 下载安装
 cd /usr/local/lib/
 sudo tar zxvf apache-maven-3.3.9-bin.tar.gz 
@@ -59,7 +65,7 @@ sudo apt-get update && sudo apt-get install maven
 ### ant
 
 ### git
-```shell
+```sh
 # 添加源
 sudo add-apt-repository ppa:git-core/ppa
 # 更新
@@ -89,7 +95,7 @@ ssh-keygen -t rsa -C "your email"
 
 ### gitlab
 [gitlab](https://about.gitlab.com/install/#ubuntu)
-```shell
+```sh
 sudo apt-get update
 sudo apt-get install -y curl openssh-server ca-certificates
 sudo apt-get install -y postfix
@@ -205,12 +211,12 @@ sudo /etc/init.d/redis-server restart
 sudo service redis-server restart
 
 # 编译安装
-sudo wget http://download.redis.io/releases/redis-3.2.6.tar.gz
-sudo tar -zxvf redis-3.2.6.tar.gz
+sudo wget http://download.redis.io/releases/redis-5.0.5.tar.gz
+sudo tar -zxvf redis-5.0.5.tar.gz
 # sudo apt-get install gcc
 sudo make
 sudo make install
-# 安装到目录/usr/local/bin下
+# 安装到目录/usr/local/bin下，配置文件/etc/redis/redis.conf
 ```
 
 ### rocketmq

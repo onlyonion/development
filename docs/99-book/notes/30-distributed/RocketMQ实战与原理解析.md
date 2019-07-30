@@ -1,9 +1,12 @@
 《RocketMQ实战与原理解析》 杨开元 机械工业出版社
 
+# Content
 * RocketMQ实战 配置使用、发送、接收消息
-* 协调者NameServer、核心Broker
-* 可靠消息、吞吐量优先、与框架整合
-* 源码分析 NameServer源码、消费路、主从同步机制、Netty通信
+* 分布式消息队列的协调者 NameServer、核心Broker
+* 可靠性优先 顺序、重复、动态增减机器、各种故障
+* 吞吐量优先 Broker端消息过滤、Comsumer负载均衡
+* 和其他系统的交互 Springboot、云上RocketMQ
+* 源码分析 NameServer源码、整体流程、消息并发处理、主从同步机制、Netty通信
 
 # 第一部分 RocketMQ实战
 ## 第1章 快速入门
@@ -37,7 +40,7 @@
 #### 2.2.1 启动多个NameServer和Broker
 启动两个NameServer，每个机器上都要分别启动一个Master角色的Broker和一个Slave角色的Broker，并互为主备。
 #### 2.2.2 配置参数介绍
-```
+```sh
 namesrvAddr=ip1:port;ip2:port
 brokerClusterName=DefaultCluster
 brokerName=broker-a
@@ -63,7 +66,7 @@ MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行
 ### 3.2 不同类型的生产者
 #### 3.2.1 DefaultMQProducer
 #### 3.2.2 发送延迟消息
-通过设置延迟级别控制延迟时间
+通过设置延迟级别控制延迟时间。`setDelayTimeLevle(3)`
 
 #### 3.2.4 对事务的支持
 采用两阶段提交的方式来实现事务，TransactionMQProducer处理。**2PC + 定时回查**
@@ -75,9 +78,17 @@ MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行
 6. 发送方接收到回查请求
 7. RocketMQ接收到回查请求后，按照4逻辑处理
 
+### 3.3 如何存储队列位置信息
+### 3.4 自定义日志输出
+Log配置文件的设置可以通过JVM启动参数、环境变量、代码中的设置语句这三种方式来配置。
+
 ## 第4章 分布式消息队列的协调者
 NameServer维护节点角色变动信息、状态信息。
 ### 4.1 NameServer的功能
+NameServer是整个消息队列的状态服务器，集群的各个组件通过它来了解全局的信息。
+同时，各个角色的机器都要定期向NameServer**上报**自己的状态，超时不上报的话，NameServer会认为某个机器出故障不可用了，
+其他的组件会把这个机器从可用列表里移除。
+
 ### 4.2 各个角色的交互流程
 ### 4.3 底层通信机制
 #### 4.3.1 Remoting模块
@@ -104,6 +115,10 @@ Broker是RocketMQ的核心，接收Producer发过来的消息、处理Consumer�
 RocketMQ消息的存储是由ComsumeQueue和CommitLog配合完成的。消息真正的物理文件是CommitLog，ComsumeQueque是消息的逻辑队列，类似数据库的索引文件，存储的是指向物理存储的地址。
 
 ### 5.3 高可用性机制
+RocketMQ 分布式集群是通过 Master 和 Slave 的配合达到高可用性的，首先说一下 Master 和 Slave 的区别：
+在 Broker 的配 置 文件中，参数 brokerId的值为 0 表明这个 Broker 是 Master，大于 0 表 明这个 Broker 是 Slave ，
+同时 brokerRole 参数 也会说明这个 Broker 是 Master 还是 Slave 。
+
 ### 5.4 同步刷盘和异步刷盘
 ### 5.5 同步复制和异步复制
 
@@ -117,14 +132,23 @@ RocketMQ消息的存储是由ComsumeQueue和CommitLog配合完成的。消息真
 在发送端，要做到把统一业务ID的消息发送到同一个MessageQueue；在消费过程中，要做到从同一个MessageQueue读取的消息不被并发处理，这样才能达到部分有序。
 
 ### 6.2 消息重复问题
+“有且仅有一次”太困难。RocketMQ 选择了确保一定投递，保证消息不丢失，但有可能造成消息重复。网络波动情况下。
 * 保证消费逻辑的幂等性（多次调用和一次调用效果相同）
 * 维护消息消费记录，消费前查询这个消息是否被消费过
 
 ### 6.3 动态增减机器
 #### 6.3.1 动态增减NameServer
+NameServer 是 RocketMQ 集群的协调者，集群的各个组件是通过NameServer 获取各种属性和地址信息的。 
+Broker定期上报状态信息；客户端（Producer、Comsumer）通过 NameServer 获取最新的状态信息。
+
 #### 6.3.2 动态增减Broker
 
 ### 6.4 各种故障对消息的影响
+
+* 硬件故障
+如果 Master 和 Slave 机器间配置成同步复制方式，也可以达到消息不丢失的效果。
+如果 Master 和 Slave机器间是异步复制，两次 Sync 间的消息会丢失
+
 ### 6.5 消息优先级
 
 ## 第7章 吞吐量优先的使用场景

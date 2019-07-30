@@ -27,7 +27,6 @@ Throwable (java.lang)
         IOError (java.io)
         ThreadDeath (java.lang)
     Exception (java.lang)
-        ActivationException (java.rmi.activation)
         ReflectiveOperationException (java.lang)                反射异常
             IllegalAccessException (java.lang)
             NoSuchFieldException (java.lang)
@@ -44,43 +43,44 @@ Throwable (java.lang)
             SyncProviderException (javax.sql.rowset.spi)
             SerialException (javax.sql.rowset.serial)
         IOException (java.io)                                   IO输入输出异常
-            InterruptedIOException (java.io)
-            EOFException (java.io)
+            InterruptedIOException (java.io)                        中断IO异常
             CharConversionException (java.io)
             UnsupportedEncodingException (java.io)
             ObjectStreamException (java.io)
-            FileSystemException (java.nio.file)                     文件系统异常
-            ClosedChannelException (java.nio.channels)
-            FileLockInterruptionException (java.nio.channels)
-            RemoteException (java.rmi)
-            UnknownServiceException (java.net)
-            ProtocolException (java.net)                            网络协议异常
-            SocketException (java.net)                              套接字异常
+            EOFException (java.io)                                  
+            FileSystemException (java.nio.file)                     NIO文件系统异常
+            ClosedChannelException (java.nio.channels)              NIO关闭通道异常
+            FileLockInterruptionException (java.nio.channels)       NIO文件锁中断异常
+            RemoteException (java.rmi)                              RMI远程异常
+            UnknownServiceException (java.net)                      NET未知服务异常
+            ProtocolException (java.net)                            NET网络协议异常
+            SocketException (java.net)                              NET套接字异常
                 BindException (java.net)                                绑定端口异常
                 ConnectException (java.net)                             连接异常
                 PortUnreachableException (java.net)
                 NoRouteToHostException (java.net)
+        TimeoutException (java.util.concurrent)                 JUC超时异常
+        BrokenBarrierException (java.util.concurrent)           JUC破坏屏障异常 CyclicBarrier.await()抛出
+        ExecutionException (java.util.concurrent)               JUC执行异常
+        RollbackException (javax.transaction)                   事务回滚异常
+        ServletException (javax.servlet)                        SERVLET异常
+        ParseException (java.text)                              
+        ActivationException (java.rmi.activation)
         RuntimeException (java.lang)                            运行时异常
             IndexOutOfBoundsException (java.lang)
+            NullPointerException (java.lang)
             ArithmeticException (java.lang)
+            IllegalArgumentException (java.lang)
+            IllegalStateException (java.lang)
             ClassCastException (java.lang)
             SecurityException (java.lang)
             ArrayStoreException (java.lang)
-            ConcurrentModificationException (java.util)             并发修改异常-快速失败策略
-            CompletionException (java.util.concurrent)
+            ConcurrentModificationException (java.util)             JU并发修改异常-快速失败策略
+            CompletionException (java.util.concurrent)              JUC完成异常，CompletableFuture抛出
             DateTimeException (java.time)
-            NullPointerException (java.lang)
-            IllegalStateException (java.lang)
-            IllegalArgumentException (java.lang)
-            FileSystemNotFoundException (java.nio.file)
-            BufferOverflowException (java.nio)
-            BufferUnderflowException (java.nio)
-        TimeoutException (java.util.concurrent)
-        ParseException (java.text)
-        RollbackException (javax.transaction)                   事务回滚异常
-        ServletException (javax.servlet)                        
-
-        
+            FileSystemNotFoundException (java.nio.file)             NIO文件系统未发现异常
+            BufferOverflowException (java.nio)                      NIO缓冲区溢出异常 写入
+            BufferUnderflowException (java.nio)                     NIO缓冲区下溢异常 读取
 ```
 
 ## define

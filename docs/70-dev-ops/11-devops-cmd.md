@@ -1,3 +1,4 @@
+
 linux
 
 ## linux
@@ -8,21 +9,24 @@ linux
 ### 进程
 * ps
 * vmstat 进程、虚拟内存、页面交换、IO读写、CPU活动率
+* mpstat
+* pidstat
 
 ### 内存
-* free
+* free -m
 
 cat /proc/meminfo
 
 ### 磁盘
-* iostat 系统io状态信息
+* iostat 系统io状态信息 `磁盘IO iostat -xdk 2 3 每2秒采样，3次`
 * iotop
-* df
+* df -h
 
 ### 网络
 * ifstat 实时网络流量监控
 * iftop 
 * netstat 查看网络相关信息、各种网络协议套接字状态
+* sar
 
 ### 分析工具
 * strace 诊断、调试程序的系统调用
@@ -38,6 +42,9 @@ cat /proc/meminfo
 * tail
 
 ## jdk bin
+* jps
+* jstack pid > pid.log
+* jmap 
 
 ## git
 * merge 提交commit合并修改

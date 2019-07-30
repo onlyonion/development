@@ -13,13 +13,25 @@ public class ThreadTest {
         }
     }
 
+
+    @Test
+    public void availableProcessors() {
+        int i = Runtime.getRuntime().availableProcessors();
+        long f = Runtime.getRuntime().freeMemory();
+        long t = Runtime.getRuntime().totalMemory();
+
+        System.out.println(i);
+        System.out.println(f);
+        System.out.println(t);
+
+    }
+
     @Test
     public void testOOM() {
         for (; ; ) {
             new MyThread("a", "b");
         }
     }
-
 
     public static void main(String[] args) {
         String lockA = "lockA";
@@ -28,36 +40,35 @@ public class ThreadTest {
         new MyThread(lockB, lockA).start();
     }
 
+    private static class MyThread extends Thread {
 
-}
+        private String lockA;
+        private String lockB;
 
-class MyThread extends Thread {
+        public MyThread(String lockA, String lockB) {
+            this.lockA = lockA;
+            this.lockB = lockB;
+        }
 
-    private String lockA;
-    private String lockB;
+        @Override
+        public void run() {
+            synchronized (lockA) {
 
-    public MyThread(String lockA, String lockB) {
-        this.lockA = lockA;
-        this.lockB = lockB;
-    }
+                System.out.println(Thread.currentThread().getName() + " has lockA, try lock B");
 
-    @Override
-    public void run() {
-        synchronized (lockA) {
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            System.out.println(Thread.currentThread().getName() + " has lockA, try lock B");
+                synchronized (lockB) {
+                    System.out.println(Thread.currentThread().getName() + " has lockA, lock B");
 
-            try {
-                TimeUnit.SECONDS.sleep(5);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                }
+
             }
-
-            synchronized (lockB) {
-                System.out.println(Thread.currentThread().getName() + " has lockA, lock B");
-
-            }
-
         }
     }
 }
+

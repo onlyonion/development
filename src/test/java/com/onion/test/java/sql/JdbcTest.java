@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.onion.test.common.model.User;
+
 public class JdbcTest {
     public static Connection getConn() {
         String driver = "com.mysql.jdbc.Driver";
