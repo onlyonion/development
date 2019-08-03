@@ -2,7 +2,8 @@
 
 # Content
 * RocketMQ实战 配置使用、发送、接收消息
-* 分布式消息队列的协调者 NameServer、核心Broker
+* 分布式消息队列的协调者 NameServer
+* 消息队列核心机制 存储和发送、高可用、同步刷盘和异步刷盘、同步复制和异步复制
 * 可靠性优先 顺序、重复、动态增减机器、各种故障
 * 吞吐量优先 Broker端消息过滤、Comsumer负载均衡
 * 和其他系统的交互 Springboot、云上RocketMQ
@@ -103,7 +104,7 @@ Broker是RocketMQ的核心，接收Producer发过来的消息、处理Consumer�
 1. read(file, tmp_buf, len) 读取本地文件内容
 2. write(socket, tmp_buf, len) 将读取的内容通过网络发送出去
 
-4次数据复制：
+4次数据复制：磁盘 -> 内核态 -> 用户态 -> 网络驱动内核态 -> 网卡
 * 从磁盘复制数据到内核态内存，
 * 从内核态内存复制到用户态内存；
 * 然后从用户态内存复制到网络驱动的内核态内存，
@@ -119,8 +120,22 @@ RocketMQ 分布式集群是通过 Master 和 Slave 的配合达到高可用性�
 在 Broker 的配 置 文件中，参数 brokerId的值为 0 表明这个 Broker 是 Master，大于 0 表 明这个 Broker 是 Slave ，
 同时 brokerRole 参数 也会说明这个 Broker 是 Master 还是 Slave 。
 
+!> 如何达到发送端的高可用性呢？创建Topic的时候，把Topic的多个MessageQueue创建在多个Broker组上（相同的Brokder名称，不同brokderId的机器组成一个Broker组），
+这样当一个Broker组的Master不可用后，其他组的Master仍然可用，Producer仍然可以发送消息。
+
+
 ### 5.4 同步刷盘和异步刷盘
+- 异步刷盘 在返回写成功状态时，消息可能**只是被写入了内存的pagecache**，写操作的返回快，吞吐量大；当内存里的消息量累积到一定程度时，统一出发写磁盘动作，快速写入
+- 同步刷盘 在返回ie成功状态时，消息**已经被写入磁盘**。具体流程是，消息写入内存的pagecache后，立刻通知刷盘线程刷盘，然后等待刷盘完成
+
 ### 5.5 同步复制和异步复制
+Broker组主从模式，消息需要从主复制到从上
+- 同步复制 等master和slave均写成功后才反馈给客户端写成功状态
+- 异步复制 只要master写成功即可反馈给客户端写成功状态
+
+master和slave配置成async_flush的刷盘方式，主从之间配置成sync_master的复制方式，这样即使有一台机器出故障，仍然能保证数据不丢。
+
+!> 可靠消息：主从模式 + 异步刷盘 + 同步复制
 
 ## 第6章 可靠性优先的使用场景
 ### 6.1 顺序消息

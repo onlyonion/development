@@ -2,8 +2,22 @@
 
 /usr/local/lib
 
+## 安装
+- apt方式
+- dpkg方式 dpkg -L packagename
+- 源码安装
+
+apt安装
+下载路径 /var/cache/apt/archives
+文档一般在 /usr/share
+可执行文件 /usr/bin
+配置文件 /etc
+lib文件 /usr/lib
+
+
 ## 开发环境
-###
+
+### 命令行启动
 ```sh
 # 字符界面的命令：sudo systemctl set-default multi-user.target
 # 图形界面的命令：sudo systemctl set-default graphical.target
@@ -88,12 +102,27 @@ ssh-keygen -t rsa -C "your email"
 ### eclipse
 ### idea
 ### vscode
-```shell
+```sh
 # 双击.deb 安装之后 运行code启动
 /usr/share/code
 ```
 
 ### gitlab
+[清华大学开源软件镜像站](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
+```sh
+# 信任 GitLab 的 GPG 公钥
+curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/dev/null
+
+# vim /etc/apt/sources.list.d/gitlab_gitlab-ce.list
+# deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
+sudo apt-get update
+sudo apt-get install gitlab-ce
+# sudo dpkg -i gitlab-ce_11.11.7-ce.0_amd64.deb 
+# sudo vim vim /etc/gitlab/gitlab.rb
+# sudo gitlab-ctl reconfigure
+# root pwd
+```
+
 [gitlab](https://about.gitlab.com/install/#ubuntu)
 ```sh
 sudo apt-get update
@@ -106,7 +135,7 @@ sudo EXTERNAL_URL="https://gitlab.example.com" apt-get install gitlab-ee
 ```
 
 [Ubuntu 搭建 GitLab 笔记](https://www.cnblogs.com/m2ez/p/7063606.html)
-```shell
+```sh
 # 方法1
 sudo apt-get install curl openssh-server ca-certificates postfix
 sudo curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
@@ -116,20 +145,30 @@ sudo curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/xeni
 sudo dpkg -i gitlab-ce-XXX.deb
 ```
 
-[清华大学开源软件镜像站](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
-```shell
-# 信任 GitLab 的 GPG 公钥
-curl https://packages.gitlab.com/gpg.key 2> /dev/null | sudo apt-key add - &>/dev/null
-deb https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/ubuntu xenial main
-sudo apt-get update
-sudo apt-get install gitlab-ce
-```
 
+```sh
+# su - gitlab-psql //登陆用户 
+# sudo passwd 修改密码gitlab
+# /opt/gitlab/embedded/bin/psql -h /var/opt/gitlab/postgresql -d gitlabhq_production
+# postgresql允许远程访问
+# /var/opt/gitlab/postgresql/data/postgresql.conf 改成  listen_addresses='*' 
+# /var/opt/gitlab/postgresql/data/pg_hba.conf 添加 
+# host  all    all    192.168.1.0/24    trust # trust不需要密码
+# host  all    all    0.0.0.0/0    md5
+# 库 gitlabhq_production 用户名 gitlab 端口 5432
+
+# Start all GitLab components
+sudo gitlab-ctl start
+# Stop all GitLab components
+sudo gitlab-ctl stop
+# Restart all GitLab components
+sudo gitlab-ctl restart
+```
 
 ### nexus
 
 ### jenkins
-```shell
+```sh
 sudo apt-get install -f 
 dpkg -i jenkins_2.121.3_all.deb
 /usr/bin/
@@ -147,7 +186,7 @@ sudo systemctl restart jenkins
 ```
 
 ### zookeeper
-```shell
+```sh
 # conf
 cp zoo_sample.cfg zoo.cfg
 # 启动
@@ -181,17 +220,19 @@ chkconfig --list
 export ZOOKEEPER_HOME=/data/zookeeper-3.4.8
 export PATH=${PATH}:${ZOOKEEPER_HOME}/bin
 ```
+
 ### nginx
-```shell
+```sh
 sudo apt install nginx
 ```
+
 ### tomcat
-```shell
+```sh
 /usr/local/lib/apache-tomcat-7.0.70
 sudo chmod 755 -R apache-tomcat-7.0.70
 ```
 ### redis
-```shell
+```sh
 # apt安装
 # 1. 安装
 sudo apt-get install redis-server
@@ -209,7 +250,9 @@ requirepass redisredis
 #bind 127.0.0.1
 sudo /etc/init.d/redis-server restart
 sudo service redis-server restart
+```
 
+```sh
 # 编译安装
 sudo wget http://download.redis.io/releases/redis-5.0.5.tar.gz
 sudo tar -zxvf redis-5.0.5.tar.gz
@@ -217,12 +260,26 @@ sudo tar -zxvf redis-5.0.5.tar.gz
 sudo make
 sudo make install
 # 安装到目录/usr/local/bin下，配置文件/etc/redis/redis.conf
+
+# 指定配置文件启动
+./redis-server /etc/redis/redis.conf
 ```
 
+
 ### rocketmq
+服务端与客户端的版本一定要对应
+```sh
+# 启动
+nohup sh bin/mqnamesrv &
+nohup sh bin/mqbroker -n localhost:9876 autoCreateTopicEnable=true &
+
+# 关闭
+sh bin/mqshutdown broker
+sh bin/mqshutdown namesrv
+```
 
 ### mysql
-```shell
+```sh
 # install 5.7.26
 sudo apt-get update
 sudo apt-get install mysql-server
@@ -231,6 +288,7 @@ sudo apt-get install libmysqlclient-dev
 # check; mysql listen
 sudo netstat -tap | grep mysql
 # cat /etc/mysql/debian.cnf 
+# mysql -uroot -p
 mysql -udebian-sys-maint -p
 # password mysql5.7没有password字段，密码存储在authentication_string字段
 show databases;
@@ -242,8 +300,8 @@ quit;
 # restart
 /etc/init.d/mysql restart;
 
-# 远程访问 密码root
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
+# 远程访问 GRANT ALL PRIVILEGES ON *.* TO root@'%' IDENTIFIED BY '密码' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 # 低版本修改密码
@@ -253,10 +311,11 @@ FLUSH PRIVILEGES;
 
 ### mycat
 
+
 ## 应用软件
 
 ### 输入法
-```shell
+```sh
 # 安装依赖fcitx
 sudo apt-get install fcitx-bin
 sudo apt-get install fcitx-table
@@ -270,13 +329,14 @@ sudo apt-get upgrade
 
 ```
 ### ubuntu theme
-```shell
+```sh
 sudo apt-get update
 sudo apt-get install gnome-tweak-tool
-sudo apt-get install gnome-shell-extensions
+sudo apt-get install gnome-sh-extensions
 ```
+
 ### 安装仿宋
-```shell
+```sh
 # copy
 sudo cp simfang.ttf /usr/share/fonts
 cd  /usr/share/fonts
@@ -287,7 +347,7 @@ sudo mkfontdir
 sudo fc-cache -fsv
 ```
 ### 快捷方式
-``` shell
+``` sh
 # vim jetbrains-idea.desktop  # 注意文件的后缀是 .desktop
 [Desktop Entry]
 Version=2019.1.1     

@@ -28,6 +28,11 @@ cat /proc/meminfo
 * netstat 查看网络相关信息、各种网络协议套接字状态
 * sar
 
+```sh
+netstat -nap | grep 2682 # 根据进程ID查找端口
+netstat -nap | grep 8080 # 根据端口查找进程ID
+```
+
 ### 分析工具
 * strace 诊断、调试程序的系统调用
 * GDB 程序调试、coredump分析

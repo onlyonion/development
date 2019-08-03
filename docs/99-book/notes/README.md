@@ -39,7 +39,7 @@
 * [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/99-book/notes/20-framework/Spring技术内幕(2).md)
 * [《Spring源码深度解析》郝佳](/99-book/notes/20-framework/Spring源码深度解析.md)
 * [《JavaEE开发的颠覆者：Spring Boot实战》汪云飞 中国工信出版社 电子工业出版社](/99-book/notes/20-framework/SpringBoot实战.md)
-* 《Spring Cloud与Docker微服务架构实战》周立
+* [《Spring Cloud与Docker微服务架构实战》周立](/99-book/notes/20-framework/SpringCloud与Docker微服务架构实战.md)
 * [《跟我学Shiro教程》张开涛](/99-book/notes/20-framework/跟我学Shiro教程.md)
 
 ## 服务器
@@ -89,8 +89,9 @@
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
 * 《HEAD FIRST 设计模式（中文版）》
 * [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
-* 《领域驱动设计与模式实战》赵俐 马燕新 译
+* [《领域驱动设计与模式实战》赵俐 马燕新 译](/99-book/notes/40-architecture/领域驱动设计与模式实战.md)
 * [《实现领域驱动设计》滕云 译](/99-book/notes/40-architecture/实现领域驱动设计.md)
+* [《领域驱动设计模型、原理与实践》 蒲成 译](/99-book/notes/40-architecture/领域驱动设计模式原理与实践.md)
 
 ## 数据库
 * mysql
