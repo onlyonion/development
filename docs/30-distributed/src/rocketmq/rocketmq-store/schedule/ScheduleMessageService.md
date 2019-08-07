@@ -7,13 +7,6 @@ ConfigManager (org.apache.rocketmq.common)
 ```
 
 ## define
-```plantuml
-@startuml
-
-
-
-@enduml
-```
 
 ## fields
 

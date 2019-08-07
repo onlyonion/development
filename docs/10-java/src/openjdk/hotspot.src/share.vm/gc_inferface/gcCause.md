@@ -1,5 +1,6 @@
+hotspot/src/share/vm/gc_interface/gcCause.hpp
 
-
+## GCCause
 ```plantuml
 @startuml
 
@@ -47,4 +48,20 @@ enum Cause {
   }
 
 @enduml
+```
+
+## GCName
+```cpp
+enum GCName {
+  ParallelOld,
+  SerialOld,
+  PSMarkSweep,
+  ParallelScavenge,
+  DefNew,
+  ParNew,
+  G1New,
+  ConcurrentMarkSweep,
+  G1Old,
+  GCNameEndSentinel
+}
 ```

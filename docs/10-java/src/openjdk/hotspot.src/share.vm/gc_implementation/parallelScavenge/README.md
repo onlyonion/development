@@ -1,4 +1,4 @@
-
+hotspot/src/share/vm/gc_implementation/parallelScavenge
 ```
 adjoiningGenerations.cpp
 adjoiningGenerations.hpp

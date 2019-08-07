@@ -3,6 +3,7 @@ package com.onion.test.java.util.concurrent;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -65,4 +66,26 @@ public class ThreadUtilTest {
         }
         System.out.println("CyclicBarrier");
     }
+
+    @Test
+    public void testSemaphore() throws InterruptedException {
+        Semaphore semaphore = new Semaphore(10);
+
+        for (int i = 0; i < 15; i++) {
+            new Thread(() -> acquire(semaphore)).start();
+        }
+        TimeUnit.SECONDS.sleep(10);
+
+    }
+
+    private void acquire(Semaphore semaphore) {
+        try {
+            System.out.println("acquire " + semaphore);
+            semaphore.acquire();
+            System.out.println("do " + semaphore);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

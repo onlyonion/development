@@ -2,21 +2,11 @@ hotspot/src/share/vm/memory
 
 ## package
 ```
-allocation.hpp 内存分配
-defNewGeneration.hpp 分代
-generation.hpp
-space.hpp
-EdenSpace
-TenuredSpace
-threadLocalAllocBuffer.hpp
-```
-
-```
-allocation.cpp
-allocation.hpp
+allocation.cpp 
+allocation.hpp                          内存分配
 allocation.inline.hpp
 barrierSet.cpp
-barrierSet.hpp
+barrierSet.hpp                          屏障
 barrierSet.inline.hpp
 binaryTreeDictionary.cpp
 binaryTreeDictionary.hpp
@@ -39,7 +29,7 @@ freeBlockDictionary.hpp
 freeList.cpp
 freeList.hpp
 gcLocker.cpp
-gcLocker.hpp
+gcLocker.hpp                            GC锁
 gcLocker.inline.hpp
 genCollectedHeap.cpp
 genCollectedHeap.hpp
@@ -67,7 +57,7 @@ metachunk.cpp
 metachunk.hpp
 metadataFactory.hpp
 metaspace.cpp
-metaspace.hpp
+metaspace.hpp                           元空间
 metaspaceCounters.cpp
 metaspaceCounters.hpp
 metaspaceShared.cpp
@@ -93,8 +83,8 @@ space.inline.hpp
 specialized_oop_closures.cpp
 specialized_oop_closures.hpp
 tenuredGeneration.cpp
-tenuredGeneration.hpp
-threadLocalAllocBuffer.cpp
+tenuredGeneration.hpp                   老年代
+threadLocalAllocBuffer.cpp              线程本地分配缓冲
 threadLocalAllocBuffer.hpp
 threadLocalAllocBuffer.inline.hpp
 universe.cpp

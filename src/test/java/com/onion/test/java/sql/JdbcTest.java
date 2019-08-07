@@ -28,12 +28,12 @@ public class JdbcTest {
     public static int insert(User user) {
         Connection conn = getConn();
         int i = 0;
-        String sql = "insert into students (user_name,sex) values(?,?)";
+        String sql = "insert into students (user_name, user_age) values(?,?)";
         PreparedStatement pstmt;
         try {
             pstmt = (PreparedStatement) conn.prepareStatement(sql);
             pstmt.setString(1, user.getUserName());
-            pstmt.setInt(2, user.getSex());
+            pstmt.setInt(2, user.getUserAge());
             i = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

@@ -23,6 +23,20 @@ lib文件 /usr/lib
 # 图形界面的命令：sudo systemctl set-default graphical.target
 ```
 
+### ifconfig
+```sh
+# sudo vi /etc/network/interfaces
+auto lo
+iface lo inet loopback
+auto ens33
+iface ens33 inet static
+address 192.168.1.100
+netmast 255.255.255.0
+gateway 192.168.1.1
+
+# sudo /etc/init.d/networking restart重启网络
+```
+
 ### ssh server
 ```sh
 # 
@@ -242,14 +256,18 @@ ps -aux|grep redis
 netstat -nlt|grep 6379
 # 通过启动命令检查Redis服务器状态
 sudo /etc/init.d/redis-server status
+
+
 # 2. 修改配置
 sudo vi /etc/redis/redis.conf
 # 设置密码 取消注释requirepass 
 requirepass redisredis
 # 让Redis服务器被远程访问 注释bind
-#bind 127.0.0.1
+# bind 127.0.0.1
 sudo /etc/init.d/redis-server restart
 sudo service redis-server restart
+
+# 3. redis-server --version 查看版本
 ```
 
 ```sh
@@ -264,7 +282,6 @@ sudo make install
 # 指定配置文件启动
 ./redis-server /etc/redis/redis.conf
 ```
-
 
 ### rocketmq
 服务端与客户端的版本一定要对应
@@ -310,6 +327,14 @@ FLUSH PRIVILEGES;
 ```
 
 ### mycat
+
+### docker
+```sh
+wget -qO- https://get.docker.com/ | sh # 获取最新版本的 Docker 安装包
+sudo usermod -aG docker onion 
+sudo service docker start
+docker run hello-world
+```
 
 
 ## 应用软件
@@ -362,3 +387,26 @@ Categories=Utility;Application;
 # 复制到 Unity 启动器中 
 /usr/share/applications/
 ```
+
+### windows + ubuntu + easybcd
+```sh
+# easybcd 添加grub启动项
+# 注意 vmlinuz.efi 与 initrd.lz 是否有后缀名
+title Install Ubuntu
+root (hd0,0)
+kernel (hd0,0)/vmlinuz.efi boot=casper iso-scan/filename=/ubuntu-14.04-desktop-amd64.iso locale=zh_CN.UTF-8
+initrd (hd0,0)/initrd.lz
+
+title reboot
+reboot
+
+title halt
+halt
+```
+安装后没有ubuntu启动项，回到演示盘
+```sh
+sudo fdisk -l
+sudo -i
+mkdir /media/ubuntu
+mount /dev/sdb6 /media/ubuntu # sda8 安装的ubuntu分区
+``

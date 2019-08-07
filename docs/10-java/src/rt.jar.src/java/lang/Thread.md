@@ -104,7 +104,57 @@ Terminated -right-> [*]
 @enduml
 ```
 
+## fields
+
+### priority
+```java
+    private volatile String name;
+    private int            priority;
+    private Thread         threadQ;
+    private long           eetop;
+
+    /* Whether or not to single_step this thread. */
+    private boolean     single_step;
+
+    /* Whether or not the thread is a daemon thread. */
+    private boolean     daemon = false;
+
+    /* JVM state */
+    private boolean     stillborn = false;
+
+    /* What will be run. */
+    private Runnable target;
+
+    /* The group of this thread */
+    private ThreadGroup group;
+
+    /* The context ClassLoader for this thread */
+    private ClassLoader contextClassLoader;
+
+    /* The inherited AccessControlContext of this thread */
+    private AccessControlContext inheritedAccessControlContext;
+    
+```
+
+### ThreadLocal
+```java
+    ThreadLocal.ThreadLocalMap threadLocals = null;
+    ThreadLocal.ThreadLocalMap inheritableThreadLocals = null;
+    private long stackSize;
+    private long nativeParkEventPointer;
+    private long tid;
+    private volatile int threadStatus = 0;
+```
+
 ## methods
+
+### nextThreadNum
+```java
+    private static int threadInitNumber;
+    private static synchronized int nextThreadNum() {
+        return threadInitNumber++;
+    }
+```
 
 ### init
 ```java
@@ -169,6 +219,35 @@ Terminated -right-> [*]
 
         /* Set thread ID */
         tid = nextThreadID();
+    }
+```
+
+### run
+```java
+    @Override
+    public void run() {
+        if (target != null) {
+            target.run();
+        }
+    }
+```
+
+### interrupt
+```java
+    private final Object blockerLock = new Object();
+    public void interrupt() {
+        if (this != Thread.currentThread())
+            checkAccess();
+
+        synchronized (blockerLock) {
+            Interruptible b = blocker;
+            if (b != null) {
+                interrupt0();           // Just to set the interrupt flag
+                b.interrupt(this);
+                return;
+            }
+        }
+        interrupt0();
     }
 ```
 

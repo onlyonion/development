@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis">
+
+    <resultMap type="User" id="UserList">
+        <result property="id" column="id" />
+        <result property="userName" column="user_name"/>
+        <result property="userAge" column="user_age" />
+        <result property="userAddress" column="user_address"/>
+
+        <result property="longId" column="long_id" />
+        <result property="userId" column="user_id" />
+    </resultMap>
+
+    <select id="selectAllUserId" resultType="java.lang.Integer">
+        select id from user
+    </select>
+
+    <select id="findUserById" parameterType="int" resultType="User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
+    <insert id="insert" parameterType="User">
+       insert into user (user_name, user_age, user_address, user_id, long_id) values (
+          #{userName}, #{userAge}, #{userAddress}, #{userId}, #{longId}
+       )
+   </insert>
+
+    <insert id="insertIntoUser" parameterType="User">
+       insert into user (id, user_name, user_age, user_address, user_id, long_id) values (
+          #{id}, #{userName}, #{userAge}, #{userAddress}, #{userId}, #{longId}
+       )
+   </insert>
+
+    <insert id="insertUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into user (id, user_name, user_age, user_address, user_id, long_id) values
+        <foreach item="item" collection="list" separator=",">
+            (#{item.id}, #{item.userName}, #{item.userAge}, #{item.userAddress}, #{item.userId}, #{item.longId})
+        </foreach>
+    </insert>
+
+    <update id="updateUser" parameterType="User">
+        update user
+        <set>
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="userAge != null">user_age = #{userAge},</if>
+            <if test="userAddress != null">user_address = #{userAddress},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="longId != null">long_id = #{longId},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+      delete from user where id = #{id}
+    </delete>
+
+</mapper>

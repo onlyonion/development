@@ -30,9 +30,9 @@
 * [《深入理解JVM & G1 GC》 周明耀](/docs/99-book/notes/10-java/深入理解JVM&G1GC.md)
 * [《Java 8函数式编程》王群锋 译](/docs/99-book/notes/10-java/Java%208函数式编程.md)
 * [《Java 8实战 Java 8 in Action Lambdas, streams and functional-sytle programming》 陆明刚 劳佳 译](/docs/99-book/notes/10-java/Java%208实战.md)
-* [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
+* [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 
 * [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
-* 《Java并发编程实战》
+* [《Java并发编程实战》童云兰 译](/docs/99-book/notes/10-java/Java并发编程实战.md)
 
 ## 框架
 * [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)
@@ -87,7 +87,7 @@
 
 ## 设计
 * [《大话设计模式》程杰 清华大学出版社](/99-book/notes/40-architecture/大话设计模式.md)
-* 《HEAD FIRST 设计模式（中文版）》
+* [《HEAD FIRST 设计模式（中文版）》](/99-book/notes/40-architecture/HeadFirst.md)
 * [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/99-book/notes/40-architecture/领域驱动设计.md)
 * [《领域驱动设计与模式实战》赵俐 马燕新 译](/99-book/notes/40-architecture/领域驱动设计与模式实战.md)
 * [《实现领域驱动设计》滕云 译](/99-book/notes/40-architecture/实现领域驱动设计.md)
@@ -103,6 +103,7 @@
 * nosql
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
   * 《NoSQL数据库技术实战》 皮雄军 著
+* [《数据库系统实现》杨冬青 吴愈青 包小源 唐世清 译 机械工业出版社](/99-book/notes/50-database/数据库系统实现.md)
 
 ## 云
 * [《云计算》刘鹏](/99-book/notes/51-cloud/云计算.md)

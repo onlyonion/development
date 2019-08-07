@@ -54,26 +54,50 @@ hotspot/src/
     * ProjectCreator
   * vm
     * adlc 平台描述文件（上面的cpu或os_cpu里的*.ad文件）的编译器
-    * asm 汇编
+    * [asm](/docs/10-java/src/openjdk/hotspot.src/share.vm/asm/README.md) 汇编
     * c1 client编译器（又称“C1”）
     * ci 动态编译器的公共服务/从动态编译器到VM的接口
-    * classfile 类文件的处理（包括类加载和系统符号表等）
+    * [classfile](/docs/10-java/src/openjdk/hotspot.src/share.vm/classfile/README.md) 类文件的处理（包括类加载和系统符号表等）
+      * [classLoader](/docs/10-java/src/openjdk/hotspot.src/share.vm/classfile/classLoader.md)
     * code 动态生成的代码的管理
-    * compiler 从VM调用动态编译器的接口
-    * gc_impementation
-    * gc_interface
+      * [codeCache](/hotspot/src/share/vm/code/codeCache.hpp)
+    * [compiler](/docs/10-java/src/openjdk/hotspot.src/share.vm/compiler/README.md) 从VM调用动态编译器的接口
+    * [gc_implementation](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/README.md)
+      * [concurrentMarkSweep](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/concurrentMarkSweep/README.md)
+        * [concurrentMarkSweepGeneration](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/concurrentMarkSweep/concurrentMarkSweepGeneration.md)
+      * [g1](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/g1/README.md)
+      * [parallelScavenge](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/parallelScavenge/README.md)
+      * [parNew](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/parNew/README.md)
+    * [gc_inferface](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/README.md)
+      * [collectedHeap](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/collectedHeap.md)
+      * [collectedHeap.inline](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/collectedHeap.inline.md)
+      * [gcCause](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/gcCause.md)
     * interpreter
       * [interpreterRuntime](/docs/10-java/src/openjdk/hotspot.src/share.vm/interpreter/interpreterRuntime.md) `synchronized`监视器锁
+      * [bytecodeInterpreter](/docs/10-java/src/openjdk/hotspot.src/share.vm/interpreter/bytecodeInterpreter.md) 字节码解释执行器
     * libadt
-    * memory 内存管理相关（老的分代式GC框架也在这里）
-    * oops HotSpot VM的对象系统的实现
-    * opto server编译器（又称“C2”或“Opto”）
+    * [memory](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/README.md) 内存管理相关（老的分代式GC框架也在这里）
+      * [space](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/space.md)
+      * [generation](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/generation.md)
+      * [metaspace](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/metaspace.md)
+      * [tenuredGeneration](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/tenuredGeneration.md)
+      * [threadLocalAllocBuffer](/docs/10-java/src/openjdk/hotspot.src/share.vm/memory/threadLocalAllocBuffer.md)
+    * [oops](/docs/10-java/src/openjdk/hotspot.src/share.vm/oops/README.md) HotSpot VM的对象系统的实现
+      * [markOop](/docs/10-java/src/openjdk/hotspot.src/share.vm/oops/markOop.md)
+    * [opto](/docs/10-java/src/openjdk/hotspot.src/share.vm/opto/README.md) server编译器（又称“C2”或“Opto”）
     * precompiled
     * prims HotSpot VM的对外接口，包括部分标准库的native部分和JVMTI实现
-    * runtime 运行时支持库（包括线程管理、编译器调度、锁、反射等）
-    * services
+    * [runtime](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/README.md) 运行时支持库（包括线程管理、编译器调度、锁、反射等）
+      * [os](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/os.md)
+      * [thread](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/thread.md)
+      * [vmThread](/docs/10-java/src/openjdk/hotspot.src/share.vm/services/vmThread.md)
+      * [objectMonitor](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/objectMonitor.md)
+      * [basicLock](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/basicLock.md)
+      * [atomic](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/atomic.md)
+      * [javaCalls](/docs/10-java/src/openjdk/hotspot.src/share.vm/runtime/javaCalls.md)
+    * [services](/docs/10-java/src/openjdk/hotspot.src/share.vm/services/README.md)
     * shark
-    * trace
+    * [trace](/docs/10-java/src/openjdk/hotspot.src/share.vm/trace/README.md)
     * utilities
 
 

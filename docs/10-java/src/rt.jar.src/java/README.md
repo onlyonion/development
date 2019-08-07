@@ -1,7 +1,13 @@
 ## java
 
 ### 核心类库
-  * ref
+java.lang
+  * annotation
+  * instrument
+  * [invoke](/docs/10-java/src/rt.jar.src/java/lang/invoke/README.md)
+    * [MethodHandle](/docs/10-java/src/rt.jar.src/java/lang/invoke/MethodHandle.md)
+  * management
+  * [ref](/docs/10-java/src/rt.jar.src/java/lang/ref/README.md)
     * [Reference](/docs/10-java/src/rt.jar.src/java/lang/ref/Reference.md) 对象引用 强、软、弱、虚
     * [Finalizer](/docs/10-java/src/rt.jar.src/java/lang/ref/Finalizer.md) 终结器
   * reflect
@@ -10,10 +16,14 @@
   * [Thread](/docs/10-java/src/rt.jar.src/java/lang/Thread.md) 线程
   * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md) 线程本地变量
   * [Throwable](/docs/10-java/src/rt.jar.src/java/lang/Throwable.md) 错误、异常
+    * error
+      * [VirtualMachineError](/docs/10-java/src/rt.jar.src/java/lang/throwable.error.VirtualMachineError.md)
+      * [LinkageError](/docs/10-java/src/rt.jar.src/java/lang/throwable.error.LinkageError.md)
   * [ClassLoader](/docs/10-java/src/rt.jar.src/java/lang/ClassLoader.md) 类加载器、双亲委派
   * [Iterable](/docs/10-java/src/rt.jar.src/java/lang/Iterable.md)
 
 ### 集合框架
+java.util
   * list
     * [ArrayList](/docs/10-java/src/rt.jar.src/java/util/collections/list.ArrayList.md)
     * [LinkedList](/docs/10-java/src/rt.jar.src/java/util/collections/list.LinkedList.md)
@@ -38,6 +48,7 @@
     * [TimSort](/docs/10-java/src/rt.jar.src/java/util/collections/sort.TimSort.md)
 
 ### 并发编程
+java.util.concurrent
 * [并发编程](/docs/10-java/src/rt.jar.src/java/util/concurrent/README.md) 线程、缓存、队列、异步、限流
   * [atomic](/docs/10-java/src/rt.jar.src/java/util/concurrent/atomic/README.md) 原子操作
     * number
@@ -100,6 +111,7 @@
     * [CompletableFuture](/docs/10-java/src/rt.jar.src/java/util/concurrent/CompletableFuture.md)
 
 ### 输入输出
+java.io
   * [bio](/docs/10-java/src/rt.jar.src/java/io/README.md)
     * [InputStream](/docs/10-java/src/rt.jar.src/java/io/InputStream.md)
     * [OutputStream](/docs/10-java/src/rt.jar.src/java/io/OutputStream.md)
@@ -125,11 +137,13 @@
       * FileSystem
       * FileVisitor
       * Path
+    * [Bits](/docs/10-java/src/rt.jar.src/java/nio/Bits.md)
     * [Buffer](/docs/10-java/src/rt.jar.src/java/nio/Buffer.md) 缓冲区，容器对象，通常是一个字节数组。
     * [ByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/ByteBuffer.md)
     * [DirectByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/DirectByteBuffer.md)
 
 ### 网络编程
+java.net
 * [net](/docs/10-java/src/rt.jar.src/java/net/README.md) 网络编程
   * [Socket](/docs/10-java/src/rt.jar.src/java/net/Socket.md) 套接字，传输层接口
   * [ServerSocket](/docs/10-java/src/rt.jar.src/java/net/ServerSocket.md)
@@ -139,6 +153,7 @@
   * [URL](/docs/10-java/src/rt.jar.src/java/net/URL.md)
 
 ### 数据库编程
+java.sql
 * [sql](/docs/10-java/src/rt.jar.src/java/sql/README.md)
   * [Driver](/docs/10-java/src/rt.jar.src/java/sql/Driver.md) jdbc驱动接口，SPI
   * [DriverManager](/docs/10-java/src/rt.jar.src/java/sql/DriverManager.md) 驱动管理
@@ -148,10 +163,11 @@
   * [Savepoint](/docs/10-java/src/rt.jar.src/java/sql/Savepoint.md)
 
 ### 远程方法调用
+java.rmi
 [rmi](/docs/10-java/src/rt.jar.src/java/rmi/README.md)
 
 ### 新特性
-* java.util
+java.util
   * [function](/docs/10-java/src/rt.jar.src/java/util/function/README.md) 函数式编程
   * [stream](/docs/10-java/src/rt.jar.src/java/util/stream/README.md) 流式风格
   * observer
