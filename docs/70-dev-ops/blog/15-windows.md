@@ -47,3 +47,12 @@ netstat -tunlp | grep 8000
 
 ### 打开系统属性
 sysdm.cpl
+
+### host
+```sh
+# ipconfig /flushdns
+192.30.253.112 github.com
+151.101.185.194 github.global.ssl.fastly.net
+192.30.255.113 www.github.com
+192.30.255.120 nodeload.github.com
+```

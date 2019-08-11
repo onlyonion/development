@@ -17,7 +17,8 @@ AbstractRegistry (com.alibaba.dubbo.registry.support)
 ```
 
 ## define
-* 失败重试
+- 失败重试
+- 故障恢复
 
 ```plantuml
 @startuml
@@ -104,6 +105,39 @@ abstract class FailbackRegistry {
             failedRegistered.add(url);
         }
     }
+```
+
+### recover
+故障恢复
+
+```java
+    @Override
+    protected void recover() throws Exception {
+        // register
+        Set<URL> recoverRegistered = new HashSet<URL>(getRegistered());
+        if (!recoverRegistered.isEmpty()) {
+            if (logger.isInfoEnabled()) {
+                logger.info("Recover register url " + recoverRegistered);
+            }
+            for (URL url : recoverRegistered) {
+                failedRegistered.add(url);
+            }
+        }
+        // subscribe
+        Map<URL, Set<NotifyListener>> recoverSubscribed = new HashMap<URL, Set<NotifyListener>>(getSubscribed());
+        if (!recoverSubscribed.isEmpty()) {
+            if (logger.isInfoEnabled()) {
+                logger.info("Recover subscribe url " + recoverSubscribed.keySet());
+            }
+            for (Map.Entry<URL, Set<NotifyListener>> entry : recoverSubscribed.entrySet()) {
+                URL url = entry.getKey();
+                for (NotifyListener listener : entry.getValue()) {
+                    addFailedSubscribed(url, listener);
+                }
+            }
+        }
+    }
+
 ```
 
 ### 模板方法模式

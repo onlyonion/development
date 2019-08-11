@@ -102,6 +102,8 @@ SpiEextension导引目路集衡调
     * ContextFilter PROVIDER
     * TimeoutFilter PROVIDER
     * ExceptionFilter PROVIDER
+    * [ExecuteLimitFilter](/docs/30-distributed/src/dubbo/rpc/filter/ExecuteLimitFilter.md) PROVIDER
+    * [TpsLimitFilter](/docs/30-distributed/src/dubbo/rpc/filter/TpsLimitFilter.md) PROVIDER
   * `listener` 监听器
   * `protocol` 网络通信协议
     * dubbo

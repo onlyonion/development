@@ -16,17 +16,19 @@ linux-2.6.32.6
 include 内核头文件
   - linux
     - [aio](/docs/00-base/src/linux/include/linux/aio.md)
+    - [net](/docs/00-base/src/linux/include/linux/net.md)
     - [netfilter](/docs/00-base/src/linux/include/linux/netfilter.md)
     - [rbtree](/docs/00-base/src/linux/include/linux/rbtree.md)
     - [sched](/docs/00-base/src/linux/include/linux/sched.md)
     - [spinlock](/docs/00-base/src/linux/include/linux/spinlock.md)
     - [syscalls](/docs/00-base/src/linux/include/linux/syscalls.md)
     - [thread_info](/docs/00-base/src/linux/include/linux/thread_info.md)
+    - [interrupt](/docs/00-base/src/linux/include/linux/interrupt.md)
 - [init](/docs/00-base/src/linux/init/README.md) 内核引导和初始化
 - [ipc](/docs/00-base/src/linux/ipc/README.md) 进程间通信代码
 - kernel 像调度程序这样的核心子系统
 - lib 通用内核函数
-- mm 内存管理子系统和VM
+- [mm](/docs/00-base/src/linux/mm/README.md) 内存管理子系统和VM
   - mempolicy.c
   - mempool.c
   - memory.c
@@ -34,6 +36,7 @@ include 内核头文件
   - page_alloc.c
   - [page-writeback](/docs/00-base/src/linux/mm/page-writeback.md)
 - [net](/docs/00-base/src/linux/net/README.md) 网络子系统
+  - [socket](/docs/00-base/src/linux/net/socket.md)
 - samples 示范代码
 - scripts 编译内核所用的脚本
 - security Linux安全模块

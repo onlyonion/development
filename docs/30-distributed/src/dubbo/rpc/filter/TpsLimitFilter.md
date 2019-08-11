@@ -5,6 +5,8 @@ Dubbo的限流算法使用了最简单的计数器算法，如果并发流量刚
 所以推荐自己使用令牌桶算法或漏桶算法实现自定义限流Filter，并且也可以考虑分布式限流。
 
 ## define
+- 服务提供者
+
 ```java
 /**
  * 限制 service 或方法的 tps.
@@ -58,8 +60,8 @@ public class DefaultTPSLimiter implements TPSLimiter {
 
     public boolean isAllowable(URL url, Invocation invocation) {
         int rate = url.getParameter(Constants.TPS_LIMIT_RATE_KEY, -1);
-        long interval = url.getParameter(Constants.TPS_LIMIT_INTERVAL_KEY,
-                Constants.DEFAULT_TPS_LIMIT_INTERVAL);
+        long interval = url.getParameter(Constants.TPS_LIMIT_INTERVAL_KEY, // tps.interval
+                Constants.DEFAULT_TPS_LIMIT_INTERVAL); // 60 * 1000 即60秒，1分钟
         String serviceKey = url.getServiceKey();
         if (rate > 0) {
             StatItem statItem = stats.get(serviceKey);
@@ -107,6 +109,7 @@ class StatItem {
 
     public boolean isAllowable(URL url, Invocation invocation) {
         long now = System.currentTimeMillis();
+        // 若到达下一个周期，恢复可用令牌数，设置最后重置时间
         if (now > lastResetTime + interval) {
             token.set(rate);
             lastResetTime = now;
@@ -115,6 +118,7 @@ class StatItem {
         int value = token.get();
         boolean flag = false;
         while (value > 0 && !flag) {
+            // 取令牌
             flag = token.compareAndSet(value, value - 1);
             value = token.get();
         }

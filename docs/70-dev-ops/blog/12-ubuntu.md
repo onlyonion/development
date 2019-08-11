@@ -67,8 +67,8 @@ export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 source /etc/profile
 # default config
-sudo update-alternatives --install /usr/bin/java  java  /usr/local/lib/jdk1.8.0_181/bin/java 300   
-sudo update-alternatives --install /usr/bin/javac  javac  /usr/local/lib/jdk1.8.0_181/bin/javac 300
+sudo update-alternatives --install /usr/bin/java  java  /usr/local/lib/jdk-11.0.4/bin/java 300   
+sudo update-alternatives --install /usr/bin/javac  javac  /usr/local/lib/jdk-11.0.4/bin/javac 300
 sudo update-alternatives --config java
 sudo update-alternatives --config javac
 ```
@@ -328,7 +328,8 @@ FLUSH PRIVILEGES;
 
 ### mycat
 
-### docker
+
+## docker
 ```sh
 wget -qO- https://get.docker.com/ | sh # 获取最新版本的 Docker 安装包
 sudo usermod -aG docker onion 
@@ -336,6 +337,19 @@ sudo service docker start
 docker run hello-world
 ```
 
+### docker redis
+```
+docker run -p 6379:6379 
+-v /home/user/myredis/data:/data
+-v /home/user/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+-d redis:3.2 redis-server /usr/local/etc/redis/redis.conf
+-- appendonly yes
+```
+
+### docker tomcat
+### docker mysql
+### docker redis
+### docker nginx
 
 ## 应用软件
 

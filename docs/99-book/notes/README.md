@@ -94,6 +94,7 @@
 * [《领域驱动设计模型、原理与实践》 蒲成 译](/99-book/notes/40-architecture/领域驱动设计模式原理与实践.md)
 
 ## 数据库
+* [《数据库系统实现》杨冬青 吴愈青 包小源 唐世清 译 机械工业出版社](/99-book/notes/50-database/数据库系统实现.md)
 * mysql
   * [《高性能MySQL》宁海元等译](/99-book/notes/50-database/高性能MySQL.md)
   * [《MySQL技术内幕：InnoDB存储引擎》第2版 姜承尧 机械工业出版社](/99-book/notes/50-database/MySQL技术内幕InnoDB存储引擎.md)
@@ -101,9 +102,8 @@
   * [《分布式数据库架构及企业实践-基于Mycat中间件》周继锋](/99-book/notes/50-database/分布式数据库架构及企业实践.md)
   * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
 * nosql
+  * [《NoSQL数据库技术实战》 皮雄军 著](/99-book/notes/50-database/NoSQL数据库技术实战.md)
   * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
-  * 《NoSQL数据库技术实战》 皮雄军 著
-* [《数据库系统实现》杨冬青 吴愈青 包小源 唐世清 译 机械工业出版社](/99-book/notes/50-database/数据库系统实现.md)
 
 ## 云
 * [《云计算》刘鹏](/99-book/notes/51-cloud/云计算.md)
