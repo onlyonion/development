@@ -1,5 +1,7 @@
 package com.onion.test.java.util.concurrent;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.junit.Test;
@@ -29,6 +31,24 @@ public class MapTest {
         mapKeyInteger.put(7, 1);
 
         System.out.println(mapKeyInteger);
+    }
+
+    @Test
+    public void testHashMap() {
+        Map<String, String> map = new HashMap<>();
+        System.out.println(map.put("hello", "world"));
+        System.out.println(map.get("hello"));
+    }
+
+    @Test
+    public void testHash() {
+        int h2 = hash("hello");
+        System.out.println(h2);
+    }
+
+    static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
     }
 
 }

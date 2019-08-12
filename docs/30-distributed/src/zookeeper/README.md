@@ -1,9 +1,8 @@
 ## zookeeper
-* [zookeeper](/docs/30-distributed/src/zookeeper/zookeeper/)
+* [zookeeper](/docs/30-distributed/src/zookeeper/zookeeper/README.md)
 * 客户端
   * [zkclient](/docs/30-distributed/src/zookeeper/zkclient/)
   * curator
-    *curator-client
     * [curator-framework](/docs/30-distributed/src/zookeeper/curator-framework/)
     * [curator-recipes](/docs/30-distributed/src/zookeeper/curator-recipes/)
 

@@ -7,21 +7,28 @@ com.google
         annotations
         base
         cache
+            Cache
+            CacheBuilder
+            CacheLoader
         collect
+            BiMap
         escape
         eventbus
         graph
         hash
-            LongAdder
             BloomFilter
             BloomFilterStrategies
+            LongAdder
         html
         io
         math
         net
         primitives
         reflect
-        concurrent
+        util.concurrent
+            SimpleTimeLimiter
+            SmoothRateLimiter
+            TimeLimiter
         xml
     thirdparty.publicsuffix
 ```

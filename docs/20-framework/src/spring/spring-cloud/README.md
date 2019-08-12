@@ -1,5 +1,3 @@
-springcloud
-
 ## spring cloud
 
 ### common
@@ -14,9 +12,17 @@ springcloud
 - spring-cloud-starter-netflix-eureka-server
 - spring-cloud-netflix-eureka-client
 - spring-cloud-netflix-eureka-server
+- eureka-client
+- eureka-core
 
 ### ribbon
 - spring-cloud-starter-netflix-ribbon
+- ribbon
+- ribbon-core
+- ribbon-eureka
+- ribbon-httpclient
+- ribbon-loadbalancer
+- ribbon-transport
 
 ### feign
 - spring-cloud-starter-openfeign
@@ -27,6 +33,10 @@ springcloud
 - spring-cloud-starter-netflix-hystrix-dashboard
 - spring-cloud-netflix-hystrix-dashboard
 - spring-cloud-netflix-hystrix-stream
+- hystrix-core
+- hystrix-javanica
+- hystrix-metrics-event-stream
+- hystrix-serialization
 
 ### zuul
 - spring-cloud-starter-netflix-zuul

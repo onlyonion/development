@@ -1,0 +1,63 @@
+com.netflix.hystrix
+
+## package
+```
+collapser
+    CollapsedRequestSubject
+    CollapserTimer
+    HystrixCollapserBridge
+    RealCollapserTimer
+    RequestBatch
+    RequestCollapser
+    RequestCollapserFactory
+config
+    HystrixCollapserConfiguration
+    HystrixCommandConfiguration
+    HystrixConfiguration
+    HystrixConfigurationStream
+    HystrixThreadPoolConfiguration
+exception
+metric
+strategy
+    concurrency
+    eventnotifier
+    executionhook
+    metrics
+    properties
+    HystrixArchaiusHelper
+    HystrixPlugins
+util
+
+AbstractCommand
+ExecutionResult
+Hystrix
+HystrixCachedObservable
+HystrixCircuitBreaker
+HystrixCollapser
+HystrixCollapserKey
+HystrixCollapserMetrics
+HystrixCollapserProperties
+HystrixCommand
+HystrixCommandGroupKey
+HystrixCommandKey
+HystrixCommandMetrics
+HystrixCommandProperties                命令属性
+HystrixCommandResponseFromCache
+HystrixCounters
+HystrixEventType
+HystrixExecutable
+HystrixInvokable
+HystrixInvokableInfo
+HystrixKey
+HystrixMetrics
+HystrixObservable
+HystrixObservableCollapser
+HystrixObservableCommand
+HystrixRequestCache
+HystrixRequestLog
+HystrixThreadPool
+HystrixThreadPoolKey
+HystrixThreadPoolMetrics
+HystrixThreadPoolProperties
+HystrixTimerThreadPoolProperties
+```

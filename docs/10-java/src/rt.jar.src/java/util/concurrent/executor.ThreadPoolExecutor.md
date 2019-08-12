@@ -3,14 +3,14 @@ java.util.concurrent.ThreadPoolExecutor
 * AtomicInteger
   * volatile
   * Unsafe 
-* 缓冲队列
+* 工作队列
   * ArrayBlockingQueue 有界队列
   * LinkedBlockingQueue 
   * SynchronousQueue
 * 拒绝策略
   * AbortPolicy 抛异常
   * CallerRunsPolicy 调用者线程执行
-  * DiscardPolicy 抛弃
+  * DiscardPolicy 直接抛弃
   * DiscardOldestPolicy 抛弃最早的
 * 执行顺序
   * 是否大于core
@@ -63,7 +63,7 @@ abstract class AbstractExecutorService {
 }
 
 '''''''''''''''''''' ThreadPoolExecutor ''''''''''''''''''''
-class ThreadPoolExecutor {
+class ThreadPoolExecutor #orange {
     - final AtomicInteger ctl
     - final BlockingQueue<Runnable> workQueue
     - final ReentrantLock mainLock
@@ -100,7 +100,7 @@ abstract class AbstractQueuedSynchronizer {
 }
 interface Runnable
 Runnable ^.. Worker
-class Worker {
+class Worker #orange {
     final Thread thread
     Runnable firstTask
     volatile long completedTasks
@@ -112,7 +112,7 @@ AbstractQueuedSynchronizer <|-- Worker
 ThreadPoolExecutor +- Worker
 
 '''''''''''''''''''' BlockingQueue ''''''''''''''''''''
-interface BlockingQueue<E>
+interface BlockingQueue<E> #orange 
 class LinkedBlockingQueue<E>
 class SynchronousQueue<E> 
 class DelayQueue<E extends Delayed> 
@@ -139,7 +139,139 @@ RejectedExecutionHandler <|-- DiscardOldestPolicy
 @enduml
 ```
 
-## execute()
+## fields
+
+### threadpool state
+* RUNNING(-1):  Accept new tasks and process queued tasks
+* SHUTDOWN(0): Don't accept new tasks, but process queued tasks
+* STOP(1):     Don't accept new tasks, don't process queued tasks, and interrupt in-progress tasks
+* TIDYING(2):  All tasks have terminated, workerCount is zero, the thread transitioning to state TIDYING will run the terminated() hook method
+* TERMINATED(3): terminated() has completed
+
+```java
+    /*
+     * RUNNING -> SHUTDOWN
+     *    On invocation of shutdown(), perhaps implicitly in finalize()
+     * (RUNNING or SHUTDOWN) -> STOP
+     *    On invocation of shutdownNow()
+     * SHUTDOWN -> TIDYING
+     *    When both queue and pool are empty
+     * STOP -> TIDYING
+     *    When pool is empty
+     * TIDYING -> TERMINATED
+     *    When the terminated() hook method has completed
+     */
+    private final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0));
+    private static final int COUNT_BITS = Integer.SIZE - 3;
+    private static final int CAPACITY   = (1 << COUNT_BITS) - 1;
+
+    // runState is stored in the high-order bits
+    private static final int RUNNING    = -1 << COUNT_BITS;
+    private static final int SHUTDOWN   =  0 << COUNT_BITS;
+    private static final int STOP       =  1 << COUNT_BITS;
+    private static final int TIDYING    =  2 << COUNT_BITS;
+    private static final int TERMINATED =  3 << COUNT_BITS;
+
+    // Packing and unpacking ctl
+    private static int runStateOf(int c)     { return c & ~CAPACITY; }
+    private static int workerCountOf(int c)  { return c & CAPACITY; }
+    private static int ctlOf(int rs, int wc) { return rs | wc; }
+```
+
+#### plantuml
+```plantuml
+@startuml
+
+[*] -right-> RUNNING
+RUNNING -right-> SHUTDOWN: shutdown()
+
+RUNNING --> STOP: shutdownNow()
+SHUTDOWN -right-> STOP: shutdownNow()
+
+SHUTDOWN -right-> TIDYING: queue, pool empty
+STOP --> TIDYING: pool empty
+
+TIDYING --> TERMINATED: terminated()
+TERMINATED -right-> [*]
+
+@enduml
+```
+
+#### mermaid
+```mermaid
+graph LR
+    RUNNING -- shutdown --> SHUTDOWN
+    RUNNING -- shutdownNow --> STOP
+    SHUTDOWN -- shutdownNow --> STOP
+    SHUTDOWN -- queueAndPoolEmpty --> TIDYING
+    STOP -- poolEmpty --> TIDYING
+    TIDYING -- terminated --> TERMINATED
+``` 
+
+### workQueue
+```java
+
+    private final BlockingQueue<Runnable> workQueue;
+    private final ReentrantLock mainLock = new ReentrantLock();
+    private final HashSet<Worker> workers = new HashSet<Worker>();
+    private final Condition termination = mainLock.newCondition();
+    private int largestPoolSize;
+    private long completedTaskCount;
+    
+```
+
+## methods
+
+### ThreadPoolExecutor
+```java
+    public ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue<Runnable> workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler) {
+        if (corePoolSize < 0 ||
+            maximumPoolSize <= 0 ||
+            maximumPoolSize < corePoolSize ||
+            keepAliveTime < 0)
+            throw new IllegalArgumentException();
+        if (workQueue == null || threadFactory == null || handler == null)
+            throw new NullPointerException();
+        this.acc = System.getSecurityManager() == null ?
+                null :
+                AccessController.getContext();
+        this.corePoolSize = corePoolSize;
+        this.maximumPoolSize = maximumPoolSize;
+        this.workQueue = workQueue;
+        this.keepAliveTime = unit.toNanos(keepAliveTime);
+        this.threadFactory = threadFactory;
+        this.handler = handler;
+    }
+```
+
+### execute()
+```java
+    public void execute(Runnable command) {
+        if (command == null)
+            throw new NullPointerException();
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+```
 
 ```mermaid
 sequenceDiagram
@@ -174,49 +306,103 @@ sequenceDiagram
     end
 ```
 
-## threadpool state
-* RUNNING(-1):  Accept new tasks and process queued tasks
-* SHUTDOWN(0): Don't accept new tasks, but process queued tasks
-* STOP(1):     Don't accept new tasks, don't process queued tasks, and interrupt in-progress tasks
-* TIDYING(2):  All tasks have terminated, workerCount is zero, the thread transitioning to state TIDYING will run the terminated() hook method
-* TERMINATED(3): terminated() has completed
-     
+### runWorker
+```java
+    final void runWorker(Worker w) {
+        Thread wt = Thread.currentThread();
+        Runnable task = w.firstTask;
+        w.firstTask = null;
+        w.unlock(); // allow interrupts
+        boolean completedAbruptly = true;
+        try {
+            while (task != null || (task = getTask()) != null) {
+                w.lock();
+                // If pool is stopping, ensure thread is interrupted;
+                // if not, ensure thread is not interrupted.  This
+                // requires a recheck in second case to deal with
+                // shutdownNow race while clearing interrupt
+                if ((runStateAtLeast(ctl.get(), STOP) ||
+                     (Thread.interrupted() &&
+                      runStateAtLeast(ctl.get(), STOP))) &&
+                    !wt.isInterrupted())
+                    wt.interrupt();
+                try {
+                    beforeExecute(wt, task);
+                    Throwable thrown = null;
+                    try {
+                        task.run();
+                    } catch (RuntimeException x) {
+                        thrown = x; throw x;
+                    } catch (Error x) {
+                        thrown = x; throw x;
+                    } catch (Throwable x) {
+                        thrown = x; throw new Error(x);
+                    } finally {
+                        afterExecute(task, thrown);
+                    }
+                } finally {
+                    task = null;
+                    w.completedTasks++;
+                    w.unlock();
+                }
+            }
+            completedAbruptly = false;
+        } finally {
+            processWorkerExit(w, completedAbruptly);
+        }
+    }
 ```
- * RUNNING -> SHUTDOWN
- *    On invocation of shutdown(), perhaps implicitly in finalize()
- * (RUNNING or SHUTDOWN) -> STOP
- *    On invocation of shutdownNow()
- * SHUTDOWN -> TIDYING
- *    When both queue and pool are empty
- * STOP -> TIDYING
- *    When pool is empty
- * TIDYING -> TERMINATED
- *    When the terminated() hook method has completed
-```     
-     
-```mermaid
-graph LR
-    RUNNING -- shutdown --> SHUTDOWN
-    RUNNING -- shutdownNow --> STOP
-    SHUTDOWN -- shutdownNow --> STOP
-    SHUTDOWN -- queueAndPoolEmpty --> TIDYING
-    STOP -- poolEmpty --> TIDYING
-    TIDYING -- terminated --> TERMINATED
+
+
+### 模板方法
+```java
+    protected void beforeExecute(Thread t, Runnable r) { }
+    protected void afterExecute(Runnable r, Throwable t) { }    
+    protected void terminated() { }    
+    
 ```
 
-```plantuml
-@startuml
-[*] -right-> RUNNING
-RUNNING -right-> SHUTDOWN: shutdown()
+## inner class
 
-RUNNING --> STOP: shutdownNow()
-SHUTDOWN -right-> STOP: shutdownNow()
+### Worker
+```java
+    private final class Worker extends AbstractQueuedSynchronizer implements Runnable {
+        final Thread thread;
+        Runnable firstTask;
+        volatile long completedTasks;
+    }    
+```
 
-SHUTDOWN -right-> TIDYING: queue, pool empty
-STOP --> TIDYING: pool empty
-
-TIDYING --> TERMINATED: terminated()
-TERMINATED -right-> [*]
-
-@enduml
+### RejectedExecutionHandler
+```java
+    public static class CallerRunsPolicy implements RejectedExecutionHandler {
+        public CallerRunsPolicy() { }
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            if (!e.isShutdown()) {
+                r.run();
+            }
+        }
+    }
+    public static class AbortPolicy implements RejectedExecutionHandler {
+        public AbortPolicy() { }
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            throw new RejectedExecutionException("Task " + r.toString() +
+                                                 " rejected from " +
+                                                 e.toString());
+        }
+    }    
+    public static class DiscardPolicy implements RejectedExecutionHandler {
+        public DiscardPolicy() { }
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        }
+    }    
+    public static class DiscardOldestPolicy implements RejectedExecutionHandler {
+        public DiscardOldestPolicy() { }
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+            if (!e.isShutdown()) {
+                e.getQueue().poll(); // Retrieves and removes the head of this queue
+                e.execute(r);
+            }
+        }
+    }    
 ```

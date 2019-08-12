@@ -14,7 +14,7 @@ java.lang
     * [Proxy](/docs/10-java/src/rt.jar.src/java/lang/reflect/Proxy.md) 
   * [String](/docs/10-java/src/rt.jar.src/java/lang/String.md)
   * [Thread](/docs/10-java/src/rt.jar.src/java/lang/Thread.md) 线程
-  * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md) 线程本地变量
+  * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md) 线程本地变量，开放地址法（线性探测）
   * [Throwable](/docs/10-java/src/rt.jar.src/java/lang/Throwable.md) 错误、异常
     * error
       * [VirtualMachineError](/docs/10-java/src/rt.jar.src/java/lang/throwable.error.VirtualMachineError.md)
@@ -41,6 +41,8 @@ java.util
     * [HashTable](/docs/10-java/src/rt.jar.src/java/util/collections/map.HashTable.md)
     * [LinkedHashMap](/docs/10-java/src/rt.jar.src/java/util/collections/map.LinkedHashMap.md)
     * [TreeMap](/docs/10-java/src/rt.jar.src/java/util/collections/map.TreeMap.md)
+    * [IdentityHashMap](/docs/10-java/src/rt.jar.src/java/util/collections/map.IdentityHashMap.md) 开放地址法（线性探测）
+    * [WeakHashMap](/docs/10-java/src/rt.jar.src/java/util/collections/map.WeakHashMap.md) 拉链法
   * 工具类
     * [Arrays](/docs/10-java/src/rt.jar.src/java/util/collections/Arrays.md)  
     * [Collections](/docs/10-java/src/rt.jar.src/java/util/collections/Collections.md)  

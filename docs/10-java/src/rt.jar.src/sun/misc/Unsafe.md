@@ -44,7 +44,7 @@ native的，需要调用JNI接口，也即通过操作系统来保证这些方�
 * getAndSetInt
 * getAndSetLong
 
-```
+```java
 public final long getAndSetLong(Object o, long offset, long newValue) {
     long v;
     do {
@@ -55,7 +55,7 @@ public final long getAndSetLong(Object o, long offset, long newValue) {
 ```
 
 * getAndSetObject
-```
+```java
 public final Object getAndSetObject(Object o, long offset, Object newValue) {
     Object v;
     do {

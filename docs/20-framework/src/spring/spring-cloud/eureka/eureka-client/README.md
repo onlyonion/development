@@ -1,0 +1,70 @@
+com.netflix
+
+## package
+```
+appinfo
+    providers
+    AbstractEurekaIdentity
+    AbstractInstanceConfig
+    AmazonInfo
+    AmazonInfoConfig
+    ApplicationInfoManager
+    Archaius1AmazonInfoConfig
+    CloudInstanceConfig
+    DataCenterInfo
+    EurekaAccept
+    EurekaClientIdentity
+    EurekaInstanceConfig
+    HealthCheckCallback
+    HealthCheckCallbackToHandlerBridge
+    HealthCheckHandler
+    HealthCheckResource
+    InstanceInfo
+    LeaseInfo
+    MyDataCenterInfo
+    MyDataCenterInstanceConfig
+    PropertiesInstanceConfig
+    PropertyBasedAmazonInfoConfigConstants
+    PropertyBasedInstanceConfigConstants
+    RefreshableAmazonInfoProvider
+    RefreshableInstanceConfig
+    UniqueIdentifier
+
+discovery
+    converters
+    endpoint
+    guice
+    util
+    provider
+    providers
+    shared
+    util
+    AbstractAzToRegionMapper
+    AbstractDiscoveryClientOptionalArgs
+    AzToRegionMapper
+    BackupRegistry
+    CacheRefreshedEvent
+    CommonConstants
+    DefaultEurekaClientConfig
+    DiscoveryClient
+    DiscoveryEvent
+    DiscoveryManager
+    DNSBasedAzToRegionMapper
+    EurekaClient
+    EurekaClientConfig
+    EurekaClientNames
+    EurekaEvent
+    EurekaEventListener
+    EurekaIdentityHeaderFilter
+    EurekaNamespace
+    EurekaUpStatusResolver
+    InstanceInfoReplicator
+    InstanceRegionChecker
+    InternalEurekaStatusModule
+    NotImplementedRegistryImpl
+    PreRegistrationHandler
+    PropertyBasedAzToRegionMapper
+    PropertyBasedClientConfigConstants
+    StatusChangeEvent
+    TimedSupervisorTask
+```

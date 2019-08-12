@@ -7,3 +7,12 @@ Welcome
 ## Overview
 This is a daily note.
 
+
+use docsify
+```sh
+# install
+npm i docsify-cli -g
+
+# preview site
+docsify serve docs
+```
