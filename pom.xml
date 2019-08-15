@@ -517,6 +517,12 @@
 			<version>4.1.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.seata</groupId>
+			<artifactId>seata-all</artifactId>
+			<version>0.7.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

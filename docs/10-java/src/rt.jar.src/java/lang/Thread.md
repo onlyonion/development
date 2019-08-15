@@ -249,6 +249,22 @@ Terminated -right-> [*]
         }
         interrupt0();
     }
+    private native void interrupt0();    
+```
+
+### interrupted
+```java
+    public static boolean interrupted() {
+        return currentThread().isInterrupted(true);
+    }
+```
+
+### isInterrupted
+```java
+    public boolean isInterrupted() {
+        return isInterrupted(false);
+    }
+    private native boolean isInterrupted(boolean ClearInterrupted);    
 ```
 
 ## default threads

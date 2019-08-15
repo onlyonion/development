@@ -1,4 +1,4 @@
-《Elasticsearch技术解析与实践》朱林 机械工业出版社
+《Elasticsearch技术解析与实战》朱林 机械工业出版社
 
 ## 第1章 Elasticserch 入门
 

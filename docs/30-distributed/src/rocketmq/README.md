@@ -19,6 +19,8 @@
       * [ProcessQueue](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ProcessQueue.md)
       * [ConsumeMessageOrderlyService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageOrderlyService.md) 顺序消费
       * [ConsumeMessageConcurrentlyService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageConcurrentlyService.md) 并发消费
+      * [RebalanceService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/RebalanceService.md)
+      * [RebalanceImpl](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/RebalanceImpl.md)
     * producer
       * [DefaultMQProducerImpl](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/producer/DefaultMQProducerImpl.md)
       * MQProducerInner

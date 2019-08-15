@@ -112,7 +112,7 @@
 * [《物联网技术与实践 基于ARMCortex-M0技术》李佳，周志强 编著](/99-book/notes/51-cloud/物联网技术与实践.md)
 * [《物联网导论》刘云浩 科学出版社](/99-book/notes/51-cloud/物联网导论.md)
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
-* [《Elasticsearch技术解析与实践》朱林 机械工业出版社](/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
+* [《Elasticsearch技术解析与实战》朱林 机械工业出版社](/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
 
 ## 前端
 * [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
