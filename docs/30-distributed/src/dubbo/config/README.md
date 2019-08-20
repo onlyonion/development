@@ -2,7 +2,6 @@
 com.alibaba.dubbo.config 配置中心
 
 ## package
-
 ```
 annotation
     Reference

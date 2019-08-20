@@ -1,6 +1,6 @@
 com.alibaba.dubbo.remoting.Dispatcher
 
-Dispatcher
+Dispatcher线程池派发器
 * all 所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等。
 * direct 所有消息都不派发到线程池，全部在 IO 线程上直接执行。
 * message 只有请求响应消息派发到线程池，其它连接断开事件，心跳等消息，直接在 IO 线程上执行。

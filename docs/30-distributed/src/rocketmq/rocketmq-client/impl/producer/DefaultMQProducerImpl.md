@@ -1,5 +1,11 @@
 org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl
 
+## hierarchy
+```
+DefaultMQProducerImpl (org.apache.rocketmq.client.impl.producer)
+    MQProducerInner (org.apache.rocketmq.client.impl.producer)
+```
+
 ## define
 ```plantuml
 @startuml
@@ -92,4 +98,26 @@ public class DefaultMQProducerImpl implements MQProducerInner {
 
         this.mQClientFactory.sendHeartbeatToAllBrokerWithLock();
     }
+```
+
+## other class
+
+### MQProducerInner
+```java
+public interface MQProducerInner {
+    Set<String> getPublishTopicList();
+
+    boolean isPublishTopicNeedUpdate(final String topic);
+
+    TransactionListener checkListener();
+
+    void checkTransactionState(
+        final String addr,
+        final MessageExt msg,
+        final CheckTransactionStateRequestHeader checkRequestHeader);
+
+    void updateTopicPublishInfo(final String topic, final TopicPublishInfo info);
+
+    boolean isUnitMode();
+}
 ```

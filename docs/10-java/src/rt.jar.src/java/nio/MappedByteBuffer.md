@@ -15,5 +15,10 @@ Buffer (java.nio)
 ```java
 public abstract class MappedByteBuffer extends ByteBuffer {
     private final FileDescriptor fd;
+    
+    MappedByteBuffer(int mark, int pos, int lim, int cap, FileDescriptor fd) {
+        super(mark, pos, lim, cap);
+        this.fd = fd;
+    }    
 }
 ```

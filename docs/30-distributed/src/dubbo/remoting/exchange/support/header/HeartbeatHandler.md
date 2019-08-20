@@ -1,8 +1,59 @@
 com.alibaba.dubbo.remoting.exchange.support.header.HeartbeatHandler
 
 ## hierarchy
-
+```
+AbstractChannelHandlerDelegate (com.alibaba.dubbo.remoting.transport)
+    HeartbeatHandler (com.alibaba.dubbo.remoting.exchange.support.header)
+```
 ## define
+
+
+## methods
+
+### connected
+```java
+    public void connected(Channel channel) throws RemotingException {
+        setReadTimestamp(channel);
+        setWriteTimestamp(channel);
+        handler.connected(channel);
+    }
+```
+
+### received
+```java
+    public void received(Channel channel, Object message) throws RemotingException {
+        setReadTimestamp(channel);
+        if (isHeartbeatRequest(message)) {
+            Request req = (Request) message;
+            if (req.isTwoWay()) {
+                Response res = new Response(req.getId(), req.getVersion());
+                res.setEvent(Response.HEARTBEAT_EVENT);
+                channel.send(res);
+                if (logger.isInfoEnabled()) {
+                    int heartbeat = channel.getUrl().getParameter(Constants.HEARTBEAT_KEY, 0);
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Received heartbeat from remote channel " + channel.getRemoteAddress()
+                                + ", cause: The channel has no data-transmission exceeds a heartbeat period"
+                                + (heartbeat > 0 ? ": " + heartbeat + "ms" : ""));
+                    }
+                }
+            }
+            return;
+        }
+        if (isHeartbeatResponse(message)) {
+            if (logger.isDebugEnabled()) {
+                logger.debug(
+                        new StringBuilder(32)
+                                .append("Receive heartbeat response in thread ")
+                                .append(Thread.currentThread().getName())
+                                .toString());
+            }
+            return;
+        }
+        handler.received(channel, message);
+    }
+```
+
 
 ## stack
 ```

@@ -1,16 +1,29 @@
-
+com.alibaba.dubbo.common
 ## package
 ```
+beanutil
+    JavaBeanAccessor
+    JavaBeanDescriptor
+    JavaBeanSerializeUtil
 bytecode
     ClassGenerator
     Mixin
     Proxy
     Wrapper
 compiler
+    support
+        AbstractCompiler
+        AdaptiveCompiler
+        ClassUtils
+        JavassistCompiler
+        JdkCompiler
     Compiler
 extension   扩展加载器 dubbo SPI
     factory
+        AdaptiveExtensionFactory
+        SpiExtensionFactory
     support
+        ActivateComparator
     Activate
     Adaptive
     ExtensionFactory
@@ -19,9 +32,26 @@ extension   扩展加载器 dubbo SPI
 io
 json
 logger
+    jcl
+    jdk
+    log4j
+    slf4j
+    support
 serialize
+    support
+        dubbo
+        hessian
+        java
+        json
+        nativejava
+    DataInput
+    DataOutput
+    ObjectInput
+    ObjectOutput
+    Serialization
 status
 store
+    DataStore
 threadpool  线程池
     cached
     fixed

@@ -63,3 +63,60 @@ class HeaderExchangeServer
         }
     }    
 ```
+
+### close
+```java
+    public void close(final int timeout) {
+        startClose();
+        if (timeout > 0) {
+            final long max = (long) timeout;
+            final long start = System.currentTimeMillis();
+            if (getUrl().getParameter(Constants.CHANNEL_SEND_READONLYEVENT_KEY, true)) {
+                sendChannelReadOnlyEvent(); // 优雅关机
+            }
+            while (HeaderExchangeServer.this.isRunning()
+                    && System.currentTimeMillis() - start < max) {
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    logger.warn(e.getMessage(), e);
+                }
+            }
+        }
+        doClose();
+        server.close(timeout);
+    }
+    
+    private void doClose() {
+        if (!closed.compareAndSet(false, true)) {
+            return;
+        }
+        stopHeartbeatTimer();
+        try {
+            scheduled.shutdown();
+        } catch (Throwable t) {
+            logger.warn(t.getMessage(), t);
+        }
+    }    
+    
+```
+
+### sendChannelReadOnlyEvent
+```java
+    private void sendChannelReadOnlyEvent() {
+        Request request = new Request();
+        request.setEvent(Request.READONLY_EVENT);
+        request.setTwoWay(false);
+        request.setVersion(Version.getVersion());
+
+        Collection<Channel> channels = getChannels();
+        for (Channel channel : channels) {
+            try {
+                if (channel.isConnected())
+                    channel.send(request, getUrl().getParameter(Constants.CHANNEL_READONLYEVENT_SENT_KEY, true));
+            } catch (RemotingException e) {
+                logger.warn("send connot write messge error.", e);
+            }
+        }
+    }
+```

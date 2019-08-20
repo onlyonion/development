@@ -6,9 +6,14 @@ client
 filter
 filtersrv
 latency                 延迟、延时
+    BrokerFastFailure
+    BrokerFixedThreadPoolExecutor
+    FutureTaskExt
 longpolling
+    PullRequestHoldService
 mqtrace
 offset
+    ConsumerOffsetManager
 out
 pagecache
     ManyMessageTransfer
@@ -16,10 +21,19 @@ pagecache
     QueryMessageTransfer
 plugin
 processor
+    QueryMessageProcessor
+    SendMessageProcessor
 slave
+    SlaveSynchronize
 subscription
 topic
 transaction
+    jdbc
+    queue
+    AbstractTransactionalMessageCheckListener
+    OperationResult
+    TransactionalMessageCheckService
+    TransactionalMessageService
 util
 BrokerController
 BrokerPathConfigHelper

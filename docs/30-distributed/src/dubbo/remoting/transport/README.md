@@ -1,12 +1,41 @@
-
+com.alibaba.dubbo.remoting.transport
 ## package
 ```
 codec
     CodecAdapter
     TransportCodec
-dispatcher
+dispatcher                          线程派发模型
+    all
+        AllChannelHandler
+        AllDispatcher
+    connection
+        ConnectionOrderedChannelHandler
+        ConnectionOrderedDispatcher
+    direct
+        DirectDispatcher
+    execution
+        ExecutionChannelHandler
+        ExecutionDispatcher
+    message
+        MessageOnlyChannelHandler
+        MessageOnlyDispatcher
+    ChannelEventRunnable
+    ChannelHandlers
+    WrappedChannelHandler
 grizzly
+    GrizzlyChannel
+    GrizzlyClient
+    GrizzlyCodecAdapter
+    GrizzlyHandler
+    GrizzlyServer
+    GrizzlyTransporter
 mina
+    MinaChannel
+    MinaClient
+    MinaCodecAdapter
+    MinaHandler
+    MinaServer
+    MinaTransporter
 netty
     NettyBackedChannelBuffer
     NettyBackedChannelBufferFactory

@@ -8,8 +8,10 @@ AbstractProxyInvoker (com.alibaba.dubbo.rpc.proxy)
 ```
 
 ## define
-```
+```plantuml
+@startuml
 
 abstract class AbstractProxyInvoker<T> 
 
+@enduml
 ```

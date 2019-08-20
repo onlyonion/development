@@ -31,6 +31,7 @@ iface lo inet loopback
 auto ens33
 iface ens33 inet static
 address 192.168.1.100
+
 netmast 255.255.255.0
 gateway 192.168.1.1
 
@@ -91,6 +92,41 @@ sudo apt-get update && sudo apt-get install maven
 ```
 
 ### ant
+### zookeeper
+```sh
+# conf
+cp zoo_sample.cfg zoo.cfg
+# 启动
+sh zkServer.sh start
+# 检查状态
+sh zkServer.sh status
+# 停止
+sh zkServer.sh stop
+# init.d
+cd /etc/init.d/
+touch zookeeper
+chmod +x zookeeper
+sudo vim zookeeper
+
+# config 脚本文件
+#!/bin/bash
+#chkconfig:2345 20 90
+#description:zookeeper
+#processname:zookeeper
+case $1 in
+	start) su root /data/zookeeper-3.4.8/bin/zkServer.sh start;;
+	stop) su root /data/zookeeper-3.4.8/bin/zkServer.sh stop;;
+	status) su root /data/zookeeper-3.4.8/bin/zkServer.sh status;;
+	restart) su root /data/zookeeper-3.4.8/bin/zkServer.sh restart;;
+	*)  echo "require start|stop|status|restart"  ;;
+esac
+# env
+service zookeeper start/stop
+chkconfig --add zookeeper
+chkconfig --list 
+export ZOOKEEPER_HOME=/data/zookeeper-3.4.8
+export PATH=${PATH}:${ZOOKEEPER_HOME}/bin
+```
 
 ### git
 ```sh
@@ -197,42 +233,6 @@ sudo systemctl restart jenkins
 	<disableSignup>false</disableSignup> 
 	<enableCaptcha>false</enableCaptcha>
 </securityRealm>
-```
-
-### zookeeper
-```sh
-# conf
-cp zoo_sample.cfg zoo.cfg
-# 启动
-sh zkServer.sh start
-# 检查状态
-sh zkServer.sh status
-# 停止
-sh zkServer.sh stop
-# init.d
-cd /etc/init.d/
-touch zookeeper
-chmod +x zookeeper
-sudo vim zookeeper
-
-# config 脚本文件
-#!/bin/bash
-#chkconfig:2345 20 90
-#description:zookeeper
-#processname:zookeeper
-case $1 in
-	start) su root /data/zookeeper-3.4.8/bin/zkServer.sh start;;
-	stop) su root /data/zookeeper-3.4.8/bin/zkServer.sh stop;;
-	status) su root /data/zookeeper-3.4.8/bin/zkServer.sh status;;
-	restart) su root /data/zookeeper-3.4.8/bin/zkServer.sh restart;;
-	*)  echo "require start|stop|status|restart"  ;;
-esac
-# env
-service zookeeper start/stop
-chkconfig --add zookeeper
-chkconfig --list 
-export ZOOKEEPER_HOME=/data/zookeeper-3.4.8
-export PATH=${PATH}:${ZOOKEEPER_HOME}/bin
 ```
 
 ### nginx

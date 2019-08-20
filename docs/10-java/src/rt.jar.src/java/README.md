@@ -24,7 +24,7 @@ java.lang
 
 ### 集合框架
 java.util
-  * list
+  * [List](/docs/10-java/src/rt.jar.src/java/util/collections/list.List.md)
     * [ArrayList](/docs/10-java/src/rt.jar.src/java/util/collections/list.ArrayList.md)
     * [LinkedList](/docs/10-java/src/rt.jar.src/java/util/collections/list.LinkedList.md)
   * set
@@ -143,6 +143,7 @@ java.io
     * [Buffer](/docs/10-java/src/rt.jar.src/java/nio/Buffer.md) 缓冲区，容器对象，通常是一个字节数组。
     * [ByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/ByteBuffer.md)
     * [DirectByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/DirectByteBuffer.md)
+    * [MappedByteBuffer](/docs/10-java/src/rt.jar.src/java/nio/MappedByteBuffer.md)
 
 ### 网络编程
 java.net

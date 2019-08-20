@@ -15,3 +15,27 @@ routeinfo
 NamesrvController
 NamesrvStartup
 ```
+
+## overview
+```plantuml
+@startuml
+
+class NamesrvStartup
+NamesrvStartup ..> NamesrvController
+
+class NamesrvController
+
+class KVConfigManager
+class RouteInfoManager
+
+NamesrvController *-- KVConfigManager
+NamesrvController *-- RouteInfoManager
+NamesrvController *-- NamesrvConfig
+NamesrvController *-- BrokerHousekeepingService
+
+interface ChannelEventListener
+class BrokerHousekeepingService
+ChannelEventListener ^.. BrokerHousekeepingService
+
+@enduml
+```

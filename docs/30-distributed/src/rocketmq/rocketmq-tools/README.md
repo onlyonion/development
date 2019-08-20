@@ -1,1 +1,33 @@
-#
+org.apache.rocketmq.tools
+
+## package
+```
+admin
+    api
+    DefaultMQAdminExt
+    DefaultMQAdminExtImpl
+    MQAdminExt
+command
+    broker
+    cluster
+    connection
+    consumer
+    message
+    namesrv
+    offset
+    queue
+    stats
+    topic
+    CommandUtil
+    MQAdminStartup
+    SubCommand
+    SubCommandException
+monitor
+    DefaultMonitorListener
+    DeleteMsgsEvent
+    FailedMsgs
+    MonitorConfig
+    MonitorListener
+    MonitorService
+    UndoneMsgs
+```

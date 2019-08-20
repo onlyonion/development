@@ -84,6 +84,11 @@ DubboInvoker o-- ExchangeClient
 ## methods
 
 ### doInvoke
+- ExchangeClient extends Client, ExchangeChannel
+  - [HeaderExchangeChannel](/docs/30-distributed/src/dubbo/remoting/exchange/support/header/HeaderExchangeChannel.md)
+- [DefaultFuture](/docs/30-distributed/src/dubbo/remoting/exchange/support/DefaultFuture.md)
+
+
 ```java
     @Override
     protected Result doInvoke(final Invocation invocation) throws Throwable {

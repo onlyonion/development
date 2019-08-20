@@ -14,6 +14,7 @@ public class ScheduledMessageConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ExampleConsumer");
         // Subscribe topics
         consumer.subscribe("TestTopic", "*");
+        MQUtil.setNamesrvAddr(consumer);
         // Register message listener
         consumer.registerMessageListener(new MessageListenerConcurrently() {
             @Override

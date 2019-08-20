@@ -15,7 +15,7 @@ public class BroadcastConsumer {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("example_group_name");
 
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
-
+        MQUtil.setNamesrvAddr(consumer);
         //set to broadcast mode
         consumer.setMessageModel(MessageModel.BROADCASTING);
 

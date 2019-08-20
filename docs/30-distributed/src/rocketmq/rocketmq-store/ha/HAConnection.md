@@ -1,0 +1,1 @@
+org.apache.rocketmq.store.ha.HAConnection

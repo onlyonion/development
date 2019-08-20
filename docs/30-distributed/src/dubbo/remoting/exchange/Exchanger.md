@@ -10,7 +10,10 @@ Exchanger (com.alibaba.dubbo.remoting.exchange)
 ```plantuml
 @startuml
 
+interface Exchanger
 class HeaderExchangeClient
+
+Exchanger ^.. HeaderExchangeClient
 
 @enduml
 ```

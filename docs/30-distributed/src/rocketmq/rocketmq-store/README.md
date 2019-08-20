@@ -3,27 +3,42 @@ org.apache.rocketmq.store
 ## package
 ```
 config
+    BrokerRole
+    FlushDiskType
+    MessageStoreConfig
+    StorePathConfigHelper
 ha
+    HAConnection
+    HAService
+    WaitNotifyObject
 index
+    IndexFile
+    IndexHeader
+    IndexService
+    QueryOffsetResult
 schedule
+    DelayOffsetSerializeWrapper
     ScheduleMessageService
 stats
+    BrokerStats
+    BrokerStatsManager
 util
+
 AllocateMappedFileService
 AppendMessageCallback
 AppendMessageResult
 AppendMessageStatus
-CommitLog
+CommitLog                           提交日志
 CommitLogDispatcher
-ConsumeQueue
+ConsumeQueue                        消费队列
 ConsumeQueueExt
 DefaultMessageFilter
-DefaultMessageStore
+DefaultMessageStore                 默认消息存储
 DispatchRequest
 GetMessageResult
 GetMessageStatus
-MappedFile
-MappedFileQueue
+MappedFile                          映射文件
+MappedFileQueue                     映射文件队列
 MessageArrivingListener
 MessageExtBrokerInner
 MessageFilter
@@ -40,5 +55,5 @@ SelectMappedBufferResult
 StoreCheckpoint
 StoreStatsService
 StoreUtil
-TransientStorePool
+TransientStorePool                  瞬变存储池
 ```

@@ -1,6 +1,6 @@
 计算机类
 
-## 计算机基础
+## 学科基础
 [培养方案](/docs/99-book/notes/00-base/README.md)
 * 组成
   * [《计算机组成原理（第2版）》唐朔飞](/docs/99-book/notes/00-base/计算机组成原理.md)
@@ -59,8 +59,10 @@
 * [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
 * [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
 * [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
+* [《深入理解Apache Dubbo与实战》诣极，林琳 著](/docs/99-book/notes/30-distributed/深入理解ApacheDubbo与实战.md)
 * [《dubbo源码解析2.0》](/99-book/notes/30-distributed/dubbo.md)
 * [《Redis设计与实现》黄建宏](/99-book/notes/30-distributed/Redis设计与实现.md)
+* [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社](/docs/99-book/notes/30-distributed/RocketMQ技术内幕.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《RocketMQ原理简介》淘宝消息中间件项目组](/99-book/notes/30-distributed/RockMQ原理简介.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
@@ -70,18 +72,15 @@
 
 ## 架构
 * [《软件体系结构》第3版 章征 清华大学出版社](/99-book/notes/40-architecture/软件体系结构.md)
-* 阿里系
-  * [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md) 框中拆异缓 运营（鹰眼、埋单、日志）、稳定（限流、降级、调度、开关、链路、一致性）
-  * [《大型网站技术架构 核心原理与案例分析》李智慧](/99-book/notes/40-architecture/大型网站技术架构.md) 分层、分割、分布式 集群、缓存、异步 冗余、自动化、安全
-  * [《大型分布式网站架构设计与实践》陈康贤](/99-book/notes/40-architecture/大型分布式网站架构.md)
-  * [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/40-architecture/大型网站系统与Java中间件实践.md)
-  * [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/99-book/notes/40-architecture/逆流而上.md)
-  * [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/99-book/notes/40-architecture/尽在双11.md)
-  * 《淘宝技术这十年》 子柳
-* 京东系
-  * [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
-* 开发者大会
-  * [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)
+* [《企业IT架构转型之道 阿里巴巴中台战略思想与架构实战》钟华](/99-book/notes/40-architecture/企业IT架构转型之道.md) 
+* [《大型网站技术架构 核心原理与案例分析》李智慧](/99-book/notes/40-architecture/大型网站技术架构.md) 
+* [《大型分布式网站架构设计与实践》陈康贤](/99-book/notes/40-architecture/大型分布式网站架构.md)
+* [《大型网站系统与Java中间件实践》曾宪杰](/99-book/notes/40-architecture/大型网站系统与Java中间件实践.md)
+* [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/99-book/notes/40-architecture/逆流而上.md)
+* [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/99-book/notes/40-architecture/尽在双11.md)
+* [《淘宝技术这十年》子柳](/99-book/notes/40-architecture/淘宝技术这十年.md)
+* [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
+* [《双11背后的技术较量》](/99-book/notes/40-architecture/双11背后的技术较量.md)
 * [《Java应用架构设计 模块化模式与OSGi》张卫滨 译 机械工业出版社](/99-book/notes/40-architecture/Java应用架构设计.md)
 * [《可伸缩服务架构 框架与中间件》 李艳鹏 杨彪 电子工业出版社](/99-book/notes/40-architecture/可伸缩服务架构.md)
 

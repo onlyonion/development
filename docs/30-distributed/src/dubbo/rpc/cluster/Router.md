@@ -14,7 +14,7 @@ Router (com.alibaba.dubbo.rpc.cluster)
 
 interface Router {
     URL getUrl()
-    <T> List<Invoker<T>> route(List<Invoker<T>> invokers, URL url, Invocation invocation) throws RpcException
+    <T> List<Invoker<T>> route(List<Invoker<T>> invokers, URL url, Invocation invocation)
 }
 
 @enduml

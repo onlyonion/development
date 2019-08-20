@@ -179,6 +179,74 @@ public class ConsumeMessageConcurrentlyService implements ConsumeMessageService 
     }
 ```
 
+### processConsumeResult
+处理消费结果
+
+```java
+    public void processConsumeResult(
+        final ConsumeConcurrentlyStatus status,
+        final ConsumeConcurrentlyContext context,
+        final ConsumeRequest consumeRequest
+    ) {
+        int ackIndex = context.getAckIndex();
+
+        if (consumeRequest.getMsgs().isEmpty())
+            return;
+
+        switch (status) {
+            case CONSUME_SUCCESS: // 消费成功
+                if (ackIndex >= consumeRequest.getMsgs().size()) {
+                    ackIndex = consumeRequest.getMsgs().size() - 1;
+                }
+                int ok = ackIndex + 1;
+                int failed = consumeRequest.getMsgs().size() - ok;
+                this.getConsumerStatsManager().incConsumeOKTPS(consumerGroup, consumeRequest.getMessageQueue().getTopic(), ok);
+                this.getConsumerStatsManager().incConsumeFailedTPS(consumerGroup, consumeRequest.getMessageQueue().getTopic(), failed);
+                break;
+            case RECONSUME_LATER: // 稍后重新消费
+                ackIndex = -1;
+                this.getConsumerStatsManager().incConsumeFailedTPS(consumerGroup, consumeRequest.getMessageQueue().getTopic(),
+                    consumeRequest.getMsgs().size());
+                break;
+            default:
+                break;
+        }
+
+        switch (this.defaultMQPushConsumer.getMessageModel()) {
+            case BROADCASTING:
+                for (int i = ackIndex + 1; i < consumeRequest.getMsgs().size(); i++) {
+                    MessageExt msg = consumeRequest.getMsgs().get(i);
+                    log.warn("BROADCASTING, the message consume failed, drop it, {}", msg.toString());
+                }
+                break;
+            case CLUSTERING:
+                List<MessageExt> msgBackFailed = new ArrayList<MessageExt>(consumeRequest.getMsgs().size());
+                for (int i = ackIndex + 1; i < consumeRequest.getMsgs().size(); i++) {
+                    MessageExt msg = consumeRequest.getMsgs().get(i);
+                    boolean result = this.sendMessageBack(msg, context);
+                    if (!result) {
+                        msg.setReconsumeTimes(msg.getReconsumeTimes() + 1);
+                        msgBackFailed.add(msg);
+                    }
+                }
+
+                if (!msgBackFailed.isEmpty()) {
+                    consumeRequest.getMsgs().removeAll(msgBackFailed);
+
+                    this.submitConsumeRequestLater(msgBackFailed, consumeRequest.getProcessQueue(), consumeRequest.getMessageQueue());
+                }
+                break;
+            default:
+                break;
+        }
+
+        long offset = consumeRequest.getProcessQueue().removeMessage(consumeRequest.getMsgs());
+        if (offset >= 0 && !consumeRequest.getProcessQueue().isDropped()) {
+            this.defaultMQPushConsumerImpl.getOffsetStore().updateOffset(consumeRequest.getMessageQueue(), offset, true);
+        }
+    }
+```
+
 
 ## class
 
@@ -253,7 +321,7 @@ public interface ConsumeMessageService {
                         MessageAccessor.setConsumeStartTimeStamp(msg, String.valueOf(System.currentTimeMillis()));
                     }
                 }
-                status = listener.consumeMessage(Collections.unmodifiableList(msgs), context);
+                status = listener.consumeMessage(Collections.unmodifiableList(msgs), context); // 回调监听器接口
             } catch (Throwable e) {
                 log.warn("consumeMessage exception: {} Group: {} Msgs: {} MQ: {}",
                     RemotingHelper.exceptionSimpleDesc(e),
