@@ -9,6 +9,7 @@ SpiEextension导引目路集衡调
 * [common](/30-distributed/src/dubbo/common/README.md)
   * extension
     * [ExtensionLoader](/docs/30-distributed/src/dubbo/common/extension/ExtensionLoader.md) SPI扩展加载器
+    * [ExtensionFactory](/docs/30-distributed/src/dubbo/common/extension/ExtensionFactory.md)
   * utils
     * [LRUCache](/docs/30-distributed/src/dubbo/common/utils/LRUCache.md)
   * [threadpool](/docs/30-distributed/src/dubbo/common/threadpool/README.md)

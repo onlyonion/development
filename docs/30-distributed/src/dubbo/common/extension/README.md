@@ -1,3 +1,6 @@
+com.alibaba.dubbo.common.extension
+
+## package
 ```
 factory
     AdaptiveExtensionFactory

@@ -22,11 +22,33 @@ NameServer与每台Broker服务器保持长连接，并间隔30s检测Broker是�
 
 NameServer本身的高可用通过部署多台NameServer服务器来实现，但彼此之间互不通信。
 ### 2.2 NameServer启动流程
+1. 解析配置文件，需要填充NameServerConfig、NettyServerConfig属性值。
+2. 根据启动属性创建NamesrvConroller实例，并初始化该实例。
+
+如果代码中使用了线程池，一种优雅停机的方式就是注册一个JVM钩子函数，在JVM进程关闭之前，现将线程池关闭，及时释放资源。
 ### 2.3 NameServer路由注册、故障剔除
 #### 2.3.1 路由元信息
+- topicQqueueTable 主题队列路由信息
+- brokerAddrTable 
+- clusterAddrTable
+- brokerLivedTable
+- filterServerTalbe
+
 #### 2.3.2 路由注册
+1. Broker发送心跳包
+2. NameServer处理心跳包
+
 #### 2.3.3 路由删除
+Broker每个30s向NameServer发送一个心跳包，心跳包中包含BrokerId、Broker地址、Broker所属集群的名称、Broker管理的FilterServer列表。
+
+NameServer会每个10s扫描brokerLiveTable状态表，如果BrokerLive的lastUpdateTimestamp的时间戳距当前时间超过120s，则认为broker失效，
+移除该broker，关闭与broker连接，同时更新topicQueueTable、brokerAddrTable、brokerLivedTable、filterServerTable。
+
 #### 2.3.4 路由发现
+RocketMQ路由发现是非实时的，当Topic路由出现变化后，NameServer不主动推送给客户端，而是由客户端定时拉取主题最新的路由。
+根据主题名拉取路由信息的命令编码为：GET_ROUTEINFO_BY_TOPIC。
+1. 根据RouterInfoManager的方法，从路由表topicQueueTable、brokerAddrTable、FilterServerTable中分别填充TopicRouteData
+2. 如果找到主题对应的路由信息并且该主题为顺序消息，则从NameServerKVconfig中获取关于顺序消息相关的配置填充路由信息。
 
 ## 第3章 RocketMQ消息发送
 ### 3.1 漫谈RocketMQ消息发送
@@ -187,9 +209,8 @@ checkpoint
 - 消息过滤：表达式过滤与类过滤模式
 
 ### 5.2 消息消费者初探
-MQPushConsumer
-
-DefaultMQPushConsumer
+- MQPushConsumer
+- DefaultMQPushConsumer
 
 ### 5.3 消费者启动流程
 DefaultMQPushConsumerImpl.start()
@@ -241,36 +262,105 @@ ProcessQueue是MessageQueue在消费端的重现、快照。
 5. PullRequestHoldService线程详解
 6. DefaultMessageStore$ReputMessageService
 
-
 ### 5.5 消息队列负载与重新分布机制
+RocketMQ消息队列重新分布式由RebalanceService线程来实现的。一个MQClientInstance持有一个RebalanceService实现，并随着MQClientInstance的启动而启动。
+
+每个DefaultMQPushConsumerImpl都持有一个单独的RebalanceImpl对象，该方法主要是遍历订阅信息对每个主题的队列进行重新负载。
+1. 从主题订阅信息缓存表中获取主题的队列信息
+2. 首先对cidAll，mqAll排序，同一个消费组内看到的视图保持一致，确保同一个消费队列不会被多个消费组分配
+   - 分配算法：平均分配、平均轮询分配、一致性hash、根据配置、根据Broker部署机房名
+3. ConcurrentMap<MessageQueue, ProcessQueue> processQueueTable，当前消费者负载的消费队列缓存
+4. 遍历本次负载分配到的队列集合
+5. 将PullRequest加入到PullMessageService中，以便唤醒PullMessageService线程。
+
 ### 5.6 消息消费过程
+ConsumeMessageService#submitComsumeRequest进行消息消费，支持顺序消费与并发消费。
 #### 5.6.1 消息消费
+ConsumeMessageConcurrentlyService#submitConsumeRequest提交消费请求
+1. 消费批次
+2. 如果拉取的消息条数大于consumeMessageBatchMaxSize，则对拉取消息进行分页
+3. 进入具体消息消费会先检查processQueue的dropped
+4. 执行消息消费钩子函数ConsumeMessageHook#consumeMessageBefore函数
+5. 恢复重试消费主题名
+6. 执行具体的消息消费，调用应用消息监听器的consumeMessage方法
+7. 执行消息消费钩子函数ConsumeMessageHook#consumeMessageAfter函数
+8. 执行业务消费后，在处理结果前再次验证一下ProcessQueue的isDropped状态值
+9. 根据消息监听器返回的结果，计算ackIndex
+10. 如果是集群模式，业务方返回RECOSUME_LATER，消息并不会重新被消费，
+11. 从ProcessQueue中一次这批消息
+
 #### 5.6.2 消息确认(ACK)
 #### 5.6.3 消费进度管理
+广播模式：消息进度独立存储。
+
+集群模式：消费进度保持在一个每个消费者都能够访问到的地方。
+
 ### 5.7 定时消息机制
+定时消息是指消息发送到Broker后，并不立即被消费者消费而是要等到特定的时间后才能被消费。
+RocketMQ只支持特定级别的延迟消息。
+
+ScheduleMessageService定时消息实现类
+
 #### 5.7.1 load方法
 #### 5.7.2 start方法
 #### 5.7.3 定时调度逻辑
+ScheduleMessageService的start方法启动后，会为每一个延迟级别创建一个调度任务，每一个延迟级别其实对应SCHEDULE_TOPIC_XXXX主题下的一个消息消费队列。
 
+DeliverDelayedMessageTimerTask
 ### 5.8 消息过滤机制
+MessageFilter。RocketMQ消息过滤方式不同于其他消息中间件，是在订阅时做过滤。
+
 ### 5.9 顺序消息
+!> RocketMQ支持局部消息顺序消费，可以确保同一个消息消费队列中的消息被顺序消费，如果需要做到全局顺序消费则可以将主题配置成一个队列。
+
+根据并发消息消费的流程，消息消费包含4个步骤：消息队列负载、消息拉取、消息消费、消息消费进度存储。
 #### 5.9.1 消息队列负载
+!> 顺序消息消费与并发消息消费的第一个关键区别：顺序消息在创建消息队列拉取任务时需要在Broker服务器锁定该消息队列。
+
 #### 5.9.2 消息拉取
+PullMessageService线程负责
 #### 5.9.3 消息消费
+ConsumeMessageOrderlyService
 #### 5.9.4 消息队列锁实现
+顺序消息消费的各个环节基本都是围绕消息消费队列（ConsumeQueue）与消息处理队列（ProcessQueue）展开的。
+拉取时，判断ProcessQueue的locked是否为true
+
+### 5.10 小结
+消息队列负载由RebalanceService线程默认每隔20s进行一次消息队列负载，
+根据当前消费组内**消费者个数**与**主题队列数量**按照某一种负载算法进行队列分配，
+分配原则为同一个消费者可以分配多个消息消费队列，同一个消息消费队列同一时间只会分配给一个消费者。
+
+消息拉取由PullMessageService线程根据RebalanceService线程创建的拉取任务进行拉取，
+默认一批拉取32条消息，提交给消费者消费线程池后继续下一次消息拉取。
+如果消息消费过慢产生消费堆积会触发消息消费拉取流控。
+
+顺序消费一般采用集群模式，是指消息消费者内的线程池中的线程对消息消费队列只能串行消费。
+与并发消息消费最本质的区别是消息消费时必须成功**锁定**消息消息队列，在Broker端会存储消息消费队列的锁占用情况。
 
 ## 第6章 消息过滤FilterServer
 并不是所有的消息都需要进行消费的
 ### 6.1 ClassFilter运行机制
+基于类模式过滤是指在Broker端运行1个或多个消息过滤服务器（FilterServer），
+RocketMQ允许消息消费者自定义消息过滤实现类并将其代码上传到FilterServer上，消费者向FilterServer拉取消息，
+FilterServer将消费者的拉取命令转发给Broker，然后对返回的消息执行消息过滤逻辑，最终将消息返回给消费端。
+
 通常消息消费是直接向Broker订阅主题然后从Broker上拉取消息，类模式的一个特别之处在于消息消费者是从FilterServer拉取消息。
 ### 6.2 FilterServer注册剖析
 FilterServer在启动时会创建一个定时调度任务，每个10s向Broker注册自己。
 ### 6.3 类过滤模式订阅机制
 ### 6.4 消息拉取
+RocketMQ消息的过滤发生在消息消费的时候，PullMessageService线程默认从Broker上拉取消息，执行相关的过滤逻辑。
+在FilterServer过滤模式下，PullMessageService线程是如何将拉取地址原来的Broker地址转换成FilterServer地址呢？
 
 ## 第7章 RocketMQ主从同步(HA)机制 
 ### 7.1 RocketMQ主从复制原理
 Broker主备机制：消息消费到达**主服务器**需要将消息同步到**从服务器**，如果主服务器Broker宕机后，消息消费者可以从**从服务器**拉取消息。
+#### 7.1.1 HAService整体工作机制
+#### 7.1.2 AcceptSocketService实现原理
+#### 7.1.3 GroupTransferService实现原理
+#### 7.1.4 HAClient实现原理
+#### 7.1.5 HAConnection实现原理
+
 ### 7.2 RocketMQ读写分离机制
 消息消费是基于消息消费队列MessageQueue（topic、brokerName、queueId）。
 
@@ -278,9 +368,34 @@ Broker主备机制：消息消费到达**主服务器**需要将消息同步到*
 
 ## 第8章 RocketMQ事务消息 
 ### 8.1 事务消息实现思想
+1. perpare消息
+2. RocketMQ 定时任务回查
+
 ### 8.2 事务消息发送流程
+1. TransactionMQProducer
+2. TransactionListener
+
+事务发送流程
+1. 首先为消息添加属性，TRAN_MSG和PGROUP，分别表示消息为prepare消息、消息所属消息生产者组，通过同步调用的方式向RockeMQ发送消息。
+   设置生产者组的目的是在查询事务消息本地事务状态时，从该生产者组中随机萱蕚一个消息生产者即可。
+2. 根据消息发送结果执行相应的操作
+   - 如果消息发送成功，则执行TransactionListener#executeLocalTransaction，记录事务消息的本地事务状态，并且该方法与业务方法处于同一事务中，
+   - 如果消息发送失败，则设置本次事务桩体为LocalTransactionState.ROLLBACK_MESSAGE.
+3. 结束事务。根据第二步返回的事务状态执行提交、回滚或暂时不处理事务。
+
 ### 8.3 提交或回滚事务
 ### 8.4 事务消息回查事务状态
+1. RocketMQ通过TransactionalMessageCheckService线程定时去检测RMQ_SYS_TRANS_HALF_TOPIC主题中的消息，回查消息的事务状态。
+默认检测频率1分钟。
+2. TransactionalMessageService#check
+   - 查询RMQ_SYS_TRANS_HALF_TOPIC主题下的消息队列，该主题是prepare下线的存储队列
+   - 遍历每一个消息消费队列，每个消息消费队列的处理时间为60s
+3. AbstractTransactionMessageCheckListener#resolveHalfMsg 展示异步发送消息回查消息进度
+4. AbstractTransactionMessageCheckListener#sendCheckMessage 组装回查请求命令，根据生产者，选择网络通道，从Broker向生产者发送回查事务状态
+5. ClientRemotingProcessor#checkTransactionState
+6. DefualtMQProducerImpl#checkTransactionState
+7. TransactionListener#checkLocalTransaction
+8. 根据事务状态发送END_TRANSACTION 发送END_TRANSACTION 命令给Broker，如果发哦少年宫UNDOWN，broker不会做任何动作只会打印info日志
 
 ## 第9章 RocketMQ实战 
 ### 9.1 消息批量发送
@@ -289,14 +404,18 @@ SendResult send(Collection<Message> msgs)
 ### 9.2 消息发送队列自选择
 SendResult send(Message msg, MessageQueueSelector selector, Object arg)
 ### 9.3 消息过滤
-1. TAG模式过滤
-2. SQL表达模式过滤
-3. 类过滤模式 实现消息过滤器MessageFilter
+#### 9.3.1 TAG模式过滤
+#### 9.3.2 SQL表达模式过滤
+#### 9.3.3 类过滤模式
+实现消息过滤器MessageFilter
 
 ### 9.4 事务消息
 ### 9.5 Spring整合RocketMQ
 ### 9.6 Spring Cloud整合RocketMQ
 ### 9.7 RocketMQ监控与运维命令
+#### 9.7.1 RocktetMQ监控平台搭建
+#### 9.7.2 RocketMQ管理命令
+
 ### 9.8 应用场景分析
 - 异步调用、应用解耦
 - 可靠消息最终一致性

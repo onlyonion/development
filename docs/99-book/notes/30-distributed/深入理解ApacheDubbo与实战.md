@@ -34,6 +34,24 @@
 
 ## 第4章 Dubbo扩展点加载机制
 ### 4.1 加载机制
+#### 4.1.1 JavaSPI
+```java
+// jdbc
+ServiceLoader<Driver> serviceLoader = ServiceLoader.load(Driver.class);
+```
+#### 4.1.2 扩展点加载机制的改进
+1. JDK标准的SPI会一次性实例化扩展点所有实现
+2. 如果扩展点加载失败，则连扩展点的名称都获取不到
+3. 增加了对扩展IoC和AOP的支持
+
+#### 4.1.3 扩展点的配置规范
+#### 4.1.4 扩展点的分类与缓存
+#### 4.1.5 扩展点的特性
+1. 自动包装
+2. 自动加载 setter方法，框架会自动注入对应的扩展点实现类。如果有多种实现，需要自适应。
+3. 自适应 setter多个实现类，URL中的参数来确定使用哪个具体的实现类。只能激活一个具体的实现类。
+4. 自动激活 默认可以激活不同的扩展点实现。
+
 ### 4.2 扩展点注解
 ### 4.3 ExtensionLoader的工作原理
 ### 4.4 扩展点动态编译的实现
@@ -77,11 +95,33 @@ Dubbo也支持相同服务暴露多个协议，比如同时暴露Dubbo和REST协
 5. 服务端等待已经执行的任务结束并拒绝新的任务执行
 
 ## 第6章 Dubbo远程调用
+Dubbo调用流程、Dubbo内部协议、编解码、线程模型
 ### 6.1 Dubbo调用介绍
+首先在客户端启动时会从注册中心拉取和订阅对应的服务列表，Cluster会把拉取的服务列表聚合成一个Invoker，
+每次RPC调用前会通过Directory#list获取providers地址，获取这些服务列表给后续路由和复制均衡使用。
+
+在Dubbo发起服务调用时，所有路由和复制均衡都是在客户端实现的。
+客户端经过路由和负载均衡后，会将请求交给地城IO线程池处理，IO线程池主要负责处理读写、序列化和发序列化等逻辑。
+
 ### 6.2 Dubbo协议详解
+Dubbo协议，协议头（16Byte = 4 * 4Byte = 4 * 32bit）、协议体。
+- 消息头
+  - 4Byte 魔法数高位、魔法数地位、请求响应、需要往返、事件、序列化ID、状态
+  - 8Byte RPC请求ID
+  - 4Byte 消息体数据长度
+- 消息体
+  - dubbo version、service name、service version、method name、parametertypes、arguments、attachments
+
+客户端多个线程并发请求时，框架内部会调用DefaultFuture对象的get方法进行等待。在发起请求时，框架内部会创建Request对象，
+这个时候会被分配一个唯一id，DefaultFuture可以从Request对象中获取id，并将关联关系存储到静态HashMap中。
+
+当客户端收到响应时，会根据Response对象中的id，从Future集合中查找对应DefaultFuture对象，最终会唤醒对应的线程并通知结果。
+
+客户端也会启动一个定时扫描线程去探测超时有没有返回请求。
 ### 6.3 编解码原理
 #### 6.3.1 Dubbo协议编码器
 #### 6.3.2 Dubbo协议解码器
+
 ### 6.4 Telnet调用原理
 ### 6.5 ChannelHandler
 #### 6.5.1 核心Handler和线程模型
@@ -101,6 +141,7 @@ Dubbo默认客户端和服务端都会发送心跳报文，用来保持TCP长连
 HeartBeatTask
 
 ## 第7章 Dubbo集群容错
+集群容错、Directory、Router、LoadBalance、Merger、Mock
 ### 7.1 Cluster层概述
 Cluster层是抽象概念，表示的是对外的整个机器容错层；Cluster是容错接口，提供Failover、Failfast等容错策略。
 

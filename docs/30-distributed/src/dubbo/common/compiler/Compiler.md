@@ -1,4 +1,4 @@
-
+com.alibaba.dubbo.common.compiler.Compiler
 ## hierachy
 ```
 Compiler (com.alibaba.dubbo.common.compiler)
@@ -8,8 +8,16 @@ Compiler (com.alibaba.dubbo.common.compiler)
         JdkCompiler (com.alibaba.dubbo.common.compiler.support)
 ```
 
-## invoke
 
+## define
+```java
+@SPI("javassist")
+public interface Compiler {
+    Class<?> compile(String code, ClassLoader classLoader);
+}
+```
+
+## invoke
 * ExtensionLoader
 * AdaptiveCompiler
 * AbstractCompiler
