@@ -21,7 +21,7 @@
 
 ### 3.2 订阅/发布
 #### 3.2.1 ZooKeeper的实现
-#### 3.2.2 Redis的实
+#### 3.2.2 Redis的实现
 
 ### 3.3 缓存机制
 #### 3.3.1 缓存的加载
@@ -118,19 +118,34 @@ Dubbo协议，协议头（16Byte = 4 * 4Byte = 4 * 32bit）、协议体。
 当客户端收到响应时，会根据Response对象中的id，从Future集合中查找对应DefaultFuture对象，最终会唤醒对应的线程并通知结果。
 
 客户端也会启动一个定时扫描线程去探测超时有没有返回请求。
+
 ### 6.3 编解码原理
 #### 6.3.1 Dubbo协议编码器
+构造报文头部，然后对消息体进行序列化处理。
 #### 6.3.2 Dubbo协议解码器
+解码工作分成两部分，第一部分解码报文头部（16字节），第二部分解码报文体内容，以及如何把报文体转换成RpcInvocation。
+
+实现解码过程中要解决粘包和半包问题。
+
+心跳报文时没有消息体的；事件有消息体，在使用hession2协议的情况下默认会传递字符R，当优雅停机会通过发送readonly事件来通知客户端服务端不可用。
+
+在解码请求时，是严格按照客户端写数据顺序来处理的。
 
 ### 6.4 Telnet调用原理
+
 ### 6.5 ChannelHandler
+因为Netty每次创建Handler都会应该ChannelPipeline，大量事件经过很多Pipeline会有较多的开销，因此Dubbo会将多个Handler聚合为一个Handler。
 #### 6.5.1 核心Handler和线程模型
-Handler（ChannelHandler），connected、disconnected、sent、received、caught
+Handler（ChannelHandler），connected、disconnected、sent、received、caught。
+
+- DubboProtocol中通过内部类继承自ExchangeHandlerAdapter，完成服务提供方Invoker实例的查找并进行服务的真实调用。
+- 实例Invoker存储到HashMap中，客户端调用过来必须携带相同的信息构造的key，找到对应Exporter
+- serviceKey服务的唯一标识由4部分组成的：端口、接口名、接口版本和接口分组。
 
 线程模型
 - IO线程池，负责读写报文，用于接收请求，如果IO线程饱和，则不会接收行的请求
 - 业务线程池，Dubbo中负责业务方法调用，
-- Dispatcher线程池派发器，属于Dubbo中的扩展点，
+- Dispatcher线程池派发器，属于Dubbo中的扩展点
 
 #### 6.5.2 Dubbo请求相应Handler
 HeaderExchangeHandler将方法调用抽象成Request/Response，每次调用都会创建一个请求Request
@@ -152,6 +167,26 @@ Cluster层
 4. RPC调用
 
 ### 7.2 容错机制的实现
+#### 7.2.1 容错机制概述
+#### 7.2.2 Cluster接口关系
+!> 当上层调用Invoker时，无论实际存在多个少个Invoker，只需要通过Cluster层，即可完成整个调用的**容错**逻辑，包括服务列表、路由、负载均衡等。
+Cluster接口只是串联起整个逻辑，其中ClusterInvoker只实现了容错策略部分，其他逻辑则是调用了Directory、Router、LoadBalance等接口实现。
+
+#### 7.2.3 Failover策略
+默认实现。for循环实现重试，for循环的次数就是重试的次数。
+#### 7.2.4 Failfast策略
+校检、负载均衡、远程调用，捕获异常抛出。
+#### 7.2.5 Failsafe策略
+校检、负载均衡、远程调用，catch异常处理，返回空RcpResult。
+#### 7.2.6 Failback策略
+校检、负载均衡、远程调用，失败的invocation保存到ConcurrentHashMap中，定时器重试。
+#### 7.2.7 Availabe策略
+遍历，找到第一个可用的服务直接调用，找不到抛异常。
+#### 7.2.8 Broadcast策略
+广播给所有可用的节点，如果任何一个节点报错，则返回异常。任何一个节点出错，不会中断整个广播。多个节点异常，只有最后一个节点异常会抛出，前面的会被覆盖。
+#### 7.2.9 Forking策略
+并行请求多个服务，有任何一个服务返回，则直接返回。内部持有CachedThreadPool线程池。
+
 ### 7.3 Directory的实现
 #### 7.3.1 总体实现
 #### 7.3.2 RegistryDirectory的实现

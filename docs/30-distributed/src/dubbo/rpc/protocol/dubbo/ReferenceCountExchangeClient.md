@@ -19,3 +19,14 @@ class ReferenceCountExchangeClient
 
 @enduml
 ```
+
+```java
+final class ReferenceCountExchangeClient implements ExchangeClient {
+    private final URL url;
+    private final AtomicInteger refenceCount = new AtomicInteger(0);
+
+    //    private final ExchangeHandler handler;
+    private final ConcurrentMap<String, LazyConnectExchangeClient> ghostClientMap;
+    private ExchangeClient client;
+}    
+```

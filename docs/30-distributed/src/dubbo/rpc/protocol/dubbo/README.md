@@ -1,7 +1,6 @@
-
+com.alibaba.dubbo.rpc.protocol.dubbo
 ## dubbo protocol
 ```
-com.alibaba.dubbo.rpc.protocol.dubbo
     filter
     page
     status

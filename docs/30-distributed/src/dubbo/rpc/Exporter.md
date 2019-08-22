@@ -1,8 +1,25 @@
 com.alibaba.dubbo.rpc.Exporter
 
-## 1. 定义
+## hierarchy
+```
+Exporter (com.alibaba.dubbo.rpc)
+    ExporterChangeableWrapper in RegistryProtocol (com.alibaba.dubbo.registry.integration)
+    1 in RegistryProtocol (com.alibaba.dubbo.registry.integration)
+    AbstractExporter (com.alibaba.dubbo.rpc.protocol)
+        1 in AbstractProxyProtocol (com.alibaba.dubbo.rpc.protocol)
+        InjvmExporter (com.alibaba.dubbo.rpc.protocol.injvm)
+        DubboExporter (com.alibaba.dubbo.rpc.protocol.dubbo)
+    ListenerExporterWrapper (com.alibaba.dubbo.rpc.listener)
+    DelegateExporter (com.alibaba.dubbo.rpc.support)
+```
 
-## 2. 类图
+## define
+```java
+public interface Exporter<T> {
+    Invoker<T> getInvoker();
+    void unexport();
+}
+```
 
 ```yuml
 

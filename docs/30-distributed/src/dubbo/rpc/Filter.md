@@ -37,6 +37,13 @@ Filter (com.alibaba.dubbo.rpc)
 [Filter]^-.-[ContextFilter]
 ```
 
+```java
+@SPI
+public interface Filter {
+    Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException;
+}
+```
+
 
 ## refer-invoke
 ```mermaid

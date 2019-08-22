@@ -58,51 +58,7 @@ public class ExecuteLimitFilter implements Filter {
 }
 ```
 
-## RpcStatus
-```java
-public class RpcStatus {
-    
-    private static final ConcurrentMap<String, RpcStatus> SERVICE_STATISTICS = new ConcurrentHashMap<String, RpcStatus>();
-    private static final ConcurrentMap<String, ConcurrentMap<String, RpcStatus>> METHOD_STATISTICS = new ConcurrentHashMap<String, ConcurrentMap<String, RpcStatus>>();
-    
-    /**
-     * Semaphore used to control concurrency limit set by `executes`
-     */
-    private volatile Semaphore executesLimit;
-    private volatile int executesPermits;
-    
-    
-    public static RpcStatus getStatus(URL url, String methodName) {
-        String uri = url.toIdentityString();
-        ConcurrentMap<String, RpcStatus> map = METHOD_STATISTICS.get(uri);
-        if (map == null) {
-            METHOD_STATISTICS.putIfAbsent(uri, new ConcurrentHashMap<String, RpcStatus>());
-            map = METHOD_STATISTICS.get(uri);
-        }
-        RpcStatus status = map.get(methodName);
-        if (status == null) {
-            map.putIfAbsent(methodName, new RpcStatus());
-            status = map.get(methodName);
-        }
-        return status;
-    }
-        
-    public Semaphore getSemaphore(int maxThreadNum) {
-        if(maxThreadNum <= 0) {
-            return null;
-        }
-
-        if (executesLimit == null || executesPermits != maxThreadNum) {
-            synchronized (this) {
-                if (executesLimit == null || executesPermits != maxThreadNum) {
-                    executesLimit = new Semaphore(maxThreadNum);
-                    executesPermits = maxThreadNum;
-                }
-            }
-        }
-
-        return executesLimit;
-    }
-    
-}
-```
+## links
+- [RpcStatus](/docs/30-distributed/src/dubbo/rpc/RpcStatus.md)
+- [ActiveLimitFilter](/docs/30-distributed/src/dubbo/rpc/filter/ActiveLimitFilter.md)
+- [ExecuteLimitFilter](/docs/30-distributed/src/dubbo/rpc/filter/ExecuteLimitFilter.md)

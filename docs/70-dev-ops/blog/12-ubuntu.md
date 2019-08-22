@@ -423,4 +423,12 @@ sudo fdisk -l
 sudo -i
 mkdir /media/ubuntu
 mount /dev/sdb6 /media/ubuntu # sda8 安装的ubuntu分区
-``
+```
+
+### problem
+ENOSPC: System limit for number of file watchers reached
+```sh
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
+
+sudo sysctl --system
+```
