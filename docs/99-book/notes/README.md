@@ -113,6 +113,8 @@
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
 * [《Elasticsearch技术解析与实战》朱林 机械工业出版社](/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
 * [《深入理解Elasticsearch》原生第2版 张世武 译](/99-book/notes/51-cloud/深入理解Elasticsearch.md)
+* [《Docker实战》胡震 杨瑞清 黄帅 译 中国工信出版社 电子工业出版社](/99-book/notes/51-cloud/Docker实战.md)
+* [《Kubernetes权威指南：从Docker到Kubernetes实践全接触》 龚正等编著 电子工业出版社](/99-book/notes/51-cloud/Kubernetes权威指南.md)
 
 ## 前端
 * [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化

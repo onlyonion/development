@@ -13,6 +13,7 @@ apt安装
 lib文件 /usr/lib
 
 ## docker
+[runoob](https://www.runoob.com/docker/ubuntu-docker-install.html)
 ```sh
 wget -qO- https://get.docker.com/ | sh # 获取最新版本的 Docker 安装包
 sudo usermod -aG docker onion 
