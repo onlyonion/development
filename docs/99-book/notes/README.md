@@ -112,6 +112,7 @@
 * [《物联网导论》刘云浩 科学出版社](/99-book/notes/51-cloud/物联网导论.md)
 * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/99-book/notes/51-cloud/区块链.md)
 * [《Elasticsearch技术解析与实战》朱林 机械工业出版社](/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
+* [《深入理解Elasticsearch》原生第2版 张世武 译](/99-book/notes/51-cloud/深入理解Elasticsearch.md)
 
 ## 前端
 * [《深入浅出Node.js》朴灵](/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化

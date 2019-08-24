@@ -24,6 +24,7 @@
 		<rocketmq.version>4.3.0</rocketmq.version>
 		<shiro.version>1.4.0</shiro.version>
 		<activiti.version>5.17.0</activiti.version>
+		<drools.version>6.4.0.Final</drools.version>
 	</properties>
 
 	<build>
@@ -386,6 +387,33 @@
 			<artifactId>activiti-rest</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-decisiontables</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-templates</artifactId>
+			<version>${drools.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava-->
 		<dependency>
 			<groupId>io.reactivex.rxjava2</groupId>
@@ -522,6 +550,13 @@
 			<artifactId>seata-all</artifactId>
 			<version>0.7.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+
 
 	</dependencies>
 

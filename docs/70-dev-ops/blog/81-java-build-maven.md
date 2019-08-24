@@ -23,6 +23,7 @@ prod/conf 为生产环境的配置文件。
 
 2 项目中引入Maven插件
 项目中pom文件添加打包插件的依赖：
+```xml
 <plugin>
    <groupId>org.apache.maven.plugins</groupId>
    <artifactId>maven-war-plugin</artifactId>
@@ -55,10 +56,11 @@ prod/conf 为生产环境的配置文件。
       </execution>
    </executions>
 </plugin>
-根据${package.environment}变量，进行动态打包。
+<!-- 根据${package.environment}变量，进行动态打包。 -->
 <properties>
    <package.environment></package.environment>
 </properties>
+```
 打包命令：
 mvn  clean package  -Dmaven.test.skip=true -U -Pdev //打开发环境包
 mvn  clean package  -Dmaven.test.skip=true -U -Ptest   //打测试环境包
@@ -67,6 +69,7 @@ mvn  clean package  -Dmaven.test.skip=true -U -Pprod  //打生产环境包
 
 3 Maven全局配置参数
 Maven全局配置文${maven.home}/conf/settings.xml中，增加profile 环境变量：
+```xml
 <profiles>
    <profile>
       <id>dev</id>
@@ -87,3 +90,4 @@ Maven全局配置文${maven.home}/conf/settings.xml中，增加profile 环境变
       </properties>
    </profile>
 </profiles>
+```

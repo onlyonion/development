@@ -1,0 +1,9 @@
+org.elasticsearch 7.3.0
+## jar
+- elasticsearch
+- elasticsearch-cli
+- elasticsearch-core
+- elasticsearch-geo
+- elasticsearch-secure-sm
+- elasticsearch-x-content
+- jna

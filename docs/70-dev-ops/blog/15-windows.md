@@ -1,12 +1,26 @@
 # dev environment
 ## 1. java
 ### 1.1 java环境变量
-```
+```sh
 JAVA_HOME	D:\opt\java\jdk1.8.0_131
 JRE_HOME    %JAVA_HOME%\jre
-MAVEN_HOME	D:\opt\apache\apache-maven-3.3.9
-ANT_HOME	D:\opt\apache\apache-ant-1.10.1
 CLASSPATH	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
+
+MAVEN_HOME	D:\opt\java\apache-maven-3.3.9
+ANT_HOME	D:\opt\java\apache-ant-1.9.14
+
+GRADLE_HOME D:\opt\java\gradle-5.6
+GRAILS_HOME D:\opt\java\grails-4.0.0
+GROOVY_HOME D:\opt\java\groovy-2.5.8
+
+# 修改 .gradle\caches\modules-2\files-2.1
+GRADLE_USER_HOME D:\m2\repository
+
+ROCKETMQ_HOME   D:\opt\java\rocketmq-4.3.0
+ZOOKEEPER_HOME  D:\opt\java\zookeeper-3.4.8
+
+GRAPHVIZ_DOT    D:\opt\tool\graphviz-2.38\bin\dot.exe
+
 Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%ANT_HOME%\bin
 NLS_LANG 	"AMERICAN_AMERICA.AL32UTF8"
 ```
@@ -15,7 +29,7 @@ NLS_LANG 	"AMERICAN_AMERICA.AL32UTF8"
 -encoding UTF-8 -charset UTF-8
 
 ### 1.3 .bat
-```
+```sh
 SETX JAVA_HOME "D:\opt\java\jdk1.8.0_131" /m
 SETX JRE_HOME "%JAVA_HOME%\jre" /m
 SETX M2_HOME "D:\opt\apahce\apache-maven-3.3.9" /m
@@ -25,7 +39,7 @@ SETX Path "%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%PATH%;"
 ```
 
 ## 2. nodejs
-```
+```sh
 npm install cnpm -g --registry=https://registry.npm.taobao.org
 cnpm install digo -g
 ```

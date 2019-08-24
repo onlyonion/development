@@ -7,12 +7,12 @@
 * nohup
 
 ## 0. printf
-```
-// 进制转换 十六进制和十进制互相转换都没问题
-// 十进制显示
+```sh
+# 进制转换 十六进制和十进制互相转换都没问题
+# 十进制显示
 $ printf %d 0xac
 172
-// 十六进制显示
+# 十六进制显示
 $ printf %x 172
 ac 
 ```
@@ -107,23 +107,38 @@ s – 改变画面更新周期
 
 ## 3. proc 存储的是当前内核运行状态的一系列特殊文件
 
-/proc/scsi
-
-/proc/N 存储系统当前正在运行的进程的相关信息，其中N为正在运行的进程
-
+```sh
+/proc/N # 存储系统当前正在运行的进程的相关信息，其中N为正在运行的进程
 /proc/sys/net/core/
-/proc/sys/net/ipv4/tcp_max_syn_backlog  tcp backlog
-
-
-/proc/cmdline 在启动时传递至内核的相关参数信息，这些信息通常由lilo或grub等启动管理工具进行传递
-
-/proc/cpuinfo 处理器的相关信息的文件
-
+/proc/sys/net/ipv4/tcp_max_syn_backlog  # tcp backlog
+/proc/cmdline # 在启动时传递至内核的相关参数信息，这些信息通常由lilo或grub等启动管理工具进行传递
+/proc/cpuinfo # 处理器的相关信息的文件
 /proc/meminfo 
-
 /proc/devices 
-
 /proc/diskstats 
+/proc/scsi
+```
 
 ## 4 nohup
 https://www.cnblogs.com/baby123/p/6477429.html
+
+## 5 ulimit
+查看用户限制
+
+数据段长度：ulimit -d unlimited   
+最大内存大小：ulimit -m unlimited   
+堆栈大小：ulimit -s unlimited   
+CPU 时间：ulimit -t unlimited   
+虚拟内存：ulimit -v unlimited   
+
+
+```sh
+# 解除 Linux 系统的最大进程数和最大文件打开数限制：
+vi /etc/security/limits.conf
+# 添加如下的行 * 代表针对所有用户 noproc 是代表最大进程数 nofile 是代表最大文件打开数 
+* soft noproc 11000
+* hard noproc 11000
+* soft nofile 4100
+* hard nofile 4100 
+sysctl -p # 设置配置永久生效
+```

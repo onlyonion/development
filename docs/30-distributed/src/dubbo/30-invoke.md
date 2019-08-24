@@ -1,8 +1,5 @@
 com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
 
-## invoke时序
-![invoke](../../img/dubbo-consumer-invoke-provider.png)
-
 ## 调用过程
 * 消费端
   * rpc 应用层协议
@@ -47,22 +44,10 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler实现jdk的调用处理器
     - JavassistProxyFactory$1.doInvoke() 
       - Wrapper46.invokeMethod() 生成的JavassitProxy动态代理
 
-### 整体
-* InvokerInvocationHandler
-* RpcInvocation
-* MockClusterInvoker
-* AbstractClusterInvoker
-* AbstractDirectory RegistryDirectory
-* AbstractClusterInvoker FailfastClusterInvoker
-* FailfastClusterInvoker
-* LoadBalance
+## invoke时序
+![invoke](../../img/dubbo-consumer-invoke-provider.png)
 
-* InvokerWrapper
-* ProtocolFilterWrapper$1 过滤器链
-* ConsumerContextFilter
-
-
-### 1. client side invoke
+## 1. client side invoke
 ```mermaid
 sequenceDiagram
     %% 1.1 调用处理器
@@ -96,6 +81,7 @@ sequenceDiagram
         MockClusterInvoker->>FailfastClusterInvoker:invoke()
     end 
 ```
+
 
 ### 1.1 集群、路由、负载均衡 cluster-router-loadbalance
 ```mermaid

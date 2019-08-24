@@ -56,16 +56,12 @@ source .bash_profile
 ```shell
 # tar mv env
 ```
-
 ## tomcat
-
 ## ssh
 ```shell
 ssh-keygen -t rsa -C "you_email"
-
 # 多git账号
 vim ~/.ssh/config
-
 # default                                                                       
 Host github
 HostName github.com
@@ -76,22 +72,16 @@ Host gitee
 HostName gitee.com
 User git
 IdentityFile ~/.ssh/id_rsa_2
-
 # test
 ssh -T gitee
 ssh -T github
-
 ```
-
 ## ssh
 ```shell
 whereis ssh
 ps aux | grep ssh
-
 # 系统偏好设置 -> 共享，选中远程登录
-
 # ssh username@192.168.100.100
-
 # scp 将当前路径下的.zshrc文件复制到远程主机的/Users/username目录下
 scp .zshrc username@192.168.100.100:/Users/username/
 ```

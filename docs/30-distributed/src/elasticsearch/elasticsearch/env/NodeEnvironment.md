@@ -1,0 +1,1 @@
+org.elasticsearch.env.NodeEnvironment

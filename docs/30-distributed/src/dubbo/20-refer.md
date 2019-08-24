@@ -19,6 +19,7 @@
         - JavassistProxyFactory
 
 ## graph
+<!-- 
 ```mermaid
 graph LR
     subgraph config
@@ -27,29 +28,30 @@ graph LR
     end
 
     subgraph refer
-        config  --> decide{"服务引用方式"}
+        config  -.-> decide{"服务引用方式"}
         %% 2. injvm, p2p, registries
-        decide --> injvm["本地引用"]
-        decide --> remote{"远程引用"}
+        decide -.-> injvm["本地引用"]
+        decide -.-> remote{"远程引用"}
 
-        remote --> p2p["直连方式"]
-        remote --> registries["注册中心方式"]
+        remote -.-> p2p["直连方式"]
+        remote -.-> registries["注册中心方式"]
 
-        p2p --> cluster["集群合并"]
-        registries --> cluster["集群合并"]
+        p2p -.-> cluster["集群合并"]
+        registries -.-> cluster["集群合并"]
     end
 
     subgraph invoker
         %% 3. invoker
-        injvm --> invoker["可执行体"]
-        cluster --> invoker
+        injvm -.-> invoker["可执行体"]
+        cluster -.-> invoker
     end
 
     subgraph proxy
         %% 4. 生成代理
-        invoker --> proxyFactory["代理类"]
+        invoker -.-> proxyFactory["代理类"]
     end
 ```
+-->
 
 ## refer 时序
 ![refer](../../img/dubbo-service-refer-sequence.png)

@@ -1,0 +1,8 @@
+package com.onion.test.common.drools
+
+rule "Test Rule"
+    when
+        Person(name == "hello");
+    then
+        System.out.println("welecome to Drools");
+end

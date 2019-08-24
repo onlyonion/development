@@ -44,7 +44,7 @@
   * 逻辑视图（功能需求）、开发视图、过程视图（非功能性需求）、物理视图、场景视图评估
 * 评估 SAAM基于场景的评估、ATAM体系结构权衡分析方法
 
-![CAPES](./img/CAPES.png)
+<!-- ![CAPES](./img/CAPES.png) -->
 
 ## book
 * [《软件体系结构》第3版 章征 清华大学出版社](/docs/99-book/notes/40-architecture/软件体系结构.md)

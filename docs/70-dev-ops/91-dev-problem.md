@@ -13,6 +13,8 @@ Tools -> Display Preference -> Advanced -> column -> list colums 搜索，选中
 Tools -> Display Preferences -> General setting的Format菜单下，点Modify，Line Style页下有个Line-->Corners
 
 ## idea
+### 编码
+Setting->File Encodings->Project Encoding选择utf-8，Default encoding for properties files 也选择 UTF-8
 
 ### vscode
 代码模板

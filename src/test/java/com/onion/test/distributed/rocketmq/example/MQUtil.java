@@ -5,6 +5,6 @@ import org.apache.rocketmq.client.ClientConfig;
 public class MQUtil {
 
     public static void setNamesrvAddr(ClientConfig clientConfig) {
-        clientConfig.setNamesrvAddr("rkmq.me.com:9876");
+        clientConfig.setNamesrvAddr("localhost:9876");
     }
 }

@@ -1,28 +1,11 @@
 # ubuntu
 
-/usr/local/lib
-
-## 安装
-- apt方式
-- dpkg方式 dpkg -L packagename
-- 源码安装
-
-apt安装
-下载路径 /var/cache/apt/archives
-文档一般在 /usr/share
-可执行文件 /usr/bin
-配置文件 /etc
-lib文件 /usr/lib
-
-
 ## 开发环境
-
 ### 命令行启动
 ```sh
 # 字符界面的命令：sudo systemctl set-default multi-user.target
 # 图形界面的命令：sudo systemctl set-default graphical.target
 ```
-
 ### ifconfig
 ```sh
 # sudo vi /etc/network/interfaces
@@ -37,7 +20,6 @@ gateway 192.168.1.1
 
 # sudo /etc/init.d/networking restart重启网络
 ```
-
 ### ssh server
 ```sh
 # 
@@ -90,24 +72,21 @@ source /etc/profile
 # /usr/share/maven
 sudo apt-get update && sudo apt-get install maven
 ```
-
 ### ant
+### nexus
 ### zookeeper
 ```sh
 # conf
 cp zoo_sample.cfg zoo.cfg
-# 启动
+# 启动 检查状态 停止
 sh zkServer.sh start
-# 检查状态
 sh zkServer.sh status
-# 停止
 sh zkServer.sh stop
 # init.d
 cd /etc/init.d/
 touch zookeeper
 chmod +x zookeeper
 sudo vim zookeeper
-
 # config 脚本文件
 #!/bin/bash
 #chkconfig:2345 20 90
@@ -127,7 +106,6 @@ chkconfig --list
 export ZOOKEEPER_HOME=/data/zookeeper-3.4.8
 export PATH=${PATH}:${ZOOKEEPER_HOME}/bin
 ```
-
 ### git
 ```sh
 # 添加源
@@ -148,15 +126,6 @@ git config --list
 ssh-keygen -t rsa -C "your email"
 ```
 [help](https://blog.csdn.net/m0_37950361/article/details/80138929)
-
-### eclipse
-### idea
-### vscode
-```sh
-# 双击.deb 安装之后 运行code启动
-/usr/share/code
-```
-
 ### gitlab
 [清华大学开源软件镜像站](https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/)
 ```sh
@@ -183,7 +152,6 @@ curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.de
 sudo EXTERNAL_URL="https://gitlab.example.com" apt-get install gitlab-ee
 
 ```
-
 [Ubuntu 搭建 GitLab 笔记](https://www.cnblogs.com/m2ez/p/7063606.html)
 ```sh
 # 方法1
@@ -195,7 +163,6 @@ sudo curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/xeni
 sudo dpkg -i gitlab-ce-XXX.deb
 ```
 
-
 ```sh
 # su - gitlab-psql //登陆用户 
 # sudo passwd 修改密码gitlab
@@ -206,7 +173,6 @@ sudo dpkg -i gitlab-ce-XXX.deb
 # host  all    all    192.168.1.0/24    trust # trust不需要密码
 # host  all    all    0.0.0.0/0    md5
 # 库 gitlabhq_production 用户名 gitlab 端口 5432
-
 # Start all GitLab components
 sudo gitlab-ctl start
 # Stop all GitLab components
@@ -214,9 +180,6 @@ sudo gitlab-ctl stop
 # Restart all GitLab components
 sudo gitlab-ctl restart
 ```
-
-### nexus
-
 ### jenkins
 ```sh
 sudo apt-get install -f 
@@ -226,7 +189,6 @@ dpkg -i jenkins_2.121.3_all.deb
 sudo systemctl start jenkins
 sudo systemctl restart jenkins
 ```
-
 ```xml
 <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
 	<!-- true modify false -->
@@ -234,12 +196,10 @@ sudo systemctl restart jenkins
 	<enableCaptcha>false</enableCaptcha>
 </securityRealm>
 ```
-
 ### nginx
 ```sh
 sudo apt install nginx
 ```
-
 ### tomcat
 ```sh
 /usr/local/lib/apache-tomcat-7.0.70
@@ -256,8 +216,6 @@ ps -aux|grep redis
 netstat -nlt|grep 6379
 # 通过启动命令检查Redis服务器状态
 sudo /etc/init.d/redis-server status
-
-
 # 2. 修改配置
 sudo vi /etc/redis/redis.conf
 # 设置密码 取消注释requirepass 
@@ -266,10 +224,8 @@ requirepass redisredis
 # bind 127.0.0.1
 sudo /etc/init.d/redis-server restart
 sudo service redis-server restart
-
 # 3. redis-server --version 查看版本
 ```
-
 ```sh
 # 编译安装
 sudo wget http://download.redis.io/releases/redis-5.0.5.tar.gz
@@ -278,23 +234,19 @@ sudo tar -zxvf redis-5.0.5.tar.gz
 sudo make
 sudo make install
 # 安装到目录/usr/local/bin下，配置文件/etc/redis/redis.conf
-
 # 指定配置文件启动
 ./redis-server /etc/redis/redis.conf
 ```
-
 ### rocketmq
 服务端与客户端的版本一定要对应
 ```sh
 # 启动
 nohup sh bin/mqnamesrv &
 nohup sh bin/mqbroker -n localhost:9876 autoCreateTopicEnable=true &
-
 # 关闭
 sh bin/mqshutdown broker
 sh bin/mqshutdown namesrv
 ```
-
 ### mysql
 ```sh
 # install 5.7.26
@@ -325,110 +277,39 @@ FLUSH PRIVILEGES;
  update user set password=password('123456') where user='root' and host='localhost'; 
  flush privileges; 
 ```
-
 ### mycat
 
-
-## docker
-```sh
-wget -qO- https://get.docker.com/ | sh # 获取最新版本的 Docker 安装包
-sudo usermod -aG docker onion 
-sudo service docker start
-docker run hello-world
-```
-
-### docker redis
-```
-docker run -p 6379:6379 
--v /home/user/myredis/data:/data
--v /home/user/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf
--d redis:3.2 redis-server /usr/local/etc/redis/redis.conf
--- appendonly yes
-```
-
-### docker tomcat
-### docker mysql
-### docker redis
-### docker nginx
-
-## 应用软件
-
-### 输入法
-```sh
-# 安装依赖fcitx
-sudo apt-get install fcitx-bin
-sudo apt-get install fcitx-table
-
-# 下载搜狗.deb 双击安装
-
-sudo apt-get update
-sudo add-apt-repository ppa:fcitx-team/nightly
-sudo apt-get -f install
-sudo apt-get upgrade
-
-```
-### ubuntu theme
-```sh
-sudo apt-get update
-sudo apt-get install gnome-tweak-tool
-sudo apt-get install gnome-sh-extensions
-```
-
-### 安装仿宋
-```sh
-# copy
-sudo cp simfang.ttf /usr/share/fonts
-cd  /usr/share/fonts
-sudo chmod 644 simfang.ttf
-# update cache
-sudo mkfontscale
-sudo mkfontdir
-sudo fc-cache -fsv
-```
-### 快捷方式
-``` sh
-# vim jetbrains-idea.desktop  # 注意文件的后缀是 .desktop
-[Desktop Entry]
-Version=2019.1.1     
-Name=jetbrains-idea
-Comment=jetbrains-idea
-Exec=/usr/local/lib/idea-IU-191.6707.61/bin/idea.sh
-Icon=/usr/local/lib/idea-IU-191.6707.61/bin/idea.png
-Terminal=false
-Type=Application
-Categories=Utility;Application;
-
-# 复制到 Unity 启动器中 
-/usr/share/applications/
-```
-
-### windows + ubuntu + easybcd
-```sh
-# easybcd 添加grub启动项
-# 注意 vmlinuz.efi 与 initrd.lz 是否有后缀名
-title Install Ubuntu
-root (hd0,0)
-kernel (hd0,0)/vmlinuz.efi boot=casper iso-scan/filename=/ubuntu-14.04-desktop-amd64.iso locale=zh_CN.UTF-8
-initrd (hd0,0)/initrd.lz
-
-title reboot
-reboot
-
-title halt
-halt
-```
-安装后没有ubuntu启动项，回到演示盘
-```sh
-sudo fdisk -l
-sudo -i
-mkdir /media/ubuntu
-mount /dev/sdb6 /media/ubuntu # sda8 安装的ubuntu分区
-```
-
-### problem
+## problem
 ENOSPC: System limit for number of file watchers reached
 ```sh
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
-
 sudo sysctl --system
+```
+### elasticsearch 
+- max virtual memory areas vm.max_map_count [65530]is too low, increase to at least [262144]
+- max file descriptors [65535] for elasticsearchprocess is too low, increase to at least [65536]
+
+```sh
+# sudo vim /etc/sysctl.conf  
+echo vm.max_map_count=655360 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p 
+sudo sysctl --system
+# sysctl -p 配置生效
+# limits
+sudo vim /etc/security/limits.conf
+* soft nofile 65536
+* hard nofile 131072
+* soft nproc 2048
+* hard nproc 4096
+```
+soft nproc: 可打开的文件描述符的最大数(软限制)
+hard nproc： 可打开的文件描述符的最大数(硬限制)
+soft nofile：单个用户可用的最大进程数量(软限制)
+hard nofile：单个用户可用的最大进程数量(硬限制)
+
+切换root，执行  ulimit -Hn 65536
+
+- the default discovery settings are unsuitable for production use; at least one of [discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes] must be configured
+```sh
+node.name: node-1
+cluster.initial_master_nodes: ["node-1"]
 ```
