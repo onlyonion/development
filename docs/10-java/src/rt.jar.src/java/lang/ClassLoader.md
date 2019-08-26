@@ -170,3 +170,29 @@ protected final Class<?> findLoadedClass(String name) {
 
 private native final Class<?> findLoadedClass0(String name);
 ```
+
+## inner class
+- native method stack
+- java native interface 融合不同的编程语言。Native Method Stack中等级native方法，在Execution Engine运行时加载native libraries。
+    异构领域间的通信，可以使用Socket通信（微服务）。
+- native library
+
+### NativeLibrary
+```java
+    static class NativeLibrary {
+        // opaque handle to native library, used in native code.
+        long handle;
+        // the version of JNI environment the native library requires.
+        private int jniVersion;
+        // the class from which the library is loaded, also indicates
+        // the loader this native library belongs.
+        private final Class<?> fromClass;
+        // the canonicalized name of the native library.
+        // or static library name
+        String name;
+        // Indicates if the native library is linked into the VM
+        boolean isBuiltin;
+        // Indicates if the native library is loaded
+        boolean loaded;
+    }
+```

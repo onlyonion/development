@@ -1,5 +1,13 @@
 java.lang.Throwable
 
+- StackOverflowError
+  - cannot create native thread
+- OutOfMemoryError OOM之前伴随FullGC
+  - java heap
+  - method area, PermGenspace/metaspace
+  - GC overhead
+  - OutOfDirectMemoryError
+
 ## hierarchy
 ```
 Throwable (java.lang)

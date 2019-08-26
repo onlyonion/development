@@ -12,6 +12,7 @@ java.lang
     * [Finalizer](/docs/10-java/src/rt.jar.src/java/lang/ref/Finalizer.md) 终结器
   * reflect
     * [Proxy](/docs/10-java/src/rt.jar.src/java/lang/reflect/Proxy.md) 
+  * [Runtime](/docs/10-java/src/rt.jar.src/java/lang/Runtime.md)
   * [String](/docs/10-java/src/rt.jar.src/java/lang/String.md)
   * [Thread](/docs/10-java/src/rt.jar.src/java/lang/Thread.md) 线程
   * [ThreadLocal](/docs/10-java/src/rt.jar.src/java/lang/ThreadLocal.md) 线程本地变量，开放地址法（线性探测）
