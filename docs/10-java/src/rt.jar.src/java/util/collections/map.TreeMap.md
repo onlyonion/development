@@ -4,6 +4,15 @@ java.util.TreeMap
 ```
 AbstractMap (java.util)
     TreeMap (java.util)
+TreeMap (java.util)
+    AbstractMap (java.util)
+        Object (java.lang)
+        Map (java.util)
+    NavigableMap (java.util)
+        SortedMap (java.util)
+            Map (java.util)
+    Cloneable (java.lang)
+    Serializable (java.io)
 ```
 
 ## define
@@ -53,6 +62,134 @@ TreeMap.Entry o-- TreeMap.Entry
 @enduml
 ```
 
+```java
+public class TreeMap<K,V>
+    extends AbstractMap<K,V>
+    implements NavigableMap<K,V>, Cloneable, java.io.Serializable
+{
+    /**
+     * The comparator used to maintain order in this tree map, or
+     * null if it uses the natural ordering of its keys.
+     * @serial
+     */
+    private final Comparator<? super K> comparator;
+    private transient Entry<K,V> root;
+    private transient int size = 0;
+    private transient int modCount = 0;
+}    
+```
+
+## methods
+
+### get
+```java
+    public V get(Object key) {
+        Entry<K,V> p = getEntry(key);
+        return (p==null ? null : p.value);
+    }
+    
+    final Entry<K,V> getEntry(Object key) {
+        // Offload comparator-based version for sake of performance
+        if (comparator != null)
+            return getEntryUsingComparator(key);
+        if (key == null)
+            throw new NullPointerException();
+        @SuppressWarnings("unchecked")
+            Comparable<? super K> k = (Comparable<? super K>) key;
+        Entry<K,V> p = root;
+        while (p != null) {
+            int cmp = k.compareTo(p.key);
+            if (cmp < 0)
+                p = p.left;
+            else if (cmp > 0)
+                p = p.right;
+            else
+                return p;
+        }
+        return null;
+    }
+    
+    final Entry<K,V> getEntryUsingComparator(Object key) {
+        K k = (K) key;
+        Comparator<? super K> cpr = comparator;
+        if (cpr != null) {
+            Entry<K,V> p = root;
+            while (p != null) {
+                int cmp = cpr.compare(k, p.key);
+                if (cmp < 0)
+                    p = p.left;
+                else if (cmp > 0)
+                    p = p.right;
+                else
+                    return p;
+            }
+        }
+        return null;
+    }
+```
+
+### firstKey
+```java
+    public K firstKey() {
+        return key(getFirstEntry());
+    }
+    
+    final Entry<K,V> getFirstEntry() {
+        Entry<K,V> p = root;
+        if (p != null)
+            while (p.left != null)
+                p = p.left;
+        return p;
+    }
+    
+    static <K> K key(Entry<K,?> e) {
+        if (e==null)
+            throw new NoSuchElementException();
+        return e.key;
+    }
+```
+
+### ceilingEntry
+```java
+    public Map.Entry<K,V> ceilingEntry(K key) {
+        return exportEntry(getCeilingEntry(key));
+    }
+    
+    final Entry<K,V> getCeilingEntry(K key) {
+        Entry<K,V> p = root;
+        while (p != null) {
+            int cmp = compare(key, p.key);
+            if (cmp < 0) {
+                if (p.left != null)
+                    p = p.left;
+                else
+                    return p;
+            } else if (cmp > 0) {
+                if (p.right != null) {
+                    p = p.right;
+                } else {
+                    Entry<K,V> parent = p.parent;
+                    Entry<K,V> ch = p;
+                    while (parent != null && ch == parent.right) {
+                        ch = parent;
+                        parent = parent.parent;
+                    }
+                    return parent;
+                }
+            } else
+                return p;
+        }
+        return null;
+    }
+    
+    static <K,V> Map.Entry<K,V> exportEntry(TreeMap.Entry<K,V> e) {
+        return (e == null) ? null :
+            new AbstractMap.SimpleImmutableEntry<>(e);
+    }
+```
+
+## desc
+
 ### 红黑树
 红黑树（Red Black Tree） 是一种自平衡二叉查找树，是在计算机科学中用到的一种数据结构，典型的用途是实现关联数组。
 * 性质1. 节点是红色或黑色。
@@ -66,13 +203,11 @@ TreeMap.Entry o-- TreeMap.Entry
 
 
 ### TreeMap
-TreeMap 简介
-
-TreeMap 是一个有序的key-value集合，它是通过红黑树实现的。
-TreeMap 继承于AbstractMap，所以它是一个Map，即一个key-value集合。
-TreeMap 实现了NavigableMap接口，意味着它支持一系列的导航方法。比如返回有序的key集合。
-TreeMap 实现了Cloneable接口，意味着它能被克隆。
-TreeMap 实现了java.io.Serializable接口，意味着它支持序列化。
+- TreeMap 是一个有序的key-value集合，它是通过红黑树实现的。
+- TreeMap 继承于AbstractMap，所以它是一个Map，即一个key-value集合。
+- TreeMap 实现了NavigableMap接口，意味着它支持一系列的导航方法。比如返回有序的key集合。
+- TreeMap 实现了Cloneable接口，意味着它能被克隆。
+- TreeMap 实现了java.io.Serializable接口，意味着它支持序列化。
 
 TreeMap基于红黑树（Red-Black tree）实现。该映射根据其键的自然顺序进行排序，或者根据创建映射时提供的 Comparator 进行排序，具体取决于使用的构造方法。
 TreeMap的基本操作 containsKey、get、put 和 remove 的时间复杂度是 log(n) 。
