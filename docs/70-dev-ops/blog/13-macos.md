@@ -37,11 +37,23 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write com.apple.finder AppleShowAllFiles -bool false
 ```
 
+## cmd
+```sh
+touch .bash_profile
+vi .bash_profile
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+```
+
 ## jdk
 ```shell
 # env
-sudo vi /etc/profile
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+touch .bash_profile
+vi .bash_profile
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.4.jdk/Contents/Home
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home
 export JRE_HOME=${JAVA_HOME}/jre
 PATH=$JAVA_HOME/bin:$PATH:.
 CLASSPATH=$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar:.
@@ -55,8 +67,11 @@ source .bash_profile
 ## maven
 ```shell
 # tar mv env
+export M2_HOME=/Users/lijicong/opt/java/apache-maven-3.3.9
+export PATH=$PATH:$M2_HOME/bin
 ```
 ## tomcat
+
 ## ssh
 ```shell
 ssh-keygen -t rsa -C "you_email"
@@ -76,7 +91,7 @@ IdentityFile ~/.ssh/id_rsa_2
 ssh -T gitee
 ssh -T github
 ```
-## ssh
+## scp
 ```shell
 whereis ssh
 ps aux | grep ssh
