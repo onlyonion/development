@@ -1,21 +1,10 @@
-package com.onion.test.common.jackson;
+package com.onion.test.common.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Getter;
-import lombok.Setter;
 import org.junit.Test;
 
 public class JacksonTest {
-
-    @Getter
-    @Setter
-    public static class Person {
-        private String name;
-        private String address;
-        private String mobile;
-    }
-
 
     @Test
     public void test() throws JsonProcessingException {

@@ -1,3 +1,27 @@
+## netty
+Netty is a NIO client server framework which enables quick and easy development of network applications such as protocol servers and clients. 
+It greatly simplifies and streamlines network programming such as TCP and UDP socket server.
+
+## 组件 components
+* core 零拷贝、缓冲、通用通信API、扩展的事件模型
+    - zero-copy-capabie, rich byte buffer
+    - universal communication api
+    - extensible event model
+* transport services 传输层服务
+    - socket & datagram
+    - http tunnel
+    - in-vm pipe
+* protocol support 协议支持
+    - http & websocket
+    - ssl startTLS
+    - google protobuf
+    - zlib/gzip comppression
+    - large file transfer
+    - rtsp Real Time Streaming Protocol 实时流传输协议
+    - legacy text binary protocols with unit testablility
+
+![components](../../../img/netty-components.png)
+
 ## org.jboss.netty 3.x
 3.7.0.Final
 jdk.1.7.0_25

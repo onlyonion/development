@@ -1,0 +1,9 @@
+org.glassfish.hk2.external:aopalliance-repackaged:2.4.0-b10
+org.glassfish.hk2.external:javax.inject:2.4.0-b10
+org.glassfish.hk2:hk2-api:2.4.0-b10
+org.glassfish.hk2:hk2-locator:2.4.0-b10
+org.glassfish.hk2:hk2-utils:2.4.0-b10
+org.glassfish.hk2:osgi-resource-locator:1.0.1
+org.glassfish.jersey.bundles.repackaged:jersey-guava:2.17
+org.glassfish.jersey.core:jersey-client:2.17
+org.glassfish.jersey.core:jersey-common:2.17

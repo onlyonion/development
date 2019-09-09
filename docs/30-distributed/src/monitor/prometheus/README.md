@@ -1,9 +1,8 @@
-Maven: io.prometheus:simpleclient:0.0.26
-Maven: io.prometheus:simpleclient_hotspot:0.0.26
 
-Maven: io.prometheus:simpleclient:0.5.0
-Maven: io.prometheus:simpleclient_common:0.5.0
-Maven: io.prometheus:simpleclient_dropwizard:0.5.0
-Maven: io.prometheus:simpleclient_hotspot:0.5.0
-Maven: io.prometheus:simpleclient_servlet:0.5.0
+## jars
+- io.prometheus:simpleclient
+- io.prometheus:simpleclient_common
+- io.prometheus:simpleclient_dropwizard
+- io.prometheus:simpleclient_hotspot
+- io.prometheus:simpleclient_servlet
 

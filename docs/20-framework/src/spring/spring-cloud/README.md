@@ -55,6 +55,7 @@
 - spring-cloud-stream-binder-rabbit-core
 - spring-cloud-starter-stream-rabbit
 - spring-cloud-stream-codec
+- spring-cloud-sleuth-core
 
 ### bus
 - spring-cloud-bus

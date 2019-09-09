@@ -1,9 +1,13 @@
 package com.onion.test.common.json;
 
-/**
- * @author lijicong@u51.com
- * @since 2019-09-07 22:36
- */
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Person {
 
+    private String name;
+    private String address;
+    private String mobile;
 }
