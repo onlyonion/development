@@ -21,6 +21,10 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 - Editor，Inspections，SQL 去除 No data sources configuared；去掉 SQL dialect detection 的勾（√）
 - Editor，Color Scheme， General，Code，Injected language fragment，去掉右边 Background （背景色）的勾
 
+泛型提示
+- Editor，Inspections，Java 5 raw use of parameterized class
+
+
 快捷鍵
 - 刪除行
 
