@@ -11,6 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 public class RxJavaTest {
 
     @Test
+    public void helloworld() {
+        Observable.just("hello world").subscribe(System.out::print);
+    }
+
+    @Test
     public void test1() {
         Observable<Integer> observable = Observable.create(e -> {
             e.onNext(1);

@@ -39,3 +39,6 @@ Externalizable
 
 优点：字节数很小，适合网络传输节省io，跨语言 。缺点：需要依赖于工具生成代码。
 
+Protocol Buffer是谷歌出品的一种数据交换格式，独立于语言和平台，类似于json。Google提供了多种语言的实现：java、c++、go和python。
+对象序列化城Protocol Buffer之后可读性差，但是相比xml，json，它占用小，速度快。适合做数据存储或 RPC 数据交换格式。 
+

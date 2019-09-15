@@ -33,6 +33,8 @@
 * [《Java并发编程的艺术》 方腾飞](/docs/99-book/notes/10-java/Java并发编程的艺术.md) 
 * [《Java多线程编程核心技术》高洪岩 著 机械工业出版社](/docs/99-book/notes/10-java/Java多线程编程核心技术.md)
 * [《Java并发编程实战》童云兰 译](/docs/99-book/notes/10-java/Java并发编程实战.md)
+* [《RxJava2.x实战》沈哲](/docs/99-book/notes/10-java/RxJava2.x实战.md)
+* [《RxJava响应式编程》李衍顺 ](/docs/99-book/notes/10-java/RxJava响应式编程.md)
 
 ## 框架
 * [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)
