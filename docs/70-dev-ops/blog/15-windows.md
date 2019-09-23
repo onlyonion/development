@@ -1,3 +1,15 @@
+# windows
+
+## 激活
+win10教育版激活(32位和64位均可正常使用)：
+    NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
+    2WH4N-8QGBV-H22JP-CT43Q-MDWWJ
+
+slmgr /ipk NW6C2-QMPVW-D7KKK-3GKT6-VCFB2
+slmgr /skms kms.xspace.in
+slmgr /ato
+
+
 # dev environment
 ## 1. java
 ### 1.1 java环境变量
@@ -70,3 +82,17 @@ sysdm.cpl
 192.30.255.113 www.github.com
 192.30.255.120 nodeload.github.com
 ```
+## mysql
+[mysql install](https://blog.csdn.net/qq_37350706/article/details/81707862)
+
+mysqld --initialize --console
+[System] [MY-013169] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server in progress as process 5292
+[Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pP53IYtWyS__
+[System] [MY-013170] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
+
+mysqld --install
+
+net start mysql
+
+mysql -u root -p
+ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';

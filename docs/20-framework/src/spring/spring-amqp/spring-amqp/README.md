@@ -1,0 +1,21 @@
+org.springframework.amqp
+
+## package
+```
+core
+event
+remoting
+support
+utils
+
+AmqpAuthenticationException
+AmqpConnectException
+AmqpException
+AmqpIllegalStateException
+AmqpIOException
+AmqpRejectAndDontRequeueException
+AmqpTimeoutException
+AmqpUnsupportedEncodingException
+ImmediateAcknowledgeAmqpException
+UncategorizedAmqpException
+```

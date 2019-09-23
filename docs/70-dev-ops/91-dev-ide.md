@@ -24,7 +24,6 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 泛型提示
 - Editor，Inspections，Java 5 raw use of parameterized class
 
-
 快捷鍵
 - 刪除行
 
@@ -48,6 +47,9 @@ Idea启动项目报错:Command line is too long. Shorten command line for classN
     <property name="dynamic.classpath" value="true" />
 </component>
 ```
+
+plugin不能加载
+Appearence & Behavior - System Settings - Updates - User Secure Connection，取消勾选该选项
 
 ## vscode
 代码模板

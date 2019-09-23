@@ -33,20 +33,18 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
     * [`hotspot.src`](/10-java/src/openjdk/hotspot.src/README.md)
     * [jdk](/10-java/src/openjdk/jdk/README.md)
 * framework
-  * [`spring`](/docs/20-framework/src/spring/README.md)
-  * [`mybatis`](/docs/20-framework/src/mybatis/README.md)
-  * server
-    * [`tomcat`](/docs/20-framework/src/server/tomcat/README.md)
-    * [`netty`](/docs/20-framework/src/server/netty/README.md)
-    * [jetty](/docs/20-framework/src/server/jetty/README.md)
-    * [undertow](/docs/20-framework/src/server/undertow/README.md)
-    * [`nginx`](/docs/20-framework/src/server/nginx/README.md)
   * apache
+    * commons-beanutils
+    * commons-cli
+    * commons-codec
+    * commons-collections
+    * commons-configuration
+    * commons-io
+    * commons-lang
+    * commons-lang3
+    * commons-logging
+    * mesos
     * [derby](/docs/20-framework/src/apache/derby/README.md)
-    * [httpcomponents](/docs/20-framework/src/http/httpcomponents/README.md)
-      * [httpclient](/docs/20-framework/src/http/httpcomponents/httpclient/README.md)
-      * [httpasyncclient](/docs/20-framework/src/http/httpcomponents/httpasyncclient/README.md)
-      * [httpcore](/docs/20-framework/src/http/httpcomponents/httpcore/README.md)
     * [shiro](/docs/20-framework/src/apache/shiro/README.md)
   * common
     * [activiti](/docs/20-framework/src/common/activiti/README.md)
@@ -58,6 +56,34 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
     * [javassist](/docs/20-framework/src/common/bytecode/javassist/README.md)
     * [prometheus](/docs/30-distributed/src/monitor/prometheus/README.md)
     * [quasar](/docs/20-framework/src/common/quasar/README.md)
+  * [http](/docs/20-framework/src/http/README.md)
+    * asynchttpclient
+    * httpcomponents
+    * okhttp
+    * retrofit
+  * javax
+    * java.ws.rs-api
+    * javax.annotation-api
+    * javax.ws.rs-api
+    * jcip-annotations
+    * servlet-api
+    * validation-api
+  * [log](/docs/20-framework/src/log/README.md)
+    * jdk
+    * log4j
+    * log4j2
+    * logback
+    * slf4j
+  * [`mybatis`](/docs/20-framework/src/mybatis/README.md)
+  * server
+    * [`tomcat`](/docs/20-framework/src/server/tomcat/README.md)
+    * [`netty`](/docs/20-framework/src/server/netty/README.md)
+    * [jetty](/docs/20-framework/src/server/jetty/README.md)
+    * [undertow](/docs/20-framework/src/server/undertow/README.md)
+    * [`nginx`](/docs/20-framework/src/server/nginx/README.md)
+  * [`spring`](/docs/20-framework/src/spring/README.md)
+  * streams
+  * [test](/docs/20-framework/src/test/README.md)
 * distributed
   * [`dubbo`](/docs/30-distributed/src/dubbo/README.md)
   * [`redis`](/docs/30-distributed/src/redis/README.md)

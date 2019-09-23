@@ -8,6 +8,7 @@ Long sum = list.stream().mapToLong(Message::getId).sum();
 Optional<Message> maxMassage = list.stream().collect(Collectors.maxBy(Comparator.comparing(Message::getId)));
 Long maxId = maxMassage.get().getId();
 
+BigDecimal sum = lists.stream().map(User::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
 
 //根据多条件组合排序,先根据msg(升序),再根据id(升序)
 list.sort(Comparator.comparing(Message:: getMsg).thenComparing(Message::getId));
