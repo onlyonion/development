@@ -10,11 +10,11 @@ org.apache.zookeeper
   - NIOServerCnxn
   - NIOServerCnxnFactory
   - ZKDatabase
-- [ZooKeeper](/docs/30-distributed/src/zookeeper/zookeeper/ZooKeeper.md)
-- [ClientCnxn](/docs/30-distributed/src/zookeeper/zookeeper/ClientCnxn.md)
+- [ZooKeeper](/docs/30-distributed/src/registry/zookeeperzookeeper/zookeeper/ZooKeeper.md)
+- [ClientCnxn](/docs/30-distributed/src/registry/zookeeperzookeeper/zookeeper/ClientCnxn.md)
 - ClientWatchManager
 - Transaction
-- [Watcher](/docs/30-distributed/src/zookeeper/zookeeper/Watcher.md)
+- [Watcher](/docs/30-distributed/src/registry/zookeeperzookeeper/zookeeper/Watcher.md)
 
 
 ## package

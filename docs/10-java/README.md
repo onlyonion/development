@@ -88,8 +88,8 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
   * [`dubbo`](/docs/30-distributed/src/dubbo/README.md)
   * [`redis`](/docs/30-distributed/src/redis/README.md)
   * [`rocketmq`](/docs/30-distributed/src/rocketmq/README.md)
-  * [zookeeper](/docs/30-distributed/src/zookeeper/README.md)
-  * [consul](/docs/30-distributed/src/consul/README.md)
+  * [zookeeper](/docs/30-distributed/src/registry/zookeeper/README.md)
+  * [consul](/docs/30-distributed/src/registry/consul/README.md)
 * database
   * [druid](/docs/50-database/src/druid/README.md)
   * [mysql-connector](/docs/50-database/src/mysql-connector/README.md)
