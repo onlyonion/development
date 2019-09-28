@@ -1,6 +1,6 @@
 com.orbitz.consul.BaseClient
 
-## ## hierarchy
+## hierarchy
 ```
 BaseClient (com.orbitz.consul)
     AclClient (com.orbitz.consul)

@@ -51,6 +51,13 @@ Idea启动项目报错:Command line is too long. Shorten command line for classN
 plugin不能加载
 Appearence & Behavior - System Settings - Updates - User Secure Connection，取消勾选该选项
 
+乱码
+setting-->file encodings--->Global Encoding 和 Project Encoding 都设置为UTF-8
+Transparent native-to-ascii conversion 主要用于转换 ascii，一般都要勾选
+
+Field Injection warning
+Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection warning
+
 ## vscode
 代码模板
 setting -> 用户代码片段

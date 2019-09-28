@@ -1,0 +1,48 @@
+org.apache.kafka:kafka-clients:0.10.1.0
+
+## package
+```
+org.apache.kafka
+    clients
+        consumer
+        producer
+        ClientRequest
+        ClientResponse
+        ClientUtils
+        ClusterConnectionStates
+        CommonClientConfigs
+        ConnectionState
+        InFlightRequests
+        KafkaClient
+        ManualMetadataUpdater
+        Metadata
+        MetadataUpdater
+        NetworkClient
+        NodeApiVersions
+        RequestCompletionHandler
+    common
+        annotation
+        cache
+        config
+        errors
+        internals
+        metrics
+        network
+        protocol
+        record
+        requests
+        security
+        serialization
+        utils
+        Cluster
+        ClusterResource
+        ClusterResourceListener
+        Configurable
+        KafkaException
+        Metric
+        MetricName
+        Node
+        PartitionInfo
+        TopicPartition
+    server.policy
+```

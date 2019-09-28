@@ -1,0 +1,49 @@
+org.asynchttpclient:async-http-client:2.0.32
+
+## package
+```
+io.netty
+    channel
+    util.internal
+org.asynchttpclient
+    channel
+    config
+    cookie
+    exception
+    filter
+    handler
+    netty
+    ntlm
+    oauth
+    proxy
+    body
+    resolver
+    spnego
+    uri
+    util
+    webdav
+    ws
+    AsyncCompletionHandler
+    AsyncCompletionHandlerBase
+    AsyncHandler
+    AsyncHttpClient
+    AsyncHttpClientConfig
+    AsyncHttpClientState
+    BoundRequestBuilder
+    DefaultAsyncHttpClient
+    DefaultAsyncHttpClientConfig
+    DefaultRequest
+    Dsl
+    HttpResponseBodyPart
+    HttpResponseHeaders
+    HttpResponseStatus
+    ListenableFuture
+    Param
+    Realm
+    Request
+    RequestBuilder
+    RequestBuilderBase
+    Response
+    SignatureCalculator
+    SslEngineFactory
+```
