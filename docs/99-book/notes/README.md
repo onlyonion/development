@@ -138,6 +138,7 @@
 * [《C++Primer中文版》 李师贤 译 人民邮电出版社](/99-book/notes/70-dev-ops/C++Primer.md)
 * [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/99-book/notes/70-dev-ops/Go语言实战.md)
 * 《Maven实战》	许晓斌
+* [《实战gradle》李建 杨柳 朱本威 译](/99-book/notes/70-dev-ops/实战gradle.md)
 
 ## 测试
 * 《软件测试基础》 周元哲

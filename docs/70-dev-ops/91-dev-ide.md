@@ -24,6 +24,9 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 泛型提示
 - Editor，Inspections，Java 5 raw use of parameterized class
 
+方法提示
+- Editor - General - Code Completion， Parameter Info 勾选三个
+
 快捷鍵
 - 刪除行
 
