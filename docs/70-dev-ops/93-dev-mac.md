@@ -24,6 +24,16 @@ Command + Option + Esc：强制退出应用程序管理器
 Command + Delete：删除到回收站
 选定文件-回车：重命名文件
 
+
+在应用程序中：
+Command-Option-esc 打开强制退出窗口　　
+Command-H 隐藏（Hide）当前正在运行的应用程序窗口　　
+Command-Option-H 隐藏（Hide）其他应用程序窗口　　
+Command-Q 退出（Quit）最前面的应用程序　　
+Command-Shift-Z 重做，也就是撤销的逆向操作　　
+Command-Tab 在打开的应用程序列表中转到下一个最近使用的应用程序，相当于Windows中（Alt+Tab）　　
+Command-Option-esc 打开“强制退出”窗口，如果有应用程序无响应，可在窗口列表中选择强制退出
+
 [IntelliJ IDEA For Mac 快捷键](https://blog.csdn.net/rainytooo/article/details/51469126)
 
 ### 分辨率
