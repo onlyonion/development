@@ -21,8 +21,9 @@ SqlSession <|.. DefaultSqlSession
 ```
 
 org.apache.ibatis.session.defaults.DefaultSqlSession
+## methods
 
-## select()
+### select()
 
 ```mermaid
 sequenceDiagram
@@ -31,11 +32,30 @@ sequenceDiagram
     DefaultSqlSession ->> Executor: query()
 ```
 
-## insert(), update(), delete() --> update()
+### insert(), update(), delete() --> update()
 
 ```mermaid
 sequenceDiagram
     Actor ->> DefaultSqlSession: update()
     DefaultSqlSession ->> Configuration: getMappedStatement()
     DefaultSqlSession ->> Executor: update()
+```
+
+### wrapCollection
+```java
+  private Object wrapCollection(final Object object) {
+    if (object instanceof Collection) {
+      StrictMap<Object> map = new StrictMap<Object>();
+      map.put("collection", object);
+      if (object instanceof List) {
+        map.put("list", object);
+      }
+      return map;
+    } else if (object != null && object.getClass().isArray()) {
+      StrictMap<Object> map = new StrictMap<Object>();
+      map.put("array", object);
+      return map;
+    }
+    return object;
+  }
 ```

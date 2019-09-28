@@ -1,5 +1,4 @@
-
-## jars
+## netflix
 - com.netflix.netflix-commons:netflix-commons-util:0.1.1
 - com.netflix.netflix-commons:netflix-statistics:0.1.1
 
