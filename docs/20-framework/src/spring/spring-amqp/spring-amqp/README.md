@@ -5,7 +5,11 @@ org.springframework.amqp
 core
 event
 remoting
+    client
+    service
 support
+    converter
+    postprocessor
 utils
 
 AmqpAuthenticationException

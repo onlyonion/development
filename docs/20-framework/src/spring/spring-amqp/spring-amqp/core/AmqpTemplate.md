@@ -1,0 +1,1 @@
+org.springframework.amqp.core.AmqpTemplate

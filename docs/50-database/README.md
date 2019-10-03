@@ -39,7 +39,7 @@
 * jdbc实现 mysql-connector
 * 连接池
 * ORM框架 mybatis
-* 分库分表
+* 分库分表  分页、排序、聚合、分组
   * sharding-sphere
   * proxy mycat
   * TTDL

@@ -40,6 +40,9 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 文档提示
 Editor -> General 勾选 show quick documentation on mouse move
 
+
+check autowiring problems in a bean class
+
 提示不区分大小写
 Editor -> general -> code completion
 
@@ -65,6 +68,16 @@ Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection war
 代码模板
 setting -> 用户代码片段
 触发建议（提示代码） ctrl + space  --> alt + /
+
+```
+// 针对 [markdown] 语言，配置替代编辑器设置。
+"[markdown]":  {
+	"editor.wordWrap": "off",
+	"editor.quickSuggestions": false
+}
+````
+
+
 
 ## tool
 - ZooViewer

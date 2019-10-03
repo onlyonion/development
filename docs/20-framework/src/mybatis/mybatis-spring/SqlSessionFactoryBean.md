@@ -44,7 +44,6 @@ class XMLConfigBuilder {
 
 ## methods
 
-
 ## invoke
 afterPropertiesSet()
 buildSqlSessionFactory()
@@ -59,6 +58,7 @@ XMLMapperBuilder -> XMLStatementBuilder: parseStatementNode
 @enduml
 ```
 
+stack
 ```
 parseStatementNode:58, XMLStatementBuilder (org.apache.ibatis.builder.xml)
 parsePendingStatements:178, XMLMapperBuilder (org.apache.ibatis.builder.xml)
