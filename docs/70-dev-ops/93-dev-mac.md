@@ -17,6 +17,8 @@
 
 macOS常用的快捷键
 
+ctrl + command + q 锁屏
+
 Command + 空格键：Spotlight（推荐使用Alfred代替）
 Command + {C/V/X/A/Z/F}：复制/粘帖/剪切/全选/撤销/查找
 Command + Q：退出当前应用
