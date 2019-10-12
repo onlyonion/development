@@ -116,7 +116,10 @@ MinDoc 的前身是 SmartWiki 文档系统。SmartWiki 是基于 PHP 框架 lara
 
 proxy -> windows proxy/mac proxy
 proxy -> proxy setting, port:8000
-查看本地IP地址help -> local ip addressess
+查看本地IP地址 help -> local ip addressess
 手机配置代理 ip+port
 打开调试的app，请求会发送到charles，然后验证是否允许访问
 当点击允许后，可以在Proxy -> Access Control Settings里看到可以访问此代理服务器列表
+
+## Navicat
+Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
