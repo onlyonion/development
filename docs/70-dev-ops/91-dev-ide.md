@@ -10,6 +10,9 @@ Tools -> Display Preference -> Table -> Advanced -> Columns -> list colums 搜�
 设置线条线为直线
 Tools -> Display Preferences -> General setting的Format菜单下，点Modify，Line Style页下有个Line-->Corners
 
+用例图带箭头
+Tools -> Display Preferences -> General，Use Case Association，选中Orientation
+
 ## idea
 编码
 Setting->File Encodings->Project Encoding选择utf-8，Default encoding for properties files 也选择 UTF-8
@@ -121,5 +124,13 @@ proxy -> proxy setting, port:8000
 打开调试的app，请求会发送到charles，然后验证是否允许访问
 当点击允许后，可以在Proxy -> Access Control Settings里看到可以访问此代理服务器列表
 
+
+截取 Https 通讯信息
+
+Proxy –> SSL Proxying Setting –> Enable SSL Proxying 点击 Add，编辑Location，输入 Host: * , Port: 443
+PC 端证书安装：Help –> SSL Proxying –> Install Charles Root Certificate，选择 Charles 的证书，并信任此证书
+移动端证书安装：Help –> SSL Proxying –>Install Charles Root Certificate on a Mobile Device， 安装弹出的对话框要求，手机配置好端口为 8888 的代理之后，在手机浏览器访问 http://chls.pro/ssl 就可以下载证书并安装了
+安卓手机安装证书 Help –> SSL Proxying –>Save Charles Root Certificate...，选择要保存的文件目录，点击 Save, 将保存的文件传到手机，点击手机的 设置 -> WLAN -> 高级设置 -> 安装证书，找到文件保存目录，安装完成。
+注意：对于 iOS 10.3以上的手机需要设置证书信任：点击 通用 -> 关于本机 -> 证书信任设置 -> 选择 Charles 的证书打开。
 ## Navicat
 Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
