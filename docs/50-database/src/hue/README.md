@@ -1,0 +1,1 @@
+Hue is an open source SQL Workbench for Data Warehouses

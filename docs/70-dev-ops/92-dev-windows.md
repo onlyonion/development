@@ -83,16 +83,28 @@ sysdm.cpl
 192.30.255.120 nodeload.github.com
 ```
 ## mysql
+
+### 大小写不敏感
+Edit my.ini file. Add lower_case_table_names=2 under [mysqld]. Save .ini file.
+Restart MySQL80 service.
+
+### setup
 [mysql install](https://blog.csdn.net/qq_37350706/article/details/81707862)
 
 mysqld --initialize --console
 [System] [MY-013169] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server in progress as process 5292
 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pP53IYtWyS__
 [System] [MY-013170] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
-
 mysqld --install
 
 net start mysql
 
 mysql -u root -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
+
+
+### 时区问题
+ mysql java.sql.SQLException: The server time zone value‘XXXXXX' is unrecognized or represents...
+
+ jdbc连接的url后面加上serverTimezone=GMT
+ 低版本的MySQL jdbc驱动

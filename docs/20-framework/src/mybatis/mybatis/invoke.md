@@ -1,11 +1,17 @@
 
+Proxy
+- InvocationHandler
+  - MapperProxy
+  - SqlSessionInterceptor
+  
 ## invoke
 * binding
-  * MapperProxy.invoke
+  * `MapperProxy`.invoke
   * MapperMethod.execute
+    * 委派 INSERT|UPDATE|DELETE|SELECT|FLUSH
 * spring
   * SqlSessionTemplate.insert|update|delete|select
-  * SqlSessionTemplate.SqlSessionInterceptor.invoke
+  * SqlSessionTemplate.`SqlSessionInterceptor`.invoke 会话拦截器
   * SqlSessionUtils.getSqlSession
   * SqlSessionFactory.openSession
 * session

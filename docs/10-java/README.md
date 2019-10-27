@@ -8,6 +8,8 @@ Sun官方定义的Java技术体系包括：
 
 Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK（Java Development Kit）
 
+可运行在JVM之上的语音，Kotlin、Groovy、JRuby、Jython、Scala
+
 ## Java基础
 * [Java虚拟机](/docs/10-java/02-jvm.md)
 * [集合框架](/docs/10-java/10-collection.md)

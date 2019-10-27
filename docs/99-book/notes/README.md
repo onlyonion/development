@@ -20,9 +20,9 @@
 * [《数据库系统概论（第4版）》 王珊 高等教育出版社](/docs/99-book/notes/00-base/数据库系统概论.md)
 
 ## Java
-* 《core java》卷I
-* 《core java》卷II
-* 《thinking in java》
+* [《Java核心技术卷I：基础知识》叶乃文 邝进筠 杜永萍 译](/docs/99-book/notes/10-java/Java核心技术卷I.md)
+* [《Java核心技术卷II：高级特性》陈浩鹏 王浩 姚建平 等译](/docs/99-book/notes/10-java/Java核心技术卷II.md)
+* [《thinking in java》](/docs/99-book/notes/10-java/Java编程思想.md)
 * [《Java虚拟机规范》 爱飞翔 周志明 等译](/docs/99-book/notes/10-java/Java虚拟机规范.md)
 * [《深入理解Java虚拟机：JVM高级特性与最佳实践》 周志明](/docs/99-book/notes/10-java/深入理解Java虚拟机.md)
 * [《HotSpot实战》陈涛](/docs/99-book/notes/10-java/HotSpot实战.md)
@@ -67,6 +67,7 @@
 * [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社](/docs/99-book/notes/30-distributed/RocketMQ技术内幕.md)
 * [《RocketMQ实战与原理解析》杨开元](/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
 * [《RocketMQ原理简介》淘宝消息中间件项目组](/99-book/notes/30-distributed/RockMQ原理简介.md)
+* [《深入理解Kafka--核心设计与实践原理》朱忠华著](/99-book/notes/30-distributed/深入理解Kafka.md)
 * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
 * [《深入分布式缓存 从原理到实践》于君泽 曹洪伟 邱硕 著 机械工业出版社](/docs/99-book/notes/30-distributed/深入分布式缓存.md)
 * [《分布式服务框架 原理与实践》李林锋 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务框架.md)
@@ -104,7 +105,7 @@
   * [《Mycat权威指南》Mycat开源项目组](/99-book/notes/50-database/Mycat权威指南.md)
 * nosql
   * [《NoSQL数据库技术实战》 皮雄军 著](/99-book/notes/50-database/NoSQL数据库技术实战.md)
-  * 《NoSQL数据库入门与实践（基于MongoDB、Redis）》
+  * [《NoSQL数据库入门与实践（基于MongoDB、Redis）》 ](/99-book/notes/50-database/NoSQL数据库入门与实践.md)
 
 ## 云
 * [《云计算》刘鹏](/99-book/notes/51-cloud/云计算.md)
@@ -124,8 +125,8 @@
 * [《Node.js实战》吴海星译](/99-book/notes/60-js/Node.js实战.md)
 * [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/99-book/notes/60-js/JavaScript权威指南(第6版).md)
 * [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/99-book/notes/60-js/JavaScript设计模式.md)
-* 《JavaScript模式》 (美)奥斯马尼
-* 《你不知道的JavaScript（上卷）》	
+* [《JavaScript模式》 (美)奥斯马尼](/99-book/notes/60-js/JavaScript模式.md)
+* [《你不知道的JavaScript（上卷）》](/99-book/notes/60-js/你不知道的JavaScript.md)
 * [《Vue.js权威指南》](/99-book/notes/60-js/Vue.js权威指南.md)
 * [《深入REACT技术栈》](/99-book/notes/60-js/深入REACT技术栈.md)
 * [《深入浅出Webpack》](/99-book/notes/60-js/深入浅出Webpack.md)
@@ -137,12 +138,13 @@
 * [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
 * [《C++Primer中文版》 李师贤 译 人民邮电出版社](/99-book/notes/70-dev-ops/C++Primer.md)
 * [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/99-book/notes/70-dev-ops/Go语言实战.md)
-* 《Maven实战》	许晓斌
+* [《Maven实战》许晓斌](/docs/99-book/notes/70-dev-ops/Maven实战.md)
 * [《实战gradle》李建 杨柳 朱本威 译](/99-book/notes/70-dev-ops/实战gradle.md)
+* [《容器云运维实战--Docker与Kubernetes集群》黄靖钧 冯立灿](/99-book/notes/70-dev-ops/容器云运维实战.md)
 
 ## 测试
-* 《软件测试基础》 周元哲
-* 《软件自动化测试开发》 邹辉
+* [《软件测试基础》周元哲](/99-book/notes/70-dev-ops/软件测试基础.md)
+* [《软件自动化测试开发》邹辉](/99-book/notes/70-dev-ops/软件自动化测试开发.md)
 
 ## 软考
 * 高级
