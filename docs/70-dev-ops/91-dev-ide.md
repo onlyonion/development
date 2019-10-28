@@ -67,6 +67,12 @@ Transparent native-to-ascii conversion 主要用于转换 ascii，一般都要�
 Field Injection warning
 Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection warning
 
+## idea快捷键
+Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义
+Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch
+Ctrl+Enter，导入包，自动修正
+Ctrl+Alt+L，格式化代码
+
 ## vscode
 代码模板
 setting -> 用户代码片段
@@ -79,8 +85,6 @@ setting -> 用户代码片段
 	"editor.quickSuggestions": false
 }
 ````
-
-
 
 ## tool
 - ZooViewer
