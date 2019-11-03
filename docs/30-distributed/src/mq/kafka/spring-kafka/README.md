@@ -1,0 +1,31 @@
+org.springframework.kafka
+
+## package
+```
+annotation
+config
+core
+    ConsumerFactory
+    ProducerFactory
+    KafkaOperations
+    KafkaTemplate
+event
+listener
+    adapter
+        HandlerAdapter
+        MessagingMessageListenerAdapter
+    ConcurrentMessageListenerContainer
+support
+    converter
+        MessageConverter
+        RecordMessageConverter
+        BatchMessageConverter
+    serializer
+        JsonDeserializer
+        JsonSerializer
+    Acknowledgment
+    KafkaHeaders
+    ProducerListener
+    SendResult
+    TopicPartitionInitialOffset
+```

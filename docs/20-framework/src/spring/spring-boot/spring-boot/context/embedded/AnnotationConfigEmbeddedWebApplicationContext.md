@@ -62,6 +62,15 @@ BeanDefinitionRegistry ^.. DefaultListableBeanFactory
 @enduml
 ```
 
+```java
+public class AnnotationConfigEmbeddedWebApplicationContext extends EmbeddedWebApplicationContext {
+	private final AnnotatedBeanDefinitionReader reader;
+	private final ClassPathBeanDefinitionScanner scanner;
+	private Class<?>[] annotatedClasses;
+	private String[] basePackages;
+}	
+```
+
 
 ## 类图
 ```yuml
