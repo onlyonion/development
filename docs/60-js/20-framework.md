@@ -27,3 +27,12 @@ Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后
 持续集成 GitHub上托管的开源项目用Travis CI进行持续集成 Jenkins/Hudson Travis CI Bamboo TeamCity ThoughtWorks GO Gitlab CI
 REPL环境（Read–eval–print loop，”读取-求值-输出”循环
 HTML 标签 vs. React 组件
+
+## css
+- less
+- sass
+
+## html
+
+W3C 最重要的工作是发展 Web 规范（称为推荐，Recommendations），
+这些规范描述了 Web 的通信协议（比如 HTML 和 XHTML）和其他的构建模块。

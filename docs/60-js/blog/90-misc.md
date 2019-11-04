@@ -35,19 +35,3 @@ min-*、max-*、百分比%
 * 自适应布局（Adaptive Layout）自适应布局的特点是分别为不同的屏幕分辨率定义布局，即创建多个静态布局，每个静态布局对应一个屏幕分辨率范围。
 * 响应式布局（Responsive Layout）媒体查询@media 流式布局
 * 弹性布局（rem/em布局）
-
-## dev ide
-* webstorm
-* aptana studio
-* dreamweaver
-* sublime text
-* atorm
-* textmate
-* vim
-* emacs
-* nodepad++
-* ultraedit
-* uedit
-* editplus
-* VSCode 
-

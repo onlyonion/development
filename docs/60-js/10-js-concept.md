@@ -31,7 +31,19 @@
    * 它有一个length属性，可以用来获得**形参**的个数，因此可以用来比较形参和实参个数是否一致，即比较arguments.callee.length是否等于arguments.length
    * 它可以用来递归匿名函数
 
-![altText](./img/js方法.png "title") 
-## js 函数式编程
-## js 模块化
-## js 加载
+## js函数式编程
+
+## js模块化
+
+## js加载
+
+## 时代演化
+* function
+* Object, Function的prototype
+* 闭包
+* js模块化和mvc
+* AMD和CMD		requirejs, seajs 
+* webpack
+
+- [闲聊——浅谈前端js模块化演变](https://www.cnblogs.com/qingkong/p/5092003.html)
+- [JavaScript 全栈工程师培训教程](http://www.ruanyifeng.com/blog/2016/11/javascript.html)

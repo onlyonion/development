@@ -8,12 +8,14 @@ n. 语言；语言文字；表达能力
   * c++
   * java
   * groovy
+  * kotlin
   * php
   * python
 * 前端
   * html
   * css
-  * javascript
+  * JavaScript
+  * TypeScript
 * 移动端
   * object c
   * swift

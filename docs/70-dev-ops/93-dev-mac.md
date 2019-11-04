@@ -112,3 +112,5 @@ ps aux | grep ssh
 # scp 将当前路径下的.zshrc文件复制到远程主机的/Users/username目录下
 scp .zshrc username@192.168.100.100:/Users/username/
 ```
+
+## Sequel Pro
