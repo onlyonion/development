@@ -12,13 +12,15 @@
 2.	react
 3.	angular
 
+## npm
+- yarn 快速、可靠、安全的依赖管理工具
 
 ## js 构建
 1.	反复重复性的工作	压缩、编译、单元测试
 2.	自动化工具	grunt, gulp, digo, browserify, webpack, seajs, requirejs
 3.	js代码压缩工具	uglify
 4.	包管理工具	npm, cnpm, spm
-5.	类比java里的ant, maven, jenkins
+5.	类比java里的 ant, maven, jenkins
 
 Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入
 
