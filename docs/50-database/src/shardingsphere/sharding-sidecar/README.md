@@ -1,0 +1,4 @@
+sharding-sidecar
+
+定位为Kubernetes的云原生数据库代理，以Sidecar的形式代理所有对数据库的访问。
+通过无中心、零侵入的方案提供与数据库交互的的啮合层，即Database Mesh，又可称数据网格。

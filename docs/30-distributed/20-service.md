@@ -17,6 +17,7 @@ RPC的主要依赖技术
 * Dubbo的序列化可以多种选择，一般使用Hessian的序列化协议，传输则是TCP协议，使用了高性能的NIO框架Netty。
 * pigeon大众点评分布式服务治理框架
 * motan
+* gRPC A high-performance, open-source universal RPC framework
 
 对于序列化，我还了解一些，像Google的ProBuffer、JBossMarshalling和Apache Thrift等
 

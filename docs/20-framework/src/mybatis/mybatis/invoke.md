@@ -6,7 +6,7 @@ Proxy
   
 ## invoke
 * binding
-  * `MapperProxy`.invoke
+  * `MapperProxy`.invoke 映射代理
   * MapperMethod.execute
     * 委派 INSERT|UPDATE|DELETE|SELECT|FLUSH
 * spring
