@@ -10,6 +10,8 @@
 * web
   * accept
     * [ContentNegotiationManager](/20-framework/src/spring/spring-web/web/accept/ContentNegotiationManager.md)
+  * bind
+    * [ServletRequestDataBinder](/docs/20-framework/src/spring/spring-web/web/bind/ServletRequestDataBinder.md)
   * context
     * [ContextLoader](/20-framework/src/spring/spring-web/web/context/ContextLoader.md)
     * [GenericWebApplicationContext](/20-framework/src/spring/spring-web/web/context/support/GenericWebApplicationContext.md)

@@ -114,3 +114,8 @@ scp .zshrc username@192.168.100.100:/Users/username/
 ```
 
 ## Sequel Pro
+
+## network
+- Shared Network Parallels Desktop作为虚拟机的虚拟路由；虚拟机的虚拟子网在mac所属的真实子网中不可见
+- Bridged Network 虚拟机具有虚拟网卡，可以直接访问互联网
+- Host-Only Network 虚拟子网与外界网络隔离；虚拟机只能被其他虚拟机可见和ping

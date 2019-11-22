@@ -51,6 +51,7 @@ RPC的主要依赖技术
 | zookpeer 				| Slytherin 	| 实时推送 				|
 | diamond 				| mysql			| 每隔15s拉一次全量数据	|
 | Spring Cloud Config	| git 			| 人工批量刷新 			|
+| consul	|  			|  			|
 
 ### 监控
 传统的开源监控系统代表有：Cacti、Nagios、Zabbix等

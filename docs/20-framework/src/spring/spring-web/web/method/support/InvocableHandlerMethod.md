@@ -47,3 +47,17 @@ ServletInvocableHandlerMethod ^-- ConcurrentResultHandlerMethod
 org.springframework.core.BridgeMethodResolver
 
 [java中什么是bridge method（桥接方法）](https://blog.csdn.net/mhmyqn/article/details/47342577 )
+
+## methods
+
+### invokeForRequest
+```java
+	public Object invokeForRequest(NativeWebRequest request, ModelAndViewContainer mavContainer,
+			Object... providedArgs) throws Exception {
+		Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
+        // log ..
+		Object returnValue = doInvoke(args);
+        // log ..
+		return returnValue;
+	}
+```

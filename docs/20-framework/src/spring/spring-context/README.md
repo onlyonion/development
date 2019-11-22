@@ -12,7 +12,8 @@ org.springframework
         * [FileSystemXmlApplicationContext](/20-framework/src/spring/spring-context/context/support/FileSystemXmlApplicationContext.md)
       * [GenericApplicationContext](/20-framework/src/spring/spring-context/context/support/GenericApplicationContext.md)
 * ejb
-* format
+* [format](/docs/20-framework/src/spring/spring-context/format/README.md)
+  * [Parser](/docs/20-framework/src/spring/spring-context/format/Parser.md)
 * instrument.classloading
 * jmx
 * jndi

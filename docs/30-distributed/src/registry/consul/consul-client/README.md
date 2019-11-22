@@ -1,5 +1,11 @@
 com.orbitz.consul
 
+- async 异步回调
+- cache 缓存
+- model 模型
+- option
+- util
+
 ## package
 ```
 async                           异步回调机制
@@ -13,14 +19,14 @@ config
     CacheConfig
     ClientConfig
 model
-    acl
-    agent
-    catalog
-    coordinate
-    event
-    health
-    kv
-    operator
+    acl         访问控制
+    agent       代理
+    catalog     类别
+    coordinate  协调
+    event       事件
+    health      健康检查
+    kv          键值
+    operator    操作
     query
     session
     ConsulResponse
@@ -51,3 +57,7 @@ SessionClient
 SnapshotClient
 StatusClient
 ```
+
+## dependecy
+- retrofit2
+- okhttp3

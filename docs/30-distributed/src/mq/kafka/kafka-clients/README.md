@@ -4,8 +4,10 @@ org.apache.kafka:kafka-clients:0.10.1.0
 ```
 org.apache.kafka
     clients
+        admin
         consumer
         producer
+        
         ClientRequest
         ClientResponse
         ClientUtils

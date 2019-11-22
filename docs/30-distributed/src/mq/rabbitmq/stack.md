@@ -42,6 +42,8 @@ executeListener:726, AbstractMessageListenerContainer (org.springframework.amqp.
 doReceiveAndExecute:1219, SimpleMessageListenerContainer (org.springframework.amqp.rabbit.listener)
 receiveAndExecute:1189, SimpleMessageListenerContainer (org.springframework.amqp.rabbit.listener)
 access$1500:97, SimpleMessageListenerContainer (org.springframework.amqp.rabbit.listener)
+
+// listenerContainer
 run:1421, SimpleMessageListenerContainer$AsyncMessageProcessingConsumer (org.springframework.amqp.rabbit.listener)
 run:748, Thread (java.lang)
 ```

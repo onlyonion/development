@@ -1,3 +1,9 @@
+
+- http
+- https
+- http2
+- quic
+
 ## http
 ### 服务端推送
 ajax
@@ -6,10 +12,14 @@ websocket
 长连接
 ### cors
 Cross-origin resource sharing   
-iframe JSONP
+iframe
+JSONP
+将不同源的服务通过代理收敛到同源
+
 ### 域
 当两个域具有相同的协议(如http), 相同的端口(如80)，相同的host（如www.google.com)，那么我们就可以认为它们是相同的域（协议，域名，端口都必须相同）。
-跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的(例如一般情况跨域的JavaScript无法交互，当然有很多解决跨域的方案)
+跨域就指着**协议，域名，端口**不一致，出于安全考虑，跨域的资源之间是无法交互的(例如一般情况跨域的JavaScript无法交互，当然有很多解决跨域的方案)
+
 ## https
 ## http2
 

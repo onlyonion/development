@@ -5,6 +5,16 @@ com.alibaba.druid.sql
 ast
 builder
 dialect
+    db2
+    mysql
+        ast
+        parser
+        visitor
+    odps
+    oracle
+    postgresql
+    sqlserver
+    ast
 parser
 repository
 transform

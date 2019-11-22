@@ -102,6 +102,8 @@ net start mysql
 mysql -u root -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
 
+update user set host='%' where user='root';
+flush privileges;
 
 ### 时区问题
  mysql java.sql.SQLException: The server time zone value‘XXXXXX' is unrecognized or represents...

@@ -14,8 +14,23 @@ Tools -> Display Preferences -> General setting的Format菜单下，点Modify，
 Tools -> Display Preferences -> General，Use Case Association，选中Orientation
 
 ## idea
+插件
+- lombok
+- mybatisx
+- plantuml
+
+plugin不能加载
+Appearence & Behavior - System Settings - Updates - User Secure Connection，取消勾选该选项
+
 编码
 Setting->File Encodings->Project Encoding选择utf-8，Default encoding for properties files 也选择 UTF-8
+
+乱码
+setting-->file encodings--->Global Encoding 和 Project Encoding 都设置为UTF-8
+Transparent native-to-ascii conversion 主要用于转换 ascii，一般都要勾选
+
+Field Injection warning
+Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection warning
 
 不折叠代码
 File->Setting->Editor->General->Code Folding  将One-line methods去除即可
@@ -56,16 +71,6 @@ Idea启动项目报错:Command line is too long. Shorten command line for classN
     <property name="dynamic.classpath" value="true" />
 </component>
 ```
-
-plugin不能加载
-Appearence & Behavior - System Settings - Updates - User Secure Connection，取消勾选该选项
-
-乱码
-setting-->file encodings--->Global Encoding 和 Project Encoding 都设置为UTF-8
-Transparent native-to-ascii conversion 主要用于转换 ascii，一般都要勾选
-
-Field Injection warning
-Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection warning
 
 ## idea快捷键
 Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义
@@ -138,3 +143,24 @@ PC 端证书安装：Help –> SSL Proxying –> Install Charles Root Certificat
 注意：对于 iOS 10.3以上的手机需要设置证书信任：点击 通用 -> 关于本机 -> 证书信任设置 -> 选择 Charles 的证书打开。
 ## Navicat
 Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
+
+## git
+```sh
+git init 
+git add 
+git commit -m "first commit"
+git remote add origin https://github.com/yourspace/yourproject.git
+git push -u origin master
+```
+
+只拉取部分目录
+```sh
+mkdir pro1
+cd pro1
+git init
+git remote add -f origin https://github.com/XXXXX/test.git    #拉取remote的all objects信息
+git config core.sparsecheckout true   #开启sparse clone
+echo "build" >> .git/info/sparse-checkout   #设置需要pull的目录，*表示所有，!表示匹配相反的
+less .git/info/sparse-checkout
+git pull origin master  #拉取
+```

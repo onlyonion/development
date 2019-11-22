@@ -11,3 +11,36 @@ MessageListenerContainer (org.springframework.kafka.listener)
         Lifecycle (org.springframework.context)
         Phased (org.springframework.context)
 ```
+
+## define
+```plantuml
+@startuml
+
+interface MessageListenerContainer
+abstract class AbstractMessageListenerContainer<K, V>
+MessageListenerContainer ^.. AbstractMessageListenerContainer
+
+AbstractMessageListenerContainer ^-- ConcurrentMessageListenerContainer
+AbstractMessageListenerContainer ^-- KafkaMessageListenerContainer
+class ConcurrentMessageListenerContainer<K, V>
+class KafkaMessageListenerContainer<K, V>
+
+AbstractMessageListenerContainer +-- AckMode
+enum AckMode {
+    RECORD,
+    BATCH,
+    TIME,
+    COUNT,
+    COUNT_TIME,
+    MANUAL,
+    MANUAL_IMMEDIATE,
+}
+	
+@enduml
+```
+
+```java
+public interface MessageListenerContainer extends SmartLifecycle {
+	void setupMessageListener(Object messageListener);
+}
+```
