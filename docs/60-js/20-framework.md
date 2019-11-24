@@ -1,40 +1,32 @@
 
 ## 传统框架
-1. Ext
-2. jQuery
-3. Bootstrap	
-4. Bui
-5. Kissy
-6. layer
+- Ext
+- jQuery
+- Bootstrap	
+- Bui
+- Kissy
+- layer
+- mustache
+- nunjunks
+- Zepto UnderScore Backbone Knockout 
 
 ## MVVM
-1.	vue
-2.	react
-3.	angular
+- vue
+- react
+- angular
 
-## npm
-- yarn 快速、可靠、安全的依赖管理工具
+### vue
+- vuex
+- vue-router 将组件 (components) 映射到路由 (routes)，然后告诉 Vue Router 在哪里渲染它们。
+- axios Promise based HTTP client for the browser and node.js。Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
 
-## js 构建
-1.	反复重复性的工作	压缩、编译、单元测试
-2.	自动化工具	grunt, gulp, digo, browserify, webpack, seajs, requirejs
-3.	js代码压缩工具	uglify
-4.	包管理工具	npm, cnpm, spm
-5.	类比java里的 ant, maven, jenkins
+### react
+- umi
 
-Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入
-
-前后端分离开发部署模式
-
-持续集成 GitHub上托管的开源项目用Travis CI进行持续集成 Jenkins/Hudson Travis CI Bamboo TeamCity ThoughtWorks GO Gitlab CI
-REPL环境（Read–eval–print loop，”读取-求值-输出”循环
-HTML 标签 vs. React 组件
 
 ## css
 - less
 - sass
 
 ## html
-
-W3C 最重要的工作是发展 Web 规范（称为推荐，Recommendations），
-这些规范描述了 Web 的通信协议（比如 HTML 和 XHTML）和其他的构建模块。
+W3C 最重要的工作是发展 Web 规范（称为推荐，Recommendations），这些规范描述了 Web 的通信协议（比如 HTML 和 XHTML）和其他的构建模块。
