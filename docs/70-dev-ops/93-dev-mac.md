@@ -1,13 +1,10 @@
-## 黑苹果教程
-### 1. 下载合适的镜像
-### 2. Windows系统下分区
-### 3. leopard写入分区
-### 4. HFS格式读取软件安装
-### 5. 删除多余驱动
-### 6. 有需要替换内核、替换MBR
-### 7. EasyBCD添加变色龙引导
+## network
+- Shared Network Parallels Desktop作为虚拟机的虚拟路由；虚拟机的虚拟子网在mac所属的真实子网中不可见
+- Bridged Network 虚拟机具有虚拟网卡，可以直接访问互联网
+- Host-Only Network 虚拟子网与外界网络隔离；虚拟机只能被其他虚拟机可见和ping
 
-## common
+VPN开启后，ping不同其他主机
+
 ### keybord
 * ⇪ Caps Lock
 * ⇧ Shift
@@ -26,7 +23,6 @@ Command + Option + Esc：强制退出应用程序管理器
 Command + Delete：删除到回收站
 选定文件-回车：重命名文件
 
-
 在应用程序中：
 Command-Option-esc 打开强制退出窗口　　
 Command-H 隐藏（Hide）当前正在运行的应用程序窗口　　
@@ -37,17 +33,6 @@ Command-Tab 在打开的应用程序列表中转到下一个最近使用的应�
 Command-Option-esc 打开“强制退出”窗口，如果有应用程序无响应，可在窗口列表中选择强制退出
 
 [IntelliJ IDEA For Mac 快捷键](https://blog.csdn.net/rainytooo/article/details/51469126)
-
-### 分辨率
-SwitchResX For Mac v4.8.0 
-解压密码：imac.hk
-
-### 显示隐藏文件
-```shell
-defaults write com.apple.finder AppleShowAllFiles -bool true
-# 需要重启finder
-defaults write com.apple.finder AppleShowAllFiles -bool false
-```
 
 ## cmd
 ```sh
@@ -115,7 +100,24 @@ scp .zshrc username@192.168.100.100:/Users/username/
 
 ## Sequel Pro
 
-## network
-- Shared Network Parallels Desktop作为虚拟机的虚拟路由；虚拟机的虚拟子网在mac所属的真实子网中不可见
-- Bridged Network 虚拟机具有虚拟网卡，可以直接访问互联网
-- Host-Only Network 虚拟子网与外界网络隔离；虚拟机只能被其他虚拟机可见和ping
+## 黑苹果教程
+### 1. 下载合适的镜像
+### 2. Windows系统下分区
+### 3. leopard写入分区
+### 4. HFS格式读取软件安装
+### 5. 删除多余驱动
+### 6. 有需要替换内核、替换MBR
+### 7. EasyBCD添加变色龙引导
+
+
+
+## 分辨率
+SwitchResX For Mac v4.8.0 
+解压密码：imac.hk
+
+## 显示隐藏文件
+```shell
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# 需要重启finder
+defaults write com.apple.finder AppleShowAllFiles -bool false
+```

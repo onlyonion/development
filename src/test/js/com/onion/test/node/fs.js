@@ -2,6 +2,9 @@ var os = require('os');
 var fs = require('fs');
 var path = require('path');
 
+let dist = path.resolve(__dirname, 'dist')
+console.log(__dirname, dist)
+
 var isWin = /^win/i.test(os.platform());
 var configFile = path.resolve(os.homedir(), '.nbconfig');
 

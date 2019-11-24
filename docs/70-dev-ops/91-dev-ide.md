@@ -72,7 +72,11 @@ Idea启动项目报错:Command line is too long. Shorten command line for classN
 </component>
 ```
 
-## idea快捷键
+### idea mac man
+sudo vim /etc/hosts，在localhost后面追加你的电脑名.local即可
+终端输入 scutil --set HostName "localhost" 本地回环地址
+
+### idea快捷键
 Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定义
 Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch
 Ctrl+Enter，导入包，自动修正
