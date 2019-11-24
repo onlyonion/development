@@ -27,22 +27,17 @@ exports.add = function(n){
 };
 ```
 
-
 CommonJS是主要为了JS在后端的表现制定的，不适合前端
 AMD(异步模块定义)出现了，它就主要为前端JS的表现制定规范
 
  ```js
 // Asynchronous Module Definition
-
 // define(id?,dependencies?,factory);
 // 声明模块的时候制定所有的依赖(dep)，并且还要当做形参传到factory中
 // RequireJS
 define(['dep1','dep2'],function(dep1,dep2){...});
-
 // define(function(require,exports,module){...});
 // seajs 更贴近 CommonJS Modules/1.1 和 Node Modules 规范
-
-
 // RequireJS 和 Sea.js 都是模块加载器，倡导模块化开发理念，核心价值是让 JavaScript 的模块化开发变得简单自然
  ```
 
