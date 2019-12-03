@@ -8,7 +8,7 @@
 ## overview
 hotspot/src/
 
-- 平台相关性 cpu、os、os_cpu
+- 平台相关性 **cpu、os、os_cpu**
 - 平台无关性
   * 编译器、解释器、汇编、机器码 `compiler(c1 opto) interpreter asm code`
   * 类文件结构、类加载机制 字节码指令集、执行引擎、对象系统`oops`
@@ -18,31 +18,6 @@ hotspot/src/
   * 抽象数据结构 libadt(dict port set vectset)《数据结构》
 
 ## src
-
-### cpu
-* cpu CPU相关代码（汇编器、模板解释器、ad文件、部分runtime函数在这里实现）         
-  * sparc
-  * x86
-  * zero
-
-### os
-* os
-  * bsd
-  * linux
-  * posix
-  * solaris
-  * windows
-    * vm
-      * atomic_windows_x86.inline.hpp
-
-### os_cpu
-* os_cpu
-  * linux_sparc
-  * linux_x86
-  * linux_zero
-  * solaris_sparc
-  * solaris_x86
-  * windows_x86
 
 ### share
 * share
@@ -58,9 +33,9 @@ hotspot/src/
     * c1 client编译器（又称“C1”）
     * ci 动态编译器的公共服务/从动态编译器到VM的接口
     * [classfile](/docs/10-java/src/openjdk/hotspot.src/share.vm/classfile/README.md) 类文件的处理（包括类加载和系统符号表等）
-      * [classLoader](/docs/10-java/src/openjdk/hotspot.src/share.vm/classfile/classLoader.md)
+      * [`classLoader`](/docs/10-java/src/openjdk/hotspot.src/share.vm/classfile/classLoader.md) `Bootstrap`类加载器 Extension加载器 Launcher$AppClassLoader应用程序加载器
     * code 动态生成的代码的管理
-      * [codeCache](/hotspot/src/share/vm/code/codeCache.hpp)
+      * [`codeCache`](/hotspot/src/share/vm/code/codeCache.hpp) 机器码高速缓存
     * [compiler](/docs/10-java/src/openjdk/hotspot.src/share.vm/compiler/README.md) 从VM调用动态编译器的接口
     * [gc_implementation](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/README.md)
       * [concurrentMarkSweep](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_implementation/concurrentMarkSweep/README.md)
@@ -72,7 +47,7 @@ hotspot/src/
       * [collectedHeap](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/collectedHeap.md)
       * [collectedHeap.inline](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/collectedHeap.inline.md)
       * [gcCause](/docs/10-java/src/openjdk/hotspot.src/share.vm/gc_inferface/gcCause.md)
-    * interpreter
+    * interpreter 解释器
       * [interpreterRuntime](/docs/10-java/src/openjdk/hotspot.src/share.vm/interpreter/interpreterRuntime.md) `synchronized`监视器锁
       * [bytecodeInterpreter](/docs/10-java/src/openjdk/hotspot.src/share.vm/interpreter/bytecodeInterpreter.md) 字节码解释执行器
     * libadt
@@ -100,6 +75,30 @@ hotspot/src/
     * [trace](/docs/10-java/src/openjdk/hotspot.src/share.vm/trace/README.md)
     * utilities
 
+### cpu
+* cpu CPU相关代码（汇编器、模板解释器、ad文件、部分runtime函数在这里实现）         
+  * sparc
+  * x86
+  * zero
+
+### os
+* os
+  * bsd
+  * linux
+  * posix
+  * solaris
+  * windows
+    * vm
+      * atomic_windows_x86.inline.hpp
+
+### os_cpu
+* os_cpu
+  * linux_sparc
+  * linux_x86
+  * linux_zero
+  * solaris_sparc
+  * solaris_x86
+  * windows_x86
 
 ## link
 * [openjdk7 download](http://download.java.net/openjdk/jdk7/promoted/b147/openjdk-7-fcs-src-b147-27_jun_2011.zip)

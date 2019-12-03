@@ -1,1 +1,4 @@
 drools
+
+
+drools-core

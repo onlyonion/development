@@ -160,6 +160,7 @@ public class DefaultMessageStore implements MessageStore {
 ```
 
 ### FlushConsumeQueueService
+刷盘
 ```java
     class FlushConsumeQueueService extends ServiceThread {
         private static final int RETRY_TIMES_OVER = 3;
@@ -187,6 +188,7 @@ public class DefaultMessageStore implements MessageStore {
 
 
 ### ReputMessageService
+重放消息服务
 ```java
     class ReputMessageService extends ServiceThread {
         @Override

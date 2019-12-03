@@ -290,9 +290,9 @@ InnoDB实现了如下两种标准的**行级锁**：
 
 ### 6.4 锁的算法
 #### 6.4.1 行锁的3种算法
-1. Record Lock：记录锁，单个行记录上的锁
-2. Gap Lock：间隙锁，锁定一个范围，但是不包括记录本身
-3. Next-Key Lock：Gap Lock + Record Lock，锁定一个范围，并且锁定记录本身
+1. `Record Lock`：记录锁，单个行记录上的锁（粒度小、系统开销大、并发性能高）
+2. `Gap Lock`：间隙锁，锁定一个范围，但是不包括记录本身
+3. `Next-Key Lock`：Gap Lock + Record Lock，锁定一个范围，并且锁定记录本身（粒度大、系统开销小、并发性能低）
    
 NextKeyLock，设计目的是为了解决PlantomProblem，锁定的不是单个值，而是一个范围，是谓词锁的一种改进。
 当查询的索引含有唯一属性时，InnoDB存储引擎会对Next-KeyLock进行优化，将其降级为RecordLock，仅锁住索引本身，而不是范围。提高应用的并发性。
@@ -300,7 +300,7 @@ NextKeyLock，设计目的是为了解决PlantomProblem，锁定的不是单个�
 - 唯一索引，Next-Key Lock 降级为Record Lock
 - 辅助索引，仍然是Next-Key Lock，并且还会对辅助索引下一个键值加上gap lock。
 
-Gap Lock的作用是为了阻止多个事务将记录插入到同一个范围，而这回导致幻读问题的产生。
+!> Gap Lock的作用是为了阻止多个事务将记录插入到**同一个范围**，而这会导致**幻读**问题的产生。
 
 显示地关闭gap lock
 - 事务隔离级别设置为 read committed

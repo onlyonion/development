@@ -14,6 +14,25 @@ Exporter (com.alibaba.dubbo.rpc)
 ```
 
 ## define
+```plantuml
+@startuml
+
+interface Exporter<T>
+interface Invoker<T>
+Exporter *-- Invoker
+
+Exporter ^.. AbstractExporter
+abstract class AbstractExporter<T> 
+
+AbstractExporter ^-- InjvmExporter
+AbstractExporter ^-- DubboExporter
+
+class InjvmExporter<T> 
+class DubboExporter<T> 
+
+@enduml
+```
+
 ```java
 public interface Exporter<T> {
     Invoker<T> getInvoker();

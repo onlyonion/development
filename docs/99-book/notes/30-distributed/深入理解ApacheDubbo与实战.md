@@ -312,10 +312,11 @@ Dubbo中提供的服务分组和版本是强隔离的，如果服务指定了服
 ContextFilter主要记录每个请求调用的上下文。
 #### 10.3.5 ExceptionFilter的实现原理
 #### 10.3.6 TimeoutFilter的实现原理
+记录每个Invoker的调用时间，如果超过了接口设置的timeout值，则会打印一条警告日志。
 #### 10.3.7 TokenFilter的实现原理
 在Dubbo中，如果某些服务提供者不想让消费者绕过注册中心直连自己，则可以使用令牌验证。
 #### 10.3.8 TpsLimitFilter的实现原理
-TpsLimitFilter主要用于服务提供端的限流。
+TpsLimitFilter主要用于**服务提供端**的**限流**。
 TpsLimitFilter的限流是基于令牌的，即一个时间段内只分配N个令牌，每个请求过来都会消耗一个令牌，消耗完毕，后面再来的请求都会被拒绝。  
 ```xml
 <!-- 每次发放1000个令牌 -->
@@ -327,9 +328,19 @@ TpsLimitFilter的限流是基于令牌的，即一个时间段内只分配N个�
 #### 10.4.1 ActiveLimitFilter的实现原理
 消费者端的过滤器，限制的是客户端的并发数。
 #### 10.4.2 ConsumerContextFilter的实现原理
+- 收到请求时，当前节点可以被看作一个服务提供者，由ContextFilter设置上下文。
+- 当发起请求到下一个服务时，当前服务变成一个消费者，由ConsumeContextFilter设置上下文。
+
 #### 10.4.3 DeprecatedFilter的实现原理
 #### 10.4.4 FutureFilter的实现原理
 FutureFilter主要实现框架再调用前后出现异常时，触发调用用户配置的回调方法。
+
+```xml
+<bean id="callBack" class="com.test.CallBack">
+<dubbo:reference id="testService" interface="com.testService">
+    <dubbo:method name="testMethod" onreturn="callBack.onreturn" onthrow="callBack.onthrow" oninvoke="callBack.oninvoke">
+</dubbo:reference>
+```
 
 ## 第11章 Dubbo注册中心扩展实战
 ### 11.1 etcd背景介绍

@@ -1,8 +1,12 @@
 《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社
 
-- 路由中心NameServer
-- 消息发送、消息存储、消息消费
-- 消息过滤、主从同步、事务消息
+- 路由中心 动态路由发现与剔除机制
+- 消息发送 消息结构、启动流程、发送过程、批量发送
+- 消息存储 存储设计、发送存储流程、存储文件组织与内存映射机制、消费队列、索引文件、文件恢复机制、刷盘机制、文件删除机制
+- 消息消费 消息消费队列复制与重新分布、消费模式、拉取方式、进度反馈、消息过滤、顺序消息
+- 消息过滤 ClassFilter、FilterClass、FilterServer注册剖析、消息拉取（拉模式）
+- 主从同步 主从同步复制、读写分离
+- 事务消息 发送流程、提交或回滚、回查事务状态
 
 ## 第1章 阅读源代码前的准备
 ### 1.3 RocketMQ的设计理念和目标
@@ -193,11 +197,13 @@ checkpoint
 #### 4.7.2 Broker异常停止文件恢复
 
 ### 4.8 文件刷盘机制
+基于JDK NIO的内存映射机制（MappedByteBuffer），消息存储时首先将消息追加到内存，再根据配置的刷盘策略在不同时间进行刷写磁盘。
 #### 4.8.1 Broker同步刷盘
 #### 4.8.2 Broker异步刷盘
 
 ### 4.9 过期文件删除机制
 顺序写：写操作全部落在最后一个Commitlog或ConsumeQueue文件上，之前的文件在下一个文件创建后将不会再被更新。
+RocketMQ不会关注这个文件上的消息是否全部被消费。默认每个文件的过期时间为72小时。凌晨4点、磁盘空间不足时。
 
 ## 第5章 RocketMQ消息消费 
 ### 5.1 RocketMQ消息消费概述
@@ -372,8 +378,9 @@ Broker主备机制：消息消费到达**主服务器**需要将消息同步到*
 
 ## 第8章 RocketMQ事务消息 
 ### 8.1 事务消息实现思想
-1. perpare消息
-2. RocketMQ 定时任务回查
+1. 业务数据落库后，同步调用消息发送接口，发送状态prepare的消息
+2. 接收到perpare消息，先备份消息的原主题与原消息消费队列，然后将消息存储在主题RMQ_SYS_TRANS_HALF_TOPIC的消息消费队列中
+3. RocketMQ 定时任务回查
 
 ### 8.2 事务消息发送流程
 1. TransactionMQProducer
@@ -389,8 +396,7 @@ Broker主备机制：消息消费到达**主服务器**需要将消息同步到*
 
 ### 8.3 提交或回滚事务
 ### 8.4 事务消息回查事务状态
-1. RocketMQ通过TransactionalMessageCheckService线程定时去检测RMQ_SYS_TRANS_HALF_TOPIC主题中的消息，回查消息的事务状态。
-默认检测频率1分钟。
+1. RocketMQ通过TransactionalMessageCheckService线程定时去检测RMQ_SYS_TRANS_HALF_TOPIC主题中的消息，回查消息的事务状态。默认检测频率1分钟。
 2. TransactionalMessageService#check
    - 查询RMQ_SYS_TRANS_HALF_TOPIC主题下的消息队列，该主题是prepare下线的存储队列
    - 遍历每一个消息消费队列，每个消息消费队列的处理时间为60s

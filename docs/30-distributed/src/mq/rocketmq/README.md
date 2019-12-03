@@ -5,104 +5,105 @@
 ### common
 * common
   * message
-    * [Message](/docs/30-distributed/src/rocketmq/rocketmq-common/message/Message.md)
-  * [TopicConfig](/docs/30-distributed/src/rocketmq/rocketmq-common/TopicConfig.md)
+    * [Message](/docs/30-distributed/src/mq/rocketmq/rocketmq-common/message/Message.md)
+  * [TopicConfig](/docs/30-distributed/src/mq/rocketmq/rocketmq-common/TopicConfig.md)
   
 ### broker  
-* [broker](/docs/30-distributed/src/rocketmq/rocketmq-broker/README.md)
+* [broker](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/README.md)
   * latency
   * longpolling
-    * [PullRequestHoldService](/docs/30-distributed/src/rocketmq/rocketmq-broker/longpolling/PullRequestHoldService.md)
+    * [PullRequestHoldService](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/longpolling/PullRequestHoldService.md)
   * offset
-    * [ConsumerOffsetManager](/docs/30-distributed/src/rocketmq/rocketmq-broker/offset/ConsumerOffsetManager.md)
+    * [ConsumerOffsetManager](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/offset/ConsumerOffsetManager.md)
   * out
-    * [BrokerOuterAPI](/docs/30-distributed/src/rocketmq/rocketmq-broker/out/BrokerOuterAPI.md)
+    * [BrokerOuterAPI](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/out/BrokerOuterAPI.md)
   * pagecache
   * processor
-    * [QueryMessageProcessor](/docs/30-distributed/src/rocketmq/rocketmq-broker/processor/QueryMessageProcessor.md)
-    * [SendMessageProcessor](/docs/30-distributed/src/rocketmq/rocketmq-broker/processor/SendMessageProcessor.md)
+    * [QueryMessageProcessor](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/processor/QueryMessageProcessor.md)
+    * [SendMessageProcessor](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/processor/SendMessageProcessor.md)
   * slave
-    * [SlaveSynchronize](/docs/30-distributed/src/rocketmq/rocketmq-broker/slave/SlaveSynchronize.md)
+    * [SlaveSynchronize](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/slave/SlaveSynchronize.md)
   * transaction
-    * [`TransactionalMessageCheckService`](/docs/30-distributed/src/rocketmq/rocketmq-broker/transaction/TransactionalMessageCheckService.md)
-    * [TransactionalMessageService](/docs/30-distributed/src/rocketmq/rocketmq-broker/transaction/TransactionalMessageService.md)
-  * [BrokerController](/docs/30-distributed/src/rocketmq/rocketmq-broker/BrokerController.md)
+    * [`TransactionalMessageCheckService`](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/transaction/TransactionalMessageCheckService.md)
+    * [TransactionalMessageService](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/transaction/TransactionalMessageService.md)
+  * [BrokerController](/docs/30-distributed/src/mq/rocketmq/rocketmq-broker/BrokerController.md)
 
 ### client  
-* [client](/docs/30-distributed/src/rocketmq/rocketmq-client/README.md)
+* [client](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/README.md)
   * consumer
-    * [DefaultMQPushConsumer](/docs/30-distributed/src/rocketmq/rocketmq-client/consumer/DefaultMQPushConsumer.md) 
-    * [AllocateMessageQueueStrategy](/docs/30-distributed/src/rocketmq/rocketmq-client/consumer/AllocateMessageQueueStrategy.md) 负载均衡
+    * [DefaultMQPushConsumer](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/consumer/DefaultMQPushConsumer.md) 
+    * [AllocateMessageQueueStrategy](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/consumer/AllocateMessageQueueStrategy.md) 负载均衡
   * impl
     * consumer
-      * [DefaultMQPushConsumerImpl](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/DefaultMQPushConsumerImpl.md)
-      * [`PullMessageService`](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/PullMessageService.md)
-      * [`ProcessQueue`](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ProcessQueue.md)
+      * [DefaultMQPushConsumerImpl](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/DefaultMQPushConsumerImpl.md)
+      * [`PullMessageService`](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/PullMessageService.md) 拉取消息服务
+      * [`ProcessQueue`](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/ProcessQueue.md)
       * [`ConsumeMessageService`](docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageService.md/)
-      * [ConsumeMessageOrderlyService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageOrderlyService.md) 顺序消费
-      * [ConsumeMessageConcurrentlyService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageConcurrentlyService.md) 并发消费
-      * [RebalanceService](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/RebalanceService.md)
-      * [RebalanceImpl](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/consumer/RebalanceImpl.md)
+      * [ConsumeMessageOrderlyService](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageOrderlyService.md) 顺序消费（队列加锁消费）
+      * [ConsumeMessageConcurrentlyService](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/ConsumeMessageConcurrentlyService.md) 并发消费
+      * [`RebalanceService`](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/RebalanceService.md) 消费端再平衡服务
+      * [RebalanceImpl](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/consumer/RebalanceImpl.md)
     * producer
-      * [DefaultMQProducerImpl](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/producer/DefaultMQProducerImpl.md)
+      * [DefaultMQProducerImpl](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/producer/DefaultMQProducerImpl.md)
       * MQProducerInner
-      * [TopicPublishInfo](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/producer/TopicPublishInfo.md)
+      * [TopicPublishInfo](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/producer/TopicPublishInfo.md)
     * factory
-      * [MQClientInstance](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/factory/MQClientInstance.md)
-    * [MQClientManager](/docs/30-distributed/src/rocketmq/rocketmq-client/impl/MQClientManager.md)
+      * [MQClientInstance](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/factory/MQClientInstance.md)
+    * [MQClientManager](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/impl/MQClientManager.md)
   * producer
-    * [DefaultMQProducer](/docs/30-distributed/src/rocketmq/rocketmq-client/producer/DefaultMQProducer.md)
-    * [`TransactionMQProducer`](/docs/30-distributed/src/rocketmq/rocketmq-client/producer/TransactionMQProducer.md)
+    * [DefaultMQProducer](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/producer/DefaultMQProducer.md)
+    * [`TransactionMQProducer`](/docs/30-distributed/src/mq/rocketmq/rocketmq-client/producer/TransactionMQProducer.md)
 
 ### filter
-* [filter](/docs/30-distributed/src/rocketmq/rocketmq-filter/README.md) 管道过滤器
+* [filter](/docs/30-distributed/src/mq/rocketmq/rocketmq-filter/README.md) 管道过滤器
 
 ### logging
 * logging 日志适配
 
 ### namesrc
-* [namesrv](/docs/30-distributed/src/rocketmq/rocketmq-namesrv/README.md) 命名服务
+* [namesrv](/docs/30-distributed/src/mq/rocketmq/rocketmq-namesrv/README.md) 命名服务
   * routeinfo
-    * [RouteInfoManager](/docs/30-distributed/src/rocketmq/rocketmq-namesrv/routeinfo/RouteInfoManager.md)
+    * [RouteInfoManager](/docs/30-distributed/src/mq/rocketmq/rocketmq-namesrv/routeinfo/RouteInfoManager.md)
 
 ### openmessaging
 * openmessaging
 
 ### remoting
-* [remoting](/docs/30-distributed/src/rocketmq/rocketmq-remoting/README.md) 远程通信
+* [remoting](/docs/30-distributed/src/mq/rocketmq/rocketmq-remoting/README.md) 远程通信
   * netty
-    * [NettyRemotingServer](/docs/30-distributed/src/rocketmq/rocketmq-remoting/netty/NettyRemotingServer.md)
-    * [NettyRemotingClient](/docs/30-distributed/src/rocketmq/rocketmq-remoting/netty/NettyRemotingClient.md)
-  * [RemotingService](/docs/30-distributed/src/rocketmq/rocketmq-remoting/RemotingService.md)
+    * [NettyRemotingServer](/docs/30-distributed/src/mq/rocketmq/rocketmq-remoting/netty/NettyRemotingServer.md)
+    * [NettyRemotingClient](/docs/30-distributed/src/mq/rocketmq/rocketmq-remoting/netty/NettyRemotingClient.md)
+  * [RemotingService](/docs/30-distributed/src/mq/rocketmq/rocketmq-remoting/RemotingService.md)
 
 ### servutil
-* [srvutil](/docs/30-distributed/src/rocketmq/rocketmq-srvutil/README.md)
+* [srvutil](/docs/30-distributed/src/mq/rocketmq/rocketmq-srvutil/README.md)
 
 ### store
-* [store](/docs/30-distributed/src/rocketmq/rocketmq-store/README.md) 存储
-  * [config](/docs/30-distributed/src/rocketmq/rocketmq-store/config/README.md)
-    * [MessageStoreConfig](/docs/30-distributed/src/rocketmq/rocketmq-store/config/MessageStoreConfig.md)
+* [store](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/README.md) 存储
+  * [config](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/config/README.md)
+    * [MessageStoreConfig](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/config/MessageStoreConfig.md)
   * ha
-    * [HAService](/docs/30-distributed/src/rocketmq/rocketmq-store/ha/HAService.md)
-    * [WaitNotifyObject](/docs/30-distributed/src/rocketmq/rocketmq-store/ha/WaitNotifyObject.md)
+    * [HAService](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/ha/HAService.md)
+    * [WaitNotifyObject](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/ha/WaitNotifyObject.md)
   * index
-    * [`IndexFile`](/docs/30-distributed/src/rocketmq/rocketmq-store/index/IndexFile.md)
-    * [`IndexHeader`](/docs/30-distributed/src/rocketmq/rocketmq-store/index/IndexHeader.md)
-    * [`IndexService`](/docs/30-distributed/src/rocketmq/rocketmq-store/index/IndexService.md)
+    * [`IndexFile`](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/index/IndexFile.md)
+    * [`IndexHeader`](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/index/IndexHeader.md)
+    * [`IndexService`](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/index/IndexService.md)
   * schedule
-    * [ScheduleMessageService](/docs/30-distributed/src/rocketmq/rocketmq-store/schedule/ScheduleMessageService.md)
-  * [CommitLog](/docs/30-distributed/src/rocketmq/rocketmq-store/CommitLog.md)
-  * [ConsumeQueue](/docs/30-distributed/src/rocketmq/rocketmq-store/ConsumeQueue.md)
-  * [MappedFile](/docs/30-distributed/src/rocketmq/rocketmq-store/MappedFile.md)
-  * [MappedFileQueue](/docs/30-distributed/src/rocketmq/rocketmq-store/MappedFileQueue.md)
-  * [DefaultMessageStore](/docs/30-distributed/src/rocketmq/rocketmq-store/DefaultMessageStore.md)
+    * [ScheduleMessageService](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/schedule/ScheduleMessageService.md)
+  * [CommitLog](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/CommitLog.md)
+  * [ConsumeQueue](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/ConsumeQueue.md)
+  * [MappedFile](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/MappedFile.md)
+  * [MappedFileQueue](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/MappedFileQueue.md)
+  * [`DefaultMessageStore`](/docs/30-distributed/src/mq/rocketmq/rocketmq-store/DefaultMessageStore.md) 顺序写
+    - ReputMessageService 准实时地将消息转发给ConsumeQueue与Hash索引文件
 
 ### tools
-* [tools](/docs/30-distributed/src/rocketmq/rocketmq-tools/README.md)
+* [tools](/docs/30-distributed/src/mq/rocketmq/rocketmq-tools/README.md)
 
 
 ## rocketmq-client 3.5.8
-* [rocketmq-client](/docs/30-distributed/src/rocketmq/rocketmq-client3/README.md)
+* [rocketmq-client](/docs/30-distributed/src/mq/rocketmq/rocketmq-client3/README.md)
 
 <!-- 
 ## jars
