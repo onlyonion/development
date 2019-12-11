@@ -1,11 +1,15 @@
 
+- 内存溢出(Out Of Memory，简称OOM)是指应用系统中存在无法回收的内存或使用的内存过多，最终使得程序运行要用到的内存大于能提供的最大内存。
+- 内存泄漏（Memory Leak）是指程序中己动态分配的堆内存由于某种原因程序未释放或无法释放，造成系统内存的浪费，导致程序运行速度减慢甚至系统崩溃等严重后果。
+
+## 继承体系
 * Throwable (java.lang)
   * Error (java.lang)
-    * VirtualMachineError (java.lang)
+    * VirtualMachineError (java.lang) 虚拟机错误
       * InternalError (java.lang)
       * StackOverflowError (java.lang)
       * UnknownError (java.lang)
-      * OutOfMemoryError (java.lang)
+      * OutOfMemoryError (java.lang) 内存溢出错误
         * OutOfDirectMemoryError (io.netty.util.internal)
 
 ## java.lang.OutOfMemoryError
@@ -33,3 +37,7 @@ GC占用了多余98%（默认值）的CPU时间却只回收了少于2%（默认�
 ### java.lang.OutOfMemoryError: unable to create new native thread
 1. 系统内存耗尽，无法为新线程分配内存
 2. 创建线程数超过了操作系统的限制
+
+## other
+- stackOverFlow
+- socketException:too many open files

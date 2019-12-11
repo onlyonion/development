@@ -13,7 +13,7 @@ java.util.concurrent.atomic
   * AtomicReference
   * AtomicMarkableReference
   * AtomicStampedReference
-* field
+* field 抽象类，静态方法newUpdater创建原子更新字段
   * AtomicIntegerFieldUpdater
   * AtomicLongFieldUpdater
   * AtomicReferenceFieldUpdater

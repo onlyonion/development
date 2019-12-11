@@ -69,6 +69,7 @@ Throwable (java.lang)
         ServletException (javax.servlet)                        SERVLET异常
         ParseException (java.text)                              
         ActivationException (java.rmi.activation)
+        
         RuntimeException (java.lang)                            运行时异常
             IndexOutOfBoundsException (java.lang)
             NullPointerException (java.lang)

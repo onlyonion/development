@@ -35,6 +35,8 @@
 * [《Java并发编程实战》童云兰 译](/docs/99-book/notes/10-java/Java并发编程实战.md)
 * [《RxJava2.x实战》沈哲](/docs/99-book/notes/10-java/RxJava2.x实战.md)
 * [《RxJava响应式编程》李衍顺 ](/docs/99-book/notes/10-java/RxJava响应式编程.md)
+* [《实战Java虚拟机 JVM故障诊断与性能优化》葛一鸣](/docs/99-book/notes/10-java/实战Java虚拟机.md)
+* [《Java性能权威指南》柳飞 陆明刚 臧秀涛 译](/docs/99-book/notes/10-java/Java性能权威指南.md)
 
 ## 框架
 * [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)

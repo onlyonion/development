@@ -1,3 +1,4 @@
+org.springframework.aop.framework.JdkDynamicAopProxy
 
 ## define
 ```plantuml
@@ -5,8 +6,8 @@
 
 interface AopProxy
 interface InvocationHandler
-AopProxy <|.. JdkDynamicAopProxy
-InvocationHandler <|.. JdkDynamicAopProxy
+AopProxy ^.. JdkDynamicAopProxy
+InvocationHandler ^.. JdkDynamicAopProxy
 
 class JdkDynamicAopProxy {
     - final AdvisedSupport advised
@@ -16,21 +17,46 @@ class AdvisedSupport {
     TargetSource targetSource
     AdvisorChainFactory advisorChainFactory
     - List<Advisor> advisors
-    .. 获得拦截器和动态拦截通知 ..
-    + List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method, Class<?> targetClass)
 }
-JdkDynamicAopProxy o-- AdvisedSupport
+JdkDynamicAopProxy *-- AdvisedSupport
+
+JdkDynamicAopProxy ..> ReflectiveMethodInvocation
 
 @enduml
 ```
 
+```java
+final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializable {
+}
+```
 
-## JdkDynamicAopProxy.invoke()
-* 特殊方法处理
-* 获得拦截器链
+
+## methods
+
+## getProxy
+```java
+	@Override
+	public Object getProxy() {
+		return getProxy(ClassUtils.getDefaultClassLoader());
+	}
+
+	@Override
+	public Object getProxy(@Nullable ClassLoader classLoader) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("Creating JDK dynamic proxy: target source is " + this.advised.getTargetSource());
+		}
+		Class<?>[] proxiedInterfaces = AopProxyUtils.completeProxiedInterfaces(this.advised, true);
+		findDefinedEqualsAndHashCodeMethods(proxiedInterfaces);
+		return Proxy.newProxyInstance(classLoader, proxiedInterfaces, this);
+	}
+```
+
+### invoke
+1. 特殊方法处理
+2. 获得拦截器链
     - 拦截器为空，直接调用
     - 拦截器不为空，执行拦截器链
-* 结果处理、返回
+3. 结果处理、返回
 
 ```mermaid
 sequenceDiagram

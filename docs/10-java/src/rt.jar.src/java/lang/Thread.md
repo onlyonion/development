@@ -315,6 +315,14 @@ Terminated -right-> [*]
 * main
 
 ### jstack
+- JIT编译线程
+- GC线程
+- 引用队列线程
+- 终结器线程
+- 信号派发线程
+- VM Thread
+- VM Periic Task Thread
+
 ```
 Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.181-b13 mixed mode):
 "Service Thread" #13 daemon prio=9 os_prio=0 tid=0x0000000020ff1000 nid=0x571c8 runnable [0x0000000000000000]

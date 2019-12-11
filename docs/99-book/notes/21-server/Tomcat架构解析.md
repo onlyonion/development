@@ -522,14 +522,17 @@ sequenceDiagram
 ## 第6章 Tomcat配置管理
 ### 6.1 JVM配置
 #### 6.1.1 JVM配置选项
+堆内存初始大小、最大；非堆内存（方法区）初始大小、上限
 #### 6.1.2 系统属性
+`-Dproperty`
+
 ### 6.2 服务器配置
 Tomcat服务器的配置主要集中与`$CATALINA_HOME/conf`下的catalina.policy、catalina.properties、context.xml、server.xml、tomcat-users.xml、web.xml文件
 #### 6.2.1 catalina.properties
 用于Catalina容器启动阶段的配置，如服务器类加载器路径等
 #### 6.2.2 server.xml
 Tomcat应用服务器的核心配置文件，它包括TomcatServlet容器的所有组件的配置，用于创建TomcatServlet容器。
-1. Server
+1. Server 核心配置文件，Tomcat Servlet容器
 2. Service
 3. Executor 共享线程池
 4. Connector 链接器，默认配置两个链接器，一个头支持HTTP协议，一个支持AJP协议。两个方面：协议方面、IO方面。

@@ -2,7 +2,7 @@ linux
 
 ## linux
 ### 整机
-* top
+* top -Hp 查看线程
 * dstat 全能实时系统信息统计
 
 ### 进程
@@ -70,6 +70,20 @@ netstat -nap | grep 8080 # 根据端口查找进程ID
 5. jstack 进程id | grep tid（16进制线程ID小写英文） -A60 （打印前60行）
 
 [Java线上应用故障排查之一：高CPU占用【转】](http://www.linuxhot.com/java-cpu-used-high.html)
+
+如果该问题导致线上系统不可用，那么首先需要做的就是，导出 jstack 和内存信息，然后重启系统，尽快保证系统的可用性。
+
+CPU 过高可能是系统频繁的进行Full GC、代码死循环、代码死锁
+
+### 频繁Full GC
+GC日志；使用jstat -gcutil 5280 1000查看实时GC情况；
+
+可能是jvm参数设置不合理，老年代空间不足（扩容空间）、Metaspace空间触发、频繁创建对象触发等等。
+
+代码中某个位置读取数据量较大，导致内存耗尽，从而FullGC。
+
+jstat 命令监控 GC 情况，可以看到 Full GC 次数非常多，并且次数在不断增加
+
 
 ## book
 * [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)

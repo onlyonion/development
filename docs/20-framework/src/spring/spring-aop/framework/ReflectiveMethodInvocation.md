@@ -48,7 +48,7 @@ MethodInvocation ^-- ProxyMethodInvocation
 '''''''''''''''''''''''''父类''''''''''''''''''''''''''''''
 ProxyMethodInvocation ^.. ReflectiveMethodInvocation
 
-class ReflectiveMethodInvocation {
+class ReflectiveMethodInvocation #orange {
     # final Object proxy;
     # final Object target;
     # final Method method;
@@ -63,14 +63,18 @@ class ReflectiveMethodInvocation {
 }
 
 
-'''''''''''''''''''''''''CglibMethodInvocation''''''''''''''''''''''''''''''
+'''''''''''''''''''''''''CglibAopProxy''''''''''''''''''''''''''''''
 ReflectiveMethodInvocation ^-- CglibMethodInvocation
 
-class CglibAopProxy
+class CglibAopProxy #lime
 CglibAopProxy +-- CglibMethodInvocation
 class CglibMethodInvocation {
     + invokeJoinpoint()
 }
+
+'''''''''''''''''''''''''JdkDynamicAopProxy''''''''''''''''''''''''''''''
+class JdkDynamicAopProxy #pink
+JdkDynamicAopProxy ..> ReflectiveMethodInvocation
 
 @enduml
 ```

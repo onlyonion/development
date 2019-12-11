@@ -1,5 +1,52 @@
 org.springframework.aop.framework.ProxyFactoryBean
 
+## hierarchy
+```
+ProxyConfig (org.springframework.aop.framework)
+    AdvisedSupport (org.springframework.aop.framework)
+        ProxyCreatorSupport (org.springframework.aop.framework)
+            ProxyFactoryBean (org.springframework.aop.framework)
+```
+
+## define
+```plantuml
+@startuml
+
+class ProxyConfig
+class AdvisedSupport
+class ProxyCreatorSupport
+class ProxyFactoryBean
+
+ProxyConfig ^-- AdvisedSupport
+AdvisedSupport ^-- ProxyCreatorSupport
+ProxyCreatorSupport ^-- ProxyFactoryBean
+
+''''''''''''''''''''''''''AdvisorAdapterRegistry''''''''''''''''''''''''''
+ProxyFactoryBean *-- AdvisorAdapterRegistry
+interface AdvisorAdapterRegistry
+AdvisorAdapterRegistry ^.. DefaultAdvisorAdapterRegistry
+interface AdvisorAdapter
+DefaultAdvisorAdapterRegistry *-- AdvisorAdapter
+
+
+''''''''''''''''''''''''''Proxy ProxyFactory''''''''''''''''''''''''''
+interface AopProxyFactory
+class DefaultAopProxyFactory
+ProxyCreatorSupport *- AopProxyFactory
+AopProxyFactory ^.. DefaultAopProxyFactory
+
+interface AopProxy
+AopProxy ^.. JdkDynamicAopProxy
+AopProxy ^.. CglibAopProxy
+CglibAopProxy ^-- ObjenesisCglibAopProxy
+JdkDynamicAopProxy <.. DefaultAopProxyFactory
+ObjenesisCglibAopProxy <.. DefaultAopProxyFactory
+
+JdkDynamicAopProxy *-- AdvisedSupport
+
+@enduml
+```
+
 ## 1. ProxyFactoryBean 类图
 ```yuml
 // {type:class}
@@ -96,4 +143,4 @@ sequenceDiagram
 
 ## 3. 动态代理实现
 
-[AopProxy](AopProxy.md)
+[AopProxy](/docs/20-framework/src/spring/spring-aop/framework/AopProxy.md)

@@ -14,16 +14,16 @@ Number (java.lang)
 ```plantuml
 @startuml
 
+abstract class Number 
 class AtomicInteger {
     - volatile int value
 }
 
-
-AtomicInteger o-- Unsafe
+Number ^-- AtomicInteger
+AtomicInteger *-- Unsafe
 
 class Unsafe {
-    + final int getAndSetInt(Object var1, long var2, int var4) 
-
+    + final int getAndSetInt(Object o, long offset, int newValue)
 }
 
 @enduml
@@ -54,13 +54,12 @@ class Unsafe {
     
     // Unsafe cas + while 
     // 超时重试幂等、限流降级熔断、并发缓存异步队列
-    public final int getAndAddInt(Object var1, long var2, int var4) {
-        int var5;
+    public final int getAndSetInt(Object o, long offset, int newValue) {
+        int v;
         do {
-            var5 = this.getIntVolatile(var1, var2);
-        } while(!this.compareAndSwapInt(var1, var2, var5, var5 + var4));
-
-        return var5;
+            v = getIntVolatile(o, offset);
+        } while (!compareAndSwapInt(o, offset, v, newValue));
+        return v;
     }
 ```
 
@@ -70,19 +69,16 @@ class Unsafe {
 * getAndSetInt
 * getIntVolatile
 * compareAndSwapInt
-
-
 * getObjectVolatile
 * getAndSetObject
 * compareAndSwapObject
 
 ```java
-public final Object getAndSetObject(Object var1, long var2, Object var4) {
-    Object var5;
-    do {
-        var5 = this.getObjectVolatile(var1, var2);
-    } while(!this.compareAndSwapObject(var1, var2, var5, var4));
-
-    return var5;
-}
+    public final Object getAndSetObject(Object o, long offset, Object newValue) {
+        Object v;
+        do {
+            v = getObjectVolatile(o, offset);
+        } while (!compareAndSwapObject(o, offset, v, newValue));
+        return v;
+    }
 ```

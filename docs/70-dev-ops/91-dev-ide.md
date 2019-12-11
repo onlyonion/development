@@ -74,6 +74,9 @@ Idea启动项目报错:Command line is too long. Shorten command line for classN
 </component>
 ```
 
+IDEA Error:java: Compilation failed: internal java compiler error
+解决办法很简单：File-->Setting...-->Build,Execution,Deployment-->Compiler-->Java Compiler 设置相应Module的target bytecode version的合适版本
+
 ### idea mac man
 sudo vim /etc/hosts，在localhost后面追加你的电脑名.local即可
 终端输入 scutil --set HostName "localhost" 本地回环地址

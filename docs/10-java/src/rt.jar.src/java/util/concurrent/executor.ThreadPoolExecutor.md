@@ -250,7 +250,7 @@ graph LR
     }
 ```
 
-### execute()
+### execute 无结果返回
 ```java
     public void execute(Runnable command) {
         if (command == null)
@@ -304,6 +304,16 @@ sequenceDiagram
         ThreadPoolExecutor->>ThreadPoolExecutor:reject(command)
         ThreadPoolExecutor->>RejectedExecutionHandler:rejectedExecution(command,this)
     end
+```
+
+### submit 返回Future对象
+```java
+    public <T> Future<T> submit(Callable<T> task) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<T> ftask = newTaskFor(task);
+        execute(ftask);
+        return ftask;
+    }
 ```
 
 ### runWorker
@@ -362,6 +372,65 @@ sequenceDiagram
     
 ```
 
+### shutdown
+```java
+    public void shutdown() {
+        final ReentrantLock mainLock = this.mainLock; // 获取全局锁
+        mainLock.lock();
+        try {
+            checkShutdownAccess();
+            advanceRunState(SHUTDOWN);
+            interruptIdleWorkers();
+            onShutdown(); // hook for ScheduledThreadPoolExecutor
+        } finally {
+            mainLock.unlock();
+        }
+        tryTerminate();
+    }
+    
+    private void interruptIdleWorkers(boolean onlyOne) {
+        final ReentrantLock mainLock = this.mainLock;
+        mainLock.lock();
+        try {
+            for (Worker w : workers) {
+                Thread t = w.thread;
+                if (!t.isInterrupted() && w.tryLock()) {
+                    try {
+                        t.interrupt();
+                    } catch (SecurityException ignore) {
+                    } finally {
+                        w.unlock();
+                    }
+                }
+                if (onlyOne)
+                    break;
+            }
+        } finally {
+            mainLock.unlock();
+        }
+    }
+```
+
+### shutdownNow
+```java
+    public List<Runnable> shutdownNow() {
+        List<Runnable> tasks;
+        final ReentrantLock mainLock = this.mainLock;
+        mainLock.lock();
+        try {
+            checkShutdownAccess();
+            advanceRunState(STOP);
+            interruptWorkers();
+            tasks = drainQueue();
+        } finally {
+            mainLock.unlock();
+        }
+        tryTerminate();
+        return tasks;
+    }
+```
+
+
 ## inner class
 
 ### Worker
@@ -379,16 +448,14 @@ sequenceDiagram
         public CallerRunsPolicy() { }
         public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
             if (!e.isShutdown()) {
-                r.run();
+                r.run(); // 由提交任务的线程直接执行
             }
         }
     }
     public static class AbortPolicy implements RejectedExecutionHandler {
         public AbortPolicy() { }
         public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
-            throw new RejectedExecutionException("Task " + r.toString() +
-                                                 " rejected from " +
-                                                 e.toString());
+            throw new RejectedExecutionException("Task " + r.toString() + " rejected from " + e.toString());
         }
     }    
     public static class DiscardPolicy implements RejectedExecutionHandler {

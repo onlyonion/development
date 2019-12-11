@@ -1,4 +1,4 @@
-package com.onion.test.java.lang;
+package com.onion.test.java.lang.abc;
 
 public class ThreadWaitNotifyAB {
 

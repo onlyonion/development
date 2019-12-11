@@ -19,7 +19,7 @@ AopProxy (org.springframework.aop.framework)
 interface AopProxy
 
 '''''''''''''''''''''''' CglibAopProxy '''''''''''''''''''''''''''''
-class CglibAopProxy {
+class CglibAopProxy #orange {
     # final AdvisedSupport advised
 }
 AopProxy <|.. CglibAopProxy

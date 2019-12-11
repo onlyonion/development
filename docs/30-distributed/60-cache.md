@@ -124,6 +124,12 @@ redis与memcached
 | 缓存击穿     | 热点key失效            | 互斥更新、随机退避、差异失效时间                    |
 | 缓存雪崩     | 缓存挂掉               | 快速失败熔断，主从模式（主从复制 + 哨兵）、集群模式 |
 
+### 并发竞争
+1. 利用redis自带的incr命令
+2. 使用独占锁的方式
+3. 使用乐观锁的方式 watch multi exec
+4. 客户端针对同一key的资源，进行加锁（synchronized、lock）
+5. 利用redis的setnx实现内置的锁
 
 ### 更新
 * FIFO算法：First in First out，先进先出。
