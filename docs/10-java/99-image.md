@@ -142,6 +142,10 @@ this is generated files, just for view image conveniently...
 
 ![java8-map-HashMap.png](./img/java8-map-HashMap.png)
 
+## juc.skiplist.png
+
+![juc.skiplist.png](./img/juc.skiplist.png)
+
 ## jvm-architecture.png
 
 ![jvm-architecture.png](./img/jvm-architecture.png)
@@ -189,6 +193,10 @@ this is generated files, just for view image conveniently...
 ## tcp-ip-all-protocols.jpg
 
 ![tcp-ip-all-protocols.jpg](./img/tcp-ip-all-protocols.jpg)
+
+## 可达性算法分析.jpg
+
+![可达性算法分析.jpg](./img/可达性算法分析.jpg)
 
 ## 观察者模式.jpg
 

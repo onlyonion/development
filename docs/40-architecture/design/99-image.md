@@ -94,3 +94,7 @@ this is generated files, just for view image conveniently...
 
 ![struct-proxy.gif](./img/struct-proxy.gif)
 
+## usecase-uml.png
+
+![usecase-uml.png](./img/usecase-uml.png)
+

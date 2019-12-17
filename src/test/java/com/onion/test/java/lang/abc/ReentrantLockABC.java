@@ -33,11 +33,11 @@ public class ReentrantLockABC {
         private Condition next;
         private int targetState;
 
-        public Worker(String key, Integer count, int targetState, Lock lock, Condition cur, Condition next) {
+        public Worker(String key, Integer count, int targetState, Lock lock, Condition current, Condition next) {
             this.key = key;
             this.count = count;
             this.lock = lock;
-            this.current = cur;
+            this.current = current;
             this.next = next;
             this.targetState = targetState;
         }

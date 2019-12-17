@@ -47,3 +47,20 @@ AspectJ提供了两种切面织入方式，第一种通过特殊编译器，在�
 
 如何使用Load Time Weaving？首先，需要通过JVM的-javaagent参数设置LTW的织入器类包，以代理JVM默认的类加载器；
 第二，LTW织入器需要一个 aop.xml文件，在该文件中指定切面类和需要进行切面织入的目标类。
+
+
+## Demo
+JAVA同一个类内方法调用AOP解决办法
+```
+    // 其他类直接调用那么会走切面逻辑，如果是类内部调用，使用的是对象本身，而不是代理对象，所以不走切面逻辑
+
+    // 方案一 在spring boot的启动类上增加注解@EnableAspectJAutoProxy(exposeProxy=true)
+    public Object insertPay(List<PayInfo> list) {
+		...
+		PayService service = AopContext.currentProxy() != null ? (PayService) AopContext.currentProxy() : this;
+        List<PayLineResponse> resultResponses = service.processInsert_db(province, subList);
+		...
+	}
+	
+	// 方案二 不使用切面，直接把逻辑写在代码里。或者其他变通的方式实现。或者让上一层代码调用这个代理对象的方法
+```

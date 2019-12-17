@@ -21,6 +21,7 @@ public class SynchronizedABC {
         poolService.execute(new Worker("C", count, lock));
         Thread.sleep(1000);
         poolService.shutdownNow();
+
     }
 
     public static class Worker implements Runnable {

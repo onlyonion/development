@@ -70,6 +70,10 @@ this is generated files, just for view image conveniently...
 
 ![js-设计模式.png](./img/js-设计模式.png)
 
+## libuv-architecture.png
+
+![libuv-architecture.png](./img/libuv-architecture.png)
+
 ## mvc-mvp-mvvm.png
 
 ![mvc-mvp-mvvm.png](./img/mvc-mvp-mvvm.png)

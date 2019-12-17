@@ -90,9 +90,25 @@ this is generated files, just for view image conveniently...
 
 ![大数据之路-阿里巴巴大数据实践.png](./img/大数据之路-阿里巴巴大数据实践.png)
 
+## 数据结构.png
+
+![数据结构.png](./img/数据结构.png)
+
 ## 深入理解Java虚拟机.png
 
 ![深入理解Java虚拟机.png](./img/深入理解Java虚拟机.png)
+
+## 计算机操作系统.png
+
+![计算机操作系统.png](./img/计算机操作系统.png)
+
+## 计算机组成原理.png
+
+![计算机组成原理.png](./img/计算机组成原理.png)
+
+## 计算机网络.png
+
+![计算机网络.png](./img/计算机网络.png)
 
 ## 逆流而上阿里巴巴技术成长之路.png
 

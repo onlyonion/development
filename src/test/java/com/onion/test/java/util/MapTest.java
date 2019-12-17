@@ -14,7 +14,7 @@ import org.junit.Test;
 public class MapTest {
 
     @Test
-    public void test() throws InterruptedException {
+    public void testHashMapMultiThread() throws InterruptedException {
         Map<String, String> map = new HashMap<>();
         Thread thread = new Thread(() -> {
             for (int i = 0; i < 100; i++) {
@@ -30,6 +30,14 @@ public class MapTest {
         }, "map-thread");
         thread.start();
         thread.join();
+    }
+
+    @Test
+    public void testHashMapNull() {
+        Map<String, String> map = new HashMap<>();
+        map.put(null, "1");
+        map.put(null, "2");
+        System.out.println(map.get(null));
     }
 
 }

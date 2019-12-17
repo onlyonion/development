@@ -210,6 +210,30 @@ this is generated files, just for view image conveniently...
 
 ![spring-idea-AnnotationConfigServletWebServerApplicationContext.png](./img/spring-idea-AnnotationConfigServletWebServerApplicationContext.png)
 
+## spring-idea-aop-AbstractSingletonProxyFactoryBean.png
+
+![spring-idea-aop-AbstractSingletonProxyFactoryBean.png](./img/spring-idea-aop-AbstractSingletonProxyFactoryBean.png)
+
+## spring-idea-aop-CacheProxyFactoryBean.png
+
+![spring-idea-aop-CacheProxyFactoryBean.png](./img/spring-idea-aop-CacheProxyFactoryBean.png)
+
+## spring-idea-aop-ProxyFactoryBean-field.png
+
+![spring-idea-aop-ProxyFactoryBean-field.png](./img/spring-idea-aop-ProxyFactoryBean-field.png)
+
+## spring-idea-aop-ProxyFactoryBean.png
+
+![spring-idea-aop-ProxyFactoryBean.png](./img/spring-idea-aop-ProxyFactoryBean.png)
+
+## spring-idea-aop-TransactionProxyFactoryBean.png
+
+![spring-idea-aop-TransactionProxyFactoryBean.png](./img/spring-idea-aop-TransactionProxyFactoryBean.png)
+
+## spring-idea-aop.png
+
+![spring-idea-aop.png](./img/spring-idea-aop.png)
+
 ## spring-idea-ApplicationContext-methods.png
 
 ![spring-idea-ApplicationContext-methods.png](./img/spring-idea-ApplicationContext-methods.png)

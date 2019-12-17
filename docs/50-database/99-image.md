@@ -22,6 +22,10 @@ this is generated files, just for view image conveniently...
 
 ![mysql-master-slave-binary-log.png](./img/mysql-master-slave-binary-log.png)
 
+## seata-server.jpeg
+
+![seata-server.jpeg](./img/seata-server.jpeg)
+
 ## 存储引擎工作原理.jpg
 
 ![存储引擎工作原理.jpg](./img/存储引擎工作原理.jpg)
