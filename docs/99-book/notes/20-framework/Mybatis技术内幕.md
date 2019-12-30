@@ -302,6 +302,9 @@ BaseExecutor ^-- ReuseExecutor
 会话级别的缓存，每创建一个SqlSession对象，就表示开启一次数据库会话。一级缓存生命周期与SqlSession相同，伴随一次session的打开与关闭。
 PrepetualCache，一级缓存还可以通过DeferedLoad实现延迟加载的功能。
 
+!> BaseExecutor.update()方法复制执行insert、update、delete三类SQL语句，它是调用doUpdate()**模板方法**实现的。在调用doUpdate()方法**之前**会清空缓存，
+因为执行SQL语句之后，数据库中的数据已经更新，一级缓存的内容与数据中的数据可能已经不一致了，所以需要调用clearLocalCache()方法清空一级缓存中的“脏数据”。
+
 #### 3.6.3 SimpleExecutor
 一级缓存等固定不变的操作都封装到了BaseExecutor中，SimpleExecutor只专注实现4个基本方法。
 #### 3.6.4 ReuseExecutor
@@ -310,18 +313,20 @@ PrepetualCache，一级缓存还可以通过DeferedLoad实现延迟加载的功�
 jdbc中的批处理只支持insert、update、delete等类型的sql语句，不支持select类型。
 #### 3.6.6 CachingExecutor
 CachingExecutor是一个Executor接口的装饰器，它为Executor对象增加了二级缓存的相关功能。
-##### 二级缓存 
+##### 1. 二级缓存 
 应用级别的缓存，它的生命周期与应用程序的生命周期相同。
 1. mybatis-config.xml配置文件中cacheEnabled配置，二级缓存的总开关。
 2. 映射配置文件中的&lt;cache&gt;节点或&lt;cached-ref&gt;节点。
 3. &lt;select&gt;节点中的useCache属性，默认true
 
-顺序，先查找二级缓存，再查找一级缓存。
-##### TransactionCache & TransactionalCacheManger
-##### CacheingExecutor实现
-* 每次查询结果都直接写入到一级缓存缓存。
-* 在事务提交时，才将TransactionCache.entriesToAddOnCommit集合中缓存的数据写入到二级缓存。防止出现“脏读”，类似于“不可重复读”
-如果事务未提交就写入二级缓存，另一个事务线程来直接读取二级缓存，出现“脏读”（读未提交）。
+!> 顺序，先查找二级缓存，再查找一级缓存。
+
+##### 2. TransactionCache & TransactionalCacheManger
+##### 3. CacheingExecutor实现
+一级缓存，每次查询结果都直接写入到一级缓存缓存。
+
+二级缓存，在事务提交时，才将TransactionCache.entriesToAddOnCommit集合中缓存的数据写入到二级缓存。
+防止出现“脏读”，类似于“不可重复读”（读已提交），如果事务未提交就写入二级缓存，另一个事务线程来直接读取二级缓存，出现“脏读”（读未提交）。
 
 ### 3.7 接口层
 * SqlSessionFactory

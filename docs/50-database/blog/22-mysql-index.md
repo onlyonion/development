@@ -80,3 +80,7 @@ drop index index_name on table_name
 
 201802220395617539
 9223372036854775807
+
+
+#### 指定使用索引
+select * from table_name force index (index_name) where conditions;

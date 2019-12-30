@@ -30,16 +30,9 @@ UNION和UNION ALL关键字都是将两个结果集合并为一个，但这两者
 从效率上说，UNION ALL 要比UNION快很多，所以，如果可以确认合并的两个结果集中不包含重复数据且不需要排序时的话，那么就使用UNION ALL。
 
 6.	在WHERE 语句中，尽量避免对索引字段进行计算操作
-
 7.	对Where 语句的法则
-
-	*	 避免在WHERE子句中使用in，not  in，or 或者having。可以使用 exist 和not exist代替 in和not in。
-	*	 不要以字符格式声明数字，要以数字格式声明字符值
-
-8.	对Select语句的法则
-在应用程序、包和过程中限制使用select * from table这种方式
-
-9. 	排序
-	避免使用耗费资源的操作，带有DISTINCT,UNION,MINUS,INTERSECT,ORDER BY的SQL语句会启动SQL引擎 执行，耗费资源的排序(SORT)功能. DISTINCT需要一次排序操作, 而其他的至少需要执行两次排序
-10.	临时表
-	慎重使用临时表可以极大的提高系统性能
+	* 避免在WHERE子句中使用in，not  in，or 或者having。可以使用 exist 和not exist代替 in和not in。
+	* 不要以字符格式声明数字，要以数字格式声明字符值
+8.	对Select语句的法则 在应用程序、包和过程中限制使用select * from table这种方式
+9. 	排序 避免使用耗费资源的操作，带有DISTINCT,UNION,MINUS,INTERSECT,ORDER BY的SQL语句会启动SQL引擎 执行，耗费资源的排序(SORT)功能. DISTINCT需要一次排序操作, 而其他的至少需要执行两次排序
+10.	临时表 慎重使用临时表可以极大的提高系统性能

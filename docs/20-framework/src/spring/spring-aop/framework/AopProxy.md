@@ -9,8 +9,8 @@ public interface AopProxy {
 ```
 
 ## hierachy
-* [JdkDynamicAopProxy](./JdkDynamicAopProxy.md)
-* [CglibAopProxy](./CglibAopProxy.md)
+* [JdkDynamicAopProxy](/docs/20-framework/src/spring/spring-aop/framework/JdkDynamicAopProxy.md)
+* [CglibAopProxy](/docs/20-framework/src/spring/spring-aop/framework/CglibAopProxy.md)
 
 ```
 AopProxy (org.springframework.aop.framework)

@@ -1,5 +1,7 @@
 org.springframework.aop.framework.AopContext
 
+- ThreadLocal
+
 ## define
 ```java
 public abstract class AopContext {

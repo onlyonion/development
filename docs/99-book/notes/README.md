@@ -39,11 +39,14 @@
 * [《Java性能权威指南》柳飞 陆明刚 臧秀涛 译](/docs/99-book/notes/10-java/Java性能权威指南.md)
 
 ## 框架
+* [《Grails入门指南》 陈俊等译 InfoQ企业软件开发丛书](/docs/99-book/notes/20-framework/Grails入门指南.md)
+* [《Groovy程序设计》 臧秀涛译 人民邮电出版社](/docs/99-book/notes/20-framework/Groovy程序设计.md)
 * [《MyBatis技术内幕》徐郡明](/docs/99-book/notes/20-framework/Mybatis技术内幕.md)
-* [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/docs/99-book/notes/20-framework/Spring技术内幕(2).md)
-* [《Spring源码深度解析》郝佳](/docs/99-book/notes/20-framework/Spring源码深度解析.md)
 * [《JavaEE开发的颠覆者：Spring Boot实战》汪云飞 中国工信出版社 电子工业出版社](/docs/99-book/notes/20-framework/SpringBoot实战.md)
 * [《Spring Cloud与Docker微服务架构实战》周立](/docs/99-book/notes/20-framework/SpringCloud与Docker微服务架构实战.md)
+* [《Spring技术内幕:深入解析Spring架构与设计原理(第2版)》](/docs/99-book/notes/20-framework/Spring技术内幕(2).md)
+* [《Spring源码深度解析》郝佳](/docs/99-book/notes/20-framework/Spring源码深度解析.md)
+* [《疯狂workflow讲义：基于Activiti6.x的应用开发》 杨恩雄](/docs/99-book/notes/20-framework/疯狂workflow讲义.md)
 * [《跟我学Shiro教程》张开涛](/docs/99-book/notes/20-framework/跟我学Shiro教程.md)
 
 ## 服务器
