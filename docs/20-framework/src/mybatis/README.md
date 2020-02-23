@@ -54,18 +54,25 @@
 
 ## mybatis-spring
 * [mybatis-spring](/20-framework/src/mybatis/mybatis-spring/README.md)
+  * annotation
+  * batch
+  * config
   * mapper
     * [ClassPathMapperScanner](/20-framework/src/mybatis/mybatis-spring/mapper/ClassPathMapperScanner.md)
     * [MapperFactoryBean](/20-framework/src/mybatis/mybatis-spring/mapper/MapperFactoryBean.md)
     * [MapperScannerConfigurer](/20-framework/src/mybatis/mybatis-spring/mapper/MapperScannerConfigurer.md)
   * support
     * [SqlSessionDaoSupport](/20-framework/src/mybatis/mybatis-spring/support/SqlSessionDaoSupport.md)
+  * transaction
+    * SpringManagedTransaction
+    * SpringManagedTransactionFactory
   * [SqlSessionFactoryBean](/20-framework/src/mybatis/mybatis-spring/SqlSessionFactoryBean.md)
   * [SqlSessionTemplate](/20-framework/src/mybatis/mybatis-spring/SqlSessionTemplate.md)
   * [MapperScannerConfigurer](/20-framework/src/mybatis/mybatis-spring/mapper/MapperScannerConfigurer.md)
 
 ## init
 [init](/20-framework/src/mybatis/mybatis/init.md) 初始化
+
 ## sql 执行
 [invoke](/20-framework/src/mybatis/mybatis/invoke.md) 调用流程
 * [SqlSession](/20-framework/src/mybatis/mybatis/session/SqlSession.md) 

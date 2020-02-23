@@ -25,3 +25,25 @@ class MapperFactoryBean<T>
 
 @enduml
 ```
+
+```java
+public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements FactoryBean<T> {
+  private Class<T> mapperInterface;
+  private boolean addToConfig = true;
+  
+  @Override
+  public T getObject() throws Exception {
+    return getSqlSession().getMapper(this.mapperInterface);
+  }
+
+  @Override
+  public Class<T> getObjectType() {
+    return this.mapperInterface;
+  }
+
+  @Override
+  public boolean isSingleton() {
+    return true;
+  }
+}
+```

@@ -14,3 +14,24 @@ BeanDefinitionRegistry (org.springframework.beans.factory.support)
         GenericGroovyApplicationContext (org.springframework.context.support)
         AnnotationConfigApplicationContext (org.springframework.context.annotation)
 ```
+
+## define
+```java
+public interface BeanDefinitionRegistry extends AliasRegistry {
+
+	void registerBeanDefinition(String beanName, BeanDefinition beanDefinition) throws BeanDefinitionStoreException;
+
+	void removeBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
+
+	BeanDefinition getBeanDefinition(String beanName) throws NoSuchBeanDefinitionException;
+
+	boolean containsBeanDefinition(String beanName);
+
+	String[] getBeanDefinitionNames();
+
+	int getBeanDefinitionCount();
+
+	boolean isBeanNameInUse(String beanName);
+
+}
+```

@@ -53,6 +53,23 @@ MapperScannerConfigurer ..> ClassPathMapperScanner
 @enduml
 ```
 
+```java
+public class MapperScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
+  private String basePackage;
+  private boolean addToConfig = true;
+  private SqlSessionFactory sqlSessionFactory;
+  private SqlSessionTemplate sqlSessionTemplate;
+  private String sqlSessionFactoryBeanName;
+  private String sqlSessionTemplateBeanName;
+  private Class<? extends Annotation> annotationClass;
+  private Class<?> markerInterface;
+  private ApplicationContext applicationContext;
+  private String beanName;
+  private boolean processPropertyPlaceHolders;
+  private BeanNameGenerator nameGenerator;
+}
+```
+
 ## methods
 ```java
 

@@ -4,12 +4,28 @@ org.apache.ibatis.binding.MapperProxyFactory
 ```plantuml
 @startuml
 
-class MapperProxyFactory<T> {
+'''''''''''''''''''''MapperRegistry'''''''''''''''''''''
+class MapperRegistry
+MapperRegistry *-- Configuration
+MapperRegistry "1" *-- "*" MapperProxyFactory
+
+'''''''''''''''''''''MapperProxyFactory'''''''''''''''''''''
+class MapperProxyFactory<T> #orange {
     - final Class<T> mapperInterface
     - final Map<Method, MapperMethod> methodCache
 }
+MapperProxyFactory "1" o-- "*" MapperMethod
+MapperProxyFactory ..> MapperProxy
 
-MapperProxyFactory "1" o-- "*"  MapperMethod
+'''''''''''''''''''''MapperProxy'''''''''''''''''''''
+class MapperProxy<T> {
+    - final SqlSession sqlSession
+    - final Class<T> mapperInterface
+    - final Map<Method, MapperMethod> methodCache
+}
+MapperProxy "1" o-- "*" MapperMethod
+interface InvocationHandler
+InvocationHandler ^.. MapperProxy
 
 @enduml
 ```

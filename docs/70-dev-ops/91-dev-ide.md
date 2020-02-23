@@ -60,7 +60,6 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 文档提示
 Editor -> General 勾选 show quick documentation on mouse move
 
-
 check autowiring problems in a bean class
 
 提示不区分大小写
@@ -86,6 +85,8 @@ Ctrl+Alt+V，可以引入变量。例如：new String(); 自动导入变量定�
 Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch
 Ctrl+Enter，导入包，自动修正
 Ctrl+Alt+L，格式化代码
+
+### idea模板
 
 ## vscode
 代码模板
