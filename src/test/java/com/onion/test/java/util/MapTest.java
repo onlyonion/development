@@ -34,10 +34,10 @@ public class MapTest {
 
     @Test
     public void testHashMapNull() {
-        Map<String, String> map = new HashMap<>();
-        map.put(null, "1");
-        map.put(null, "2");
-        System.out.println(map.get(null));
+        Map<String, String> map = new HashMap<>(1);
+        for (int i = 0; i < 30; i++) {
+            map.put("key" + i, "value-" + i);
+        }
     }
 
 }

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class SortTest {
-    
+
     public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
@@ -30,7 +30,7 @@ public class SortTest {
     public void bubbleSortTest() {
         int[] arr = { 4, 7, 6, 8, 5, 1 };
         bubbleSort(arr, arr.length);
-        log.info("sort arr={}", Arrays.toString(arr));
+        log.info("bubbleSortTest arr={}", Arrays.toString(arr));
 
     }
 
@@ -42,12 +42,11 @@ public class SortTest {
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                 }
-                log.info("sort i={}, j={}, arr={}", i, j, Arrays.toString(arr));
+                //log.info("sort i={}, j={}, arr={}", i, j, Arrays.toString(arr));
             }
-            log.info("sort i={}, arr={}", i, Arrays.toString(arr));
+            //log.info("sort i={}, arr={}", i, Arrays.toString(arr));
         }
-
-        log.info("sort arr={}", Arrays.toString(arr));
+        //log.info("sort arr={}", Arrays.toString(arr));
     }
 
     /**
@@ -55,42 +54,36 @@ public class SortTest {
      */
     @Test
     public void quickSortTest() {
-        int[] array = { 22, 34, 13, 2, 55, 4 };
-        System.out.println(Arrays.toString(array));
-
-        quickSort(array, 0, array.length - 1);
-
-        System.out.println(Arrays.toString(array));
+        int[] arr = { 22, 34, 13, 2, 55, 4 };
+        quickSort(arr, 0, arr.length - 1);
+        log.info("quickSortTest arr={}", Arrays.toString(arr));
     }
 
-    public static void quickSort(int[] array, int low, int high) {
+    public static void quickSort(int[] arr, int low, int high) {
         if (low < high) { // 长度大于1
-            int pivotLoc = partition(array, low, high); // 一分为二，pivotLoc为轴元素排好序的位置
-            quickSort(array, low, pivotLoc - 1); // 对低子表递归排序
-            System.out.println("低子表递归排序 " + Arrays.toString(array));
-
-            quickSort(array, pivotLoc + 1, high); // 对高子表递归排序
-            System.out.println("高子表递归排序 " + Arrays.toString(array));
+            int pivotLoc = partition(arr, low, high); // 一分为二，pivotLoc为轴元素排好序的位置
+            quickSort(arr, low, pivotLoc - 1); // 对低子表递归排序
+            //System.out.println("低子表递归排序 " + Arrays.toString(array));
+            quickSort(arr, pivotLoc + 1, high); // 对高子表递归排序
+            //System.out.println("高子表递归排序 " + Arrays.toString(array));
         }
     }
 
     private static int partition(int[] array, int low, int high) {
         int pivot = array[low];
-        System.out.println("pivot: " + pivot + " low: " + low + " high: " + high);
+        //System.out.println("pivot: " + pivot + " low: " + low + " high: " + high);
         while (low < high) {
             while (low < high && array[high] >= pivot)
                 --high;
             array[low] = array[high];
-            System.out.println(Arrays.toString(array));
-
+            //System.out.println(Arrays.toString(array));
             while (low < high && array[low] <= pivot)
                 ++low;
             array[high] = array[low];
-            System.out.println(Arrays.toString(array));
-
+            //System.out.println(Arrays.toString(array));
         }
         array[low] = pivot;
-        System.out.println("partition" + Arrays.toString(array));
+        //System.out.println("partition" + Arrays.toString(array));
         return low;
     }
 
@@ -99,7 +92,7 @@ public class SortTest {
     public void selectSortTest() {
         int[] arr = { 32, 12, 5, 3, 55 };
         selectSort(arr);
-        log.info("sort arr={}", Arrays.toString(arr));
+        log.info("selectSortTest arr={}", Arrays.toString(arr));
     }
 
     public static void selectSort(int[] arr) {
@@ -121,7 +114,7 @@ public class SortTest {
     public void heapSortTest() {
         int[] arr = { 0, 32, 12, 5, 3, 55 };
         heapSort(arr, arr.length - 1);
-        log.info("sort arr={}", Arrays.toString(arr));
+        log.info("heapSortTest arr={}", Arrays.toString(arr));
     }
 
     // 建大根堆
@@ -157,59 +150,35 @@ public class SortTest {
     }
 
     // ********************** 归并 **********************
+    @Test
+    public void mergeSortTest() {
+        int[] arr = { 32, 12, 5, 6, 55 };
+        mergeSort(arr, 0, arr.length - 1);
+        log.info("mergeSortTest arr={}", Arrays.toString(arr));
+    }
+
+    public static void mergeSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int mid = (low + high) / 2;
+            mergeSort(arr, low, mid);
+            mergeSort(arr, mid + 1, high);
+            merge(arr, low, mid, high);
+        }
+    }
+
     /*
      * 讲两个或两个以上的有序表合并成一个新的有序表
      *
      */
-    @Test
-    public void mergeSortTest() {
-        int[] arr = { 32, 12, 5, 6, 55 };
-        mergeSort(arr);
-        log.info("sort arr={}", Arrays.toString(arr));
-    }
-
-    public static void mergeSort(int[] arr) {
-        int mid = arr.length / 2;
-        int[] temp = new int[arr.length];
-
-        int i = 0;
-        int j = mid + 1;
-        int k = 0;
-
-        while (i <= mid && j < arr.length) {
-            if (arr[i] <= arr[j]) {
-                temp[k++] = arr[i++];
-            } else {
-                temp[k++] = arr[j++];
-            }
-            //temp[k++] = arr[i] <= arr[j] ? arr[i++] : arr[j++];
-        }
-
-        while (i <= mid) {
-            temp[k++] = arr[i++];
-        }
-        while (j < arr.length) {
-            temp[k++] = arr[j++];
-        }
-
-    }
-
-    @Test
-    public void mergeSort2Test() {
-        int[] arr = { 32, 12, 5, 6, 55 };
-        mergeSort2(arr, 0, arr.length / 2);
-        log.info("sort arr={}", Arrays.toString(arr));
-    }
-
     public static void merge(int[] arr, int low, int mid, int high) {
         int[] temp = new int[arr.length];
-        for (int k = low; k < high; k++) {
+        for (int k = low; k <= high; k++) {
             temp[k] = arr[k];
         }
 
         int i = low, j = mid + 1, k = i;
 
-        for (; i < mid && j <= high; k++) {
+        for (; i <= mid && j <= high; k++) {
             if (temp[i] < temp[j]) {
                 arr[k] = temp[i++];
             } else {
@@ -221,15 +190,6 @@ public class SortTest {
         }
         while (j <= high) {
             arr[k++] = temp[j++];
-        }
-    }
-
-    public static void mergeSort2(int[] arr, int low, int high) {
-        if (low < high) {
-            int mid = (low + high) / 2;
-            mergeSort2(arr, low, mid);
-            mergeSort2(arr, mid + 1, high);
-            merge(arr, low, mid, high);
         }
     }
 

@@ -6,15 +6,16 @@ import java.util.concurrent.Executors;
 import lombok.AllArgsConstructor;
 
 public class ThreadWaitNotifyAB {
-    private static Object lock = new Object();
+
+    private static volatile int state = 1;
 
     public static void main(String[] args) throws InterruptedException {
 
         ExecutorService pool = Executors.newFixedThreadPool(2);
-        int count = 10;
+        int count = 2;
         Object lock = new Object();
-        pool.execute(new Worker("A", count, lock));
         pool.execute(new Worker("B", count, lock));
+        pool.execute(new Worker("A", count, lock));
         Thread.sleep(1000);
         pool.shutdownNow();
     }
@@ -28,13 +29,31 @@ public class ThreadWaitNotifyAB {
         @Override
         public void run() {
             for (int i = 0; i < count; i++) {
-                synchronized (lock) {
-                    System.out.println(i + "," + key);
-                    lock.notify();
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                if (key.equals("A")) {
+                    synchronized (lock) {
+                        while (state != 1) {
+                            try {
+                                lock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        System.out.println(i + "," + key);
+                        state = 2;
+                        lock.notify();
+                    }
+                } else if (key.equals("B")) {
+                    synchronized (lock) {
+                        while (state != 2) {
+                            try {
+                                lock.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        System.out.println(i + "," + key);
+                        state = 1;
+                        lock.notify();
                     }
                 }
             }

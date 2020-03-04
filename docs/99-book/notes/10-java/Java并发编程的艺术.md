@@ -2,9 +2,15 @@
 
 阿里巴巴技术专家/Java并发编程领域领军人物撰写，从JDK源码、JVM、CPU多角度剖析并发编程原理和核心技术
 
-- 并发机制 volatile、synchronized
-- Java内存模型
-- JUC 锁、并发容器、框架、原子操作、并发工具类、线程池
+- 并发编程的底层实现 volatile、synchronized、原子操作
+- Java内存模型 重排序、顺序一致性、volatile、synchronized、final域的内存语义、happens-before、双重检查锁定与延迟初始化
+- Java并发编程基础 线程简介、启动和终止线程、线程间通信
+- Java中的锁 Lock接口、队列同步器、重入锁、读写锁、LockSupport工具、Condition接口
+- Java并发容器和框架 ConcurrentHashMap、ConcurrentLInkedQueue、Java中的阻塞队列、Fork/Join框架
+- Java中的13个原子操作类 原子更新基本类型、原子更新数组、原子更新引用
+- Java中的并发工具类 CountDownLatch、CyclicBarrier、Semaphore、Exchanger
+- Java中的线程池 线程池的实现原理、线程池的使用
+- Executor框架 ThreadPoolExecutor、ScheduledThreadPoolExecutor
 
 ## 第1章 并发编程的挑战
 ### 1.1 上下文切换
@@ -243,7 +249,7 @@ signal()，将会唤醒在等待队列中等待时间最长的节点，在唤醒
 * TimeUnit
 
 #### 9.2.2 向线程池提交任务
-* execute
+* execute 没有返回值
 * submit 有返回值
 
 #### 9.2.3 关闭线程池
@@ -252,6 +258,9 @@ signal()，将会唤醒在等待队列中等待时间最长的节点，在唤醒
 * shutdownNow 线程池状态设置成STOP状态，停止所有正在执行或暂停任务的线程，并返回等待执行任务的列表
 
 #### 9.2.4 合理地设置线程池
+执行时间不同的任务可以交给不同规模的线程池来处理，或者可以使用优先级队列，让执行时间短的任务先执行。   
+依赖数据库连接池的任务，因为线程提交SQL后需要等待数据库返回结果，等待的时间越长，则CPU空闲时间就越长，那么线程数应该设置越大，这样才能更好利用CPU。   
+建议使用有界队列。
 #### 9.2.5 线程池的监控
 
 ## 第10章 Executor框架

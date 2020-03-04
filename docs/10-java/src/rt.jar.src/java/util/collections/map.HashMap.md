@@ -215,6 +215,42 @@ h --indexFor--> 存储下标;
 
 PS:resize是HashMap，rehash是ConcurrentHashMap
 
+### resize
+```java
+    void resize(int newCapacity) {
+        Entry[] oldTable = table;
+        int oldCapacity = oldTable.length;
+        if (oldCapacity == MAXIMUM_CAPACITY) {
+            threshold = Integer.MAX_VALUE;
+            return;
+        }
+
+        Entry[] newTable = new Entry[newCapacity];
+        transfer(newTable, initHashSeedAsNeeded(newCapacity));
+        table = newTable;
+        threshold = (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);
+    }
+    
+    void transfer(Entry[] newTable, boolean rehash) {
+        int newCapacity = newTable.length;
+　　　　　//for循环中的代码，逐个遍历链表，重新计算索引位置，将老数组数据复制到新数组中去（数组不存储实际数据，所以仅仅是拷贝引用而已）
+        for (Entry<K,V> e : table) {
+            while(null != e) {
+                Entry<K,V> next = e.next;
+                if (rehash) {
+                    e.hash = null == e.key ? 0 : hash(e.key);
+                }
+                int i = indexFor(e.hash, newCapacity);
+　　　　　　　　　 //将当前entry的next链指向新的索引位置,newTable[i]有可能为空，有可能也是个entry链，如果是entry链，直接在链表头部插入。
+                e.next = newTable[i];
+                newTable[i] = e;
+                e = next;
+            }
+        }
+    }
+    
+```
+
 ### get
 1. key为null特殊处理
 2. 确定数组索引位置；找到相应的数组下标：hash & (length - 1)
@@ -257,44 +293,6 @@ PS:resize是HashMap，rehash是ConcurrentHashMap
   * 如果不存在前趋，将此元素的后继置于数组索引位置
 
 ### size
-
-### resize
-```java
-    void resize(int newCapacity) {
-        Entry[] oldTable = table;
-        int oldCapacity = oldTable.length;
-        if (oldCapacity == MAXIMUM_CAPACITY) {
-            threshold = Integer.MAX_VALUE;
-            return;
-        }
-
-        Entry[] newTable = new Entry[newCapacity];
-        transfer(newTable, initHashSeedAsNeeded(newCapacity));
-        table = newTable;
-        threshold = (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);
-    }
-    
-    void transfer(Entry[] newTable, boolean rehash) {
-        int newCapacity = newTable.length;
-　　　　　//for循环中的代码，逐个遍历链表，重新计算索引位置，将老数组数据复制到新数组中去（数组不存储实际数据，所以仅仅是拷贝引用而已）
-        for (Entry<K,V> e : table) {
-            while(null != e) {
-                Entry<K,V> next = e.next;
-                if (rehash) {
-                    e.hash = null == e.key ? 0 : hash(e.key);
-                }
-                int i = indexFor(e.hash, newCapacity);
-　　　　　　　　　 //将当前entry的next链指向新的索引位置,newTable[i]有可能为空，有可能也是个entry链，如果是entry链，直接在链表头部插入。
-                e.next = newTable[i];
-                newTable[i] = e;
-                e = next;
-            }
-        }
-    }
-    
-```
-
-
 
 # 2. jdk8 HashMap
 
