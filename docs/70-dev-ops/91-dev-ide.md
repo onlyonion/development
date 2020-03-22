@@ -16,6 +16,14 @@ Tools -> Display Preferences -> General setting的Format菜单下，点Modify，
 Tools -> Display Preferences -> General，Use Case Association，选中Orientation
 
 ## idea
+
+### 初始
+- JDK
+- 文件编码
+- 自动导包 Other Setting -> Auto Import
+
+### 常用
+
 插件
 - lombok
 - mybatisx
@@ -37,7 +45,16 @@ Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection war
 不折叠代码
 File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 
-[去除 mybatis.xml 文件黄色警告](https://blog.csdn.net/wsjzzcbq/article/details/89528252)
+
+Idea启动项目报错:Command line is too long. Shorten command line for className or also for JUnit defaultconfiguration.
+在该项目文件夹.idea/workspace.xml中找到
+```xml
+<component name="PropertiesComponent">
+    <property name="dynamic.classpath" value="true" />
+</component>
+```
+
+### [去除 mybatis.xml 文件黄色警告](https://blog.csdn.net/wsjzzcbq/article/details/89528252)
 - Editor，Inspections，SQL 去除 No data sources configuared；去掉 SQL dialect detection 的勾（√）
 - Editor，Color Scheme， General，Code，Injected language fragment，去掉右边 Background （背景色）的勾
 
@@ -47,8 +64,11 @@ File->Setting->Editor->General->Code Folding  将One-line methods去除即可
 方法提示
 - Editor - General - Code Completion， Parameter Info 勾选三个
 
-快捷鍵
-- 刪除行
+未使用提示
+ Editor -> Inspections -> Declaration redundancy -> Unused declaration
+
+序列化ID提示
+Preferences–>Editor–>Inspections 勾选Serializable class without 'serialVersionUID'
 
 快捷键冲突
 - ide快捷键与sougou输入搜索输入快捷键冲突 ctrl+shif+f
@@ -65,15 +85,12 @@ check autowiring problems in a bean class
 提示不区分大小写
 Editor -> general -> code completion
 
-Idea启动项目报错:Command line is too long. Shorten command line for className or also for JUnit defaultconfiguration.
-在该项目文件夹.idea/workspace.xml中找到
-```xml
-<component name="PropertiesComponent">
-    <property name="dynamic.classpath" value="true" />
-</component>
-```
+### Could not autowire. No beans of '' type found. less... (Ctrl+F1) 
+Inspection info:Checks autowiring problems in a bean class.
 
-IDEA Error:java: Compilation failed: internal java compiler error
+Settings - Editor - Inspections - Spring - Spring Core - Code - Autowiring for Bean Class - disable
+
+### IDEA Error:java: Compilation failed: internal java compiler error
 解决办法很简单：File-->Setting...-->Build,Execution,Deployment-->Compiler-->Java Compiler 设置相应Module的target bytecode version的合适版本
 
 ### idea mac man
@@ -86,6 +103,18 @@ Ctrl+Alt+T，可以把代码包在一个块内，例如：try/catch
 Ctrl+Enter，导入包，自动修正
 Ctrl+Alt+L，格式化代码
 
+### idea注释模板
+```java
+/**
+ *
+ * @author 
+ * @since ${YEAR}-${MONTH}-${DAY}
+ */
+```
+
+### idea lombok 编译不生效
+setting -> build,execution,deployment -> compiler -> annotation processors 勾选 enbale annotation processing
+
 ### idea模板
 
 ## vscode
@@ -93,13 +122,13 @@ Ctrl+Alt+L，格式化代码
 setting -> 用户代码片段
 触发建议（提示代码） ctrl + space  --> alt + /
 
-```
+```js
 // 针对 [markdown] 语言，配置替代编辑器设置。
 "[markdown]":  {
 	"editor.wordWrap": "off",
 	"editor.quickSuggestions": false
 }
-````
+```
 
 ## tool
 - ZooViewer

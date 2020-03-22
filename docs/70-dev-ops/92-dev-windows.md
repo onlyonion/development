@@ -33,7 +33,7 @@ ZOOKEEPER_HOME  D:\opt\java\zookeeper-3.4.8
 
 GRAPHVIZ_DOT    D:\opt\tool\graphviz-2.38\bin\dot.exe
 
-Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%ANT_HOME%\bin
+Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin
 NLS_LANG 	"AMERICAN_AMERICA.AL32UTF8"
 ```
 
@@ -91,12 +91,17 @@ Restart MySQL80 service.
 ### setup
 [mysql install](https://blog.csdn.net/qq_37350706/article/details/81707862)
 
+```sh
+# init
 mysqld --initialize --console
 [System] [MY-013169] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server in progress as process 5292
 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pP53IYtWyS__
 [System] [MY-013170] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
+
+# install
 mysqld --install
 
+## 启动
 net start mysql
 
 mysql -u root -p
@@ -104,9 +109,27 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
 
 update user set host='%' where user='root';
 flush privileges;
+```
+
+### MySQL 连接出现 Authentication plugin 'caching_sha2_password' cannot be loaded
+```sh
+mysql -u root -p
+ALTER USER 'root'@'%' IDENTIFIED BY '123456' PASSWORD EXPIRE NEVER;   #修改加密规则 
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';   #更新一下用户的密码 
+FLUSH PRIVILEGES;   #刷新权限 
+```
 
 ### 时区问题
  mysql java.sql.SQLException: The server time zone value‘XXXXXX' is unrecognized or represents...
 
  jdbc连接的url后面加上serverTimezone=GMT
  低版本的MySQL jdbc驱动
+
+ ### Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'information_schema.PROFILING.SEQ' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+
+ ```sh
+show variables like "sql_mode"; 
+
+set sql_mode='';
+set sql_mode='NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES';
+ ```
