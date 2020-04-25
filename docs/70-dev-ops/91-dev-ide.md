@@ -16,7 +16,10 @@ Tools -> Display Preferences -> General setting的Format菜单下，点Modify，
 Tools -> Display Preferences -> General，Use Case Association，选中Orientation
 
 ## idea
-
+JVM参数
+```sh
+-Dfile.encoding=UTF-8
+```
 ### 初始
 - JDK
 - 文件编码
@@ -118,10 +121,32 @@ setting -> build,execution,deployment -> compiler -> annotation processors 勾�
 ### idea模板
 
 ## vscode
-代码模板
-setting -> 用户代码片段
-触发建议（提示代码） ctrl + space  --> alt + /
 
+### 缩放
+setting里搜索mouseWheelZoom，打钩
+
+### 代码模板
+setting -> 用户代码片段
+
+```json
+"uml": {
+		"scope": "",
+		"prefix": "uml",
+		"body": [
+			"```plantuml",
+			"@startuml",
+			"$1",
+			"@enduml",
+			"```"
+		],
+		"description": "plant uml"
+	}
+```
+
+### 快捷键
+键盘绑定 -> 触发建议（提示代码） ctrl + space  --> alt + /
+
+### markdown
 ```js
 // 针对 [markdown] 语言，配置替代编辑器设置。
 "[markdown]":  {
@@ -202,4 +227,10 @@ git config core.sparsecheckout true   #开启sparse clone
 echo "build" >> .git/info/sparse-checkout   #设置需要pull的目录，*表示所有，!表示匹配相反的
 less .git/info/sparse-checkout
 git pull origin master  #拉取
+```
+
+### git - unable to clone Host key verification failed. fatal: Could not read from remote repository
+```sh
+# 添加SSH公钥
+ssh-keygen -t rsa -C "youraccount" # 注意是邮箱或者账号，或者两个都是 youraccount@email.com 
 ```

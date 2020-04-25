@@ -1,4 +1,4 @@
-
+## http
 - HttpUrlConnection
 - Apache HttpClient
 - Volley
@@ -14,6 +14,10 @@
 - org.asynchttpclient:netty-resolver-dns:2.0.32
 
 ### httpcomponents
+- org.apache.httpcomponents:httpasyncclient:4.1.4
+- org.apache.httpcomponents:httpclient:4.5.9
+- org.apache.httpcomponents:httpcore:4.4.11
+- org.apache.httpcomponents:httpcore-nio:4.4.11
 
 
 ### Retrofit

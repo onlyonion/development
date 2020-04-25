@@ -61,3 +61,7 @@ HystrixThreadPoolMetrics
 HystrixThreadPoolProperties
 HystrixTimerThreadPoolProperties
 ```
+
+
+Hystrix命令模式封装了命令运行逻辑(run)和服务调用失败时回退逻辑(getFallback)。
+其command抽象类是hystrixcommand，用于包装执行具有潜在风险功能的代码(通常指通过网络进行的服务调用)，具备容错和延时，统计和性能指标捕获，断路器和舱壁功能。
