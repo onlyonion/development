@@ -237,3 +237,42 @@ sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_
 SELECT * FROM information_schema.INNODB_TRX;
 kill 1707385
 show OPEN TABLES where In_use > 0;
+
+
+## nginx
+```sh
+# start
+start nginx
+
+# view
+tasklist /fi "imagename eq nginx.exe"
+nginx -v
+
+# port
+netstat -ano | findstr 0.0.0.0:80
+netstat -ano | findstr "80"
+
+# stop
+nginx -s stop # (快速停止nginx) 
+nginx -s quit # (完整有序的停止nginx)
+taskkill /f /t /im nginx.exe
+```
+
+### nginx-tomcat
+```conf
+upstream backend {
+    server 127.0.0.1:8080;
+    server 127.0.0.1:8081;
+}
+
+server {
+    listen 80;
+    server_name localhost;
+
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
+
+重复绑定了server name，这个警告不会影响到服务器运行，现在运行的nginx服务和将要加载的新配置中的重复。
