@@ -1,5 +1,25 @@
 org.apache.shiro
 
+## package
+* aop
+* [authc](/docs/20-framework/src/apache/shiro/authc/README.md) 认证
+* [authz](/docs/20-framework/src/apache/shiro/authz/README.md) 授权
+* [cache](/docs/20-framework/src/apache/shiro/cache/README.md) 缓存
+* codec 
+* concurrent 并发工具
+* config
+* crypto 加密
+* dao
+* env
+* [event](/docs/20-framework/src/apache/shiro/event/README.md)
+* io
+* jndi
+* ldap
+* mgt
+* realm 安全域
+* [session](/docs/20-framework/src/apache/shiro/session/README.md) 会话管理
+* subject 主题
+
 ## jars
 ```
 org.apache.shiro:shiro-cache:1.4.0
@@ -15,154 +35,7 @@ org.apache.shiro:shiro-spring:1.4.0
 org.apache.shiro:shiro-web:1.4.0
 ```
 
-## package
-* aop
-* authc 认证
-* authz 授权
-* cache 缓存
-* codec 
-* concurrent 并发工具
-* config
-* crypto 加密
-* dao
-* env
-* event
-* io
-* jndi
-* ldap
-* mgt
-* realm 安全域
-* session 会话管理
-* subject 主题
-
-```
-aop
-    AnnotationHandler
-    MethodInterceptor                   方法拦截器
-    MethodInvocation
-    MethodInterceptorSupport
-authc                                   认证
-    credential
-        CredentialsMatcher
-        HashingPasswordService
-        PasswordService
-    pam
-    Account
-    Authenticator
-    AuthenticationInfo
-    AuthenticationListener
-    AuthenticationToken
-    HostAuthenticationToken
-    LogoutAware
-    MergableAuthenticationInfo
-    RememberMeAuthenticationToken
-    SaltedAuthenticationInfo
-authz                                   授权
-    annotation
-        Logical
-        RequiresAuthentication
-        RequiresGuest
-        RequiresPermissions
-        RequiresRoles
-        RequiresUser
-    aop
-    permission
-    AuthorizationInfo
-    Authorizer
-    Permission
-cache                                   缓存
-    AbstractCacheManager
-    Cache
-    CacheManager
-    CacheManagerAware
-    MapCache
-    MemoryConstrainedCacheManager
-codec
-    Base64
-    CodecSupport
-    H64
-    Hex
-concurrent
-    SubjectAwareExecutor
-    SubjectAwareExecutorService
-    SubjectAwareScheduledExecutorService
-config
-    Ini
-    Interpolator
-    ResourceConfigurable
-crypto
-    hash
-        Hash
-        Md5Hash
-        Sha256Hash
-        HashService
-    BlowfishCipherService
-    RandomNumberGenerator
-    CipherService
-dao
-env
-    Environment
-    NamedObjectEnvironment
-event
-    EventBus
-    EventBusAware
-    Subscribe
-    Event
-io
-    ResourceUtils
-    Serializer
-    DefaultSerializer
-jndi
-    JndiCallback
-    JndiTemplate
-ldap
-mgt
-    AbstractRememberMeManager
-    AuthenticatingSecurityManager
-    AuthorizingSecurityManager
-    CachingSecurityManager
-    DefaultSecurityManager
-    DefaultSessionStorageEvaluator
-    DefaultSubjectDAO
-    DefaultSubjectFactory
-    RealmSecurityManager
-    RememberMeManager
-    SecurityManager
-    SessionsSecurityManager
-    SessionStorageEvaluator
-    SubjectDAO
-    SubjectFactory
-realm
-    AuthenticatingRealm
-    AuthorizingRealm
-    CachingRealm
-    Realm
-    RealmFactory
-    SimpleAccountRealm
-session
-    mgt
-        SessionManager
-    Session
-    SessionListener
-subject
-    Subject
-    SubjectContext
-    PrincipalCollection
-    PrincipalMap
-util
-    Destroyable
-    Factory
-    Initializable
-    Nameable
-    PatternMatcher
-    ThreadState
-    ThreadContext
-SecurityUtils
-ShiroException
-UnavailableSecurityManagerException
-```
-
-## overview
+## Overview
 ```plantuml
 @startuml
 
@@ -305,3 +178,131 @@ WebSecurityManager ^.. DefaultWebSecurityManager
 @enduml
 ```
 
+<!--
+```
+aop
+    AnnotationHandler
+    MethodInterceptor                   方法拦截器
+    MethodInvocation
+    MethodInterceptorSupport
+authc                                   认证
+    credential
+        CredentialsMatcher
+        HashingPasswordService
+        PasswordService
+    pam
+    Account
+    Authenticator
+    AuthenticationInfo
+    AuthenticationListener
+    AuthenticationToken
+    HostAuthenticationToken
+    LogoutAware
+    MergableAuthenticationInfo
+    RememberMeAuthenticationToken
+    SaltedAuthenticationInfo
+authz                                   授权
+    annotation
+        Logical
+        RequiresAuthentication
+        RequiresGuest
+        RequiresPermissions
+        RequiresRoles
+        RequiresUser
+    aop
+    permission
+    AuthorizationInfo
+    Authorizer
+    Permission
+cache                                   缓存
+    AbstractCacheManager
+    Cache
+    CacheManager
+    CacheManagerAware
+    MapCache
+    MemoryConstrainedCacheManager
+codec
+    Base64
+    CodecSupport
+    H64
+    Hex
+concurrent
+    SubjectAwareExecutor
+    SubjectAwareExecutorService
+    SubjectAwareScheduledExecutorService
+config
+    Ini
+    Interpolator
+    ResourceConfigurable
+crypto
+    hash
+        Hash
+        Md5Hash
+        Sha256Hash
+        HashService
+    BlowfishCipherService
+    RandomNumberGenerator
+    CipherService
+dao
+env
+    Environment
+    NamedObjectEnvironment
+event
+    EventBus
+    EventBusAware
+    Subscribe
+    Event
+io
+    ResourceUtils
+    Serializer
+    DefaultSerializer
+jndi
+    JndiCallback
+    JndiTemplate
+ldap
+mgt
+    AbstractRememberMeManager
+    AuthenticatingSecurityManager
+    AuthorizingSecurityManager
+    CachingSecurityManager
+    DefaultSecurityManager
+    DefaultSessionStorageEvaluator
+    DefaultSubjectDAO
+    DefaultSubjectFactory
+    RealmSecurityManager
+    RememberMeManager
+    SecurityManager
+    SessionsSecurityManager
+    SessionStorageEvaluator
+    SubjectDAO
+    SubjectFactory
+realm
+    AuthenticatingRealm
+    AuthorizingRealm
+    CachingRealm
+    Realm
+    RealmFactory
+    SimpleAccountRealm
+session
+    mgt
+        SessionManager
+    Session
+    SessionListener
+subject
+    Subject
+    SubjectContext
+    PrincipalCollection
+    PrincipalMap
+util
+    Destroyable
+    Factory
+    Initializable
+    Nameable
+    PatternMatcher
+    ThreadState
+    ThreadContext
+SecurityUtils
+ShiroException
+UnavailableSecurityManagerException
+```
+-->

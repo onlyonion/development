@@ -159,28 +159,6 @@ setting -> 用户代码片段
 - ZooViewer
 - zktools
 
-## docs
-
-### gitbook
-```sh
-npm install -g gitbook-cli
-gitbook init
-gitbook serve
-```
-配置信息 book.json
-
-### docsify
-```sh
-npm i docsify-cli -g
-docsify init ./docs
-docsify serve
-```
-_sidebar.md
-```sh
-index.html
-loadSidebar: true
-```
-
 ### wiki
 SmartWiki
 

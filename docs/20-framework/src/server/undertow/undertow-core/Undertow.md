@@ -14,8 +14,9 @@ class Undertow
 
 Undertow *-- HttpHandler
 Undertow +-- ListenerType
-Undertow +-- ListenerConfig
-Undertow +-- ListenerInfo
+Undertow +--- ListenerConfig
+Undertow +--- ListenerInfo
+Undertow +- Builder
 
 enum ListenerType {
     HTTP,
@@ -26,11 +27,19 @@ enum ListenerType {
 class ListenerConfig
 class ListenerInfo
 
+class Builder {
+    - int bufferSize;
+    - int ioThreads;
+    - int workerThreads;
+    - boolean directBuffers;
+}
+
 @enduml
 ```
 
 ## fields
 ```java
+public final class Undertow {
     private final int bufferSize;
     private final int ioThreads;
     private final int workerThreads;
@@ -49,6 +58,7 @@ class ListenerInfo
     private XnioWorker worker;
     private List<AcceptingChannel<? extends StreamConnection>> channels;
     private Xnio xnio;
+}
 ```
 
 ## methods
@@ -56,12 +66,12 @@ class ListenerInfo
 ### construct
 ```java
     private Undertow(Builder builder) {
-        this.byteBufferPool = builder.byteBufferPool;
+        this.byteBufferPool = builder.byteBufferPool; // 字节数组
         this.bufferSize = byteBufferPool != null ? byteBufferPool.getBufferSize() : builder.bufferSize;
         this.directBuffers = byteBufferPool != null ? byteBufferPool.isDirect() : builder.directBuffers;
-        this.ioThreads = builder.ioThreads;
-        this.workerThreads = builder.workerThreads;
-        this.listeners.addAll(builder.listeners);
+        this.ioThreads = builder.ioThreads; // io线程
+        this.workerThreads = builder.workerThreads; // 工作线程
+        this.listeners.addAll(builder.listeners); // 监听器
         this.rootHandler = builder.handler;
         this.worker = builder.worker;
         this.internalWorker = builder.worker == null;
@@ -244,6 +254,10 @@ class ListenerInfo
 ## inner class
 
 ### Builder
+- ioThreads = Math.max(Runtime.getRuntime().availableProcessors(), 2);
+- workerThreads = ioThreads * 8;
+- directBuffers
+
 ```java
 public static final class Builder {
 

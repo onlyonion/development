@@ -33,7 +33,10 @@ JRE_HOME    %JAVA_HOME%\jre
 CLASSPATH	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
 
 MAVEN_HOME	D:\opt\java\apache-maven-3.3.9
+M2_HOME	D:\opt\java\apache-maven-3.3.9
 ANT_HOME	D:\opt\java\apache-ant-1.9.14
+
+# .${user}/.m2/setting.xml 配置
 
 # 编码
 GRADLE_OPTS -Dfile.encoding=UTF-8

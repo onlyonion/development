@@ -49,13 +49,17 @@
 - spring-cloud-starter-archaius
 - spring-cloud-starter-netflix-archaius
 
-### sleuth
+### stream
 - spring-cloud-stream
 - spring-cloud-stream-binder-rabbit
 - spring-cloud-stream-binder-rabbit-core
 - spring-cloud-starter-stream-rabbit
 - spring-cloud-stream-codec
+
+### sleuth
 - spring-cloud-sleuth-core
+- spring-cloud-starter-sleuth
+- spring-cloud-sleuth-zipkin
 
 ### bus
 - spring-cloud-bus

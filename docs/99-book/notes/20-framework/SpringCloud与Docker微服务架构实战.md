@@ -50,5 +50,40 @@ SpringCloudSleuth为SpringCloud提供了分布式跟踪的解决方案，它打�
 
 # Docker
 ## 12 Docker入门
+### 12.1 Docker简介
+开源的容器引起，有助于更快地交付应用。Docker将应用程序和基础设施层隔离，并且能将基础设施层当作程序一样进行管理。
+### 12.2 Docker的架构
+- Docker daemon
+- Client
+- Image
+- Container
+- Registry
+
+### 12.5 Docker的常用命令
+- Docker镜像的常用命令
+- Docker容器的常用命令
+
+
 ## 13 将微服务运行在Docker上
+
+```sh
+docker build -t nginx:my .
+docker run -d -p 92:80 nginx:my
+# ADD 复制文件
+# ARG 构建参数
+ARG user1=someuser
+# CMD 容器启动命令，每个dockerfile只有一个cmd命令，指定了多个，只有最后一个会被执行
+# COPY 复制文件
+# ENTRYPOINT
+# ENV 设置环境变量
+# EXPOSE 暴露的端口
+# FROM 指定基础镜像
+# LABEL
+# MAINTAINER maintainer
+# RUN 执行命令
+# USER 设置用户
+# VOLUME 指定挂载点
+# WORKER指定工作目录
+```
+
 ## 14 使用DockerCompose编排微服务

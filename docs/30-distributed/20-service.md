@@ -71,6 +71,11 @@ API网关方式的核心要点是，所有的客户端和消费端都通过统�
 ### 链路
 链路追踪、链路压测
 
+- Google Dapper
+- Twitter Zipkin
+- Apache HTrace
+- pinpoint
+
 ### 日志
 Elasticsearch , Logstash, Kibana 
 
