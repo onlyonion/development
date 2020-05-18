@@ -31,3 +31,6 @@ Kubernetes提供了应用部署，规划，更新，维护的一种机制。
 Kubernetes对计算资源进行了更高层次的抽象，通过将容器进行细致的组合，将最终的应用服务交给用户。
 
 Docker是**容器技术**的核心、基础，Docker Compose是一个基于Docker的**单主机容器编排工具**，而k8s是一个**跨主机的集群部署工具**。
+
+## Harbor
+Harbor是构建企业级私有docker镜像的仓库的开源解决方案，它是Docker Registry的更高级封装

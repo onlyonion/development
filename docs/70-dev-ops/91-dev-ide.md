@@ -183,6 +183,12 @@ PC 端证书安装：Help –> SSL Proxying –> Install Charles Root Certificat
 移动端证书安装：Help –> SSL Proxying –>Install Charles Root Certificate on a Mobile Device， 安装弹出的对话框要求，手机配置好端口为 8888 的代理之后，在手机浏览器访问 http://chls.pro/ssl 就可以下载证书并安装了
 安卓手机安装证书 Help –> SSL Proxying –>Save Charles Root Certificate...，选择要保存的文件目录，点击 Save, 将保存的文件传到手机，点击手机的 设置 -> WLAN -> 高级设置 -> 安装证书，找到文件保存目录，安装完成。
 注意：对于 iOS 10.3以上的手机需要设置证书信任：点击 通用 -> 关于本机 -> 证书信任设置 -> 选择 Charles 的证书打开。
+
+
+小米安装证书
+（miui10及以上）点击设置-更多设置-系统安全-加密与凭据-从存储卡安装文件
+（miui10一下）点击设置-更多设置-系统安全-从存储卡安装文件
+
 ## Navicat
 Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
 

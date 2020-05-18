@@ -7,6 +7,8 @@
 ```sh
 # docker修改时间
 docker run -it --cap-add SYS_TIME --rm --name centos centos /bin/bash
+
+# /var/lib/docker/image/overlay2：存储镜像管理数据的目录
 ```
 
 ### docker 镜像常用命令
@@ -102,4 +104,14 @@ docker run -p 6379:6329
 -v /zzyyuse/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf # reids.conf是目录
 -d redis:3.2 redis-server /user/local/etc/redis/redis.conf --appendonly yes
 
+docker pull redis:latest
+docker run -itd --name redis-test -p 6379:6379 redis
+docker exec -it redis-test /bin/bash
+redis-cli
+```
+
+## error
+```sh
+# WARNING: IPv4 forwarding is disabled. Networking will not work.
+systemctl restart network && systemctl restart docker
 ```
