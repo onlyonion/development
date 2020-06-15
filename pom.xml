@@ -17,7 +17,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springframework.version>5.0.7.RELEASE</springframework.version>
+		<springframework.version>5.2.7.RELEASE</springframework.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
 		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>
