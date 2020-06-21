@@ -143,7 +143,7 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
 * [`mysql`](/docs/50-database/src/mysql/README.md)
 * [mysql-connector](/docs/50-database/src/mysql-connector/README.md)
 * seata
-* [shardingsphere](/docs/50-database/src/shardingsphere/README.md)
+* [shardingsphere](/docs/50-database/src/sharding/org.apache.shardingsphere/README.md)
 
 ### os 操作系统
 - [linux](/docs/00-base/src/linux/README.md)

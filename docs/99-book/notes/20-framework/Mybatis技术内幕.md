@@ -224,8 +224,9 @@ MyBatis中的延迟加载是通过动态代理实现的。
 
 ### 3.4 KeyGenerator
 ### 3.4.1 Jdbc3keyGenerator
+用于取回数据库生成的自增id。
 ### 3.4.2 SelectkeyGenerator
-
+对于不支持自动生成主键的数据库，例如Oracle数据库，可以利用Mybatis提供的SelectKeyGenerator来生成主键，SelectKeyGenerator也可以实现类似于Jdbc3KeyGenerator提供的、获取数据库自动生成的主键的功能。
 ### 3.5 StatementHandler
 StatementHandler 接口中的功能很多，例如创建 Statement 对象，为 SQL 语句绑定实参，执行 select、 insert、 update 、 delete 等多
 种类型的 SQL 语句，批量执行 SQL 语句，将结果集映射成结果对象。

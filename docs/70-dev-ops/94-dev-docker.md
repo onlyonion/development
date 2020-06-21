@@ -33,7 +33,7 @@ docker commit -a zzyy -m "I am annotation"
 docker run java /bin/echo 'hello world'
 docker run -d -p 91:80 nginx # -d后台运行 # -p 宿主机端口号:容器端口 http://docker宿主机ip:91
 # 列出运行中的容器
-docker ps
+docker ps # docker ps -a
 # 停止容器
 docker stop 容器ID
 # 强制停止
@@ -49,6 +49,8 @@ nsenter --target $PID --mount --uts --ipc --net --pid
 # 删除容器
 docker rm 容器ID
 docker rm -f $(docker ps -a -q)
+# 重命名
+docker rename oldName newName
 ```
 
 ## dockerfile
@@ -105,10 +107,39 @@ docker run -p 6379:6329
 -d redis:3.2 redis-server /user/local/etc/redis/redis.conf --appendonly yes
 
 docker pull redis:latest
-docker run -itd --name redis-test -p 6379:6379 redis
+docker run -itd --name redis-test -p 6379:6379 redis --requirepass "mypassword"
 docker exec -it redis-test /bin/bash
 redis-cli
+# redis-cli -h 127.0.0.1 -p 6379 -a "mypass"
+# config set requirepass 123456
+# config get requirepass
+
 ```
+
+### hue
+
+
+```sh
+docker run -it -p 8888:8888 gethue/hue:latest
+
+# https://github.com/cloudera/hue/tree/master/tools/docker/hue
+docker run -it --name hue -p 8888:8888 -v /data/hue/hue-overrides.ini:/usr/share/hue/desktop/conf/hue.ini gethue/hue
+
+# 使用mysql管理元数据
+/build/env/bin/hue syncdb
+/build/env/bin/hue migrate
+
+# [HUE—大数据web管理器](https://blog.csdn.net/qq_18769269/article/details/80705960)
+```
+
+## docker与宿主机
+```sh
+# 从容器里面拷文件到宿主机
+docker cp hue:/usr/share/hue/desktop/conf/hue.ini /data/hue/hue.ini
+docker cp hue:/usr/share/hue/desktop/conf/hue-overrides.ini /data/hue/hue-overrides.ini
+# 从宿主机拷文件到容器里面
+docker cp /data/hue/hue.ini hue:/usr/share/hue/desktop/conf/hue.ini
+docker cp /data/hue/hue-overrides.ini hue:/usr/share/hue/desktop/conf/hue-overrides.ini
 
 ## error
 ```sh

@@ -80,6 +80,24 @@ CglibAopProxy +-- CglibMethodInvocation
  - 拦截器链不为空，执行拦截器链
 * 结果处理、返回
 
+
+#### define
+```plantuml
+@startuml
+
+interface Callback
+interface MethodInterceptor
+class DynamicAdvisedInterceptor
+
+Callback ^-- MethodInterceptor
+MethodInterceptor ^.. DynamicAdvisedInterceptor
+
+class AdvisedSupport
+DynamicAdvisedInterceptor *- AdvisedSupport
+
+@enduml
+```
+
 ```java
 	private static class DynamicAdvisedInterceptor implements MethodInterceptor, Serializable {
 
@@ -134,6 +152,44 @@ CglibAopProxy +-- CglibMethodInvocation
 					// Restore old proxy.
 					AopContext.setCurrentProxy(oldProxy);
 				}
+			}
+		}
+	}
+```
+
+### CglibMethodInvocation
+
+#### define
+```java
+	private static class CglibMethodInvocation extends ReflectiveMethodInvocation {
+
+		@Nullable
+		private final MethodProxy methodProxy;
+
+		public CglibMethodInvocation(Object proxy, @Nullable Object target, Method method,
+				Object[] arguments, @Nullable Class<?> targetClass,
+				List<Object> interceptorsAndDynamicMethodMatchers, MethodProxy methodProxy) {
+
+			super(proxy, target, method, arguments, targetClass, interceptorsAndDynamicMethodMatchers);
+
+			// Only use method proxy for public methods not derived from java.lang.Object
+			this.methodProxy = (Modifier.isPublic(method.getModifiers()) &&
+					method.getDeclaringClass() != Object.class && !AopUtils.isEqualsMethod(method) &&
+					!AopUtils.isHashCodeMethod(method) && !AopUtils.isToStringMethod(method) ?
+					methodProxy : null);
+		}
+
+		/**
+		 * Gives a marginal performance improvement versus using reflection to
+		 * invoke the target when invoking public methods.
+		 */
+		@Override
+		protected Object invokeJoinpoint() throws Throwable {
+			if (this.methodProxy != null) {
+				return this.methodProxy.invoke(this.target, this.arguments);
+			}
+			else {
+				return super.invokeJoinpoint();
 			}
 		}
 	}

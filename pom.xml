@@ -20,7 +20,6 @@
 		<springframework.version>5.0.7.RELEASE</springframework.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<org.apache.log4j.version>1.2.17</org.apache.log4j.version>
-		<sharding-sphere.version>3.0.0.M3</sharding-sphere.version>
 		<rocketmq.version>4.3.0</rocketmq.version>
 		<shiro.version>1.4.0</shiro.version>
 		<activiti.version>5.17.0</activiti.version>
@@ -345,16 +344,31 @@
 			<artifactId>msgpack</artifactId>
 			<version>0.6.12</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.dangdang/sharding-jdbc-core -->
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>1.5.4.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.shardingjdbc/sharding-jdbc-core -->
+		<dependency>
+			<groupId>io.shardingjdbc</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.shardingsphere/sharding-jdbc-core -->
 		<dependency>
 			<groupId>io.shardingsphere</groupId>
-			<artifactId>sharding-jdbc</artifactId>
-			<version>${sharding-sphere.version}</version>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>3.1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>io.shardingsphere</groupId>
-			<artifactId>sharding-jdbc-spring-namespace</artifactId>
-			<version>${sharding-sphere.version}</version>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/sharding-jdbc-core -->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-core</artifactId>
+            <version>4.1.1</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -370,6 +384,13 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus</artifactId>
 			<version>3.3.0</version>
+		</dependency>
+
+		<!-- sql解析插件 -->
+		<dependency>
+			<groupId>net.sf.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>0.8.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->

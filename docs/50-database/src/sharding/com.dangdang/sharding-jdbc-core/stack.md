@@ -13,6 +13,7 @@ executeInternal:192, PreparedStatementExecutor (com.dangdang.ddframe.rdb.shardin
 execute:169, PreparedStatementExecutor (com.dangdang.ddframe.rdb.sharding.executor)
 execute:115, ShardingPreparedStatement (com.dangdang.ddframe.rdb.sharding.jdbc)
 
+// mybatis
 update:46, PreparedStatementHandler (org.apache.ibatis.executor.statement)
 update:74, RoutingStatementHandler (org.apache.ibatis.executor.statement)
 
@@ -34,4 +35,27 @@ execute:57, MapperMethod (org.apache.ibatis.binding)
 invoke:59, MapperProxy (org.apache.ibatis.binding)
 insertOne:-1, $Proxy90 (com.sun.proxy)
 main:22, MybatisMain (com.t)
+```
+
+## insert
+- ShardingPreparedStatement
+- PreparedSQLRouter
+- SQLRouteEngine
+
+```
+routeSQL:100, SQLRouteEngine (com.dangdang.ddframe.rdb.sharding.router)
+route:56, PreparedSQLRouter (com.dangdang.ddframe.rdb.sharding.router)
+routeSQL:162, ShardingPreparedStatement (com.dangdang.ddframe.rdb.sharding.jdbc)
+execute:112, ShardingPreparedStatement (com.dangdang.ddframe.rdb.sharding.jdbc)
+
+invoke0:-1, NativeMethodAccessorImpl (sun.reflect)
+invoke:62, NativeMethodAccessorImpl (sun.reflect)
+invoke:43, DelegatingMethodAccessorImpl (sun.reflect)
+invoke:498, Method (java.lang.reflect)
+
+invoke:59, PreparedStatementLogger (org.apache.ibatis.logging.jdbc)
+
+execute:-1, $Proxy93 (com.sun.proxy)
+update:46, PreparedStatementHandler (org.apache.ibatis.executor.statement)
+update:74, RoutingStatementHandler (org.apache.ibatis.executor.statement)
 ```

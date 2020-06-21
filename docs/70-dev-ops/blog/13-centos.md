@@ -6,6 +6,11 @@ yum（ Yellow dog Updater, Modified）是一个在Fedora和RedHat以及SUSE中�
 systemctl set-default multi-user.target
 # 图形模式
 systemctl set-default graphical.target 
+# 安装 x window
+yum groupinstall "X Window System"
+yum grouplist
+yum groupinstall "GNOME Desktop" "Graphical Administration Tools"
+startx # 进入图形界面
 ```
 
 ## net
@@ -110,7 +115,7 @@ firewall-cmd --reload
 firewall-cmd --permanent --zone=public --list-ports
 # 关闭防火墙
 systemctl stop firewalld.service
-systemctl disable firewalld.service
+systemctl disable firewalld.service # 开机禁用防火墙
 ```
 ## gitlab runner
 1. 安装runner

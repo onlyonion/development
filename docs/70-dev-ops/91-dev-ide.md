@@ -120,6 +120,9 @@ setting -> build,execution,deployment -> compiler -> annotation processors 勾�
 
 ### idea模板
 
+### idea gradle unable to resolve dependency 
+检查 File-->Settings...-->Build, Execution, Deployment-->Gradle-->取消Offline work的勾选
+
 ## vscode
 
 ### 缩放

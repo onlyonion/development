@@ -40,8 +40,8 @@ Thread ^-- ReferenceHandler
 class PhantomReference
 class FinalReference
 class Finalizer
-class SoftReference
-class WeakReference
+class SoftReference #orange
+class WeakReference #yellow
 
 Reference <|-- PhantomReference
 Reference <|-- FinalReference

@@ -18,12 +18,6 @@
 * sharding-transaction
 
 
-## package
-```
-io.shardingjdbc:sharding-jdbc-core:2.0.3
-io.shardingjdbc:sharding-jdbc-core-spring-namespace:2.0.1
-```
-
 ## 概念 & 功能
 ### 读写分离
 ### 数据分片

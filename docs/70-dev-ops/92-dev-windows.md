@@ -241,6 +241,14 @@ SELECT * FROM information_schema.INNODB_TRX;
 kill 1707385
 show OPEN TABLES where In_use > 0;
 
+### mysqld
+windows防火墙添加mysqld
+
+### Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+```conf
+serverTimezone=UTC
+jdbc:mysql://localhost:3306/SshProject?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+```
 
 ## nginx
 ```sh
@@ -279,3 +287,17 @@ server {
 ```
 
 重复绑定了server name，这个警告不会影响到服务器运行，现在运行的nginx服务和将要加载的新配置中的重复。
+
+### root 、alias指令区别
+
+location /img/ {
+    alias /var/www/image/;
+}
+#若按照上述配置的话，则访问/img/目录里面的文件时，ningx会自动去/var/www/image/目录找文件
+location /img/ {
+    root /var/www/image;
+}
+#若按照这种配置的话，则访问/img/目录下的文件时，nginx会去/var/www/image/img/目录下找文件。] 
+alias是一个目录别名的定义，root则是最上层目录的定义。
+
+还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。而root则可有可无~~
