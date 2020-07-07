@@ -67,3 +67,21 @@ sun.misc.Launcher$AppClassLoader
 2. 使用了重复的类库，且版本不一致。导致低版本的被优先使用。
 3. 类名错了，一般是使用Class.forName的时候，手工指定了类名的情况。
 4. 没有导入纯JAVA驱动包。
+
+
+## -Xbootclasspath
+```sh
+# 扩展bootStrap 级别class
+-Xbootclasspath:<path>
+-Xbootclasspath/p:<path>
+-Xbootclasspath/a:<path>
+
+# unix使用:号,windows使用;号
+# java -Xbootclasspath/a:/usrhome/thirdlib.jar: -jar yourJarExe.jar
+
+# extend class
+{Java_home}\jre\lib\ext
+
+# User class
+```
+

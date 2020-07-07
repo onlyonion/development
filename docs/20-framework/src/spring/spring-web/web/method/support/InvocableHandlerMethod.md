@@ -48,6 +48,27 @@ org.springframework.core.BridgeMethodResolver
 
 [java中什么是bridge method（桥接方法）](https://blog.csdn.net/mhmyqn/article/details/47342577 )
 
+```java
+public interface SuperClass<T> {
+    T method(T param);
+}
+ 
+public class SubClass implements SuperClass<String> {
+    public String method(String param) {
+        return param;
+    }
+    // 编译器生成的桥接方法 flags：ACC_BRIDGE和ACC_SYNTHETIC
+    public Object method(Object param) {
+        return this.method(((String) param)); // 桥接方法实际是是调用了实际的泛型方法
+    }
+}
+
+```
+
+通过桥接方法获取实际的方法
+spring中org.springframework.core.BridgeMethodResolver类的源码。通过判断方法名、参数的个数以及泛型类型参数来获取的
+
+
 ## methods
 
 ### invokeForRequest
@@ -59,5 +80,37 @@ org.springframework.core.BridgeMethodResolver
 		Object returnValue = doInvoke(args);
         // log ..
 		return returnValue;
+	}
+```
+
+### doInvoke
+```java
+    protected Object doInvoke(Object... args) throws Exception {
+		ReflectionUtils.makeAccessible(getBridgedMethod());
+		try {
+			return getBridgedMethod().invoke(getBean(), args);
+		}
+		catch (IllegalArgumentException ex) {
+			assertTargetBean(getBridgedMethod(), getBean(), args);
+			String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");
+			throw new IllegalStateException(getInvocationErrorMessage(text, args), ex);
+		}
+		catch (InvocationTargetException ex) {
+			// Unwrap for HandlerExceptionResolvers ...
+			Throwable targetException = ex.getTargetException();
+			if (targetException instanceof RuntimeException) {
+				throw (RuntimeException) targetException;
+			}
+			else if (targetException instanceof Error) {
+				throw (Error) targetException;
+			}
+			else if (targetException instanceof Exception) {
+				throw (Exception) targetException;
+			}
+			else {
+				String text = getInvocationErrorMessage("Failed to invoke handler method", args);
+				throw new IllegalStateException(text, targetException);
+			}
+		}
 	}
 ```

@@ -4,11 +4,23 @@ org.springframework.transaction.interceptor.TransactionAspectSupport
 ```plantuml
 @startuml
 
-abstract class TransactionAspectSupport {
+interface BeanFactoryAware
+interface InitializingBean
 
-}
+abstract class TransactionAspectSupport
+
+BeanFactoryAware ^.. TransactionAspectSupport
+InitializingBean ^.. TransactionAspectSupport
+TransactionAspectSupport *-- ThreadLocal
+TransactionAspectSupport *-- TransactionManager
 
 @enduml
+```
+
+```java
+public abstract class TransactionAspectSupport implements BeanFactoryAware, InitializingBean {
+
+}
 ```
 
 ## methods

@@ -7,6 +7,8 @@ org.springframework
 ```
 cache
     caffeine
+        CaffeineCache
+        CaffeineCacheManager
     ehcache
         EhCacheCache
         EhCacheCacheManager

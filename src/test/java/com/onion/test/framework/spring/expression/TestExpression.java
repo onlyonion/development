@@ -13,22 +13,26 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 public class TestExpression {
 
-    public static void main(String[] args) {
+    @Test
+    public void test1()  {
         String greetingExp = "Hello, #{ #user }";
 
+        // 表达式解析器
         ExpressionParser parser = new SpelExpressionParser();
+
+        // 求值上下文
         EvaluationContext context = new StandardEvaluationContext();
 
         context.setVariable("user", "Gangyou");
 
         Expression expression = parser.parseExpression(greetingExp, new TemplateParserContext());
 
-
+        System.out.println(expression.getValue(context));
         System.out.println(expression.getValue(context, String.class));
     }
 
     @Test
-    public void test() {
+    public void test2() {
         ExpressionParser parser = new SpelExpressionParser();
         Expression exp = parser.parseExpression("'Hello '+' World!'");
         String result = exp.getValue().toString();
@@ -36,7 +40,7 @@ public class TestExpression {
     }
 
     @Test
-    public void test2() {
+    public void test3() {
         ExpressionParser parser = new SpelExpressionParser();
         User user = new User(9527, "周星驰");
         EvaluationContext ctx = new StandardEvaluationContext();

@@ -123,6 +123,10 @@ setting -> build,execution,deployment -> compiler -> annotation processors 勾�
 ### idea gradle unable to resolve dependency 
 检查 File-->Settings...-->Build, Execution, Deployment-->Gradle-->取消Offline work的勾选
 
+### 日志颜色
+VM options：
+-Dspring.output.ansi.enabled=ALWAYS
+
 ## vscode
 
 ### 缩放
