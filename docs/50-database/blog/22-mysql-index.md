@@ -84,3 +84,8 @@ drop index index_name on table_name
 
 #### 指定使用索引
 select * from table_name force index (index_name) where conditions;
+
+
+#### 联合索引的意义
+减少开销，因为每多一个索引，都会增加磁盘空间的开销。
+可能会覆盖索引，直接通过遍历索引取得数据，无需回表。

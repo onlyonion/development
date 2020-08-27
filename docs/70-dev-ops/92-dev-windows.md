@@ -54,6 +54,10 @@ GRAPHVIZ_DOT    D:\opt\tool\graphviz-2.38\bin\dot.exe
 
 Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin
 NLS_LANG 	AMERICAN_AMERICA.AL32UTF8
+
+# hadoop
+HADDOOP_HOME 
+Path		;%HADDOOP_HOME%\bin;
 ```
 
 ### 1.2 java doc

@@ -44,43 +44,46 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 ```
 
 ## methods
+- runAsync(Runnable runnable) Runnable接口的run()方法没有返回值
+- supplyAsync(Supplier<U> supplier) Supplier接口的get()方法是有返回值
 
 ### runAsync
 ```java
-    public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {
-        return asyncSupplyStage(asyncPool, supplier);
-    }
-        
     public static CompletableFuture<Void> runAsync(Runnable runnable) {
         return asyncRunStage(asyncPool, runnable);
     }
+    public static CompletableFuture<Void> runAsync(Runnable runnable, Executor executor) {
+        return asyncRunStage(screenExecutor(executor), runnable);
+    } 
 ```
 
 ### supplyAsync
 ```java
-    public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier,
-                                                       Executor executor) {
-        return asyncSupplyStage(screenExecutor(executor), supplier);
+    public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {
+        return asyncSupplyStage(asyncPool, supplier);
     }
-    
-    public static CompletableFuture<Void> runAsync(Runnable runnable,
-                                                   Executor executor) {
-        return asyncRunStage(screenExecutor(executor), runnable);
-    }    
+    public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor executor) {
+        return asyncSupplyStage(screenExecutor(executor), supplier);
+    } 
 ```
 
 ### then
+thenAccept和thenRun都是无返回值的
+- thenAccept接收上一阶段的输出作为本阶段的输入　　
+- thenRun根本不关心前一阶段的输出,不需要输入参数
+
+thenCombine整合两个计算结果
+
+
 ```java
     public <U> CompletableFuture<U> thenCompose(
         Function<? super T, ? extends CompletionStage<U>> fn) {
         return uniComposeStage(null, fn);
     }
-
     public <U> CompletableFuture<U> thenComposeAsync(
         Function<? super T, ? extends CompletionStage<U>> fn) {
         return uniComposeStage(asyncPool, fn);
     }
-
     public <U> CompletableFuture<U> thenComposeAsync(
         Function<? super T, ? extends CompletionStage<U>> fn,
         Executor executor) {
@@ -94,12 +97,10 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
         BiConsumer<? super T, ? super Throwable> action) {
         return uniWhenCompleteStage(null, action);
     }
-
     public CompletableFuture<T> whenCompleteAsync(
         BiConsumer<? super T, ? super Throwable> action) {
         return uniWhenCompleteStage(asyncPool, action);
     }
-
     public CompletableFuture<T> whenCompleteAsync(
         BiConsumer<? super T, ? super Throwable> action, Executor executor) {
         return uniWhenCompleteStage(screenExecutor(executor), action);
@@ -108,8 +109,57 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 ### exceptionally
 ```java
-    public CompletableFuture<T> exceptionally(
-        Function<Throwable, ? extends T> fn) {
+    public CompletableFuture<T> exceptionally(Function<Throwable, ? extends T> fn) {
         return uniExceptionallyStage(fn);
     }
 ```
+
+## [CompletableFuture: 异步编程](https://segmentfault.com/a/1190000019571918)
+
+任务是有时序关系的，比如有串行关系、并行关系、汇聚关系等。CompletionStage 接口可以清晰地描述任务之间的这种时序关系。
+- 串行
+- 并行
+- 汇聚
+
+### 串行
+```
+CompletionStage<R> thenApply(fn);
+CompletionStage<R> thenApplyAsync(fn);
+CompletionStage<Void> thenAccept(consumer);
+CompletionStage<Void> thenAcceptAsync(consumer);
+CompletionStage<Void> thenRun(action);
+CompletionStage<Void> thenRunAsync(action);
+CompletionStage<R> thenCompose(fn);
+CompletionStage<R> thenComposeAsync(fn);
+```
+
+### 并行
+
+### 描述 AND 汇聚关系
+```
+CompletionStage<R> thenCombine(other, fn);
+CompletionStage<R> thenCombineAsync(other, fn);
+CompletionStage<Void> thenAcceptBoth(other, consumer);
+CompletionStage<Void> thenAcceptBothAsync(other, consumer);
+CompletionStage<Void> runAfterBoth(other, action);
+CompletionStage<Void> runAfterBothAsync(other, action);
+```
+
+### 描述 OR 汇聚关系
+```
+CompletionStage applyToEither(other, fn);
+CompletionStage applyToEitherAsync(other, fn);
+CompletionStage acceptEither(other, consumer);
+CompletionStage acceptEitherAsync(other, consumer);
+CompletionStage runAfterEither(other, action);
+CompletionStage runAfterEitherAsync(other, action);
+```
+### 异常
+```
+CompletionStage exceptionally(fn);
+CompletionStage<R> whenComplete(consumer);
+CompletionStage<R> whenCompleteAsync(consumer);
+CompletionStage<R> handle(fn);
+CompletionStage<R> handleAsync(fn);
+```
+> 不过最近几年，伴随着 ReactiveX 的发展（Java 语言的实现版本是 RxJava），回调地狱已经被完美解决了，Java 语言也开始官方支持异步编程：在 1.8 版本提供了 CompletableFuture，在 Java 9 版本则提供了更加完备的 Flow API，异步编程目前已经完全工业化。

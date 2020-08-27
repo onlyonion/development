@@ -8,7 +8,7 @@ org.springframework
   * [ApplicationContext](/20-framework/src/spring/spring-context/context/ApplicationContext.md)
   * support
     * [AbstractApplicationContext](/20-framework/src/spring/spring-context/context/support/AbstractApplicationContext.md)
-      * [AbstractRefreshableApplicationContext](/20-framework/src/spring/spring-context/context/support/AbstractRefreshableApplicationContext.md)
+      * [AbstractRefreshableApplicationContext](/20-framework/src/spring/spring-context/context/support/AbstractRefreshableApplicationContext.md) `loadBeanDefinitions`
         * [FileSystemXmlApplicationContext](/20-framework/src/spring/spring-context/context/support/FileSystemXmlApplicationContext.md)
       * [GenericApplicationContext](/20-framework/src/spring/spring-context/context/support/GenericApplicationContext.md)
 * ejb

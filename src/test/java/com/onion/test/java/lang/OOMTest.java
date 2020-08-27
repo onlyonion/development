@@ -10,7 +10,7 @@ import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
-import sun.misc.Unsafe;
+//import sun.misc.Unsafe;
 
 public class OOMTest {
 
@@ -88,12 +88,12 @@ public class OOMTest {
      */
     @Test
     public void directMemoryOOM() throws IllegalAccessException {
-        Field field = Unsafe.class.getDeclaredFields()[0];
-        field.setAccessible(true);
-        Unsafe unsafe = (Unsafe) field.get(null);
-        while (true) {
-            unsafe.allocateMemory(_1MB);
-        }
+//        Field field = Unsafe.class.getDeclaredFields()[0];
+//        field.setAccessible(true);
+//        Unsafe unsafe = (Unsafe) field.get(null);
+//        while (true) {
+//            unsafe.allocateMemory(_1MB);
+//        }
     }
 
     static final int _1MB = 1024 * 1024;

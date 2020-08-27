@@ -33,6 +33,10 @@ BeanDefinition抽象了对Bean的定义，是让容器起作用的主要数据�
 4. ApplicationContext容器的设计原理
 
 ### 2.3 IoC容器的初始化过程
+1. Resource定位过程
+2. BeanDefinition的载入和解析
+3. 向IoC容器注册这些BeanDefinition
+
 #### 2.3.1 BeanDefinition的Resource定位
 ```plantuml
 @startuml
@@ -45,6 +49,8 @@ FileSystemResource --> FileSystemXmlApplicationContext: FileSystemResource
 ```
 
 #### 2.3.2 BeanDefinition的载入和解析
+对IoC容器来说，这个载入过程，相当于把定义的BeanDefinition在IoC容器中转化成一个Spring内部表示的**数据结构**的过程。
+
 ```plantuml
 @startuml
 
@@ -253,13 +259,21 @@ sequenceDiagram
 #### 3.4.2 JdkDynamicAopProxy的invoke拦截
 #### 3.4.3 Cglib2AopProxy的intercept拦截
 #### 3.4.4 目标对象方法的调用
+- JdkDynamicAopProxy.invoke(), AopUtils.invokeJoinpointUsingReflection()
+- Cglib2AopProxy.DynamicAdvisedInterceptor.intercept(), `methodProxy.invoke(target, argsToUse);`
+
 #### 3.4.5 AOP拦截器链的调用
+对拦截器的调用都是在ReflectiveMethodInvocation中通过proceed方法实现的。在proceed方法中，会逐个运行拦截器的拦截方法。
+在拦截器的拦截方法之前，需要对代理方法做一个**匹配判断**，通过Pointcut切点中需要进行`matches`的匹配过程，即matches调用对方法进行匹配判断，
+来决定是否需要进行增强。
+
 #### 3.4.6 配置通知器
 #### 3.4.7 Advice通知的实现
 #### 3.4.8 ProxyFactory实现AOP
 
 ### 3.5 Spring AOP的高级特性
-使用spring aop时，对目标对象的增强是通过拦截器来完成的。
+使用spring aop时，对目标对象的增强是通过拦截器来完成的。对于一些应用场合，需要对**目标对象**本身进行一些处理，比如，如何从一个对象池或对象工厂中获取目标对象等。
+对于这种情况，需要使用Spring的`TargetSource`接口特性。
 
 ### 3.6 小结
 

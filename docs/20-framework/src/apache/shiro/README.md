@@ -1,24 +1,39 @@
 org.apache.shiro
 
-## package
+## Overview
+
+### shiro-core
 * aop
-* [authc](/docs/20-framework/src/apache/shiro/authc/README.md) 认证
-* [authz](/docs/20-framework/src/apache/shiro/authz/README.md) 授权
-* [cache](/docs/20-framework/src/apache/shiro/cache/README.md) 缓存
+* authc 认证
+  * [Authenticator](/docs/20-framework/src/apache/shiro/shiro-core/authc/Authenticator.md)
+  * [AuthenticationInfo](/docs/20-framework/src/apache/shiro/shiro-core/authc/AuthenticationInfo.md)
+* [authz](/docs/20-framework/src/apache/shiro/shiro-core/authz/README.md) 授权
+  * [Authorizer](/docs/20-framework/src/apache/shiro/shiro-core/authz/Authorizer.md)
+  * [Permission](/docs/20-framework/src/apache/shiro/shiro-core/authz/Permission.md)
+  * [PermissionResolver](/docs/20-framework/src/apache/shiro/shiro-core/authz/PermissionResolver.md)
+* [cache](/docs/20-framework/src/apache/shiro/shiro-core/cache/README.md) 缓存
 * codec 
 * concurrent 并发工具
 * config
 * crypto 加密
 * dao
 * env
-* [event](/docs/20-framework/src/apache/shiro/event/README.md)
+* [event](/docs/20-framework/src/apache/shiro/shiro-core/event/README.md)
 * io
 * jndi
 * ldap
 * mgt
+  * [SecurityManager](/docs/20-framework/src/apache/shiro/shiro-core/mgt/SecurityManager.md)
+  * [CachingSecurityManager](/docs/20-framework/src/apache/shiro/shiro-core/mgt/CachingSecurityManager.md)
+  * [DefaultSecurityManager](/docs/20-framework/src/apache/shiro/shiro-core/mgt/DefaultSecurityManager.md)
 * realm 安全域
-* [session](/docs/20-framework/src/apache/shiro/session/README.md) 会话管理
+* [session](/docs/20-framework/src/apache/shiro/shiro-core/session/README.md) 会话管理
 * subject 主题
+
+### shiro-web
+* mgt
+  * [DefaultWebSecurityManager](/docs/20-framework/src/apache/shiro/shiro-web/mgt/DefaultWebSecurityManager.md)
+
 
 ## jars
 ```

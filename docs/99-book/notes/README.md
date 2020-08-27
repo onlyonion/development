@@ -87,10 +87,11 @@
 * [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/docs/99-book/notes/40-architecture/逆流而上.md)
 * [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/docs/99-book/notes/40-architecture/尽在双11.md)
 * [《淘宝技术这十年》子柳](/docs/99-book/notes/40-architecture/淘宝技术这十年.md)
-* [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛](/docs/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
-* [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
+* [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛 京东](/docs/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
+* [《架构修炼之道 亿级网关、平台开发、分布式、微服务、容错等》 王新栋 京东](/docs/99-book/notes/40-architecture/架构修炼之道.md)
 * [《Java应用架构设计 模块化模式与OSGi》张卫滨 译 机械工业出版社](/docs/99-book/notes/40-architecture/Java应用架构设计.md)
 * [《可伸缩服务架构 框架与中间件》 李艳鹏 杨彪 电子工业出版社](/docs/99-book/notes/40-architecture/可伸缩服务架构.md)
+* [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
 
 ## 设计
 * [《大话设计模式》程杰 清华大学出版社](/docs/99-book/notes/40-architecture/大话设计模式.md)

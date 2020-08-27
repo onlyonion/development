@@ -59,10 +59,11 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
     * [cglib](/docs/20-framework/src/common/bytecode/cglib/README.md)
     * [javassist](/docs/20-framework/src/common/bytecode/javassist/README.md)
     * reflections
+  * [caffeine](/docs/20-framework/src/common/caffeine/README.md)
   * [disruptor](/docs/20-framework/src/common/disruptor/README.md)
   * [drools](/docs/20-framework/src/common/drools/README.md)  规则引擎
   * [google](/docs/20-framework/src/common/google/README.md)
-    * [guava](/docs/20-framework/src/common/guava/README.md)
+    * [guava](/docs/20-framework/src/common/google/guava/README.md)
     * findbugs
     * kaptcha
   * [hutool](/docs/20-framework/src/common/hutool/README.md)

@@ -1,6 +1,6 @@
 org.springframework.core.io.Resource
 
-## hierarchy
+## Hierarchy
 ```
 Resource (org.springframework.core.io)
     ContextResource (org.springframework.core.io)
@@ -39,4 +39,29 @@ Resource (org.springframework.core.io)
             2 in ResourceHttpMessageConverter (org.springframework.http.converter)
             TransformedResource (org.springframework.web.servlet.resource)
         PathResource (org.springframework.core.io)
+```
+
+## Define
+```plantuml
+@startuml
+
+interface InputStreamSource
+interface Resource
+abstract class AbstractResource
+interface ContextResource
+
+InputStreamSource ^-- Resource
+Resource ^-- ContextResource
+Resource ^.. AbstractResource
+
+
+ContextResource ^.. ClassPathContextResource
+ContextResource ^.. ServletContextResource
+ContextResource ^.. FileSystemContextResource
+
+AbstractResource ^-- BeanDefinitionResource
+AbstractResource ^-- FileSystemResource
+
+
+@enduml
 ```

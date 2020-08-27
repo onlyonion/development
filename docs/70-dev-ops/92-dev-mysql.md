@@ -160,3 +160,11 @@ TRUNCATE TABLE table_name;
 DROP TABLE table_name;
 CREATE TABLE table_name { ... };
 
+
+### 查看mysql
+```sql
+
+show variables like '%max_connection%';
+show global status like 'Thread%';
+
+```
