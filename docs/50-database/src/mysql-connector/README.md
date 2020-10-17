@@ -1,5 +1,6 @@
 ## mysql-connector
 
+Gradle: mysql:mysql-connector-java:5.1.48
 ## package
 com.mysql
 ```
@@ -20,38 +21,14 @@ jdbc
     interceptors
     jdbc2.optional
     jmx
-        ReplicationGroupManager
+        ReplicationGroupManagerConnectionImpl
         LoadBalanceConnectionGroupManager
     log
     profiler
     util
         LRUCache
-    AuthenticationPlugin
-    BalanceStrategy
-    CacheAdapter
-    CacheAdapterFactory
-    Connection
-    ConnectionLifecycleInterceptor
-    ConnectionPropertiesTransform
-    ExceptionInterceptor
-    Extension
-    JDBC4ClientInfoProvider
-    JDBC4MySQLConnection
-    LoadBalancedConnection
-    LoadBalanceExceptionChecker
-    MySQLConnection
-    OutputStreamWatcher
-    ParameterBindings
-    PingTarget
-    ReplicationConnection
-    ResultSetInternalMethods
-    RowData
-    SocketFactory
-    SocketMetadata
-    Statement
-    StatementInterceptor
-    StatementInterceptorV2
-    StreamingNotifiable
-    Wrapper
-    WriterWatcher
+        
+    ConnectionImpl
+    JDBC4Connection
+    MysqlIO
 ```

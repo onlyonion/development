@@ -21,6 +21,17 @@ HandlerExceptionResolver (org.springframework.web.servlet)
 @startuml
 
 interface HandlerExceptionResolver
+abstract class AbstractHandlerExceptionResolver
+abstract class AbstractHandlerMethodExceptionResolver 
+
+HandlerExceptionResolver ^..  HandlerExceptionResolverComposite
+HandlerExceptionResolver ^..  AbstractHandlerExceptionResolver
+AbstractHandlerExceptionResolver ^--  AbstractHandlerMethodExceptionResolver
+AbstractHandlerMethodExceptionResolver ^--  ExceptionHandlerExceptionResolver
+
+AbstractHandlerExceptionResolver ^-- SimpleMappingExceptionResolver
+AbstractHandlerExceptionResolver ^-- DefaultHandlerExceptionResolver
+AbstractHandlerExceptionResolver ^-- ResponseStatusExceptionResolver
 
 @enduml
 ```
