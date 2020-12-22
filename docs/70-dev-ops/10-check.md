@@ -67,9 +67,10 @@ netstat -nap | grep 8080 # 根据端口查找进程ID
 2. ps -ef 或者 jps进一步定位，得志是一个怎么样的后台程序
 3. 定位到具体的**线程或代码**; `ps -mp 进程 -o THREAD,tid,time` 或 `ps -mp pid -o THREAD,tid,time | sort -rn `
 4. 将需要的线程ID转换为16进制格式 `printf "%x\n" tid` 十进制转换成十六进制
-5. jstack 进程id | grep tid（16进制线程ID小写英文） -A60 （打印前60行）
+5. jstack 进程id | grep tid（16进制线程ID小写英文） -A 60 （打印前60行）  `jstack pid | grep tid -A 60`
 
-[Java线上应用故障排查之一：高CPU占用【转】](http://www.linuxhot.com/java-cpu-used-high.html)
+
+[Java线上应用故障排查之一：高CPU占用](https://blog.csdn.net/blade2001/article/details/9065985)
 
 如果该问题导致线上系统不可用，那么首先需要做的就是，导出 jstack 和内存信息，然后重启系统，尽快保证系统的可用性。
 

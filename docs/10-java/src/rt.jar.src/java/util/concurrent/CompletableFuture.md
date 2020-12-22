@@ -1,6 +1,8 @@
 java.util.concurrent.CompletableFuture
 
 * Unsafe
+- runAsync Runnable 接口的 run() 方法没有返回值
+- supplyAsync Supplier 接口的 get() 方法是有返回值
 
 ## hierarchy
 ```
@@ -48,6 +50,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 - supplyAsync(Supplier<U> supplier) Supplier接口的get()方法是有返回值
 
 ### runAsync
+Runnable 接口的 run() 方法没有返回值
 ```java
     public static CompletableFuture<Void> runAsync(Runnable runnable) {
         return asyncRunStage(asyncPool, runnable);
@@ -58,6 +61,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 ```
 
 ### supplyAsync
+Supplier 接口的 get() 方法是有返回值
 ```java
     public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier) {
         return asyncSupplyStage(asyncPool, supplier);
@@ -120,8 +124,11 @@ thenCombine整合两个计算结果
 - 串行
 - 并行
 - 汇聚
+  - AND 指的是所有依赖的任务都完成后才开始执行当前任务
+  - OR 指的是依赖的任务只要有一个完成就可以执行当前任务
 
 ### 串行
+描述串行关系，多个之间串行
 ```
 CompletionStage<R> thenApply(fn);
 CompletionStage<R> thenApplyAsync(fn);
@@ -132,6 +139,7 @@ CompletionStage<Void> thenRunAsync(action);
 CompletionStage<R> thenCompose(fn);
 CompletionStage<R> thenComposeAsync(fn);
 ```
+
 
 ### 并行
 
@@ -144,6 +152,8 @@ CompletionStage<Void> thenAcceptBothAsync(other, consumer);
 CompletionStage<Void> runAfterBoth(other, action);
 CompletionStage<Void> runAfterBothAsync(other, action);
 ```
+
+例如f3 = f1.thenCombine(f2, ()->{}) 能够清晰地表述“任务 3 要等待任务 1 和任务 2 都完成后才能开始”
 
 ### 描述 OR 汇聚关系
 ```
@@ -162,4 +172,5 @@ CompletionStage<R> whenCompleteAsync(consumer);
 CompletionStage<R> handle(fn);
 CompletionStage<R> handleAsync(fn);
 ```
-> 不过最近几年，伴随着 ReactiveX 的发展（Java 语言的实现版本是 RxJava），回调地狱已经被完美解决了，Java 语言也开始官方支持异步编程：在 1.8 版本提供了 CompletableFuture，在 Java 9 版本则提供了更加完备的 Flow API，异步编程目前已经完全工业化。
+> 不过最近几年，伴随着 ReactiveX 的发展（Java 语言的实现版本是 RxJava），回调地狱已经被完美解决了，Java 语言也开始官方支持异步编程：
+在 1.8 版本提供了 CompletableFuture，在 Java 9 版本则提供了更加完备的 Flow API，异步编程目前已经完全工业化。

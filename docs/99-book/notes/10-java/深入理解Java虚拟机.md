@@ -53,9 +53,18 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
 
 ### 2.4 实战：OutOfMemoryError异常
 #### 2.4.1 Java堆溢出
+java.lang.OutOfMemoryError: Java heap space
+内存泄漏：无法回收已申请的内存
+内存溢出：没有足够的内存
 #### 2.4.2 虚拟机栈和本地方法栈溢出
+java.lang.StackOverflowError
+java.lang.OutOfMemoryError: unable to create new native thread
 #### 2.4.3 方法区和运行时常量池溢出
+java.lang.OutOfMemoryError: PermGen space
+java.lang.OutOfMemoryError: Metaspace
 #### 2.4.4 本地直接内存溢出
+java.lang.OutOfMemoryError
+	at sun.misc.Unsafe.allocateMemory(Native Method)
 
 ## 第3章 垃圾收集器与内存分配策略
 ### 3.2 对象已死吗

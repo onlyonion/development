@@ -784,7 +784,17 @@
 			<artifactId>easy-cache</artifactId>
 			<version>3.0.2-RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy-agent</artifactId>
+			<version>1.10.10</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>1.10.10</version>
+		</dependency>
 
 	</dependencies>
 
