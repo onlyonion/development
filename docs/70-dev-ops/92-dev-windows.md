@@ -115,6 +115,10 @@ sysdm.cpl
 # start
 start nginx
 
+nginx -s reload
+# 检查参数
+nginx -t
+
 # view
 tasklist /fi "imagename eq nginx.exe"
 nginx -v

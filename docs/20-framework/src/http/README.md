@@ -22,3 +22,10 @@
 
 ### Retrofit
 Retrofit接口层封装请求参数、Header、Url等信息，之后由OkHttp完成后续的请求操作，服务端返回数据之后，OkHttp将原始结果交给Retrofit，后者根据用户需求对结果进行解析。
+
+- com.squareup.okhttp3:logging-interceptor:3.14.9
+- com.squareup.okhttp3:okhttp:3.14.9
+- com.squareup.okio:okio:1.17.2
+- com.squareup.retrofit2:converter-gson:2.4.0
+- com.squareup.retrofit2:converter-jackson:2.9.0
+- com.squareup.retrofit2:retrofit:2.4.0

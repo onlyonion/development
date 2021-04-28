@@ -11,10 +11,10 @@ HandlerMethod (org.springframework.web.method)
 ## define
 对处理方法的封装
 
-```
+```plantuml
 @startuml
 ''''''''''''''''''''''' 处理方法 '''''''''''''''''''''''
-class HandlerMethod {
+class HandlerMethod #orange {
 	- Object bean
 	- BeanFactory beanFactory
 	- Class<?> beanType
@@ -42,7 +42,7 @@ HandlerMethod +-- ReturnValueMethodParameter
 HandlerMethodParameter <|-- ReturnValueMethodParameter
 
 ''''''''''''''''''''''' 可调用的处理方法 '''''''''''''''''''''''
-class InvocableHandlerMethod {
+class InvocableHandlerMethod #orange {
     + Object invokeForRequest(NativeWebRequest request, ModelAndViewContainer mavContainer, Object... providedArgs)
     - Object[] getMethodArgumentValues(NativeWebRequest request, ModelAndViewContainer mavContainer, Object... providedArgs)
     # Object doInvoke(Object... args)
@@ -50,7 +50,7 @@ class InvocableHandlerMethod {
 HandlerMethod <|-- InvocableHandlerMethod
 
 ''''''''''''''''''''''' 服务小程序可调用的处理方法 '''''''''''''''''''''''
-class ServletInvocableHandlerMethod {
+class ServletInvocableHandlerMethod #orange {
     + void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer, Object... providedArgs)
     - void setResponseStatus(ServletWebRequest webRequest)
 }
