@@ -68,3 +68,16 @@ bpr
 
 代付业务的应用场景？
 金融类平台放款，资金存管，理财提现，代发工资，供货商打款，以及信用卡套现等业务；
+
+
+### 亿级流量多级缓存架构平台
+
+### 基于SpringCloud和Activiti工作流系统的微服务架构企业平台
+
+### 推荐系统
+
+### 金融量化投资平台
+期货量化投资
+
+涉及技术
+Python, Pandas, NumPy, Scikit-Learn, PySpark, SparkMLlib, 神经网络, svm, 逻辑回归算法
