@@ -42,4 +42,12 @@ public class FastjsonTest {
         Map<String, String> map = JSON.parseObject(text, Map.class);
         System.out.println(map);
     }
+
+    @Test
+    public void testFormat() {
+        Person person = new Person();
+        person.setSalary(44.45678);
+        person.setBonus(66.45678);
+        System.out.println(JSON.toJSONString(person));
+    }
 }

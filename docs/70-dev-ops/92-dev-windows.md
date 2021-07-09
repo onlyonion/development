@@ -17,6 +17,9 @@ slmgr /skms xykz.f3322.org # 密钥管理服务计算机名称成功设置为xyk
 slmgr /ato # 按回车键后将弹出窗口提示：“成功的激活了产品”。
 ```
 
+redmi pro
+00342-36095-22725-AAOEM
+
 ## 电源管理
 ```sh
 # 卓越性能
@@ -32,15 +35,15 @@ JAVA_HOME	D:\opt\java\jdk1.8.0_221
 JRE_HOME    %JAVA_HOME%\jre
 CLASSPATH	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
 
-MAVEN_HOME	D:\opt\java\apache-maven-3.3.9
-M2_HOME	D:\opt\java\apache-maven-3.3.9
+MAVEN_HOME	D:\opt\java\apache-maven-3.6.0
+M2_HOME	    D:\opt\java\apache-maven-3.6.0
 ANT_HOME	D:\opt\java\apache-ant-1.9.14
 
 # .${user}/.m2/setting.xml 配置
 
 # 编码
 GRADLE_OPTS -Dfile.encoding=UTF-8
-GRADLE_HOME D:\opt\java\gradle-5.6
+GRADLE_HOME D:\opt\java\gradle-6.6.1
 GRAILS_HOME D:\opt\java\grails-4.0.0
 GROOVY_HOME D:\opt\java\groovy-2.5.8
 
@@ -80,7 +83,6 @@ cnpm install digo -g
 
 npm install --global vue-cli
 npm install -g webpack
-
 ```
 
 ## 3. php
@@ -170,7 +172,6 @@ alias是一个目录别名的定义，root则是最上层目录的定义。
 ## openssl
 ```sh
 openssl version
-
 ```
 
 ### keytool

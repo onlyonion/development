@@ -1,5 +1,4 @@
 # 线程池 ThreadPoolExecutor
-
 数据库连接池（mysql、redis）、服务器连接池（tomcat、netty、dubbo）、任务调度（task、job）、异步
 
 ### 使用线程池主要为了解决一下几个问题：
@@ -12,14 +11,12 @@
 
 ### 使用场景
 计算密集型，少一些；IO密集型，多一些；都有的，考虑拆分和解耦
-
 1. 高并发、任务执行时间短的业务，线程池线程数可以设置为CPU核数+1，减少线程上下文的切换
 2. 并发不高、任务执行时间长的业务要区分开看：
   * 假如是业务时间长集中在IO操作上，也就是IO密集型的任务，因为IO操作并不占用CPU，所以不要让所有的CPU闲下来，可以加大线程池中的线程数目，让CPU处理更多的业务
   * 假如是业务时间长集中在计算操作上，也就是计算密集型任务，这个就没办法了，和（1）一样吧，线程池中的线程数设置得少一些，减少线程上下文的切换
 3. 并发高、业务执行时间长，解决这种类型任务的关键不在于线程池而在于整体架构的设计，看看这些业务里面某些数据是否能做缓存是第一步，增加服务器是第二步，至于线程池的设置，设置参考（2）。
   最后，业务执行时间长的问题，也可能需要分析一下，看看能不能使用中间件对任务进行拆分和解耦
-
 
 ## Executor
 ThreadPoolExecutor -> AbstractExecutorService -> ExecutorService -> Executor
@@ -42,9 +39,7 @@ ThreadPoolExecutor -> AbstractExecutorService -> ExecutorService -> Executor
 	
 	
 ## 线程池规则
-
 线程池的线程执行规则跟任务队列有很大的关系。
-
 ### 任务队列没有大小限制
 1.	如果线程数量<=核心线程数量，那么直接启动一个核心线程来执行任务（**获取全局锁**），不会放入队列中。
 2.	如果线程数量>核心线程数，但<=最大线程数，并且任务队列是LinkedBlockingDeque的时候，超过核心线程数量的任务会放在任务队列中排队。（**不需要获取全局锁，线程池预热之后尽量走此路径**）
@@ -57,9 +52,7 @@ ThreadPoolExecutor -> AbstractExecutorService -> ExecutorService -> Executor
 2.	SynchronousQueue没有数量限制。因为他根本不保持这些任务，而是直接交给线程池去执行。当任务数量超过最大线程数时会直接抛异常。
 
 ### 线程池执行流程
-
 ![threadpoolexecutor](../img/java-threadpoolexecutor-process.jpg) 
-
 ![threadpoolexecutor](../img/java-threadpoolexecutor.jpg) 
 
 ## links

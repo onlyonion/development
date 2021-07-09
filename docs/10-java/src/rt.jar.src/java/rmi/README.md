@@ -1,13 +1,15 @@
+java.rmi
 
 ## package
 ```
-activation
+activation              激活
     ActivationSystem
     ActivationMonitor
     ActivationID
     Activator
     Activatable
 dgc
+    DGC                 distributed garbage collection
 registry                注册中心
     Registry
     LocateRegistry

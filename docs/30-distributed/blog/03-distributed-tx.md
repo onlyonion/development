@@ -9,10 +9,10 @@
 * [深入理解分布式事务](http://www.codeceo.com/article/distributed-transaction.html)
 
 ### 理论基础
-JDBC、JTA
-ACID
-CAP
-BASE
+- JDBC、JTA
+- ACID
+- CAP
+- BASE
 
 ### 产生原因
 * services  多服务节点（服务拆分，每个服务一个库）
@@ -36,7 +36,7 @@ BASE
 
 Try-Confirm-Cancel:
 Try阶段：尝试执行,完成所有业务检查（一致性）,预留必须业务资源（准隔离性）
-Confirm阶段：确认执行真正执行业务，不作任何业务检查，只使用Try阶段预留的业务资源，Confirm操作满足幂等性。要求具备幂等设计，Confirm失败后需要进行重试。
+Confirm阶段：确认执行真正执行业务，不作任何业务检查，只使用Try阶段预留的业务资源，Confirm操作满足幂等性。要求具备**幂等设计**，Confirm失败后需要进行**重试**。
 Cancel阶段：取消执行，释放Try阶段预留的业务资源 Cancel操作满足幂等性Cancel阶段的异常和Confirm阶段异常处理方案基本上一致。
 
 ##### 本地事务表（本地消息表）
@@ -50,7 +50,6 @@ blog-job-retry
 
 ##### MQ事务
 在RocketMQ中实现了分布式事务，实际上其实是对本地消息表的一个封装，将本地消息表移动到了MQ内部
-
 1. send start mq
 2. execute local tx
 3. send comfirm mq

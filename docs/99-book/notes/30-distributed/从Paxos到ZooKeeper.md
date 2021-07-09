@@ -2,12 +2,12 @@
 
 倪超，阿里巴巴高级研发工程师。2011年毕业于杭州电子科技大学计算机系。
 
-1. 分布式架构
-2. 一致性协议
+1. 分布式架构 ACID、CAP、BASE
+2. 一致性协议 2PC、3PC、Paxos
 3. Paxos的工作实践
 4. ZooKeeper与Paxos
 5. 使用ZooKeeper
-6. ZooKeeper的典型应用场景
+6. ZooKeeper的典型应用场景 发负命分集主 分布式锁、分布式队列、分布式屏障Barrier
 7. ZooKeeper技术内幕
 8. ZooKeeper运维
 
@@ -266,7 +266,6 @@ Dubbo的核心
 #### 6.3.4 案例四 分布式数据库同步系统：otter
 #### 6.3.5 案例五 轻量级分布式通用搜索平台：终搜
 #### 6.3.6 案例六 实时计算引擎：jstorm
-
 
 ## 第7章 ZooKeeper技术内幕
 ### 7.1 系统模型

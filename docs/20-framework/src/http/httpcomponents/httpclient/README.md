@@ -4,7 +4,13 @@ org.apache.http
 ```
     auth
     client
+        HttpClient
     conn
+        params
+        routing
+        scheme
+        socket
+        ssl
     cookie
     impl
         auth

@@ -9,6 +9,7 @@ conda activate mlcc
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple --ignore-installed --upgrade tensorflow matplotlib pandas sklearn scipy seaborn
 
 # 如果不成功过，可以尝试
+pip install --ignore-installed --upgrade tensorflow matplotlib pandas sklearn scipy seaborn
 pip install --upgrade tensorflow
 pip install --upgrade sklearn
 

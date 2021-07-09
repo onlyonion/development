@@ -1,5 +1,6 @@
 package com.onion.test.java.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -38,6 +39,41 @@ public class MapTest {
         for (int i = 0; i < 30; i++) {
             map.put("key" + i, "value-" + i);
         }
+    }
+
+
+    @Test
+    public void testKey() {
+        Map<Integer, String> map = new HashMap<>(1);
+        for (int i = 0; i < 20; i++) {
+            map.put(i,"value-" + i);
+        }
+        System.out.println(map);
+        map.keySet().retainAll(Arrays.asList(1, 2,3 ));
+        System.out.println(map);
+        long l = Long.parseLong("162526476741901");
+        Long aLong = Long.valueOf("168849912485986");
+        System.out.println(aLong);
+    }
+
+    @Test
+    public void testPut() throws InterruptedException {
+        Map<Integer, String> map = new HashMap<>(1);
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 20000; i++) {
+                map.put(i,"value-" + i);
+            }
+        });
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 20000; i++) {
+                String s = map.get(i);
+                System.out.println("key-" + i + " value-" + s);
+            }
+        });
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
     }
 
 }
