@@ -17,5 +17,8 @@ npm link
     }
 ```
 
-## yarn
+### yarn
 - yarn 快速、可靠、安全的依赖管理工具
+
+//npm安装yarn
+npm install -g yarn

@@ -22,7 +22,7 @@
     window.$docsify = {
       name: 'development',
       nameLink: /localhost/.test(location.host) ? '/' : '/development',
-      repo: 'https://gitee.com/onlyonion/development',
+      repo: /gitee/.test(location.host) ? 'https://gitee.com/onlyonion/development' : 'https://github.com/onlyonion/development',
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md',
         '/.*/_navbar.md': '/_navbar.md',

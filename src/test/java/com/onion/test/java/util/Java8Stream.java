@@ -6,33 +6,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+@Slf4j
 public class Java8Stream {
     static List<User> list = new ArrayList<>();
-
     static {
-
         for (int i = 0; i < 10; i++) {
             list.add(new User(i, "name-" + 1));
         }
     }
 
-
     @Test
     public void groupingBy() {
         Map<Integer, List<User>> map = list.stream().collect(Collectors.groupingBy(User::getUserId));
-
         Map<Boolean, List<User>> collect = list.stream().collect(Collectors.groupingBy(user -> user.getUserId() > 11));
-        System.out.println(collect.get(true));
-        System.out.println(collect.get(false));
+        log.info("true list {}", collect.get(true));
+        log.info("false list {}", collect.get(false));
     }
 
     @Test
     public void anyMatch() {
         boolean match = list.stream().anyMatch(item -> 1 == item.getUserId());
+        log.info("match {}", match);
     }
 
     @Test
@@ -40,11 +40,13 @@ public class Java8Stream {
         List<String> flat = list.stream().map(user -> user.getUsername().split("-"))
                 .flatMap(Arrays::stream)
                 .collect(Collectors.toList());
+        log.info("flat {}", flat);
     }
 
     @Test
     public void limit() {
         List<User> limit2 = list.stream().limit(2).collect(Collectors.toList());
+        log.info("limit2 {}", limit2);
     }
 
     @Test
@@ -58,6 +60,14 @@ public class Java8Stream {
         }).collect(Collectors.toList());
     }
 
+    @Test
+    public void testReference() {
+        List<User> collect = list.stream().filter(item -> item.getUserId() < 5).collect(Collectors.toList());
+        for (User user : collect) {
+            user.setUsername("modify-" + user.getUsername());
+        }
+        log.info("list {}", JSON.toJSONString(list));
+    }
 
     @AllArgsConstructor
     @Data
@@ -65,5 +75,6 @@ public class Java8Stream {
 
         private Integer userId;
         private String username;
+
     }
 }

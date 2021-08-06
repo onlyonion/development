@@ -87,6 +87,11 @@ npm install -g webpack
 
 ## 3. php
 ## 4. python
+PYTHON2     D:\opt\python\python27
+PYTHON      D:\opt\python\python39
+
+Path        %PYTHON2%  %PYTHON%
+
 ## 5. object c, swift
 
 # windows

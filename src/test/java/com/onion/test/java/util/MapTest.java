@@ -3,6 +3,8 @@ package com.onion.test.java.util;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +43,6 @@ public class MapTest {
         }
     }
 
-
     @Test
     public void testKey() {
         Map<Integer, String> map = new HashMap<>(1);
@@ -76,4 +77,14 @@ public class MapTest {
         thread2.join();
     }
 
+    @Test
+    public void testTreeMap() {
+        Map<Integer, String> map = new TreeMap<>();
+        for (int i = 0; i < 30; i++) {
+            map.put((int) (Math.random() * 100), "value-" + i);
+        }
+        for (Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry);
+        }
+    }
 }
