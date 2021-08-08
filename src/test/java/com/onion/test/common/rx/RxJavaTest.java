@@ -12,7 +12,7 @@ public class RxJavaTest {
 
     @Test
     public void helloworld() {
-        Observable.just("hello world").subscribe(System.out::print);
+        Observable.just("hello world", "I am Jim").subscribe(System.out::print);
     }
 
     @Test

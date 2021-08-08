@@ -56,6 +56,7 @@ class ThreadLocal<T>
 class ThreadLocalMap #yellow
 ThreadLocal +-- ThreadLocalMap
 
+'''''''''''''''''''''''''State''''''''''''''''''''''''''''
 enum State {
     NEW
     RUNNABLE

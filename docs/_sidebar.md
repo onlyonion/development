@@ -6,7 +6,7 @@
 * [数据库](50-database/)
 * [前端](60-js/)
 * [DevOps](70-dev-ops/)
-<!-- * [工程项目](80-project/) -->
-* [book](99-book/)
+* [Project](80-project/)
+* [Book](99-book/)
   * [计算机类](99-book/notes/)
   * [学科门类](99-book/subject/)

@@ -4,7 +4,7 @@ java.lang.ref
 Finalizer               终结器
 FinalizerHistogram
 FinalReference
-ReferenceQueue          
+ReferenceQueue          引用队列
 Reference               引用类型
 SoftReference           软引用
 WeakReference           弱引用

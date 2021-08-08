@@ -12,18 +12,21 @@ HandlerMethod (org.springframework.web.method)
 @startuml
 
 ''''''''''''''''''''''''HandlerMethod''''''''''''''''''''''''
-class HandlerMethod
+class HandlerMethod #orange
 HandlerMethod +-- HandlerMethodParameter
 HandlerMethod +-- ReturnValueMethodParameter
 HandlerMethodParameter ^-- ReturnValueMethodParameter
 
 ''''''''''''''''''''''''InvocableHandlerMethod''''''''''''''''''''''''
 HandlerMethod ^-- InvocableHandlerMethod
-class InvocableHandlerMethod
+class InvocableHandlerMethod #orange
+InvocableHandlerMethod *-- WebDataBinderFactory
+InvocableHandlerMethod *-- HandlerMethodArgumentResolverComposite
+InvocableHandlerMethod *-- ParameterNameDiscoverer
 
 ''''''''''''''''''''''''ServletInvocableHandlerMethod''''''''''''''''''''''''
 InvocableHandlerMethod ^-- ServletInvocableHandlerMethod
-class ServletInvocableHandlerMethod
+class ServletInvocableHandlerMethod #orange
 
 HandlerMethodParameter ^-- ConcurrentResultMethodParameter 
 ServletInvocableHandlerMethod +-- ConcurrentResultHandlerMethod

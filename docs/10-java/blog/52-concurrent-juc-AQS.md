@@ -8,7 +8,7 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
     这也正是lock()的语义，当然不仅仅只限于lock()。获取到资源后，线程就可以去执行其临界区代码了。下面是acquire()的源码：
 
 
-```java_holder_method_tree
+```java
 
     public final void acquire(int arg) {
         if (!tryAcquire(arg) &&
@@ -20,7 +20,6 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
     // addWaiter()将该线程加入等待队列的尾部，并标记为独占模式；
     // acquireQueued()使线程在等待队列中获取资源，一直获取到资源后才返回。如果在整个等待过程中被中断过，则返回true，否则返回false。
     // 如果线程在等待过程中被中断过，它是不响应的。只是获取资源后才再进行自我中断selfInterrupt()，将中断补上。
-    
     
     protected boolean tryAcquire(int arg) {
         throw new UnsupportedOperationException();
@@ -100,7 +99,7 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
 
 ## 3.2 release(int)
 
-```java_holder_method_tree
+```java
 
     public final boolean release(int arg) {
         if (tryRelease(arg)) {
@@ -134,8 +133,7 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
 
 ## 3.3 acquireShared(int)
 
-```java_holder_method_tree
-
+```java
     public final void acquireShared(int arg) {
         if (tryAcquireShared(arg) < 0)
             doAcquireShared(arg);
@@ -187,8 +185,7 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
 
 ## 3.4 releaseShared()
 
-```java_holder_method_tree
-
+```java
     public final boolean releaseShared(int arg) {
         if (tryReleaseShared(arg)) {//尝试释放资源
             doReleaseShared();//唤醒后继结点
@@ -196,7 +193,7 @@ java.util.concurrent.locks.AbstractQueuedSynchronizer
         }
         return false;
     }
-    
+
     private void doReleaseShared() {
         for (;;) {
             Node h = head;

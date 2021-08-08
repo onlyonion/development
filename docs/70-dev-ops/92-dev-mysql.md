@@ -71,24 +71,25 @@ default-character-set=utf8mb4
 
 
 ```sh
-# init
+# init 若存在data文件夹，会失败，重命名，初始化之后改归去，数据就迁移过区了
 mysqld --initialize --console
-[System] [MY-013169] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server in progress as process 5292
+[System] [MY-013169] [Server] D:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server in progress as process 5292
 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pP53IYtWyS__ # 密码
-[System] [MY-013170] [Server] C:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
+[System] [MY-013170] [Server] D:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
 
-# install
+# install 安装mysql服务
 mysqld --install
 
 ## 启动
 net start mysql
 
 mysql -u root -p
-ALTER USER 'root'@'localhost' IDENTIFIED BY '新密码';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 
 update user set host='%' where user='root';
 flush privileges;
 ```
+
 
 ### MySQL 连接出现 Authentication plugin 'caching_sha2_password' cannot be loaded
 ```sh

@@ -1,8 +1,11 @@
 # development
-Welcome
+Welcome to my notes.
 
 * [https://gitee.com/onlyonion/development](https://gitee.com/onlyonion/development) 
 * [https://onlyonion.gitee.io/development](https://onlyonion.gitee.io/development)
+* [https://github.com/onlyonion/development](https://github.com/onlyonion/development) 
+* [https://onlyonion.github.io/development](https://onlyonion.github.io/development)
+
 
 ## Overview
 * [基础](00-base/README.md) 计算机专业基础，组成原理、数据结构、操作系统、计算机网络、编译原理

@@ -26,18 +26,11 @@
 * 互联网+
 * 网红直播
 * 在线客服软件、客服电话机器人
-  
-### 亿级流量多级缓存架构平台
 
-### 基于SpringCloud和Activiti工作流系统的微服务架构企业平台
-
-### 推荐系统
-
-### 金融量化投资平台
-期货量化投资
-
-涉及技术
-Python, Pandas, NumPy, Scikit-Learn, PySpark, SparkMLlib, 神经网络, svm, 逻辑回归算法
-
-
+## 行业业务
+* [业务领域](/docs/80-project/00-biz.md)
+* [广告系列](/docs/80-project/biz/广告系列.md)
+* [黑马-机器学习](/docs/80-project/biz/黑马-机器学习.md)
+* [Google机器学习](/docs/80-project/biz/Google机器学习.md)
+* [DNN](/docs/80-project/biz/DNN.md)
 

@@ -35,7 +35,7 @@ public class SynchronizedABC {
         }
         public void run() {
             for(int i = 0; i < count; i++) {
-                if(key == "A") {
+                if(key.equals("A")) {
                     synchronized (lock) {
                         while (state != 1) {
                             try {
@@ -48,7 +48,7 @@ public class SynchronizedABC {
                         state = 2;
                         lock.notifyAll();
                     }
-                } else if(key == "B") {
+                } else if(key.equals("B")) {
                     synchronized (lock) {
                         while (state != 2) {
                             try {
@@ -61,7 +61,7 @@ public class SynchronizedABC {
                         state = 3;
                         lock.notifyAll();
                     }
-                } else if (key == "C") {
+                } else if (key.equals("C")) {
                     synchronized (lock) {
                         while (state != 3) {
                             try {

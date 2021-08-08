@@ -1,5 +1,8 @@
 Gradle: io.github.openfeign:feign-core:10.10.1
 
+
+SynchronousMethodHandler -> TraceLoadBalancerFeignClient -> LoadBalancerFeignClient
+
 ## package
 ```
 feign

@@ -35,5 +35,21 @@ java -XX:+PrintGCDetails -version # 查看GC详情
 ## 内存分析
 jmap -histo 每个class的实例数目，内存占用，类全名信息。VM的内部类名字开头会加上前缀'*'
 
+
+jmap -dump:format=b,file=heap3.dump 1
+
+https://docs.oracle.com/javase/9/docs/api/java/lang/Class.html#getName--
+```sh
+[Z = boolean
+[B = byte
+[S = short
+[I = int
+[J = long
+[F = float
+[D = double
+[C = char
+[L = any non-primitives(Object)
+```
+
 ## 线程分析
 jstack

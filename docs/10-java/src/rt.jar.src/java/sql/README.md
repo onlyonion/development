@@ -91,3 +91,8 @@ interface ResultSetMetaData
 
 @enduml
 ```
+
+## framework
+- mybatis
+- mysql
+- sharding-jdbc

@@ -6,9 +6,9 @@
 * 保持程序的完整性，垃圾收集是Java安全策略的一个重要部分
 
 ## 典型的垃圾收集算法
-
 1.	Mark-Sweep（标记-清除）算法
-	原理：对于“活”的对象，一定可以追溯到其存活在堆栈、静态存储区之中的引用。这个引用链条可能会穿过数个对象层次。第一阶段：从GC roots开始遍历所有的引用，对有活的对象进行标记。第二阶段：对堆进行遍历，把未标记的对象进行清除。
+	原理：对于“活”的对象，一定可以追溯到其存活在堆栈、静态存储区之中的引用。这个引用链条可能会穿过数个对象层次。
+	第一阶段：从GC roots开始遍历所有的引用，对有活的对象进行标记。第二阶段：对堆进行遍历，把未标记的对象进行清除。
 	这个解决了循环引用的问题。
 	缺点：1、暂停整个应用；2、会产生内存碎片。
 2.	Copying（复制）算法
@@ -68,7 +68,6 @@ Survivor 区（S0 和 S1）：作为年轻代 GC（Minor GC）周期的一部分
 
 ## GC的执行机制
 由于对象进行了分代处理，因此垃圾回收区域、时间也不一样。GC有两种类型：Scavenge GC和Full GC。
-
 ### Minor GC/Scavenge GC
 一般情况下，当新对象生成，并且在Eden申请空间失败时，就会触发Scavenge GC，对Eden区域进行GC，清除非存活对象，并且把尚且存活的对象移动到Survivor区。然后整理Survivor的两个区。这种方式的GC是对年轻代的Eden区进行，不会影响到年老代。因为大部分对象都是从Eden区开始的，同时Eden区不会分配的很大，所以Eden区的GC会频繁进行。因而，一般在这里需要使用速度快、效率高的算法，使Eden去能尽快空闲出来。
 
@@ -106,7 +105,7 @@ Survivor 区（S0 和 S1）：作为年轻代 GC（Minor GC）周期的一部分
 并行回收，名称以Parallel开头的回收器，多线程回收，全程stw；
 并发回收，cms与G1，多线程分阶段回收，只有某阶段会stw；
 
-### CMS
+## CMS
 CMS 处理过程有七个步骤： 
 1. 初始标记(CMS-initial-mark) ,会导致swt； 
 2. 并发标记(CMS-concurrent-mark)，与用户线程同时运行； 
@@ -115,8 +114,6 @@ CMS 处理过程有七个步骤：
 5. 重新标记(CMS-remark) ，会导致swt； 
 6. 并发清除(CMS-concurrent-sweep)，与用户线程同时运行； 
 7. 并发重置状态等待下次CMS的触发(CMS-concurrent-reset)，与用户线程同时运行； 
-
-
 
 ```
 CMS-initial-mark
@@ -128,3 +125,28 @@ CMS-concurrent-sweep
 CMS-concurrent-reset
 ```
 [CMS垃圾收集器](https://blog.csdn.net/mc90716/article/details/80158138)
+
+## ZGC
+Scalable、Low Latency
+
+### ZGC目标
+- 支持TB量级的堆
+- 最大GC停顿时间不超10ms
+- 最糟糕的情况下吞吐量会降低15%
+- 它的停顿时间不会随着堆的增大而增长
+
+### 特性
+- New GC 全新的垃圾回收器，ZGC所采用的算法就是Azul Systems很多年前提出的Pauseless GC
+- Single Generation 单代，即ZGC「没有分代」
+- Region Based 基于Region，G1的Region大小一样，ZGC的Region大小分为3类：2MB，32MB，N×2MB
+- Partial Compaction 部分压缩
+- NUMA-aware Non Uniform Memory Access Architecture，每个CPU对应有一块内存，且这块内存在主板上离这个CPU
+- Colored Pointers 以前的垃圾回收器的GC信息都保存在对象头中，而ZGC的GC信息保存在指针中。每个对象有一个64位指针，184142
+  - Finalizable、Remapped、Marked1、Marked0
+  - 不支持32位操作系统，不做压缩指针
+- Load Barriers 之前的GC都是采用Write Barrier。
+  - 在标记和移动对象的阶段，每次「从堆里对象的引用类型中读取一个指针」的时候，都需要加上一个Load Barriers。
+  - 读屏障也会发现并修正指针，于是应用代码就永远都会持有更新后的有效指针，而且不需要STW
+  - 因为Load Barriers的存在，所以会导致配置ZGC的应用的吞吐量会变低
+- ZGC tuning
+- Change Log

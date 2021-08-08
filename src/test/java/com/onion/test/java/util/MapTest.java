@@ -1,7 +1,10 @@
 package com.onion.test.java.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -40,4 +43,48 @@ public class MapTest {
         }
     }
 
+    @Test
+    public void testKey() {
+        Map<Integer, String> map = new HashMap<>(1);
+        for (int i = 0; i < 20; i++) {
+            map.put(i,"value-" + i);
+        }
+        System.out.println(map);
+        map.keySet().retainAll(Arrays.asList(1, 2,3 ));
+        System.out.println(map);
+        long l = Long.parseLong("162526476741901");
+        Long aLong = Long.valueOf("168849912485986");
+        System.out.println(aLong);
+    }
+
+    @Test
+    public void testPut() throws InterruptedException {
+        Map<Integer, String> map = new HashMap<>(1);
+        Thread thread1 = new Thread(() -> {
+            for (int i = 0; i < 20000; i++) {
+                map.put(i,"value-" + i);
+            }
+        });
+        Thread thread2 = new Thread(() -> {
+            for (int i = 0; i < 20000; i++) {
+                String s = map.get(i);
+                System.out.println("key-" + i + " value-" + s);
+            }
+        });
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+    }
+
+    @Test
+    public void testTreeMap() {
+        Map<Integer, String> map = new TreeMap<>();
+        for (int i = 0; i < 30; i++) {
+            map.put((int) (Math.random() * 100), "value-" + i);
+        }
+        for (Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry);
+        }
+    }
 }

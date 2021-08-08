@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 import lombok.AllArgsConstructor;
 
-public class ThreadWaitNotifyAB {
+public class SynchronizedAB {
 
     private static volatile int state = 1;
 
