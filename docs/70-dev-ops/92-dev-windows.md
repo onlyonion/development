@@ -39,6 +39,7 @@ ANT_HOME	D:\opt\java\apache-ant-1.9.14
 # .${user}/.m2/setting.xml 配置
 
 # 编码
+JAVA_OPTS -Dfile.encoding=UTF-8
 GRADLE_OPTS -Dfile.encoding=UTF-8
 GRADLE_HOME D:\opt\java\gradle-5.6
 GRAILS_HOME D:\opt\java\grails-4.0.0
