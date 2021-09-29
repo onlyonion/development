@@ -112,7 +112,7 @@ public class SortTest {
 
     @Test
     public void heapSortTest() {
-        int[] arr = { 0, 32, 12, 5, 3, 55 };
+        int[] arr = { 1, 32, 12, 5, 3, 55};
         heapSort(arr, arr.length - 1);
         log.info("heapSortTest arr={}", Arrays.toString(arr));
     }

@@ -87,4 +87,24 @@ public class MapTest {
             System.out.println(entry);
         }
     }
+
+    @Test
+    public void test() {
+        Map<Integer, Map<Integer, String>> map = new HashMap<>();
+        map.compute(1, (key, oldValue) -> {
+            if (oldValue == null) {
+                oldValue= new HashMap<>();
+            }
+            oldValue.put(11, "new11");
+            return oldValue;
+        });
+        map.compute(1, (key, oldValue) -> {
+            if (oldValue == null) {
+                oldValue= new HashMap<>();
+            }
+            oldValue.put(22, "new22");
+            return oldValue;
+        });
+        System.out.println(map);
+    }
 }
