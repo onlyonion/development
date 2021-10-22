@@ -184,3 +184,15 @@ openssl version
 ```sh
 keytool -genkey -alias undertow -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -dname "CN=li, OU=dream, O=dream, L=bj, ST=bj, C=CN"
 ```
+
+### github
+```sh
+nslookup github.global.ssl.fastly.net
+nslookup github.com
+
+173.252.102.241 github.global.ssl.fastly.net
+20.205.243.166 github.com
+
+# windows
+ipconfig /flushdns 
+```

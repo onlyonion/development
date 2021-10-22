@@ -13,4 +13,11 @@ big data
 - Blink，阿里巴巴内部的Apache Flink版本代号，优化改造之后捐赠给Flink社区
 - LogHub
 
-## Flink
+## log
+- flume 日志收集系统
+- logstash + kibana + es + rabbitmq
+
+## calculate
+- spark
+- storm
+- flink

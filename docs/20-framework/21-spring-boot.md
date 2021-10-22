@@ -5,3 +5,6 @@ spring boot 致力于简洁，让开发者写更少的配置，程序能够更�
 
 ## 简洁配置
 .yml
+
+Maven继承依赖关系
+starter 依赖包

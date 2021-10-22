@@ -13,8 +13,3 @@ relu，即Rectified Linear Unit，整流线性单元，激活部分神经元，�
 
 
 https://studio.azureml.net/ 
-
-
-http://cf.dui88.com/pages/viewpage.action?pageId=106147397
-http://cf.dui88.com/pages/viewpage.action?pageId=107385877
-http://cf.dui88.com/pages/viewpage.action?pageId=101538216
