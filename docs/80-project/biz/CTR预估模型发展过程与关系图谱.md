@@ -57,6 +57,7 @@ FNN是2016年提出的一种基于FM预训练Embedding的NN模型，其思路也
 这类模型通过使用不同的模型进行**联合训练**，不同子模型之间互相弥补，增加整个模型信息表达和学习的多样性。
 
 ### 5.1 WDL：Wide and Deep Learning, 2016 —— Memorization与Generalization的信息互补
+Wide And Deep是2016年Google提出的用于Google Play app推荐业务的一种算法。其核心思想是通过结合Wide线性模型的记忆性（memorization）和Deep深度模型的泛化性（generalization）来对用户行为信息进行学习建模。
 ### 5.2 DeepFM：Deep Factorization Machines, 2017 —— FM基础上引入NN隐式高阶交叉信息
 
 ## 6. 复杂的显式特征交叉网络
@@ -64,6 +65,7 @@ FNN是2016年提出的一种基于FM预训练Embedding的NN模型，其思路也
 但DNN本身对于特征交叉是**隐式的**（Implicit）、bit-wise的，因此在这一阶段，以DCN、xDeepFM、AutoInt为代表的模型均把思路放在如何以**Explicit**的方式学习有限阶（bounded-degree）的特征交叉信息上。
 
 ### 6.1 Deep&Cross：Deep and Cross Network, 2017 —— 显式交叉网络Cross Net的诞生
+
 ### 6.2 xDeepFM：eXtreme Deep Factorization Machine, 2018 —— Compressed Interaction Network的诞生
 提出了压缩交互网络
 ### 6.3 AutoInt：Automatic Feature Interaction Learning, 2019 —— 跨领域NLP技术的引入：Multi-head Self-attention提升模型表达
@@ -81,7 +83,7 @@ CTR预估的发展趋势
   - 以FFM与AFM为代表的浅层模型改进。这两个模型本质上还是学习低阶交叉特征，只是在FM基础上为不同的交叉特征赋予的不同重要度
   - 深度学习时代到来，依附于DNN高阶交叉特征能力的Embedding+MLP结构开始流行
 - 以Embedding+MLP为结点
-  - Embedding层的改造+DNN进行高阶隐式学习，
+  - Embedding层的改造+DNN进行高阶隐式学习，出现了以PNN、NFM为代表的product layer、bi-interaction layer等浅层改进，这一类模型都是对embedding层进行改造来提高模型在浅层表达，减轻后续DNN的学习负担
   - 以W&D和DeepFM为代表的双路模型结构，将各个子模块算法的优势进行互补，
   - 显式高阶特征交叉网络的提出，
 

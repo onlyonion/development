@@ -22,3 +22,15 @@ ETL:数据抽取到oracle、mysql、DB2、mongdb及主流数据库
 搜索引擎:hadoop + lucene实现 
 数据挖掘：目前比较流行的广告推荐 大量地从文件中顺序读。HDFS对顺序读进行了优化，代价是对于随机的访问负载较高。 用户行为特征建模 个性化广告推荐 智能仪器推荐
 
+
+## HDFS架构
+- 1个NameNode带DataNode
+- 1个文件会被拆成多个Block
+- NameNode
+  - 负责客户端请求的响应
+  - 负责元数据（文件名、副本系数、Block存放的DN）的管理
+  - 监控DataNode监控状况 10分钟没有收到DataNode报告认为Datanode死掉
+- DataNode
+  - 存储用户的文件对应的数据块(Block)
+  - 要定期向NN发送心跳信息，汇报本身及其所有的block信息，健康状况
+- 分布式集群NameNode和DataNode部署在不同机器上

@@ -69,6 +69,15 @@ public class Java8Stream {
         log.info("list {}", JSON.toJSONString(list));
     }
 
+    @Test
+    public void testskip() {
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4);
+        List<Integer> collect = integers.stream().skip(0).limit(10).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+
+
     @AllArgsConstructor
     @Data
     private static class User {
