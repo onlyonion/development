@@ -146,3 +146,28 @@ docker cp /data/hue/hue-overrides.ini hue:/usr/share/hue/desktop/conf/hue-overri
 # WARNING: IPv4 forwarding is disabled. Networking will not work.
 systemctl restart network && systemctl restart docker
 ```
+
+### rocketmq
+- 启动nameserver
+- 启动broker
+- 启动控制台
+
+```sh
+docker pull rocketmqinc/rocketmq
+docker run -d -p 9876:9876 -v D:/docker/mq/other/tmp/data/namesrv/logs:/root/logs -v D:/docker/mq/other/tmp/data/namesrv/store:/root/store --name rmqnamesrv -e "MAX_POSSIBLE_HEAP=100000000" rocketmqinc/rocketmq sh mqnamesrv
+
+
+docker run -e "JAVA_OPTS=-Drocketmq.config.namesrvAddr=172.16.228.77:9876 -Drocketmq.config.isVIPChannel=false" -p  9999:8080 -t --name rmConsole styletang/rocketmq-console-ng
+172.16.228.77
+```
+
+
+
+```sh
+docker run -d --restart=always --name rmqnamesrv -p 9876:9876 -v /docker/rocketmq/data/namesrv/logs:/root/logs -v /docker/rocketmq/data/namesrv/store:/root/store -e "MAX_POSSIBLE_HEAP=100000000"  rocketmqinc/rocketmq  sh mqnamesrv
+
+docker run -d -p 10911:10911 -p 10909:10909 -v D:/opt/app/Git/docker/rocketmq/data/broker/logs:/root/logs -v  D:/opt/app/Git/docker/rocketmq/data/broker/store:/root/store -v D:/opt/app/Git/docker/rocketmq/conf/broker.conf:/opt/rocketmq/conf/broker.conf --name rmqbroker --link rmqnamesrv:namesrv -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq/conf/broker.conf
+
+
+docker run -d --restart=always --name rmqbroker --link rmqnamesrv:namesrv -p 10911:10911 -p 10909:10909 -v D:/opt/app/Git/docker/rocketmq/data/broker/logs:/root/logs -v D:/opt/app/Git/docker/rocketmq/data/broker/store:/root/store -v  D:/opt/app/Git/docker/rocketmq/conf/broker.conf:/opt/rocketmq3/conf/broker.conf -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq3/conf/broker.conf
+```

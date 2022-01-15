@@ -1,6 +1,10 @@
 package com.onion.test.common.ds;
 
 
+import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+import sun.rmi.runtime.Log;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,6 +20,7 @@ import java.util.Arrays;
  *
  * 外部排序：内存和外存结合
  */
+@Slf4j
 public class InnerSortTest {
 
     /**
@@ -25,7 +30,7 @@ public class InnerSortTest {
      * 3. 针对所有的元素重复以上的步骤，除了最后一个；
      * 4. 重复步骤1~3，直到排序完成。
      *
-     * 最佳情况：T(n) = O(n)   最差情况：T(n) = O(n2)   平均情况：T(n) = O(n2)
+     * 最佳情况：T(n) = O(n)   最差情况：T(n) = O(n^2)   平均情况：T(n) = O(n^2)
      * 空间复杂度：O(1)
      * @param array
      * @return
@@ -33,14 +38,23 @@ public class InnerSortTest {
     public static int[] bubbleSort(int[] array) {
         if (array.length == 0)
             return array;
-        for (int i = 0; i < array.length; i++)
+        log.debug("原 始: {}", Arrays.toString(array));
+        for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - 1 - i; j++)
                 if (array[j + 1] < array[j]) {
                     int temp = array[j + 1];
                     array[j + 1] = array[j];
                     array[j] = temp;
                 }
+            log.debug("第{}趟: {}", i + 1, Arrays.toString(array));
+        }
         return array;
+    }
+
+    @Test
+    public void bubbleSortTest() {
+        int[] arr = { 9, 6, 8, 4, 2, 1 };
+        int[] ints = bubbleSort(arr);
     }
 
     /**
@@ -50,7 +64,7 @@ public class InnerSortTest {
      *    该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；
      * 3. n-1趟结束，数组有序化了。
      *
-     * 最佳情况：T(n) = O(n2)  最差情况：T(n) = O(n2)  平均情况：T(n) = O(n2)
+     * 最佳情况：T(n) = O(n^2)  最差情况：T(n) = O(n^2)  平均情况：T(n) = O(n^2)
      * 空间复杂度：O(1)
      * @param array
      * @return
@@ -69,6 +83,13 @@ public class InnerSortTest {
             array[i] = temp;
         }
         return array;
+    }
+
+    @Test
+    public void selectionSortTest() {
+        int[] arr = { 1, 1, 1 };
+        int[] ints = selectionSort(arr);
+        System.out.println(Arrays.toString(ints));
     }
 
     /**

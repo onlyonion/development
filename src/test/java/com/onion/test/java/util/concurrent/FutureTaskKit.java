@@ -1,10 +1,11 @@
-package cn.com.duiba.nezha.engine.common.utils;
+package com.onion.test.java.util.concurrent;
 
-import com.dianping.cat.Cat;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
@@ -21,18 +22,18 @@ public abstract class FutureTaskKit {
     public static <V> void invokeAll(ExecutorService executor, List<FutureTaskWrapper<V>> tasks) {
         boolean done = true;
         try {
+
             for (FutureTaskWrapper<V> task : tasks) {
-                executor.execute(task.getFutureTask());
+                executor.execute(task);
             }
             for (FutureTaskWrapper<V> task : tasks) {
-                FutureTask<V> f = task.getFutureTask();
-                if (!f.isDone()) {
+                if (!task.isDone()) {
                     try {
-                        task.getFutureTask().get(task.getTimeout(), task.getUnit());
+                        task.get(task.getTimeout(), task.getUnit());
                     } catch (InterruptedException | ExecutionException e) {
                         log.warn("线程池执行异常", e);
                     } catch (TimeoutException e) {
-                        Cat.logMetricForCount(task.getCatName());
+                        System.out.println(task.getName() + " timeout");
                         done = false;
                     }
                 }
@@ -40,17 +41,23 @@ public abstract class FutureTaskKit {
         } finally {
             if (!done) {
                 for (FutureTaskWrapper<V> task : tasks) {
-                    task.getFutureTask().cancel(true);
+                    task.cancel(true);
                 }
             }
         }
     }
 
-    @Data
-    public static class FutureTaskWrapper<V> {
-        private FutureTask<V> futureTask;
-        private String catName;
+    @Getter
+    @Setter
+    public static class FutureTaskWrapper<V> extends FutureTask<V> {
+        private String name;
         private long timeout;
-        private TimeUnit unit;
+        private TimeUnit unit = TimeUnit.MILLISECONDS;
+
+        public FutureTaskWrapper(Callable<V> callable, long timeout, String name) {
+            super(callable);
+            this.timeout = timeout;
+            this.name = name;
+        }
     }
 }

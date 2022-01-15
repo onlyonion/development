@@ -1,3 +1,11 @@
+
+### gradle
+```sh
+gradle dependencies
+```
+
+
+###
 ```groovy
 task hellowrold {
     doLast {
@@ -18,3 +26,5 @@ task helloworld << {
         cacheDynamicVersionsFor 0, 'seconds'
     }
 ```
+
+jmap -dump,format=b,file=/root/heap.bin
