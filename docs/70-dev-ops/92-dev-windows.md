@@ -90,8 +90,10 @@ npm install -g webpack
 ## 4. python
 PYTHON2     D:\opt\python\python27
 PYTHON      D:\opt\python\python39
-
-Path        %PYTHON2%  %PYTHON%
+Path        %PYTHON2%;%PYTHON2%\Scripts;%PYTHON%;%PYTHON%\Scripts
+```sh
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple 要安装的库的名称
+```
 
 ## 5. object c, swift
 
