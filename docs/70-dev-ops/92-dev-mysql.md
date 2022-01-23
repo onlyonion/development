@@ -82,7 +82,7 @@ mysqld --install
 
 ## 启动
 net start mysql
-
+qYuB-7%l+fDr
 mysql -u root -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 

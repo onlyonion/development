@@ -36,7 +36,7 @@ JRE_HOME    %JAVA_HOME%\jre
 CLASSPATH	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
 
 MAVEN_HOME	D:\opt\java\apache-maven-3.6.0
-M2_HOME	    D:\opt\java\apache-maven-3.6.0
+M2_HOME	    %MAVEN_HOME%
 ANT_HOME	D:\opt\java\apache-ant-1.9.14
 
 # .${user}/.m2/setting.xml 配置
@@ -59,6 +59,11 @@ GRAPHVIZ_DOT    D:\opt\tool\graphviz-2.38\bin\dot.exe
 Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin
 NLS_LANG 	AMERICAN_AMERICA.AL32UTF8
 
+# scala
+SCALA_HOME = D:\opt\java\scala-2.11.5
+Path = %SCALA_HOME%\bin
+ClassPath = .;%SCALA_HOME%\bin;%SCALA_HOME%\lib\dt.jar;%SCALA_HOME%\lib\tools.jar.;
+
 # hadoop
 HADDOOP_HOME 
 Path		;%HADDOOP_HOME%\bin;
@@ -67,18 +72,11 @@ Path		;%HADDOOP_HOME%\bin;
 ### 1.2 java doc
 -encoding UTF-8 -charset UTF-8
 
-### 1.3 .bat
-```sh
-SETX JAVA_HOME "D:\opt\java\jdk1.8.0_131" /m
-SETX JRE_HOME "%JAVA_HOME%\jre" /m
-SETX M2_HOME "D:\opt\apahce\apache-maven-3.3.9" /m
-SETX ANT_HOME "D:\opt\apahce\apache-ant-1.10.1" /m
-SETX NLS_LANG "AMERICAN_AMERICA.AL32UTF8" /m
-SETX Path "%JAVA_HOME%\bin;%M2_HOME%\bin;%ANT_HOME%\bin;%PATH%;"
-```
-
 ## 2. nodejs
 ```sh
+NODE_HOME D:\opt\nodejs\node-v12.14.0-win-x64
+Path ;%NODE_HOME%
+
 npm install cnpm -g --registry=https://registry.npm.taobao.org
 cnpm install digo -g
 
@@ -88,6 +86,7 @@ npm install -g webpack
 
 ## 3. php
 ## 4. python
+CONDA_HOME  D:\opt\tensorflow\anaconda3
 PYTHON2     D:\opt\python\python27
 PYTHON      D:\opt\python\python39
 Path        %PYTHON2%;%PYTHON2%\Scripts;%PYTHON%;%PYTHON%\Scripts
@@ -197,4 +196,14 @@ nslookup github.com
 
 # windows
 ipconfig /flushdns 
+```
+
+## windows11
+```sh
+# 切换到旧版右键菜单：
+reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+# 恢复回Win11右键菜单：
+reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
+# 重启Windows资源管理器生效：
+taskkill /f /im explorer.exe & start explorer.exe
 ```
