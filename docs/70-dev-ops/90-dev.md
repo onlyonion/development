@@ -11,7 +11,9 @@ forks:>=50
 #L 
 T
 ```
-
+### merge + rebase
+* merge 提交commit合并修改
+* rebase 修改提交历史记录 
 
 ## front dev ide
 * webstorm

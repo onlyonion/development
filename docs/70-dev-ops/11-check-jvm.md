@@ -1,12 +1,24 @@
 ## jdk
-jmap -histo:live 1 | more
+```sh
+jps
+jinfo -flags 1
 
+# thread
+jstack pid > pid.log
+
+# memory
+jstat -gcutil 1 1000
+jmap -histo:live 1 | more
+jmap -histo 1 | more
 jmap -dump:live,format=b,file=dump.hprof 1
 jmap -dump:format=b,file=dump.hprof 1
-
-/root/data/dump.hprof
-/root/dump.hprof
-
+jmap -heap 1
+jmap -histo 1 | head -50
+jmap -histo:live 1 | head -20
+jmap -dump:live,format=b,file=/root/logs/dump.hprof 1
+jmap -dump,format=b,file=/root/logs/dump.hprof 1
+jmap -dump:live,format=b,file=nezha-admin.hprof 1
+```
 ## arthas
 curl -O https://arthas.aliyun.com/arthas-boot.jar
 java -jar arthas-boot.jar

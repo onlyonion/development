@@ -1,7 +1,6 @@
 package com.onion.test.java.util.concurrent;
 
 import com.onion.test.java.util.concurrent.FutureTaskKit.FutureTaskWrapper;
-import org.jcp.xml.dsig.internal.SignerOutputStream;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -85,12 +84,12 @@ public class FutureTest {
     @Test
     public void test3() throws InterruptedException, ExecutionException {
         List<Callable<String>> calls = new ArrayList<>();
-        calls.add(() -> task(1));
-        calls.add(() -> task(2));
-        calls.add(() -> task(1));
-        calls.add(() -> task(4));
+        calls.add(() -> task(10000));
+        calls.add(() -> task(20000));
+        calls.add(() -> task(10000));
+        calls.add(() -> task(40000));
 
-        List<Future<String>> futures = executor.invokeAll(calls, 3, TimeUnit.SECONDS);
+        List<Future<String>> futures = executor.invokeAll(calls, 100, TimeUnit.MILLISECONDS);
         for (Future<String> future : futures) {
             System.out.println(future.get());
         }
@@ -148,5 +147,12 @@ public class FutureTest {
         System.out.println(map);
     }
 
-
+    @Test
+    public void test7() throws ExecutionException, InterruptedException {
+        Map<String, String> map = new HashMap<>();
+        Callable<String> c = () -> task(20000000, map);
+        Future<String> submit = executor.submit(c);
+        submit.cancel(true);
+        System.out.println(submit.get());
+    }
 }

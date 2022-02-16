@@ -1,6 +1,6 @@
 dev ide
 
-Visual_Paradigm
+## Visual_Paradigm
 
 ## powerdesigner
 去掉Name与Code联动
@@ -131,6 +131,16 @@ VM options：
 
 ### 缩放
 setting里搜索mouseWheelZoom，打钩
+
+### 查找删除，正则删除
+```sh
+# 块注释（多行注释）
+/\*(.|\r\n|\n)*?\*/
+# 删除空行
+^\s*(?=\r?$)\n
+# 匹配换行
+\n
+```
 
 ### 代码模板
 setting -> 用户代码片段

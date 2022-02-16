@@ -1,16 +1,36 @@
 package com.onion.test.java.lang;
 
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
+
+@Slf4j
 public class ThreadTest {
+
     @Test
+    @SneakyThrows
     public void test() {
-        for (; ; ) {
-            System.out.println(new Random().nextInt());
-        }
+        Thread t1 = new Thread(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(60);
+            } catch (InterruptedException e) {
+                log.info("t1 name {} InterruptedException1", Thread.currentThread().getName());
+            }
+            try {
+                TimeUnit.SECONDS.sleep(60);
+            } catch (InterruptedException e) {
+                log.info("t1 name {} InterruptedException2", Thread.currentThread().getName());
+            }
+        });
+        Thread t2 = new Thread();
+        t1.start();
+        t2.start();
+        TimeUnit.SECONDS.sleep(5);
+        t1.interrupt();
+        log.info("t1 1 isInterrupted {}", t1.isInterrupted());
+        log.info("t1 2 isInterrupted {}", t1.isInterrupted());
     }
 
 

@@ -9,8 +9,10 @@ java.lang.Thread
   * join
   * start
   * sleep
+  * holdsLock 检测线程是否持有锁
 * 线程的同步与异步 任务是否在同一个线程执行
 * 线程的阻塞与非阻塞 异步执行任务时，线程是不是会**阻塞**等待任务结果，还是执行后面逻辑
+* jps获取pid，jstack pid
 
 ## define
 * 线程字段

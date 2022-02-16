@@ -1,6 +1,14 @@
 linux
 
 ## linux
+
+```sh
+# windows *.tgz
+# tar -czvf test.tar.gz a.c 
+# tar -xzvf test.tar.gz 
+# yum install lrzsz
+```
+
 ### 整机
 * top -Hp 查看线程
 * dstat 全能实时系统信息统计
@@ -44,15 +52,6 @@ netstat -nap | grep 8080 # 根据端口查找进程ID
 * grep
 * less
 * tail
-
-## jdk bin
-* jps
-* jstack pid > pid.log
-* jmap 
-
-## git
-* merge 提交commit合并修改
-* rebase 修改提交历史记录 
 
 ## troubleshoot 故障排查
 * cpu消耗

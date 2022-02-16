@@ -1,4 +1,11 @@
 java.util.concurrent.locks.ReentrantLock
+- tryLock 可轮询
+- tryLock(long timeout, TimeUnit unit) 定时
+- lockInterruptibly 可中断（响应中断）
+- newCondition 多条件
+- ReentrantLock(boolean fair) 公平锁
+- 锁顺序
+
 ## hierarchy
 ```
 ReentrantLock (java.util.concurrent.locks)

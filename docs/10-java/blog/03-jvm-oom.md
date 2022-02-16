@@ -15,18 +15,13 @@
 ## java.lang.OutOfMemoryError
 ### java.lang.OutOfMemoryError: Java heap space
 需要创建大量的对象，层次比较深的递归操作等
-
 ### java.lang.OutOfMemoryError: PermGen space 
 用来存储被加载的类的定义（class definition）和元数据（metadata）
-
 ### java.lang.OutOfMemoryError: Metaspace
-
 ### java.lang.OutOfMemoryError: Direct buffer memory
 Netty启用了堆外内存DirectByteBuffer实现了零拷贝，堆外内存对young gc免疫，只有在full gc的时候才被收回
-
 ### java.lang.OutOfMemoryError: GC overhead limit exceeded
 GC占用了多余98%（默认值）的CPU时间却只回收了少于2%（默认值）的堆空间
-
 一般是应用程序在有限的内存上创建了大量的临时对象或者弱引用对象，从而导致该异常。
 
 [解决办法](https://blog.csdn.net/qq_40162735/article/details/81775828 )
@@ -41,3 +36,16 @@ GC占用了多余98%（默认值）的CPU时间却只回收了少于2%（默认�
 ## other
 - stackOverFlow
 - socketException:too many open files
+
+## oracle
+https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/memleaks002.html
+
+
+- java.lang.OutOfMemoryError: Java heap space
+- java.lang.OutOfMemoryError: Metaspace
+- java.lang.OutOfMemoryError: GC Overhead limit exceede
+- java.lang.OutOfMemoryError: unable to create new native Thread
+- java.lang.OutOfMemoryError: Requested array size exceeds VM limit
+- java.lang.OutOfMemoryError: request size bytes for reason. Out of swap space?
+- java.lang.OutOfMemoryError: Compressed class space
+- java.lang.OutOfMemoryError: reason stack_trace_with_native_method
