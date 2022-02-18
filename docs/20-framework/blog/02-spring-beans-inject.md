@@ -1,0 +1,11 @@
+@Resource
+- name 
+  - 不为空 注入beanId = name
+  - 为空 
+    - 有变量名=beanId
+      - 类型相同，成功
+      - 类型不同，失败
+    - 没有变量名=beanId
+      - byType
+        - 类型的bean只有一个，成功
+        - 类型的bean有多个，失败

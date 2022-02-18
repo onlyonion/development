@@ -30,7 +30,3 @@
 ## 行业业务
 * [业务领域](/docs/80-project/00-biz.md)
 * [广告系列](/docs/80-project/biz/广告系列.md)
-* [黑马-机器学习](/docs/80-project/biz/黑马-机器学习.md)
-* [Google机器学习](/docs/80-project/biz/Google机器学习.md)
-* [DNN](/docs/80-project/biz/DNN.md)
-
