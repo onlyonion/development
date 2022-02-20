@@ -9,25 +9,15 @@ ClassNotFoundException是一个运行时异常。从类继承层次上来看，C
 一般在执行Class.forName()、ClassLoader.loadClass()或ClassLoader.findSystemClass()的时候抛出
 
 ### jvm graceful shutdown
-
 ### 线程切换
-
 ### netty 特点
-
 ### soa vs microservice
-
 ### 服务治理
-
 ### 分布式事务一致性
-
 ### 设计原则
-
 ### mysql 索引实现
-
 ### b-tree, b+tree, red/black tree
-
 ### project comprehend
-
 ### project improvement
 
 

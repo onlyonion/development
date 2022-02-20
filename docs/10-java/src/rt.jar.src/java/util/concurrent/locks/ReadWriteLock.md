@@ -1,6 +1,9 @@
 java.util.concurrent.locks.ReadWriteLock
 
 java.util.concurrent.locks.ReentrantReadWriteLock
+- 读写分离
+- 读锁，共享
+- 写锁，独占
 
 ## define
 

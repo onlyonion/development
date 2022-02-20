@@ -43,12 +43,19 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
   * commons-codec
   * commons-collections
   * commons-configuration
+  * commons-daemon
+  * commons-dbcp2
+  * commons-dbutils
+  * commons-fileupload
+  * commons-jxpath
   * commons-io
   * commons-lang
   * commons-lang3
+  * commons-net
+  * commons-pool
   * commons-logging
-  * mesos
-  * [derby](/docs/20-framework/src/apache/derby/README.md)
+  * [derby](/docs/20-framework/src/apache/derby/README.md) 内存数据库
+  * mesos 分布式资源管理框架
   * [shiro](/docs/20-framework/src/apache/shiro/README.md)
 * common
   * [activiti](/docs/20-framework/src/common/activiti/README.md) 工作流
@@ -71,12 +78,13 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
   * jooq
   * [quasar](/docs/20-framework/src/common/quasar/README.md)
   * rxjava
-  * serialize
+  * [serialize](/docs/20-framework/src/common/serialize/README.md)
   * swagger
 * [http](/docs/20-framework/src/http/README.md)
   * asynchttpclient
   * httpcomponents
   * okhttp
+  * okio
   * retrofit
   * retrofit2
 * javax
@@ -102,11 +110,12 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
   * [undertow](/docs/20-framework/src/server/undertow/README.md)
   * [`nginx`](/docs/20-framework/src/server/nginx/README.md)
 * [`spring`](/docs/20-framework/src/spring/README.md)
-* streams
+* [streams](/docs/20-framework/src/streams/README.md)
 * [test](/docs/20-framework/src/test/README.md)
   
 ### distributed 分布式
 * [`dubbo`](/docs/30-distributed/src/dubbo/README.md)
+* gprc
 * [job](/docs/30-distributed/src/job/README.md)
 * monitor
   * metrics
@@ -124,10 +133,11 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
   * rabbitmq
   * [`rocketmq`](/docs/30-distributed/src/rocketmq/README.md)
 * registry
-  * [zookeeper](/docs/30-distributed/src/registry/zookeeper/README.md)
   * [consul](/docs/30-distributed/src/registry/consul/README.md)
   * etcd
   * eureka
+  * nacos
+  * [zookeeper](/docs/30-distributed/src/registry/zookeeper/README.md)
 * serarch
   * elasticsearch
   * lucene
@@ -136,6 +146,7 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
 ### database 数据库与数据库中间件
 * cassandra
 * [druid](/docs/50-database/src/druid/README.md)
+* hadoop
 * hbase
 * hikari
 * hue
