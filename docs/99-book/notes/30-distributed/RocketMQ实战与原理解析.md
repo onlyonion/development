@@ -65,12 +65,13 @@ MQAdmin 是 RocketMQ 自带的命令行管理工具，在 bin 目录下，运行
 * DefaultMQPullConsumer 读取操作中的大部分功能由使用者自主控制
 
 ### 3.2 不同类型的生产者
+同步发送、异步发送、延迟发送、发送事务消息
 #### 3.2.1 DefaultMQProducer
 #### 3.2.2 发送延迟消息
 通过设置延迟级别控制延迟时间。`setDelayTimeLevle(3)`
 
 #### 3.2.4 对事务的支持
-采用两阶段提交的方式来实现事务，TransactionMQProducer处理。**2PC + 定时回查**
+采用**两阶段提交**的方式来实现事务，TransactionMQProducer处理。**2PC + 定时回查**
 1. 发送方向RocketMQ发送“待确认”消息
 2. RocketMQ将收到的“待确认”消息持久化后，向发送方向恢复消息已经发送成功，此时第一阶段消息发送完成。
 3. 发送方开始执行本地事务逻辑
@@ -113,20 +114,42 @@ Broker是RocketMQ的核心，接收Producer发过来的消息、处理Consumer�
 通过使用mmap的方式，可以省去向用户态的内存复制，提高速度。“零拷贝”
 
 ### 5.2 消息存储结构
-RocketMQ消息的存储是由ComsumeQueue和CommitLog配合完成的。消息真正的物理文件是CommitLog，ComsumeQueque是消息的逻辑队列，类似数据库的索引文件，存储的是指向物理存储的地址。
+RocketMQ消息的存储是由`ComsumeQueue`和`CommitLog`配合完成的。消息真正的物理文件是CommitLog，ComsumeQueque是消息的逻辑队列，类似数据库的索引文件，存储的是指向物理存储的地址。
+
+`${$storeRoot}\consumerqueue\${topicName}\${queueId}\${fileName}`
+
+CommitLog以物理文件的方式存放，每台Broker上的CommitLog被机器所有的ConsumerQueue共享，文件地址：`${user.home}\store\${commitlog}\${fileName}`。在CommitLog中，
+一个消息的存储长度是不固定的，RocketMQ采取一些机制，尽量向CommitLog中顺序写，但是随机读。
+
+- abort
+- checkpoint
+- commitlog
+  - 00000000000000000
+- config
+  - consumerFilter.json
+  - consumerOffset.json
+  - delayOffset.json
+  - subscriptionGroup.json
+  - topics.json
+- consumerqueue
+  - testCreateTopicse
+    - 0
+      - 000000000000000000000
+    - 1
+- index
+  - 202008320000000
 
 ### 5.3 高可用性机制
-RocketMQ 分布式集群是通过 Master 和 Slave 的配合达到高可用性的，首先说一下 Master 和 Slave 的区别：
+RocketMQ 分布式集群是通过`Master`和`Slave`的配合达到高可用性的，首先说一下`Master`和`Slave`的区别：
 在 Broker 的配 置 文件中，参数 brokerId的值为 0 表明这个 Broker 是 Master，大于 0 表 明这个 Broker 是 Slave ，
 同时 brokerRole 参数 也会说明这个 Broker 是 Master 还是 Slave 。
 
 !> 如何达到发送端的高可用性呢？创建Topic的时候，把Topic的多个MessageQueue创建在多个Broker组上（相同的Brokder名称，不同brokderId的机器组成一个Broker组），
 这样当一个Broker组的Master不可用后，其他组的Master仍然可用，Producer仍然可以发送消息。
 
-
 ### 5.4 同步刷盘和异步刷盘
 - 异步刷盘 在返回写成功状态时，消息可能**只是被写入了内存的pagecache**，写操作的返回快，吞吐量大；当内存里的消息量累积到一定程度时，统一出发写磁盘动作，快速写入
-- 同步刷盘 在返回ie成功状态时，消息**已经被写入磁盘**。具体流程是，消息写入内存的pagecache后，立刻通知刷盘线程刷盘，然后等待刷盘完成
+- 同步刷盘 在返回写成功状态时，消息**已经被写入磁盘**。具体流程是，消息写入内存的pagecache后，立刻通知刷盘线程刷盘，然后等待刷盘完成
 
 ### 5.5 同步复制和异步复制
 Broker组主从模式，消息需要从主复制到从上
@@ -140,7 +163,7 @@ master和slave配置成async_flush的刷盘方式，主从之间配置成sync_ma
 ## 第6章 可靠性优先的使用场景
 ### 6.1 顺序消息
 #### 6.1.1 全局顺序消息
-指某个 Topic 下的所有消息都要保证顺序
+Topic的读写队列数设置为一，Producer和Consumer的并发设置也要是一。保证整个Topic全局有序，只能消除所有并发，各部分都设置成单线程处理。
 #### 6.1.2 部分顺序消息
 只要保证每一组消息被顺序消费即可，需要发送端和消费端配合处理。
 
@@ -148,8 +171,8 @@ master和slave配置成async_flush的刷盘方式，主从之间配置成sync_ma
 
 ### 6.2 消息重复问题
 “有且仅有一次”太困难。RocketMQ 选择了确保一定投递，保证消息不丢失，但有可能造成消息重复。网络波动情况下。
-* 保证消费逻辑的幂等性（多次调用和一次调用效果相同）
-* 维护消息消费记录，消费前查询这个消息是否被消费过
+* 保证消费逻辑的**幂等性**（多次调用和一次调用效果相同）
+* 维护消息**消费记录**，消费前查询这个消息是否被消费过
 
 ### 6.3 动态增减机器
 #### 6.3.1 动态增减NameServer

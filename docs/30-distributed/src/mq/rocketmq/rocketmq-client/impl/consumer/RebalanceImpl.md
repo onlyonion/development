@@ -1,5 +1,10 @@
 org.apache.rocketmq.client.impl.consumer.RebalanceImpl
 
+消费负载是通过queue来对消息进行分片，然后consumer消费自己对应的queue来实现。触发时机：
+- 消费端启停
+- broker通知Rebalance
+- 定时触发，默认20s执行一次
+
 ## define
 ```java
 public abstract class RebalanceImpl {
@@ -129,6 +134,19 @@ public abstract class RebalanceImpl {
         }
     }
 
+```
+
+### 顺序消费的Rebalance，加锁
+```java
+    private boolean updateProcessQueueTableInRebalance(final String topic, final Set<MessageQueue> mqSet,
+        final boolean isOrder) {
+        // ...
+        if (isOrder && !this.lock(mq)) {
+            log.warn("doRebalance, {}, add a new mq failed, {}, because lock failed", consumerGroup, mq);
+            continue;
+        }
+        // ...
+}
 ```
 
 ## link

@@ -317,6 +317,22 @@ ZooKeeper整体架构
   * SessionTimeouts
 
 ### 7.6 Leader选举
+#### 7.6.1 Leader选举概述
+服务器启动时期的Leader选举
+1. 每个Server会发出一个投票，(myid, ZXID)
+2. 接收来自各个服务器的投票
+3. 处理投票，优先检查ZXID，ZXID比较大的服务器作为Leader。如果ZXID相同，比较myid，myid比较大的服务器作为Leader
+4. 统计投票
+5. 改变服务器状态
+
+服务器运行期间的Leader选举
+1. 变更状态
+2. 每个Server会发出一个投票
+3. 接收来自各个服务器的投票
+4. 处理投票
+5. 统计投票
+6. 改变服务器状态  
+
 ### 7.7 各服务器角色介绍
 * Leader
 * Follower

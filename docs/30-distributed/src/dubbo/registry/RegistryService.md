@@ -23,6 +23,32 @@ interface RegistryService {
     List<URL> lookup(URL url);
 }
 
+interface Node
+interface Registry
+abstract class AbstractRegistry
+abstract class FailbackRegistry
+
+FailbackRegistry *- ScheduledExecutorService
+
+class DubboRegistry
+class RedisRegistry
+class MulticastRegistry
+class ZookeeperRegistry
+
+RegistryService ^-- Registry
+Node ^-- Registry
+Registry ^.. AbstractRegistry
+AbstractRegistry ^-- FailbackRegistry
+
+FailbackRegistry ^-- DubboRegistry
+FailbackRegistry ^-- RedisRegistry
+FailbackRegistry ^-- MulticastRegistry
+FailbackRegistry ^-- ZookeeperRegistry
+
+'''''''''''' 工厂模式 ''''''''''''
+interface RegistryFactory
+RegistryFactory *- Registry
+
 @enduml
 ```
 

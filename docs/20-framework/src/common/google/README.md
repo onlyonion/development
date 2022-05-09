@@ -8,6 +8,8 @@ google
     - [LocalCache](/docs/20-framework/src/common/google/guava/cache/LocalCache.md)
   - hash
     - [BloomFilter](/docs/20-framework/src/common/google/guava/hash/BloomFilter.md)
+  - util.concurrent
+    - [RateLimiter](/docs/20-framework/src/common/google/guava/util.concurrent/RateLimiter.md)
 - kaptcha
 
 

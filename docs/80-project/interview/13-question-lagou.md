@@ -1,4 +1,4 @@
-
+32个Java面试必考点
 * 操作系统、计算机网络、数据结构与算法
 * Java集合、线程、并发、JVM
 * spring、spring-boot、mybatis、netty、redis、mysql
@@ -66,9 +66,9 @@ java语言特性
 多线程
 * 同步与互斥
   * synchronized
-  * lock 锁类型、锁实现
+  * lock 锁类型（偏向锁、轻量级锁、自旋锁、重量级锁）、锁实现
   * cas Unsafe、原语
-* 线程状态转换 
+* 线程状态转换 New、Runnable(Ready/Running)、Termiated、Waiting、Time-Waiting、Blocked
 * 死锁
   * 竞争条、死锁检测与预防
   * 产生条件 互斥、请求并保持、不可剥夺、循环等待
@@ -78,11 +78,23 @@ java语言特性
 * 线程池 使用场景、原理与实现方式、线程池实现
 
 ## JVM
-* JVM内存模型 程序计数器、方法区、堆、栈、本地方法栈
+* 内存模型
+  * JVM内存模型 程序计数器、方法区、堆、栈、本地方法栈
+  * JMM内存模型 工作内存、主内存
+    * 指令重排序，保证原子性、可见性、有序性
+      * long、double
+      * syschronized
+      * volatile
+      * happens-before 程序顺序规则、锁规则、volatile规则、传递性、线程start/join规则
 * GC
   * 分代回收 年轻代、年老代、持久代
-  * 回收器实战 串行回收器、并行回收器、CMS、G1
-* Java类加载机制 双亲委派机制、Bootstrap、Extension、System、自定义
+  * 回收器实战 串行回收器、并行回收器、CMS、G1、ZGC
+* Java类加载机制
+  * 加载过程
+    * 加载
+    * 链接（验证、准备、解析）
+    * 初始化
+  * 双亲委派机制、Bootstrap、Extension、System、自定义
 * 编译器优化 公共子表达式消除、指令重排、内联、逃逸分析（方法逃逸、线程逃逸）、栈上分配、同步消除
 * 执行模式 解释模式、编译模式、混合模式
 * 性能调优
@@ -137,7 +149,7 @@ spring全家桶
   * AOP
   * PlaceHolder动态体会
   * 事务
-    * 隔离类型
+    * 隔离类型 扁平化事务、带保存点的扁平事务、链事务、嵌套事务、分布式事务
     * 传播类型
 * spring应用
   * 常用注解
