@@ -56,6 +56,8 @@ public abstract class BaseExecutor implements Executor {
 * abstract <E> Cursor<E> doQueryCursor(MappedStatement ms, Object parameter, RowBounds rowBounds, BoundSql boundSql)
 
 ### query
+- 一级缓存
+
 ```java
   @Override
   public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
@@ -63,7 +65,6 @@ public abstract class BaseExecutor implements Executor {
     CacheKey key = createCacheKey(ms, parameter, rowBounds, boundSql); // 一级缓存 构造缓存key
     return query(ms, parameter, rowBounds, resultHandler, key, boundSql);
   }
- 
  
   @Override
   public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {

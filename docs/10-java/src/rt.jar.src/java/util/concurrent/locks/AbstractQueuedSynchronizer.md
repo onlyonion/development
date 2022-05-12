@@ -124,7 +124,7 @@ LockSupport ..> Unsafe
 
 ### acquire
 独占式 void acquire(int arg)
-* !tryAcquire(arg)
+* !tryAcquire(arg) 线程安全的获取同步状态
 * addWaiter(Node.EXCLUSIVE), arg) 将节点加到同步队列的尾部（compareAndSetTail + for循环）
 * acquireQueued() 自旋，每个节点自省观察，前驱节点是头节点时，才能够获取同步状态`tryAcquire(arg)`；获取到同步状态就可以从这个自旋过程中退出。
   * selfInterrupt()

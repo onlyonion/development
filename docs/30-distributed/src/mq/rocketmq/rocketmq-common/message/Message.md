@@ -108,7 +108,7 @@ Message ^-- MessageBatch
     }
 ```
 
-### DelayTimeLevel
+### DelayTimeLevel 延时消息
 ```java
     public int getDelayTimeLevel() {
         String t = this.getProperty(MessageConst.PROPERTY_DELAY_TIME_LEVEL);

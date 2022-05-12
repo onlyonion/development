@@ -1,3 +1,5 @@
+### win10
+```sh
 %SystemRoot%\system32;
 %SystemRoot%;
 %SystemRoot%\System32\Wbem;
@@ -16,3 +18,16 @@ C:\Program Files\TortoiseGit\bin;
 %SCALA_HOME%\bin;
 %NODE_HOME%;
 C:\Users\lijicong\AppData\Local\Microsoft\WindowsApps;
+```
+
+
+### win10
+```sh
+%SystemRoot%\system32;
+%SystemRoot%;
+%SystemRoot%\System32\Wbem;
+%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;
+%SYSTEMROOT%\System32\OpenSSH\;
+C:\Program Files\Git\cmd;
+C:\Program Files\TortoiseGit\bin
+```
