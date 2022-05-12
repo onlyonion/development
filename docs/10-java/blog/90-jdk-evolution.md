@@ -83,7 +83,7 @@
 5. 简化可变参数方法的调用 
 6. 自动资源管理 
 
-## Java 8
+## Java 8 LTS
 2014年3月18
 
 1.	Lambda 表达式
@@ -125,7 +125,7 @@ September 2017
 8. 线程本地握手，不执行全局 VM 安全点也能对线程执行回调，同时实现单线程停止回调。
 9. JDK 提供了一组默认证书，开源 Java SE 的 CA程序，对开发人员更具吸引力。
 
-## Java 11
+## Java 11 LTS
 October 16, 2018
 
 * 181 嵌套类可见性控制
@@ -149,6 +149,27 @@ October 16, 2018
 [JDK 11主要特性一览](https://blog.csdn.net/cun_chen/article/details/82807552 )
 
 
+局部变量自动类型推断
+String类新增方法
+Optional方法增强
+transferTo()方法
+移除和废弃的一些内容
+更简化的编译运行程序
+Unicode10
+新增的Epsilon收集器
+ZGC
+完全支持linux容器（包括docker）
+G1的完全并行GC
+免费的低耗能分析(Low-Overhead Heap Profiling)
+新的加密算法
+
 ## Java 12
 java12不是LTS(Long-Term Support)版本(oracle版本才有LTS)，oracle对该版本的support周期为6个月。
 这个版本主要有几个更新点，一个是语法层更新，一个是API层面的更新，另外主要是GC方面的更新。
+
+## Java 13
+## Java 14
+## Java 15
+## Java 16
+## Java 17 LTS
+## Java 18

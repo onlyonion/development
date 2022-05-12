@@ -22,8 +22,8 @@ JVM参数
 ```
 ### 初始
 - JDK
-- 文件编码
-- 自动导包 Other Setting -> Auto Import
+- 文件编码 Editor -> File Encodings
+- 自动导包 General Setting -> Auto Import
 
 ### 常用
 
@@ -129,6 +129,10 @@ VM options：
 
 ## vscode
 
+### plugin
+markdown all in one
+platuml
+
 ### 缩放
 setting里搜索mouseWheelZoom，打钩
 
@@ -170,6 +174,14 @@ setting -> 用户代码片段
 	"editor.wordWrap": "off",
 	"editor.quickSuggestions": false
 }
+```
+
+### uml
+```sh
+# mac
+sudo port install graphviz
+brew install graphviz
+
 ```
 
 ## tool

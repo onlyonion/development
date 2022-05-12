@@ -27,7 +27,7 @@ RPC的主要依赖技术
 对于序列化，我还了解一些，像Google的ProBuffer、JBossMarshalling和Apache Thrift等
 
 | methods             | serialize    | protocol   |
-|---------------------|--------------|------------|
+| ------------------- | ------------ | ---------- |
 | dubbo               | 二进制序列化 | tcp协议    |
 | http invoker        | 二进制序列化 | http协议   |
 | hessian             | 二进制序列化 | http协议   |

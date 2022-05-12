@@ -58,3 +58,15 @@ a function (or a subroutine) defined, and possibly called, without being bound t
 Lambda表达式 vs 匿名类
 this指向		匿名类的 this 关键字指向匿名类，而lambda表达式的 this 关键字指向包围lambda表达式的类
 编译方式		Java编译器将lambda表达式编译成类的私有方法。使用了Java 7的 invokedynamic 字节码指令来动态绑定这个方法
+
+## jdk11
+- 本地变量类型推断
+- 字符串加强
+- 集合加强
+- Stream加强
+- Optional加强
+- InputStream加强
+- Http Client Api
+- 读写文件
+- 单文件代码
+
