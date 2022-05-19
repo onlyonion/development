@@ -247,3 +247,8 @@ git pull origin master  #拉取
 # 添加SSH公钥
 ssh-keygen -t rsa -C "youraccount" # 注意是邮箱或者账号，或者两个都是 youraccount@email.com 
 ```
+
+### git safe directory
+```sh
+git config --global --add safe.directory "*"
+```
