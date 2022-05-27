@@ -74,7 +74,7 @@ Path		;%HADDOOP_HOME%\bin;
 
 ## 2. nodejs
 ```sh
-NODE_HOME D:\opt\nodejs\node-v12.14.0-win-x64
+NODE_HOME D:\opt\nodejs\node-v16.15.0-win-x64
 Path ;%NODE_HOME%
 
 npm install cnpm -g --registry=https://registry.npm.taobao.org
