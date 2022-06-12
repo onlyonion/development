@@ -127,6 +127,9 @@ setting -> build,execution,deployment -> compiler -> annotation processors 勾�
 VM options：
 -Dspring.output.ansi.enabled=ALWAYS
 
+### Windows Defender might be impacting your build performance. IntelliJ IDEA checked the following directories
+
+
 ## vscode
 
 ### plugin
@@ -216,7 +219,7 @@ PC 端证书安装：Help –> SSL Proxying –> Install Charles Root Certificat
 
 小米安装证书
 （miui10及以上）点击设置-更多设置-系统安全-加密与凭据-从存储卡安装文件
-（miui10一下）点击设置-更多设置-系统安全-从存储卡安装文件
+（miui10以下）点击设置-更多设置-系统安全-从存储卡安装文件
 
 ## Navicat
 Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
@@ -251,4 +254,6 @@ ssh-keygen -t rsa -C "youraccount" # 注意是邮箱或者账号，或者两个�
 ### git safe directory
 ```sh
 git config --global --add safe.directory "*"
+# gitignore
+git config --global core.excludesfile ~/.gitignore_global
 ```

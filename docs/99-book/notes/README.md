@@ -93,6 +93,10 @@
 * [《可伸缩服务架构 框架与中间件》 李艳鹏 杨彪 电子工业出版社](/docs/99-book/notes/40-architecture/可伸缩服务架构.md)
 * [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
 
+## 业务架构
+* [《支付平台架构》](/docs/99-book/notes/40-architecture/支付平台架构.md)
+* [《支付架构实战》](/docs/99-book/notes/40-architecture/支付架构实战.md)
+
 ## 设计
 * [《大话设计模式》程杰 清华大学出版社](/docs/99-book/notes/40-architecture/大话设计模式.md)
 * [《HEAD FIRST 设计模式（中文版）》](/docs/99-book/notes/40-architecture/HeadFirst.md)

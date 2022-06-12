@@ -17,6 +17,7 @@ C:\Program Files\TortoiseGit\bin;
 %CONDA_HOME%\Scripts;
 %SCALA_HOME%\bin;
 %NODE_HOME%;
+%PYTHON2_HOME%;
 C:\Users\lijicong\AppData\Local\Microsoft\WindowsApps;
 ```
 

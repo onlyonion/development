@@ -20,6 +20,8 @@ SETX GRAPHVIZ_DOT D:\opt\tool\graphviz-2.38\bin\dot.exe /m
 SETX NODE_HOME D:\opt\nodejs\node-v16.15.0-win-x64 /m
 :: oracle
 SETX NLS_LANG AMERICAN_AMERICA.AL32UTF8 /m
+:: python2
+SETX PYTHON2_HOME D:\opt\python\python27 /m
 
 :: path
-:: ";%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin;%CONDA_HOME%;%CONDA_HOME%\Scripts;%SCALA_HOME%\bin;%NODE_HOME%"
+:: ";%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin;%CONDA_HOME%;%CONDA_HOME%\Scripts;%SCALA_HOME%\bin;%NODE_HOME%;%PYTHON2_HOME%"
