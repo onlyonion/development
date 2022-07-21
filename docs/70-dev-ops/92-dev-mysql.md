@@ -77,15 +77,15 @@ mysqld --initialize --console
 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: pP53IYtWyS__ # 密码
 [System] [MY-013170] [Server] D:\opt\wnmp\mysql-8.0.17-winx64\bin\mysqld.exe (mysqld 8.0.17) initializing of server has completed
 
-# install 安装mysql服务
+# install 安装mysql服务SEBPd_?7-?1<
 mysqld --install
 
-## 启动
+## 启动SEBPd_?7-?1<
 net start mysql
 qYuB-7%l+fDr
 mysql -u root -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
-
+use mysql
 update user set host='%' where user='root';
 flush privileges;
 ```

@@ -109,8 +109,6 @@ scp .zshrc username@192.168.100.100:/Users/username/
 ### 6. 有需要替换内核、替换MBR
 ### 7. EasyBCD添加变色龙引导
 
-
-
 ## 分辨率
 SwitchResX For Mac v4.8.0 
 解压密码：imac.hk

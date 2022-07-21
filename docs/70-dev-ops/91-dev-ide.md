@@ -1,6 +1,10 @@
 dev ide
+- powerdesigner
+- idea
+- vscode
+- charles
+- Navicat
 
-## Visual_Paradigm
 
 ## powerdesigner
 去掉Name与Code联动
@@ -16,17 +20,21 @@ Tools -> Display Preferences -> General setting的Format菜单下，点Modify，
 Tools -> Display Preferences -> General，Use Case Association，选中Orientation
 
 ## idea
+
 JVM参数
 ```sh
 -Dfile.encoding=UTF-8
 ```
+
+### idea跑到窗口之外
+Alt + 空格，之后点击最大化
+
 ### 初始
 - JDK
 - 文件编码 Editor -> File Encodings
 - 自动导包 General Setting -> Auto Import
 
 ### 常用
-
 插件
 - lombok
 - mybatisx
@@ -47,7 +55,6 @@ Preferences->Editor->Inspections->Spring->Spring Core->Core->Field Injection war
 
 不折叠代码
 File->Setting->Editor->General->Code Folding  将One-line methods去除即可
-
 
 Idea启动项目报错:Command line is too long. Shorten command line for className or also for JUnit defaultconfiguration.
 在该项目文件夹.idea/workspace.xml中找到
@@ -223,37 +230,3 @@ PC 端证书安装：Help –> SSL Proxying –> Install Charles Root Certificat
 
 ## Navicat
 Navicat闲置一段时间卡死 编辑连接，进入高级项，勾选保持连续间隔(秒)：时间设置短一些，比如30秒
-
-## git
-```sh
-git init 
-git add 
-git commit -m "first commit"
-git remote add origin https://github.com/yourspace/yourproject.git
-git push -u origin master
-```
-
-只拉取部分目录
-```sh
-mkdir pro1
-cd pro1
-git init
-git remote add -f origin https://github.com/XXXXX/test.git    #拉取remote的all objects信息
-git config core.sparsecheckout true   #开启sparse clone
-echo "build" >> .git/info/sparse-checkout   #设置需要pull的目录，*表示所有，!表示匹配相反的
-less .git/info/sparse-checkout
-git pull origin master  #拉取
-```
-
-### git - unable to clone Host key verification failed. fatal: Could not read from remote repository
-```sh
-# 添加SSH公钥
-ssh-keygen -t rsa -C "youraccount" # 注意是邮箱或者账号，或者两个都是 youraccount@email.com 
-```
-
-### git safe directory
-```sh
-git config --global --add safe.directory "*"
-# gitignore
-git config --global core.excludesfile ~/.gitignore_global
-```

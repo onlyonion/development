@@ -1,5 +1,7 @@
 HikariCP是一个高性能的JDBC连接池，基于BoneCP做了不少的改进和优化。
 
+Maven: com.zaxxer:HikariCP:3.4.5
+
 ## package
 com.zaxxer.hikari
 ```

@@ -56,7 +56,7 @@ ZOOKEEPER_HOME  D:\opt\java\zookeeper-3.4.8
 
 GRAPHVIZ_DOT    D:\opt\tool\graphviz-2.38\bin\dot.exe
 
-Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin
+Path		;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin;%ANT_HOME%\bin
 NLS_LANG 	AMERICAN_AMERICA.AL32UTF8
 
 # scala

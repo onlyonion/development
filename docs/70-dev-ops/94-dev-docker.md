@@ -7,7 +7,6 @@
 ```sh
 # docker修改时间
 docker run -it --cap-add SYS_TIME --rm --name centos centos /bin/bash
-
 # /var/lib/docker/image/overlay2：存储镜像管理数据的目录
 ```
 
@@ -23,7 +22,6 @@ docker images
 docker rmi hello-world
 # remove all images
 docker rmi -f ${docker images}
-# 
 docker commit -a zzyy -m "I am annotation"
 ```
 
@@ -31,7 +29,7 @@ docker commit -a zzyy -m "I am annotation"
 ```sh
 # 新建并启动容器
 docker run java /bin/echo 'hello world'
-docker run -d -p 91:80 nginx # -d后台运行 # -p 宿主机端口号:容器端口 http://docker宿主机ip:91
+docker run -d -p 91:80 nginx # -d后台运行 -p 宿主机端口号:容器端口 http://docker宿主机ip:91
 # 列出运行中的容器
 docker ps # docker ps -a
 # 停止容器
@@ -117,8 +115,6 @@ redis-cli
 ```
 
 ### hue
-
-
 ```sh
 docker run -it -p 8888:8888 gethue/hue:latest
 

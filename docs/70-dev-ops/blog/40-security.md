@@ -1,8 +1,5 @@
 # security
-
 https, tls, ssl, spdy, http2
-
-
 
 CISSP 英文全称：“ Certified Information Systems Security Professional”，中文全称：“(ISC)²注册信息系统安全专家”，
 由(ISC)²组织和管理，是目前全球范围内最权威，最专业，最系统的信息安全认证

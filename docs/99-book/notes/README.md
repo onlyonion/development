@@ -94,8 +94,8 @@
 * [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
 
 ## 业务架构
-* [《支付平台架构》](/docs/99-book/notes/40-architecture/支付平台架构.md)
-* [《支付架构实战》](/docs/99-book/notes/40-architecture/支付架构实战.md)
+* [《支付平台架构 业务、规划、设计与实现》曹兵强 中国工信出版社 电子工业出版社](/docs/99-book/notes/40-architecture/支付平台架构.md)
+* [《支付架构实战》苏博亚 中国工信出版社](/docs/99-book/notes/40-architecture/支付架构实战.md)
 
 ## 设计
 * [《大话设计模式》程杰 清华大学出版社](/docs/99-book/notes/40-architecture/大话设计模式.md)

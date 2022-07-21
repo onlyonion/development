@@ -15,56 +15,39 @@ T
 * merge 提交commit合并修改
 * rebase 修改提交历史记录 
 
-## front dev ide
-* webstorm
-* aptana studio
-* dreamweaver
-* sublime text
-* atorm
-* textmate
-* vim
-* emacs
-* nodepad++
-* ultraedit
-* uedit
-* editplus
-* VSCode 
-
-## docs
-
-### gitbook
+### git
 ```sh
-npm install -g gitbook-cli
-# init
-gitbook init
-# serve
-gitbook serve
-# build 生成一个 _book 文件夹
-gitbook build
+git init 
+git add 
+git commit -m "first commit"
+git remote add origin https://github.com/yourspace/yourproject.git
+git push -u origin master
 ```
 
-配置信息 book.json
-
-导航配置 SUMMARY.md
-
-### docsify
+### git只拉取部分目录
 ```sh
-npm i docsify-cli -g
-docsify init ./docs
-docsify serve
-```
-_sidebar.md
-```sh
-index.html
-loadSidebar: true
+mkdir pro1
+cd pro1
+git init
+git remote add -f origin https://github.com/XXXXX/test.git    #拉取remote的all objects信息
+git config core.sparsecheckout true   #开启sparse clone
+echo "build" >> .git/info/sparse-checkout   #设置需要pull的目录，*表示所有，!表示匹配相反的
+less .git/info/sparse-checkout
+git pull origin master  #拉取
 ```
 
-### jekyll
+### git - unable to clone Host key verification failed. fatal: Could not read from remote repository
 ```sh
-gem install jekyll bundler
-jekyll new my-awesome-site
-cd my-awesome-site
-bundle install
-bundle exec jekyll serve
-# => 打开浏览器 http://localhost:4000
+# 添加SSH公钥
+ssh-keygen -t rsa -C "youraccount" # 注意是邮箱或者账号，或者两个都是 youraccount@email.com 
 ```
+
+### git safe directory
+```sh
+git config --global --add safe.directory "*"
+# gitignore
+git config --global core.excludesfile ~/.gitignore_global
+```
+
+### mybatis
+\,jdbcType\=[A-Z]*

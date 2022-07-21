@@ -5,6 +5,8 @@ SETX CLASSPATH .;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.ja
 :: maven
 SETX MAVEN_HOME	D:\opt\java\apache-maven-3.6.3 /m
 SETX M2_HOME %MAVEN_HOME% /m
+:: ant
+SETX ANT_HOME D:\opt\java\apache-ant-1.9.14 /m
 :: gradle
 SETX JAVA_OPTS -Dfile.encoding=UTF-8 /m
 SETX GRADLE_OPTS -Dfile.encoding=UTF-8 /m
@@ -24,4 +26,4 @@ SETX NLS_LANG AMERICAN_AMERICA.AL32UTF8 /m
 SETX PYTHON2_HOME D:\opt\python\python27 /m
 
 :: path
-:: ";%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin;%CONDA_HOME%;%CONDA_HOME%\Scripts;%SCALA_HOME%\bin;%NODE_HOME%;%PYTHON2_HOME%"
+:: ";%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;%MAVEN_HOME%\bin;%GRADLE_HOME%\bin;%CONDA_HOME%;%CONDA_HOME%\Scripts;%SCALA_HOME%\bin;%NODE_HOME%;%PYTHON2_HOME%;%ANT_HOME%\bin"
