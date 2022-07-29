@@ -199,6 +199,8 @@ ipconfig /flushdns
 ```
 
 ## windows11
+
+### 鼠标
 ```sh
 # 切换到旧版右键菜单：
 reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
@@ -207,3 +209,11 @@ reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" 
 # 重启Windows资源管理器生效：
 taskkill /f /im explorer.exe & start explorer.exe
 ```
+
+### 资源管理器
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions
+右键Shell Extensions，新建，选择“项”，命名为Blocked
+右键Blocked，新建，字符串值，命名为{e2bf9676-5f8f-435c-97eb-11607a5bedf7}
+
+恢复删掉Blocked
