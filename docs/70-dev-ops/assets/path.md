@@ -19,6 +19,7 @@ C:\Program Files\TortoiseGit\bin;
 %NODE_HOME%;
 %PYTHON2_HOME%;
 C:\Users\lijicong\AppData\Local\Microsoft\WindowsApps;
+D:\opt\tool\mingw64\bin;
 ```
 
 

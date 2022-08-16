@@ -136,6 +136,15 @@ VM options：
 
 ### Windows Defender might be impacting your build performance. IntelliJ IDEA checked the following directories
 
+## eclipse
+### utf-8
+window -> preferences -> General -> workplace中text file encoding改为utf-8
+
+window -> preferences -> web -> jsp files中 encoding 改为 utf-8
+
+file -> switch workplace -> other -> copy setting -> 勾选working set、workbench layout
+### Validation
+Windows > Perferences > Validation
 
 ## vscode
 
@@ -193,6 +202,8 @@ sudo port install graphviz
 brew install graphviz
 
 ```
+
+
 
 ## tool
 - ZooViewer
