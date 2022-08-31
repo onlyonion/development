@@ -297,11 +297,11 @@ jdk7中ConcurrentHashmap中，当长度过长碰撞会很频繁，链表的增�
 
 主要设计上的变化有以下几点: 
 
-不采用segment而采用node，锁住node来实现减小锁粒度。
-设计了MOVED状态 当resize的中过程中 线程2还在put数据，线程2会帮助resize。
-使用3个CAS操作来确保node的一些操作的原子性，这种方式代替了锁。
-sizeCtl的不同值来代表不同含义，起到了控制的作用。
-至于为什么JDK8中使用synchronized而不是ReentrantLock，我猜是因为JDK8中对synchronized有了足够的优化吧。
+- 不采用segment而采用node，锁住node来实现减小锁粒度。
+- 设计了MOVED状态 当resize的中过程中 线程2还在put数据，线程2会帮助resize。
+- 使用3个CAS操作来确保node的一些操作的原子性，这种方式代替了锁。
+- sizeCtl的不同值来代表不同含义，起到了控制的作用。
+- 至于为什么JDK8中使用synchronized而不是ReentrantLock，我猜是因为JDK8中对synchronized有了足够的优化吧。
 
 
 ## links
