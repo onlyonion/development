@@ -564,6 +564,11 @@ sequenceDiagram
 ```
 
 ### RejectedExecutionHandler
+- CallerRuns    提交任务的线程执行    
+- AbortPolicy   拒绝抛异常
+- Discard   忽略
+- DiscardOldest 忽略等待最长的任务
+
 ```java
     public static class CallerRunsPolicy implements RejectedExecutionHandler {
         public CallerRunsPolicy() { }

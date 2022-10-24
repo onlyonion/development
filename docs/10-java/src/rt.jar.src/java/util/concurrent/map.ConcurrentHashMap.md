@@ -259,10 +259,10 @@ TreeBin o-- TreeNode
 ## methods
 
 ### put 初始化、扩容、帮助数据迁移、添加（链表节点、红黑树节点）
-1. 得到 hash 值
+1. 得到 `hash = spread(key.hashCode())` 值
 2. 用于记录相应链表的长度
 3. 循环、自旋
-  * 如果数组"空"，进行数组初始化
+  * 如果数组"空"，进行数组初始化 `initTable()`
   * 找该 hash 值对应的数组下标，得到第一个节点 f；用一次 CAS 操作将这个新值放入其中即可；如果 CAS 失败，那就是有并发操作，进到下一个循环就好了
   * hash 居然可以等于 MOVED，帮助数据迁移
   * f 是该位置的头结点，而且不为空
@@ -291,7 +291,7 @@ Doug Lea采用Unsafe.getObjectVolatile来获取，为什么不直接从每个线
 
 
 ## 总结
-jdk7中ConcurrentHashmap中，当长度过长碰撞会很频繁，链表的增改删查操作都会消耗很长的时间，影响性能。
+jdk7中ConcurrentHashMap中，当长度过长碰撞会很频繁，链表的增改删查操作都会消耗很长的时间，影响性能。
 所以jdk8 中完全重写了concurrentHashmap,代码量从原来的1000多行变成了6000多行，
 实现上也和原来的**分段式存储**有很大的区别。
 
@@ -301,7 +301,7 @@ jdk7中ConcurrentHashmap中，当长度过长碰撞会很频繁，链表的增�
 - 设计了MOVED状态 当resize的中过程中 线程2还在put数据，线程2会帮助resize。
 - 使用3个CAS操作来确保node的一些操作的原子性，这种方式代替了锁。
 - sizeCtl的不同值来代表不同含义，起到了控制的作用。
-- 至于为什么JDK8中使用synchronized而不是ReentrantLock，我猜是因为JDK8中对synchronized有了足够的优化吧。
+- 至于为什么JDK8中使用synchronized而不是`ReentrantLock`，我猜是因为JDK8中对synchronized有了足够的优化吧。
 
 
 ## links

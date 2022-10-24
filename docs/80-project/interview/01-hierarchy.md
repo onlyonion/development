@@ -8,7 +8,7 @@
 
 * 集合 HashMap 的原理，与 Hashtable、ConcurrentHashMap 的区别
 * Java 线程池的核心属性以及处理流程
-* Java 并发包原理、Synchronized关键字、锁
+* Java 并发包原理、volatile + for + cas、Synchronized关键字、锁
 * 线程的生命周期
 * JVM类加载机制
 * JVM内存模型

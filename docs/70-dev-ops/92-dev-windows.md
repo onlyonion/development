@@ -140,6 +140,9 @@ netstat -ano | findstr "80"
 nginx -s stop # (快速停止nginx) 
 nginx -s quit # (完整有序的停止nginx)
 taskkill /f /t /im nginx.exe
+
+taskkill /f /t /im "进程名称"
+taskkill /f /t /pid "进程PID" 
 ```
 
 ### nginx-tomcat

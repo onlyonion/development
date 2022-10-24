@@ -57,7 +57,7 @@
 
 * 说说线程安全问题
 * volatile 实现原理
-* synchronize 实现原理
+* synchronized 实现原理
 * synchronized 与 lock 的区别
 * CAS 乐观锁
 * ABA 问题

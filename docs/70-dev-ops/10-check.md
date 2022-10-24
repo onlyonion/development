@@ -37,7 +37,11 @@ cat /proc/meminfo
 
 ```sh
 netstat -nap | grep 2682 # 根据进程ID查找端口
-netstat -nap | grep 8080 # 根据端口查找进程ID
+
+# 根据端口查找进程ID
+netstat -nap | grep 8080 
+netstat -nlp | grep 8080
+lsof -i | grep 8080
 ```
 
 ### 分析工具

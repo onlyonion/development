@@ -18,6 +18,8 @@ jmap -histo:live 1 | head -20
 jmap -dump:live,format=b,file=/root/logs/dump.hprof 1
 jmap -dump:format=b,file=/root/logs/dump.hprof 1
 jmap -dump:histo,format=b,file=nezha-admin.hprof 1
+
+tar -czvf new.tgz file1 file2
 ```
 ## arthas
 curl -O https://arthas.aliyun.com/arthas-boot.jar
