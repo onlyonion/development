@@ -1,46 +1,48 @@
-linux
+check linux
 
-## linux
+## base
 
 ```sh
 # 解压缩
 # windows *.tgz
-# tar -czvf test.tar.gz a.c 
-# tar -xzvf test.tar.gz 
+tar -czvf test.tar.gz a.c # 压缩
+tar -xzvf test.tar.gz # 解压
+unzip test.zip # 解压
+unzip -d /temp test.zip # 指定目录
+
 # yum install lrzsz
 
 # 复制文件夹到文件夹
 cp -r 
 
 ```
-
+## check
+```sh
 ### 整机
-* top -Hp 查看线程
-* dstat 全能实时系统信息统计
+top -Hp # 查看线程
+dstat # 全能实时系统信息统计
 
 ### 进程
-* ps
-* vmstat 进程、虚拟内存、页面交换、IO读写、CPU活动率
-* mpstat
-* pidstat
+ps
+vmstat #进程、虚拟内存、页面交换、IO读写、CPU活动率
+mpstat
+pidstat
 
 ### 内存
-* free -m
-
+free -m
 cat /proc/meminfo
 
 ### 磁盘
-* iostat 系统io状态信息 `磁盘IO iostat -xdk 2 3 每2秒采样，3次`
-* iotop
-* df -h
+ostat #系统io状态信息 `磁盘IO iostat -xdk 2 3 每2秒采样，3次`
+iotop
+df -h
 
 ### 网络
-* ifstat 实时网络流量监控
-* iftop 
-* netstat 查看网络相关信息、各种网络协议套接字状态
-* sar
+ifstat #实时网络流量监控
+iftop 
+netstat #查看网络相关信息、各种网络协议套接字状态
+sar
 
-```sh
 netstat -nap | grep 2682 # 根据进程ID查找端口
 
 # 根据端口查找进程ID
@@ -55,12 +57,6 @@ lsof -i | grep 8080
 * lsof 查看系统当前打开的文件信息
 * tcpdump 网络抓包工具
 * traceroute 网络路由分析工具
-
-### 常用命令
-* awk
-* grep
-* less
-* tail
 
 ## troubleshoot 故障排查
 * cpu消耗

@@ -1,4 +1,4 @@
-## jdk
+## jvm
 ```sh
 jps
 jinfo -flags 1
