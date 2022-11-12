@@ -4,9 +4,12 @@ linux
 
 ```sh
 # windows *.tgz
-# tar -czvf test.tar.gz a.c 
-# tar -xzvf test.tar.gz 
+tar -czvf test.tar.gz a.c # 压缩
+tar -xzvf test.tar.gz # 解压
 # yum install lrzsz
+
+unzip test.zip # 解压
+unzip -d /temp test.zip # 指定目录
 ```
 
 ### 整机
