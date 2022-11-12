@@ -3,10 +3,15 @@ linux
 ## linux
 
 ```sh
+# 解压缩
 # windows *.tgz
 # tar -czvf test.tar.gz a.c 
 # tar -xzvf test.tar.gz 
 # yum install lrzsz
+
+# 复制文件夹到文件夹
+cp -r 
+
 ```
 
 ### 整机
