@@ -17,7 +17,25 @@ java.util.concurrent.ThreadPoolExecutor
   * 队列是否已满
   * 是否大于maxSize
   * rejectPolicy
-  
+
+```plantuml
+@startuml
+
+state RUNNING
+
+RUNNING --> SHUTDOWN : shutdown()
+RUNNING -> STOP : shutdownNow()
+
+SHUTDOWN -> STOP : shutdownNow()
+
+SHUTDOWN --> TIDYING : queue and pool empty
+STOP -> TIDYING : pool empty
+
+TIDYING --> TERMINATED : terminated() completed
+
+@enduml
+```
+
 ## hierarchy
 ```
 Executor

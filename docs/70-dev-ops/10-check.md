@@ -1,7 +1,6 @@
 check linux
 
 ## base
-
 ```sh
 # 解压缩
 # windows *.tgz
@@ -11,15 +10,16 @@ unzip test.zip # 解压
 unzip -d /temp test.zip # 指定目录
 
 # yum install lrzsz
-
 # 复制文件夹到文件夹
 cp -r 
-
 ```
 ## check
 ```sh
 ### 整机
-top -Hp # 查看线程
+top -H # 查看线程
+top -p {pid} # 查看指定进程id的top信息
+top -H -p {pid} # 查看指定进程id的所有线程的top信息
+top -Hp {pid}
 dstat # 全能实时系统信息统计
 
 ### 进程
@@ -27,6 +27,10 @@ ps
 vmstat #进程、虚拟内存、页面交换、IO读写、CPU活动率
 mpstat
 pidstat
+cat /proc/cpuinfo
+cat /proc/cpuinfo| grep “physical id”| sort| uniq| wc -l # 查看物理CPU个数
+cat /proc/cpuinfo| grep “cpu cores”| uniq # 查看每个物理CPU中core的个数(即核数)
+cat /proc/cpuinfo| grep “processor”| wc -l # 查看逻辑CPU的个数
 
 ### 内存
 free -m

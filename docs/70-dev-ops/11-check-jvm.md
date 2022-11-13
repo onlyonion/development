@@ -1,5 +1,10 @@
 ## jvm
 ```sh
+# linux
+top # shift + s
+top -H
+top -Hp {pid}
+
 jps
 jinfo -flags 1
 
@@ -19,21 +24,29 @@ jmap -dump:live,format=b,file=/root/logs/dump.hprof 1
 jmap -dump:format=b,file=/root/logs/dump.hprof 1
 jmap -dump:histo,format=b,file=nezha-admin.hprof 1
 
+# 压缩
 tar -czvf new.tgz file1 file2
+tar -xzvf test.tar.gz # 解压
+unzip test.zip # 解压
+unzip -d /temp test.zip # 指定目录
 ```
 ## arthas
+```sh
+# 下载、运行、使用
 curl -O https://arthas.aliyun.com/arthas-boot.jar
 java -jar arthas-boot.jar
-
 dashboard
+```
 
 ### greys
+```sh
+# 下载、运行、使用
 curl -sLk http://ompc.oss.aliyuncs.com/greys/install.sh|sh
 ./greys.sh 1
 watch -b 类名 方法名 params[0]
 watch -b 类名 方法名 params[0]+params[1]
 watch -f 类名 方法名 returnObj -x 1
-
+```
 
 ## check domain
 ```sh
