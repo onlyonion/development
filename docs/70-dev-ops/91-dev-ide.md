@@ -19,16 +19,18 @@ Tools -> Display Preferences -> General setting的Format菜单下，点Modify，
 用例图带箭头
 Tools -> Display Preferences -> General，Use Case Association，选中Orientation
 
-## idea
+----------------------------------------------------------------------------------------------------------------------------
 
+## idea
 JVM参数
 ```sh
 -Dfile.encoding=UTF-8
 ```
+插件市场打不开 auto-detect proxy
+http://127.0.0.1:1080
 
 ### idea跑到窗口之外
 Alt + 空格，之后点击最大化
-
 ### 初始
 - JDK
 - 文件编码 Editor -> File Encodings
@@ -146,6 +148,9 @@ file -> switch workplace -> other -> copy setting -> 勾选working set、workben
 ### Validation
 Windows > Perferences > Validation
 
+
+----------------------------------------------------------------------------------------------------------------------------
+
 ## vscode
 
 ### plugin
@@ -203,6 +208,8 @@ brew install graphviz
 
 ```
 
+
+----------------------------------------------------------------------------------------------------------------------------
 
 
 ## tool

@@ -41,6 +41,7 @@ docker start 容器ID
 # 重启容器
 docker restart 容器ID
 # 进入容器
+docker exec -it 容器ID /bin/bash
 docker attach 容器ID
 docker inspect --format "{{.State.Pid}}" 容器ID
 nsenter --target $PID --mount --uts --ipc --net --pid

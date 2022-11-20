@@ -32,7 +32,8 @@ class ArrayBlockingQueue<E> {
     private final Condition notEmpty
     private final Condition notFull
 }
-
+AbstractQueue ^-- ArrayBlockingQueue
+BlockingQueue ^.. ArrayBlockingQueue
 ArrayBlockingQueue o-- ReentrantLock
 ArrayBlockingQueue o-- Condition
 

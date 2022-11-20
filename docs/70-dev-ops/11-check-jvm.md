@@ -22,7 +22,7 @@ jmap -histo 1 | head -50
 jmap -histo:live 1 | head -20
 jmap -dump:live,format=b,file=/root/logs/dump.hprof 1
 jmap -dump:format=b,file=/root/logs/dump.hprof 1
-jmap -dump:histo,format=b,file=nezha-admin.hprof 1
+jmap -dump:histo,format=b,file=dump.hprof 1
 
 # 压缩
 tar -czvf new.tgz file1 file2
@@ -52,7 +52,7 @@ watch -f 类名 方法名 returnObj -x 1
 ```sh
 # linux
 yum install -y traceroute
-traceroute
+traceroute # 网络路由分析工具
 
 # curl http code
 curl -I -m 10 -o /dev/null -s -w %{http_code} www.baidu.com
