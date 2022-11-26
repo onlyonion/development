@@ -17,6 +17,7 @@ mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dpackaging=ja
 # ant + ivy(依赖管理) + maven
 # project、task
 gradle dependencies
+gradle :module-name:dependencies
 ```
 ```groovy
   // helloworld

@@ -71,3 +71,21 @@ bin/kafka-topics.sh --zookeeper localhost:2181/kafka --create --topics topic-dem
 bin/kafka-console-consumer.sh --boostrap-server localhost:9092 --topic topic-demo
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic-demo
 ```
+
+## nginx
+```sh
+nginx -t # 检查参数
+nginx -s reload
+nginx -s stop # (快速停止nginx) 
+nginx -s quit # (完整有序的停止nginx)
+# port
+netstat -ano | findstr 0.0.0.0:80
+netstat -ano | findstr "80"
+
+
+
+client_max_body_size 10m;
+ps -ef | grep nginx
+# proc 执行ls -l /proc/进程号/exe ,然后会打印出安装/运行位置
+ll /proc/892128/exe
+```
