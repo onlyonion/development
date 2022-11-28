@@ -14,11 +14,11 @@ docker run -it --cap-add SYS_TIME --rm --name centos centos /bin/bash
 ```sh
 # search
 docker search java
-# pull
+# pull 下载镜像
 docker pull java
-# images
+# images 列出镜像
 docker images
-# remove images
+# remove images 删除本地镜像
 docker rmi hello-world
 # remove all images
 docker rmi -f ${docker images}
