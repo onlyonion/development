@@ -148,3 +148,18 @@ ok: run: unicorn: (pid 15087) 0s
 # gitlab-ctl restart nginx
 # http://IP:端口/gitlab账号/工程名/public/
 ```
+
+
+
+cat <<EOF > daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "registry-mirrors": [
+    "https://registry.docker-cn.com", 
+    "http://f1361db2.m.daocloud.io", 
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://hub-mirror.c.163.com"
+  ]
+}
+EOF
+mv daemon.json /etc/docker/
