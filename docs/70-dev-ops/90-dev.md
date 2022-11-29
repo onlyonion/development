@@ -44,8 +44,8 @@ source /etc/profile
 cp zoo_sample.cfg zoo.cfg
 mkdir -p /tmp/zookeeper/data
 mkdir -p /tmp/zookeeper/log
-zkServer.sh start
-zkServer.sh status
+zkServer.sh start # 启动
+zkServer.sh status # 状态
 # cluster zoo.cfg
 # server.0=ip1:2888:3888
 # server.1=ip2:2888:3888
@@ -56,13 +56,7 @@ zkServer.sh status
 ```sh
 tar xzvf kafka_2.11-2.0.0.tgz
 # $KAFKA_HOME /opt/kafka_2.11-2.0.0
-# $KAFKA_HOME/conf/server.properties
-broker.id=0
-listeners=PLAINTEXT://localhost:9092
-log.dirs=/tmp/kafka-logs
-zookeeper.connect=localhost:2181/kafka
-
-# start
+# singleton
 bin/kafka-server-start.sh config/server.properties &
 bin/kafka-server-start.sh -daemon config/server.properties
 jps -l
@@ -70,6 +64,18 @@ jps -l
 bin/kafka-topics.sh --zookeeper localhost:2181/kafka --create --topics topic-demo --replication-factor 3 --partitions 4
 bin/kafka-console-consumer.sh --boostrap-server localhost:9092 --topic topic-demo
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic-demo
+```
+
+```conf
+# $KAFKA_HOME/conf/server.properties
+broker.id=0
+listeners=PLAINTEXT://localhost:9092
+log.dirs=/tmp/kafka-logs
+zookeeper.connect=localhost:2181/kafka
+# cluster 集群中每个broker.id配置参数不一样，listeners与之对应
+broker.id=1
+listeners=PLAINTEXT://kafka1:9092
+zookeeper.connect=zk1:2181,zk2:2181/kafka
 ```
 
 ## nginx
@@ -81,8 +87,6 @@ nginx -s quit # (完整有序的停止nginx)
 # port
 netstat -ano | findstr 0.0.0.0:80
 netstat -ano | findstr "80"
-
-
 
 client_max_body_size 10m;
 ps -ef | grep nginx

@@ -3,6 +3,9 @@
 - docker 容器命令
 - dockerfile 命令
 
+## net
+windows 服务--> 找到vmware dhcp后重启
+
 ## cmd
 ```sh
 # docker修改时间
@@ -12,44 +15,32 @@ docker run -it --cap-add SYS_TIME --rm --name centos centos /bin/bash
 
 ### docker 镜像常用命令
 ```sh
-# search
-docker search java
-# pull
+docker search java # search
 docker pull java
-# images
 docker images
-# remove images
-docker rmi hello-world
-# remove all images
-docker rmi -f ${docker images}
+docker rmi hello-world # remove images
+docker rmi -f ${docker images} # remove all images
 docker commit -a zzyy -m "I am annotation"
 ```
 
 ### docker 容器常用命令
 ```sh
-# 新建并启动容器
-docker run java /bin/echo 'hello world'
+docker run java /bin/echo 'hello world' # 新建并启动容器
 docker run -d -p 91:80 nginx # -d后台运行 -p 宿主机端口号:容器端口 http://docker宿主机ip:91
-# 列出运行中的容器
 docker ps # docker ps -a
-# 停止容器
-docker stop 容器ID
-# 强制停止
-docker kill 容器ID
-# 启动已停止的容器
-docker start 容器ID
-# 重启容器
-docker restart 容器ID
-# 进入容器
-docker exec -it 容器ID /bin/bash
+docker stop 容器ID # 停止容器
+docker kill 容器ID # 强制停止
+docker start 容器ID # 启动已停止的容器
+docker restart 容器ID # 重启容器
+docker exec -it 容器ID /bin/bash # 进入容器
 docker attach 容器ID
 docker inspect --format "{{.State.Pid}}" 容器ID
 nsenter --target $PID --mount --uts --ipc --net --pid
-# 删除容器
-docker rm 容器ID
+docker rm 容器ID # 删除容器
 docker rm -f $(docker ps -a -q)
-# 重命名
-docker rename oldName newName
+docker rename oldName newName # 重命名
+# docker-compose.yml当前所在的目录运行 -d 后台运行
+docker-compose up -d
 ```
 
 ## dockerfile
@@ -70,14 +61,16 @@ docker rename oldName newName
   - VOLUME 容器数据卷，用于数据保存和持久化工作
   - CMD 多个只运行最后一个，CMD会被docker run之后的参数替换
   - ENTRYPONIT
+  
+```sh
+docker build -t test:v1 .  # -t tag指定名称:版本号 .当前目录
+
+```
 
 ## Demo
 ```sh
-# docker exec
-docker exec -it 容器ID /bin/bash
-
-# nginx
-docker run -d -p 91:80 nginx
+docker exec -it 容器ID /bin/bash # docker exec
+docker run -d -p 91:80 nginx # nginx
 
 # tomcat
 docker search tomcat
@@ -168,3 +161,10 @@ docker run -d -p 10911:10911 -p 10909:10909 -v D:/opt/app/Git/docker/rocketmq/da
 
 docker run -d --restart=always --name rmqbroker --link rmqnamesrv:namesrv -p 10911:10911 -p 10909:10909 -v D:/opt/app/Git/docker/rocketmq/data/broker/logs:/root/logs -v D:/opt/app/Git/docker/rocketmq/data/broker/store:/root/store -v  D:/opt/app/Git/docker/rocketmq/conf/broker.conf:/opt/rocketmq3/conf/broker.conf -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq sh mqbroker -c /opt/rocketmq3/conf/broker.conf
 ```
+
+### redis
+```sh
+# https://docker.easydoc.net/
+docker run -d -p 6379:6379 --name redis redis:latest
+```
+
