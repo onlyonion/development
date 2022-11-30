@@ -163,3 +163,65 @@ cat <<EOF > daemon.json
 }
 EOF
 mv daemon.json /etc/docker/
+
+## docker
+###
+```sh
+yum install -y lrzsz 
+# 所有节点关闭 SELinux
+setenforce 0
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+# 关闭swap
+swapoff -a
+vim /etc/fstab #注释掉swap分区
+#/dev/mapper/cl-swap swap swap defaults 0 0
+
+# subscription-manag
+vim /etc/yum/pluginconf.d/subscription-manager.conf
+[main]
+#enabled=1
+```
+
+### remove
+systemctl stop docker
+rm -rf /etc/docker
+rm -rf /run/docker
+rm -rf /var/lib/dockershim
+rm -rf /var/lib/docker
+yum remove -y docker*
+yum clear all
+
+yum list installed | grep docker
+ps -ef | grep docker
+kill -9 pid
+
+
+```sh
+yum remove -y kubelet-1.22.4 kubectl-1.22.4 kubeadm-1.22.4 docker-ce
+yum install -y kubelet-1.22.4 kubectl-1.22.4 kubeadm-1.22.4 docker-ce
+
+systemctl enable kubelet
+systemctl start kubelet
+systemctl enable docker
+systemctl start docker
+
+# kubernetes 官方推荐 docker 等使用 systemd 作为 cgroupdriver，否则 kubelet 启动不了
+cat <<EOF > daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "registry-mirrors": ["https://ud6340vz.mirror.aliyuncs.com"]
+}
+EOF
+mv daemon.json /etc/docker/
+
+# 重启生效
+systemctl daemon-reload
+systemctl restart docker
+```
+
+## kubeadm
+kubeadm init --image-repository=registry.aliyuncs.com/google_containers
+kubeadm join 192.168.0.115:6443 --token qn3u0x.mff3wqbkkzo1ilvq --discovery-token-ca-cert-hash sha256:03a7a7589da0b3d84bf6ad866f0db04cc05973e55e429a929b4e1dc1ba0eb2e4 
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
