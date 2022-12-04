@@ -225,3 +225,18 @@ kubeadm join 192.168.0.115:6443 --token qn3u0x.mff3wqbkkzo1ilvq --discovery-toke
 
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
+
+
+
+sudo docker run -d \
+  --restart=unless-stopped \
+  --name=kuboard \
+  -p 80:80/tcp \
+  -p 10081:10081/tcp \
+  -e KUBOARD_ENDPOINT="http://192.168.0.115:80" \
+  -e KUBOARD_AGENT_SERVER_TCP_PORT="10081" \
+  -v /root/kuboard-data:/data \
+  eipwork/kuboard:v3
+
+admin
+Kuboard123
