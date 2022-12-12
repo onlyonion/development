@@ -12,6 +12,9 @@ unzip -d /temp test.zip # 指定目录
 # yum install lrzsz
 # 复制文件夹到文件夹
 cp -r 
+mkdir -p /tmp/a/b/c
+chgrp -R /data
+chown -R /data #修改该目录下所有文件和目录，使用-R参数
 ```
 ## check top
 ```sh

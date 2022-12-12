@@ -12,8 +12,12 @@
 ### queue
 
 ### stack
+- Vector
 
 ### map
+- HashTable
+- HashMap
+- TreeMap
 
 ### set
 Set SortedSet, HashSet, LinkedHashSet, TreeSet

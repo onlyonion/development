@@ -15,6 +15,9 @@ yum install -y net-tools.x86_64
 # LANG="zh_CN.UTF-8" LANG="en_US.UTF-8"
 vim locale.conf
 
+# mount
+mkdir /mnt/cdrom
+mount /dev/cdrom /mnt/cdrom
 # vmware-tools
 cd vmware-tools-distrib
 sudo ./vmware-install.pl
