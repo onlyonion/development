@@ -30,6 +30,10 @@ yum module list nodejs
 sudo yum module install nodejs
 # 将Python2建立软连接Python
 ln -s /usr/bin/python2 /usr/bin/python
+
+# 判断是不是虚拟机
+lscpu
+dmidecode -s system-product-name
 ```
 
 ## 防火墙

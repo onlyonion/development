@@ -6,17 +6,54 @@ redis.c
 ```plantuml
 @startuml
 
-
 class redisServer {
-    edisDb *db
+    redisDb *db
     int dbnum
 }
 
-class redisDb
+class redisDb {
+    dict *dict
+    dict *expires
+    int id
+}
+
 class redisClient
 
-redisServer "1" *-- "*" redisDb
+class dict {
+    dictType *type
+    dictht ht[2]
+    int rehashidx
+}
+
+class dictht {
+    dictEntry **table
+}
+
+class dictEntry {
+    void *key
+    union {
+        void *val;
+        uint64_t u64;
+        int64_t s64;
+    } v
+}
+
+redisServer "1" *- "*" redisDb
 redisServer "1" *-- "*" redisClient
+redisDb "1" *- "*" dict
+dict "1" *- "2" dictht
+dictht *- dictEntry
+dictEntry *-- key
+dictEntry *-- value
+
+class redisObject {
+    unsigned type:4
+    unsigned encoding:4
+    int refcount
+    void *ptr
+}
+key -- redisObject
+value -- redisObject
 
 @enduml
 ```
@@ -26,6 +63,26 @@ redisServer "1" *-- "*" redisClient
 [dict](/docs/30-distributed/src/redis/redis3.0/ds/dict.md)
 
 ```c
+
+struct redisServer {
+    pid_t pid;  /* 主进程 pid. */
+    pthread_t main_thread_id; /* 主线程 id */
+    char *configfile;  /*redis.conf 文件绝对路径*/
+    redisDb *db; /* 存储键值对数据的 redisDb 实例 */
+   int dbnum;  /* DB 个数 */
+    dict *commands; /* 当前实例能处理的命令表，key 是命令名，value 是执行命令的入口 */
+    aeEventLoop *el;/* 事件循环处理 */
+    int sentinel_mode;  /* true 则表示作为哨兵实例启动 */
+
+   /* 网络相关 */
+    int port;/* TCP 监听端口 */
+    list *clients; /* 连接当前实例的客户端列表 */
+    list *clients_to_close; /* 待关闭的客户端列表 */
+
+    client *current_client; /* 当前执行命令的客户端*/
+};
+
+
 /* Redis database representation. There are multiple databases identified
  * by integers from 0 (the default database) up to the max configured
  * database. The database number is the 'id' field in the structure. */

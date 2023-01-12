@@ -27,3 +27,16 @@ public interface RLock extends Lock, RLockAsync {
 
 
 ## methods
+
+```java
+
+// Lock
+boolean tryLock(long time, TimeUnit unit) throws InterruptedException;
+
+// RLock
+boolean tryLock(long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException;
+
+// RLock
+void lock(long leaseTime, TimeUnit unit);
+
+```
