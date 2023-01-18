@@ -30,7 +30,7 @@ public class QueueListener implements ApplicationListener<ContextRefreshedEvent>
                     DeferredResult<String> deferredResult = similarQueueHolder.getBlockingDeque().take();
                     log.info("开始DeferredResult异步处理");
                     //模拟处理时间
-                    TimeUnit.SECONDS.sleep(3);
+                    TimeUnit.SECONDS.sleep(1);
                     log.info("结束DeferredResult异步处理");
                     //模拟处理完成赋值
                     deferredResult.setResult("Hello World from DeferredResult");

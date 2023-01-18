@@ -1,13 +1,12 @@
 package com.onion.test.framework.spring.mvc.asyn.web;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.TimeUnit;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.TimeUnit;
 
 /**
  * CompletionStage /CompletableFuture Controller层
@@ -17,11 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 public class CompletableAsynController {
 
     @GetMapping("/completion-stage")
-    public CompletionStage<String> completionStage(){
+    public CompletionStage<String> completionStage() {
 
         log.info("主线程 helloWorld");
 
-        return CompletableFuture.supplyAsync(()->{
+        return CompletableFuture.supplyAsync(() -> {
             //模拟处理时间
             log.info("异步线程 开始 CompletableFuture");
             try {

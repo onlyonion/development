@@ -12,6 +12,9 @@ java.lang.ThreadLocal
 ```
 ThreadLocal (java.lang)
     InheritableThreadLocal (java.lang)
+        NamedInheritableThreadLocal (org.springframework.core)
+        TransmittableThreadLocal (com.alibaba.ttl)
+        CopyOnInheritThreadLocal (ch.qos.logback.classic.util)
     NamedThreadLocal (org.springframework.core)
     ThreadLocalBoolean (org.jboss.netty.util.internal)
 ```

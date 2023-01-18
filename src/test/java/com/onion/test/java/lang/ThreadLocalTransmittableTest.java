@@ -1,17 +1,25 @@
 package com.onion.test.java.lang;
 
-/**
- * <p>文件名称：ThreadLocalTransmittableTest  </p>
- * <p>文件描述：</p>
- * <p>版权所有： 版权所有(C)2017-2099</p>
- * <p>公   司： 八维通 </p>
- * <p>内容摘要： </p>
- * <p>其他说明： </p>
- * <p>完成日期：2023/1/18</p>
- *
- * @author lijicong@bwton.com
- * @version 1.0
- * @Date :Created by 2023/1/18.
- */
+import cn.hutool.cron.task.RunnableTask;
+import com.alibaba.ttl.TransmittableThreadLocal;
+import com.alibaba.ttl.TtlRunnable;
+import org.junit.Test;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class ThreadLocalTransmittableTest {
+
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    TransmittableThreadLocal<String> context = new TransmittableThreadLocal<>();
+
+    @Test
+    public void test() {
+        context.set("value-set-in-parent");
+//        RunnableTask runnableTask = new RunnableTask(() -> {
+//            System.out.println(Thread.currentThread().getName() + " thread local: " + context.get());
+//        });
+//        Runnable ttlRunnable = TtlRunnable.get(runnableTask);
+//        executorService.submit(ttlRunnable);
+    }
 }

@@ -1,0 +1,37 @@
+job-admin
+
+## package
+```
+controller
+core
+    conf
+    cron
+    exception
+    model
+    old
+    route
+        strategy
+            ExecutorRouteBusyover
+            ExecutorRouteConsistentHash
+            ExecutorRouteFailover
+            ExecutorRouteFirst
+            ExecutorRouteLast
+            ExecutorRouteLFU
+            ExecutorRouteLRU
+            ExecutorRouteRandom
+            ExecutorRouteRound
+        ExecutorRouter
+        ExecutorRouteStrategyEnum
+    thread
+        JobFailMonitorHelper
+        JobRegistryMonitorHelper
+        JobScheduleHelper
+        JobTriggerPoolHelper
+    trigger
+        TriggerTypeEnum
+        XxlJobTrigger
+    util
+    xss
+dao
+service
+```

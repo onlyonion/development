@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class InheritableThreadLocalTest {
+public class ThreadLocalInheritableTest {
 
     private static ExecutorService executorService = Executors.newFixedThreadPool(1);
     private static ThreadLocal<String> threadLocal = new ThreadLocal<>();

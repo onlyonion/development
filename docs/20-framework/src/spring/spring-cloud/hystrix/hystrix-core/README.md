@@ -18,6 +18,12 @@ config
     HystrixThreadPoolConfiguration
 exception
 metric
+    consumer
+        BucketedCounterStream
+        BucketedRollingCounterStream
+        BucketedCumulativeCounterStream
+    HystrixEvent
+    HystrixCommandEvent
 strategy
     concurrency
     eventnotifier

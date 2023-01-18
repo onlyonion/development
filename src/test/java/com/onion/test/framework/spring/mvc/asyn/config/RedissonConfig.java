@@ -1,17 +1,21 @@
 package com.onion.test.framework.spring.mvc.asyn.config;
 
-/**
- * <p>文件名称：RedissonConfig  </p>
- * <p>文件描述：</p>
- * <p>版权所有： 版权所有(C)2017-2099</p>
- * <p>公   司： 八维通 </p>
- * <p>内容摘要： </p>
- * <p>其他说明： </p>
- * <p>完成日期：2023/1/17</p>
- *
- * @author lijicong@bwton.com
- * @version 1.0
- * @Date :Created by 2023/1/17.
- */
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class RedissonConfig {
+
+    @Bean
+    public RedissonClient RedissonClient() {
+        Config config = new Config();
+        config.useSingleServer()
+                .setTimeout(1000000)
+                .setAddress("redis://127.0.0.1:6379");
+        return Redisson.create(config);
+    }
+
 }
