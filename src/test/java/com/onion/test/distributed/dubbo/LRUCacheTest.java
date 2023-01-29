@@ -1,10 +1,10 @@
 package com.onion.test.distributed.dubbo;
 
+import org.apache.dubbo.common.utils.LRUCache;
 import org.apache.ibatis.cache.decorators.LruCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
 import org.junit.Test;
 
-import com.alibaba.dubbo.common.utils.LRUCache;
 
 public class LRUCacheTest {
 

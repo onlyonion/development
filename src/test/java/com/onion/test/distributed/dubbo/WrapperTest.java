@@ -1,9 +1,9 @@
 package com.onion.test.distributed.dubbo;
 
+import org.apache.dubbo.common.bytecode.ClassGenerator;
+import org.apache.dubbo.common.bytecode.Wrapper;
 import org.junit.Test;
 
-import com.alibaba.dubbo.common.bytecode.ClassGenerator;
-import com.alibaba.dubbo.common.bytecode.Wrapper;
 import com.alibaba.fastjson.JSON;
 
 public class WrapperTest {

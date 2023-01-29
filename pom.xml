@@ -565,12 +565,12 @@
 			<artifactId>kclient-core</artifactId>
 			<version>0.0.1</version>
 		</dependency>-->
-		<!--<dependency>
+		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
 			<version>1.6.3</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.2</version>
