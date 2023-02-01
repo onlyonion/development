@@ -1,4 +1,6 @@
 org.apache.ibatis.executor.CachingExecutor
+- 事务缓存管理器
+- 装饰
 
 ## define
 ```plantuml

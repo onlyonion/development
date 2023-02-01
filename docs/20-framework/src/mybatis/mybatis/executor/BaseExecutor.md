@@ -2,6 +2,7 @@ org.apache.ibatis.executor.BaseExecutor
 
 * ConcurrentLinkedQueue 基于Unsafe.cas，而不是ReentrantLock
 * 模板方法模式
+* 一级缓存 PerpetualCache
 
 ## hierarchy
 ```

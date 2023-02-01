@@ -1,0 +1,17 @@
+sendQueryPacket:926, NativeProtocol (com.mysql.cj.protocol.a)
+execSQL:1075, NativeSession (com.mysql.cj)
+executeInternal:930, ClientPreparedStatement (com.mysql.cj.jdbc)
+execute:370, ClientPreparedStatement (com.mysql.cj.jdbc)
+
+preparedStatement_execute:3461, FilterChainImpl (com.alibaba.druid.filter)
+preparedStatement_execute:440, FilterEventAdapter (com.alibaba.druid.filter)
+preparedStatement_execute:3459, FilterChainImpl (com.alibaba.druid.filter)
+preparedStatement_execute:440, FilterEventAdapter (com.alibaba.druid.filter)
+preparedStatement_execute:3459, FilterChainImpl (com.alibaba.druid.filter)
+execute:167, PreparedStatementProxyImpl (com.alibaba.druid.proxy.jdbc)
+execute:497, DruidPooledPreparedStatement (com.alibaba.druid.pool)
+
+query:64, PreparedStatementHandler (org.apache.ibatis.executor.statement)
+query:79, RoutingStatementHandler (org.apache.ibatis.executor.statement)
+doQuery:63, SimpleExecutor (org.apache.ibatis.executor)
+queryFromDatabase:325, BaseExecutor (org.apache.ibatis.executor)

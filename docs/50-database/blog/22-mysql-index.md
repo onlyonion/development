@@ -13,8 +13,8 @@
 
 ### 聚簇索引
 “聚簇” 表示数据行和相邻的键值进错的存储在一起
-* 聚簇索引（Clustered Index） 		索引顺序就是数据的物理存储顺序，一个表最多只能有一个聚簇索引
-* 非聚簇索引（Non- Clustered Index） 	索引顺序与数据物理排列顺序无关。
+* 聚簇索引（Clustered Index） 索引顺序就是数据的物理存储顺序，一个表最多只能有一个聚簇索引
+* 非聚簇索引（Non-Clustered Index）索引顺序与数据物理排列顺序无关。
 
 ## [MySQL索引原理及BTree（B-/+Tree）结构详解](/https://blog.csdn.net/u013967628/article/details/84305511)
 MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：索引是数据结构。
@@ -37,7 +37,7 @@ B-Tree
 * 如果某个指针在节点node最右边且不为null，则其指向节点的所有key大于v(keym)v(keym)，其中v(keym)v(keym)为node的最后一个key的值。
 * 如果某个指针在节点node的左右相邻key分别是keyikeyi和keyi+1keyi+1且不为null，则其指向节点的所有key小于v(keyi+1)v(keyi+1)且大于v(keyi)v(keyi)。
 
-```ts
+```c
 BTree_Search(node, key) {
     if(node == null) return null;
     foreach(node.key) {
@@ -82,6 +82,7 @@ drop index index_name on table_name
 
 #### 指定使用索引
 select * from table_name force index (index_name) where conditions;
+SELECT * FROM user u force index(idx_user_id_update_time) where u.id=100 order by u.update_time
 
 #### 联合索引的意义
 减少开销，因为每多一个索引，都会增加磁盘空间的开销。
