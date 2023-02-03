@@ -1,4 +1,15 @@
 
+### shards
+分片数默认是5，分片数一旦确定就不能改变
+```shell
+PUT test/_settings
+{
+    "index": {
+        "number_of_shards" : 1
+    }
+}
+```
+
 ### mapping
 PUT http://localhost:9200/product/_mapping  创建映射
 GET http://localhost:9200/product/_mapping  查看映射

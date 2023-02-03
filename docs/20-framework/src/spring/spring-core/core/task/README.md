@@ -8,7 +8,7 @@ support
     TaskExecutorAdapter
 AsyncListenableTaskExecutor
 AsyncTaskExecutor
-SimpleAsyncTaskExecutor
+SimpleAsyncTaskExecutor 每次都创建线程执行
 SyncTaskExecutor
 TaskDecorator
 TaskExecutor

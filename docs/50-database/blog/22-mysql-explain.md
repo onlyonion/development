@@ -35,6 +35,13 @@ Extra:执行情况的描述和说明
 ### Key
 key列显示MySQL实际决定使用的键（索引），必然包含在possible_keys中
 
+### key length
+The length of the chosen key，所选键的长度。其单位是字节
+1. 先看索引上字段的类型+长度。比如：int=4 ; varchar(20) =20 ; char(20) =20
+2. 如果是varchar或者char这种字符串字段，视字符集要乘不同的值，比如utf8要乘 3，如果是utf8mb4要乘4，GBK要乘2
+3. varchar这种动态字符串要加2个字节
+4. 允许为空的字段要加1个字节
+
 ### ref
 列与索引的比较，表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
 
@@ -48,6 +55,7 @@ key列显示MySQL实际决定使用的键（索引），必然包含在possible_
 包含不适合在其他列中显示但十分重要的额外信息。通过这些额外信息来理解MySQL到底将如何执行当前的查询语句。
 MySQL提供的额外信息有好几十个，这里只挑介绍比较重要的介绍。
 - Impossible WHERE：where子句的值总是false
+- Impossible WHERE noticed after reading const tables
 - Using where：使用了where，但在where上有字段没有创建索引
 - Using temporary：使了用临时表保存中间结果
 - Using filesort 在对查询结果中的记录进行排序时，是可以使用索引的，

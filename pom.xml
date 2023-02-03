@@ -26,6 +26,7 @@
 		<drools.version>6.4.0.Final</drools.version>
 		<hystrix.version>1.5.10</hystrix.version>
 		<spring-cloud.version>Hoxton.SR12</spring-cloud.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencyManagement>
@@ -811,8 +812,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>9</source>
+					<target>9</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
