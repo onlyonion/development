@@ -62,21 +62,25 @@
 * [《ACE技术内幕 深入解析ACE架构设计与实现原理》潘荣 机械工业出版社](/docs/99-book/notes/21-server/ACE技术内幕.md)
 
 ## 分布式
-* [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/docs/99-book/notes/30-distributed/分布式系统技术内幕.md)
-* [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
-* [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
-* [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
-* [《深入理解Apache Dubbo与实战》诣极，林琳 著](/docs/99-book/notes/30-distributed/深入理解ApacheDubbo与实战.md)
-* [《dubbo源码解析2.0》](/docs/99-book/notes/30-distributed/dubbo.md)
-* [《Redis设计与实现》黄建宏](/docs/99-book/notes/30-distributed/Redis设计与实现.md)
-* [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社](/docs/99-book/notes/30-distributed/RocketMQ技术内幕.md)
-* [《RocketMQ实战与原理解析》杨开元](/docs/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
-* [《RocketMQ原理简介》淘宝消息中间件项目组](/docs/99-book/notes/30-distributed/RockMQ原理简介.md)
-* [《深入理解Kafka--核心设计与实践原理》朱忠华著](/docs/99-book/notes/30-distributed/深入理解Kafka.md)
-* [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/docs/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
-* [《深入分布式缓存 从原理到实践》于君泽 曹洪伟 邱硕 著 机械工业出版社](/docs/99-book/notes/30-distributed/深入分布式缓存.md)
-* [《分布式服务框架 原理与实践》李林锋 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务框架.md)
-* [《分布式消息中间件实践》倪炜 中国工信出版社 电子工业出版社](/docs/99-book/notes/30-distributed/分布式消息中间件实践.md)
+* ACID-CAP-BASE
+  * [《分布式系统技术内幕》张军 首都经济贸易大学出版社](/docs/99-book/notes/30-distributed/分布式系统技术内幕.md)
+  * [《分布式Java应用 基础与实践》林昊 电子工业出版社](/docs/99-book/notes/30-distributed/分布式Java应用.md)
+  * [《分布式服务架构 原理、设计与实战》 李艳鹏 杨彪 著 中国工信出版社集团 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务架构.md)
+  * [《分布式系统原理介绍》刘杰](/docs/99-book/notes/30-distributed/分布式系统原理介绍.md)
+  * [《从Paxos到Zookeeper 分布式一致性原理与实践》倪超](/docs/99-book/notes/30-distributed/从Paxos到ZooKeeper.md)
+* service
+  * [《深入理解Apache Dubbo与实战》诣极，林琳 著](/docs/99-book/notes/30-distributed/深入理解ApacheDubbo与实战.md)
+  * [《dubbo源码解析2.0》](/docs/99-book/notes/30-distributed/dubbo.md)
+  * [《分布式服务框架 原理与实践》李林锋 电子工业出版社](/docs/99-book/notes/30-distributed/分布式服务框架.md)
+* cache
+  * [《Redis设计与实现》黄建宏](/docs/99-book/notes/30-distributed/Redis设计与实现.md)
+  * [《深入分布式缓存 从原理到实践》于君泽 曹洪伟 邱硕 著 机械工业出版社](/docs/99-book/notes/30-distributed/深入分布式缓存.md)
+* mq
+  * [《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社](/docs/99-book/notes/30-distributed/RocketMQ技术内幕.md)
+  * [《RocketMQ实战与原理解析》杨开元](/docs/99-book/notes/30-distributed/RocketMQ实战与原理解析.md)
+  * [《RocketMQ原理简介》淘宝消息中间件项目组](/docs/99-book/notes/30-distributed/RockMQ原理简介.md)
+  * [《深入理解Kafka--核心设计与实践原理》朱忠华著](/docs/99-book/notes/30-distributed/深入理解Kafka.md)
+  * [《分布式消息中间件实践》倪炜 中国工信出版社 电子工业出版社](/docs/99-book/notes/30-distributed/分布式消息中间件实践.md)
 
 ## 架构
 * [《软件体系结构》第3版 章征 清华大学出版社](/docs/99-book/notes/40-architecture/软件体系结构.md)
@@ -111,49 +115,64 @@
   * [《高性能MySQL》宁海元等译](/docs/99-book/notes/50-database/高性能MySQL.md)
   * [《MySQL技术内幕：InnoDB存储引擎》第2版 姜承尧 机械工业出版社](/docs/99-book/notes/50-database/MySQL技术内幕InnoDB存储引擎.md)
   * [《MySQL技术内幕》美 Paul DuBois 著 第4版 杨晓云 王建桥 杨涛 译](/docs/99-book/notes/50-database/MySQL技术内幕.md)
+* sharding/proxy
   * [《分布式数据库架构及企业实践-基于Mycat中间件》周继锋](/docs/99-book/notes/50-database/分布式数据库架构及企业实践.md)
   * [《Mycat权威指南》Mycat开源项目组](/docs/99-book/notes/50-database/Mycat权威指南.md)
+  * [《尚硅谷Mycat2》](docs/99-book/notes/50-database/尚硅谷Mycat2.md)
 * nosql
   * [《NoSQL数据库技术实战》 皮雄军 著](/docs/99-book/notes/50-database/NoSQL数据库技术实战.md)
   * [《NoSQL数据库入门与实践（基于MongoDB、Redis）》 ](/docs/99-book/notes/50-database/NoSQL数据库入门与实践.md)
+* elasticsearch
+  * [《Elasticsearch技术解析与实战》朱林 机械工业出版社](/docs/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
+  * [《尚硅谷Elasticsearch》](docs/99-book/notes/51-cloud/尚硅谷Elasticsearch.md)
+  * [《深入理解Elasticsearch》原生第2版 张世武 译](/docs/99-book/notes/50-database/深入理解Elasticsearch.md)
+  * [《精通ElasticStack》高凯 岳重阳 妙雪立 张思琪 清华大学出版社](docs/99-book/notes/50-database/精通ElasticStack.md)
 
 ## 云
-* [《云计算》刘鹏](/docs/99-book/notes/51-cloud/云计算.md)
-* [《云计算架构技术与实践》顾炯炯](/docs/99-book/notes/51-cloud/云计算架构.md)
-* [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/docs/99-book/notes/51-cloud/大数据之路.md)
-* [《大数据架构详解-从数据获取到深度学习》朱洁 罗华霖 编著](/docs/99-book/notes/51-cloud/大数据架构详解.md)
-* [《物联网技术与实践 基于ARMCortex-M0技术》李佳，周志强 编著](/docs/99-book/notes/51-cloud/物联网技术与实践.md)
-* [《物联网导论》刘云浩 科学出版社](/docs/99-book/notes/51-cloud/物联网导论.md)
-* [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/docs/99-book/notes/51-cloud/区块链.md)
-* [《Elasticsearch技术解析与实战》朱林 机械工业出版社](/docs/99-book/notes/51-cloud/Elasticsearch技术解析与实践.md)
-* [《深入理解Elasticsearch》原生第2版 张世武 译](/docs/99-book/notes/51-cloud/深入理解Elasticsearch.md)
-* [《Docker实战》胡震 杨瑞清 黄帅 译 中国工信出版社 电子工业出版社](/docs/99-book/notes/51-cloud/Docker实战.md)
-* [《Kubernetes权威指南：从Docker到Kubernetes实践全接触》 龚正等编著 电子工业出版社](/docs/99-book/notes/51-cloud/Kubernetes权威指南.md)
+* Cloud
+  * [《云计算》刘鹏](/docs/99-book/notes/51-cloud/云计算.md)
+  * [《云计算架构技术与实践》顾炯炯](/docs/99-book/notes/51-cloud/云计算架构.md)
+* Iot
+  * [《物联网技术与实践 基于ARMCortex-M0技术》李佳，周志强 编著](/docs/99-book/notes/51-cloud/物联网技术与实践.md)
+  * [《物联网导论》刘云浩 科学出版社](/docs/99-book/notes/51-cloud/物联网导论.md)
+  * [《区块链：定义未来金融与经济性格局》张健 机械工业出版社](/docs/99-book/notes/51-cloud/区块链.md)
+* Data
+  * [《大数据之路：阿里巴巴大数据实践》阿里巴巴数据技术与产品部著](/docs/99-book/notes/51-cloud/大数据之路.md)
+  * [《大数据架构详解-从数据获取到深度学习》朱洁 罗华霖 编著](/docs/99-book/notes/51-cloud/大数据架构详解.md)
+* DevOps
+  * [《Docker实战》胡震 杨瑞清 黄帅 译 中国工信出版社 电子工业出版社](/docs/99-book/notes/51-cloud/Docker实战.md)
+  * [《Kubernetes权威指南：从Docker到Kubernetes实践全接触》 龚正等编著 电子工业出版社](/docs/99-book/notes/51-cloud/Kubernetes权威指南.md)
 
 ## 前端
-* [《深入浅出Node.js》朴灵](/docs/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
-* [《Node.js开发指南》 BYVoid 编著 人民邮电出版社](/docs/99-book/notes/60-js/Node.js开发指南.md)
-* [《Node.js实战》吴海星译](/docs/99-book/notes/60-js/Node.js实战.md)
-* [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/docs/99-book/notes/60-js/JavaScript权威指南(第6版).md)
-* [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/docs/99-book/notes/60-js/JavaScript设计模式.md)
-* [《JavaScript模式》 (美)奥斯马尼](/docs/99-book/notes/60-js/JavaScript模式.md)
-* [《你不知道的JavaScript（上卷）》](/docs/99-book/notes/60-js/你不知道的JavaScript.md)
-* [《Vue.js权威指南》](/docs/99-book/notes/60-js/Vue.js权威指南.md)
-* [《深入REACT技术栈》](/docs/99-book/notes/60-js/深入REACT技术栈.md)
-* [《深入浅出Webpack》](/docs/99-book/notes/60-js/深入浅出Webpack.md)
+* javascript
+  * [《JavaScript权威指南》第6版 David Flanagan著 淘宝前端团队译](/docs/99-book/notes/60-js/JavaScript权威指南(第6版).md)
+  * [《JavaScript设计模式》Addy Osmani 著 徐涛 译](/docs/99-book/notes/60-js/JavaScript设计模式.md)
+  * [《JavaScript模式》 (美)奥斯马尼](/docs/99-book/notes/60-js/JavaScript模式.md)
+  * [《你不知道的JavaScript（上卷）》](/docs/99-book/notes/60-js/你不知道的JavaScript.md)
+* nodejs
+  * [《深入浅出Node.js》朴灵](/docs/99-book/notes/60-js/深入浅出NodeJS.md) 模块机制、异步IO、异步编程、内存控制、工程化
+  * [《Node.js开发指南》 BYVoid 编著 人民邮电出版社](/docs/99-book/notes/60-js/Node.js开发指南.md)
+  * [《Node.js实战》吴海星译](/docs/99-book/notes/60-js/Node.js实战.md)
+* framework
+  * [《Vue.js权威指南》](/docs/99-book/notes/60-js/Vue.js权威指南.md)
+  * [《深入REACT技术栈》](/docs/99-book/notes/60-js/深入REACT技术栈.md)
+  * [《深入浅出Webpack》](/docs/99-book/notes/60-js/深入浅出Webpack.md)
 
 ## 运维
-* [《Zabbix企业级分布式监控系统》吴兆松著](/docs/99-book/notes/70-dev-ops/Zabbix企业级分布式监控系统.md)
-* [《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译](/docs/99-book/notes/70-dev-ops/Linux命令行与shell脚本编程大全.md)
-* [《Linux内核设计与实现》美 Robert Love著 陈莉君 康华 译](/docs/99-book/notes/70-dev-ops/Linux内核设计与实现.md)
-* [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/docs/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
-* [《深入理解Linux内核》陈莉君 张琼声 张宏伟 译 中国电力出版社](/docs/99-book/notes/70-dev-ops/深入理解Linux内核.md)
-* [《深入浅出Prometheus原理、应用、源码与拓展详解》陈晓宇 杨川胡 陈啸 编著](/docs/99-book/notes/70-dev-ops/深入浅出Prometheus原理.md)
-* [《C++Primer中文版》 李师贤 译 人民邮电出版社](/docs/99-book/notes/70-dev-ops/C++Primer.md)
-* [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/docs/99-book/notes/70-dev-ops/Go语言实战.md)
-* [《Maven实战》许晓斌](/docs/99-book/notes/70-dev-ops/Maven实战.md)
-* [《实战gradle》李建 杨柳 朱本威 译](/docs/99-book/notes/70-dev-ops/实战gradle.md)
-* [《容器云运维实战--Docker与Kubernetes集群》黄靖钧 冯立灿](/docs/99-book/notes/70-dev-ops/容器云运维实战.md)
+* linux
+  * [《Linux命令行与shell脚本编程大全（第2班）》 美 Richard Blum著 吴海峰 译](/docs/99-book/notes/70-dev-ops/Linux命令行与shell脚本编程大全.md)
+  * [《Linux内核设计与实现》美 Robert Love著 陈莉君 康华 译](/docs/99-book/notes/70-dev-ops/Linux内核设计与实现.md)
+  * [《深入分析Linux内核源代码》陈莉君 人民邮电出版社](/docs/99-book/notes/70-dev-ops/深入分析Linux内核源代码.md)
+  * [《深入理解Linux内核》陈莉君 张琼声 张宏伟 译 中国电力出版社](/docs/99-book/notes/70-dev-ops/深入理解Linux内核.md)
+  * [《C++Primer中文版》 李师贤 译 人民邮电出版社](/docs/99-book/notes/70-dev-ops/C++Primer.md)
+* monitor
+  * [《Zabbix企业级分布式监控系统》吴兆松著](/docs/99-book/notes/70-dev-ops/Zabbix企业级分布式监控系统.md)
+  * [《深入浅出Prometheus原理、应用、源码与拓展详解》陈晓宇 杨川胡 陈啸 编著](/docs/99-book/notes/70-dev-ops/深入浅出Prometheus原理.md)
+  * [《Go语言实战》李兆海 译 中国工信出版社 人民邮电出版社](/docs/99-book/notes/70-dev-ops/Go语言实战.md)
+* CI/CD
+  * [《Maven实战》许晓斌](/docs/99-book/notes/70-dev-ops/Maven实战.md)
+  * [《实战gradle》李建 杨柳 朱本威 译](/docs/99-book/notes/70-dev-ops/实战gradle.md)
+  * [《容器云运维实战--Docker与Kubernetes集群》黄靖钧 冯立灿](/docs/99-book/notes/70-dev-ops/容器云运维实战.md)
 
 ## 测试
 * [《软件测试基础》周元哲](/docs/99-book/notes/70-dev-ops/软件测试基础.md)

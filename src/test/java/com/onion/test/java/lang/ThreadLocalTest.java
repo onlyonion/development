@@ -3,7 +3,6 @@ package com.onion.test.java.lang;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import sun.rmi.runtime.Log;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;

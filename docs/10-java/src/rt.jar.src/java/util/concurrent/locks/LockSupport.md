@@ -1,5 +1,8 @@
 java.util.concurrent.locks.LockSupport
 
+- 线程等待唤醒机制（wait/notify）
+- synchronized-wait-notify
+- lock-await-signal
 * [Unsafe](/docs/10-java/src/rt.jar.src/sun/misc/Unsafe.md)
   * park
   * unpark

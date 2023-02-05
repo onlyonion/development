@@ -32,6 +32,21 @@ show variables like 'binlog_format';
 - row
 - mixed
 
+```conf
+# vim /etc/my.conf
+server-id=1
+log-bin=mysql-bin
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+binlog_format=STATEMENT # ROW MIXED
+```
+
+## relaylog
+```conf
+# vim /etc/my.conf
+server-id=2
+relay-log=mysql-relay
+```
 
 ## mysql主从复制
 * 一主一从
