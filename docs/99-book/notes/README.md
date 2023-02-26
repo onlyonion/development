@@ -90,24 +90,22 @@
 * [《大型网站系统与Java中间件实践》曾宪杰](/docs/99-book/notes/40-architecture/大型网站系统与Java中间件实践.md)
 * [《逆流而上 阿里巴巴技术成长之路》阿里巴巴集团成长集编委会](/docs/99-book/notes/40-architecture/逆流而上.md)
 * [《尽在双11：阿里巴巴技术演进与超越》阿里巴巴集团双11技术团队](/docs/99-book/notes/40-architecture/尽在双11.md)
+* [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
 * [《淘宝技术这十年》子柳](/docs/99-book/notes/40-architecture/淘宝技术这十年.md)
 * [《亿级流量网站架构核心技术 跟开涛学搭建高可用高并发系统》 张开涛 京东](/docs/99-book/notes/40-architecture/亿级流量网站架构核心技术.md)
 * [《架构修炼之道 亿级网关、平台开发、分布式、微服务、容错等》 王新栋 京东](/docs/99-book/notes/40-architecture/架构修炼之道.md)
 * [《Java应用架构设计 模块化模式与OSGi》张卫滨 译 机械工业出版社](/docs/99-book/notes/40-architecture/Java应用架构设计.md)
 * [《可伸缩服务架构 框架与中间件》 李艳鹏 杨彪 电子工业出版社](/docs/99-book/notes/40-architecture/可伸缩服务架构.md)
-* [《双11背后的技术较量》](/docs/99-book/notes/40-architecture/双11背后的技术较量.md)
-
-## 业务架构
-* [《支付平台架构 业务、规划、设计与实现》曹兵强 中国工信出版社 电子工业出版社](/docs/99-book/notes/40-architecture/支付平台架构.md)
-* [《支付架构实战》苏博亚 中国工信出版社](/docs/99-book/notes/40-architecture/支付架构实战.md)
-
-## 设计
-* [《大话设计模式》程杰 清华大学出版社](/docs/99-book/notes/40-architecture/大话设计模式.md)
-* [《HEAD FIRST 设计模式（中文版）》](/docs/99-book/notes/40-architecture/HeadFirst.md)
-* [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/docs/99-book/notes/40-architecture/领域驱动设计.md)
-* [《领域驱动设计与模式实战》赵俐 马燕新 译](/docs/99-book/notes/40-architecture/领域驱动设计与模式实战.md)
-* [《实现领域驱动设计》滕云 译](/docs/99-book/notes/40-architecture/实现领域驱动设计.md)
-* [《领域驱动设计模型、原理与实践》 蒲成 译](/docs/99-book/notes/40-architecture/领域驱动设计模式原理与实践.md)
+* 业务架构
+  * [《支付平台架构 业务、规划、设计与实现》曹兵强 中国工信出版社 电子工业出版社](/docs/99-book/notes/40-architecture/支付平台架构.md)
+  * [《支付架构实战》苏博亚 中国工信出版社](/docs/99-book/notes/40-architecture/支付架构实战.md)
+* 设计模式-DDD
+  * [《大话设计模式》程杰 清华大学出版社](/docs/99-book/notes/40-architecture/大话设计模式.md)
+  * [《HEAD FIRST 设计模式（中文版）》](/docs/99-book/notes/40-architecture/HeadFirst.md)
+  * [《领域驱动设计：软件核心复杂性应对之道》美 Eric Evans 赵俐](/docs/99-book/notes/40-architecture/领域驱动设计.md)
+  * [《领域驱动设计与模式实战》赵俐 马燕新 译](/docs/99-book/notes/40-architecture/领域驱动设计与模式实战.md)
+  * [《实现领域驱动设计》滕云 译](/docs/99-book/notes/40-architecture/实现领域驱动设计.md)
+  * [《领域驱动设计模型、原理与实践》 蒲成 译](/docs/99-book/notes/40-architecture/领域驱动设计模式原理与实践.md)
 
 ## 数据库
 * [《数据库系统实现》杨冬青 吴愈青 包小源 唐世清 译 机械工业出版社](/docs/99-book/notes/50-database/数据库系统实现.md)

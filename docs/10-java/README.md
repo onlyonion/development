@@ -131,7 +131,7 @@ Java程序设计语言、Java虚拟机、Java API类库这三部分统称为JDK�
 * mq
   * kafka
   * rabbitmq
-  * [`rocketmq`](/docs/30-distributed/src/rocketmq/README.md)
+  * [`rocketmq`](/docs/30-distributed/src/mq/rocketmq/README.md)
 * registry
   * [consul](/docs/30-distributed/src/registry/consul/README.md)
   * etcd

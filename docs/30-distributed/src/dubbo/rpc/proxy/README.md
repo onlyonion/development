@@ -30,13 +30,13 @@ interface ProxyFactory
 ProxyFactory ..> Invoker
 
 ProxyFactory ^.. AbstractProxyFactory
+
 abstract class AbstractProxyFactory
+class JavassistProxyFactory #orange
+class JdkProxyFactory #orange
 
 AbstractProxyFactory ^-- JavassistProxyFactory
 AbstractProxyFactory ^-- JdkProxyFactory
-class JavassistProxyFactory
-class JdkProxyFactory
-
 JavassistProxyFactory +-- JavassistProxyFactory$1
 JdkProxyFactory +-- JdkProxyFactory$1
 

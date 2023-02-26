@@ -8,11 +8,14 @@ com.alibaba.dubbo.rpc.proxy.InvokerInvocationHandler
 interface InvocationHandler
 InvocationHandler ^.. InvokerInvocationHandler
 
-class InvokerInvocationHandler {
-    - final Invoker<?> invoker
-    
+class InvokerInvocationHandler #orange {
+    - final Invoker<?> invoker;
+    - ServiceModel serviceModel;
+    - URL url;
+    - String protocolServiceKey;
 }
-InvokerInvocationHandler ..> RpcInvocation
+
+InvokerInvocationHandler .> RpcInvocation
 
 class RpcInvocation {
     - String methodName
@@ -21,6 +24,12 @@ class RpcInvocation {
     - Map<String, String> attachments
     - transient Invoker<?> invoker
 }
+
+class Proxy {
+  + static Object newProxyInstance(ClassLoader loader, 
+          Class<?>[] interfaces, InvocationHandler h)
+}
+Proxy o- InvocationHandler
 
 @enduml
 ```

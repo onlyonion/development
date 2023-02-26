@@ -5,3 +5,4 @@ Jobs
 - 腾讯 Lhotse
 - 当当 elastic-job
 - xxl-job
+- powerjob

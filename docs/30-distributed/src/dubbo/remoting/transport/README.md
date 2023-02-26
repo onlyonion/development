@@ -1,4 +1,8 @@
 com.alibaba.dubbo.remoting.transport
+- 编解码
+- NIO框架
+- 线程派发模型
+
 ## package
 ```
 codec

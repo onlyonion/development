@@ -59,11 +59,10 @@ abstract class AbstractQueuedSynchronizer {
 
 '''''''''''''''''''''节点数据结构'''''''''''''''''''''
 class Node {
-    ~ volatile int waitStatus
-    ~ volatile Node prev
-    ~ volatile Node next
-    ~ volatile Thread thread
-    ~ Node nextWaiter
+    volatile Node prev;
+    volatile Node next;
+    Thread waiter;
+    volatile int status;
     final boolean isShared()
     final Node predecessor()
 }
@@ -78,7 +77,7 @@ AbstractQueuedSynchronizer +-- ConditionObject
 interface Condition
 Condition ^.. ConditionObject
 
-class ConditionObject {
+class ConditionNode {
     - transient Node firstWaiter
     - transient Node lastWaiter
     + final void signalAll()

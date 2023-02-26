@@ -81,6 +81,8 @@ public final class SingleDcl {
 ```
 
 ## 静态内部类-懒汉式
+外部类加载时并不需要立即加载内部类，内部类不被加载则不去初始化INSTANCE，故而不占内存。
+只有当getInstance()方法第一次被调用时，使用INSTANCE的时候,才会导致虚拟机加载SingleTonHoler类。
 ```java
 public final class SingleInnerClass {
 	

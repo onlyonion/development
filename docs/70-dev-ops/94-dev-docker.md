@@ -27,11 +27,13 @@ docker commit -a zzyy -m "I am annotation"
 ```sh
 docker run java /bin/echo 'hello world' # 新建并启动容器
 docker run -d -p 91:80 nginx # -d后台运行 -p 宿主机端口号:容器端口 http://docker宿主机ip:91
+docker run -it 
 docker ps # docker ps -a
 docker stop 容器ID # 停止容器
 docker kill 容器ID # 强制停止
 docker start 容器ID # 启动已停止的容器
 docker restart 容器ID # 重启容器
+
 docker exec -it 容器ID /bin/bash # 进入容器
 docker attach 容器ID
 docker inspect --format "{{.State.Pid}}" 容器ID
@@ -105,7 +107,6 @@ redis-cli
 # redis-cli -h 127.0.0.1 -p 6379 -a "mypass"
 # config set requirepass 123456
 # config get requirepass
-
 ```
 
 ### hue

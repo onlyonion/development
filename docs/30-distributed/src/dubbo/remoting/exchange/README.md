@@ -1,6 +1,7 @@
 com.alibaba.dubbo.remoting.exchange
 
 [Exchange信息交换层](https://blog.csdn.net/qq_26222859/article/details/80494154)
+
 ## pakcage
 ```
 codec
@@ -38,11 +39,42 @@ ResponseFuture
 ```plantuml
 @startuml
 
-class Request
-class Response
+interface ExchangeClient
+interface ExchangeChannel
 
-interface ResponseCallback
-interface ResponseFuture
+'''''''''''''''''''''''' ExchangeChannel
+class HeaderExchangeChannel #orange
+class DefaultFuture #pink
+
+ExchangeChannel ^-- ExchangeClient
+ExchangeChannel ^.. HeaderExchangeChannel
+HeaderExchangeChannel ..> DefaultFuture
+
+DefaultFuture ..> Request
+DefaultFuture ..> Response
+
+
+'''''''''''''''''''''''' ExchangeClient
+class HeaderExchangeClient #orange
+ExchangeClient ^.. HeaderExchangeClient
+
+HeaderExchangeClient o-- HeaderExchangeChannel
+HeaderExchangeClient .....> HeartbeatTimerTask
+HeaderExchangeClient ......> ReconnectTimerTask
+
+
+
+'''''''''''''''''''''''' 检测任务
+interface TimerTask
+abstract class AbstractTimerTask
+
+TimerTask ^.. AbstractTimerTask
+AbstractTimerTask ^-- HeartbeatTimerTask
+AbstractTimerTask ^-- CloseTimerTask
+AbstractTimerTask ^-- ReconnectTimerTask 
+
+DefaultFuture +-- TimeoutCheckTask
+TimerTask ^-- TimeoutCheckTask 
 
 @enduml
 ```

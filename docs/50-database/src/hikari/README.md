@@ -38,3 +38,18 @@ HikariDataSource
 HikariJNDIFactory
 HikariPoolMXBean
 ```
+
+## execute
+- mybatis
+  - PreparedStatementHandler
+- sharding
+  - ShardingSpherePreparedStatement
+  - DriverJDBCExecutor
+  - ExecutorEngine
+- hikari
+  - HikariProxyPreparedStatement -> ProxyPreparedStatement
+- com.mysql.cj.jdbc
+  - ClientPreparedStatement
+  - ServerPreparedStatement
+  - ServerPreparedQuery
+  - NativeProtocol

@@ -1,4 +1,8 @@
 org.apache.rocketmq.client
+- consumer 
+  - push、pull
+  - 集群和广播
+- producer 同步发送、异步发送、延迟发送（延迟级别）、发送事务消息
 
 ## package
 ```

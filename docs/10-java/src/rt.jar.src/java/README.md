@@ -81,22 +81,22 @@ java.util.concurrent
     * [StampedLock](/docs/10-java/src/rt.jar.src/java/util/concurrent/locks/StampedLock.md)
   * 并发容器
     * list
-      * [CopyOnWriteArrayList](/docs/10-java/src/rt.jar.src/java/util/concurrent/list.CopyOnWriteArrayList.md)
+      * [CopyOnWriteArrayList](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/list.CopyOnWriteArrayList.md)
     * set
-      * [CopyOnWriteArraySet](/docs/10-java/src/rt.jar.src/java/util/concurrent/set.CopyOnWriteArraySet.md)
-      * [ConcurrentSkipListSet](/docs/10-java/src/rt.jar.src/java/util/concurrent/set.ConcurrentSkipListSet.md)
+      * [CopyOnWriteArraySet](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/set.CopyOnWriteArraySet.md)
+      * [ConcurrentSkipListSet](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/set.ConcurrentSkipListSet.md)
     * queue
-      * [ConcurrentLinkedQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.ConcurrentLinkedQueue.md)
-      * [LinkedTransferQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.LinkedTransferQueue.md)
-      * [BlockingQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.BlockingQueue.md) 阻塞队列
-      * [LinkedBlockingQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.LinkedBlockingQueue.md) 两把锁，两个条件
-      * [LinkedBlockingDeque](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.LinkedBlockingDeque.md) 双端队列，一把锁，两个条件
-      * [SynchronousQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.SynchronousQueue.md)
-      * [DelayQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.DelayQueue.md)
-      * [TransferQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/queue.TransferQueue.md)
+      * [ConcurrentLinkedQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.ConcurrentLinkedQueue.md)
+      * [LinkedTransferQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.LinkedTransferQueue.md)
+      * [BlockingQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.BlockingQueue.md) 阻塞队列
+      * [LinkedBlockingQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.LinkedBlockingQueue.md) 两把锁，两个条件
+      * [LinkedBlockingDeque](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.LinkedBlockingDeque.md) 双端队列，一把锁，两个条件
+      * [SynchronousQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.SynchronousQueue.md)
+      * [DelayQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.DelayQueue.md)
+      * [TransferQueue](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/queue.TransferQueue.md)
     * map
-      * [ConcurrentHashMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/map.ConcurrentHashMap.md) 分段锁、1.8中的CAS自旋锁、红黑树
-      * [ConcurrentSkipListMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/map.ConcurrentSkipListMap.md)
+      * [ConcurrentHashMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/map.ConcurrentHashMap.md) 分段锁、1.8中的CAS自旋锁、红黑树
+      * [ConcurrentSkipListMap](/docs/10-java/src/rt.jar.src/java/util/concurrent/collections/map.ConcurrentSkipListMap.md)
   * 并发工具
     * [CountDownLatch](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CountDownLatch.md) 一个或多个线程等待其他线程完成操作
     * [CyclicBarrier](/docs/10-java/src/rt.jar.src/java/util/concurrent/tool.CyclicBarrier.md) 一组线程到达一个屏障时阻塞，直到最后一个线程到达，才继续

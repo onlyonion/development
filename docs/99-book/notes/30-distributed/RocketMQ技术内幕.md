@@ -1,6 +1,6 @@
 《RocketMQ技术内幕：RocketMQ架构设计与实现原理》丁威 周继锋 著 机械工业出版社
 
-- 路由中心 动态路由发现与剔除机制
+- 路由中心 NameServer 动态路由发现与剔除机制
 - 消息发送 消息结构、启动流程、发送过程、批量发送
 - 消息存储 存储设计、发送存储流程、存储文件组织与内存映射机制、消费队列、索引文件、文件恢复机制、刷盘机制、文件删除机制
 - 消息消费 消息消费队列复制与重新分布、消费模式、拉取方式、进度反馈、消息过滤、顺序消息
@@ -23,15 +23,19 @@
 10. 定时消息
 11. 消息重试机制
 
+
 ## 第2章 RocketMQ路由中心NameServer
 ### 2.1 NameServer架构设计
-NameServer与每台Broker服务器保持长连接，并间隔30s检测Broker是否存活。
+NameServer与每台Broker服务器保持长连接，并`间隔10s`检测Broker是否存活。
 路由变化不会马上通知消息生产者，在消息发送端提供**容错机制**保证消息发送的高可用。
-
 NameServer本身的高可用通过部署多台NameServer服务器来实现，但彼此之间互不通信。
+
 ### 2.2 NameServer启动流程
 1. 解析配置文件，需要填充NameServerConfig、NettyServerConfig属性值。
 2. 根据启动属性创建NamesrvConroller实例，并初始化该实例。
+   - Job1: NameServer每10s扫描一次Broker，移除处于不激活状态的Broker
+   - Job2：NameServer没10分钟打印一次KV配置
+3. 注册JVM钩子函数并启动服务器，以便监听Broker、消息生产者的网络请求
 
 如果代码中使用了线程池，一种优雅停机的方式就是注册一个JVM钩子函数，在JVM进程关闭之前，现将线程池关闭，及时释放资源。
 ### 2.3 NameServer路由注册、故障剔除
@@ -47,16 +51,17 @@ NameServer本身的高可用通过部署多台NameServer服务器来实现，但
 2. NameServer处理心跳包
 
 #### 2.3.3 路由删除
-Broker每个30s向NameServer发送一个心跳包，心跳包中包含BrokerId、Broker地址、Broker所属集群的名称、Broker管理的FilterServer列表。
+Broker`每隔30s`向NameServer发送一个心跳包，心跳包中包含BrokerId、Broker地址、Broker所属集群的名称、Broker管理的FilterServer列表。
 
-NameServer会每个10s扫描brokerLiveTable状态表，如果BrokerLive的lastUpdateTimestamp的时间戳距当前时间超过120s，则认为broker失效，
+NameServer会`每隔10s`扫描brokerLiveTable状态表，如果BrokerLive的lastUpdateTimestamp的时间戳距当前时间`超过120s`，则认为broker失效，
 移除该broker，关闭与broker连接，同时更新topicQueueTable、brokerAddrTable、brokerLivedTable、filterServerTable。
 
 #### 2.3.4 路由发现
-RocketMQ路由发现是非实时的，当Topic路由出现变化后，NameServer不主动推送给客户端，而是由客户端定时拉取主题最新的路由。
+RocketMQ`路由发现是非实时`的，当Topic路由出现变化后，NameServer不主动推送给客户端，而是由**客户端定时拉取**主题最新的路由。
 根据主题名拉取路由信息的命令编码为：GET_ROUTEINFO_BY_TOPIC。
 1. 根据RouterInfoManager的方法，从路由表topicQueueTable、brokerAddrTable、FilterServerTable中分别填充TopicRouteData
 2. 如果找到主题对应的路由信息并且该主题为顺序消息，则从NameServerKVconfig中获取关于顺序消息相关的配置填充路由信息。
+
 
 ## 第3章 RocketMQ消息发送
 ### 3.1 漫谈RocketMQ消息发送
@@ -78,13 +83,13 @@ org.apache.rocketmq.common.message.Message
 
 ### 3.3 生产者启动流程
 消息生产者启动流程
-1. 检查productGroup
-2. 创建MQClientInstance实例
+1. 检查productGroup是否符合要求，并改变生产者的instanceName为进程ID
+2. 创建MQClientInstance实例 `单例注册表模式`
 3. 向MQClientInstance注册
 4. 启动MQClientInstance
 
 ### 3.4 消息发送基本流程
-1. 消息长度验证
+1. 消息长度验证 默认最大长度4M
 2. 查找主题路由信息
    - producer未缓存，向NameServer查询该topic的路由信息
    - producer已缓存
@@ -99,6 +104,7 @@ org.apache.rocketmq.common.message.Message
 
 ### 3.5 批量消息发送
 将同一主题的多条消息一起打包发送到消息服务器，减少网络调用次数，提高网络传输效率。（请求合并）
+
 
 ## 第4章 RocketMQ消息存储
 MQ中间件存储模型，分为需要持久化和不需要持久化的两种模式。
@@ -166,14 +172,19 @@ checkpoint
 ```
 1. Commitlog文件 存储消息，每一条消息长度不相同，默认1G
 2. ConsumeQueue文件 每个条目：commitlogoffset + size + taghashcode （8 + 4 + 8 byte）；默认包含30万个条目。
-   ConsumeQueue即为Commitlog的索引文件
+   ConsumeQueue即为`Commitlog的索引文件`
 3. Index索引文件 hash索引（hash槽与hash冲突的链表结构）
    - indexHeader + hash slot + index 大小：40Btye + 500w + 2000w
 4. checkpoint文件 记录Commitlog、ConsumeQueue、Index文件的刷盘时间，文件固定长度为4k，只用前24字节
    - physicalMsgTimestamp + logicMsgTimestamp + indexMsgTimestamp 
 
+#### 4.5.3 Index索引文件
+消息消费队列是RocketMQ专门为消息订阅构建的索引文件，提高根据主题与消息队列检索消息的速度，另外RocketMQ引入了Hash索引机制
+为消息建立索引。
+
 ### 4.6 实时更新消息消费队列与索引文件
-通过开启一个线程ReputMessageService来准实时转发Commitlog文件更新事件，相应的任务处理器根据转发的消息及时更新ComsumeQueue、IndexFile
+通过开启一个线程`ReputMessageService`来**准实时**转发Commitlog文件更新事件，相应的任务处理器根据转发的消息及时更新ComsumeQueue、IndexFile。
+`ReputMessageServer`线程每执行一次任务休息**1毫秒**就继续尝试推送消息到消费队列和索引文件。
 1. 根据消息更新ConsumeQueue
 2. 根据消息更新Index索引文件
    - 获取或创建IndexFile文件并获取所有文件最大的物理偏移量
@@ -197,13 +208,15 @@ checkpoint
 #### 4.7.2 Broker异常停止文件恢复
 
 ### 4.8 文件刷盘机制
-基于JDK NIO的内存映射机制（MappedByteBuffer），消息存储时首先将消息追加到内存，再根据配置的刷盘策略在不同时间进行刷写磁盘。
+基于JDK NIO的内存映射机制（MappedByteBuffer），消息存储时首先将消息`追加到内存`，再根据配置的刷盘策略在不同时间进行刷写磁盘。
 #### 4.8.1 Broker同步刷盘
+消息追加到内存映射文件的内存中后，立即将数据从内存刷鞋到磁盘文件，由CommitLog的handleDiskFlush方法实现
 #### 4.8.2 Broker异步刷盘
 
 ### 4.9 过期文件删除机制
 顺序写：写操作全部落在最后一个Commitlog或ConsumeQueue文件上，之前的文件在下一个文件创建后将不会再被更新。
 RocketMQ不会关注这个文件上的消息是否全部被消费。默认每个文件的过期时间为72小时。凌晨4点、磁盘空间不足时。
+
 
 ## 第5章 RocketMQ消息消费 
 ### 5.1 RocketMQ消息消费概述
@@ -233,13 +246,14 @@ DefaultMQPushConsumerImpl.start()
 ### 5.4 消息拉取
 消费方式：广播模式与集群模式。
 集群模式，同一个消费组内有多个消费者，同一个主题存在多个消息队列。
+消息队列负载，一个消息队列同一时间只允许被一个消费者消费，一个消费者可以同时消费多个消息队列。
+从MQClientInstance的启动流程中可以看出，RocketMQ使用一个单独的线程`PullMessageService`来复制消息拉取。
 
-从MQClientInstance的启动流程中可以看书，RocketMQ使用一个单独的线程PullMessageService来复制消息拉取。
 #### 5.4.1 PullMessageService实现机制
 PullMessageService继承ServiceThread
 
 #### 5.4.2 ProcessQueue实现机制
-ProcessQueue是MessageQueue在消费端的重现、快照。
+`ProcessQueue`是`MessageQueue`在消费端的`重现、快照`。
 - PullMessageService从消息服务器默认每次拉取32条消息，按消息的队列偏移量存放在ProcessQueue中。
 - PullMessageService然后将消息提交到消费者消费线程池，消息成功消费后从ProcessQueue中移除。
 
@@ -274,11 +288,16 @@ ProcessQueue是MessageQueue在消费端的重现、快照。
 
 ### 5.5 消息队列负载与重新分布机制
 RocketMQ消息队列重新分布式由RebalanceService线程来实现的。一个MQClientInstance持有一个RebalanceService实现，并随着MQClientInstance的启动而启动。
-
+RebalanceService线程默认`每20s`执行一次mqClientFactory.doRebalance()
 每个DefaultMQPushConsumerImpl都持有一个单独的RebalanceImpl对象，该方法主要是遍历订阅信息对每个主题的队列进行重新负载。
 1. 从主题订阅信息缓存表中获取主题的队列信息
 2. 首先对cidAll，mqAll排序，同一个消费组内看到的视图保持一致，确保同一个消费队列不会被多个消费组分配
-   - 分配算法：平均分配、平均轮询分配、一致性hash、根据配置、根据Broker部署机房名
+   - 分配算法：
+     - 平均分配
+     - 平均轮询分配
+     - 一致性hash
+     - 根据配置
+     - 根据Broker部署机房名
 3. ConcurrentMap<MessageQueue, ProcessQueue> processQueueTable，当前消费者负载的消费队列缓存
 4. 遍历本次负载分配到的队列集合
 5. 将PullRequest加入到PullMessageService中，以便唤醒PullMessageService线程。
@@ -301,8 +320,7 @@ ConsumeMessageConcurrentlyService#submitConsumeRequest提交消费请求
 
 #### 5.6.2 消息确认(ACK)
 #### 5.6.3 消费进度管理
-广播模式：消息进度独立存储。
-
+广播模式：消息进度独立存储。${user.dir}/.rocketmq_offsets
 集群模式：消费进度保持在一个每个消费者都能够访问到的地方。
 
 ### 5.7 定时消息机制
@@ -315,8 +333,8 @@ ScheduleMessageService定时消息实现类
 #### 5.7.2 start方法
 #### 5.7.3 定时调度逻辑
 ScheduleMessageService的start方法启动后，会为每一个延迟级别创建一个调度任务，每一个延迟级别其实对应SCHEDULE_TOPIC_XXXX主题下的一个消息消费队列。
-
 DeliverDelayedMessageTimerTask
+
 ### 5.8 消息过滤机制
 MessageFilter。RocketMQ消息过滤方式不同于其他消息中间件，是在订阅时做过滤。
 
@@ -363,7 +381,7 @@ RocketMQ消息的过滤发生在消息消费的时候，PullMessageService线程
 在FilterServer过滤模式下，PullMessageService线程是如何将拉取地址原来的Broker地址转换成FilterServer地址呢？
 
 ## 第7章 RocketMQ主从同步(HA)机制 
-### 7.1 RocketMQ主从复制原理
+### 7.1 RocketMQ`主从复制`原理
 Broker主备机制：消息消费到达**主服务器**需要将消息同步到**从服务器**，如果主服务器Broker宕机后，消息消费者可以从**从服务器**拉取消息。
 #### 7.1.1 HAService整体工作机制
 #### 7.1.2 AcceptSocketService实现原理
@@ -371,13 +389,19 @@ Broker主备机制：消息消费到达**主服务器**需要将消息同步到*
 #### 7.1.4 HAClient实现原理
 #### 7.1.5 HAConnection实现原理
 
-### 7.2 RocketMQ读写分离机制
+### 7.2 RocketMQ`读写分离`机制
 消息消费是基于消息消费队列MessageQueue（topic、brokerName、queueId）。
+如果主服务器繁忙则建议下一次从**从服务器**拉取消息
 
-如果主服务器反面则建议下一次从**从服务器**拉取消息
+### 7.3 小节
+HA机制，从服务器启动时主动向主服务器建立TCP长连接，然后获取服务器的commitlog最大偏离量
+主服务器根据偏移量，与自身commitlog文件的最大偏移量进行比较，如果大于从服务器的偏移量，主服务器向从服务器返回一定数量的消息
+
+读写分离机制，消费者首先向主服务器拉取消息，主服务器返回消息，并且返回主服务器的负载压力与主从同步情况，返回`主服务器的拉取建议`
 
 ## 第8章 RocketMQ事务消息 
 ### 8.1 事务消息实现思想
+基于`两阶段提交`和`定时事务状态回查`来决定消息最终提交还是回滚。
 1. 业务数据落库后，同步调用消息发送接口，发送状态prepare的消息
 2. 接收到perpare消息，先备份消息的原主题与原消息消费队列，然后将消息存储在主题RMQ_SYS_TRANS_HALF_TOPIC的消息消费队列中
 3. RocketMQ 定时任务回查
@@ -396,7 +420,7 @@ Broker主备机制：消息消费到达**主服务器**需要将消息同步到*
 
 ### 8.3 提交或回滚事务
 ### 8.4 事务消息回查事务状态
-1. RocketMQ通过TransactionalMessageCheckService线程定时去检测RMQ_SYS_TRANS_HALF_TOPIC主题中的消息，回查消息的事务状态。默认检测频率1分钟。
+1. RocketMQ通过`TransactionalMessageCheckService线程`定时去检测`RMQ_SYS_TRANS_HALF_TOPIC`主题中的消息，回查消息的事务状态。默认检测频率1分钟。
 2. TransactionalMessageService#check
    - 查询RMQ_SYS_TRANS_HALF_TOPIC主题下的消息队列，该主题是prepare下线的存储队列
    - 遍历每一个消息消费队列，每个消息消费队列的处理时间为60s

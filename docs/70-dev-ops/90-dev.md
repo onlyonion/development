@@ -44,6 +44,7 @@ source /etc/profile
 cp zoo_sample.cfg zoo.cfg
 mkdir -p /tmp/zookeeper/data
 mkdir -p /tmp/zookeeper/log
+
 zkServer.sh start # 启动
 zkServer.sh status # 状态
 # cluster zoo.cfg

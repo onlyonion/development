@@ -1,4 +1,6 @@
 org.apache.rocketmq.store.schedule.ScheduleMessageService
+- SCHEDULE_TOPIC_XXXX
+- FIRST_DELAY_TIME = 1000L
 
 ## ## hierarchy
 ```
@@ -79,4 +81,5 @@ public class ScheduleMessageService extends ConfigManager {
                     this.delayLevel, this.offset), DELAY_FOR_A_PERIOD);
             }
         }
+    }
 ```

@@ -1,4 +1,7 @@
 org.apache.rocketmq.client.consumer.DefaultMQPushConsumer
+- DefaultMQPushConsumerImpl#pullMessage
+- 通过长轮询达到Push的效果，长轮询既有Pull的有点，又兼具Push方式的实时性
+- 流量控制 ProcessQueue
 
 ## hierarchy
 ```

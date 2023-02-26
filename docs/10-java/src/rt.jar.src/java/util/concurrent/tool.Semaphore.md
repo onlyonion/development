@@ -19,10 +19,10 @@ Semaphore +-- Sync
 Semaphore +-- NonfairSync
 Semaphore +-- FairSync
 
-abstract class AbstractQueuedSynchronizer 
+abstract class AbstractQueuedSynchronizer #orange
 AbstractQueuedSynchronizer ^-- Sync
 
-class Sync {
+class Sync #orange {
     # final int nonfairTryAcquireShared(int acquires)
 }
 Sync ^-- NonfairSync
@@ -36,6 +36,36 @@ class FairSync {
     # int tryAcquireShared(int acquires)
 }
 
-
 @enduml
+```
+
+## methods
+
+### acquire
+```java
+    public void acquire() throws InterruptedException {
+        sync.acquireSharedInterruptibly(1);
+    }
+```
+
+### acquire
+```java
+    public void acquire() throws InterruptedException {
+        sync.acquireSharedInterruptibly(1);
+    }
+    public void acquire(int permits) throws InterruptedException {
+        if (permits < 0) throw new IllegalArgumentException();
+        sync.acquireSharedInterruptibly(permits);
+    }
+```
+
+###
+```java
+    public void release() {
+        sync.releaseShared(1);
+    }
+    public void release(int permits) {
+        if (permits < 0) throw new IllegalArgumentException();
+        sync.releaseShared(permits);
+    }
 ```

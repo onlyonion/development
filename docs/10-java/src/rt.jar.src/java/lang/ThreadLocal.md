@@ -1,12 +1,16 @@
 java.lang.ThreadLocal
 
 解决哈希冲突方法
-* 开放地址法
+* 开放定址法
   * 线性探测，顺序查看下一个单元，直到找出一个空闲单元或遍历全表；ThreadLocalMap
   * 平方探测
   * 再散列法
   * 伪随机序列法
 * 拉链法（链接法）
+* 公共溢出区
+- InheritableThreadLocal
+- TransmittableThreadLocal
+- FastThreadLocal
 
 ## pacakge
 ```
@@ -17,6 +21,8 @@ ThreadLocal (java.lang)
         CopyOnInheritThreadLocal (ch.qos.logback.classic.util)
     NamedThreadLocal (org.springframework.core)
     ThreadLocalBoolean (org.jboss.netty.util.internal)
+
+io.netty.util.concurrent.FastThreadLocal
 ```
 
 ## define
@@ -234,3 +240,8 @@ threadLocal内存泄漏的根源是：由于ThreadLocalMap的生命周期跟Thre
                 rehash();
         }
 ```
+
+
+## TransmittableThreadLocal
+TransmittableThreadLocal 是Alibaba开源的、用于解决 “在使用线程池等会缓存线程的组件情况下传递ThreadLocal” 问题的 InheritableThreadLocal 扩展。
+若希望 TransmittableThreadLocal 在线程池与主线程间传递，需配合 TtlRunnable 和 TtlCallable 使用

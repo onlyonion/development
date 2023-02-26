@@ -1,4 +1,8 @@
 com.alibaba.dubbo.remoting.exchange.support.DefaultFuture
+- HashedWheelTimer
+- 请求-通道绑定 
+  - Map<Long, Channel> CHANNELS = new ConcurrentHashMap<>()
+  - Map<Long, DefaultFuture> FUTURES = new ConcurrentHashMap<>()
 
 ## hierarchy
 ```

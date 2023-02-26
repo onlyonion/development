@@ -1,4 +1,5 @@
 com.alibaba.dubbo.rpc.protocol.dubbo.DubboCodec
+- 编解码
 
 ## hierarchy
 ```
@@ -18,19 +19,29 @@ DubboCodec (com.alibaba.dubbo.rpc.protocol.dubbo)
 @startuml
 
 interface Codec2 
+interface ScopeModelAware
 abstract class AbstractCodec 
 class TransportCodec 
 class TelnetCodec 
-class ExchangeCodec 
+class ExchangeCodec #orange {
+  // header length
+  # static final int HEADER_LENGTH = 16
+  // magic header
+  # static final short MAGIC = short 0xdabb
+  // message flag
+
+}
 class DubboCodec 
 
 Codec2 ^.. AbstractCodec
+ScopeModelAware ^.. AbstractCodec
+
 AbstractCodec ^-- TransportCodec
 TransportCodec ^-- TelnetCodec
 TelnetCodec ^-- ExchangeCodec
 ExchangeCodec ^-- DubboCodec
 
-Codec2 ^.. DubboCodec
+Codec2 ^.. DubboCodec #gray : delete from dubbo3
 
 @enduml
 ```

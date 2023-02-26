@@ -20,6 +20,9 @@ mysqld -remove
 mysql -u root -p
 update user set password = password('newpwd'), password_expired='N' where user = 'root';
 
+```sql
+select version();
+```
 
 ## mysql5.7
 

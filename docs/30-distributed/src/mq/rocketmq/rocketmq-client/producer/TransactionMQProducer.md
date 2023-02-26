@@ -32,6 +32,23 @@ enum LocalTransactionState {
 @enduml
 ```
 
+```java
+public class TransactionMQProducer extends DefaultMQProducer {
+    private TransactionListener transactionListener;
+
+    private ExecutorService executorService;
+    
+    @Override
+    public TransactionSendResult sendMessageInTransaction(final Message msg, final Object arg) throws MQClientException {
+        if (null == this.transactionListener) {
+            throw new MQClientException("TransactionListener is null", null);
+        }
+
+        return this.defaultMQProducerImpl.sendMessageInTransaction(msg, transactionListener, arg);
+    }
+}
+```
+
 ## methods
 
 ### sendMessageInTransaction

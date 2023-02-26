@@ -2,6 +2,7 @@ com.alibaba.dubbo.rpc.protocol.dubbo.DubboInvoker
 
 * AtomicPositiveInteger 对AtomicInteger的包装
 * ReentrantLock
+* ExchangeClient[] clients
 
 ## hierarchy
 ```
@@ -33,7 +34,7 @@ abstract class AbstractInvoker<T> {
 }
 Invoker ^.. AbstractInvoker
 
-class DubboInvoker<T> {
+class DubboInvoker<T> #orange {
     - final ExchangeClient[]      clients
     - final AtomicPositiveInteger index
     - final String                version

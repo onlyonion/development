@@ -33,3 +33,23 @@ D:\opt\tool\mingw64\bin;
 C:\Program Files\Git\cmd;
 C:\Program Files\TortoiseGit\bin
 ```
+
+### backup
+%SystemRoot%\system32;
+%SystemRoot%;
+%SystemRoot%\System32\Wbem;
+%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;
+%SYSTEMROOT%\System32\OpenSSH\;
+C:\Program Files\Git\cmd;
+C:\Program Files\TortoiseGit\bin;
+%JAVA_HOME%\bin;
+%JAVA_HOME%\jre\bin;
+%MAVEN_HOME%\bin;
+%GRADLE_HOME%\bin;
+%ANT_HOME%\bin;
+%CONDA_HOME%;
+%CONDA_HOME%\Scripts;
+%SCALA_HOME%\bin;
+%NODE_HOME%;
+C:\Program Files\TortoiseSVN\bin;
+D:\opt\python\python27;

@@ -16,18 +16,26 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 
 public class TransactionProducer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
-        TransactionListener transactionListener = new TransactionListenerImpl();
+
         TransactionMQProducer producer = new TransactionMQProducer("please_rename_unique_group_name");
-        ExecutorService executorService = new ThreadPoolExecutor(2, 5, 100, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(2000), new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable r) {
-                Thread thread = new Thread(r);
-                thread.setName("client-transaction-msg-check-thread");
-                return thread;
-            }
-        });
+        producer.setNamesrvAddr("192.168.0.11:9876");
+        ExecutorService executorService = new ThreadPoolExecutor(
+                                                2,
+                                                5,
+                                                100,
+                                                TimeUnit.SECONDS,
+                                                new ArrayBlockingQueue<Runnable>(2000),
+                                                new ThreadFactory() {
+                                                    @Override
+                                                    public Thread newThread(Runnable r) {
+                                                        Thread thread = new Thread(r);
+                                                        thread.setName("client-transaction-msg-check-thread");
+                                                        return thread;
+                                                    }
+                                                });
 
         producer.setExecutorService(executorService);
+        TransactionListener transactionListener = new TransactionListenerImpl();
         producer.setTransactionListener(transactionListener);
         producer.start();
 
@@ -37,6 +45,7 @@ public class TransactionProducer {
                 Message msg =
                         new Message("TopicTest1234", tags[i % tags.length], "KEY" + i,
                                 ("Hello RocketMQ " + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+                // 发送事务消息
                 SendResult sendResult = producer.sendMessageInTransaction(msg, null);
                 System.out.printf("%s%n", sendResult);
 
